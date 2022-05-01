@@ -4,3 +4,10 @@ cmake-build-debug/
 
 # Build files
 build/
+
+# Qt files
+src/.qmake.stash
+src/Makefile
+
+# Doxygen files
+doc/

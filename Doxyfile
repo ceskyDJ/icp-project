@@ -1,0 +1,16 @@
+# Project related configuration options
+PROJECT_NAME = ICP project
+OPTIMIZE_OUTPUT_FOR_C
+OUTPUT_DIRECTORY = doc
+
+# Configuration options related to the input files
+INPUT = src
+
+# Configuration options related to source browsing
+SOURCE_BROWSER = YES
+
+# Configuration options related to the HTML output
+HTML_OUTPUT = .
+
+# Configuration options related to the LaTeX output
+GENERATE_LATEX = NO
