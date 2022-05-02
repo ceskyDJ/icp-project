@@ -15,7 +15,6 @@ MOC_DIR = ../build/moc  # Qt's moc files
 RCC_DIR = ../build/rcc  # Qt's Resource Compiler output files
 UI_DIR = ../builld/ui  # Qt's uic files
 
-
 # Compile configuration
 # Default: -g -Wall -Wextra (+ some other but not important for this configuration)
 QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
@@ -23,8 +22,9 @@ QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
 # Program configuration
 TARGET = icp_project
 
-# Modules
+# Source codes
 HEADERS +=
-#
+
 SOURCES += main.cpp
+
 FORMS +=
