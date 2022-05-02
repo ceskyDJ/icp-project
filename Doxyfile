@@ -1,3 +1,10 @@
+# Settings for Doxygen
+#
+# ICP project (Class and sequence diagram editor)
+#
+# Author: Michal Šmahel (xsmahe01)
+# Help: https://devhints.io/makefile
+
 # Project related configuration options
 PROJECT_NAME = ICP project
 OPTIMIZE_OUTPUT_FOR_C
