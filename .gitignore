@@ -1,3 +1,14 @@
 # IDE and CMake files
 .idea/
 cmake-build-debug/
+
+# Build files
+build/
+xsmahe01-xdvora3q.tar.gz
+
+# Qt files
+src/.qmake.stash
+src/Makefile
+
+# Doxygen files
+doc/
