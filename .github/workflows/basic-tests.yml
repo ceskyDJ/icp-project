@@ -16,5 +16,35 @@ jobs:
         run: mkdir tmp
 
       - name: Run own tests
-        run: ./test/basics/other-assignment-rules.sh
+        run: ./test/basics/assignment-rules.sh
 
+  # Check if program could be successfully compiled
+  compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: 5.15.2
+          host: linux
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+      - name: Try to compile sources
+        run: make
+
+  # Check if Doxygen docs could be successfully generated
+  docs-gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Try to generate docs with Doxygen
+        uses: mattnotmitt/doxygen-action@v1.9.2
+
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./doc
