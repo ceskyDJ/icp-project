@@ -12,6 +12,11 @@
 # make doxygen  ... generate Doxygen docs
 # make clean    ... remove temporary files
 
+# Windows compatibility
+# You need these EXE files in PATH:
+# - qmake.exe
+# - doxygen.exe
+
 # Important constants
 ifeq ($(OS),Windows_NT)
 	BINARY_NAME=icp_project.exe
