@@ -19,7 +19,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(icp_project src/main.cpp)
+add_executable(icp_project src/main.cpp src/ClassDiagram.cpp src/ClassDiagram.h src/SequenceDiagram.cpp src/SequenceDiagram.h src/ClassMember.cpp src/ClassMember.h src/ClassMethod.cpp src/ClassMethod.h src/ClassAttribute.cpp src/ClassAttribute.h src/Class.cpp src/Class.h src/Object.cpp src/Object.h src/MethodParameter.cpp src/MethodParameter.h src/Message.cpp src/Message.h src/ClassView.cpp src/ClassView.h src/Relation.cpp src/Relation.h src/Generalization.cpp src/Generalization.h src/Agregation.cpp src/Agregation.h src/Composition.cpp src/Composition.h src/AccessModifier.h src/ClassType.h src/MessageType.h src/Actor.cpp src/Actor.h)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui
