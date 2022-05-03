@@ -1,19 +1,19 @@
 /**
- * @file
- * Enumeration class for access modifiers
+ * @file AccessModifier.h
  *
  * ICP project (Class and sequence diagram editor)
  *
  * @author Michal Šmahel (xsmahe01)
  */
 
-#ifndef ICP_PROJECT_ACCESSMODIFIER_H
-#define ICP_PROJECT_ACCESSMODIFIER_H
+#ifndef ICP_PROJECT_ACCESS_MODIFIER_H
+#define ICP_PROJECT_ACCESS_MODIFIER_H
 
 /**
- * Access modifier for methods and class attributes (used in class diagram)
+ * Enumeration for access modifier for methods and class attributes (used in class diagram)
  */
-enum class AccessModifier {
+enum class AccessModifier
+{
     /**
      * Completely public, everyone see it
      */
@@ -32,4 +32,4 @@ enum class AccessModifier {
     PACKAGE_PRIVATE
 };
 
-#endif //ICP_PROJECT_ACCESSMODIFIER_H
+#endif //ICP_PROJECT_ACCESS_MODIFIER_H

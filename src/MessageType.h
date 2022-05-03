@@ -1,19 +1,19 @@
 /**
- * @file
- * Enumeration class for message types (from sequence diagram)
+ * @file MessageType.h
  *
  * ICP project (Class and sequence diagram editor)
  *
  * @author Michal Šmahel (xsmahe01)
  */
 
-#ifndef ICP_PROJECT_MESSAGETYPE_H
-#define ICP_PROJECT_MESSAGETYPE_H
+#ifndef ICP_PROJECT_MESSAGE_TYPE_H
+#define ICP_PROJECT_MESSAGE_TYPE_H
 
 /**
- * Type of sequence diagram message
+ * Enumeration for type of sequence diagram message
  */
-enum class MessageType {
+enum class MessageType
+{
     /**
      * Classic message (practically known as calling method)
      */
@@ -36,4 +36,4 @@ enum class MessageType {
     REPLY
 };
 
-#endif //ICP_PROJECT_MESSAGETYPE_H
+#endif //ICP_PROJECT_MESSAGE_TYPE_H

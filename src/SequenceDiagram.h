@@ -1,19 +1,17 @@
 /**
- * @file
- * TODO: File description (short information about what is inside)
+ * @file SequenceDiagram.h
  *
  * ICP project (Class and sequence diagram editor)
  *
  * @author Michal Šmahel (xsmahe01)
  */
 
-#ifndef ICP_PROJECT_SEQUENCEDIAGRAM_H
-#define ICP_PROJECT_SEQUENCEDIAGRAM_H
+#ifndef ICP_PROJECT_SEQUENCE_DIAGRAM_H
+#define ICP_PROJECT_SEQUENCE_DIAGRAM_H
 
-
-class SequenceDiagram {
+class SequenceDiagram
+{
 
 };
 
-
-#endif //ICP_PROJECT_SEQUENCEDIAGRAM_H
+#endif //ICP_PROJECT_SEQUENCE_DIAGRAM_H

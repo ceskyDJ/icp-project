@@ -1,6 +1,5 @@
 /**
- * @file
- * TODO: File description (short information about what is inside)
+ * @file Generalization.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -10,10 +9,11 @@
 #ifndef ICP_PROJECT_GENERALIZATION_H
 #define ICP_PROJECT_GENERALIZATION_H
 
+#include "Relationship.h"
 
-class Generalization {
-
-};
-
+/**
+ * Entity for generalization (special type of relationship)
+ */
+class Generalization: public Relationship {};
 
 #endif //ICP_PROJECT_GENERALIZATION_H

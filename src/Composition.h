@@ -1,6 +1,5 @@
 /**
- * @file
- * TODO: File description (short information about what is inside)
+ * @file Composition.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -10,10 +9,11 @@
 #ifndef ICP_PROJECT_COMPOSITION_H
 #define ICP_PROJECT_COMPOSITION_H
 
+#include "Relationship.h"
 
-class Composition {
-
-};
-
+/**
+ * Entity for composition (special type of relationship)
+ */
+class Composition: public Relationship {};
 
 #endif //ICP_PROJECT_COMPOSITION_H
