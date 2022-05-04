@@ -6,7 +6,6 @@
 
 # Project configuration
 TEMPLATE = app
-RESOURCES = rsc.qrc
 TARGET = icp_project
 
 # Qt configuration
