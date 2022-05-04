@@ -67,70 +67,26 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle"><div class="title">MessageType.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+</div>
 <p><a href="MessageType_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:ac6606ebe91c8ac66a2c314c79f5ab013"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MessageType_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a> { <br />
-&#160;&#160;<a class="el" href="MessageType_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a274ccef15a21e829d03293a6fd1974f3">SYNC</a>
-, <a class="el" href="MessageType_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abe553330beb7b3d994656e0a4e66cd96">ASYNC</a>
-, <a class="el" href="MessageType_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a294ce20cdefa29be3be0735cb62e715d">CREATE</a>
-, <a class="el" href="MessageType_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ac39aa6dbe619bb8ef8187b00b686df6a">DESTROY</a>
-, <br />
-&#160;&#160;<a class="el" href="MessageType_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a0387d1aeb965d28d6b32e83398381966">REPLY</a>
-<br />
- }</td></tr>
-<tr class="separator:ac6606ebe91c8ac66a2c314c79f5ab013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageType.html">MessageType</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >ICP project (<a class="el" href="classClass.html">Class</a> and sequence diagram editor)</p>
 <dl class="section author"><dt>Author</dt><dd>Michal Šmahel (xsmahe01) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="MessageType_8h_source.html">MessageType.h</a>.</p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="ac6606ebe91c8ac66a2c314c79f5ab013" name="ac6606ebe91c8ac66a2c314c79f5ab013"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6606ebe91c8ac66a2c314c79f5ab013">&#9670;&nbsp;</a></span>MessageType</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="MessageType_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Enumeration for type of sequence diagram message </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a274ccef15a21e829d03293a6fd1974f3" name="ac6606ebe91c8ac66a2c314c79f5ab013a274ccef15a21e829d03293a6fd1974f3"></a>SYNC&#160;</td><td class="fielddoc"><p >Classic message (practically known as calling method) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013abe553330beb7b3d994656e0a4e66cd96" name="ac6606ebe91c8ac66a2c314c79f5ab013abe553330beb7b3d994656e0a4e66cd96"></a>ASYNC&#160;</td><td class="fielddoc"><p >Classic message but with asynchronous behaviour (without active waiting on result) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a294ce20cdefa29be3be0735cb62e715d" name="ac6606ebe91c8ac66a2c314c79f5ab013a294ce20cdefa29be3be0735cb62e715d"></a>CREATE&#160;</td><td class="fielddoc"><p >Special message for creating new object (practically known as calling constructor) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013ac39aa6dbe619bb8ef8187b00b686df6a" name="ac6606ebe91c8ac66a2c314c79f5ab013ac39aa6dbe619bb8ef8187b00b686df6a"></a>DESTROY&#160;</td><td class="fielddoc"><p >Special message for destroying existing object (practically known as calling destructor) </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a0387d1aeb965d28d6b32e83398381966" name="ac6606ebe91c8ac66a2c314c79f5ab013a0387d1aeb965d28d6b32e83398381966"></a>REPLY&#160;</td><td class="fielddoc"><p >Theoretical way (special message) how to handle responding after sending some of the classic messages </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="MessageType_8h_source.html#l00015">15</a> of file <a class="el" href="MessageType_8h_source.html">MessageType.h</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
