@@ -31,15 +31,15 @@ class UndirectedAssociation: public Relationship
     /**
      * Constructor for initializing for known classes in relationship, name and cardinalities
      *
-     * @param firstClass First class in undirected association
-     * @param secondClass Second class in undirected association
+     * @param firstClass Pointer to the first class in undirected association
+     * @param secondClass Pointer to the second class in undirected association
      * @param name Name of the undirected association (optional)
      * @param firstClassCardinality Cardinality near the first class
      * @param secondClassCardinality Cardinality near the second class
      */
     UndirectedAssociation(
-        Class &firstClass,
-        Class &secondClass,
+        Class *firstClass,
+        Class *secondClass,
         std::string name = "",
         std::string firstClassCardinality = "",
         std::string secondClassCardinality = ""
