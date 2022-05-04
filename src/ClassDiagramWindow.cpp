@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QResource>
 #include "ClassDiagramWindow.h"
+#include "ClassAttribute.h"
 
 ClassDiagramWindow::ClassDiagramWindow()
 {
@@ -18,7 +19,10 @@ ClassDiagramWindow::ClassDiagramWindow()
     setTaskBars();
     setMainWindow();
 
-    ClassNode *node = new ClassNode("Moje třída");
+    Class newOne = Class{"Moje Třída"};
+    ClassNode *node = new ClassNode(newOne);
+    node->addAtribute(ClassAttribute{"atribut hej",AccessModifier::PRIVATE,"string"});
+    node->addAtribute(ClassAttribute{"další atribut",AccessModifier::PUBLIC,"int"});
     node->setPos(0, 0);
     classDiagramScene->addItem(node);
 }
