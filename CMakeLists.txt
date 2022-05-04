@@ -24,7 +24,7 @@ add_executable(icp_project
         src/Class.h src/Object.h src/MethodParameter.h src/Message.h src/Relationship.h src/Generalization.h
         src/Aggregation.h src/Composition.h src/AccessModifier.h src/ClassType.h src/MessageType.h src/Actor.h
         src/ClassMethodType.h src/UndirectedAssociation.h src/DirectedAssociation.h src/MessageSender.h
-        src/AccessModifier.cpp)
+        src/AccessModifier.cpp src/ClassMethodType.cpp)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui

@@ -50,4 +50,5 @@ HEADERS += \
 
 SOURCES += \
     AccessModifier.cpp \
+    ClassMethodType.cpp \
     main.cpp
