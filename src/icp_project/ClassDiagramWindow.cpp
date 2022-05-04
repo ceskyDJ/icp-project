@@ -35,9 +35,15 @@ void ClassDiagramWindow::setMainWindow()
     classDiagramView = new QGraphicsView(this);     // parent
     classDiagramScene = new QGraphicsScene(classDiagramView);
     QGridLayout *windowLayout = new QGridLayout;
+    QGridLayout *modellingLayout = new QGridLayout;
 
-    windowLayout->addWidget(toolBox,0,0);
-    windowLayout->addWidget(classDiagramView,0,1);
+    modellingLayout->addWidget(toolBox,0,0);
+    modellingLayout->addWidget(classDiagramView,0,1);
+
+    QWidget *modellingSpace = new QWidget;
+    modellingSpace->setLayout(modellingLayout);
+
+    windowLayout->addWidget(modellingSpace,0,0);
     windowLayout->addWidget(diagramTabs,1,0);
 
     classDiagramCenterWidget = new QWidget;
@@ -57,9 +63,9 @@ void ClassDiagramWindow::setTaskBars()
     taskBar->addAction("Redo");
 
 
-    //diagramTabs->addWidget(prepareSequencDiagramTab(QIcon(":/closeCross.png"), "Třídní diagram")); //TODO
-    diagramTabs->addAction("Sekvenční 1");
-    diagramTabs->addAction("Sekvenční 2");
+    diagramTabs->addWidget(prepareSequencDiagramTab("Třídní diagram"));
+    diagramTabs->addWidget(prepareSequencDiagramTab("Sekvenční 1"));
+    diagramTabs->addWidget(prepareSequencDiagramTab("Sekvenční 2"));
 }
 
 
@@ -82,14 +88,18 @@ QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString)
     return toolboxItem;
 }
 
-QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QIcon icon, QString label)
+QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QString label)
 {
+    static QIcon icon = QIcon(":/closeCross.png");
     QWidget *newTab = new QWidget;
-    QWidget *picture = new QWidget();
+    QPushButton *picture = new QPushButton(icon,"");
+    //picture->setIcon(icon);
 
     QGridLayout *actionLayout = new QGridLayout();
-    actionLayout->addWidget(newTab,0,0);
-    actionLayout->addWidget(new QLabel(label),0,1);
+    actionLayout->addWidget(new QPushButton(label),0,0);
+    actionLayout->addWidget(picture,0,1);
+    newTab->setLayout(actionLayout);
+
     return newTab;
 }
 

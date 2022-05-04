@@ -50,7 +50,7 @@ private:
     void setMainWindow();
     void setTooBox();
     QWidget *prepareToolItem(QIcon icon, QString label);
-    QWidget *prepareSequencDiagramTab(QIcon icon, QString label);
+    QWidget *prepareSequencDiagramTab(QString label);
 signals:
 
 };
