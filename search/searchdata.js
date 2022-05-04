@@ -1,21 +1,30 @@
 var indexSectionsWithContent =
 {
-  0: "m",
-  1: "m",
-  2: "m"
+  0: "acdgimnoprsu",
+  1: "acdgmorsu",
+  2: "acdgmorsu",
+  3: "acgmorsu",
+  4: "acm",
+  5: "acdinprs"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "files",
-  2: "functions"
+  1: "classes",
+  2: "files",
+  3: "functions",
+  4: "enums",
+  5: "enumvalues"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Files",
-  2: "Functions"
+  1: "Classes",
+  2: "Files",
+  3: "Functions",
+  4: "Enumerations",
+  5: "Enumerator"
 };
 
