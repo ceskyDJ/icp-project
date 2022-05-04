@@ -1,0 +1,10 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file alias="agLine.png">resources/agregationLine.png</file>
+    <file alias="coLine.png">resources/compositionLine.png</file>
+    <file alias="feLine.png">resources/fellowshipLine.png</file>
+    <file alias="geLine.png">resources/generalisationLine.png</file>
+    <file alias="classShape.png">resources/classShape.png</file>
+    <file alias="closeCross.png">resources/closeCross.png</file>
+</qresource>
+</RCC>

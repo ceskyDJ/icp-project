@@ -17,9 +17,16 @@ ClassDiagramWindow::ClassDiagramWindow()
     setTooBox();
     setTaskBars();
     setMainWindow();
+
+    ClassNode *node = new ClassNode("Moje třída");
+    node->setPos(0, 0);
+    classDiagramScene->addItem(node);
 }
 void ClassDiagramWindow::initializeComponents()
 {
+    classDiagramScene = new QGraphicsScene();
+    classDiagramView = new QGraphicsView(classDiagramScene);
+
     taskBar =  addToolBar("TaskBar");
     diagramTabs = new QToolBar();
     toolBox = new QToolBox;
@@ -32,8 +39,6 @@ void ClassDiagramWindow::initializeComponents()
 
 void ClassDiagramWindow::setMainWindow()
 {
-    classDiagramView = new QGraphicsView(this);     // parent
-    classDiagramScene = new QGraphicsScene(classDiagramView);
     QGridLayout *windowLayout = new QGridLayout;
     QGridLayout *modellingLayout = new QGridLayout;
 

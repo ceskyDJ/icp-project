@@ -17,6 +17,7 @@
 #include <QGroupBox>
 #include <QToolButton>
 #include <QLabel>
+#include "classNode.h"
 
 class ClassDiagramWindow : public QMainWindow
 {

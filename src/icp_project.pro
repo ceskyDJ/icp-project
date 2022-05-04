@@ -6,6 +6,7 @@
 
 # Project configuration
 TEMPLATE = app
+RESOURCES = rsc.qrc
 TARGET = icp_project
 
 # Qt configuration
@@ -60,7 +61,8 @@ HEADERS += \
     SequenceDiagramManager.h \
     HistoryStack.h \
     ClassDiagramMemento.h \
-    SequenceDiagramMemento.h
+    SequenceDiagramMemento.h \
+    ClassDiagramWindow.h
 
 SOURCES += \
     AccessModifier.cpp \
@@ -74,4 +76,6 @@ SOURCES += \
     FileSequenceDiagramRepository.cpp \
     ClassDiagramManager.cpp \
     SequenceDiagramManager.cpp \
+    ClassDiagramWindow.cpp \
+    classNode.cpp \
     main.cpp
