@@ -4,6 +4,11 @@
 #
 # Author: Michal Šmahel (xsmahe01)
 
+# Project configuration
+TEMPLATE = app
+RESOURCES = rsc.qrc
+TARGET = icp_project
+
 # Qt configuration
 QT += core gui widgets
 CONFIG += debug
@@ -19,15 +24,29 @@ UI_DIR = ../builld/ui  # Qt's uic files
 # Default: -g -Wall -Wextra (+ some other but not important for this configuration)
 QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
 
-# Program configuration
-TARGET = icp_project
-
 # Source codes
-HEADERS += src/ClassDiagram.h src/SequenceDiagram.h src/ClassMember.h src/ClassMethod.h src/ClassAttribute.h \
-    src/Class.h src/Object.h src/MethodParameter.h src/Message.h src/Relationship.h src/Generalization.h \
-    src/Aggregation.h src/Composition.h src/AccessModifier.h src/ClassType.h src/MessageType.h src/Actor.h \
-    src/ClassMethodType.h src/UndirectedAssociation.h src/DirectedAssociation.h src/MessageSender.h
+HEADERS += \
+    ClassDiagram.h \
+    SequenceDiagram.h \
+    ClassMember.h \
+    ClassMethod.h \
+    ClassAttribute.h \
+    Class.h \
+    Object.h \
+    MethodParameter.h \
+    Message.h \
+    Relationship.h \
+    Generalization.h \
+    Aggregation.h \
+    Composition.h \
+    AccessModifier.h \
+    ClassType.h \
+    MessageType.h \
+    Actor.h \
+    ClassMethodType.h \
+    UndirectedAssociation.h \
+    DirectedAssociation.h \
+    MessageSender.h
 
-SOURCES += main.cpp
-
-FORMS +=
+SOURCES += \
+    main.cpp
