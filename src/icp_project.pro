@@ -52,4 +52,5 @@ SOURCES += \
     AccessModifier.cpp \
     ClassMethodType.cpp \
     ClassType.cpp \
+    MessageType.cpp \
     main.cpp
