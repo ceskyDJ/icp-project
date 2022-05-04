@@ -25,7 +25,9 @@ add_executable(icp_project
         src/Aggregation.h src/Composition.h src/AccessModifier.h src/ClassType.h src/MessageType.h src/Actor.h
         src/ClassMethodType.h src/UndirectedAssociation.h src/DirectedAssociation.h src/MessageNode.h
         src/AccessModifier.cpp src/ClassMethodType.cpp src/ClassType.cpp src/MessageType.cpp src/Realization.h
-        src/ClassDiagram.cpp src/SequenceDiagram.cpp)
+        src/ClassDiagram.cpp src/SequenceDiagram.cpp src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
+        src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
+        src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui

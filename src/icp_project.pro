@@ -46,7 +46,11 @@ HEADERS += \
     UndirectedAssociation.h \
     DirectedAssociation.h \
     MessageNode.h \
-    Realization.h
+    Realization.h \
+    ClassDiagramRepository.h \
+    FileClassDiagramRepository.h \
+    SequenceDiagramRepository.h \
+    FileSequenceDiagramRepository.h
 
 SOURCES += \
     AccessModifier.cpp \
