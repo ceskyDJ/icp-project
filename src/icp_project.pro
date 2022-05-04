@@ -49,4 +49,5 @@ HEADERS += \
     MessageSender.h
 
 SOURCES += \
+    AccessModifier.cpp \
     main.cpp
