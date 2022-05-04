@@ -53,6 +53,16 @@ class ClassDiagram
     }
 
     /**
+     * Constant getter for classes
+     *
+     * @return Vector of stored classes
+     */
+    const std::vector<Class> &getClasses() const
+    {
+        return classes;
+    }
+
+    /**
      * Setter for classes
      *
      * @param newClasses New vector of classes to store
@@ -78,6 +88,16 @@ class ClassDiagram
      * @return Vector of relationships
      */
     std::vector<Relationship> &getRelationships()
+    {
+        return relationships;
+    }
+
+    /**
+     * Constant getter for relationships between classes
+     *
+     * @return Vector of relationships
+     */
+    const std::vector<Relationship> &getRelationships() const
     {
         return relationships;
     }

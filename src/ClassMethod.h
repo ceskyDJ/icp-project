@@ -81,6 +81,16 @@ class ClassMethod: public ClassMember
     }
 
     /**
+     * Constant getter for method parameters
+     *
+     * @return Method parameters
+     */
+    const std::vector<MethodParameter> &getParameters() const
+    {
+        return parameters;
+    }
+
+    /**
      * Setter for method parameters
      *
      * @param newParameters New method parameters

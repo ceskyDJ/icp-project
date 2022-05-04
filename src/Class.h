@@ -92,6 +92,16 @@ class Class
     }
 
     /**
+     * Constant getter for class attributes
+     *
+     * @return Class attributes
+     */
+    const std::vector<ClassAttribute> &getAttributes() const
+    {
+        return attributes;
+    }
+
+    /**
      * Setter for class attributes
      *
      * @param new_attributes New class attributes
@@ -117,6 +127,16 @@ class Class
      * @return Class methods
      */
     std::vector<ClassMethod> &getMethods()
+    {
+        return methods;
+    }
+
+    /**
+     * Constant getter for class methods
+     *
+     * @return Class methods
+     */
+    const std::vector<ClassMethod> &getMethods() const
     {
         return methods;
     }
