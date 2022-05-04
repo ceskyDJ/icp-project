@@ -24,6 +24,8 @@ std::string AccessModifier::serialize()
         case PACKAGE_PRIVATE:
             return "PACKAGE_PRIVATE";
     }
+
+    return "";
 }
 
 /**

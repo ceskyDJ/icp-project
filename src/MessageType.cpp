@@ -28,6 +28,8 @@ std::string MessageType::serialize()
         case REPLY:
             return "REPLY";
     }
+
+    return "";
 }
 
 /**

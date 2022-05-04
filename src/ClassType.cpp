@@ -23,6 +23,8 @@ std::string ClassType::serialize()
         case INTERFACE:
             return "INTERFACE";
     }
+
+    return "";
 }
 
 /**
