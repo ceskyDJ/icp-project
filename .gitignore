@@ -2,8 +2,9 @@
 .idea/
 cmake-build-debug/
 
-# Build files
+# Build and debug files
 build/
+src/build-*-Debug/
 xsmahe01-xdvora3q.tar.gz
 
 # Qt files
