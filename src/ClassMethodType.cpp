@@ -22,6 +22,8 @@ std::string ClassMethodType::serialize()
         case ABSTRACT:
             return "ABSTRACT";
     }
+
+    return "";
 }
 
 /**
