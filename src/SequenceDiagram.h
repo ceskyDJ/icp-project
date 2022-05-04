@@ -54,7 +54,17 @@ class SequenceDiagram
      *
      * @return Vector of used actors
      */
-    std::vector<Actor> &getActor()
+    std::vector<Actor> &getActors()
+    {
+        return actors;
+    }
+
+    /**
+     * Constant getter for used actors
+     *
+     * @return Vector of used actors
+     */
+    const std::vector<Actor> &getActors() const
     {
         return actors;
     }
@@ -90,6 +100,16 @@ class SequenceDiagram
     }
 
     /**
+     * Constant getter for used objects
+     *
+     * @return Vector of used objects
+     */
+    const std::vector<Object> &getObjects() const
+    {
+        return objects;
+    }
+
+    /**
      * Setter for used objects
      *
      * @param newObjects New vector of objects to use
@@ -115,6 +135,16 @@ class SequenceDiagram
      * @return Vector of used messages
      */
     std::vector<Message> &getMessages()
+    {
+        return messages;
+    }
+
+    /**
+     * Constant getter for used messages
+     *
+     * @return Vector of used messages
+     */
+    const std::vector<Message> &getMessages() const
     {
         return messages;
     }

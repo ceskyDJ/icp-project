@@ -105,7 +105,7 @@ class Message
      *
      * @return Message sender (actor or sending object)
      */
-    MessageSender *getMessageSender()
+    MessageSender *getMessageSender() const
     {
         if (actor != nullptr) {
             return actor;
