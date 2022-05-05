@@ -23,6 +23,8 @@ ClassDiagramWindow::ClassDiagramWindow()
     setTaskBars();
     setMainWindow();
 
+
+    ///////////////TESTING//////////////
     Class newOne = Class{"Moje Třída"};
     ClassNode *node = new ClassNode(newOne);
     node->addAtribute(ClassAttribute{"atribut hej",AccessModifier::PRIVATE,"string"});
@@ -32,6 +34,9 @@ ClassDiagramWindow::ClassDiagramWindow()
     node->addMethod(ClassMethod{"Metoda 2",AccessModifier::PACKAGE_PRIVATE, par1,"DateTime"});
     node->setPos(0, 0);
     classDiagramScene->addItem(node);
+
+    classEditDialog = new ClassEditDialog(newOne);
+    classEditDialog->exec();
 }
 
 /**

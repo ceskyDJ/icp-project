@@ -68,6 +68,11 @@ public:
         update();
     }
 
+    Class getClassEntity()
+    {
+        return classEntity;
+    }
+
 private:
     QRectF borederRect();
     QRectF getNameBoundigRect() const;

@@ -18,6 +18,7 @@
 #include <QToolButton>
 #include <QLabel>
 #include "classNode.h"
+#include "ClassEditDialog.h"
 
 class ClassDiagramWindow : public QMainWindow
 {
@@ -35,6 +36,7 @@ private:
     QGraphicsScene *classDiagramScene;
     QGraphicsView *classDiagramView;
     QWidget *classDiagramCenterWidget;
+    ClassEditDialog *classEditDialog;
 
     QToolButton *agregationToolItem;
     QToolButton *fellowshipToolItem;
