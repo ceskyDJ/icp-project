@@ -14,7 +14,7 @@ var searchData=
   ['addmethod_11',['addMethod',['../classClass.html#adc7caf39032dd6b928ee0c2cacc3d3c6',1,'Class']]],
   ['addobject_12',['addObject',['../classSequenceDiagram.html#a649f2cae3f78b2ac2aaf37911ac31763',1,'SequenceDiagram']]],
   ['addrelationship_13',['addRelationship',['../classClassDiagram.html#a046781919d50ac76698fe4739b3b6126',1,'ClassDiagram']]],
-  ['aggregation_14',['Aggregation',['../classAggregation.html',1,'']]],
+  ['aggregation_14',['Aggregation',['../classAggregation.html',1,'Aggregation'],['../classAggregation.html#a03b442f72f7400ba0b6e48bf9a2e876a',1,'Aggregation::Aggregation()']]],
   ['aggregation_2eh_15',['Aggregation.h',['../Aggregation_8h.html',1,'']]],
   ['async_16',['ASYNC',['../classMessageType.html#a83997cfec75a3f7346975e7411fb65eea1cd96f66a0ef1053c09c23b83571553b',1,'MessageType']]]
 ];

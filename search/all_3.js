@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['generalization_0',['Generalization',['../classGeneralization.html',1,'']]],
+  ['generalization_0',['Generalization',['../classGeneralization.html',1,'Generalization'],['../classGeneralization.html#ad6438e8f80fabd4300043376d4100255',1,'Generalization::Generalization()']]],
   ['generalization_2eh_1',['Generalization.h',['../Generalization_8h.html',1,'']]],
   ['getaccessmodifier_2',['getAccessModifier',['../classClassMember.html#a47f0ad5883a9af99f445ac0d61e75019',1,'ClassMember']]],
   ['getactors_3',['getActors',['../classSequenceDiagram.html#afe8711dd33ca4b7982e8667e06164a6a',1,'SequenceDiagram::getActors()'],['../classSequenceDiagram.html#a403c42eabf24e71eec37ac42ee7f6532',1,'SequenceDiagram::getActors() const']]],
@@ -15,7 +15,7 @@ var searchData=
   ['getlifestart_12',['getLifeStart',['../classObject.html#ae5b731dac7e354ff9847f4d023aeb1a6',1,'Object']]],
   ['getmessages_13',['getMessages',['../classSequenceDiagram.html#adba17df7ba3cb8554066bf22d7cccec9',1,'SequenceDiagram::getMessages()'],['../classSequenceDiagram.html#aa9cb7dc4ac5c534ea8501f6fe7049dd5',1,'SequenceDiagram::getMessages() const']]],
   ['getmessagesender_14',['getMessageSender',['../classMessage.html#ad7070dfcacf96f70a091d5d3510a3435',1,'Message']]],
-  ['getmethods_15',['getMethods',['../classClass.html#af697d075cf2762b41dfe17f45486d261',1,'Class::getMethods()'],['../classClass.html#a625fceade2dc2ffef98a0f10964e728c',1,'Class::getMethods() const']]],
+  ['getmethods_15',['getMethods',['../classClass.html#a625fceade2dc2ffef98a0f10964e728c',1,'Class::getMethods() const'],['../classClass.html#af697d075cf2762b41dfe17f45486d261',1,'Class::getMethods()']]],
   ['getname_16',['getName',['../classActor.html#af2b1ce8cfce95735adbaa8a455826969',1,'Actor::getName()'],['../classClass.html#a71a4039f289d71a01ff4b2ff238bc44b',1,'Class::getName()'],['../classClassMember.html#ace3b68ee6056a1c803aaa5d8a1a12639',1,'ClassMember::getName()'],['../classMessage.html#a960250e56ed53b9ef6e02dad1b8f989e',1,'Message::getName()'],['../classMethodParameter.html#aa45dcc6121cb6c611663b0837549e7c7',1,'MethodParameter::getName()'],['../classObject.html#acb9b466607cb80beaaa30ece2f7f570a',1,'Object::getName()'],['../classRelationship.html#aad7007e66eb68e9329eaedbd5ebef79f',1,'Relationship::getName()']]],
   ['getobjects_17',['getObjects',['../classSequenceDiagram.html#aa647165afe78c9b4d851a964d0f8b4c4',1,'SequenceDiagram::getObjects() const'],['../classSequenceDiagram.html#a8aaab814fa9d205247355e7dd05f8eb8',1,'SequenceDiagram::getObjects()']]],
   ['getparameters_18',['getParameters',['../classClassMethod.html#a9c07a4a80a0acc4679e28988e550faa4',1,'ClassMethod::getParameters()'],['../classClassMethod.html#a475b058f7d979e1e0cc532a1b4eb6740',1,'ClassMethod::getParameters() const']]],

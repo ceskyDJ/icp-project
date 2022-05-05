@@ -8,5 +8,6 @@ var searchData=
   ['addmessage_5',['addMessage',['../classSequenceDiagram.html#aac9f5e12a352b0c39ca2e4349bd0cf55',1,'SequenceDiagram']]],
   ['addmethod_6',['addMethod',['../classClass.html#adc7caf39032dd6b928ee0c2cacc3d3c6',1,'Class']]],
   ['addobject_7',['addObject',['../classSequenceDiagram.html#a649f2cae3f78b2ac2aaf37911ac31763',1,'SequenceDiagram']]],
-  ['addrelationship_8',['addRelationship',['../classClassDiagram.html#a046781919d50ac76698fe4739b3b6126',1,'ClassDiagram']]]
+  ['addrelationship_8',['addRelationship',['../classClassDiagram.html#a046781919d50ac76698fe4739b3b6126',1,'ClassDiagram']]],
+  ['aggregation_9',['Aggregation',['../classAggregation.html#a03b442f72f7400ba0b6e48bf9a2e876a',1,'Aggregation']]]
 ];

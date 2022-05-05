@@ -16,7 +16,7 @@ var searchData=
   ['classtype_13',['ClassType',['../classClassType.html#a892c1feb7e35031b3e732f32d227d526',1,'ClassType::ClassType()=default'],['../classClassType.html#aaf64fdb6c4f4b769f1bb941684ede83f',1,'ClassType::ClassType(Value value)'],['../classClassType.html',1,'ClassType']]],
   ['classtype_2ecpp_14',['ClassType.cpp',['../ClassType_8cpp.html',1,'']]],
   ['classtype_2eh_15',['ClassType.h',['../ClassType_8h.html',1,'']]],
-  ['composition_16',['Composition',['../classComposition.html',1,'']]],
+  ['composition_16',['Composition',['../classComposition.html',1,'Composition'],['../classComposition.html#a8fa91acb6cadd32a6366950256307b38',1,'Composition::Composition()']]],
   ['composition_2eh_17',['Composition.h',['../Composition_8h.html',1,'']]],
   ['create_18',['CREATE',['../classMessageType.html#a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0',1,'MessageType']]]
 ];
