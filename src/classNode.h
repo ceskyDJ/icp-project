@@ -72,15 +72,17 @@ private:
     QRectF borederRect();
     QRectF getNameBoundigRect() const;
     QRectF getWholeRect() const;
-    QRectF getWholeRect(std::vector<QString> attributePrintable) const;
+    QRectF getWholeRect(std::vector<QString> attributePrintable, std::vector<QString> methodPrintable) const;
     const int lineIndent = 5;
     const int Padding = 10;
     Class classEntity;
 
     std::vector<QString> getAttributePrintable() const;
+    std::vector<QString> getMethodPrintable() const;
+    QString getMethodParametersPrintable(std::vector<MethodParameter> parameters) const;
     QString modifierToString(AccessModifier mod);
     QString modifierToString(AccessModifier mod) const;
-
+    void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
 
 };
 

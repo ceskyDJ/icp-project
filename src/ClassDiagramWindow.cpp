@@ -12,6 +12,9 @@
 #include "ClassDiagramWindow.h"
 #include "ClassAttribute.h"
 
+/**
+ * Initialiezes components and prepare all QWidgets and controls.
+ */
 ClassDiagramWindow::ClassDiagramWindow()
 {
     initializeComponents();
@@ -23,9 +26,16 @@ ClassDiagramWindow::ClassDiagramWindow()
     ClassNode *node = new ClassNode(newOne);
     node->addAtribute(ClassAttribute{"atribut hej",AccessModifier::PRIVATE,"string"});
     node->addAtribute(ClassAttribute{"další atribut",AccessModifier::PUBLIC,"int"});
+    std::vector<MethodParameter> par1{MethodParameter{"par1", "int"}, MethodParameter{"par2", "DateTime"}, MethodParameter{"long parameter3", "string"}};
+    node->addMethod(ClassMethod{"Metoda 1",AccessModifier::PROTECTED, par1,"string"});
+    node->addMethod(ClassMethod{"Metoda 2",AccessModifier::PACKAGE_PRIVATE, par1,"DateTime"});
     node->setPos(0, 0);
     classDiagramScene->addItem(node);
 }
+
+/**
+ * Initializes components - creates a new instances of primary attributes.
+ */
 void ClassDiagramWindow::initializeComponents()
 {
     classDiagramScene = new QGraphicsScene();
@@ -41,6 +51,9 @@ void ClassDiagramWindow::initializeComponents()
     classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Třída");
 }
 
+/**
+ * Arranges controls in layout and sets window properties.
+ */
 void ClassDiagramWindow::setMainWindow()
 {
     QGridLayout *windowLayout = new QGridLayout;
@@ -63,6 +76,9 @@ void ClassDiagramWindow::setMainWindow()
     this->setWindowTitle("UML Class Creator");
 }
 
+/**
+ * Sets taskbar (task as open, save) and create a place for sequence diagrams.
+ */
 void ClassDiagramWindow::setTaskBars()
 {
     taskBar->addAction("Open");
@@ -77,7 +93,13 @@ void ClassDiagramWindow::setTaskBars()
     diagramTabs->addWidget(prepareSequencDiagramTab("Sekvenční 2"));
 }
 
-
+/**
+ * Places buttons to a layout and creates a toolbar with the layout.
+ *
+ * @param icon Icon that should be placed in button.
+ * @param labelString String that will be under the icon.
+ * @return QWidget representing a toolbar.
+ */
 QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString)
 {
     QToolButton *newToolButton = new QToolButton;
@@ -97,6 +119,12 @@ QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString)
     return toolboxItem;
 }
 
+/**
+ * Creates a tabs for sequence diagrams.
+ *
+ * @param label QString of text which will be written on a tab.
+ * @return QWidget representig a diagram tab manager.
+ */
 QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QString label)
 {
     static QIcon icon = QIcon(":/closeCross.png");
@@ -112,7 +140,9 @@ QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QString label)
     return newTab;
 }
 
-
+/**
+ * Place all demanded Widgets into a toolar.
+ */
 void ClassDiagramWindow::setTooBox()
 {
     toolBox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
