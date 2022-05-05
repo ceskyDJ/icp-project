@@ -45,7 +45,8 @@ HEADERS += \
     ClassMethodType.h \
     UndirectedAssociation.h \
     DirectedAssociation.h \
-    MessageSender.h
+    MessageSender.h \
+    Realization.h
 
 SOURCES += \
     AccessModifier.cpp \
