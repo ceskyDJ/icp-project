@@ -33,8 +33,8 @@ class Relationship
     /**
      * Constructor for initializing with known first and second class in relationship
      *
-     * @param firstClass First class in relationship
-     * @param secondClass Second class in relationship
+     * @param firstClass Pointer to the first class in relationship
+     * @param secondClass Pointer to the second class in relationship
      * @param name Name of the relationship (optional)
      */
     Relationship(
