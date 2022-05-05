@@ -10,12 +10,12 @@
 #define ICP_PROJECT_ACTOR_H
 
 #include <string>
-#include "MessageSender.h"
+#include "MessageNode.h"
 
 /**
  * Entity for actor from sequence diagram
  */
-class Actor: public MessageSender
+class Actor: public MessageNode
 {
     /**
      * Name of the actor
