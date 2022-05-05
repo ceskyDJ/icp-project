@@ -1,6 +1,7 @@
 #include "classNode.h"
 #include "qpainter.h"
 #include "QPlainTextEdit"
+#include <QStyleOptionGraphicsItem>
 
 /**
  * Sets a class node entity.
@@ -31,10 +32,15 @@ QRectF ClassNode::boundingRect() const
  *
  * @param painter Painter that will be used to draw node.
  */
-void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/,
+void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget * /*widget*/)
 {
-    QPen pen = QPen{Qt::black,2,Qt::SolidLine};
+    QPen pen;
+    if(option->state & QStyle::State_Selected)
+        pen = QPen{Qt::red,2,Qt::DotLine};
+
+    else
+        pen = QPen{Qt::black,1,Qt::SolidLine};
     painter->setPen(pen);
 
     QRectF nameRect = getNameBoundigRect();
@@ -189,7 +195,7 @@ QString ClassNode::getMethodParametersPrintable(std::vector<MethodParameter> par
     for (size_t i = 0; i < parameters.size(); i++)
     {
         methodString += QString::fromStdString(parameters[i].getName() + " : " + parameters[i].getDataType());
-        if (i != parameters.size())
+        if (i + 1 != parameters.size())
             methodString += ", ";
     }
     return methodString;

@@ -36,13 +36,11 @@ private:
     QGraphicsView *classDiagramView;
     QWidget *classDiagramCenterWidget;
 
-
-    QWidget *agregationLineWidget;
-    QWidget *fellowshipLineWidget;
-    QWidget *compositionLineWidget;
-    QWidget *generalisationLineWidget;
-    QWidget *classShapeWidget;
-
+    QToolButton *agregationToolItem;
+    QToolButton *fellowshipToolItem;
+    QToolButton *compositionToolItem;
+    QToolButton *generalisationToolItem;
+    QToolButton *classShapeToolItem;
 
     void setModellingSpace();
     void setTaskBars();
@@ -50,8 +48,13 @@ private:
     void setWindowLayout();
     void setMainWindow();
     void setTooBox();
-    QWidget *prepareToolItem(QIcon icon, QString label);
+    void connectComponents();
+    QWidget *prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton);
     QWidget *prepareSequencDiagramTab(QString label);
+
+private slots:
+    void addClassNode();
+
 signals:
 
 };

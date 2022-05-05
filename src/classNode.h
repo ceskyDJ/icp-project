@@ -13,7 +13,7 @@
 class ClassNode : public QGraphicsItem
 {
 public:
-    ClassNode(Class classEntity);
+    ClassNode(Class classEntity = Class{"Nová třída"});
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                    QWidget *widget) override;

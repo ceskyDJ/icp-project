@@ -18,6 +18,7 @@
 ClassDiagramWindow::ClassDiagramWindow()
 {
     initializeComponents();
+    connectComponents();
     setTooBox();
     setTaskBars();
     setMainWindow();
@@ -41,14 +42,15 @@ void ClassDiagramWindow::initializeComponents()
     classDiagramScene = new QGraphicsScene();
     classDiagramView = new QGraphicsView(classDiagramScene);
 
-    taskBar =  addToolBar("TaskBar");
+    taskBar = addToolBar("TaskBar");
     diagramTabs = new QToolBar();
     toolBox = new QToolBox;
-    agregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregace");
-    fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Kompozice");
-    compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Asociace");
-    generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalizace");
-    classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Třída");
+
+    agregationToolItem = new QToolButton;
+    fellowshipToolItem = new QToolButton;
+    compositionToolItem = new QToolButton;
+    generalisationToolItem = new QToolButton;
+    classShapeToolItem     = new QToolButton;
 }
 
 /**
@@ -100,9 +102,8 @@ void ClassDiagramWindow::setTaskBars()
  * @param labelString String that will be under the icon.
  * @return QWidget representing a toolbar.
  */
-QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString)
+QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton)
 {
-    QToolButton *newToolButton = new QToolButton;
     newToolButton->setIcon(icon);
     newToolButton->setIconSize(QSize(toolboxItemSize, toolboxItemSize));
     newToolButton->setMaximumSize(toolboxItemSize, toolboxItemSize);
@@ -149,6 +150,13 @@ void ClassDiagramWindow::setTooBox()
     toolBox->setMinimumWidth(minToolboxWidth);
     QGroupBox *toolboxItems = new QGroupBox;
     QGridLayout *toolboxLayout = new QGridLayout;
+
+    QWidget *agregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregace", agregationToolItem);
+    QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Kompozice", fellowshipToolItem);
+    QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Asociace", compositionToolItem);
+    QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalizace", generalisationToolItem);
+    QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Třída", classShapeToolItem);
+
     toolboxLayout->addWidget(agregationLineWidget, 0, 0);
     toolboxLayout->addWidget(fellowshipLineWidget, 1, 0);
     toolboxLayout->addWidget(compositionLineWidget, 0, 1);
@@ -159,4 +167,19 @@ void ClassDiagramWindow::setTooBox()
     toolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
     toolBox->addItem(toolboxItems, "Prvky třídního diagramu");
 
+}
+
+/**
+ * Insert new claasNode into scene of class diagram Window.
+ */
+void ClassDiagramWindow::addClassNode()
+{
+    ClassNode *newOne = new ClassNode();
+    newOne->setPos(0,0);
+    classDiagramScene->addItem(newOne);
+}
+
+void ClassDiagramWindow::connectComponents()
+{
+    connect(classShapeToolItem,  &QToolButton::clicked, this, &ClassDiagramWindow::addClassNode);
 }
