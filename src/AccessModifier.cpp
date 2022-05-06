@@ -35,7 +35,7 @@ std::string AccessModifier::serialize()
  * @return Instance of AccessModifier
  * @throw std::invalid_argument Invalid value for deserialization
  */
-AccessModifier AccessModifier::deserialize(std::string &serializedForm)
+AccessModifier AccessModifier::deserialize(std::string serializedForm)
 {
     if (serializedForm == "PUBLIC") {
         return AccessModifier::PUBLIC;

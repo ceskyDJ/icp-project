@@ -34,7 +34,7 @@ std::string ClassType::serialize()
  * @return Instance of ClassType
  * @throw std::invalid_argument Invalid value for deserialization
  */
-ClassType ClassType::deserialize(std::string &serializedForm)
+ClassType ClassType::deserialize(std::string serializedForm)
 {
     if (serializedForm == "NORMAL_CLASS") {
         return ClassType::NORMAL_CLASS;

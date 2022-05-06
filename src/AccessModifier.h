@@ -154,7 +154,7 @@ class AccessModifier
      * @return Instance of AccessModifier
      * @throw std::invalid_argument Invalid value for deserialization
      */
-    static AccessModifier deserialize(std::string &serializedForm);
+    static AccessModifier deserialize(std::string serializedForm);
 };
 
 #endif //ICP_PROJECT_ACCESS_MODIFIER_H

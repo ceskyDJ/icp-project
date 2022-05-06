@@ -119,7 +119,7 @@ class MessageType
      * @return Instance of MessageType
      * @throw std::invalid_argument Invalid value for deserialization
      */
-    static MessageType deserialize(std::string &serializedForm);
+    static MessageType deserialize(std::string serializedForm);
 };
 
 #endif //ICP_PROJECT_MESSAGE_TYPE_H
