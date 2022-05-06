@@ -28,14 +28,14 @@ ClassDiagramWindow::ClassDiagramWindow()
     Class newOne = Class{"Moje Třída"};
     ClassNode *node = new ClassNode(newOne);
     node->addAtribute(ClassAttribute{"atribut hej",AccessModifier::PRIVATE,"string"});
-    node->addAtribute(ClassAttribute{"další atribut",AccessModifier::PUBLIC,"int"});
+    node->addAtribute(ClassAttribute{"další atribut",AccessModifier::PROTECTED,"int"});
     std::vector<MethodParameter> par1{MethodParameter{"par1", "int"}, MethodParameter{"par2", "DateTime"}, MethodParameter{"long parameter3", "string"}};
     node->addMethod(ClassMethod{"Metoda 1",AccessModifier::PROTECTED, par1,"string"});
     node->addMethod(ClassMethod{"Metoda 2",AccessModifier::PACKAGE_PRIVATE, par1,"DateTime"});
     node->setPos(0, 0);
     classDiagramScene->addItem(node);
 
-    classEditDialog = new ClassEditDialog(newOne);
+    classEditDialog = new ClassEditDialog(node->getClassEntity());
     classEditDialog->exec();
 }
 
@@ -136,7 +136,6 @@ QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QString label)
     static QIcon icon = QIcon(":/closeCross.png");
     QWidget *newTab = new QWidget;
     QPushButton *picture = new QPushButton(icon,"");
-    //picture->setIcon(icon);
 
     QGridLayout *actionLayout = new QGridLayout();
     actionLayout->addWidget(new QPushButton(label),0,0);
