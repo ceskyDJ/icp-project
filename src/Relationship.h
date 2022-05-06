@@ -82,6 +82,11 @@ class Relationship
     {
         name = newName;
     }
+
+    /**
+     * Default virtual destructor for converting class to polymorphic one
+     */
+    virtual ~Relationship() = default;
 };
 
 #endif //ICP_PROJECT_RELATIONSHIP_H
