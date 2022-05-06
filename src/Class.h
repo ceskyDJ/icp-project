@@ -29,7 +29,7 @@ class Class
     /**
      * Position in canvas
      */
-    std::tuple<int> coordinates;
+    std::tuple<int, int> coordinates;
     /**
      * Class type (normal, abstract or interface)
      */
@@ -57,7 +57,7 @@ class Class
      */
     explicit Class(
         const std::string name,
-        const std::tuple<int> coordinates,
+        const std::tuple<int, int> coordinates,
         const ClassType type = ClassType::NORMAL_CLASS
     ): name{name}, coordinates{coordinates}, classType{type} {};
 
@@ -86,7 +86,7 @@ class Class
      *
      * @return Coordinates in a canvas (x, y)
      */
-    std::tuple<int> &getCoordinates() {
+    std::tuple<int, int> &getCoordinates() {
         return coordinates;
     }
 
@@ -95,7 +95,7 @@ class Class
      *
      * @return Coordinates in a canvas (x, y)
      */
-    const std::tuple<int> &getCoordinates() const {
+    const std::tuple<int, int> &getCoordinates() const {
         return coordinates;
     }
 
@@ -104,7 +104,7 @@ class Class
      *
      * @param newCoordinates New coordinates to set (x, y) on canvas
      */
-    void setCoordinates(const std::tuple<int> &newCoordinates) {
+    void setCoordinates(const std::tuple<int, int> &newCoordinates) {
         coordinates = newCoordinates;
     }
 
