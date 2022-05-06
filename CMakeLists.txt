@@ -36,4 +36,20 @@ target_link_libraries(icp_project
         Qt5::Widgets
         Qt5::Xml)
 
+add_executable(test_save_class_diagram
+        test/save-class-diagram.cpp src/ClassDiagram.h src/SequenceDiagram.h src/ClassMember.h src/ClassMethod.h
+        src/ClassAttribute.h src/Class.h src/Object.h src/MethodParameter.h src/Message.h src/Relationship.h
+        src/Generalization.h src/Aggregation.h src/Composition.h src/AccessModifier.h src/ClassType.h src/MessageType.h
+        src/Actor.h src/ClassMethodType.h src/UndirectedAssociation.h src/DirectedAssociation.h src/MessageNode.h
+        src/AccessModifier.cpp src/ClassMethodType.cpp src/ClassType.cpp src/MessageType.cpp src/Realization.h
+        src/ClassDiagram.cpp src/SequenceDiagram.cpp src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
+        src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
+        src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
+        src/InvalidInputDataException.h)
+target_link_libraries(test_save_class_diagram
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets
+        Qt5::Xml)
+
 target_compile_options(icp_project PRIVATE -g -pedantic -Wall -Wextra -Werror)

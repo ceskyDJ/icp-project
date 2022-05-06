@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QDomDocument>
 #include <set>
+#include <QTextStream>
 #include "FileClassDiagramRepository.h"
 #include "InvalidDataStorageException.h"
 #include "InvalidInputDataException.h"
@@ -34,6 +35,7 @@ ClassDiagram FileClassDiagramRepository::loadDiagram()
     }
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        file.close();
         throw InvalidDataStorageException{"Cannot open source file"};
     }
 
@@ -99,13 +101,130 @@ ClassDiagram FileClassDiagramRepository::loadDiagram()
  * @param diagram Class diagram to save
  * @throw InvalidDataStorageException Invalid file
  */
-void FileClassDiagramRepository::saveDiagram([[maybe_unused]] ClassDiagram diagram)
+void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
 {
     if (fileName.empty()) {
         throw InvalidDataStorageException{"No target file set"};
     }
 
-    // TODO: implement this method
+    // Convert objects to XML
+    QDomDocument xml{};
+
+    QDomElement rootElement{xml.createElement("class-diagram")};
+    xml.appendChild(rootElement);
+
+    // Classes
+    QDomElement classesContainer{xml.createElement("classes")};
+    for (Class currClass: diagram.getClasses()) {
+        auto [xCoord, yCoord] = currClass.getCoordinates();
+
+        QDomElement xmlClass{xml.createElement("class")};
+        xmlClass.setAttribute("name", currClass.getName().c_str());
+        xmlClass.setAttribute("type", currClass.getClassType().serialize().c_str());
+        xmlClass.setAttribute("x-coord", xCoord);
+        xmlClass.setAttribute("y-coord", yCoord);
+
+        // Attributes
+        QDomElement attributesContainer{xml.createElement("attributes")};
+        for (const ClassAttribute &objAttribute: currClass.getAttributes()) {
+            QDomElement xmlAttribute{xml.createElement("attribute")};
+            xmlAttribute.setAttribute("access-modifier", objAttribute.getAccessModifier().serialize().c_str());
+            xmlAttribute.setAttribute("data-type", objAttribute.getDataType().c_str());
+
+            QDomText attributeName{xml.createTextNode(objAttribute.getName().c_str())};
+            xmlAttribute.appendChild(attributeName);
+
+            attributesContainer.appendChild(xmlAttribute);
+        }
+
+        // Methods
+        QDomElement methodsContainer{xml.createElement("methods")};
+        for (const ClassMethod &objMethod: currClass.getMethods()) {
+            QDomElement xmlMethod{xml.createElement("method")};
+            xmlMethod.setAttribute("name", objMethod.getName().c_str());
+            xmlMethod.setAttribute("access-modifier", objMethod.getAccessModifier().serialize().c_str());
+            xmlMethod.setAttribute("return-type", objMethod.getReturnDataType().c_str());
+            xmlMethod.setAttribute("type", objMethod.getType().serialize().c_str());
+
+            for (const MethodParameter &objParameter: objMethod.getParameters()) {
+                QDomElement xmlParameter{xml.createElement("parameter")};
+                xmlParameter.setAttribute("data-type", objParameter.getDataType().c_str());
+
+                QDomText parameterName{xml.createTextNode(objParameter.getName().c_str())};
+                xmlParameter.appendChild(parameterName);
+
+                xmlMethod.appendChild(xmlParameter);
+            }
+
+            methodsContainer.appendChild(xmlMethod);
+        }
+
+        xmlClass.appendChild(attributesContainer);
+        xmlClass.appendChild(methodsContainer);
+        classesContainer.appendChild(xmlClass);
+    }
+
+    // Relationships
+    QDomElement relationshipsContainer{xml.createElement("relationshipsContainer")};
+    for (Relationship *relationship: diagram.getRelationships()) {
+        const std::type_info &relationshipType = typeid(*relationship);
+
+        // First class
+        QDomElement firstClass{xml.createElement("first-class")};
+
+        QDomText firstClassName{xml.createTextNode(relationship->getFirstClass()->getName().c_str())};
+        firstClass.appendChild(firstClassName);
+
+        // Second class
+        QDomElement secondClass{xml.createElement("second-class")};
+
+        QDomText secondClassName{xml.createTextNode(relationship->getSecondClass()->getName().c_str())};
+        secondClass.appendChild(secondClassName);
+
+        // Create corresponding element
+        QDomElement xmlRelationship{xml.createElement("relationship")};
+        if (relationshipType == typeid(Aggregation)) {
+            xmlRelationship.setTagName("aggregation");
+        } else if (relationshipType == typeid(Composition)) {
+            xmlRelationship.setTagName("composition");
+        } else if (relationshipType == typeid(DirectedAssociation)) {
+            xmlRelationship.setTagName("directed-association");
+        } else if (relationshipType == typeid(Generalization)) {
+            xmlRelationship.setTagName("generalization");
+        } else if (relationshipType == typeid(Realization)) {
+            xmlRelationship.setTagName("realization");
+        } else if (relationshipType == typeid(UndirectedAssociation)) {
+            xmlRelationship.setTagName("undirected-association");
+
+            auto *undirectedAssociation = dynamic_cast<UndirectedAssociation *>(relationship);
+
+            // Cardinality
+            firstClass.setAttribute("cardinality", undirectedAssociation->getFirstClassCardinality().c_str());
+            secondClass.setAttribute("cardinality", undirectedAssociation->getSecondClassCardinality().c_str());
+        }
+
+        xmlRelationship.appendChild(firstClass);
+        xmlRelationship.appendChild(secondClass);
+
+        // Name
+        xmlRelationship.setAttribute("name", relationship->getName().c_str());
+
+        relationshipsContainer.appendChild(xmlRelationship);
+    }
+
+    rootElement.appendChild(classesContainer);
+    rootElement.appendChild(relationshipsContainer);
+
+    // Save data to XML file
+    QFile file{fileName.c_str()};
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        file.close();
+        throw InvalidDataStorageException{"Cannot open target file"};
+    }
+
+    QTextStream xmlStream{&file};
+    xmlStream << xml.toString(4);
+    file.close();
 }
 
 /**
