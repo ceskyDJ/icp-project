@@ -83,6 +83,15 @@ class ClassDiagram
     }
 
     /**
+     * Finds class by name
+     *
+     * @param name Name of the class to search for
+     * @return Pointer to found class
+     * @throw std::invalid_argument Non-existing class with this name
+     */
+    Class *findClassByName(std::string name);
+
+    /**
      * Getter for relationships between classes
      *
      * @return Vector of pointers to relationships
