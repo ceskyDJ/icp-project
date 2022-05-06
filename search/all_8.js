@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['package_5fprivate_0',['PACKAGE_PRIVATE',['../classAccessModifier.html#a27b6690ec7ccb01c93bd287085431689a07aa209593304b908de21406a0386090',1,'AccessModifier']]],
-  ['private_1',['PRIVATE',['../classAccessModifier.html#a27b6690ec7ccb01c93bd287085431689aa4f4bdd2935e1e472237cccaf3dbaf4b',1,'AccessModifier']]],
-  ['protected_2',['PROTECTED',['../classAccessModifier.html#a27b6690ec7ccb01c93bd287085431689ac23f9ff35613c623289e364d92925982',1,'AccessModifier']]],
-  ['public_3',['PUBLIC',['../classAccessModifier.html#a27b6690ec7ccb01c93bd287085431689ab306f272f6b74f1678484014514cccbd',1,'AccessModifier']]]
+  ['object_0',['Object',['../classObject.html#a40860402e64d8008fb42329df7097cdb',1,'Object::Object()'],['../classObject.html#add2afb0ac263ab20ab584a7afea6515f',1,'Object::Object(const Class *instanceClass, double lifeStart=0.0, double lifeLength=0.3, const std::string name=&quot;&quot;)'],['../classObject.html',1,'Object']]],
+  ['object_2eh_1',['Object.h',['../Object_8h.html',1,'']]],
+  ['operator_20bool_2',['operator bool',['../classAccessModifier.html#a6fb2d0124c846d2b41a8ca74ec50a901',1,'AccessModifier::operator bool()'],['../classClassMethodType.html#a525a5555a3faf4012e9db4f8166e8c00',1,'ClassMethodType::operator bool()'],['../classClassType.html#a1447ab5cc2ef700339ef4f8f815cc6b8',1,'ClassType::operator bool()'],['../classMessageType.html#add47e83b50b7516bbaf51ff6a85d9288',1,'MessageType::operator bool()']]],
+  ['operator_20value_3',['operator Value',['../classClassMethodType.html#a2e92b9cc1ad8f1215754d5584845f39b',1,'ClassMethodType::operator Value()'],['../classMessageType.html#a0c702c8e629ea9aa4aba831b1e62953e',1,'MessageType::operator Value()'],['../classClassType.html#ac7b5fe253d56adbb7af2fa9c313b4182',1,'ClassType::operator Value()'],['../classAccessModifier.html#a328bbf992e05e6f9b8e3bf80e6713f14',1,'AccessModifier::operator Value() const']]],
+  ['operator_21_3d_4',['operator!=',['../classAccessModifier.html#a7a5e222241237867aa1b9415f5d7953d',1,'AccessModifier::operator!=()'],['../classClassMethodType.html#a71d0b349241f320d48a3d574ec48adc6',1,'ClassMethodType::operator!=()'],['../classClassType.html#a18d5639ffd7afe6ea25c91043cf29a95',1,'ClassType::operator!=()'],['../classMessageType.html#a29fc16f8aa4357668a782b390b77d3a4',1,'MessageType::operator!=()']]],
+  ['operator_3d_3d_5',['operator==',['../classAccessModifier.html#ad03fc221551f4156a9b66703928bfc74',1,'AccessModifier::operator==()'],['../classClassMethodType.html#a5dad2f97b8b549458daae91b420be307',1,'ClassMethodType::operator==()'],['../classClassType.html#a0f4e5eb31c74448ff0c5cbd642db508d',1,'ClassType::operator==()'],['../classMessageType.html#ab1104efcf907e1c2a4213a13f880d0fd',1,'MessageType::operator==()']]],
+  ['string_6',['string',['../classAccessModifier.html#a201b741c89e93b7b9c5d7dae22dccbb1',1,'AccessModifier']]]
 ];
