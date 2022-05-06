@@ -12,6 +12,7 @@
 #include <utility>
 #include <vector>
 #include <string>
+#include <tuple>
 #include "ClassAttribute.h"
 #include "ClassMethod.h"
 #include "ClassType.h"
@@ -25,6 +26,10 @@ class Class
      * Name of the class
      */
     std::string name;
+    /**
+     * Position in canvas
+     */
+    std::tuple<int> coordinates;
     /**
      * Class type (normal, abstract or interface)
      */
@@ -47,9 +52,14 @@ class Class
      * Constructor for initializing class with known name and type
      *
      * @param name Class name
+     * @param coordinates Coordinates in canvas (x, y)
      * @param type Class type (optional, default is normal)
      */
-    explicit Class(const std::string name, const ClassType type = ClassType::NORMAL_CLASS): name{name}, classType{type} {};
+    explicit Class(
+        const std::string name,
+        const std::tuple<int> coordinates,
+        const ClassType type = ClassType::NORMAL_CLASS
+    ): name{name}, coordinates{coordinates}, classType{type} {};
 
     /**
      * Getter for class name
@@ -69,6 +79,33 @@ class Class
     void setName(const std::string &new_name)
     {
         name = new_name;
+    }
+
+    /**
+     * Getter for coordinates
+     *
+     * @return Coordinates in a canvas (x, y)
+     */
+    std::tuple<int> &getCoordinates() {
+        return coordinates;
+    }
+
+    /**
+     * Constant getter for coordinates
+     *
+     * @return Coordinates in a canvas (x, y)
+     */
+    const std::tuple<int> &getCoordinates() const {
+        return coordinates;
+    }
+
+    /**
+     * Setter for coordinates
+     *
+     * @param newCoordinates New coordinates to set (x, y) on canvas
+     */
+    void setCoordinates(const std::tuple<int> &newCoordinates) {
+        coordinates = newCoordinates;
     }
 
     /**
