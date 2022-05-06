@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['class_0',['Class',['../classClass.html#a5b97d41527df822c6b1211931f79ca15',1,'Class::Class()'],['../classClass.html#a0f74fbc8f7049517383b4c19f10d2583',1,'Class::Class(const std::string name, const ClassType type=ClassType::NORMAL_CLASS)'],['../classClass.html',1,'Class']]],
+  ['class_0',['Class',['../classClass.html#a5b97d41527df822c6b1211931f79ca15',1,'Class::Class()'],['../classClass.html#a2272686a375f823d17f777a49b183d2a',1,'Class::Class(const std::string name, const std::tuple&lt; int &gt; coordinates, const ClassType type=ClassType::NORMAL_CLASS)'],['../classClass.html',1,'Class']]],
   ['class_2eh_1',['Class.h',['../Class_8h.html',1,'']]],
   ['classattribute_2',['ClassAttribute',['../classClassAttribute.html',1,'ClassAttribute'],['../classClassAttribute.html#a7815340f6e72894dc454c001cea457b4',1,'ClassAttribute::ClassAttribute()']]],
   ['classattribute_2eh_3',['ClassAttribute.h',['../ClassAttribute_8h.html',1,'']]],
