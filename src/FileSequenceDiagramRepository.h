@@ -9,6 +9,7 @@
 #ifndef ICP_PROJECT_FILE_SEQUENCE_DIAGRAM_REPOSITORY_H
 #define ICP_PROJECT_FILE_SEQUENCE_DIAGRAM_REPOSITORY_H
 
+#include <QDomElement>
 #include "SequenceDiagramRepository.h"
 
 /**
@@ -23,16 +24,24 @@ class FileSequenceDiagramRepository: public SequenceDiagramRepository
 
 public:
     /**
-     * Implicit constructor
+     * Constructor for initialization with known class diagram
+     *
+     * @param classDiagram Class diagram to use as a source for classes, methods, etc.
      */
-    FileSequenceDiagramRepository(): fileName{} {};
+    explicit FileSequenceDiagramRepository(
+        ClassDiagram classDiagram
+    ): SequenceDiagramRepository{classDiagram}, fileName{} {};
 
     /**
      * Constructor for initialization with known name of file
      *
+     * @param classDiagram Class diagram to use as a source for classes, methods, etc.
      * @param fileName Name of the file to work with (full relative/absolute path)
      */
-    explicit FileSequenceDiagramRepository(std::string fileName): fileName{fileName} {};
+    explicit FileSequenceDiagramRepository(
+        ClassDiagram classDiagram,
+        std::string fileName
+    ): SequenceDiagramRepository{classDiagram}, fileName{fileName} {};
 
     /**
      * Virtual default destructor
@@ -64,6 +73,7 @@ public:
      *
      * @return Loaded sequence diagram
      * @throw InvalidDataStorageException Invalid file
+     * @throw InvalidInputDataException Invalid structure of input data
      */
     SequenceDiagram loadDiagram() override;
 
@@ -74,6 +84,26 @@ public:
      * @throw InvalidDataStorageException Invalid file
      */
     void saveDiagram(SequenceDiagram diagram) override;
+
+  private:
+    /**
+     * Loads single object from XML element
+     *
+     * @param xmlObject XML element with object
+     * @return Loaded object
+     * @throw InvalidInputDataException Invalid structure of input data
+     */
+    Object loadObject(QDomElement &xmlObject);
+
+    /**
+     * Loads single message from XML element
+     *
+     * @param xmlMessage XML element with message
+     * @param sequenceDiagram Sequence diagram for linking objects and actors
+     * @return Loaded message
+     * @throw InvalidInputDataException Invalid structure of input data
+     */
+    Message loadMessage(QDomElement &xmlMessage, SequenceDiagram &sequenceDiagram);
 };
 
 #endif //ICP_PROJECT_FILE_SEQUENCE_DIAGRAM_REPOSITORY_H
