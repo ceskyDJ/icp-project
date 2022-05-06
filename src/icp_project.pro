@@ -53,4 +53,5 @@ SOURCES += \
     ClassMethodType.cpp \
     ClassType.cpp \
     MessageType.cpp \
+    ClassDiagram.cpp \
     main.cpp

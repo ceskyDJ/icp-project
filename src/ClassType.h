@@ -111,7 +111,7 @@ class ClassType
      * @return Instance of ClassType
      * @throw std::invalid_argument Invalid value for deserialization
      */
-    static ClassType deserialize(std::string &serializedForm);
+    static ClassType deserialize(std::string serializedForm);
 };
 
 #endif //ICP_PROJECT_CLASS_TYPE_H

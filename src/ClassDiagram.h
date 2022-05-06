@@ -22,9 +22,9 @@ class ClassDiagram
      */
     std::vector<Class> classes;
     /**
-     * Relationships between classes
+     * Pointers to relationships between classes
      */
-    std::vector<Relationship> relationships;
+    std::vector<Relationship *> relationships;
 
   public:
     /**
@@ -35,11 +35,11 @@ class ClassDiagram
      * Constructor for initializing class diagram with known classes and relationships
      *
      * @param classes Classes
-     * @param relationships Relationships between classes
+     * @param relationships Pointers to relationships between classes
      */
     ClassDiagram(
         std::vector<Class> classes,
-        std::vector<Relationship> relationships
+        std::vector<Relationship *> relationships
     ): classes{classes}, relationships{relationships} {};
 
     /**
@@ -77,17 +77,26 @@ class ClassDiagram
      *
      * @param newClass New class to add
      */
-    void addClass(Class &newClass)
+    void addClass(Class newClass)
     {
         classes.push_back(newClass);
     }
 
     /**
+     * Finds class by name
+     *
+     * @param name Name of the class to search for
+     * @return Pointer to found class
+     * @throw std::invalid_argument Non-existing class with this name
+     */
+    Class *findClassByName(std::string name);
+
+    /**
      * Getter for relationships between classes
      *
-     * @return Vector of relationships
+     * @return Vector of pointers to relationships
      */
-    std::vector<Relationship> &getRelationships()
+    std::vector<Relationship *> &getRelationships()
     {
         return relationships;
     }
@@ -95,9 +104,9 @@ class ClassDiagram
     /**
      * Constant getter for relationships between classes
      *
-     * @return Vector of relationships
+     * @return Vector of pointers to relationships
      */
-    const std::vector<Relationship> &getRelationships() const
+    const std::vector<Relationship *> &getRelationships() const
     {
         return relationships;
     }
@@ -105,9 +114,9 @@ class ClassDiagram
     /**
      * Adds a new relationship to diagram
      *
-     * @param newRelationship New relationship to add
+     * @param newRelationship Pointer to new relationship to add
      */
-    void addRelationship(Relationship &newRelationship)
+    void addRelationship(Relationship *newRelationship)
     {
         relationships.push_back(newRelationship);
     }
@@ -115,9 +124,9 @@ class ClassDiagram
     /**
      * Setter for relationships between classes
      *
-     * @param newRelationships New vector of relationships
+     * @param newRelationships New vector of pointers to relationships
      */
-    void setRelationships(std::vector<Relationship> &newRelationships)
+    void setRelationships(std::vector<Relationship *> &newRelationships)
     {
         relationships = newRelationships;
     }

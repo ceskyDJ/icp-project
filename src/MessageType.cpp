@@ -39,7 +39,7 @@ std::string MessageType::serialize()
  * @return Instance of MessageType
  * @throw std::invalid_argument Invalid value for deserialization
  */
-MessageType MessageType::deserialize(std::string &serializedForm)
+MessageType MessageType::deserialize(std::string serializedForm)
 {
     if (serializedForm == "SYNC") {
         return MessageType::SYNC;
