@@ -21,6 +21,7 @@ class ClassDiagramRepository
      *
      * @return Loaded class diagram
      * @throw InvalidDataStorageException Invalid data storage
+     * @throw InvalidInputDataException Invalid structure of input data
      */
     virtual ClassDiagram loadDiagram() = 0;
 

@@ -17,6 +17,7 @@ find_package(Qt5 COMPONENTS
         Core
         Gui
         Widgets
+        Xml
         REQUIRED)
 
 add_executable(icp_project
@@ -27,10 +28,12 @@ add_executable(icp_project
         src/AccessModifier.cpp src/ClassMethodType.cpp src/ClassType.cpp src/MessageType.cpp src/Realization.h
         src/ClassDiagram.cpp src/SequenceDiagram.cpp src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
         src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
-        src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h)
+        src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
+        src/InvalidInputDataException.h)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui
-        Qt5::Widgets)
+        Qt5::Widgets
+        Qt5::Xml)
 
 target_compile_options(icp_project PRIVATE -g -pedantic -Wall -Wextra -Werror)

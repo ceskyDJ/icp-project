@@ -9,7 +9,7 @@ TEMPLATE = app
 TARGET = icp_project
 
 # Qt configuration
-QT += core gui widgets
+QT += core gui widgets xml
 CONFIG += debug
 
 # Paths
