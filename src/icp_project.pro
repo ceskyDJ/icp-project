@@ -45,7 +45,7 @@ HEADERS += \
     ClassMethodType.h \
     UndirectedAssociation.h \
     DirectedAssociation.h \
-    MessageSender.h \
+    MessageNode.h \
     Realization.h
 
 SOURCES += \

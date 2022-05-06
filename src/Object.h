@@ -11,12 +11,12 @@
 
 #include <memory>
 #include "Class.h"
-#include "MessageSender.h"
+#include "MessageNode.h"
 
 /**
  * Entity representing Object from sequence diagram
  */
-class Object: public MessageSender
+class Object: public MessageNode
 {
     /**
      * Pointer to instance class of this object
