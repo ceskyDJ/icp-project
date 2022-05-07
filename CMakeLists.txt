@@ -25,11 +25,10 @@ add_executable(icp_project
         src/Aggregation.h src/Composition.h src/AccessModifier.h src/ClassType.h src/MessageType.h src/Actor.h
         src/ClassMethodType.h src/UndirectedAssociation.h src/DirectedAssociation.h src/MessageNode.h
         src/AccessModifier.cpp src/ClassMethodType.cpp src/ClassType.cpp src/MessageType.cpp src/Realization.h
-        src/ClassDiagram.cpp)
+        src/ClassDiagram.cpp src/SequenceDiagram.cpp)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui
-        Qt5::Widgets
-        )
+        Qt5::Widgets)
 
 target_compile_options(icp_project PRIVATE -g -pedantic -Wall -Wextra -Werror)

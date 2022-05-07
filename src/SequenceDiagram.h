@@ -89,6 +89,16 @@ class SequenceDiagram
         actors.push_back(actor);
     }
 
+
+    /**
+     * Finds actor by its name
+     *
+     * @param name Name of the actor to search for
+     * @return Found actor
+     * @throw std::invalid_argument Actor doesn't exist in sequence diagram
+     */
+    Actor *findActorByName(std::string name);
+
     /**
      * Getter for used objects
      *
@@ -128,6 +138,15 @@ class SequenceDiagram
     {
         objects.push_back(newObject);
     }
+
+    /**
+     * Finds object by its name
+     *
+     * @param name Name of the object to search for
+     * @return Found object
+     * @throw std::invalid_argument Object doesn't exist in sequence diagram
+     */
+    Object *findObjectByName(std::string name);
 
     /**
      * Getter for used messages
