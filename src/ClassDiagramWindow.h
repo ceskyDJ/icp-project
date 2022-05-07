@@ -36,7 +36,6 @@ private:
     QGraphicsScene *classDiagramScene;
     QGraphicsView *classDiagramView;
     QWidget *classDiagramCenterWidget;
-    ClassEditDialog *classEditDialog;
 
     QToolButton *agregationToolItem;
     QToolButton *fellowshipToolItem;

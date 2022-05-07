@@ -13,7 +13,7 @@
 class ClassNode : public QGraphicsItem
 {
 public:
-    ClassNode(Class classEntity = Class{"Nová třída"});
+    ClassNode(Class classEntity = Class{"Nová třída", std::make_tuple(1, 1)});
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                    QWidget *widget) override;
@@ -89,6 +89,7 @@ private:
     QString modifierToString(AccessModifier mod) const;
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
 
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 };
 
 #endif // CLASSNODE_H

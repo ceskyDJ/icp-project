@@ -2,6 +2,7 @@
 #include "qpainter.h"
 #include "QPlainTextEdit"
 #include <QStyleOptionGraphicsItem>
+#include "ClassEditDialog.h"
 
 /**
  * Sets a class node entity.
@@ -220,5 +221,15 @@ QString ClassNode::modifierToString(AccessModifier mod) const
         return "~";
     default:
         return "";
+    }
+}
+
+void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
+{
+    ClassEditDialog *classEditDialog = new ClassEditDialog(this->getClassEntity());
+    if(classEditDialog->exec() == QDialog::Accepted)
+    {
+        this->setEntity(classEditDialog->getClassEntity());
+        update();
     }
 }

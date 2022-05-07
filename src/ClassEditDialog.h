@@ -19,6 +19,7 @@ public:
     {
         return classEntity;
     }
+    static QWidget* createTitle(QPushButton *addPushButton, QString title, QString label);
 
 private:
     Class classEntity;
@@ -35,8 +36,10 @@ private:
     QScrollArea *methodScrollArea;
     QWidget *methodWidget;
     QVBoxLayout *methodLayout;
+    QPushButton *confirmChangesPushButton;
+    QPushButton *rejectChangesPushButton;
+    QWidget *buttonWidget;
 
-    QWidget* createTitle(QPushButton *addPushButton, QString title);
     void initializeComponents();
     void setMainLayout();
     void makeConnections();
@@ -44,12 +47,15 @@ private:
     void addNewMethod(ClassMethod *newMethod);
     void setScrollAreas();
     void setScrollArea(QWidget *areaWidget, QVBoxLayout *areaLayout, QScrollArea *scrollArea);
+    void setButtons();
 private slots:
     void deleteAttribute(AttributeEditWidget *toDelete);
     void addNewAttributeSlot();
     void deleteMethod(MethodEditWidget *toDelete);
     void addNewMethodSlot();
     void onNameChanged(QString newName);
+    void onConfirmChangesPressed();
+    void onRejectChangesPressed();
 };
 
 #endif // CLASSEDITDIALOG_H

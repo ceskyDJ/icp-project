@@ -53,11 +53,11 @@ void AttributeEditWidget::setComboBox()
 
 void AttributeEditWidget::setMyLayout()
 {
-    attrLayOut->addWidget(new QLabel("Modifikátor přístupu:"));
+    attrLayOut->addWidget(new QLabel("Access modifier:"));
     attrLayOut->addWidget(accessModifierComboBox);
-    attrLayOut->addWidget(new QLabel("Název"));
+    attrLayOut->addWidget(new QLabel("Name"));
     attrLayOut->addWidget(attributeNameLineEdit);
-    attrLayOut->addWidget(new QLabel("Datový typ"));
+    attrLayOut->addWidget(new QLabel("Datatype"));
     attrLayOut->addWidget(attributeDateTypeLineEdit);
     attrLayOut->addWidget(deleteButton);
     setLayout(attrLayOut);

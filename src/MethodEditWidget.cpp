@@ -1,5 +1,6 @@
 #include "MethodEditWidget.h"
 #include <QLabel>
+#include "ClassEditDialog.h"
 
 MethodEditWidget::MethodEditWidget(QWidget *parent, ClassMethod *method)
     : QWidget{parent}
@@ -8,6 +9,8 @@ MethodEditWidget::MethodEditWidget(QWidget *parent, ClassMethod *method)
     initializeComponents();
     setComboBox();
     setDeleteButton();
+    setScrollArea();
+    setAddButton();
     setMyLayout();
     fillData();
     makeConnections();
@@ -16,12 +19,17 @@ MethodEditWidget::MethodEditWidget(QWidget *parent, ClassMethod *method)
 
 void MethodEditWidget::initializeComponents()
 {
-    methodLayOut = new QHBoxLayout;
+    methodLayOut = new QGridLayout;
     accessModifierComboBox = new QComboBox;
     methodTypeComboBox = new QComboBox;
     methodNameLineEdit = new QLineEdit;
     methodReturnDataTypeLineEdit = new QLineEdit;
     deleteButton = new QPushButton;
+    parameterScrollArea = new QScrollArea;
+    parameterWidget = new QWidget;
+    parameterLayout = new QVBoxLayout;
+    mainLayOut = new QVBoxLayout;
+    addParameterPushButton = new QPushButton;
 }
 
 void MethodEditWidget::makeConnections()
@@ -33,7 +41,8 @@ void MethodEditWidget::makeConnections()
             this, &MethodEditWidget::returnDataTypeChanged);
     connect(deleteButton, &QPushButton::pressed, this, &MethodEditWidget::sendDeleteSignalSlot);
 
-    connect(methodTypeComboBox,&QComboBox::currentTextChanged, this, &MethodEditWidget::typeChanged);
+    connect(methodTypeComboBox, &QComboBox::currentTextChanged, this, &MethodEditWidget::typeChanged);
+    connect(addParameterPushButton, &QPushButton::pressed, this, &MethodEditWidget::addNewParameterSlot);
 }
 
 void MethodEditWidget::accsesModifierChanged(QString newText)
@@ -69,16 +78,29 @@ void MethodEditWidget::setComboBox()
 
 void MethodEditWidget::setMyLayout()
 {
-    methodLayOut->addWidget(new QLabel("Typ:"));
-    methodLayOut->addWidget(methodTypeComboBox);
-    methodLayOut->addWidget(new QLabel("Modifikátor přístupu:"));
-    methodLayOut->addWidget(accessModifierComboBox);
-    methodLayOut->addWidget(new QLabel("Název"));
-    methodLayOut->addWidget(methodNameLineEdit);
-    methodLayOut->addWidget(new QLabel("Návratový typ"));
-    methodLayOut->addWidget(methodReturnDataTypeLineEdit);
-    methodLayOut->addWidget(deleteButton);
-    setLayout(methodLayOut);
+    QWidget *mainWidget = new QWidget;
+    methodLayOut->addWidget(new QLabel("Type:"), 0, 0);
+    methodLayOut->addWidget(methodTypeComboBox, 0, 1);
+    methodLayOut->addWidget(new QLabel("Access modifier:"), 0, 2);
+    methodLayOut->addWidget(accessModifierComboBox, 0, 3);
+    methodLayOut->addWidget(new QLabel("Name"), 0, 4);
+    methodLayOut->addWidget(methodNameLineEdit, 0, 5);
+    methodLayOut->addWidget(new QLabel("Return type"), 0, 6);
+    methodLayOut->addWidget(methodReturnDataTypeLineEdit, 0, 7);
+    methodLayOut->addWidget(deleteButton, 0, 8);
+
+    mainLayOut->addWidget(mainWidget);
+    mainLayOut->addWidget(ClassEditDialog::createTitle(addParameterPushButton,"Parameters", "New parameter"));
+
+    mainLayOut->addWidget(parameterScrollArea);
+    std::vector<MethodParameter> parameters = methodEntity->getParameters();
+    for(size_t i = 0; i < parameters.size(); ++i)
+    {//je nezbytne to takto udelat, protoze to jinak pada pri nastaveni hodnoty
+        addNewParameter(new MethodParameter(parameters[i].getName(), parameters[i].getDataType()));
+    }
+
+    mainWidget->setLayout(methodLayOut);
+    setLayout(mainLayOut);
 }
 
 AccessModifier MethodEditWidget::convertIntToModifier(int modifierChar)
@@ -149,4 +171,37 @@ void MethodEditWidget::setDeleteButton()
 void MethodEditWidget::sendDeleteSignalSlot()
 {
     emit deleteButtonPressed(this);
+}
+
+void MethodEditWidget::setScrollArea()
+{
+    parameterWidget->setLayout(parameterLayout);
+    parameterLayout->setAlignment(Qt::AlignTop);
+    parameterScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    parameterScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    parameterScrollArea->setWidgetResizable(true);
+    parameterScrollArea->setWidget(parameterWidget);
+}
+
+void MethodEditWidget::setAddButton()
+{
+    addParameterPushButton->setIcon(QIcon(":/addCross.png"));
+}
+
+void MethodEditWidget::addNewParameter(MethodParameter *newParameter)
+{
+    MethodParameterEditWidget *newWidget = new MethodParameterEditWidget(nullptr, newParameter);
+    parameterLayout->addWidget(newWidget);
+    connect(newWidget, &MethodParameterEditWidget::deleteButtonPressed, this, &MethodEditWidget::deleteParameter);
+}
+
+void MethodEditWidget::addNewParameterSlot()
+{
+    addNewParameter(new MethodParameter("", ""));
+}
+
+void MethodEditWidget::deleteParameter(MethodParameterEditWidget *paramEdit)
+{
+    parameterLayout->removeWidget(paramEdit);
+    delete paramEdit;
 }

@@ -6,5 +6,7 @@
     <file alias="geLine.png">resources/generalisationLine.png</file>
     <file alias="classShape.png">resources/classShape.png</file>
     <file alias="closeCross.png">resources/closeCross.png</file>
+    <file alias="addCross.png">resources/addCross.png</file>
+    <file alias="nike.png">resources/nike.png</file>
 </qresource>
 </RCC>

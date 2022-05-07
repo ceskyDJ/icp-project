@@ -10,7 +10,7 @@ RESOURCES = rsc.qrc
 TARGET = icp_project
 
 # Qt configuration
-QT += core gui widgets xml
+QT += core gui widgets
 CONFIG += debug
 
 # Paths
@@ -47,7 +47,7 @@ HEADERS += \
     UndirectedAssociation.h \
     DirectedAssociation.h \
     MessageNode.h \
-    Realization.h \
+    Realization.h
     ClassDiagramRepository.h \
     FileClassDiagramRepository.h \
     SequenceDiagramRepository.h \
@@ -62,7 +62,11 @@ HEADERS += \
     HistoryStack.h \
     ClassDiagramMemento.h \
     SequenceDiagramMemento.h \
-    ClassDiagramWindow.h
+    ClassDiagramWindow.h \
+    MethodParameterEditWidget.h \
+    ClassEditDialog.h \
+    AttributeEditWidget.h \
+    MethodEditWidget.h
 
 SOURCES += \
     AccessModifier.cpp \
@@ -77,5 +81,9 @@ SOURCES += \
     ClassDiagramManager.cpp \
     SequenceDiagramManager.cpp \
     ClassDiagramWindow.cpp \
+    MethodParameterEditWidget.cpp \
     classNode.cpp \
+    ClassEditDialog.cpp \
+    AttributeEditWidget.cpp \
+    MethodEditWidget.cpp \
     main.cpp

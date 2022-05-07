@@ -49,7 +49,7 @@ class MethodParameter
      *
      * @param newName New parameter name
      */
-    void setName(std::string &newName)
+    void setName(std::string newName)
     {
         name = newName;
     }
@@ -69,7 +69,7 @@ class MethodParameter
      *
      * @param newDataType New parameter data type
      */
-    void setDataType(std::string &newDataType)
+    void setDataType(std::string newDataType)
     {
         dataType = newDataType;
     }
