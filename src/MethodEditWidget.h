@@ -47,10 +47,6 @@ private:
     QPushButton *addParameterPushButton;
 
 
-    AccessModifier convertIntToModifier(int modifierChar);
-    QString convertModifierToQString(AccessModifier modifier);
-    QString convertTypeToQString(ClassMethodType type);
-    ClassMethodType convertTextToType(QString type);
     void initializeComponents();
     void setComboBox();
     void setMyLayout();

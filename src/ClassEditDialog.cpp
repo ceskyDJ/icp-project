@@ -113,7 +113,7 @@ void ClassEditDialog::addNewMethodSlot()
 void ClassEditDialog::makeConnections()
 {
     connect(addAtributePushButton, &QPushButton::pressed, this, &ClassEditDialog::addNewAttributeSlot);
-    connect(nameTextEdit, &QLineEdit::textChanged, this, ClassEditDialog::onNameChanged);
+    connect(nameTextEdit, &QLineEdit::textChanged, this, &ClassEditDialog::onNameChanged);
     connect(addMethodPushButton, &QPushButton::pressed, this, &ClassEditDialog::addNewMethodSlot);
     connect(confirmChangesPushButton, &QPushButton::pressed, this, &ClassEditDialog::onConfirmChangesPressed);
     connect(rejectChangesPushButton, &QPushButton::pressed, this, &ClassEditDialog::onRejectChangesPressed);

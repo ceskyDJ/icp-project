@@ -47,12 +47,14 @@ void MethodEditWidget::makeConnections()
 
 void MethodEditWidget::accsesModifierChanged(QString newText)
 {
-    methodEntity->setAccessModifier(convertIntToModifier(newText[0].unicode()));
+    std::string accesMod = newText.toStdString();
+    methodEntity->setAccessModifier(AccessModifier(accesMod));
 }
 
 void MethodEditWidget::typeChanged(QString newText)
 {
-    methodEntity->setType(convertTextToType(newText));
+    std::string methodType = newText.toStdString();
+    methodEntity->setType(ClassMethodType::deserialize(methodType));
 }
 
 void MethodEditWidget::nameChanged(QString newText)
@@ -67,13 +69,12 @@ void MethodEditWidget::returnDataTypeChanged(QString newText)
 
 void MethodEditWidget::setComboBox()
 {
-    accessModifierComboBox->addItem("+");
-    accessModifierComboBox->addItem("-");
-    accessModifierComboBox->addItem("#");
-    accessModifierComboBox->addItem("~");
+    for(AccessModifier &accessModifier : AccessModifier::values())
+        accessModifierComboBox->addItem(QString::fromStdString(static_cast<std::string>(accessModifier)));
 
-    methodTypeComboBox->addItem("NORMAL");
-    methodTypeComboBox->addItem("ABSTRACT");
+    for(ClassMethodType &methodType : ClassMethodType::values())
+        methodTypeComboBox->addItem(QString::fromStdString(methodType.serialize()));
+
 }
 
 void MethodEditWidget::setMyLayout()
@@ -103,61 +104,13 @@ void MethodEditWidget::setMyLayout()
     setLayout(mainLayOut);
 }
 
-AccessModifier MethodEditWidget::convertIntToModifier(int modifierChar)
-{
-    switch (modifierChar) {
-    case '+':
-        return AccessModifier::PUBLIC;
-    case '-':
-        return AccessModifier::PRIVATE;
-    case '#':
-        return AccessModifier::PROTECTED;
-    case '~':
-        return AccessModifier::PACKAGE_PRIVATE;
-    default:
-        return AccessModifier::PUBLIC;
-    }
-}
 
-QString MethodEditWidget::convertModifierToQString(AccessModifier modifier)
-{
-    switch (modifier) {
-    case AccessModifier::PUBLIC:
-        return "+";
-    case AccessModifier::PRIVATE:
-        return "-";
-    case AccessModifier::PROTECTED:
-        return "#";
-    case AccessModifier::PACKAGE_PRIVATE:
-        return "~";
-    default:
-        return "+";
-    }
-}
-
-QString MethodEditWidget::convertTypeToQString(ClassMethodType type)
-{
-    switch (type) {
-    case ClassMethodType::NORMAL:
-        return "NORMAL";
-    case ClassMethodType::ABSTRACT:
-    default:
-        return "ABSTRACT";
-    }
-}
-
-ClassMethodType MethodEditWidget::convertTextToType(QString type)
-{
-    if(type == "ABSTRACT")
-        return ClassMethodType::ABSTRACT;
-    else
-        return ClassMethodType::NORMAL;
-}
 
 void MethodEditWidget::fillData()
 {
-    methodTypeComboBox->setCurrentText(convertTypeToQString(methodEntity->getType()));
-    accessModifierComboBox->setCurrentText(convertModifierToQString(methodEntity->getAccessModifier()));
+    ClassMethodType methodType = methodEntity->getType();
+    methodTypeComboBox->setCurrentText(QString::fromStdString(methodType.serialize()));
+    accessModifierComboBox->setCurrentText(QString::fromStdString(static_cast<std::string>(methodEntity->getAccessModifier())));
     methodNameLineEdit->setText(QString::fromStdString(methodEntity->getName()));
     methodReturnDataTypeLineEdit->setText(QString::fromStdString(methodEntity->getReturnDataType()));
 }

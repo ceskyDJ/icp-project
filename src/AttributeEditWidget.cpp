@@ -30,7 +30,8 @@ void AttributeEditWidget::initializeComponents()
 
 void AttributeEditWidget::accsesModifierChanged(QString newText)
 {
-    attributeEntity->setAccessModifier(convertIntToModifier(newText[0].unicode()));
+    std::string p = newText.toStdString();
+    attributeEntity->setAccessModifier(AccessModifier(p));
 }
 
 void AttributeEditWidget::nameChanged(QString newText)
@@ -45,10 +46,8 @@ void AttributeEditWidget::dataTypeChanged(QString newText)
 
 void AttributeEditWidget::setComboBox()
 {
-    accessModifierComboBox->addItem("+");
-    accessModifierComboBox->addItem("-");
-    accessModifierComboBox->addItem("#");
-    accessModifierComboBox->addItem("~");
+    for(AccessModifier &accessModifier : AccessModifier::values())
+        accessModifierComboBox->addItem(QString::fromStdString(static_cast<std::string>(accessModifier)));
 }
 
 void AttributeEditWidget::setMyLayout()
@@ -63,41 +62,9 @@ void AttributeEditWidget::setMyLayout()
     setLayout(attrLayOut);
 }
 
-AccessModifier AttributeEditWidget::convertIntToModifier(int modifierChar)
-{
-    switch (modifierChar) {
-    case '+':
-        return AccessModifier::PUBLIC;
-    case '-':
-        return AccessModifier::PRIVATE;
-    case '#':
-        return AccessModifier::PROTECTED;
-    case '~':
-        return AccessModifier::PACKAGE_PRIVATE;
-    default:
-        return AccessModifier::PUBLIC;
-    }
-}
-
-QString AttributeEditWidget::convertModifierToQString(AccessModifier modifier)
-{
-    switch (modifier) {
-    case AccessModifier::PUBLIC:
-        return "+";
-    case AccessModifier::PRIVATE:
-        return "-";
-    case AccessModifier::PROTECTED:
-        return "#";
-    case AccessModifier::PACKAGE_PRIVATE:
-        return "~";
-    default:
-        return "+";
-    }
-}
-
 void AttributeEditWidget::fillData()
 {
-    accessModifierComboBox->setCurrentText(convertModifierToQString(attributeEntity->getAccessModifier()));
+    accessModifierComboBox->setCurrentText(QString::fromStdString( static_cast<std::string>(attributeEntity->getAccessModifier())));
     attributeNameLineEdit->setText(QString::fromStdString(attributeEntity->getName()));
     attributeDateTypeLineEdit->setText(QString::fromStdString(attributeEntity->getDataType()));
 }
