@@ -232,4 +232,5 @@ void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
         this->setEntity(classEditDialog->getClassEntity());
         update();
     }
+
 }

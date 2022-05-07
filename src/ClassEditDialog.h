@@ -10,6 +10,9 @@
 #include "AttributeEditWidget.h"
 #include <QScrollArea>
 #include "MethodEditWidget.h"
+#include "classNode.h"
+#include <QMenu>
+#include <QAction>
 
 class ClassEditDialog : public QDialog
 {
@@ -28,17 +31,18 @@ private:
     std::vector<AttributeEditWidget*> atributeEdits;
     QPushButton *addAtributePushButton;
     QPushButton *addMethodPushButton;
-
     QScrollArea *attributeScrollArea;
     QWidget *attributeWidget;
     QVBoxLayout *attributeLayout;
-
     QScrollArea *methodScrollArea;
     QWidget *methodWidget;
     QVBoxLayout *methodLayout;
     QPushButton *confirmChangesPushButton;
     QPushButton *rejectChangesPushButton;
+    QPushButton *deleteNodePushButton;
     QWidget *buttonWidget;
+    QMenu *contextMenu;
+
 
     void initializeComponents();
     void setMainLayout();
@@ -48,6 +52,7 @@ private:
     void setScrollAreas();
     void setScrollArea(QWidget *areaWidget, QVBoxLayout *areaLayout, QScrollArea *scrollArea);
     void setButtons();
+
 private slots:
     void deleteAttribute(AttributeEditWidget *toDelete);
     void addNewAttributeSlot();

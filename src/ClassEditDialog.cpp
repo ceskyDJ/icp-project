@@ -28,6 +28,7 @@ void ClassEditDialog::initializeComponents()
     confirmChangesPushButton = new QPushButton;
     rejectChangesPushButton = new QPushButton;
     buttonWidget = new QWidget;
+    contextMenu = new QMenu;
 }
 
 void ClassEditDialog::setMainLayout()

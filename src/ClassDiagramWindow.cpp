@@ -52,6 +52,7 @@ void ClassDiagramWindow::initializeComponents()
     compositionToolItem = new QToolButton;
     generalisationToolItem = new QToolButton;
     classShapeToolItem     = new QToolButton;
+    removeSelectedToolItem = new QToolButton;
 }
 
 /**
@@ -151,17 +152,19 @@ void ClassDiagramWindow::setTooBox()
     QGroupBox *toolboxItems = new QGroupBox;
     QGridLayout *toolboxLayout = new QGridLayout;
 
-    QWidget *agregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregace", agregationToolItem);
-    QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Kompozice", fellowshipToolItem);
-    QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Asociace", compositionToolItem);
-    QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalizace", generalisationToolItem);
-    QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Třída", classShapeToolItem);
+    QWidget *agregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregation", agregationToolItem);
+    QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", fellowshipToolItem);
+    QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Realization", compositionToolItem);
+    QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalization", generalisationToolItem);
+    QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Class node", classShapeToolItem);
+    QWidget *removeSelectedWidget = prepareToolItem(QIcon{":/closeCross.png"}, "Remove selected", removeSelectedToolItem);
 
     toolboxLayout->addWidget(agregationLineWidget, 0, 0);
     toolboxLayout->addWidget(fellowshipLineWidget, 1, 0);
     toolboxLayout->addWidget(compositionLineWidget, 0, 1);
     toolboxLayout->addWidget(generalisationLineWidget, 1, 1);
     toolboxLayout->addWidget(classShapeWidget, 2, 0);
+    toolboxLayout->addWidget(removeSelectedWidget, 2, 1);
 
     toolboxItems->setLayout(toolboxLayout);
     toolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
@@ -179,7 +182,16 @@ void ClassDiagramWindow::addClassNode()
     classDiagramScene->addItem(newOne);
 }
 
+void ClassDiagramWindow::removeClassNode()
+{
+    QList<QGraphicsItem *> selectedItems =  classDiagramScene->selectedItems();
+    for (QGraphicsItem *item : selectedItems)
+        classDiagramScene->removeItem(item);
+    qDeleteAll(selectedItems);
+}
+
 void ClassDiagramWindow::connectComponents()
 {
-    connect(classShapeToolItem,  &QToolButton::clicked, this, &ClassDiagramWindow::addClassNode);
+    connect(classShapeToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::addClassNode);
+    connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeClassNode);
 }

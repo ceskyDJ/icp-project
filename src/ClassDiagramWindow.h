@@ -36,12 +36,14 @@ private:
     QGraphicsScene *classDiagramScene;
     QGraphicsView *classDiagramView;
     QWidget *classDiagramCenterWidget;
+    ClassEditDialog *classEditDialog;
 
     QToolButton *agregationToolItem;
     QToolButton *fellowshipToolItem;
     QToolButton *compositionToolItem;
     QToolButton *generalisationToolItem;
     QToolButton *classShapeToolItem;
+    QToolButton *removeSelectedToolItem;
 
     void setModellingSpace();
     void setTaskBars();
@@ -55,6 +57,7 @@ private:
 
 private slots:
     void addClassNode();
+    void removeClassNode();
 
 signals:
 
