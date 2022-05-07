@@ -9,7 +9,7 @@ TEMPLATE = app
 TARGET = icp_project
 
 # Qt configuration
-QT += core gui widgets
+QT += core gui widgets xml
 CONFIG += debug
 
 # Paths
@@ -46,7 +46,11 @@ HEADERS += \
     UndirectedAssociation.h \
     DirectedAssociation.h \
     MessageNode.h \
-    Realization.h
+    Realization.h \
+    ClassDiagramRepository.h \
+    FileClassDiagramRepository.h \
+    SequenceDiagramRepository.h \
+    FileSequenceDiagramRepository.h
 
 SOURCES += \
     AccessModifier.cpp \

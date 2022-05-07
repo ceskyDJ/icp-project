@@ -1,0 +1,28 @@
+<class-diagram>
+    <classes>
+        <class y-coord="10" type="NORMAL_CLASS" name="ElectronicDevice" x-coord="10">
+            <attributes>
+                <attribute data-type="int" access-modifier="PROTECTED">price</attribute>
+                <attribute data-type="string" access-modifier="PROTECTED">color</attribute>
+            </attributes>
+            <methods/>
+        </class>
+        <class y-coord="10" type="NORMAL_CLASS" name="Phone" x-coord="410">
+            <attributes>
+                <attribute data-type="int" access-modifier="PRIVATE">batterySize</attribute>
+            </attributes>
+            <methods>
+                <method type="NORMAL" name="isValuable" return-type="bool" access-modifier="PUBLIC"/>
+                <method type="NORMAL" name="setColor" return-type="void" access-modifier="PUBLIC">
+                    <parameter data-type="string">newColor</parameter>
+                </method>
+            </methods>
+        </class>
+    </classes>
+    <relationshipsContainer>
+        <generalization name="">
+            <first-class>Phone</first-class>
+            <second-class>ElectronicDevice</second-class>
+        </generalization>
+    </relationshipsContainer>
+</class-diagram>
