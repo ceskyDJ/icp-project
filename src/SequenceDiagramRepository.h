@@ -24,6 +24,11 @@ class SequenceDiagramRepository
     ClassDiagram classDiagram;
 
     /**
+     * Implicit constructor
+     */
+    SequenceDiagramRepository(): classDiagram{} {};
+
+    /**
      * Constructor for initialization with known class diagram
      *
      * @param classDiagram Class diagram to use as a source for classes, methods, etc.

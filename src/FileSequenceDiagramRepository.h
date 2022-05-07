@@ -24,13 +24,9 @@ class FileSequenceDiagramRepository: public SequenceDiagramRepository
 
   public:
     /**
-     * Constructor for initialization with known class diagram
-     *
-     * @param classDiagram Class diagram to use as a source for classes, methods, etc.
+     * Implicit contructor
      */
-    explicit FileSequenceDiagramRepository(
-        ClassDiagram classDiagram
-    ): SequenceDiagramRepository{classDiagram}, fileName{} {};
+    explicit FileSequenceDiagramRepository(): SequenceDiagramRepository{}, fileName{} {};
 
     /**
      * Constructor for initialization with known name of file
