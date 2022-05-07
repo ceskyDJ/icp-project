@@ -57,6 +57,28 @@ class MessageNode
     {
         name = new_name;
     }
+
+    /**
+     * Equals operator
+     *
+     * @param other Message node to compare with
+     * @return Are both message nodes equal?
+     */
+    bool operator==(MessageNode &other)
+    {
+        return name == other.name;
+    }
+
+    /**
+     * Not equals operator
+     *
+     * @param other Message node to compare with
+     * @return Are both message nodes not equal?
+     */
+    bool operator!=(MessageNode &other)
+    {
+        return !operator==(other);
+    }
 };
 
 #endif //ICP_PROJECT_MESSAGE_NODE_H

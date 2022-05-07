@@ -158,6 +158,29 @@ class Message
     void setSendingTime(double newSendingTime) {
         sendingTime = newSendingTime;
     }
+
+    /**
+     * Equals operator
+     *
+     * @param other Message to compare with
+     * @return Are both messages equal?
+     */
+    bool operator==(Message &other)
+    {
+        return name == other.name && type == other.type && messageSender == other.messageSender
+            && messageRecipient == other.messageRecipient && sendingTime == other.sendingTime;
+    }
+
+    /**
+     * Not equals operator
+     *
+     * @param other Message to compare with
+     * @return Are both messages not equal?
+     */
+    bool operator!=(Message &other)
+    {
+        return !operator==(other);
+    }
 };
 
 #endif //ICP_PROJECT_MESSAGE_H

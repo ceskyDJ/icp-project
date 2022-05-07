@@ -89,6 +89,13 @@ class SequenceDiagram
         actors.push_back(actor);
     }
 
+    /**
+     * Removes actor from sequence diagram
+     *
+     * @param actorToRemove Actor to remove from sequence diagram
+     * @throw std::invalid_argument Actor is not in sequence diagram
+     */
+    void removeActor(Actor actorToRemove);
 
     /**
      * Finds actor by its name
@@ -140,6 +147,14 @@ class SequenceDiagram
     }
 
     /**
+     * Removes object from sequence diagram
+     *
+     * @param objectToRemove Object to remove from sequence diagram
+     * @throw std::invalid_argument Object is not in sequence diagram
+     */
+    void removeObject(Object objectToRemove);
+
+    /**
      * Finds object by its name
      *
      * @param name Name of the object to search for
@@ -187,6 +202,14 @@ class SequenceDiagram
     {
         messages.push_back(newMessage);
     }
+
+    /**
+     * Removes message from sequence diagram
+     *
+     * @param messageToRemove Message to remove from sequence diagram
+     * @throw std::invalid_argument Message is not in sequence diagram
+     */
+    void removeMessage(Message messageToRemove);
 };
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_H
