@@ -26,7 +26,7 @@ class ClassMember
      */
     AccessModifier accessModifier;
 
-  public:
+  protected:
     /**
      * Constructor for initializing class member with known name and access modifier
      *
@@ -35,6 +35,7 @@ class ClassMember
      */
     explicit ClassMember(std::string name, AccessModifier accessModifier): name{name}, accessModifier{accessModifier} {};
 
+  public:
     /**
      * Getter for class member name
      *

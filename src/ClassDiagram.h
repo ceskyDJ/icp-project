@@ -83,6 +83,14 @@ class ClassDiagram
     }
 
     /**
+     * Removes class from diagram
+     *
+     * @param classToRemove Class to remove from diagram
+     * @throw std::invalid_argument Class is not in diagram
+     */
+    void removeClass(Class classToRemove);
+
+    /**
      * Finds class by name
      *
      * @param name Name of the class to search for
@@ -120,6 +128,14 @@ class ClassDiagram
     {
         relationships.push_back(newRelationship);
     }
+
+    /**
+     * Removes relationship from class diagram
+     *
+     * @param relationshipToRemove Relationship to remove
+     * @throw std::invalid_argument Relationship is not in class diagram
+     */
+    void removeRelationship(Relationship *relationshipToRemove);
 
     /**
      * Setter for relationships between classes

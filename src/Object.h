@@ -30,16 +30,13 @@ class Object: public MessageNode
      * Length of lifeline of the object at timeline (normalized => number in interval \<0; 1\>)
      */
     double lifeLength;
-    /**
-     * Name of the object (not class but this concrete instance!)
-     */
-    std::string name;
 
   public:
     /**
      * Implicit class constructor
      */
-    Object(): instanceClass{nullptr}, lifeStart{0}, lifeLength{0.3}, name{} {};
+    Object(): MessageNode{}, instanceClass{nullptr}, lifeStart{0}, lifeLength{0.3} {};
+
     /**
      * Constructor for initializing with known name, instance class and lifeline position
      *
@@ -53,7 +50,7 @@ class Object: public MessageNode
             double lifeStart = 0.0,
             double lifeLength = 0.3,
             const std::string name = ""
-    ): instanceClass{instanceClass}, lifeStart{lifeStart}, lifeLength{lifeLength}, name{name} {};
+    ): MessageNode{name}, instanceClass{instanceClass}, lifeStart{lifeStart}, lifeLength{lifeLength} {};
 
     /**
      * Get instance class
@@ -113,26 +110,6 @@ class Object: public MessageNode
     void setLifeLength(double newLifeLength)
     {
         lifeLength = newLifeLength;
-    }
-
-    /**
-     * Getter for object name
-     *
-     * @return Object's name
-     */
-    std::string getName() const
-    {
-        return name;
-    }
-
-    /**
-     * Setter for object name
-     *
-     * @param new_name New object name
-     */
-    void setName(const std::string& new_name)
-    {
-        name = new_name;
     }
 };
 

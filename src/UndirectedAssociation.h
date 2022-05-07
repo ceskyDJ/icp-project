@@ -85,6 +85,49 @@ class UndirectedAssociation: public Relationship
     {
         secondClassCardinality = newSecondClassCardinality;
     }
+
+    /**
+     * Equals operator for two undirected associations
+     *
+     * @param other Undirected association to compare with
+     * @return Are undirected associations equal?
+     */
+    bool operator==(UndirectedAssociation &other)
+    {
+        return Relationship::operator==(other) && firstClassCardinality == other.firstClassCardinality
+            && secondClassCardinality == other.secondClassCardinality;
+    }
+
+    /**
+     * Equals operator for undirected association and some other relationship
+     *
+     * @return They are relationships of different types, so every time false is returned
+     */
+    bool operator==(Relationship &) override
+    {
+        return false;
+    }
+
+    /**
+     * Not equals operator for two undirected associations
+     *
+     * @param other Undirected association to compare with
+     * @return Are undirected associations not equal?
+     */
+    bool operator!=(UndirectedAssociation &other)
+    {
+        return !operator==(other);
+    }
+
+    /**
+     * Not equals operator for undirected association and some other relationship
+     *
+     * @return They are relationships of different types, so every time true is returned
+     */
+    bool operator!=(Relationship &) override
+    {
+        return true;
+    }
 };
 
 #endif //ICP_PROJECT_UNDIRECTED_ASSOCIATION_H

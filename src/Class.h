@@ -197,6 +197,28 @@ class Class
     {
         methods.push_back(method);
     }
+
+    /**
+     * Equals operator
+     *
+     * @param other Class to compare with
+     * @return Are classes equal?
+     */
+    bool operator==(const Class &other)
+    {
+        return name == other.name;
+    }
+
+    /**
+     * Not equals operator
+     *
+     * @param other Class to compare with
+     * @return Are classes not equal?
+     */
+    bool operator!=(const Class &other)
+    {
+        return name != other.name;
+    }
 };
 
 #endif //ICP_PROJECT_CLASS_H

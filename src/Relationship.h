@@ -29,7 +29,7 @@ class Relationship
      */
     std::string name;
 
-  public:
+  protected:
     /**
      * Constructor for initializing with known first and second class in relationship
      *
@@ -43,6 +43,12 @@ class Relationship
         std::string name = ""
     ): firstClass{firstClass}, secondClass{secondClass}, name{name} {};
 
+    /**
+     * Default virtual destructor for converting class to polymorphic one
+     */
+    virtual ~Relationship() = default;
+
+  public:
     /**
      * Getter for the first class of relationship
      *
@@ -84,9 +90,30 @@ class Relationship
     }
 
     /**
-     * Default virtual destructor for converting class to polymorphic one
+     * Equals operator
+     *
+     * @param other Relationship to compare with
+     * @return Are relationships equal?
      */
-    virtual ~Relationship() = default;
+    virtual bool operator==(Relationship &other)
+    {
+        if (typeid(other) == typeid(*this)) {
+            return firstClass == other.firstClass && secondClass == other.secondClass && name == other.name;
+        }
+
+        return false;
+    }
+
+    /**
+     * Not equals operator
+     *
+     * @param other Relationship to compare with
+     * @return Are relationships not equal?
+     */
+    virtual bool operator!=(Relationship &other)
+    {
+        return !operator==(other);
+    }
 };
 
 #endif //ICP_PROJECT_RELATIONSHIP_H
