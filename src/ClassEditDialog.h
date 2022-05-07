@@ -13,6 +13,7 @@
 #include "classNode.h"
 #include <QMenu>
 #include <QAction>
+#include <QComboBox>
 
 class ClassEditDialog : public QDialog
 {
@@ -42,7 +43,7 @@ private:
     QPushButton *deleteNodePushButton;
     QWidget *buttonWidget;
     QMenu *contextMenu;
-
+    QComboBox *classTypeComboBox;
 
     void initializeComponents();
     void setMainLayout();
@@ -52,6 +53,8 @@ private:
     void setScrollAreas();
     void setScrollArea(QWidget *areaWidget, QVBoxLayout *areaLayout, QScrollArea *scrollArea);
     void setButtons();
+    void setComboBox();
+    void fillData();
 
 private slots:
     void deleteAttribute(AttributeEditWidget *toDelete);
@@ -61,6 +64,7 @@ private slots:
     void onNameChanged(QString newName);
     void onConfirmChangesPressed();
     void onRejectChangesPressed();
+    void onClassTypeChanged(QString newType);
 };
 
 #endif // CLASSEDITDIALOG_H

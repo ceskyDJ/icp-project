@@ -11,12 +11,7 @@ AttributeEditWidget::AttributeEditWidget(QWidget *parent, ClassAttribute *attrib
     setDeleteButton();
     setMyLayout();
     fillData();
-    connect(accessModifierComboBox,&QComboBox::currentTextChanged, this, &AttributeEditWidget::accsesModifierChanged);
-    connect(attributeNameLineEdit, &QLineEdit::textChanged,
-            this, &AttributeEditWidget::nameChanged);
-    connect(attributeDateTypeLineEdit, &QLineEdit::textChanged,
-            this, &AttributeEditWidget::dataTypeChanged);
-    connect(deleteButton, &QPushButton::pressed, this, &AttributeEditWidget::sendDeleteSignalSlot);
+    makeConnections();
 }
 
 void AttributeEditWidget::initializeComponents()
@@ -26,6 +21,16 @@ void AttributeEditWidget::initializeComponents()
     attributeNameLineEdit = new QLineEdit;
     attributeDateTypeLineEdit = new QLineEdit;
     deleteButton = new QPushButton;
+}
+
+void AttributeEditWidget::makeConnections()
+{
+    connect(accessModifierComboBox,&QComboBox::currentTextChanged, this, &AttributeEditWidget::accsesModifierChanged);
+    connect(attributeNameLineEdit, &QLineEdit::textChanged,
+            this, &AttributeEditWidget::nameChanged);
+    connect(attributeDateTypeLineEdit, &QLineEdit::textChanged,
+            this, &AttributeEditWidget::dataTypeChanged);
+    connect(deleteButton, &QPushButton::pressed, this, &AttributeEditWidget::sendDeleteSignalSlot);
 }
 
 void AttributeEditWidget::accsesModifierChanged(QString newText)

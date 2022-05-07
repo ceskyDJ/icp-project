@@ -39,9 +39,12 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     QPen pen;
     if(option->state & QStyle::State_Selected)
         pen = QPen{Qt::red,2,Qt::DotLine};
-
     else
         pen = QPen{Qt::black,1,Qt::SolidLine};
+
+    if (classEntity.getClassType() == (ClassType)ClassType::ABSTRACT_CLASS)
+        setFontItalic(true, painter);
+
     painter->setPen(pen);
 
     QRectF nameRect = getNameBoundigRect();
@@ -54,8 +57,16 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
     nameRect.setWidth(maxWidth);
     nameRect.setHeight(nameRect.height() + Padding);
+    if(classEntity.getClassType() == (ClassType)ClassType::INTERFACE)
+    {
+        painter->drawText(nameRect, Qt::AlignHCenter,"<<interface>>");
+        nameRect.setHeight(nameRect.height() + incHeight);
+    }
     painter->drawRect(nameRect);
     painter->drawText(nameRect, Qt::AlignCenter, QString::fromStdString(classEntity.getName()));
+
+    if (classEntity.getClassType() == (ClassType)ClassType::ABSTRACT_CLASS)
+        setFontItalic(false, painter);
 
     QRectF incrementalRect = nameRect;
     incrementalRect.setHeight(nameRect.height() + lineIndent);
@@ -68,10 +79,15 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->drawRect(incrementalRect);
     incrementalRect.setHeight(incrementalRect.height() + lineIndent);
 
-    for(QString &methodToPrint : methodVector)
+    std::vector<ClassMethod> methodEntities = classEntity.getMethods();
+    for(int i = 0; static_cast<size_t>(i) < methodVector.size(); i++)
     {
+        if(methodEntities[i].getType() == (ClassMethodType)ClassMethodType::ABSTRACT)
+            setFontItalic(true, painter);
         incrementalRect.setHeight(incrementalRect.height() + incHeight);
-        painter->drawText(incrementalRect, Qt::AlignBottom, methodToPrint);
+        painter->drawText(incrementalRect, Qt::AlignBottom, methodVector[i]);
+        if(methodEntities[i].getType() == (ClassMethodType)ClassMethodType::ABSTRACT)
+            setFontItalic(false, painter);
     }
 
     painter->drawRect(incrementalRect);
@@ -123,6 +139,8 @@ QRectF ClassNode::getWholeRect(std::vector<QString> attributePrintable,
     wholeRect.setHeight(nameRect.height() + 2 * lineIndent + nameRect.height() * attributePrintable.size()
                         + nameRect.height() * methodPrintable.size());
     wholeRect.adjust(0, -Padding, 0, Padding);
+    if(classEntity.getClassType() == (ClassType)ClassType::INTERFACE)
+        wholeRect.setHeight(wholeRect.height() + nameRect.height() );
     return wholeRect;
 }
 
@@ -178,8 +196,9 @@ std::vector<QString> ClassNode::getMethodPrintable() const
         QString accesModifier = modifierToString(methods[i].getAccessModifier());
         QString methodName = QString::fromStdString(methods[i].getName());
         QString parameterString = getMethodParametersPrintable(methods[i].getParameters());
+        QString returnType = QString::fromStdString(methods[i].getReturnDataType());
 
-        methodString[i] = "  " + accesModifier + methodName + "(" + parameterString + ")";
+        methodString[i] = "  " + accesModifier + methodName + "(" + parameterString + ")" + " : " + returnType;
     }
     return methodString;
 }
@@ -233,4 +252,11 @@ void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
         update();
     }
 
+}
+
+void ClassNode::setFontItalic(bool enable, QPainter *painter)
+{
+    QFont font = painter->font();
+    font.setItalic(enable);
+    painter->setFont(font);
 }

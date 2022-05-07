@@ -8,9 +8,10 @@ ClassEditDialog::ClassEditDialog(Class classEntity)
     initializeComponents();
     setScrollAreas();
     setButtons();
+    setComboBox();
     setMainLayout();
     makeConnections();
-    nameTextEdit->setText(QString::fromStdString(classEntity.getName()));
+    fillData();
 }
 
 void ClassEditDialog::initializeComponents()
@@ -29,14 +30,17 @@ void ClassEditDialog::initializeComponents()
     rejectChangesPushButton = new QPushButton;
     buttonWidget = new QWidget;
     contextMenu = new QMenu;
+    classTypeComboBox = new QComboBox;
 }
 
 void ClassEditDialog::setMainLayout()
 {
-    QFormLayout *nameLayout = new QFormLayout;
+    QHBoxLayout *nameLayout = new QHBoxLayout;
     QWidget *nameWidget = new QWidget;
-    nameLayout->addRow("Class name:", nameTextEdit);
-    nameTextEdit->setSizePolicy(QSizePolicy(QSizePolicy::Ignored, QSizePolicy::Maximum));
+    nameLayout->addWidget(new QLabel("Class name:"));
+    nameLayout->addWidget(nameTextEdit);
+    nameLayout->addWidget(new QLabel("Class type:"));
+    nameLayout->addWidget(classTypeComboBox);
     nameWidget->setLayout(nameLayout);
 
     dialogLayout->addWidget(nameWidget);
@@ -118,6 +122,7 @@ void ClassEditDialog::makeConnections()
     connect(addMethodPushButton, &QPushButton::pressed, this, &ClassEditDialog::addNewMethodSlot);
     connect(confirmChangesPushButton, &QPushButton::pressed, this, &ClassEditDialog::onConfirmChangesPressed);
     connect(rejectChangesPushButton, &QPushButton::pressed, this, &ClassEditDialog::onRejectChangesPressed);
+    connect(classTypeComboBox, &QComboBox::currentTextChanged, this, &ClassEditDialog::onClassTypeChanged);
 }
 
 void ClassEditDialog::setScrollAreas()
@@ -184,4 +189,23 @@ void ClassEditDialog::onConfirmChangesPressed()
 void ClassEditDialog::onRejectChangesPressed()
 {
     reject();
+}
+
+void ClassEditDialog::setComboBox()
+{
+    std::vector<ClassType> classTypes = ClassType::values();
+    for(ClassType &classType : classTypes)
+        classTypeComboBox->addItem(QString::fromStdString(classType.serialize()));
+}
+
+void ClassEditDialog::fillData()
+{
+    nameTextEdit->setText(QString::fromStdString(classEntity.getName()));
+    classTypeComboBox->setCurrentText(QString::fromStdString(classEntity.getClassType().serialize()));
+}
+
+void ClassEditDialog::onClassTypeChanged(QString newType)
+{
+    std::string methodType = newType.toStdString();
+    classEntity.setClassType(ClassType::deserialize(methodType));
 }

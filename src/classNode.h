@@ -88,7 +88,7 @@ private:
     QString modifierToString(AccessModifier mod);
     QString modifierToString(AccessModifier mod) const;
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
-
+    void setFontItalic(bool enable, QPainter *painter);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 };
 

@@ -33,6 +33,8 @@ private:
     void setMyLayout();
     void fillData();
     void setDeleteButton();
+    void makeConnections();
+
 private slots:
         void accsesModifierChanged(QString newText);
         void nameChanged(QString newText);
