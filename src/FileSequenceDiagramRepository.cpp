@@ -13,6 +13,7 @@
 #include "FileSequenceDiagramRepository.h"
 #include "InvalidDataStorageException.h"
 #include "InvalidInputDataException.h"
+#include "ClassReference.h"
 
 /**
  * Loads diagram from defined source
@@ -152,7 +153,7 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
     QDomElement messagesContainer{xml.createElement("messages")};
     for (const Message &message: diagram.getMessages()) {
         QDomElement xmlMessage{xml.createElement("message")};
-        xmlMessage.setAttribute("name", message.getName().c_str());
+        xmlMessage.setAttribute("name", message.getMethod()->getName().c_str());
         xmlMessage.setAttribute("type", message.getType().serialize().c_str());
         xmlMessage.setAttribute("sending-time", message.getSendingTime());
 
@@ -219,13 +220,10 @@ Object FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
         throw InvalidInputDataException{R"(Element "object" must have mandatory attribute "instance-class")"};
     }
 
-    Class *instanceClass;
+    ClassReference instanceClass{xmlObject.attribute("instance-class").toStdString()};
     try {
-        instanceClass = classDiagram.findClassByName(xmlObject.attribute("instance-class").toStdString());
-    } catch (std::invalid_argument &e) {
-        throw InvalidInputDataException(R"(Attribute "instance-class" of element "object" must contain)"
-                                        R"(name of class existing in linked class diagram)");
-    }
+        instanceClass = classDiagram.findClassByName(instanceClass.getReferredClassName());
+    } catch (std::invalid_argument &e) {}
 
     // Life start
     if (!xmlObject.hasAttribute("life-start")) {
@@ -267,13 +265,6 @@ Object FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
  */
 Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, SequenceDiagram &sequenceDiagram)
 {
-    // Name
-    if (!xmlMessage.hasAttribute("name")) {
-        throw InvalidInputDataException{R"(Element "message" must have mandatory attribute "name")"};
-    }
-
-    std::string name{xmlMessage.attribute("name").toStdString()};
-
     // Message type
     if (!xmlMessage.hasAttribute("type")) {
         throw InvalidInputDataException{R"(Element "message" must have mandatory attribute "type")"};
@@ -318,9 +309,17 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
     std::string senderType{sender.attribute("type").toStdString()};
     Message::MessageSender *messageSender;
     if (senderType == "ACTOR") {
-        messageSender = sequenceDiagram.findActorByName(senderName);
+        try {
+            messageSender = sequenceDiagram.findActorByName(senderName);
+        } catch (std::invalid_argument &e) {
+            throw InvalidInputDataException{R"(Element "sender" must contain existing actor)"};
+        }
     } else if (senderType == "OBJECT") {
-        messageSender = sequenceDiagram.findObjectByName(senderName);
+        try {
+            messageSender = sequenceDiagram.findObjectByName(senderName);
+        } catch (std::invalid_argument &e) {
+            throw InvalidInputDataException{R"(Element "sender" must contain existing object)"};
+        }
     } else {
         throw InvalidInputDataException{R"(Attribute "type" of element "sender" must be one of: ACTOR, OBJECT)"};
     }
@@ -345,19 +344,60 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
     std::string recipientType{recipient.attribute("type").toStdString()};
     Message::MessageRecipient *messageRecipient;
     if (recipientType == "ACTOR") {
-        messageRecipient = sequenceDiagram.findActorByName(recipientName);
+        try {
+            messageRecipient = sequenceDiagram.findActorByName(recipientName);
+        } catch (std::invalid_argument &e) {
+            throw InvalidInputDataException{R"(Element "recipient" must contain existing actor)"};
+        }
     } else if (recipientType == "OBJECT") {
-        messageRecipient = sequenceDiagram.findObjectByName(recipientName);
+        try {
+            messageRecipient = sequenceDiagram.findObjectByName(recipientName);
+        } catch (std::invalid_argument &e) {
+            throw InvalidInputDataException{R"(Element "recipient" must contain existing object)"};
+        }
     } else {
         throw InvalidInputDataException{R"(Attribute "type" of element "recipient" must be one of: ACTOR, OBJECT)"};
     }
 
+    // Bind method
+    if (!xmlMessage.hasAttribute("name")) {
+        throw InvalidInputDataException{R"(Element "message" must have mandatory attribute "name")"};
+    }
+
+    MethodReference method{xmlMessage.attribute("name").toStdString()};
+    try {
+        // Only object has methods, actor doesn't
+        if (recipientType == "OBJECT") {
+            Object *object = dynamic_cast<Object *>(messageRecipient);
+
+            method = object->getInstanceClass()->findMethodByName(method.getReferredMethodName());
+        }
+    } catch (std::invalid_argument &e) {}
+
     if (typeid(*messageSender) == typeid(Actor) && typeid(*messageRecipient) == typeid(Object)) {
-        return Message{name, type, dynamic_cast<Actor *>(messageSender), dynamic_cast<Object *>(messageRecipient), sendingTime};
+        return Message{
+            method,
+            type,
+            dynamic_cast<Actor *>(messageSender),
+            dynamic_cast<Object *>(messageRecipient),
+            sendingTime
+        };
     } else if (typeid(*messageSender) == typeid(Object) && typeid(*messageRecipient) == typeid(Object)) {
-        return Message{name, type, dynamic_cast<Object *>(messageSender), dynamic_cast<Object *>(messageRecipient), sendingTime};
+        return Message{
+            method,
+            type,
+            dynamic_cast<Object *>(messageSender),
+            dynamic_cast<Object *>(messageRecipient),
+            sendingTime
+        };
     } else if (typeid(*messageSender) == typeid(Object) && typeid(*messageRecipient) == typeid(Actor)) {
-        return Message{name, type, dynamic_cast<Object *>(messageSender), dynamic_cast<Actor *>(messageRecipient), sendingTime};
+        return Message{
+            method,
+            type,
+            dynamic_cast<Object *>(messageSender),
+            dynamic_cast<Actor *>(messageRecipient),
+            sendingTime
+        };
     } else {
         throw InvalidInputDataException{R"(Invalid combination of types of message sender and message recipient)"};
     }

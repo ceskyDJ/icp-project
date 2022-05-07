@@ -29,7 +29,7 @@ add_executable(icp_project
         src/ClassDiagram.cpp src/SequenceDiagram.cpp src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
         src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
         src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
-        src/InvalidInputDataException.h src/SequenceDiagram.cpp)
+        src/InvalidInputDataException.h src/SequenceDiagram.cpp src/ClassReference.h src/MethodReference.h src/Class.cpp)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui
@@ -45,7 +45,7 @@ add_executable(test_save_class_diagram
         src/ClassDiagram.cpp src/SequenceDiagram.cpp src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
         src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
         src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
-        src/InvalidInputDataException.h)
+        src/InvalidInputDataException.h src/Class.cpp)
 target_link_libraries(test_save_class_diagram
         Qt5::Core
         Qt5::Gui
@@ -62,7 +62,7 @@ add_executable(test_save_sequence_diagram
         src/Realization.h src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
         src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
         src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
-        src/InvalidInputDataException.h src/SequenceDiagram.cpp)
+        src/InvalidInputDataException.h src/SequenceDiagram.cpp src/ClassReference.h src/MethodReference.h src/Class.cpp)
 target_link_libraries(test_save_sequence_diagram
         Qt5::Core
         Qt5::Gui
