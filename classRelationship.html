@@ -64,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classRelationship-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Relationship Class Reference</div></div>
 </div><!--header-->
@@ -87,8 +88,6 @@ Inheritance diagram for Relationship:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af6b5abfd2d931a209984577afdb5948e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#af6b5abfd2d931a209984577afdb5948e">Relationship</a> (<a class="el" href="classClass.html">Class</a> *firstClass, <a class="el" href="classClass.html">Class</a> *secondClass, std::string name=&quot;&quot;)</td></tr>
-<tr class="separator:af6b5abfd2d931a209984577afdb5948e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a365de5e791ccfcc7d4a88e6a4b32c8b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClass.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#a365de5e791ccfcc7d4a88e6a4b32c8b6">getFirstClass</a> () const</td></tr>
 <tr class="separator:a365de5e791ccfcc7d4a88e6a4b32c8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a463f375a93e7df6eaa3276030831d719"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClass.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#a463f375a93e7df6eaa3276030831d719">getSecondClass</a> () const</td></tr>
@@ -97,6 +96,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aad7007e66eb68e9329eaedbd5ebef79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8451b136152544a37fdecba035c90ffc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#a8451b136152544a37fdecba035c90ffc">setName</a> (const std::string &amp;newName)</td></tr>
 <tr class="separator:a8451b136152544a37fdecba035c90ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8bf68ee1c74381714c5f37d55f3d8fe"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#aa8bf68ee1c74381714c5f37d55f3d8fe">operator==</a> (<a class="el" href="classRelationship.html">Relationship</a> &amp;other)</td></tr>
+<tr class="separator:aa8bf68ee1c74381714c5f37d55f3d8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca0c35467733557848f47a327cdd15f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#a1ca0c35467733557848f47a327cdd15f">operator!=</a> (<a class="el" href="classRelationship.html">Relationship</a> &amp;other)</td></tr>
+<tr class="separator:a1ca0c35467733557848f47a327cdd15f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:af6b5abfd2d931a209984577afdb5948e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#af6b5abfd2d931a209984577afdb5948e">Relationship</a> (<a class="el" href="classClass.html">Class</a> *firstClass, <a class="el" href="classClass.html">Class</a> *secondClass, std::string name=&quot;&quot;)</td></tr>
+<tr class="separator:af6b5abfd2d931a209984577afdb5948e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb02069426a6288347e7347ee527a0ff"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelationship.html#acb02069426a6288347e7347ee527a0ff">~Relationship</a> ()=default</td></tr>
 <tr class="separator:acb02069426a6288347e7347ee527a0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -140,7 +148,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -176,7 +184,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -210,7 +218,7 @@ Public Member Functions</h2></td></tr>
 <p >Getter for the first class of relationship</p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the first class </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00051">51</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00057">57</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
 
 </div>
 </div>
@@ -239,7 +247,7 @@ Public Member Functions</h2></td></tr>
 <p >Getter for relationship name</p>
 <dl class="section return"><dt>Returns</dt><dd>Name of the relationship </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00071">71</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00077">77</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
 
 </div>
 </div>
@@ -268,7 +276,83 @@ Public Member Functions</h2></td></tr>
 <p >Getter for the second class of relationship</p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the second class </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00061">61</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00067">67</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
+
+</div>
+</div>
+<a id="a1ca0c35467733557848f47a327cdd15f" name="a1ca0c35467733557848f47a327cdd15f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca0c35467733557848f47a327cdd15f">&#9670;&nbsp;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Relationship::operator!= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRelationship.html">Relationship</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Not equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="classRelationship.html">Relationship</a> to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are relationships not equal? </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classUndirectedAssociation.html#ab16eb42ad59d0b425fdc363889b25860">UndirectedAssociation</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00113">113</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
+
+</div>
+</div>
+<a id="aa8bf68ee1c74381714c5f37d55f3d8fe" name="aa8bf68ee1c74381714c5f37d55f3d8fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8bf68ee1c74381714c5f37d55f3d8fe">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Relationship::operator== </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRelationship.html">Relationship</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="classRelationship.html">Relationship</a> to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are relationships equal? </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classUndirectedAssociation.html#a7cb6fa90359ae79d23f29bc2a6abfd2b">UndirectedAssociation</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00098">98</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
 
 </div>
 </div>
@@ -303,7 +387,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00081">81</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Relationship_8h_source.html#l00087">87</a> of file <a class="el" href="Relationship_8h_source.html">Relationship.h</a>.</p>
 
 </div>
 </div>

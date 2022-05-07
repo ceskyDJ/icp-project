@@ -78,31 +78,17 @@ $(function() {
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classActor.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classActor.html">Actor</a>: <span class="keyword">public</span> <a class="code hl_class" href="classMessageNode.html">MessageNode</a></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    std::string name;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classActor.html#a2a0ff4335a1ee9096df90f288c026c8b">   29</a></span>    <a class="code hl_function" href="classActor.html#a2a0ff4335a1ee9096df90f288c026c8b">Actor</a>(): name{} {};</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classActor.html#a3c420e72663487c57eaa84d308f1af91">   35</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classActor.html#a3c420e72663487c57eaa84d308f1af91">Actor</a>(std::string name): name{name} {};</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classActor.html#af2b1ce8cfce95735adbaa8a455826969">   42</a></span>    std::string <a class="code hl_function" href="classActor.html#af2b1ce8cfce95735adbaa8a455826969">getName</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> name;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classActor.html#a9be6b805bc69ac0bade7de3dcda18a59">   52</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classActor.html#a9be6b805bc69ac0bade7de3dcda18a59">setName</a>(<span class="keyword">const</span> std::string &amp;newName)</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        name = newName;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif </span><span class="comment">//ICP_PROJECT_ACTOR_H</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classActor.html#a2a0ff4335a1ee9096df90f288c026c8b">   24</a></span>    <a class="code hl_function" href="classActor.html#a2a0ff4335a1ee9096df90f288c026c8b">Actor</a>(): <a class="code hl_class" href="classMessageNode.html">MessageNode</a>{} {};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classActor.html#a3c420e72663487c57eaa84d308f1af91">   30</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classActor.html#a3c420e72663487c57eaa84d308f1af91">Actor</a>(std::string name): <a class="code hl_class" href="classMessageNode.html">MessageNode</a>{name} {};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif </span><span class="comment">//ICP_PROJECT_ACTOR_H</span></div>
 <div class="ttc" id="aMessageNode_8h_html"><div class="ttname"><a href="MessageNode_8h.html">MessageNode.h</a></div></div>
 <div class="ttc" id="aclassActor_html"><div class="ttname"><a href="classActor.html">Actor</a></div><div class="ttdef"><b>Definition:</b> <a href="Actor_8h_source.html#l00018">Actor.h:19</a></div></div>
-<div class="ttc" id="aclassActor_html_a2a0ff4335a1ee9096df90f288c026c8b"><div class="ttname"><a href="classActor.html#a2a0ff4335a1ee9096df90f288c026c8b">Actor::Actor</a></div><div class="ttdeci">Actor()</div><div class="ttdef"><b>Definition:</b> <a href="Actor_8h_source.html#l00029">Actor.h:29</a></div></div>
-<div class="ttc" id="aclassActor_html_a3c420e72663487c57eaa84d308f1af91"><div class="ttname"><a href="classActor.html#a3c420e72663487c57eaa84d308f1af91">Actor::Actor</a></div><div class="ttdeci">Actor(std::string name)</div><div class="ttdef"><b>Definition:</b> <a href="Actor_8h_source.html#l00035">Actor.h:35</a></div></div>
-<div class="ttc" id="aclassActor_html_a9be6b805bc69ac0bade7de3dcda18a59"><div class="ttname"><a href="classActor.html#a9be6b805bc69ac0bade7de3dcda18a59">Actor::setName</a></div><div class="ttdeci">void setName(const std::string &amp;newName)</div><div class="ttdef"><b>Definition:</b> <a href="Actor_8h_source.html#l00052">Actor.h:52</a></div></div>
-<div class="ttc" id="aclassActor_html_af2b1ce8cfce95735adbaa8a455826969"><div class="ttname"><a href="classActor.html#af2b1ce8cfce95735adbaa8a455826969">Actor::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdef"><b>Definition:</b> <a href="Actor_8h_source.html#l00042">Actor.h:42</a></div></div>
-<div class="ttc" id="aclassMessageNode_html"><div class="ttname"><a href="classMessageNode.html">MessageNode</a></div><div class="ttdef"><b>Definition:</b> <a href="MessageNode_8h_source.html#l00015">MessageNode.h:15</a></div></div>
+<div class="ttc" id="aclassActor_html_a2a0ff4335a1ee9096df90f288c026c8b"><div class="ttname"><a href="classActor.html#a2a0ff4335a1ee9096df90f288c026c8b">Actor::Actor</a></div><div class="ttdeci">Actor()</div><div class="ttdef"><b>Definition:</b> <a href="Actor_8h_source.html#l00024">Actor.h:24</a></div></div>
+<div class="ttc" id="aclassActor_html_a3c420e72663487c57eaa84d308f1af91"><div class="ttname"><a href="classActor.html#a3c420e72663487c57eaa84d308f1af91">Actor::Actor</a></div><div class="ttdeci">Actor(std::string name)</div><div class="ttdef"><b>Definition:</b> <a href="Actor_8h_source.html#l00030">Actor.h:30</a></div></div>
+<div class="ttc" id="aclassMessageNode_html"><div class="ttname"><a href="classMessageNode.html">MessageNode</a></div><div class="ttdef"><b>Definition:</b> <a href="MessageNode_8h_source.html#l00015">MessageNode.h:16</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

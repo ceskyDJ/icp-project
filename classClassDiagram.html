@@ -85,6 +85,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afc3ea9ad24aebc5132e7cc00f79cff02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70ec4e3847d043122bd28aac4da3e816"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html#a70ec4e3847d043122bd28aac4da3e816">addClass</a> (<a class="el" href="classClass.html">Class</a> newClass)</td></tr>
 <tr class="separator:a70ec4e3847d043122bd28aac4da3e816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad619a64f51941a76134f81744ef47d6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html#ad619a64f51941a76134f81744ef47d6e">removeClass</a> (<a class="el" href="classClass.html">Class</a> classToRemove)</td></tr>
+<tr class="separator:ad619a64f51941a76134f81744ef47d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad41ba37e08f8638507397a6fb68d391a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClass.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html#ad41ba37e08f8638507397a6fb68d391a">findClassByName</a> (std::string name)</td></tr>
 <tr class="separator:ad41ba37e08f8638507397a6fb68d391a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a615b4130d21ab1a94f17876f7cab5607"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classRelationship.html">Relationship</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html#a615b4130d21ab1a94f17876f7cab5607">getRelationships</a> ()</td></tr>
@@ -93,6 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a991adb6b8cf19edc353e10b1f5c2756c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a902c4cf59fdc6fa5e75899311cc203"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html#a8a902c4cf59fdc6fa5e75899311cc203">addRelationship</a> (<a class="el" href="classRelationship.html">Relationship</a> *newRelationship)</td></tr>
 <tr class="separator:a8a902c4cf59fdc6fa5e75899311cc203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e1a3b164030fdaf3fe84f33dfbe8866"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html#a5e1a3b164030fdaf3fe84f33dfbe8866">removeRelationship</a> (<a class="el" href="classRelationship.html">Relationship</a> *relationshipToRemove)</td></tr>
+<tr class="separator:a5e1a3b164030fdaf3fe84f33dfbe8866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a3434367f85ae4c511b92fa2344cf91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html#a1a3434367f85ae4c511b92fa2344cf91">setRelationships</a> (std::vector&lt; <a class="el" href="classRelationship.html">Relationship</a> * &gt; &amp;newRelationships)</td></tr>
 <tr class="separator:a1a3434367f85ae4c511b92fa2344cf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -242,7 +246,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00119">119</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00127">127</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +280,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagram_8cpp_source.html#l00019">19</a> of file <a class="el" href="ClassDiagram_8cpp_source.html">ClassDiagram.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8cpp_source.html#l00038">38</a> of file <a class="el" href="ClassDiagram_8cpp_source.html">ClassDiagram.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,7 +367,7 @@ Public Member Functions</h2></td></tr>
 <p >Getter for relationships between classes</p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of pointers to relationships </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00099">99</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00107">107</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
 
 </div>
 </div>
@@ -392,7 +396,73 @@ Public Member Functions</h2></td></tr>
 <p >Constant getter for relationships between classes</p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of pointers to relationships </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00109">109</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00117">117</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
+
+</div>
+</div>
+<a id="ad619a64f51941a76134f81744ef47d6e" name="ad619a64f51941a76134f81744ef47d6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad619a64f51941a76134f81744ef47d6e">&#9670;&nbsp;</a></span>removeClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClassDiagram::removeClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classClass.html">Class</a>&#160;</td>
+          <td class="paramname"><em>classToRemove</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Removes class from diagram</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classToRemove</td><td><a class="el" href="classClass.html">Class</a> to remove from diagram </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td><a class="el" href="classClass.html">Class</a> is not in diagram </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8cpp_source.html#l00018">18</a> of file <a class="el" href="ClassDiagram_8cpp_source.html">ClassDiagram.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a5e1a3b164030fdaf3fe84f33dfbe8866" name="a5e1a3b164030fdaf3fe84f33dfbe8866"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e1a3b164030fdaf3fe84f33dfbe8866">&#9670;&nbsp;</a></span>removeRelationship()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ClassDiagram::removeRelationship </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRelationship.html">Relationship</a> *&#160;</td>
+          <td class="paramname"><em>relationshipToRemove</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Removes relationship from class diagram</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">relationshipToRemove</td><td><a class="el" href="classRelationship.html">Relationship</a> to remove </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td><a class="el" href="classRelationship.html">Relationship</a> is not in class diagram </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8cpp_source.html#l00055">55</a> of file <a class="el" href="ClassDiagram_8cpp_source.html">ClassDiagram.cpp</a>.</p>
 
 </div>
 </div>
@@ -462,7 +532,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00129">129</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8h_source.html#l00145">145</a> of file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
 
 </div>
 </div>

@@ -4,8 +4,9 @@ var indexSectionsWithContent =
   1: "acdgmorsu",
   2: "acdgmorsu",
   3: "acdfgmorsu~",
-  4: "v",
-  5: "acdinprs"
+  4: "m",
+  5: "v",
+  6: "acdinprs"
 };
 
 var indexSectionNames =
@@ -14,8 +15,9 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "enums",
-  5: "enumvalues"
+  4: "typedefs",
+  5: "enums",
+  6: "enumvalues"
 };
 
 var indexSectionLabels =
@@ -24,7 +26,8 @@ var indexSectionLabels =
   1: "Classes",
   2: "Files",
   3: "Functions",
-  4: "Enumerations",
-  5: "Enumerator"
+  4: "Typedefs",
+  5: "Enumerations",
+  6: "Enumerator"
 };
 

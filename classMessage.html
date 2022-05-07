@@ -63,6 +63,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classMessage-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Message Class Reference</div></div>
@@ -71,44 +72,82 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="Message_8h_source.html">Message.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aeedb906632833958d026b47f06126cd7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">MessageSender</a> = <a class="el" href="classMessageNode.html">MessageNode</a></td></tr>
+<tr class="separator:aeedb906632833958d026b47f06126cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0622f09e07a92dfdbcc5d87bf94a3c51"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">MessageRecipient</a> = <a class="el" href="classMessageNode.html">MessageNode</a></td></tr>
+<tr class="separator:a0622f09e07a92dfdbcc5d87bf94a3c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a65de1b0d033555318f1c0a37d7db8737"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a65de1b0d033555318f1c0a37d7db8737">Message</a> (std::string name, <a class="el" href="classMessageType.html">MessageType</a> messageType, <a class="el" href="classActor.html">Actor</a> *sendingActor, <a class="el" href="classObject.html">Object</a> *receivingObject, double sendingTime)</td></tr>
-<tr class="separator:a65de1b0d033555318f1c0a37d7db8737"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dd61fe2ff20f0d97aa8f485cf721149"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a7dd61fe2ff20f0d97aa8f485cf721149">Message</a> (std::string name, <a class="el" href="classMessageType.html">MessageType</a> messageType, <a class="el" href="classObject.html">Object</a> *sendingObject, <a class="el" href="classObject.html">Object</a> *receivingObject, double sendingTime)</td></tr>
-<tr class="separator:a7dd61fe2ff20f0d97aa8f485cf721149"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af848a7e7e82e229dca22399fd05695d8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#af848a7e7e82e229dca22399fd05695d8">Message</a> (std::string name, <a class="el" href="classMessageType.html">MessageType</a> messageType, <a class="el" href="classObject.html">Object</a> *sendingObject, <a class="el" href="classActor.html">Actor</a> *receivingActor, double sendingTime)</td></tr>
-<tr class="separator:af848a7e7e82e229dca22399fd05695d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa965379fa854bbd0270374359be5b1c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aa965379fa854bbd0270374359be5b1c2">Message</a> (std::string name, <a class="el" href="classMessageType.html">MessageType</a> messageType, <a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">MessageSender</a> *messageSender, <a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">MessageRecipient</a> *messageRecipient, double sendingTime)</td></tr>
+<tr class="separator:aa965379fa854bbd0270374359be5b1c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a960250e56ed53b9ef6e02dad1b8f989e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a960250e56ed53b9ef6e02dad1b8f989e">getName</a> () const</td></tr>
 <tr class="separator:a960250e56ed53b9ef6e02dad1b8f989e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a71bb3a593b0ed1f9d77cc0a1cba869"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a1a71bb3a593b0ed1f9d77cc0a1cba869">setName</a> (const std::string &amp;newName)</td></tr>
 <tr class="separator:a1a71bb3a593b0ed1f9d77cc0a1cba869"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a995db3fb8b9b0d1af2819f481d81d0e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessageType.html">MessageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a995db3fb8b9b0d1af2819f481d81d0e3">getType</a> () const</td></tr>
 <tr class="separator:a995db3fb8b9b0d1af2819f481d81d0e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7070dfcacf96f70a091d5d3510a3435"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessageNode.html">MessageSender</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#ad7070dfcacf96f70a091d5d3510a3435">getMessageSender</a> () const</td></tr>
+<tr class="memitem:ad7070dfcacf96f70a091d5d3510a3435"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">MessageSender</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#ad7070dfcacf96f70a091d5d3510a3435">getMessageSender</a> () const</td></tr>
 <tr class="separator:ad7070dfcacf96f70a091d5d3510a3435"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a701dcfc6c565865e1de8c35ccc6bea9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a701dcfc6c565865e1de8c35ccc6bea9d">setMessageSender</a> (<a class="el" href="classActor.html">Actor</a> *newActor)</td></tr>
-<tr class="separator:a701dcfc6c565865e1de8c35ccc6bea9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb46320f9d9a96d45d49ba7c4a089e5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#adb46320f9d9a96d45d49ba7c4a089e5d">setMessageSender</a> (<a class="el" href="classObject.html">Object</a> *newSendingObject)</td></tr>
-<tr class="separator:adb46320f9d9a96d45d49ba7c4a089e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e75e270d33e25ca58c07765b9c8656d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessageNode.html">MessageRecipient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a4e75e270d33e25ca58c07765b9c8656d">getMessageRecipient</a> () const</td></tr>
+<tr class="memitem:aee1c99d600906bc227ab4dcefa1d9909"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aee1c99d600906bc227ab4dcefa1d9909">setMessageSender</a> (<a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">MessageSender</a> *newMessageSender)</td></tr>
+<tr class="separator:aee1c99d600906bc227ab4dcefa1d9909"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e75e270d33e25ca58c07765b9c8656d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">MessageRecipient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a4e75e270d33e25ca58c07765b9c8656d">getMessageRecipient</a> () const</td></tr>
 <tr class="separator:a4e75e270d33e25ca58c07765b9c8656d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a023a9df2c8cee640a9e8ae2f1e926321"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a023a9df2c8cee640a9e8ae2f1e926321">setMessageRecipient</a> (<a class="el" href="classActor.html">Actor</a> *newActor)</td></tr>
-<tr class="separator:a023a9df2c8cee640a9e8ae2f1e926321"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee855aca5a97610d9738a915dc4ed44e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aee855aca5a97610d9738a915dc4ed44e">setMessageRecipient</a> (<a class="el" href="classObject.html">Object</a> *newObject)</td></tr>
-<tr class="separator:aee855aca5a97610d9738a915dc4ed44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadaebafb7e5b9cf16f7ad7f6a720ee8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#aadaebafb7e5b9cf16f7ad7f6a720ee8e">setMessageRecipient</a> (<a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">MessageRecipient</a> *newMessageRecipient)</td></tr>
+<tr class="separator:aadaebafb7e5b9cf16f7ad7f6a720ee8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5883477bb4283dbd5ff1eab61a01e391"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a5883477bb4283dbd5ff1eab61a01e391">getSendingTime</a> () const</td></tr>
 <tr class="separator:a5883477bb4283dbd5ff1eab61a01e391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a380931c2c82afb985478abbf9a45db53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a380931c2c82afb985478abbf9a45db53">setSendingTime</a> (double newSendingTime)</td></tr>
 <tr class="separator:a380931c2c82afb985478abbf9a45db53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39750edf7b34fed6dfa00ca27b22afdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a39750edf7b34fed6dfa00ca27b22afdb">operator==</a> (<a class="el" href="classMessage.html">Message</a> &amp;other)</td></tr>
+<tr class="separator:a39750edf7b34fed6dfa00ca27b22afdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac66dd0c2506494f417cdc4c0ddb89d09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#ac66dd0c2506494f417cdc4c0ddb89d09">operator!=</a> (<a class="el" href="classMessage.html">Message</a> &amp;other)</td></tr>
+<tr class="separator:ac66dd0c2506494f417cdc4c0ddb89d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="classMessage.html">Message</a> from sequence diagram </p>
 
 <p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00020">20</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a65de1b0d033555318f1c0a37d7db8737" name="a65de1b0d033555318f1c0a37d7db8737"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65de1b0d033555318f1c0a37d7db8737">&#9670;&nbsp;</a></span>Message() <span class="overload">[1/3]</span></h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a0622f09e07a92dfdbcc5d87bf94a3c51" name="a0622f09e07a92dfdbcc5d87bf94a3c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0622f09e07a92dfdbcc5d87bf94a3c51">&#9670;&nbsp;</a></span>MessageRecipient</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">Message::MessageRecipient</a> =  <a class="el" href="classMessageNode.html">MessageNode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Node that receives messages </p>
+
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00031">31</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="aeedb906632833958d026b47f06126cd7" name="aeedb906632833958d026b47f06126cd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeedb906632833958d026b47f06126cd7">&#9670;&nbsp;</a></span>MessageSender</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">Message::MessageSender</a> =  <a class="el" href="classMessageNode.html">MessageNode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Node that sends messages </p>
+
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00027">27</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa965379fa854bbd0270374359be5b1c2" name="aa965379fa854bbd0270374359be5b1c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa965379fa854bbd0270374359be5b1c2">&#9670;&nbsp;</a></span>Message()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,81 +170,14 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classActor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>sendingActor</em>, </td>
+          <td class="paramtype"><a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">MessageSender</a> *&#160;</td>
+          <td class="paramname"><em>messageSender</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classObject.html">Object</a> *&#160;</td>
-          <td class="paramname"><em>receivingObject</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>sendingTime</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Constructor for initializing with known name and type of the message for ACTOR sending message and OBJECT receiving message</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td><a class="el" href="classMessage.html">Message</a> name </td></tr>
-    <tr><td class="paramname">messageType</td><td>Type of the message </td></tr>
-    <tr><td class="paramname">sendingActor</td><td>Pointer to actor sending the message </td></tr>
-    <tr><td class="paramname">receivingObject</td><td>Pointer to object receiving the message </td></tr>
-    <tr><td class="paramname">sendingTime</td><td>Time when to send the message (at timeline, normalized - interval &lt;0; 1&gt;) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00066">66</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
-
-</div>
-</div>
-<a id="a7dd61fe2ff20f0d97aa8f485cf721149" name="a7dd61fe2ff20f0d97aa8f485cf721149"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dd61fe2ff20f0d97aa8f485cf721149">&#9670;&nbsp;</a></span>Message() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Message::Message </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMessageType.html">MessageType</a>&#160;</td>
-          <td class="paramname"><em>messageType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classObject.html">Object</a> *&#160;</td>
-          <td class="paramname"><em>sendingObject</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classObject.html">Object</a> *&#160;</td>
-          <td class="paramname"><em>receivingObject</em>, </td>
+          <td class="paramtype"><a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">MessageRecipient</a> *&#160;</td>
+          <td class="paramname"><em>messageRecipient</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -225,86 +197,19 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Constructor for initializing with known name and type of the message for OBJECT sending message and OBJECT receiving message</p>
+<p >Constructor for initializing with known name, type of the message and sender and recipient nodes</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td><a class="el" href="classMessage.html">Message</a> name </td></tr>
     <tr><td class="paramname">messageType</td><td>Type of the message </td></tr>
-    <tr><td class="paramname">sendingObject</td><td>Pointer to object sending the message </td></tr>
-    <tr><td class="paramname">receivingObject</td><td>Pointer to object receiving the message </td></tr>
+    <tr><td class="paramname">messageSender</td><td>Pointer to node sending the message </td></tr>
+    <tr><td class="paramname">messageRecipient</td><td>Pointer to node receiving the message </td></tr>
     <tr><td class="paramname">sendingTime</td><td>Time when to send the message (at timeline, normalized - interval &lt;0; 1&gt;) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00085">85</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
-
-</div>
-</div>
-<a id="af848a7e7e82e229dca22399fd05695d8" name="af848a7e7e82e229dca22399fd05695d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af848a7e7e82e229dca22399fd05695d8">&#9670;&nbsp;</a></span>Message() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Message::Message </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMessageType.html">MessageType</a>&#160;</td>
-          <td class="paramname"><em>messageType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classObject.html">Object</a> *&#160;</td>
-          <td class="paramname"><em>sendingObject</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classActor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>receivingActor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>sendingTime</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Constructor for initializing with known name and type of the message for OBJECT sending message and ACTOR receiving message</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td><a class="el" href="classMessage.html">Message</a> name </td></tr>
-    <tr><td class="paramname">messageType</td><td>Type of the message </td></tr>
-    <tr><td class="paramname">sendingObject</td><td>Pointer to object sending the message </td></tr>
-    <tr><td class="paramname">receivingActor</td><td>Pointer to actor receiving the message </td></tr>
-    <tr><td class="paramname">sendingTime</td><td>Time when to send the message (at timeline, normalized - interval &lt;0; 1&gt;) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00104">104</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00065">65</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -319,7 +224,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMessageNode.html">MessageRecipient</a> * Message::getMessageRecipient </td>
+          <td class="memname"><a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">MessageRecipient</a> * Message::getMessageRecipient </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -332,9 +237,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p >Getter for message recipient</p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to message recipient (receiving actor or receiving object) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to message receiving node </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00185">185</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00129">129</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -348,7 +253,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMessageNode.html">MessageSender</a> * Message::getMessageSender </td>
+          <td class="memname"><a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">MessageSender</a> * Message::getMessageSender </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -361,9 +266,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p >Getter for message sender</p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to message sender (sending actor or sending object) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to message sending node </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00148">148</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00109">109</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -392,7 +297,7 @@ Public Member Functions</h2></td></tr>
 <p >Getter for message name</p>
 <dl class="section return"><dt>Returns</dt><dd>Name of the message </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00118">118</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00079">79</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -421,7 +326,7 @@ Public Member Functions</h2></td></tr>
 <p >Getter for sending time</p>
 <dl class="section return"><dt>Returns</dt><dd>Time to send the message in form of interval &lt;0; 1&gt; (place at timeline) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00222">222</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00149">149</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -450,12 +355,84 @@ Public Member Functions</h2></td></tr>
 <p >Getter for message type</p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMessage.html">Message</a> type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00138">138</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00099">99</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
-<a id="a023a9df2c8cee640a9e8ae2f1e926321" name="a023a9df2c8cee640a9e8ae2f1e926321"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a023a9df2c8cee640a9e8ae2f1e926321">&#9670;&nbsp;</a></span>setMessageRecipient() <span class="overload">[1/2]</span></h2>
+<a id="ac66dd0c2506494f417cdc4c0ddb89d09" name="ac66dd0c2506494f417cdc4c0ddb89d09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac66dd0c2506494f417cdc4c0ddb89d09">&#9670;&nbsp;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Message::operator!= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMessage.html">Message</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Not equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="classMessage.html">Message</a> to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are both messages not equal? </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00180">180</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="a39750edf7b34fed6dfa00ca27b22afdb" name="a39750edf7b34fed6dfa00ca27b22afdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39750edf7b34fed6dfa00ca27b22afdb">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Message::operator== </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMessage.html">Message</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td><a class="el" href="classMessage.html">Message</a> to compare with </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are both messages equal? </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00168">168</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="aadaebafb7e5b9cf16f7ad7f6a720ee8e" name="aadaebafb7e5b9cf16f7ad7f6a720ee8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadaebafb7e5b9cf16f7ad7f6a720ee8e">&#9670;&nbsp;</a></span>setMessageRecipient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -466,8 +443,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Message::setMessageRecipient </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classActor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>newActor</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMessage.html#a0622f09e07a92dfdbcc5d87bf94a3c51">MessageRecipient</a> *&#160;</td>
+          <td class="paramname"><em>newMessageRecipient</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -477,55 +454,20 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Setter for message recipient when ACTOR receiving the message</p>
+<p >Setter for message recipient</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newActor</td><td>Pointer to receiving actor (new message recipient) </td></tr>
+    <tr><td class="paramname">newMessageRecipient</td><td>Pointer to new node receiving the message </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00200">200</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00139">139</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
-<a id="aee855aca5a97610d9738a915dc4ed44e" name="aee855aca5a97610d9738a915dc4ed44e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee855aca5a97610d9738a915dc4ed44e">&#9670;&nbsp;</a></span>setMessageRecipient() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Message::setMessageRecipient </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classObject.html">Object</a> *&#160;</td>
-          <td class="paramname"><em>newObject</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Setter for message recipient when OBJECT receiving the message</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">newObject</td><td>Pointer to receiving object (new message recipient) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00211">211</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
-
-</div>
-</div>
-<a id="a701dcfc6c565865e1de8c35ccc6bea9d" name="a701dcfc6c565865e1de8c35ccc6bea9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a701dcfc6c565865e1de8c35ccc6bea9d">&#9670;&nbsp;</a></span>setMessageSender() <span class="overload">[1/2]</span></h2>
+<a id="aee1c99d600906bc227ab4dcefa1d9909" name="aee1c99d600906bc227ab4dcefa1d9909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee1c99d600906bc227ab4dcefa1d9909">&#9670;&nbsp;</a></span>setMessageSender()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -536,8 +478,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Message::setMessageSender </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classActor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>newActor</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMessage.html#aeedb906632833958d026b47f06126cd7">MessageSender</a> *&#160;</td>
+          <td class="paramname"><em>newMessageSender</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -547,50 +489,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Setter for message sender when ACTOR sending the message</p>
+<p >Setter for message sender</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newActor</td><td>Pointer to sendingActor (new message sender) </td></tr>
+    <tr><td class="paramname">newMessageSender</td><td>Pointer to new node sending the message </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00163">163</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
-
-</div>
-</div>
-<a id="adb46320f9d9a96d45d49ba7c4a089e5d" name="adb46320f9d9a96d45d49ba7c4a089e5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb46320f9d9a96d45d49ba7c4a089e5d">&#9670;&nbsp;</a></span>setMessageSender() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Message::setMessageSender </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classObject.html">Object</a> *&#160;</td>
-          <td class="paramname"><em>newSendingObject</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Setter for message sender when OBJECT sending the message</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">newSendingObject</td><td>Pointer to sending object (new message sender) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00174">174</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00119">119</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -625,7 +532,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00128">128</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00089">89</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -660,7 +567,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00231">231</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Message_8h_source.html#l00158">158</a> of file <a class="el" href="Message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
