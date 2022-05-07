@@ -74,7 +74,7 @@ class SequenceDiagram
      *
      * @param newActor New vector of actors to use
      */
-    void setActor(std::vector<Actor> &newActors)
+    void setActors(std::vector<Actor> &newActors)
     {
         actors = newActors;
     }
@@ -84,7 +84,7 @@ class SequenceDiagram
      *
      * @param actor New actor to add
      */
-    void addActor(Actor &actor)
+    void addActor(Actor actor)
     {
         actors.push_back(actor);
     }
@@ -124,7 +124,7 @@ class SequenceDiagram
      *
      * @param newObject New object to add
      */
-    void addObject(Object &newObject)
+    void addObject(Object newObject)
     {
         objects.push_back(newObject);
     }
@@ -164,7 +164,7 @@ class SequenceDiagram
      *
      * @param newMessage New message to add
      */
-    void addMessage(Message &newMessage)
+    void addMessage(Message newMessage)
     {
         messages.push_back(newMessage);
     }
