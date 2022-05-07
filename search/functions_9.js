@@ -1,4 +1,31 @@
 var searchData=
 [
-  ['undirectedassociation_0',['UndirectedAssociation',['../classUndirectedAssociation.html#a845b386e7bd5135f9b5122e26bb1c946',1,'UndirectedAssociation']]]
+  ['savediagram_0',['saveDiagram',['../classFileSequenceDiagramRepository.html#a7cf8a3b73b4d802d88bce7eefa153088',1,'FileSequenceDiagramRepository::saveDiagram()'],['../classFileClassDiagramRepository.html#afd9d1ef9db606244d310b4623347dbca',1,'FileClassDiagramRepository::saveDiagram()'],['../classSequenceDiagramRepository.html#a63db24d7187489aa3342b0eecc42e707',1,'SequenceDiagramRepository::saveDiagram()']]],
+  ['sequencediagram_1',['SequenceDiagram',['../classSequenceDiagram.html#ab8d829343a648cd5f70962cb51f30718',1,'SequenceDiagram::SequenceDiagram()'],['../classSequenceDiagram.html#a0553538be9cbbf97668da8894615b9db',1,'SequenceDiagram::SequenceDiagram(std::vector&lt; Actor &gt; actors, std::vector&lt; Object &gt; objects, std::vector&lt; Message &gt; messages)']]],
+  ['sequencediagramrepository_2',['SequenceDiagramRepository',['../classSequenceDiagramRepository.html#a9507ca6ff01cd170147186b8cac9f4aa',1,'SequenceDiagramRepository']]],
+  ['serialize_3',['serialize',['../classAccessModifier.html#aed3a755ae5d88a8988b4f3a7f993e6b4',1,'AccessModifier::serialize()'],['../classClassMethodType.html#a9728666be7949b0936b591c596c38df7',1,'ClassMethodType::serialize()'],['../classClassType.html#abd5c3d66a147e3c7f46e37cc80ccf14f',1,'ClassType::serialize()'],['../classMessageType.html#a0c015608470935522b38996ce2ae9ea7',1,'MessageType::serialize()']]],
+  ['setaccessmodifier_4',['setAccessModifier',['../classClassMember.html#a323fe10a227582f8904a6a1d8ae2197f',1,'ClassMember']]],
+  ['setactors_5',['setActors',['../classSequenceDiagram.html#ab77b9ecda0fa0cfb454786796a512c5e',1,'SequenceDiagram']]],
+  ['setattributes_6',['setAttributes',['../classClass.html#ab49e5fa4bff1370ad7ef0f80290c92dc',1,'Class']]],
+  ['setclassdiagram_7',['setClassDiagram',['../classSequenceDiagramRepository.html#a0949426603412629e9a977176a07feff',1,'SequenceDiagramRepository']]],
+  ['setclasses_8',['setClasses',['../classClassDiagram.html#afc3ea9ad24aebc5132e7cc00f79cff02',1,'ClassDiagram']]],
+  ['setcoordinates_9',['setCoordinates',['../classClass.html#a3917168d2aa70a72ea1c844769b36a92',1,'Class']]],
+  ['setdatatype_10',['setDataType',['../classClassAttribute.html#a57d8e25f6452ba6e9c5ac48bcbfa6e2b',1,'ClassAttribute::setDataType()'],['../classMethodParameter.html#a0d3f9c289ef33b6bdac811f3a94add56',1,'MethodParameter::setDataType()']]],
+  ['setfilename_11',['setFileName',['../classFileClassDiagramRepository.html#a67975ebf06f70f9a4fb420d09c87bf30',1,'FileClassDiagramRepository::setFileName()'],['../classFileSequenceDiagramRepository.html#aee71420b6e8b62a26a417db67ce12ef4',1,'FileSequenceDiagramRepository::setFileName()']]],
+  ['setfirstclasscardinality_12',['setFirstClassCardinality',['../classUndirectedAssociation.html#a830f75fb203d02537adb4477bd41cbed',1,'UndirectedAssociation']]],
+  ['setinstanceclass_13',['setInstanceClass',['../classObject.html#ac44f0b887417984c8a823446b71aa555',1,'Object']]],
+  ['setlifelength_14',['setLifeLength',['../classObject.html#a6f57d53be3d5351bd0b67b743da76719',1,'Object']]],
+  ['setlifestart_15',['setLifeStart',['../classObject.html#a9e250595474a91e4b7b993554c2ae46d',1,'Object']]],
+  ['setmessagerecipient_16',['setMessageRecipient',['../classMessage.html#aadaebafb7e5b9cf16f7ad7f6a720ee8e',1,'Message']]],
+  ['setmessages_17',['setMessages',['../classSequenceDiagram.html#a38e195fb59b3826322d8fd11b0cd0dd1',1,'SequenceDiagram']]],
+  ['setmessagesender_18',['setMessageSender',['../classMessage.html#aee1c99d600906bc227ab4dcefa1d9909',1,'Message']]],
+  ['setmethods_19',['setMethods',['../classClass.html#a02e0585a243150f901bb2a97769a8aae',1,'Class']]],
+  ['setname_20',['setName',['../classMessageNode.html#a268c46fad5c530ccee06888d050d9865',1,'MessageNode::setName()'],['../classRelationship.html#a8451b136152544a37fdecba035c90ffc',1,'Relationship::setName()'],['../classMethodParameter.html#aa4c9580b94ca7de6d8967402d8c1f099',1,'MethodParameter::setName()'],['../classMessage.html#a1a71bb3a593b0ed1f9d77cc0a1cba869',1,'Message::setName()'],['../classClassMember.html#abf04800eca337d87b378a2db0d870a38',1,'ClassMember::setName()'],['../classClass.html#a9eba120964aac4371012e3a23b96f20c',1,'Class::setName()']]],
+  ['setobjects_21',['setObjects',['../classSequenceDiagram.html#ac22543f9023103e301352005dac3cc5a',1,'SequenceDiagram']]],
+  ['setparameters_22',['setParameters',['../classClassMethod.html#a936673fc1b8c10d456cb2f8bdcfaa9ae',1,'ClassMethod']]],
+  ['setrelationships_23',['setRelationships',['../classClassDiagram.html#a1a3434367f85ae4c511b92fa2344cf91',1,'ClassDiagram']]],
+  ['setreturndatatype_24',['setReturnDataType',['../classClassMethod.html#a60e8787c6a23a80685c93fdb4228082a',1,'ClassMethod']]],
+  ['setsecondclasscardinality_25',['setSecondClassCardinality',['../classUndirectedAssociation.html#aa6821de70ad60c684137016de0103f8b',1,'UndirectedAssociation']]],
+  ['setsendingtime_26',['setSendingTime',['../classMessage.html#a380931c2c82afb985478abbf9a45db53',1,'Message']]],
+  ['settype_27',['setType',['../classClassMethod.html#ae2f0f71e60f87487d040d8aa558ed285',1,'ClassMethod']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['object_0',['Object',['../classObject.html',1,'']]]
+  ['invaliddatastorageexception_0',['InvalidDataStorageException',['../classInvalidDataStorageException.html',1,'']]],
+  ['invalidinputdataexception_1',['InvalidInputDataException',['../classInvalidInputDataException.html',1,'']]]
 ];

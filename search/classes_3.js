@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['generalization_0',['Generalization',['../classGeneralization.html',1,'']]]
+  ['fileclassdiagramrepository_0',['FileClassDiagramRepository',['../classFileClassDiagramRepository.html',1,'']]],
+  ['filesequencediagramrepository_1',['FileSequenceDiagramRepository',['../classFileSequenceDiagramRepository.html',1,'']]]
 ];
