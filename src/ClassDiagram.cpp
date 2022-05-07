@@ -10,6 +10,25 @@
 #include "Class.h"
 
 /**
+ * Removes class from diagram
+ *
+ * @param classToRemove Class to remove from diagram
+ * @throw std::invalid_argument Class is not in diagram
+ */
+void ClassDiagram::removeClass(Class classToRemove)
+{
+    for (auto iterator = classes.begin(); iterator != classes.end(); iterator++) {
+        if (*iterator == classToRemove) {
+            classes.erase(iterator);
+
+            return;
+        }
+    }
+
+    throw std::invalid_argument{"Class is not in class diagram"};
+}
+
+/**
  * Finds class by name
  *
  * @param name Name of the class to search for
@@ -25,4 +44,23 @@ Class *ClassDiagram::findClassByName(std::string name)
     }
 
     throw std::invalid_argument{"Class with name \"" + name + "\" doesn't exist in class diagram"};
+}
+
+/**
+ * Removes relationship from class diagram
+ *
+ * @param relationshipToRemove Relationship to remove
+ * @throw std::invalid_argument Relationship is not in class diagram
+ */
+void ClassDiagram::removeRelationship(Relationship *relationshipToRemove)
+{
+    for (auto iterator = relationships.begin(); iterator != relationships.end(); iterator++) {
+        if (*iterator == relationshipToRemove) {
+            relationships.erase(iterator);
+
+            return;
+        }
+    }
+
+    throw std::invalid_argument{"Relationship is not in class diagram"};
 }

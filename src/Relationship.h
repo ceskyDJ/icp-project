@@ -88,6 +88,32 @@ class Relationship
     {
         name = newName;
     }
+
+    /**
+     * Equals operator
+     *
+     * @param other Relationship to compare with
+     * @return Are relationships equal?
+     */
+    virtual bool operator==(Relationship &other)
+    {
+        if (typeid(other) == typeid(*this)) {
+            return firstClass == other.firstClass && secondClass == other.secondClass && name == other.name;
+        }
+
+        return false;
+    }
+
+    /**
+     * Not equals operator
+     *
+     * @param other Relationship to compare with
+     * @return Are relationships not equal?
+     */
+    virtual bool operator!=(Relationship &other)
+    {
+        return !operator==(other);
+    }
 };
 
 #endif //ICP_PROJECT_RELATIONSHIP_H
