@@ -58,7 +58,7 @@ run: compile
 
 # Create final archive
 pack:
-	tar -czvf $(ARCHIVE_NAME).tar.gz $(shell ls src/*.cpp src/*.h src/*.pro examples/* README.txt Makefile 2>/dev/null)
+	tar -czvf $(ARCHIVE_NAME).tar.gz $(shell ls src/*.cpp src/*.h src/*.pro examples/* resources/* README.txt Makefile rsc.qrc 2>/dev/null)
 
 # Generate Doxygen documentation
 doxygen:
