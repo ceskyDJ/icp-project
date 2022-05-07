@@ -29,7 +29,7 @@ class Relationship
      */
     std::string name;
 
-  public:
+  protected:
     /**
      * Constructor for initializing with known first and second class in relationship
      *
@@ -43,6 +43,12 @@ class Relationship
         std::string name = ""
     ): firstClass{firstClass}, secondClass{secondClass}, name{name} {};
 
+    /**
+     * Default virtual destructor for converting class to polymorphic one
+     */
+    virtual ~Relationship() = default;
+
+  public:
     /**
      * Getter for the first class of relationship
      *
@@ -82,11 +88,6 @@ class Relationship
     {
         name = newName;
     }
-
-    /**
-     * Default virtual destructor for converting class to polymorphic one
-     */
-    virtual ~Relationship() = default;
 };
 
 #endif //ICP_PROJECT_RELATIONSHIP_H

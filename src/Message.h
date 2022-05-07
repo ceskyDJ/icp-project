@@ -19,6 +19,18 @@
  */
 class Message
 {
+  public:
+    // Type names for better understandability
+    /**
+     * Node that sends messages
+     */
+    using MessageSender = MessageNode;
+    /**
+     * Node that receives messages
+     */
+    using MessageRecipient = MessageNode;
+
+  private:
     /**
      * Name of the message
      */
@@ -28,87 +40,36 @@ class Message
      */
     MessageType type;
     /**
-     * Actor sending the message (nullptr if sendingObject set)
+     * Node sending the message
      */
-    Actor *sendingActor;
+    MessageSender *messageSender;
     /**
-     * Object sending the message (nullptr if sendingActor set)
+     * Node receiving the message
      */
-    Object *sendingObject;
-    /**
-     * Actor receiving the message (nullptr if receivingObject set)
-     */
-    Actor *receivingActor;
-    /**
-     * Object receiving the message (nullptr if receivingActor set)
-     */
-    Object *receivingObject;
+    MessageRecipient *messageRecipient;
     /**
      * Time when the message should be sent (value at timeline, normalized - interval \<0; 1\>)
      */
     double sendingTime;
 
-    // Type names for better understandability
-    using MessageSender = MessageNode;
-    using MessageRecipient = MessageNode;
-
   public:
     /**
-     * Constructor for initializing with known name and type of the message
-     * for ACTOR sending message and OBJECT receiving message
+     * Constructor for initializing with known name, type of the message and sender and recipient nodes
      *
      * @param name Message name
      * @param messageType Type of the message
-     * @param sendingActor Pointer to actor sending the message
-     * @param receivingObject Pointer to object receiving the message
+     * @param messageSender Pointer to node sending the message
+     * @param messageRecipient Pointer to node receiving the message
      * @param sendingTime Time when to send the message (at timeline, normalized - interval \<0; 1\>)
      */
     Message(
             std::string name,
             MessageType messageType,
-            Actor *sendingActor,
-            Object *receivingObject,
+            MessageSender *messageSender,
+            MessageRecipient *messageRecipient,
             double sendingTime
-    ): name{name}, type{messageType}, sendingActor{sendingActor}, sendingObject{nullptr},
-       receivingActor{nullptr}, receivingObject{receivingObject}, sendingTime{sendingTime} {};
-
-    /**
-     * Constructor for initializing with known name and type of the message
-     * for OBJECT sending message and OBJECT receiving message
-     *
-     * @param name Message name
-     * @param messageType Type of the message
-     * @param sendingObject Pointer to object sending the message
-     * @param receivingObject Pointer to object receiving the message
-     * @param sendingTime Time when to send the message (at timeline, normalized - interval \<0; 1\>)
-     */
-    Message(
-            std::string name,
-            MessageType messageType,
-            Object *sendingObject,
-            Object *receivingObject,
-            double sendingTime
-    ): name{name}, type{messageType}, sendingActor{nullptr}, sendingObject{sendingObject},
-        receivingActor{nullptr}, receivingObject{receivingObject}, sendingTime{sendingTime} {};
-
-    /**
-     * Constructor for initializing with known name and type of the message
-     * for OBJECT sending message and ACTOR receiving message
-     *
-     * @param name Message name
-     * @param messageType Type of the message
-     * @param sendingObject Pointer to object sending the message
-     * @param receivingActor Pointer to actor receiving the message
-     * @param sendingTime Time when to send the message (at timeline, normalized - interval \<0; 1\>)
-     */
-    Message(
-            std::string name,
-            MessageType messageType,
-            Object *sendingObject,
-            Actor *receivingActor,
-            double sendingTime
-    ): name{name}, type{messageType}, sendingActor{nullptr}, sendingObject{sendingObject},
-       receivingActor{receivingActor}, receivingObject{nullptr}, sendingTime{sendingTime} {};
+    ): name{name}, type{messageType}, messageSender{messageSender}, messageRecipient{messageRecipient},
+        sendingTime{sendingTime} {};
 
     /**
      * Getter for message name
@@ -143,75 +104,41 @@ class Message
     /**
      * Getter for message sender
      *
-     * @return Pointer to message sender (sending actor or sending object)
+     * @return Pointer to message sending node
      */
     MessageSender *getMessageSender() const
     {
-        if (sendingActor != nullptr) {
-            return sendingActor;
-        }
-
-        // No other case could happen
-        return sendingObject;
+        return messageSender;
     }
 
     /**
-     * Setter for message sender when ACTOR sending the message
+     * Setter for message sender
      *
-     * @param newActor Pointer to sendingActor (new message sender)
+     * @param newMessageSender Pointer to new node sending the message
      */
-    void setMessageSender(Actor *newActor)
+    void setMessageSender(MessageSender *newMessageSender)
     {
-        sendingActor = newActor;
-        sendingObject = nullptr;
-    }
-
-    /**
-     * Setter for message sender when OBJECT sending the message
-     *
-     * @param newSendingObject Pointer to sending object (new message sender)
-     */
-    void setMessageSender(Object *newSendingObject)
-    {
-        sendingActor = nullptr;
-        sendingObject = newSendingObject;
+        messageSender = newMessageSender;
     }
 
     /**
      * Getter for message recipient
      *
-     * @return Pointer to message recipient (receiving actor or receiving object)
+     * @return Pointer to message receiving node
      */
     MessageRecipient *getMessageRecipient() const
     {
-        if (receivingActor != nullptr) {
-            return receivingActor;
-        }
-
-        // No other case could happen
-        return receivingObject;
+        return messageRecipient;
     }
 
     /**
-     * Setter for message recipient when ACTOR receiving the message
+     * Setter for message recipient
      *
-     * @param newActor Pointer to receiving actor (new message recipient)
+     * @param newMessageRecipient Pointer to new node receiving the message
      */
-    void setMessageRecipient(Actor *newActor)
+    void setMessageRecipient(MessageRecipient *newMessageRecipient)
     {
-        receivingActor = newActor;
-        receivingObject = nullptr;
-    }
-
-    /**
-     * Setter for message recipient when OBJECT receiving the message
-     *
-     * @param newObject Pointer to receiving object (new message recipient)
-     */
-    void setMessageRecipient(Object *newObject)
-    {
-        receivingActor = nullptr;
-        receivingObject = newObject;
+        messageRecipient = newMessageRecipient;
     }
 
     /**
