@@ -9,6 +9,7 @@
 #include <QFile>
 #include <QIODevice>
 #include <QDomDocument>
+#include <QTextStream>
 #include "FileSequenceDiagramRepository.h"
 #include "InvalidDataStorageException.h"
 #include "InvalidInputDataException.h"
@@ -110,13 +111,98 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
  * @param diagram Sequence diagram to save
  * @throw InvalidDataStorageException Invalid file
  */
-void FileSequenceDiagramRepository::saveDiagram([[maybe_unused]] SequenceDiagram diagram)
+void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
 {
     if (fileName.empty()) {
         throw InvalidDataStorageException{"No target file set"};
     }
 
-    // TODO: implement this method
+    // Convert objects to XML
+    QDomDocument xml{};
+
+    QDomElement rootElement{xml.createElement("sequence-diagram")};
+    xml.appendChild(rootElement);
+
+    // Actors
+    QDomElement actorsContainer{xml.createElement("actors")};
+    for (const Actor &actor: diagram.getActors()) {
+        QDomElement xmlActor{xml.createElement("actor")};
+
+        QDomText actorName{xml.createTextNode(actor.getName().c_str())};
+        xmlActor.appendChild(actorName);
+
+        actorsContainer.appendChild(xmlActor);
+    }
+
+    // Objects
+    QDomElement objectsContainer{xml.createElement("objects")};
+    for (const Object &object: diagram.getObjects()) {
+        QDomElement xmlObject{xml.createElement("object")};
+        xmlObject.setAttribute("instance-class", object.getInstanceClass()->getName().c_str());
+        xmlObject.setAttribute("life-start", object.getLifeStart());
+        xmlObject.setAttribute("life-length", object.getLifeLength());
+
+        QDomText objectName{xml.createTextNode(object.getName().c_str())};
+        xmlObject.appendChild(objectName);
+
+        objectsContainer.appendChild(xmlObject);
+    }
+
+    // Messages
+    QDomElement messagesContainer{xml.createElement("messages")};
+    for (const Message &message: diagram.getMessages()) {
+        QDomElement xmlMessage{xml.createElement("message")};
+        xmlMessage.setAttribute("name", message.getName().c_str());
+        xmlMessage.setAttribute("type", message.getType().serialize().c_str());
+        xmlMessage.setAttribute("sending-time", message.getSendingTime());
+
+        // Message sender
+        QDomElement xmlMessageSender{xml.createElement("sender")};
+
+        Message::MessageSender *messageSender{message.getMessageSender()};
+        if (typeid(*messageSender) == typeid(Actor)) {
+            xmlMessageSender.setAttribute("type", "ACTOR");
+        } else {
+            // typeid(*messageSender) == typeid(Object)
+            xmlMessageSender.setAttribute("type", "OBJECT");
+        }
+
+        QDomText messageSenderName{xml.createTextNode(messageSender->getName().c_str())};
+        xmlMessageSender.appendChild(messageSenderName);
+
+        xmlMessage.appendChild(xmlMessageSender);
+
+        // Message recipient
+        QDomElement xmlMessageRecipient{xml.createElement("recipient")};
+
+        Message::MessageRecipient *messageRecipient{message.getMessageRecipient()};
+        if (typeid(*messageRecipient) == typeid(Actor)) {
+            xmlMessageRecipient.setAttribute("type", "ACTOR");
+        } else {
+            // typeid(*messageRecipient) == typeid(Object)
+            xmlMessageRecipient.setAttribute("type", "OBJECT");
+        }
+
+        QDomText messageRecipientName{xml.createTextNode(messageRecipient->getName().c_str())};
+        xmlMessageRecipient.appendChild(messageRecipientName);
+
+        messagesContainer.appendChild(xmlMessage);
+    }
+
+    rootElement.appendChild(actorsContainer);
+    rootElement.appendChild(objectsContainer);
+    rootElement.appendChild(messagesContainer);
+
+    // Save data to XML file
+    QFile file{fileName.c_str()};
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        file.close();
+        throw InvalidDataStorageException{"Cannot open target file"};
+    }
+
+    QTextStream xmlStream{&file};
+    xmlStream << xml.toString(4);
+    file.close();
 }
 
 /**
@@ -193,7 +279,7 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
         throw InvalidInputDataException{R"(Element "message" must have mandatory attribute "type")"};
     }
 
-    MessageType type;
+    MessageType type{};
     try {
         type = MessageType::deserialize(xmlMessage.attribute("type").toStdString());
     } catch (std::invalid_argument &e) {
@@ -230,7 +316,7 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
     std::string senderName{sender.text().toStdString()};
 
     std::string senderType{sender.attribute("type").toStdString()};
-    MessageNode *messageSender;
+    Message::MessageSender *messageSender;
     if (senderType == "ACTOR") {
         messageSender = sequenceDiagram.findActorByName(senderName);
     } else if (senderType == "OBJECT") {
@@ -257,7 +343,7 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
     std::string recipientName{recipient.text().toStdString()};
 
     std::string recipientType{recipient.attribute("type").toStdString()};
-    MessageNode *messageRecipient;
+    Message::MessageRecipient *messageRecipient;
     if (recipientType == "ACTOR") {
         messageRecipient = sequenceDiagram.findActorByName(recipientName);
     } else if (recipientType == "OBJECT") {

@@ -1,0 +1,23 @@
+<sequence-diagram>
+    <actors>
+        <actor>User</actor>
+    </actors>
+    <objects>
+        <object instance-class="Phone" life-length="0.7" life-start="0.3">someSamsung</object>
+        <object instance-class="Phone" life-length="0.3" life-start="0.2">someXiaomi</object>
+    </objects>
+    <messages>
+        <message type="CREATE" name="&lt;&lt;create>>" sending-time="0.2">
+            <sender type="ACTOR">User</sender>
+        </message>
+        <message type="CREATE" name="&lt;&lt;create>>" sending-time="0.1">
+            <sender type="ACTOR">User</sender>
+        </message>
+        <message type="SYNC" name="isValuable()" sending-time="0.4">
+            <sender type="ACTOR">User</sender>
+        </message>
+        <message type="DESTROY" name="&lt;&lt;destroy>>" sending-time="0.4">
+            <sender type="ACTOR">User</sender>
+        </message>
+    </messages>
+</sequence-diagram>

@@ -22,7 +22,7 @@ class FileSequenceDiagramRepository: public SequenceDiagramRepository
      */
     std::string fileName;
 
-public:
+  public:
     /**
      * Constructor for initialization with known class diagram
      *

@@ -23,7 +23,6 @@ class SequenceDiagramRepository
      */
     ClassDiagram classDiagram;
 
-  public:
     /**
      * Constructor for initialization with known class diagram
      *
@@ -31,6 +30,7 @@ class SequenceDiagramRepository
      */
     explicit SequenceDiagramRepository(ClassDiagram classDiagram): classDiagram{classDiagram} {};
 
+  public:
     /**
      * Constant getter for class diagram
      *
