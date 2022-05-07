@@ -28,8 +28,6 @@ private:
     QLineEdit *attributeDateTypeLineEdit;
     QPushButton *deleteButton;
 
-    AccessModifier convertIntToModifier(int modifierChar);
-    QString convertModifierToQString(AccessModifier modifier);
     void initializeComponents();
     void setComboBox();
     void setMyLayout();
