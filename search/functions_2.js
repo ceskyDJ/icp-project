@@ -6,11 +6,15 @@ var searchData=
   ['classdiagrammanager_3',['ClassDiagramManager',['../classClassDiagramManager.html#ae3d521bdbf634add77cb12ec877cc8ae',1,'ClassDiagramManager']]],
   ['classdiagrammemento_4',['ClassDiagramMemento',['../classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a',1,'ClassDiagramMemento']]],
   ['classdiagramrepository_5',['ClassDiagramRepository',['../classClassDiagramRepository.html#a3d88b4ac24f62d26c229079cd4750528',1,'ClassDiagramRepository::ClassDiagramRepository()'],['../classClassDiagramRepository.html#ac6fd916a6809351e8dd4cf172561e671',1,'ClassDiagramRepository::ClassDiagramRepository(std::string storageName)']]],
-  ['classmember_6',['ClassMember',['../classClassMember.html#a919f6712e92858147317e47f675dff73',1,'ClassMember']]],
-  ['classmethod_7',['ClassMethod',['../classClassMethod.html#a99ab1203bdb3063d23b03847eb02cb2a',1,'ClassMethod']]],
-  ['classmethodtype_8',['ClassMethodType',['../classClassMethodType.html#a0a51222fc35dfdea03ad6ae4acd929c7',1,'ClassMethodType::ClassMethodType()=default'],['../classClassMethodType.html#ad61150fd37d236899463baeb2a251706',1,'ClassMethodType::ClassMethodType(Value value)']]],
-  ['classreference_9',['ClassReference',['../classClassReference.html#ac62464d4cd17891dd324831148d09d27',1,'ClassReference::ClassReference(Class *referredClass)'],['../classClassReference.html#a75eb734d24234c580304fc47b670281b',1,'ClassReference::ClassReference(std::string referredClassName)']]],
-  ['classtype_10',['ClassType',['../classClassType.html#a892c1feb7e35031b3e732f32d227d526',1,'ClassType::ClassType()=default'],['../classClassType.html#aaf64fdb6c4f4b769f1bb941684ede83f',1,'ClassType::ClassType(Value value)']]],
-  ['composition_11',['Composition',['../classComposition.html#a8fa91acb6cadd32a6366950256307b38',1,'Composition']]],
-  ['creatememento_12',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]]
+  ['classdiagramwindow_6',['ClassDiagramWindow',['../classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd',1,'ClassDiagramWindow']]],
+  ['classeditdialog_7',['ClassEditDialog',['../classClassEditDialog.html#a13ba2c0e731bc9a600a00104ec1dbb1b',1,'ClassEditDialog']]],
+  ['classmember_8',['ClassMember',['../classClassMember.html#a919f6712e92858147317e47f675dff73',1,'ClassMember']]],
+  ['classmethod_9',['ClassMethod',['../classClassMethod.html#a99ab1203bdb3063d23b03847eb02cb2a',1,'ClassMethod']]],
+  ['classmethodtype_10',['ClassMethodType',['../classClassMethodType.html#a0a51222fc35dfdea03ad6ae4acd929c7',1,'ClassMethodType::ClassMethodType()=default'],['../classClassMethodType.html#ad61150fd37d236899463baeb2a251706',1,'ClassMethodType::ClassMethodType(Value value)']]],
+  ['classnode_11',['ClassNode',['../classClassNode.html#a6559bf10938d73fb6fd846e8dd10d2d9',1,'ClassNode']]],
+  ['classreference_12',['ClassReference',['../classClassReference.html#ac62464d4cd17891dd324831148d09d27',1,'ClassReference::ClassReference(Class *referredClass)'],['../classClassReference.html#a75eb734d24234c580304fc47b670281b',1,'ClassReference::ClassReference(std::string referredClassName)']]],
+  ['classtype_13',['ClassType',['../classClassType.html#a892c1feb7e35031b3e732f32d227d526',1,'ClassType::ClassType()=default'],['../classClassType.html#aaf64fdb6c4f4b769f1bb941684ede83f',1,'ClassType::ClassType(Value value)']]],
+  ['composition_14',['Composition',['../classComposition.html#a8fa91acb6cadd32a6366950256307b38',1,'Composition']]],
+  ['creatememento_15',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]],
+  ['createtitle_16',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]]
 ];

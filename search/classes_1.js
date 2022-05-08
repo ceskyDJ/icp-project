@@ -6,10 +6,16 @@ var searchData=
   ['classdiagrammanager_3',['ClassDiagramManager',['../classClassDiagramManager.html',1,'']]],
   ['classdiagrammemento_4',['ClassDiagramMemento',['../classClassDiagramMemento.html',1,'']]],
   ['classdiagramrepository_5',['ClassDiagramRepository',['../classClassDiagramRepository.html',1,'']]],
-  ['classmember_6',['ClassMember',['../classClassMember.html',1,'']]],
-  ['classmethod_7',['ClassMethod',['../classClassMethod.html',1,'']]],
-  ['classmethodtype_8',['ClassMethodType',['../classClassMethodType.html',1,'']]],
-  ['classreference_9',['ClassReference',['../classClassReference.html',1,'']]],
-  ['classtype_10',['ClassType',['../classClassType.html',1,'']]],
-  ['composition_11',['Composition',['../classComposition.html',1,'']]]
+  ['classdiagramwindow_6',['ClassDiagramWindow',['../classClassDiagramWindow.html',1,'']]],
+  ['classeditdialog_7',['ClassEditDialog',['../classClassEditDialog.html',1,'']]],
+  ['classmember_8',['ClassMember',['../classClassMember.html',1,'']]],
+  ['classmethod_9',['ClassMethod',['../classClassMethod.html',1,'']]],
+  ['classmethodtype_10',['ClassMethodType',['../classClassMethodType.html',1,'']]],
+  ['classnode_11',['ClassNode',['../classClassNode.html',1,'']]],
+  ['classnode_12',['classNode',['../classclassNode.html',1,'']]],
+  ['classreference_13',['ClassReference',['../classClassReference.html',1,'']]],
+  ['classtype_14',['ClassType',['../classClassType.html',1,'']]],
+  ['composition_15',['Composition',['../classComposition.html',1,'']]],
+  ['compositionline_16',['CompositionLine',['../classCompositionLine.html',1,'']]],
+  ['cpp_17',['cpp',['../classClassDiagramWindow_1_1cpp.html',1,'']]]
 ];
