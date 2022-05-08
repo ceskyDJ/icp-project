@@ -42,29 +42,41 @@ void SequenceDiagramManager::saveDiagram(std::string targetName, SequenceDiagram
 /**
  * Creates a backup of sequence diagram
  *
- * @param sequenceDiagram Sequence diagram to backup
+ * @param sequenceDiagram Pointer to sequence diagram to backup
  */
-void SequenceDiagramManager::backupDiagram([[maybe_unused]] SequenceDiagram sequenceDiagram)
+void SequenceDiagramManager::backupDiagram(SequenceDiagram *sequenceDiagram)
 {
-    // TODO: implement method
+    if (mementos.count(sequenceDiagram) == 0) {
+        mementos[sequenceDiagram] = HistoryStack<SequenceDiagramMemento>{};
+    }
+
+    mementos[sequenceDiagram].addRecord(sequenceDiagram->createMemento());
 }
 
 /**
  * Does undo operation for backed up sequence diagram
  *
- * @param sequenceDiagram Sequence diagram to apply undo operation for
+ * @param sequenceDiagram Pointer to sequence diagram to apply undo operation for
  */
-void SequenceDiagramManager::undoDiagramChanges([[maybe_unused]] SequenceDiagram &sequenceDiagram)
+void SequenceDiagramManager::undoDiagramChanges(SequenceDiagram *sequenceDiagram)
 {
-    // TODO: implement method
+    if (mementos.count(sequenceDiagram) == 0) {
+        mementos[sequenceDiagram] = HistoryStack<SequenceDiagramMemento>{};
+    }
+
+    sequenceDiagram->setMemento(mementos[sequenceDiagram].back());
 }
 
 /**
  * Does redo operation for backed up sequence diagram
  *
- * @param sequenceDiagram Sequence diagram to apply redo operation for
+ * @param sequenceDiagram Pointer to sequence diagram to apply redo operation for
  */
-void SequenceDiagramManager::redoDiagramChanges([[maybe_unused]] SequenceDiagram &sequenceDiagram)
+void SequenceDiagramManager::redoDiagramChanges(SequenceDiagram *sequenceDiagram)
 {
-    // TODO: implement method
+    if (mementos.count(sequenceDiagram) == 0) {
+        mementos[sequenceDiagram] = HistoryStack<SequenceDiagramMemento>{};
+    }
+
+    sequenceDiagram->setMemento(mementos[sequenceDiagram].forward());
 }

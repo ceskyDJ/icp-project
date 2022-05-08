@@ -40,29 +40,41 @@ void ClassDiagramManager::saveDiagram(std::string targetName, ClassDiagram class
 /**
  * Creates a backup of class diagram
  *
- * @param classDiagram Class diagram to backup
+ * @param classDiagram Pointer to class diagram to backup
  */
-void ClassDiagramManager::backupDiagram([[maybe_unused]] ClassDiagram classDiagram)
+void ClassDiagramManager::backupDiagram(ClassDiagram *classDiagram)
 {
-    // TODO: implement method
+    if (mementos.count(classDiagram) == 0) {
+        mementos[classDiagram] = HistoryStack<ClassDiagramMemento>{};
+    }
+
+    mementos[classDiagram].addRecord(classDiagram->createMemento());
 }
 
 /**
  * Does undo operation for backed up class diagram
  *
- * @param classDiagram Class diagram to apply undo operation for
+ * @param classDiagram Pointer to class diagram to apply undo operation for
  */
-void ClassDiagramManager::undoDiagramChanges([[maybe_unused]] ClassDiagram &classDiagram)
+void ClassDiagramManager::undoDiagramChanges(ClassDiagram *classDiagram)
 {
-    // TODO: implement method
+    if (mementos.count(classDiagram) == 0) {
+        mementos[classDiagram] = HistoryStack<ClassDiagramMemento>{};
+    }
+
+    classDiagram->setMemento(mementos[classDiagram].back());
 }
 
 /**
  * Does redo operation for backed up class diagram
  *
- * @param classDiagram Class diagram to apply redo operation for
+ * @param classDiagram Pointer to class diagram to apply redo operation for
  */
-void ClassDiagramManager::redoDiagramChanges([[maybe_unused]] ClassDiagram &classDiagram)
+void ClassDiagramManager::redoDiagramChanges(ClassDiagram *classDiagram)
 {
-    // TODO: implement method
+    if (mementos.count(classDiagram) == 0) {
+        mementos[classDiagram] = HistoryStack<ClassDiagramMemento>{};
+    }
+
+    classDiagram->setMemento(mementos[classDiagram].forward());
 }

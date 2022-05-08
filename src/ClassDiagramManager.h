@@ -11,6 +11,7 @@
 #include <map>
 #include "ClassDiagramRepository.h"
 #include "SequenceDiagramRepository.h"
+#include "HistoryStack.h"
 
 /**
  * Class for high-level managing class diagrams
@@ -21,6 +22,10 @@ class ClassDiagramManager
      * Pointer to class diagram repository
      */
     ClassDiagramRepository *classDiagramRepository;
+    /**
+     * Mementos for class diagrams
+     */
+    std::map<ClassDiagram *, HistoryStack<ClassDiagramMemento>> mementos;
 
   public:
     /**
@@ -54,23 +59,23 @@ class ClassDiagramManager
     /**
      * Creates a backup of class diagram
      *
-     * @param classDiagram Class diagram to backup
+     * @param classDiagram Pointer to class diagram to backup
      */
-    void backupDiagram(ClassDiagram classDiagram);
+    void backupDiagram(ClassDiagram *classDiagram);
 
     /**
      * Does undo operation for backed up class diagram
      *
-     * @param classDiagram Class diagram to apply undo operation for
+     * @param classDiagram Pointer to class diagram to apply undo operation for
      */
-    void undoDiagramChanges(ClassDiagram &classDiagram);
+    void undoDiagramChanges(ClassDiagram *classDiagram);
 
     /**
      * Does redo operation for backed up class diagram
      *
-     * @param classDiagram Class diagram to apply redo operation for
+     * @param classDiagram Pointer to class diagram to apply redo operation for
      */
-    void redoDiagramChanges(ClassDiagram &classDiagram);
+    void redoDiagramChanges(ClassDiagram *classDiagram);
 };
 
 #endif //ICP_PROJECT_CLASS_DIAGRAM_MANAGER_H

@@ -31,7 +31,7 @@ add_executable(icp_project
         src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
         src/InvalidInputDataException.h src/SequenceDiagram.cpp src/ClassReference.h src/MethodReference.h src/Class.cpp
         src/ClassDiagramManager.cpp src/ClassDiagramManager.h src/SequenceDiagramManager.cpp
-        src/SequenceDiagramManager.h src/HistoryStack.h)
+        src/SequenceDiagramManager.h src/HistoryStack.h src/ClassDiagramMemento.h src/SequenceDiagramMemento.h)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui

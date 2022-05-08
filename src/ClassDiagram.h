@@ -11,6 +11,7 @@
 
 #include "Class.h"
 #include "Relationship.h"
+#include "ClassDiagramMemento.h"
 
 /**
  * Entity for complete class diagram
@@ -145,6 +146,27 @@ class ClassDiagram
     void setRelationships(std::vector<Relationship *> &newRelationships)
     {
         relationships = newRelationships;
+    }
+
+    /**
+     * Creates memento of current state
+     *
+     * @return Created memento
+     */
+    ClassDiagramMemento createMemento()
+    {
+        return ClassDiagramMemento{classes, relationships};
+    }
+
+    /**
+     * Sets state from memento
+     *
+     * @param memento Memento to use
+     */
+    void setMemento(ClassDiagramMemento memento)
+    {
+        classes = memento.getClasses();
+        relationships = memento.getRelationships();
     }
 };
 
