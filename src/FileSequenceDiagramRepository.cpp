@@ -187,8 +187,6 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
         QDomText messageSenderName{xml.createTextNode(messageSender->getName().c_str())};
         xmlMessageSender.appendChild(messageSenderName);
 
-        xmlMessage.appendChild(xmlMessageSender);
-
         // Message recipient
         QDomElement xmlMessageRecipient{xml.createElement("recipient")};
 
@@ -203,6 +201,8 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
         QDomText messageRecipientName{xml.createTextNode(messageRecipient->getName().c_str())};
         xmlMessageRecipient.appendChild(messageRecipientName);
 
+        xmlMessage.appendChild(xmlMessageSender);
+        xmlMessage.appendChild(xmlMessageRecipient);
         messagesContainer.appendChild(xmlMessage);
     }
 
