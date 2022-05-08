@@ -24,16 +24,31 @@ class SequenceDiagramRepository
     ClassDiagram classDiagram;
 
     /**
-     * Implicit constructor
+     * Name of used storage (when needed)
      */
-    SequenceDiagramRepository(): classDiagram{} {};
+    std::string storageName;
 
     /**
-     * Constructor for initialization with known class diagram
+     * Implicit constructor
+     */
+    SequenceDiagramRepository(): classDiagram{}, storageName{} {};
+
+    /**
+     * Constructor for initialization with known class diagram and storage name
      *
      * @param classDiagram Class diagram to use as a source for classes, methods, etc.
+     * @param storageName Name of the storage to use (when type of the storage needs
+     * it otherwise use implicit constructor)
      */
-    explicit SequenceDiagramRepository(ClassDiagram classDiagram): classDiagram{classDiagram} {};
+    explicit SequenceDiagramRepository(
+        ClassDiagram classDiagram,
+        std::string storageName
+    ): classDiagram{classDiagram}, storageName{storageName} {};
+
+    /**
+     * Default virtual destructor
+     */
+    virtual ~SequenceDiagramRepository() = default;
 
   public:
     /**
@@ -52,6 +67,27 @@ class SequenceDiagramRepository
      */
     void setClassDiagram(const ClassDiagram &newClassDiagram) {
         classDiagram = newClassDiagram;
+    }
+
+    /**
+     * Getter for storage name
+     *
+     * @return Name of the used storage (when needed, could be empty string when the source
+     * type doesn't use names)
+     */
+    std::string getStorageName() const
+    {
+        return storageName;
+    }
+
+    /**
+     * Setter for storage name
+     *
+     * @param newStorageName New name of used storage
+     */
+    void setStorageName(const std::string &newStorageName)
+    {
+        storageName = newStorageName;
     }
 
     /**

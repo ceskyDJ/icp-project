@@ -24,9 +24,9 @@
  */
 SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
 {
-    QFile file{fileName.c_str()};
+    QFile file{storageName.c_str()};
 
-    if (fileName.empty()) {
+    if (storageName.empty()) {
         throw InvalidDataStorageException{"No source file set"};
     }
 
@@ -130,7 +130,7 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
  */
 void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
 {
-    if (fileName.empty()) {
+    if (storageName.empty()) {
         throw InvalidDataStorageException{"No target file set"};
     }
 
@@ -211,7 +211,7 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
     rootElement.appendChild(messagesContainer);
 
     // Save data to XML file
-    QFile file{fileName.c_str()};
+    QFile file{storageName.c_str()};
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         file.close();
         throw InvalidDataStorageException{"Cannot open target file"};
