@@ -16,10 +16,11 @@
  * @throw InvalidDataStorageException Invalid file
  * @throw InvalidInputDataException Invalid data structure in given file
  */
-ClassDiagram ClassDiagramManager::loadDiagram([[maybe_unused]] std::string sourceName)
+ClassDiagram ClassDiagramManager::loadDiagram(std::string sourceName)
 {
-    // TODO: implement method
-    return ClassDiagram{};
+    classDiagramRepository->setStorageName(sourceName);
+
+    return classDiagramRepository->loadDiagram();
 }
 
 /**
@@ -29,9 +30,11 @@ ClassDiagram ClassDiagramManager::loadDiagram([[maybe_unused]] std::string sourc
  * @param classDiagram Class diagram to save
  * @throw InvalidDataStorageException Invalid target
  */
-void ClassDiagramManager::saveDiagram([[maybe_unused]] std::string targetName, [[maybe_unused]] ClassDiagram classDiagram)
+void ClassDiagramManager::saveDiagram(std::string targetName, ClassDiagram classDiagram)
 {
-    // TODO: implement method
+    classDiagramRepository->setStorageName(targetName);
+
+    classDiagramRepository->saveDiagram(classDiagram);
 }
 
 /**
