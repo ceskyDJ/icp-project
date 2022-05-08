@@ -1,3 +1,11 @@
+/**
+ * @class Line
+ * General line - others are abstract.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #include "Line.h"
 #include <QLineF>
 #include <QPointF>
@@ -9,7 +17,17 @@
 
 class LineText;
 
-Line::Line(ClassNode *fromNode, ClassNode *toNode)
+Line::Line()
+{
+
+}
+
+/**
+ * @brief Line::initialize initializes line - from and to + pen
+ * @param fromNode source node
+ * @param toNode target node
+ */
+void Line::initialize(ClassNode *fromNode, ClassNode *toNode)
 {
     fromClassNode = fromNode;
     toClassNode = toNode;
@@ -18,12 +36,19 @@ Line::Line(ClassNode *fromNode, ClassNode *toNode)
     drawLine();
 }
 
-
+/**
+ * @brief Line::drawLine draws a line
+ */
 void Line::drawLine()
 {
     setLine(getShortestLine(fromClassNode, toClassNode));
 }
 
+/**
+ * @brief Line::getCenterPos Gets Center position of widget.
+ * @param node node, where should be counted a middle point
+ * @return point where is middle of node
+ */
 QPointF Line::getCenterPos(ClassNode *node)
 {
     QRectF rect = node->boundingRect();
@@ -34,6 +59,12 @@ QPointF Line::getCenterPos(ClassNode *node)
     return QPointF{node->x() + xMid , node->y()+yMid};
 }
 
+/**
+ * @brief Line::getShortestLine Counts shortest line connected between 2 nodes
+ * @param first First selected node (source)
+ * @param second Second selected node (target)
+ * @return Shotest line between points
+ */
 QLineF Line::getShortestLine(ClassNode *first, ClassNode *second)
 {
     QPointF firstPoint = getCenterPos(first);
@@ -50,6 +81,12 @@ QLineF Line::getShortestLine(ClassNode *first, ClassNode *second)
     return QLineF{firstIntersectionPoint, secondIntersectionPoint};
 }
 
+/**
+ * @brief Line::getIntersectPoint Counts point which intersects line border and line from one node to second node.
+ * @param connectingLine line between center of nodes
+ * @param node Node of which will be count an intersection
+ * @return Intersection point
+ */
 QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node)
 {
     QRectF rect = node->boundingRect();
@@ -70,6 +107,12 @@ QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node)
     return toReturn;
 }
 
+/**
+ * @brief Line::paint Draws a line
+ * @param painter Painter allows to draw a line
+ * @param option const QStyleOptionGraphicsItem
+ * @param widget QWidget
+ */
 void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
     QLineF line = getShortestLine(fromClassNode, toClassNode);
@@ -83,12 +126,19 @@ void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QW
     QGraphicsLineItem::paint(painter, option, widget);
 }
 
+/**
+ * @brief Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship
+ * @param event
+ */
 void Line::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     name = QInputDialog::getText(event->widget(), "Edit name", "Enter new Name:", QLineEdit::Normal, name);
     update();
 }
 
+/**
+ * @brief Line::~Line destructs line - disconnect it first
+ */
 Line::~Line()
 {
     fromClassNode->removeConnection(this);

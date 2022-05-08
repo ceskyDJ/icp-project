@@ -1,3 +1,12 @@
+/**
+ * @class classNode
+ * Implementation of class node.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * Některé funkce byly inspirovány příklady od Petra Peringera
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #ifndef CLASSNODE_H
 #define CLASSNODE_H
 

@@ -1,7 +1,6 @@
 /**
- * @file ClassDiagramWindow.cpp
- * Implementace třídy, která má z úkol vytvořit okno
- * pro kreslení UML diagramů tříd.
+ * @class ClassDiagramWindow.cpp
+ * Implementation of class whisch shows class diagrams.
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -13,7 +12,7 @@
 #include "ClassAttribute.h"
 
 /**
- * Initialiezes components and prepare all QWidgets and controls.
+ * ClassDiagramWindow::ClassDiagramWindow Initialiezes components and prepare all QWidgets and controls.
  */
 ClassDiagramWindow::ClassDiagramWindow()
 {
@@ -36,7 +35,7 @@ ClassDiagramWindow::ClassDiagramWindow()
 }
 
 /**
- * Initializes components - creates a new instances of primary attributes.
+ * ClassDiagramWindow::initializeComponents Initializes components - creates a new instances of primary attributes.
  */
 void ClassDiagramWindow::initializeComponents()
 {
@@ -56,7 +55,7 @@ void ClassDiagramWindow::initializeComponents()
 }
 
 /**
- * Arranges controls in layout and sets window properties.
+ * ClassDiagramWindow::setMainWindow Arranges controls in layout and sets window properties.
  */
 void ClassDiagramWindow::setMainWindow()
 {
@@ -81,7 +80,7 @@ void ClassDiagramWindow::setMainWindow()
 }
 
 /**
- * Sets taskbar (task as open, save) and create a place for sequence diagrams.
+ * ClassDiagramWindow::setTaskBars Sets taskbar (task as open, save) and create a place for sequence diagrams.
  */
 void ClassDiagramWindow::setTaskBars()
 {
@@ -98,7 +97,7 @@ void ClassDiagramWindow::setTaskBars()
 }
 
 /**
- * Places buttons to a layout and creates a toolbar with the layout.
+ * ClassDiagramWindow::prepareToolItem Places buttons to a layout and creates a toolbar with the layout.
  *
  * @param icon Icon that should be placed in button.
  * @param labelString String that will be under the icon.
@@ -123,7 +122,7 @@ QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString, QT
 }
 
 /**
- * Creates a tabs for sequence diagrams.
+ * ClassDiagramWindow::prepareSequencDiagramTab Creates a tabs for sequence diagrams.
  *
  * @param label QString of text which will be written on a tab.
  * @return QWidget representig a diagram tab manager.
@@ -143,7 +142,7 @@ QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QString label)
 }
 
 /**
- * Place all demanded Widgets into a toolar.
+ * ClassDiagramWindow::setTooBox Place all demanded Widgets into a toolar.
  */
 void ClassDiagramWindow::setTooBox()
 {
@@ -173,7 +172,7 @@ void ClassDiagramWindow::setTooBox()
 }
 
 /**
- * Insert new claasNode into scene of class diagram Window.
+ * ClassDiagramWindow::addClassNode Insert new claasNode into scene of class diagram Window.
  */
 void ClassDiagramWindow::addClassNode()
 {
@@ -182,6 +181,9 @@ void ClassDiagramWindow::addClassNode()
     classDiagramScene->addItem(newOne);
 }
 
+/**
+ * ClassDiagramWindow::removeClassNode Removes all selected class nodes.
+ */
 void ClassDiagramWindow::removeClassNode()
 {
     QList<QGraphicsItem *> selectedItems =  classDiagramScene->selectedItems();
@@ -200,14 +202,27 @@ void ClassDiagramWindow::removeClassNode()
     }
 }
 
+/**
+ * ClassDiagramWindow::connectComponents Connets all signals and slots
+ */
 void ClassDiagramWindow::connectComponents()
 {
     connect(classShapeToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::addClassNode);
     connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeClassNode);
     connect(realizationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::relationShipSelected);
+    
+    connect(compositionToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::compositionSelected);
+    connect(agregationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::agregationSelected);
+    connect(generalisationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::generalisationSelected);
+
     connect(classDiagramScene, &QGraphicsScene::selectionChanged, this, &ClassDiagramWindow::selectionChanged);
+
 }
 
+/**
+ * ClassDiagramWindow::setAllNodesColor Sets border color to all nodes and to nodeColor
+ * @param color new node color
+ */
 void ClassDiagramWindow::setAllNodesColor(QColor color)
 {
     nodeColor = color;
@@ -221,12 +236,50 @@ void ClassDiagramWindow::setAllNodesColor(QColor color)
     }
 }
 
+/**
+ * ClassDiagramWindow::relationShipSelected To a new pointer creates line
+ */
 void ClassDiagramWindow::relationShipSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
+    newLine = new Line;
 }
 
+/**
+ * ClassDiagramWindow::compositionSelected To a new pointer creates composition line
+ */
+void ClassDiagramWindow::compositionSelected()
+{
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+    newLine = new CompositionLine;
+}
+
+/**
+ * @brief ClassDiagramWindow::agregationSelected To a new pointer creates agregation line
+ */
+void ClassDiagramWindow::agregationSelected()
+{
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+    newLine = new AgregationLine;
+}
+
+/**
+ * @brief ClassDiagramWindow::generalisationSelected To a new pointer creates generalisation line
+ */
+void ClassDiagramWindow::generalisationSelected()
+{
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+    newLine = new GeneralizationLine;
+}
+
+/**
+ * ClassDiagramWindow::selectionChanged When selection changes and a new relationship is invoked,
+ * handle adding new relationship.
+ */
 void ClassDiagramWindow::selectionChanged()
 {
     if (nodeColor == Qt::black)
@@ -250,6 +303,11 @@ void ClassDiagramWindow::selectionChanged()
     }
 }
 
+/**
+ * ClassDiagramWindow::getSelectedNode finds first selected node
+ *
+ * @return selected node
+ */
 ClassNode *ClassDiagramWindow::getSelectedNode()
 {
     ClassNode *toReturn;
@@ -268,9 +326,12 @@ ClassNode *ClassDiagramWindow::getSelectedNode()
     return nullptr;
 }
 
+/**
+ * ClassDiagramWindow::connectNodes Connect two nodes by relationship
+ */
 void ClassDiagramWindow::connectNodes()
 {
-    Line *newLine = new Line(firstToSelect,secondToSelect);
+    newLine->initialize(firstToSelect, secondToSelect);
     classDiagramScene->addItem(newLine);
     firstToSelect->addLine(newLine);
     secondToSelect->addLine(newLine);

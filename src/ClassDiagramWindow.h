@@ -20,6 +20,9 @@
 #include "classNode.h"
 #include "ClassEditDialog.h"
 #include "Line.h"
+#include "GeneralizationLine.h"
+#include "AgregationLine.h"
+#include "CompositionLine.h"
 
 class ClassDiagramWindow : public QMainWindow
 {
@@ -51,6 +54,7 @@ private:
     QColor nodeNormalColor = Qt::black;
     QColor nodeColor = nodeNormalColor;
     QColor nodeFirstSelectedColor = Qt::darkMagenta;
+    Line *newLine;
 
     void setModellingSpace();
     void setTaskBars();
@@ -64,13 +68,14 @@ private:
     QWidget *prepareSequencDiagramTab(QString label);
     ClassNode *getSelectedNode();
     void connectNodes();
+    void compositionSelected();
+    void agregationSelected();
+    void generalisationSelected();
 private slots:
     void addClassNode();
     void removeClassNode();
     void relationShipSelected();
     void selectionChanged();
-
-
 };
 
 #endif // CLASSDIAGRAMWINDOW_H

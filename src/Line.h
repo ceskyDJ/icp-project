@@ -1,3 +1,11 @@
+/**
+ * @class Line
+ * General line - others are abstract.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #ifndef LINE_H
 #define LINE_H
 
@@ -11,10 +19,11 @@ class LineText;
 class Line : public QGraphicsLineItem
 {
 public:
-    Line(ClassNode *fromNode, ClassNode *toNode);
+    Line();
     void drawLine();
     ~Line();
-private:
+    void initialize(ClassNode *fromNode, ClassNode *toNode);
+protected:
     QString name = "relName";
     ClassNode *fromClassNode;
     ClassNode *toClassNode;

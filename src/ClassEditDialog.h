@@ -1,3 +1,11 @@
+/**
+ * @class ClassEditDialog
+ * Dialog allows to eddit all data of class entity.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #ifndef CLASSEDITDIALOG_H
 #define CLASSEDITDIALOG_H
 

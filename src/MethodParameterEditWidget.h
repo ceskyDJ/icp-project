@@ -1,3 +1,11 @@
+/**
+ * @class MethodParameterEditWidget
+ * Allows to edit method parameter
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #ifndef METHODPARAMETEREDITWIDGET_H
 #define METHODPARAMETEREDITWIDGET_H
 

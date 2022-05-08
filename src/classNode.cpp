@@ -1,3 +1,12 @@
+/**
+ * @class classNode
+ * Implementation of class node.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * Některé funkce byly inspirovány příklady od Petra Peringera
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #include "classNode.h"
 #include "qpainter.h"
 #include "QPlainTextEdit"
@@ -244,6 +253,9 @@ QString ClassNode::modifierToString(AccessModifier mod) const
     }
 }
 
+/**
+ * @brief ClassNode::mouseDoubleClickEvent Handles double click event - shows eddit dialog, then changes entity.
+ */
 void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
     ClassEditDialog *classEditDialog = new ClassEditDialog(this->getClassEntity());
@@ -255,6 +267,11 @@ void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 
 }
 
+/**
+ * @brief ClassNode::setFontItalic sets font to italic or to normal
+ * @param enable true = italic, false = normal
+ * @param painter pointer to painter that should be eddited
+ */
 void ClassNode::setFontItalic(bool enable, QPainter *painter)
 {
     QFont font = painter->font();
@@ -262,22 +279,39 @@ void ClassNode::setFontItalic(bool enable, QPainter *painter)
     painter->setFont(font);
 }
 
+/**
+ * @brief ClassNode::addLine adds new connections
+ * @param newLine line to connect
+ */
 void ClassNode::addLine(Line* newLine)
 {
     connectedLines.insert(newLine);
 }
 
+/**
+ * @brief ClassNode::removeLine removes line form connected list
+ * @param oldLine line to remove
+ */
 void ClassNode::removeLine(Line* oldLine)
 {
     connectedLines.remove(oldLine);
 }
 
+/**
+ * @brief ClassNode::rePaintLines Paints a line again
+ */
 void ClassNode::rePaintLines()
 {
     for(Line *line : connectedLines)
         line->drawLine();
 }
 
+/**
+ * @brief ClassNode::itemChange When item is changed then repaint it
+ * @param change GraphicsItemChange
+ * @param value const QVariant
+ * @return itemchange
+ */
 QVariant ClassNode::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     if (change == ItemPositionHasChanged)

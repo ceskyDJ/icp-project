@@ -1,7 +1,20 @@
+/**
+ * @class MethodEditWidget
+ * Allows to edit method.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #include "MethodEditWidget.h"
 #include <QLabel>
 #include "ClassEditDialog.h"
 
+/**
+ * @brief MethodEditWidget::MethodEditWidget creates new instance of method widget
+ * @param parent parrent of widget
+ * @param method method that shlould be eddited
+ */
 MethodEditWidget::MethodEditWidget(QWidget *parent, ClassMethod *method)
     : QWidget{parent}
 {
@@ -16,7 +29,9 @@ MethodEditWidget::MethodEditWidget(QWidget *parent, ClassMethod *method)
     makeConnections();
 }
 
-
+/**
+ * @brief MethodEditWidget::initializeComponents initializes components
+ */
 void MethodEditWidget::initializeComponents()
 {
     methodLayOut = new QGridLayout;
@@ -32,6 +47,9 @@ void MethodEditWidget::initializeComponents()
     addParameterPushButton = new QPushButton;
 }
 
+/**
+ * @brief MethodEditWidget::makeConnections Makes unnesecary connections
+ */
 void MethodEditWidget::makeConnections()
 {
     connect(accessModifierComboBox,&QComboBox::currentTextChanged, this, &MethodEditWidget::accsesModifierChanged);
@@ -45,28 +63,47 @@ void MethodEditWidget::makeConnections()
     connect(addParameterPushButton, &QPushButton::pressed, this, &MethodEditWidget::addNewParameterSlot);
 }
 
+/**
+ * @brief MethodEditWidget::accsesModifierChanged Slot that handle acces modifier changed + edits a method acces modifier
+ * @param newText new acces modifier (serialized)
+ */
 void MethodEditWidget::accsesModifierChanged(QString newText)
 {
     std::string accesMod = newText.toStdString();
     methodEntity->setAccessModifier(AccessModifier(accesMod));
 }
 
+/**
+ * @brief MethodEditWidget::typeChanged Handles change of method type
+ * @param newText New method type
+ */
 void MethodEditWidget::typeChanged(QString newText)
 {
     std::string methodType = newText.toStdString();
     methodEntity->setType(ClassMethodType::deserialize(methodType));
 }
 
+/**
+ * @brief MethodEditWidget::nameChanged Hanldes change of name
+ * @param newText new name of method
+ */
 void MethodEditWidget::nameChanged(QString newText)
 {
     methodEntity->setName(newText.toStdString());
 }
 
+/**
+ * @brief MethodEditWidget::returnDataTypeChanged Handle change of return data type
+ * @param newText new return data type
+ */
 void MethodEditWidget::returnDataTypeChanged(QString newText)
 {
     methodEntity->setReturnDataType(newText.toStdString());
 }
 
+/**
+ * @brief MethodEditWidget::setComboBox set combobox source data
+ */
 void MethodEditWidget::setComboBox()
 {
     for(AccessModifier &accessModifier : AccessModifier::values())
@@ -77,6 +114,9 @@ void MethodEditWidget::setComboBox()
 
 }
 
+/**
+ * @brief MethodEditWidget::setMyLayout arranges widgets to layout
+ */
 void MethodEditWidget::setMyLayout()
 {
     QWidget *mainWidget = new QWidget;
@@ -105,7 +145,9 @@ void MethodEditWidget::setMyLayout()
 }
 
 
-
+/**
+ * @brief MethodEditWidget::fillData fills data into widgets
+ */
 void MethodEditWidget::fillData()
 {
     ClassMethodType methodType = methodEntity->getType();
@@ -115,17 +157,26 @@ void MethodEditWidget::fillData()
     methodReturnDataTypeLineEdit->setText(QString::fromStdString(methodEntity->getReturnDataType()));
 }
 
+/**
+ * @brief MethodEditWidget::setDeleteButton Sets delete button icon
+ */
 void MethodEditWidget::setDeleteButton()
 {
     deleteButton->setIcon(QIcon(":/closeCross.png"));
 }
 
 
+/**
+ * @brief MethodEditWidget::sendDeleteSignalSlot emit signal, that this maethod should me removed
+ */
 void MethodEditWidget::sendDeleteSignalSlot()
 {
     emit deleteButtonPressed(this);
 }
 
+/**
+ * @brief MethodEditWidget::setScrollArea sets scroll area
+ */
 void MethodEditWidget::setScrollArea()
 {
     parameterWidget->setLayout(parameterLayout);
@@ -136,11 +187,18 @@ void MethodEditWidget::setScrollArea()
     parameterScrollArea->setWidget(parameterWidget);
 }
 
+/**
+ * @brief MethodEditWidget::setAddButton Setss add button for method params
+ */
 void MethodEditWidget::setAddButton()
 {
     addParameterPushButton->setIcon(QIcon(":/addCross.png"));
 }
 
+/**
+ * @brief MethodEditWidget::addNewParameter Adds a new parameter
+ * @param newParameter new parameter that should be added
+ */
 void MethodEditWidget::addNewParameter(MethodParameter *newParameter)
 {
     MethodParameterEditWidget *newWidget = new MethodParameterEditWidget(nullptr, newParameter);
@@ -148,11 +206,18 @@ void MethodEditWidget::addNewParameter(MethodParameter *newParameter)
     connect(newWidget, &MethodParameterEditWidget::deleteButtonPressed, this, &MethodEditWidget::deleteParameter);
 }
 
+/**
+ * @brief MethodEditWidget::addNewParameterSlot Slot to add new parameter
+ */
 void MethodEditWidget::addNewParameterSlot()
 {
     addNewParameter(new MethodParameter("", ""));
 }
 
+/**
+ * @brief MethodEditWidget::deleteParameter slot to handle deletion of parameter
+ * @param paramEdit parameter to remove
+ */
 void MethodEditWidget::deleteParameter(MethodParameterEditWidget *paramEdit)
 {
     parameterLayout->removeWidget(paramEdit);

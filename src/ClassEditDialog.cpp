@@ -1,7 +1,19 @@
+/**
+ * @class ClassEditDialog
+ * Dialog allows to eddit all data of class entity.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #include "ClassEditDialog.h"
 #include <QLabel>
 #include <algorithm>
 
+/**
+ * ClassEditDialog::ClassEditDialog constructor
+ * @param classEntity Class that should be eddited
+ */
 ClassEditDialog::ClassEditDialog(Class classEntity)
 {
     ClassEditDialog::classEntity = classEntity;
@@ -14,6 +26,9 @@ ClassEditDialog::ClassEditDialog(Class classEntity)
     fillData();
 }
 
+/**
+ * ClassEditDialog::initializeComponents Initializes all components.
+ */
 void ClassEditDialog::initializeComponents()
 {
     nameTextEdit = new QLineEdit;
@@ -33,6 +48,9 @@ void ClassEditDialog::initializeComponents()
     classTypeComboBox = new QComboBox;
 }
 
+/**
+ * ClassEditDialog::setMainLayout Arranges widgets to layout.
+ */
 void ClassEditDialog::setMainLayout()
 {
     QHBoxLayout *nameLayout = new QHBoxLayout;
@@ -64,18 +82,36 @@ void ClassEditDialog::setMainLayout()
     setWindowTitle("Úprava třídy");
 }
 
+/**
+ * ClassEditDialog::deleteAttribute deletes attribute
+ *
+ * @param toDelete attribute that should be deleted
+ */
 void ClassEditDialog::deleteAttribute(AttributeEditWidget *toDelete)
 {
     dialogLayout->removeWidget(toDelete);
     delete toDelete;
 }
 
+/**
+ * ClassEditDialog::deleteMethod deletes a method
+ *
+ * @param toDelete method that should be deleted
+ */
 void ClassEditDialog::deleteMethod(MethodEditWidget *toDelete)
 {
     dialogLayout->removeWidget(toDelete);
     delete toDelete;
 }
 
+/**
+ * ClassEditDialog::createTitle creates new section in edit dialog - puts a label and add button
+ *
+ * @param addPushButton button which should be used to add new items
+ * @param title for new section
+ * @param label label to add push button
+ * @return widget representing title
+ */
 QWidget* ClassEditDialog::createTitle(QPushButton *addPushButton, QString title, QString label)
 {
     QHBoxLayout *menuLayout = new QHBoxLayout;
@@ -90,6 +126,10 @@ QWidget* ClassEditDialog::createTitle(QPushButton *addPushButton, QString title,
     return titleWidget;
 }
 
+/**
+ * @brief ClassEditDialog::addNewAttribute Adds new attribute to scroll area
+ * @param newAttribute new attribute to add
+ */
 void ClassEditDialog::addNewAttribute(ClassAttribute *newAttribute)
 {
     AttributeEditWidget *newWidget = new AttributeEditWidget(nullptr, newAttribute);
@@ -97,6 +137,10 @@ void ClassEditDialog::addNewAttribute(ClassAttribute *newAttribute)
     connect(newWidget, &AttributeEditWidget::deleteButtonPressed, this, &ClassEditDialog::deleteAttribute);
 }
 
+/**
+ * @brief ClassEditDialog::addNewMethod Adds new method to scroll area.
+ * @param newMethod method to add
+ */
 void ClassEditDialog::addNewMethod(ClassMethod *newMethod)
 {
     MethodEditWidget *newWidget = new MethodEditWidget(nullptr, newMethod);
@@ -104,17 +148,26 @@ void ClassEditDialog::addNewMethod(ClassMethod *newMethod)
     connect(newWidget, &MethodEditWidget::deleteButtonPressed, this, &ClassEditDialog::deleteMethod);
 }
 
+/**
+ * @brief ClassEditDialog::addNewAttributeSlot Slot which will be called after emit singal of add button
+ */
 void ClassEditDialog::addNewAttributeSlot()
 {
     addNewAttribute(new ClassAttribute("", AccessModifier::PUBLIC, ""));
 }
 
+/**
+ * @brief ClassEditDialog::addNewMethodSlot Slot which will be called after emit singal of add button
+ */
 void ClassEditDialog::addNewMethodSlot()
 {
     std::vector<MethodParameter> vec;
     addNewMethod(new ClassMethod("", AccessModifier::PUBLIC, vec));
 }
 
+/**
+ * @brief ClassEditDialog::makeConnections Make all unnesesary connections
+ */
 void ClassEditDialog::makeConnections()
 {
     connect(addAtributePushButton, &QPushButton::pressed, this, &ClassEditDialog::addNewAttributeSlot);
@@ -125,12 +178,21 @@ void ClassEditDialog::makeConnections()
     connect(classTypeComboBox, &QComboBox::currentTextChanged, this, &ClassEditDialog::onClassTypeChanged);
 }
 
+/**
+ * @brief ClassEditDialog::setScrollAreas sets new scroll areas
+ */
 void ClassEditDialog::setScrollAreas()
 {
     setScrollArea(attributeWidget, attributeLayout, attributeScrollArea);
     setScrollArea(methodWidget, methodLayout, methodScrollArea);
 }
 
+/**
+ * @brief ClassEditDialog::setScrollArea set scroll area - creates widget with layout in scroll area
+ * @param areaWidget widget where will be controls added
+ * @param areaLayout layout for widgets
+ * @param scrollArea scroll area
+ */
 void ClassEditDialog::setScrollArea(QWidget *areaWidget, QVBoxLayout *areaLayout, QScrollArea *scrollArea)
 {
     areaWidget->setLayout(areaLayout);
@@ -141,11 +203,18 @@ void ClassEditDialog::setScrollArea(QWidget *areaWidget, QVBoxLayout *areaLayout
     scrollArea->setWidget(areaWidget);
 }
 
+/**
+ * @brief ClassEditDialog::onNameChanged slot when name changes
+ * @param newName new name of class
+ */
 void ClassEditDialog::onNameChanged(QString newName)
 {
     classEntity.setName(newName.toStdString());
 }
 
+/**
+ * @brief ClassEditDialog::setButtons sets dialog buttons
+ */
 void ClassEditDialog::setButtons()
 {
     QHBoxLayout *buttonLayout = new QHBoxLayout;
@@ -161,6 +230,9 @@ void ClassEditDialog::setButtons()
     buttonWidget->setLayout(buttonLayout);
 }
 
+/**
+ * @brief ClassEditDialog::onConfirmChangesPressed confirmation button slot
+ */
 void ClassEditDialog::onConfirmChangesPressed()
 {
     //get class attributes
@@ -186,11 +258,17 @@ void ClassEditDialog::onConfirmChangesPressed()
     accept();
 }
 
+/**
+ * @brief ClassEditDialog::onRejectChangesPressed button slot to reject changes
+ */
 void ClassEditDialog::onRejectChangesPressed()
 {
     reject();
 }
 
+/**
+ * @brief ClassEditDialog::setComboBox sets combobox properies
+ */
 void ClassEditDialog::setComboBox()
 {
     std::vector<ClassType> classTypes = ClassType::values();
@@ -198,12 +276,19 @@ void ClassEditDialog::setComboBox()
         classTypeComboBox->addItem(QString::fromStdString(classType.serialize()));
 }
 
+/**
+ * @brief ClassEditDialog::fillData fills data into dialog controls
+ */
 void ClassEditDialog::fillData()
 {
     nameTextEdit->setText(QString::fromStdString(classEntity.getName()));
     classTypeComboBox->setCurrentText(QString::fromStdString(classEntity.getClassType().serialize()));
 }
 
+/**
+ * @brief ClassEditDialog::onClassTypeChanged slot for changig type
+ * @param newType of class
+ */
 void ClassEditDialog::onClassTypeChanged(QString newType)
 {
     std::string methodType = newType.toStdString();
