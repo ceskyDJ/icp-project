@@ -66,11 +66,20 @@ ClassDiagram FileClassDiagramRepository::loadDiagram()
         return classDiagram;
     }
 
-    QDomElement curr_class{classes.item(0).toElement()};
-    while (!curr_class.isNull()) {
-        classDiagram.addClass(loadClass(curr_class));
+    QDomElement currClass{classes.item(0).toElement()};
+    while (!currClass.isNull()) {
+        Class loadedClass{loadClass(currClass)};
 
-        curr_class = curr_class.nextSiblingElement("class");
+        // Check for class name duplicities
+        try {
+            classDiagram.findClassByName(loadedClass.getName());
+
+            throw InvalidInputDataException{"Class names must be unique. Duplicate class name: " + loadedClass.getName()};
+        } catch (std::invalid_argument &e) {}
+
+        classDiagram.addClass(loadedClass);
+
+        currClass = currClass.nextSiblingElement("class");
     }
 
     // Process relationships
