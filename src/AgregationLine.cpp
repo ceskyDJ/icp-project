@@ -39,6 +39,7 @@ void AgregationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * 
     rectangle.append(QPoint(arrow.x() + size/2, arrow.y() - size/2));
     rectangle.append(QPoint(arrow.x(), arrow.y()));
 
-    painter->drawLines(rectangle);
+    for (int i = 0; i < rectangle.count(); i+=2)
+        painter->drawLine(rectangle[i], rectangle[i+1]);
     painter->drawLine(line);
 }
