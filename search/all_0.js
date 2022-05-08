@@ -2,7 +2,7 @@ var searchData=
 [
   ['abstract_0',['ABSTRACT',['../classClassMethodType.html#ac79320be97d38639ccc3dce74ed73452a489e9cc6b63af568d01018cf96c7f58f',1,'ClassMethodType']]],
   ['abstract_5fclass_1',['ABSTRACT_CLASS',['../classClassType.html#abd18ee8521314909267c6923865e97daad3f3ecd08e7091578d2bfaf109cb825d',1,'ClassType']]],
-  ['accessmodifier_2',['AccessModifier',['../classAccessModifier.html',1,'AccessModifier'],['../classAccessModifier.html#a4b9e2c16048fdca402865011a865c2e7',1,'AccessModifier::AccessModifier(std::string &amp;stringValue)'],['../classAccessModifier.html#a14c9862fbee224cb6819b83548124632',1,'AccessModifier::AccessModifier(Value value)'],['../classAccessModifier.html#a46b8f7288decf8e97d5f6a4f5ad54756',1,'AccessModifier::AccessModifier()=default']]],
+  ['accessmodifier_2',['AccessModifier',['../classAccessModifier.html',1,'AccessModifier'],['../classAccessModifier.html#a4b9e2c16048fdca402865011a865c2e7',1,'AccessModifier::AccessModifier(std::string &amp;stringValue)'],['../classAccessModifier.html#a46b8f7288decf8e97d5f6a4f5ad54756',1,'AccessModifier::AccessModifier()=default'],['../classAccessModifier.html#a14c9862fbee224cb6819b83548124632',1,'AccessModifier::AccessModifier(Value value)']]],
   ['accessmodifier_2ecpp_3',['AccessModifier.cpp',['../AccessModifier_8cpp.html',1,'']]],
   ['accessmodifier_2eh_4',['AccessModifier.h',['../AccessModifier_8h.html',1,'']]],
   ['actor_5',['Actor',['../classActor.html',1,'Actor'],['../classActor.html#a3c420e72663487c57eaa84d308f1af91',1,'Actor::Actor(std::string name)'],['../classActor.html#a2a0ff4335a1ee9096df90f288c026c8b',1,'Actor::Actor()']]],
@@ -13,10 +13,11 @@ var searchData=
   ['addmessage_10',['addMessage',['../classSequenceDiagram.html#aca7ec185d987d9dd3336a79fd8687684',1,'SequenceDiagram']]],
   ['addmethod_11',['addMethod',['../classClass.html#adc7caf39032dd6b928ee0c2cacc3d3c6',1,'Class']]],
   ['addobject_12',['addObject',['../classSequenceDiagram.html#aee4fe9eacbc865bc687d4f0714d7576b',1,'SequenceDiagram']]],
-  ['addrelationship_13',['addRelationship',['../classClassDiagram.html#a8a902c4cf59fdc6fa5e75899311cc203',1,'ClassDiagram']]],
-  ['aggregation_14',['Aggregation',['../classAggregation.html#a03b442f72f7400ba0b6e48bf9a2e876a',1,'Aggregation::Aggregation()'],['../classAggregation.html',1,'Aggregation']]],
-  ['aggregation_2eh_15',['Aggregation.h',['../Aggregation_8h.html',1,'']]],
-  ['appexception_16',['AppException',['../classAppException.html',1,'AppException'],['../classAppException.html#a7ab5609108fe5a89090eb8c4a67a4ef7',1,'AppException::AppException()'],['../classAppException.html#afe0159ae5ef944312f60f16b34d333db',1,'AppException::AppException(const std::string &amp;message)'],['../classInvalidDataStorageException.html#a7ab5609108fe5a89090eb8c4a67a4ef7',1,'InvalidDataStorageException::AppException()'],['../classInvalidDataStorageException.html#afe0159ae5ef944312f60f16b34d333db',1,'InvalidDataStorageException::AppException(const std::string &amp;message)'],['../classInvalidInputDataException.html#a7ab5609108fe5a89090eb8c4a67a4ef7',1,'InvalidInputDataException::AppException()'],['../classInvalidInputDataException.html#afe0159ae5ef944312f60f16b34d333db',1,'InvalidInputDataException::AppException(const std::string &amp;message)']]],
-  ['appexception_2eh_17',['AppException.h',['../AppException_8h.html',1,'']]],
-  ['async_18',['ASYNC',['../classMessageType.html#a83997cfec75a3f7346975e7411fb65eea1cd96f66a0ef1053c09c23b83571553b',1,'MessageType']]]
+  ['addrecord_13',['addRecord',['../classHistoryStack.html#aa38a2b03cca895b9fb4e5b5cc024cb6e',1,'HistoryStack']]],
+  ['addrelationship_14',['addRelationship',['../classClassDiagram.html#a8a902c4cf59fdc6fa5e75899311cc203',1,'ClassDiagram']]],
+  ['aggregation_15',['Aggregation',['../classAggregation.html#a03b442f72f7400ba0b6e48bf9a2e876a',1,'Aggregation::Aggregation()'],['../classAggregation.html',1,'Aggregation']]],
+  ['aggregation_2eh_16',['Aggregation.h',['../Aggregation_8h.html',1,'']]],
+  ['appexception_17',['AppException',['../classAppException.html',1,'AppException'],['../classAppException.html#a7ab5609108fe5a89090eb8c4a67a4ef7',1,'AppException::AppException()'],['../classAppException.html#afe0159ae5ef944312f60f16b34d333db',1,'AppException::AppException(const std::string &amp;message)'],['../classInvalidDataStorageException.html#a7ab5609108fe5a89090eb8c4a67a4ef7',1,'InvalidDataStorageException::AppException()'],['../classInvalidDataStorageException.html#afe0159ae5ef944312f60f16b34d333db',1,'InvalidDataStorageException::AppException(const std::string &amp;message)'],['../classInvalidInputDataException.html#a7ab5609108fe5a89090eb8c4a67a4ef7',1,'InvalidInputDataException::AppException()'],['../classInvalidInputDataException.html#afe0159ae5ef944312f60f16b34d333db',1,'InvalidInputDataException::AppException(const std::string &amp;message)']]],
+  ['appexception_2eh_18',['AppException.h',['../AppException_8h.html',1,'']]],
+  ['async_19',['ASYNC',['../classMessageType.html#a83997cfec75a3f7346975e7411fb65eea1cd96f66a0ef1053c09c23b83571553b',1,'MessageType']]]
 ];

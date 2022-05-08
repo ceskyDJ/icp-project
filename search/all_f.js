@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['_7efileclassdiagramrepository_0',['~FileClassDiagramRepository',['../classFileClassDiagramRepository.html#aa05a70d37d406c0147ea40f76e8f5947',1,'FileClassDiagramRepository']]],
-  ['_7efilesequencediagramrepository_1',['~FileSequenceDiagramRepository',['../classFileSequenceDiagramRepository.html#a80caa4cc26e32c10f7c9415e878f5311',1,'FileSequenceDiagramRepository']]],
-  ['_7emessagenode_2',['~MessageNode',['../classMessageNode.html#ae834f4d2df64fb18f6915ee56cebf947',1,'MessageNode']]],
-  ['_7erelationship_3',['~Relationship',['../classRelationship.html#acb02069426a6288347e7347ee527a0ff',1,'Relationship']]]
+  ['undirectedassociation_0',['UndirectedAssociation',['../classUndirectedAssociation.html',1,'UndirectedAssociation'],['../classUndirectedAssociation.html#a845b386e7bd5135f9b5122e26bb1c946',1,'UndirectedAssociation::UndirectedAssociation()']]],
+  ['undirectedassociation_2eh_1',['UndirectedAssociation.h',['../UndirectedAssociation_8h.html',1,'']]],
+  ['undodiagramchanges_2',['undoDiagramChanges',['../classClassDiagramManager.html#aa4c7203d96a64aed1bddb00ff299599b',1,'ClassDiagramManager::undoDiagramChanges()'],['../classSequenceDiagramManager.html#a305326898da787f249d2147d9e0f731a',1,'SequenceDiagramManager::undoDiagramChanges()']]]
 ];

@@ -88,6 +88,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af9811cfca3561ca66c4115677c72e4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0949426603412629e9a977176a07feff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a0949426603412629e9a977176a07feff">setClassDiagram</a> (const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;newClassDiagram)</td></tr>
 <tr class="separator:a0949426603412629e9a977176a07feff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3610013dabe74cc2d74b71629129279"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#ad3610013dabe74cc2d74b71629129279">getStorageName</a> () const</td></tr>
+<tr class="separator:ad3610013dabe74cc2d74b71629129279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada13589eb45a6c009395f2d2f782b57d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#ada13589eb45a6c009395f2d2f782b57d">setStorageName</a> (const std::string &amp;newStorageName)</td></tr>
+<tr class="separator:ada13589eb45a6c009395f2d2f782b57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b95172b08560cf161abb7d20089395c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classSequenceDiagram.html">SequenceDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a9b95172b08560cf161abb7d20089395c">loadDiagram</a> ()=0</td></tr>
 <tr class="separator:a9b95172b08560cf161abb7d20089395c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63db24d7187489aa3342b0eecc42e707"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a63db24d7187489aa3342b0eecc42e707">saveDiagram</a> (<a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> diagram)=0</td></tr>
@@ -95,21 +99,55 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a9507ca6ff01cd170147186b8cac9f4aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a9507ca6ff01cd170147186b8cac9f4aa">SequenceDiagramRepository</a> (<a class="el" href="classClassDiagram.html">ClassDiagram</a> <a class="el" href="classSequenceDiagramRepository.html#af7885bc35d446fb44e7611ac4c65ed7b">classDiagram</a>)</td></tr>
-<tr class="separator:a9507ca6ff01cd170147186b8cac9f4aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1089c756977d2571953d889916dfc237"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a1089c756977d2571953d889916dfc237">SequenceDiagramRepository</a> ()</td></tr>
+<tr class="separator:a1089c756977d2571953d889916dfc237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f110d128d23b4c40b5b7d49a43a0192"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a4f110d128d23b4c40b5b7d49a43a0192">SequenceDiagramRepository</a> (<a class="el" href="classClassDiagram.html">ClassDiagram</a> <a class="el" href="classSequenceDiagramRepository.html#af7885bc35d446fb44e7611ac4c65ed7b">classDiagram</a>, std::string <a class="el" href="classSequenceDiagramRepository.html#a2726dc11a860ca5a583aaf827e8145e1">storageName</a>)</td></tr>
+<tr class="separator:a4f110d128d23b4c40b5b7d49a43a0192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51c1a5f8e958a5b5f166962ab1079dd3"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a51c1a5f8e958a5b5f166962ab1079dd3">~SequenceDiagramRepository</a> ()=default</td></tr>
+<tr class="separator:a51c1a5f8e958a5b5f166962ab1079dd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:af7885bc35d446fb44e7611ac4c65ed7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#af7885bc35d446fb44e7611ac4c65ed7b">classDiagram</a></td></tr>
 <tr class="separator:af7885bc35d446fb44e7611ac4c65ed7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2726dc11a860ca5a583aaf827e8145e1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramRepository.html#a2726dc11a860ca5a583aaf827e8145e1">storageName</a></td></tr>
+<tr class="separator:a2726dc11a860ca5a583aaf827e8145e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Base repository for sequence diagrams </p>
 
 <p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00018">18</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9507ca6ff01cd170147186b8cac9f4aa" name="a9507ca6ff01cd170147186b8cac9f4aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9507ca6ff01cd170147186b8cac9f4aa">&#9670;&nbsp;</a></span>SequenceDiagramRepository()</h2>
+<a id="a1089c756977d2571953d889916dfc237" name="a1089c756977d2571953d889916dfc237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1089c756977d2571953d889916dfc237">&#9670;&nbsp;</a></span>SequenceDiagramRepository() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SequenceDiagramRepository::SequenceDiagramRepository </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Implicit constructor </p>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00034">34</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+
+</div>
+</div>
+<a id="a4f110d128d23b4c40b5b7d49a43a0192" name="a4f110d128d23b4c40b5b7d49a43a0192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f110d128d23b4c40b5b7d49a43a0192">&#9670;&nbsp;</a></span>SequenceDiagramRepository() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,8 +159,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">SequenceDiagramRepository::SequenceDiagramRepository </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td>
-          <td class="paramname"><em>classDiagram</em></td><td>)</td>
+          <td class="paramname"><em>classDiagram</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>storageName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -131,15 +179,42 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Constructor for initialization with known class diagram</p>
+<p >Constructor for initialization with known class diagram and storage name</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">classDiagram</td><td><a class="el" href="classClass.html">Class</a> diagram to use as a source for classes, methods, etc. </td></tr>
+    <tr><td class="paramname">storageName</td><td>Name of the storage to use (when type of the storage needs it otherwise use implicit constructor) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00031">31</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00043">43</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+
+</div>
+</div>
+<a id="a51c1a5f8e958a5b5f166962ab1079dd3" name="a51c1a5f8e958a5b5f166962ab1079dd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51c1a5f8e958a5b5f166962ab1079dd3">&#9670;&nbsp;</a></span>~SequenceDiagramRepository()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual SequenceDiagramRepository::~SequenceDiagramRepository </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Default virtual destructor </p>
 
 </div>
 </div>
@@ -169,7 +244,36 @@ Protected Attributes</h2></td></tr>
 <p >Constant getter for class diagram</p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classClass.html">Class</a> diagram used as a source for classes, methods, etc. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00039">39</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00059">59</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+
+</div>
+</div>
+<a id="ad3610013dabe74cc2d74b71629129279" name="ad3610013dabe74cc2d74b71629129279"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3610013dabe74cc2d74b71629129279">&#9670;&nbsp;</a></span>getStorageName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string SequenceDiagramRepository::getStorageName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Getter for storage name</p>
+<dl class="section return"><dt>Returns</dt><dd>Name of the used storage (when needed, could be empty string when the source type doesn't use names) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00078">78</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
 
 </div>
 </div>
@@ -281,7 +385,42 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00048">48</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00068">68</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+
+</div>
+</div>
+<a id="ada13589eb45a6c009395f2d2f782b57d" name="ada13589eb45a6c009395f2d2f782b57d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada13589eb45a6c009395f2d2f782b57d">&#9670;&nbsp;</a></span>setStorageName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SequenceDiagramRepository::setStorageName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>newStorageName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Setter for storage name</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newStorageName</td><td>New name of used storage </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00088">88</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
 
 </div>
 </div>
@@ -308,6 +447,31 @@ Protected Attributes</h2></td></tr>
 <p ><a class="el" href="classClass.html">Class</a> diagram used as a source for classes, methods, etc. </p>
 
 <p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00024">24</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
+
+</div>
+</div>
+<a id="a2726dc11a860ca5a583aaf827e8145e1" name="a2726dc11a860ca5a583aaf827e8145e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2726dc11a860ca5a583aaf827e8145e1">&#9670;&nbsp;</a></span>storageName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string SequenceDiagramRepository::storageName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Name of used storage (when needed) </p>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramRepository_8h_source.html#l00029">29</a> of file <a class="el" href="SequenceDiagramRepository_8h_source.html">SequenceDiagramRepository.h</a>.</p>
 
 </div>
 </div>

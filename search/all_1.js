@@ -1,29 +1,5 @@
 var searchData=
 [
-  ['class_0',['Class',['../classClass.html#a72b5be9467db3127f5f629ea27579204',1,'Class::Class(const std::string name, const std::tuple&lt; int, int &gt; coordinates, const ClassType type=ClassType::NORMAL_CLASS)'],['../classClass.html#a5b97d41527df822c6b1211931f79ca15',1,'Class::Class()'],['../classClass.html',1,'Class']]],
-  ['class_2ecpp_1',['Class.cpp',['../Class_8cpp.html',1,'']]],
-  ['class_2eh_2',['Class.h',['../Class_8h.html',1,'']]],
-  ['classattribute_3',['ClassAttribute',['../classClassAttribute.html',1,'ClassAttribute'],['../classClassAttribute.html#a7815340f6e72894dc454c001cea457b4',1,'ClassAttribute::ClassAttribute()']]],
-  ['classattribute_2eh_4',['ClassAttribute.h',['../ClassAttribute_8h.html',1,'']]],
-  ['classdiagram_5',['ClassDiagram',['../classClassDiagram.html',1,'ClassDiagram'],['../classClassDiagram.html#a6c88930714e967fa1107b4598e8a504d',1,'ClassDiagram::ClassDiagram(std::vector&lt; Class &gt; classes, std::vector&lt; Relationship * &gt; relationships)'],['../classClassDiagram.html#a2f79209018fa70fd213bb8e62421e7ed',1,'ClassDiagram::ClassDiagram()']]],
-  ['classdiagram_6',['classDiagram',['../classSequenceDiagramRepository.html#af7885bc35d446fb44e7611ac4c65ed7b',1,'SequenceDiagramRepository']]],
-  ['classdiagram_2ecpp_7',['ClassDiagram.cpp',['../ClassDiagram_8cpp.html',1,'']]],
-  ['classdiagram_2eh_8',['ClassDiagram.h',['../ClassDiagram_8h.html',1,'']]],
-  ['classdiagramrepository_9',['ClassDiagramRepository',['../classClassDiagramRepository.html',1,'']]],
-  ['classdiagramrepository_2eh_10',['ClassDiagramRepository.h',['../ClassDiagramRepository_8h.html',1,'']]],
-  ['classmember_11',['ClassMember',['../classClassMember.html',1,'ClassMember'],['../classClassMember.html#a919f6712e92858147317e47f675dff73',1,'ClassMember::ClassMember()']]],
-  ['classmember_2eh_12',['ClassMember.h',['../ClassMember_8h.html',1,'']]],
-  ['classmethod_13',['ClassMethod',['../classClassMethod.html#a99ab1203bdb3063d23b03847eb02cb2a',1,'ClassMethod::ClassMethod()'],['../classClassMethod.html',1,'ClassMethod']]],
-  ['classmethod_2eh_14',['ClassMethod.h',['../ClassMethod_8h.html',1,'']]],
-  ['classmethodtype_15',['ClassMethodType',['../classClassMethodType.html#ad61150fd37d236899463baeb2a251706',1,'ClassMethodType::ClassMethodType(Value value)'],['../classClassMethodType.html#a0a51222fc35dfdea03ad6ae4acd929c7',1,'ClassMethodType::ClassMethodType()=default'],['../classClassMethodType.html',1,'ClassMethodType']]],
-  ['classmethodtype_2ecpp_16',['ClassMethodType.cpp',['../ClassMethodType_8cpp.html',1,'']]],
-  ['classmethodtype_2eh_17',['ClassMethodType.h',['../ClassMethodType_8h.html',1,'']]],
-  ['classreference_18',['ClassReference',['../classClassReference.html#ac62464d4cd17891dd324831148d09d27',1,'ClassReference::ClassReference(Class *referredClass)'],['../classClassReference.html#a75eb734d24234c580304fc47b670281b',1,'ClassReference::ClassReference(std::string referredClassName)'],['../classClassReference.html',1,'ClassReference']]],
-  ['classreference_2eh_19',['ClassReference.h',['../ClassReference_8h.html',1,'']]],
-  ['classtype_20',['ClassType',['../classClassType.html',1,'ClassType'],['../classClassType.html#a892c1feb7e35031b3e732f32d227d526',1,'ClassType::ClassType()=default'],['../classClassType.html#aaf64fdb6c4f4b769f1bb941684ede83f',1,'ClassType::ClassType(Value value)']]],
-  ['classtype_2ecpp_21',['ClassType.cpp',['../ClassType_8cpp.html',1,'']]],
-  ['classtype_2eh_22',['ClassType.h',['../ClassType_8h.html',1,'']]],
-  ['composition_23',['Composition',['../classComposition.html',1,'Composition'],['../classComposition.html#a8fa91acb6cadd32a6366950256307b38',1,'Composition::Composition()']]],
-  ['composition_2eh_24',['Composition.h',['../Composition_8h.html',1,'']]],
-  ['create_25',['CREATE',['../classMessageType.html#a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0',1,'MessageType']]]
+  ['back_0',['back',['../classHistoryStack.html#a456a66826dbb5fd94f3d44f43ddbcf7d',1,'HistoryStack']]],
+  ['backupdiagram_1',['backupDiagram',['../classClassDiagramManager.html#a86235eb00c05d1e09655cf256a684c0b',1,'ClassDiagramManager::backupDiagram()'],['../classSequenceDiagramManager.html#a50f8a62432d8a42552ec7219cd69c596',1,'SequenceDiagramManager::backupDiagram()']]]
 ];
