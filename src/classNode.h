@@ -73,6 +73,11 @@ public:
         return classEntity;
     }
 
+    void setBorderColor(QColor color)
+    {
+        borderColor = color;
+        update();
+    }
 private:
     QRectF borederRect();
     QRectF getNameBoundigRect() const;
@@ -81,6 +86,7 @@ private:
     const int lineIndent = 5;
     const int Padding = 10;
     Class classEntity;
+    QColor borderColor = Qt::black;
 
     std::vector<QString> getAttributePrintable() const;
     std::vector<QString> getMethodPrintable() const;

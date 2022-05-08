@@ -39,11 +39,17 @@ private:
     ClassEditDialog *classEditDialog;
 
     QToolButton *agregationToolItem;
-    QToolButton *fellowshipToolItem;
+    QToolButton *realizationToolItem;
     QToolButton *compositionToolItem;
     QToolButton *generalisationToolItem;
     QToolButton *classShapeToolItem;
     QToolButton *removeSelectedToolItem;
+    ClassNode *firstToSelect = nullptr;
+    ClassNode *secondToSelect = nullptr;
+    QColor realtionShipSelectedColor = Qt::darkGreen;
+    QColor nodeNormalColor = Qt::black;
+    QColor nodeColor = nodeNormalColor;
+    QColor nodeFirstSelectedColor = Qt::darkMagenta;
 
     void setModellingSpace();
     void setTaskBars();
@@ -52,14 +58,16 @@ private:
     void setMainWindow();
     void setTooBox();
     void connectComponents();
+    void setAllNodesColor(QColor color);
     QWidget *prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton);
     QWidget *prepareSequencDiagramTab(QString label);
-
+    ClassNode *getSelectedNode();
+    void connectLines();
 private slots:
     void addClassNode();
     void removeClassNode();
-
-signals:
+    void relationShipSelected();
+    void selectionChanged();
 
 };
 

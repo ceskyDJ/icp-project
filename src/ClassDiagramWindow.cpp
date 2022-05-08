@@ -48,7 +48,7 @@ void ClassDiagramWindow::initializeComponents()
     toolBox = new QToolBox;
 
     agregationToolItem = new QToolButton;
-    fellowshipToolItem = new QToolButton;
+    realizationToolItem = new QToolButton;
     compositionToolItem = new QToolButton;
     generalisationToolItem = new QToolButton;
     classShapeToolItem     = new QToolButton;
@@ -153,8 +153,8 @@ void ClassDiagramWindow::setTooBox()
     QGridLayout *toolboxLayout = new QGridLayout;
 
     QWidget *agregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregation", agregationToolItem);
-    QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", fellowshipToolItem);
-    QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Realization", compositionToolItem);
+    QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", compositionToolItem);
+    QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Realization", realizationToolItem);
     QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalization", generalisationToolItem);
     QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Class node", classShapeToolItem);
     QWidget *removeSelectedWidget = prepareToolItem(QIcon{":/closeCross.png"}, "Remove selected", removeSelectedToolItem);
@@ -194,4 +194,72 @@ void ClassDiagramWindow::connectComponents()
 {
     connect(classShapeToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::addClassNode);
     connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeClassNode);
+    connect(realizationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::relationShipSelected);
+    connect(classDiagramScene, &QGraphicsScene::selectionChanged, this, &ClassDiagramWindow::selectionChanged);
+}
+
+void ClassDiagramWindow::setAllNodesColor(QColor color)
+{
+    nodeColor = color;
+    QList<QGraphicsItem *> allNodes = classDiagramScene->items();
+    for(QGraphicsItem *maybeNode : allNodes)
+    {
+        ClassNode *definetlyNode = dynamic_cast<ClassNode *>(maybeNode);
+        if(definetlyNode)
+            definetlyNode->setBorderColor(nodeColor);
+
+    }
+}
+
+void ClassDiagramWindow::relationShipSelected()
+{
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+}
+
+void ClassDiagramWindow::selectionChanged()
+{
+    if (nodeColor == Qt::black)
+        return;
+    if(nodeColor == realtionShipSelectedColor && firstToSelect == nullptr)
+    {
+        firstToSelect = getSelectedNode();
+        if(firstToSelect)
+            firstToSelect->setBorderColor(nodeFirstSelectedColor);
+        classDiagramScene->clearSelection();
+    }
+    else if(nodeColor == realtionShipSelectedColor && firstToSelect != nullptr) //first node selected and still in selctionMode
+    {
+        secondToSelect = getSelectedNode();
+        if(secondToSelect && secondToSelect != firstToSelect)
+        {
+            setAllNodesColor(nodeNormalColor);
+            classDiagramScene->clearSelection();
+            connectLines();
+        }
+    }
+}
+
+ClassNode *ClassDiagramWindow::getSelectedNode()
+{
+    ClassNode *toReturn;
+    QList<QGraphicsItem *> selectedNodes = classDiagramScene->selectedItems();
+    if(selectedNodes.count() > 1)
+    {
+        for(QGraphicsItem *node : selectedNodes)
+        {
+            toReturn = dynamic_cast<ClassNode*>(node);
+            if(toReturn)
+                return toReturn;
+        }
+    }
+    else if (selectedNodes.count() == 1)
+        return dynamic_cast<ClassNode *>(selectedNodes[0]);
+    return nullptr;
+}
+
+void ClassDiagramWindow::connectLines()
+{
+    firstToSelect = nullptr;
+    secondToSelect = nullptr;
 }
