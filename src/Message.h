@@ -13,6 +13,7 @@
 #include "MessageType.h"
 #include "Actor.h"
 #include "Object.h"
+#include "MethodReference.h"
 
 /**
  * Message from sequence diagram
@@ -32,9 +33,9 @@ class Message
 
   private:
     /**
-     * Name of the message
+     * Pointer to method the message is bind to
      */
-    std::string name;
+    MethodReference method;
     /**
      * Type of the message
      */
@@ -56,39 +57,39 @@ class Message
     /**
      * Constructor for initializing with known name, type of the message and sender and recipient nodes
      *
-     * @param name Message name
+     * @param method Pointer to method the message is bind to
      * @param messageType Type of the message
      * @param messageSender Pointer to node sending the message
      * @param messageRecipient Pointer to node receiving the message
      * @param sendingTime Time when to send the message (at timeline, normalized - interval \<0; 1\>)
      */
     Message(
-            std::string name,
+            MethodReference method,
             MessageType messageType,
             MessageSender *messageSender,
             MessageRecipient *messageRecipient,
             double sendingTime
-    ): name{name}, type{messageType}, messageSender{messageSender}, messageRecipient{messageRecipient},
+    ): method{method}, type{messageType}, messageSender{messageSender}, messageRecipient{messageRecipient},
         sendingTime{sendingTime} {};
 
     /**
-     * Getter for message name
+     * Getter for bind method
      *
-     * @return Name of the message
+     * @return Pointer to method the message is bind to
      */
-    std::string getName() const
+    MethodReference getMethod() const
     {
-        return name;
+        return method;
     }
 
     /**
-     * Setter for message name
+     * Setter for bind method
      *
-     * @param newName New message name
+     * @param newMethod Pointer to new method message is bind to
      */
-    void setName(const std::string &newName)
+    void setName(MethodReference newMethod)
     {
-        name = newName;
+        method = newMethod;
     }
 
     /**
@@ -167,7 +168,7 @@ class Message
      */
     bool operator==(Message &other)
     {
-        return name == other.name && type == other.type && messageSender == other.messageSender
+        return method->getName() == other.method->getName() && type == other.type && messageSender == other.messageSender
             && messageRecipient == other.messageRecipient && sendingTime == other.sendingTime;
     }
 

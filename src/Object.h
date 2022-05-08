@@ -12,6 +12,7 @@
 #include <memory>
 #include "Class.h"
 #include "MessageNode.h"
+#include "ClassReference.h"
 
 /**
  * Entity representing Object from sequence diagram
@@ -21,7 +22,7 @@ class Object: public MessageNode
     /**
      * Pointer to instance class of this object
      */
-    const Class *instanceClass;
+    ClassReference instanceClass;
     /**
      * Start position of lifeline of the object at timeline (normalized => number in interval \<0; 1\>)
      */
@@ -33,11 +34,6 @@ class Object: public MessageNode
 
   public:
     /**
-     * Implicit class constructor
-     */
-    Object(): MessageNode{}, instanceClass{nullptr}, lifeStart{0}, lifeLength{0.3} {};
-
-    /**
      * Constructor for initializing with known name, instance class and lifeline position
      *
      * @param instanceClass Pointer to the class the object is created from
@@ -46,20 +42,30 @@ class Object: public MessageNode
      * @param name Name of the object (optional)
      */
     explicit Object(
-            const Class *instanceClass,
+            ClassReference instanceClass,
             double lifeStart = 0.0,
             double lifeLength = 0.3,
             const std::string name = ""
     ): MessageNode{name}, instanceClass{instanceClass}, lifeStart{lifeStart}, lifeLength{lifeLength} {};
 
     /**
-     * Get instance class
+     * Getter for instance class
      *
      * @return Pointer to instance class (the class object is created from)
      */
-    Class *getInstanceClass() const
+    ClassReference getInstanceClass()
     {
-        return const_cast<Class *>(instanceClass);
+        return instanceClass;
+    }
+
+    /**
+     * Constant getter for instance class
+     *
+     * @return Pointer to instance class (the class object is created from)
+     */
+    ClassReference getInstanceClass() const
+    {
+        return instanceClass;
     }
 
     /**
@@ -67,7 +73,7 @@ class Object: public MessageNode
      *
      * @param newClassInstance Pointer to new instance class
      */
-    void setInstanceClass(const Class *newInstanceClass)
+    void setInstanceClass(ClassReference newInstanceClass)
     {
         instanceClass = newInstanceClass;
     }

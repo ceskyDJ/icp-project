@@ -199,6 +199,15 @@ class Class
     }
 
     /**
+     * Finds class method by its name
+     *
+     * @param nameToFind Name of the class method search for
+     * @return Pointer to found class method
+     * @throw std::invalid_argument Non-existing class method with searched name in this class
+     */
+    ClassMethod *findMethodByName(std::string nameToFind);
+
+    /**
      * Equals operator
      *
      * @param other Class to compare with

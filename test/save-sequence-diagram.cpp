@@ -47,14 +47,14 @@ int main()
     Object xiaomiPhone{&phone, 0.2, 0.3, "someXiaomi"};
     sequenceDiagram.addObject(xiaomiPhone);
 
-    Message createSamsung{"<<create>>", MessageType::CREATE, &user, &samsungPhone, 0.2};
+    Message createSamsung{MethodReference{"<<create>>"}, MessageType::CREATE, &user, &samsungPhone, 0.2};
     sequenceDiagram.addMessage(createSamsung);
-    Message createXiaomi{"<<create>>", MessageType::CREATE, &user, &xiaomiPhone, 0.1};
+    Message createXiaomi{MethodReference{"<<create>>"}, MessageType::CREATE, &user, &xiaomiPhone, 0.1};
     sequenceDiagram.addMessage(createXiaomi);
-    Message isSamsungValuable{"isValuable()", MessageType::SYNC, &user, &samsungPhone, 0.4};
+    Message isSamsungValuable{MethodReference{"isValuable()"}, MessageType::SYNC, &user, &samsungPhone, 0.4};
     sequenceDiagram.addMessage(isSamsungValuable);
-    Message samsungValuableReply{"result", MessageType::REPLY, &samsungPhone, &user, 0.6};
-    Message destroyXiaomi{"<<destroy>>", MessageType::DESTROY, &user, &xiaomiPhone, 0.4};
+    Message samsungValuableReply{MethodReference{"result"}, MessageType::REPLY, &samsungPhone, &user, 0.6};
+    Message destroyXiaomi{MethodReference{"<<destroy>>"}, MessageType::DESTROY, &user, &xiaomiPhone, 0.4};
     sequenceDiagram.addMessage(destroyXiaomi);
 
     FileSequenceDiagramRepository repo{classDiagram, "examples/sequence-diagram-output.xml"};
