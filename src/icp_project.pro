@@ -57,7 +57,8 @@ HEADERS += \
     ObjectReference.h \
     MethodReference.h \
     ClassDiagramManager.h \
-    SequenceDiagramManager.h
+    SequenceDiagramManager.h \
+    HistoryStack.h
 
 SOURCES += \
     AccessModifier.cpp \
