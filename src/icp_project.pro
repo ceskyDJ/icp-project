@@ -64,6 +64,7 @@ HEADERS += \
     SequenceDiagramMemento.h \
     ClassDiagramWindow.h \
     MethodParameterEditWidget.h \
+    Line.h \
     ClassEditDialog.h \
     AttributeEditWidget.h \
     MethodEditWidget.h
@@ -82,6 +83,7 @@ SOURCES += \
     SequenceDiagramManager.cpp \
     ClassDiagramWindow.cpp \
     MethodParameterEditWidget.cpp \
+    Line.cpp \
     classNode.cpp \
     ClassEditDialog.cpp \
     AttributeEditWidget.cpp \

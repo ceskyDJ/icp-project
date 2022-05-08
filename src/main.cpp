@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QPushButton>
-#include <ClassDiagramWindow.h>
+#include "ClassDiagramWindow.h"
 
 int main(int argc, char **argv)
 {
@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 
  ClassDiagramWindow classDiagramWindow;
 
- classDiagramWindow.show();
+ classDiagramWindow.showMaximized();
 
  return app.exec();
 }

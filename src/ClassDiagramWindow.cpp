@@ -235,7 +235,7 @@ void ClassDiagramWindow::selectionChanged()
         {
             setAllNodesColor(nodeNormalColor);
             classDiagramScene->clearSelection();
-            connectLines();
+            connectNodes();
         }
     }
 }
@@ -258,8 +258,14 @@ ClassNode *ClassDiagramWindow::getSelectedNode()
     return nullptr;
 }
 
-void ClassDiagramWindow::connectLines()
+void ClassDiagramWindow::connectNodes()
 {
+    Line *newLine = new Line(firstToSelect,secondToSelect);
+    classDiagramScene->addItem(newLine);
+    firstToSelect->addLine(newLine);
+    secondToSelect->addLine(newLine);
+
     firstToSelect = nullptr;
     secondToSelect = nullptr;
+
 }

@@ -9,6 +9,9 @@
 #include "Class.h"
 #include "ClassAttribute.h"
 #include "ClassMethod.h"
+#include "Line.h"
+
+class Line;
 
 class ClassNode : public QGraphicsItem
 {
@@ -78,6 +81,9 @@ public:
         borderColor = color;
         update();
     }
+
+    void addLine(Line* newLine);
+    void removeLine(Line* oldLine);
 private:
     QRectF borederRect();
     QRectF getNameBoundigRect() const;
@@ -87,6 +93,8 @@ private:
     const int Padding = 10;
     Class classEntity;
     QColor borderColor = Qt::black;
+    QSet<Line *> connectedLines;
+
 
     std::vector<QString> getAttributePrintable() const;
     std::vector<QString> getMethodPrintable() const;
@@ -96,6 +104,8 @@ private:
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
     void setFontItalic(bool enable, QPainter *painter);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
+    void rePaintLines();
 };
 
 #endif // CLASSNODE_H

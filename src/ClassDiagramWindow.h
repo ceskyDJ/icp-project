@@ -19,6 +19,7 @@
 #include <QLabel>
 #include "classNode.h"
 #include "ClassEditDialog.h"
+#include "Line.h"
 
 class ClassDiagramWindow : public QMainWindow
 {
@@ -62,7 +63,7 @@ private:
     QWidget *prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton);
     QWidget *prepareSequencDiagramTab(QString label);
     ClassNode *getSelectedNode();
-    void connectLines();
+    void connectNodes();
 private slots:
     void addClassNode();
     void removeClassNode();

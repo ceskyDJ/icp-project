@@ -54,6 +54,8 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     QRectF wholeRect = getWholeRect(attributeVector, methodVector);
 
     int maxWidth = wholeRect.width();
+    nameRect.setLeft(wholeRect.x());
+    nameRect.setTop(wholeRect.y());
 
     nameRect.setWidth(maxWidth);
     nameRect.setHeight(nameRect.height() + Padding);
@@ -89,7 +91,6 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         if(methodEntities[i].getType() == (ClassMethodType)ClassMethodType::ABSTRACT)
             setFontItalic(false, painter);
     }
-
     painter->drawRect(incrementalRect);
 }
 
@@ -259,4 +260,27 @@ void ClassNode::setFontItalic(bool enable, QPainter *painter)
     QFont font = painter->font();
     font.setItalic(enable);
     painter->setFont(font);
+}
+
+void ClassNode::addLine(Line* newLine)
+{
+    connectedLines.insert(newLine);
+}
+
+void ClassNode::removeLine(Line* oldLine)
+{
+    connectedLines.remove(oldLine);
+}
+
+void ClassNode::rePaintLines()
+{
+    for(Line *line : connectedLines)
+        line->drawLine();
+}
+
+QVariant ClassNode::itemChange(GraphicsItemChange change, const QVariant &value)
+{
+    if (change == ItemPositionHasChanged)
+        rePaintLines();
+    return QGraphicsItem::itemChange(change, value);
 }
