@@ -12,6 +12,7 @@
 #include "Actor.h"
 #include "Object.h"
 #include "Message.h"
+#include "SequenceDiagramMemento.h"
 
 /**
  * Entity for complete sequence diagram
@@ -210,6 +211,28 @@ class SequenceDiagram
      * @throw std::invalid_argument Message is not in sequence diagram
      */
     void removeMessage(Message messageToRemove);
+
+    /**
+     * Creates memento of current state
+     *
+     * @return Created memento
+     */
+    SequenceDiagramMemento createMemento()
+    {
+        return SequenceDiagramMemento{actors, objects, messages};
+    }
+
+    /**
+     * Sets state from memento
+     *
+     * @param memento Memento to use
+     */
+    void setMemento(SequenceDiagramMemento memento)
+    {
+        actors = memento.getActors();
+        objects = memento.getObjects();
+        messages = memento.getMessages();
+    }
 };
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_H

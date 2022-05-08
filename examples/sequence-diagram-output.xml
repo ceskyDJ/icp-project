@@ -7,17 +7,21 @@
         <object instance-class="Phone" life-length="0.3" life-start="0.2">someXiaomi</object>
     </objects>
     <messages>
-        <message type="CREATE" name="&lt;&lt;create>>" sending-time="0.2">
+        <message sending-time="0.2" name="&lt;&lt;create>>" type="CREATE">
             <sender type="ACTOR">User</sender>
+            <recipient type="OBJECT">someSamsung</recipient>
         </message>
-        <message type="CREATE" name="&lt;&lt;create>>" sending-time="0.1">
+        <message sending-time="0.1" name="&lt;&lt;create>>" type="CREATE">
             <sender type="ACTOR">User</sender>
+            <recipient type="OBJECT">someXiaomi</recipient>
         </message>
-        <message type="SYNC" name="isValuable()" sending-time="0.4">
+        <message sending-time="0.4" name="isValuable()" type="SYNC">
             <sender type="ACTOR">User</sender>
+            <recipient type="OBJECT">someSamsung</recipient>
         </message>
-        <message type="DESTROY" name="&lt;&lt;destroy>>" sending-time="0.4">
+        <message sending-time="0.4" name="&lt;&lt;destroy>>" type="DESTROY">
             <sender type="ACTOR">User</sender>
+            <recipient type="OBJECT">someXiaomi</recipient>
         </message>
     </messages>
 </sequence-diagram>

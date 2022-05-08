@@ -18,48 +18,18 @@
  */
 class FileClassDiagramRepository: public ClassDiagramRepository
 {
-    /**
-     * Name of the file to use (full relative/absolute file)
-     */
-    std::string fileName;
-
   public:
     /**
      * Implicit constructor
      */
-    FileClassDiagramRepository(): fileName{} {};
+    FileClassDiagramRepository(): ClassDiagramRepository{} {};
 
     /**
      * Constructor for initialization with known name of file
      *
      * @param fileName Name of the file to work with (full relative/absolute path)
      */
-    explicit FileClassDiagramRepository(std::string fileName): fileName{fileName} {};
-
-    /**
-     * Virtual default destructor
-     */
-    virtual ~FileClassDiagramRepository() = default;
-
-    /**
-     * Getter for used file name
-     *
-     * @return Used file name (full relative/absolute path)
-     */
-    std::string getFileName() const
-    {
-        return fileName;
-    }
-
-    /**
-     * Setter for used file name
-     *
-     * @param newFileName New file name to use (full relative/absolute path)
-     */
-    void setFileName(const std::string &newFileName)
-    {
-        fileName = newFileName;
-    }
+    explicit FileClassDiagramRepository(std::string fileName): ClassDiagramRepository{fileName} {};
 
     /**
      * Loads diagram from defined source

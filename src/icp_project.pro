@@ -55,7 +55,12 @@ HEADERS += \
     InvalidDataStorageException.h \
     InvalidInputDataException.h \
     ObjectReference.h \
-    MethodReference.h
+    MethodReference.h \
+    ClassDiagramManager.h \
+    SequenceDiagramManager.h \
+    HistoryStack.h \
+    ClassDiagramMemento.h \
+    SequenceDiagramMemento.h
 
 SOURCES += \
     AccessModifier.cpp \
@@ -67,4 +72,6 @@ SOURCES += \
     Class.cpp \
     FileClassDiagramRepository.cpp \
     FileSequenceDiagramRepository.cpp \
+    ClassDiagramManager.cpp \
+    SequenceDiagramManager.cpp \
     main.cpp

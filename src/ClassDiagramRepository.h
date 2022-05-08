@@ -16,6 +16,52 @@
  */
 class ClassDiagramRepository
 {
+  protected:
+    /**
+     * Name of used storage (when needed)
+     */
+    std::string storageName;
+
+    /**
+     * Implicit constructor
+     */
+    ClassDiagramRepository(): storageName{} {};
+
+    /**
+     * Constructor for initializing with known storage name
+     *
+     * @param storageName Name of the storage to use (when type of the storage needs
+     * it otherwise use implicit constructor)
+     */
+    explicit ClassDiagramRepository(std::string storageName): storageName{storageName} {};
+
+    /**
+     * Virtual default destructor
+     */
+    virtual ~ClassDiagramRepository() = default;
+
+  public:
+    /**
+     * Getter for storage name
+     *
+     * @return Name of the used storage (when needed, could be empty string when the source
+     * type doesn't use names)
+     */
+    std::string getStorageName() const
+    {
+        return storageName;
+    }
+
+    /**
+     * Setter for storage name
+     *
+     * @param newStorageName New name of used storage
+     */
+    void setStorageName(const std::string &newStorageName)
+    {
+        storageName = newStorageName;
+    }
+
     /**
      * Loads diagram from defined source
      *

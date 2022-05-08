@@ -17,20 +17,11 @@
  */
 class FileSequenceDiagramRepository: public SequenceDiagramRepository
 {
-    /**
-     * Name of the file to use (full relative/absolute file)
-     */
-    std::string fileName;
-
   public:
     /**
-     * Constructor for initialization with known class diagram
-     *
-     * @param classDiagram Class diagram to use as a source for classes, methods, etc.
+     * Implicit contructor
      */
-    explicit FileSequenceDiagramRepository(
-        ClassDiagram classDiagram
-    ): SequenceDiagramRepository{classDiagram}, fileName{} {};
+    explicit FileSequenceDiagramRepository(): SequenceDiagramRepository{} {};
 
     /**
      * Constructor for initialization with known name of file
@@ -41,32 +32,7 @@ class FileSequenceDiagramRepository: public SequenceDiagramRepository
     explicit FileSequenceDiagramRepository(
         ClassDiagram classDiagram,
         std::string fileName
-    ): SequenceDiagramRepository{classDiagram}, fileName{fileName} {};
-
-    /**
-     * Virtual default destructor
-     */
-    virtual ~FileSequenceDiagramRepository() = default;
-
-    /**
-     * Getter for used file name
-     *
-     * @return Used file name (full relative/absolute path)
-     */
-    std::string getFileName() const
-    {
-        return fileName;
-    }
-
-    /**
-     * Setter for used file name
-     *
-     * @param newFileName New file name to use (full relative/absolute path)
-     */
-    void setFileName(const std::string &newFileName)
-    {
-        fileName = newFileName;
-    }
+    ): SequenceDiagramRepository{classDiagram, fileName} {};
 
     /**
      * Loads diagram from defined source
