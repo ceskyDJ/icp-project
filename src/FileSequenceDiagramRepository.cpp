@@ -66,6 +66,14 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
         }
 
         Actor objActor{xmlActor.text().toStdString()};
+
+        // Check for actor name duplicities
+        try {
+            sequenceDiagram.findActorByName(objActor.getName());
+
+            throw InvalidInputDataException{"Names of actors must be unique. Duplicate name: " + objActor.getName()};
+        } catch (std::invalid_argument &e) {}
+
         sequenceDiagram.addActor(objActor);
 
         xmlActor = xmlActor.nextSiblingElement("actor");
@@ -82,7 +90,15 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
 
     QDomElement xmlObject{objects.item(0).toElement()};
     while (!xmlObject.isNull()) {
-        sequenceDiagram.addObject(loadObject(xmlObject));
+        Object loadedObject{loadObject(xmlObject)};
+
+        try {
+            sequenceDiagram.findObjectByName(loadedObject.getName());
+
+            throw InvalidInputDataException{"Names of objects must be unique. Duplicate name: " + loadedObject.getName()};
+        } catch (std::invalid_argument &e) {}
+
+        sequenceDiagram.addObject(loadedObject);
 
         xmlObject = xmlObject.nextSiblingElement("object");
     }
