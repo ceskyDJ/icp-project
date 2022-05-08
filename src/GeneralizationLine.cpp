@@ -31,7 +31,8 @@ void GeneralizationLine::paint(QPainter * painter, const QStyleOptionGraphicsIte
     rectangle.append(QPoint(arrow.x(), arrow.y() - size/2));
 
 
-    painter->drawLines(rectangle);
+    for (int i = 0; i < rectangle.count(); i+=2)
+        painter->drawLine(rectangle[i], rectangle[i+1]);
 
     painter->drawLine(line);
 }
