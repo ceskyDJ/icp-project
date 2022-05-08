@@ -6,6 +6,7 @@
 
 # Project configuration
 TEMPLATE = app
+RESOURCES = ../rsc.qrc
 TARGET = icp_project
 
 # Qt configuration
@@ -26,6 +27,8 @@ QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
 # Source codes
 HEADERS += \
     ClassDiagram.h \
+    Line.h \
+    MethodParameterEditWidget.h \
     SequenceDiagram.h \
     ClassMember.h \
     ClassMethod.h \
@@ -60,7 +63,16 @@ HEADERS += \
     SequenceDiagramManager.h \
     HistoryStack.h \
     ClassDiagramMemento.h \
-    SequenceDiagramMemento.h
+    SequenceDiagramMemento.h \
+    ClassDiagramWindow.h \
+    MethodParameterEditWidget.h \
+    Line.h \
+    ClassEditDialog.h \
+    AttributeEditWidget.h \
+    MethodEditWidget.h \
+    AgregationLine.h \
+    CompositionLine.h \
+    GeneralizationLine.h
 
 SOURCES += \
     AccessModifier.cpp \
@@ -74,4 +86,14 @@ SOURCES += \
     FileSequenceDiagramRepository.cpp \
     ClassDiagramManager.cpp \
     SequenceDiagramManager.cpp \
+    ClassDiagramWindow.cpp \
+    MethodParameterEditWidget.cpp \
+    Line.cpp \
+    classNode.cpp \
+    ClassEditDialog.cpp \
+    AttributeEditWidget.cpp \
+    MethodEditWidget.cpp \
+    AgregationLine.cpp \
+    CompositionLine.cpp \
+    GeneralizationLine.cpp \
     main.cpp

@@ -11,6 +11,7 @@
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 /**
  * Enumeration for class method type
@@ -108,6 +109,11 @@ class ClassMethodType
      * @throw std::invalid_argument Invalid value for deserialization
      */
     static ClassMethodType deserialize(std::string &serializedForm);
+
+    static std::vector<ClassMethodType> values()
+    {
+        return std::vector<ClassMethodType>{Value::NORMAL, Value::ABSTRACT};
+    }
 };
 
 #endif //ICP_PROJECT_CLASS_METHODTYPE_H

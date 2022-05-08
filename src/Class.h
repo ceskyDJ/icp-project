@@ -109,11 +109,31 @@ class Class
     }
 
     /**
+     * Setter for class type
+     *
+     * @param Class type
+     */
+    void setClassType(ClassType newClasstype)
+    {
+        classType = newClasstype;
+    }
+
+    /**
      * Getter for class type
      *
      * @return Class type
      */
-    ClassType getClassType() const
+    ClassType getClassType()
+    {
+        return classType;
+    }
+
+    /**
+     * Constant getter for class type
+     *
+     * @return Class type
+     */
+    const ClassType getClassType() const
     {
         return classType;
     }

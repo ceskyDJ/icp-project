@@ -11,6 +11,7 @@
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 /**
  * Enumeration for type of the "class" from class diagram
@@ -112,6 +113,11 @@ class ClassType
      * @throw std::invalid_argument Invalid value for deserialization
      */
     static ClassType deserialize(std::string serializedForm);
+
+    static std::vector<ClassType> values()
+    {
+        return std::vector<ClassType>{Value::NORMAL_CLASS, Value::ABSTRACT_CLASS, Value::INTERFACE};
+    }
 };
 
 #endif //ICP_PROJECT_CLASS_TYPE_H

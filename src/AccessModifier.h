@@ -11,6 +11,7 @@
 
 #include <cstdint>
 #include <string>
+#include <vector>
 #include <stdexcept>
 
 /**
@@ -101,6 +102,7 @@ class AccessModifier
             case PACKAGE_PRIVATE:
                 return "~";
         }
+        return "";
     }
 
     /**
@@ -155,6 +157,16 @@ class AccessModifier
      * @throw std::invalid_argument Invalid value for deserialization
      */
     static AccessModifier deserialize(std::string serializedForm);
+
+    /**
+     * Return all types of access modifier
+     *
+     * @return std::vector of all access modifiers
+     */
+    static std::vector<AccessModifier> values()
+    {
+        return std::vector<AccessModifier>{Value::PUBLIC, Value::PROTECTED, Value::PRIVATE, Value::PACKAGE_PRIVATE};
+    }
 };
 
 #endif //ICP_PROJECT_ACCESS_MODIFIER_H

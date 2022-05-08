@@ -75,7 +75,7 @@ class ClassMethod: public ClassMember
      *
      * @return Method parameters
      */
-    std::vector<MethodParameter> &getParameters()
+    std::vector<MethodParameter> getParameters()
     {
         return parameters;
     }
@@ -85,7 +85,7 @@ class ClassMethod: public ClassMember
      *
      * @return Method parameters
      */
-    const std::vector<MethodParameter> &getParameters() const
+    const std::vector<MethodParameter> getParameters() const
     {
         return parameters;
     }
