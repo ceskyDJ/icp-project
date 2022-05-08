@@ -84,6 +84,17 @@ public:
 
     void addLine(Line* newLine);
     void removeLine(Line* oldLine);
+
+    QSet<Line *> getConnections()
+    {
+        return connectedLines;
+    }
+
+    void removeConnection(Line *line)
+    {
+        connectedLines.remove(line);
+    }
+
 private:
     QRectF borederRect();
     QRectF getNameBoundigRect() const;

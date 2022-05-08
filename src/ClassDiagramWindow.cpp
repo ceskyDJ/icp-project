@@ -186,8 +186,18 @@ void ClassDiagramWindow::removeClassNode()
 {
     QList<QGraphicsItem *> selectedItems =  classDiagramScene->selectedItems();
     for (QGraphicsItem *item : selectedItems)
-        classDiagramScene->removeItem(item);
-    qDeleteAll(selectedItems);
+    {
+        ClassNode *node = dynamic_cast<ClassNode *>(item);
+        if(node)
+        {
+            QSet<Line *> connections = node->getConnections();
+            for(Line * connection : connections)
+                delete connection;
+
+            classDiagramScene->removeItem(item);
+            delete item;
+        }
+    }
 }
 
 void ClassDiagramWindow::connectComponents()
@@ -267,5 +277,4 @@ void ClassDiagramWindow::connectNodes()
 
     firstToSelect = nullptr;
     secondToSelect = nullptr;
-
 }

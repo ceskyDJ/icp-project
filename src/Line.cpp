@@ -1,13 +1,20 @@
 #include "Line.h"
 #include <QLineF>
 #include <QPointF>
+#include <QPen>
+#include <QPainter>
+#include <QTextItem>
+#include <QInputDialog>
+#include <QGraphicsSceneMouseEvent>
+
+class LineText;
 
 Line::Line(ClassNode *fromNode, ClassNode *toNode)
 {
     fromClassNode = fromNode;
     toClassNode = toNode;
     setZValue(-1);
-
+    setPen(QPen{Qt::black, 2, Qt::SolidLine});
     drawLine();
 }
 
@@ -61,4 +68,29 @@ QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node)
             return toReturn;
     }
     return toReturn;
+}
+
+void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
+{
+    QLineF line = getShortestLine(fromClassNode, toClassNode);
+    QFontMetricsF metrics{qApp->font()};
+    QRectF boundingRect = metrics.boundingRect(name);
+
+    QRectF rect = boundingRect;
+    rect.setTopLeft(line.center());
+    rect.setSize(boundingRect.size());
+    painter->drawText(rect,Qt::AlignLeft ,name, &boundingRect);
+    QGraphicsLineItem::paint(painter, option, widget);
+}
+
+void Line::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    name = QInputDialog::getText(event->widget(), "Edit name", "Enter new Name:", QLineEdit::Normal, name);
+    update();
+}
+
+Line::~Line()
+{
+    fromClassNode->removeConnection(this);
+    toClassNode->removeConnection(this);
 }

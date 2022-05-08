@@ -70,6 +70,7 @@ private slots:
     void relationShipSelected();
     void selectionChanged();
 
+
 };
 
 #endif // CLASSDIAGRAMWINDOW_H

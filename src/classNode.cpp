@@ -38,9 +38,9 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 {
     QPen pen;
     if(option->state & QStyle::State_Selected)
-        pen = QPen{Qt::red,2,Qt::DotLine};
+        pen = QPen{Qt::red,3,Qt::DotLine};
     else
-        pen = QPen{borderColor, 1, Qt::SolidLine};
+        pen = QPen{borderColor, 2, Qt::SolidLine};
 
     if (classEntity.getClassType() == (ClassType)ClassType::ABSTRACT_CLASS)
         setFontItalic(true, painter);
