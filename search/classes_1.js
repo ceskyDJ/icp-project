@@ -7,6 +7,7 @@ var searchData=
   ['classmember_4',['ClassMember',['../classClassMember.html',1,'']]],
   ['classmethod_5',['ClassMethod',['../classClassMethod.html',1,'']]],
   ['classmethodtype_6',['ClassMethodType',['../classClassMethodType.html',1,'']]],
-  ['classtype_7',['ClassType',['../classClassType.html',1,'']]],
-  ['composition_8',['Composition',['../classComposition.html',1,'']]]
+  ['classreference_7',['ClassReference',['../classClassReference.html',1,'']]],
+  ['classtype_8',['ClassType',['../classClassType.html',1,'']]],
+  ['composition_9',['Composition',['../classComposition.html',1,'']]]
 ];

@@ -8,5 +8,6 @@ var searchData=
   ['filesequencediagramrepository_2eh_5',['FileSequenceDiagramRepository.h',['../FileSequenceDiagramRepository_8h.html',1,'']]],
   ['findactorbyname_6',['findActorByName',['../classSequenceDiagram.html#ae4224fb186223852c93ea0d54e3186ad',1,'SequenceDiagram']]],
   ['findclassbyname_7',['findClassByName',['../classClassDiagram.html#ad41ba37e08f8638507397a6fb68d391a',1,'ClassDiagram']]],
-  ['findobjectbyname_8',['findObjectByName',['../classSequenceDiagram.html#a3760bfbb4c1711bb73b1aa8051fc30c2',1,'SequenceDiagram']]]
+  ['findmethodbyname_8',['findMethodByName',['../classClass.html#a579716ad172c96dcda2a250efccd32a0',1,'Class']]],
+  ['findobjectbyname_9',['findObjectByName',['../classSequenceDiagram.html#a3760bfbb4c1711bb73b1aa8051fc30c2',1,'SequenceDiagram']]]
 ];

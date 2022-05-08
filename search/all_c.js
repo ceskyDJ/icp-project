@@ -14,16 +14,16 @@ var searchData=
   ['setclasses_11',['setClasses',['../classClassDiagram.html#afc3ea9ad24aebc5132e7cc00f79cff02',1,'ClassDiagram']]],
   ['setcoordinates_12',['setCoordinates',['../classClass.html#a3917168d2aa70a72ea1c844769b36a92',1,'Class']]],
   ['setdatatype_13',['setDataType',['../classClassAttribute.html#a57d8e25f6452ba6e9c5ac48bcbfa6e2b',1,'ClassAttribute::setDataType()'],['../classMethodParameter.html#a0d3f9c289ef33b6bdac811f3a94add56',1,'MethodParameter::setDataType()']]],
-  ['setfilename_14',['setFileName',['../classFileClassDiagramRepository.html#a67975ebf06f70f9a4fb420d09c87bf30',1,'FileClassDiagramRepository::setFileName()'],['../classFileSequenceDiagramRepository.html#aee71420b6e8b62a26a417db67ce12ef4',1,'FileSequenceDiagramRepository::setFileName()']]],
+  ['setfilename_14',['setFileName',['../classFileSequenceDiagramRepository.html#aee71420b6e8b62a26a417db67ce12ef4',1,'FileSequenceDiagramRepository::setFileName()'],['../classFileClassDiagramRepository.html#a67975ebf06f70f9a4fb420d09c87bf30',1,'FileClassDiagramRepository::setFileName()']]],
   ['setfirstclasscardinality_15',['setFirstClassCardinality',['../classUndirectedAssociation.html#a830f75fb203d02537adb4477bd41cbed',1,'UndirectedAssociation']]],
-  ['setinstanceclass_16',['setInstanceClass',['../classObject.html#ac44f0b887417984c8a823446b71aa555',1,'Object']]],
+  ['setinstanceclass_16',['setInstanceClass',['../classObject.html#abff84bf41d424ba8a7cbeb845cdf5cf6',1,'Object']]],
   ['setlifelength_17',['setLifeLength',['../classObject.html#a6f57d53be3d5351bd0b67b743da76719',1,'Object']]],
   ['setlifestart_18',['setLifeStart',['../classObject.html#a9e250595474a91e4b7b993554c2ae46d',1,'Object']]],
   ['setmessagerecipient_19',['setMessageRecipient',['../classMessage.html#aadaebafb7e5b9cf16f7ad7f6a720ee8e',1,'Message']]],
   ['setmessages_20',['setMessages',['../classSequenceDiagram.html#a38e195fb59b3826322d8fd11b0cd0dd1',1,'SequenceDiagram']]],
   ['setmessagesender_21',['setMessageSender',['../classMessage.html#aee1c99d600906bc227ab4dcefa1d9909',1,'Message']]],
   ['setmethods_22',['setMethods',['../classClass.html#a02e0585a243150f901bb2a97769a8aae',1,'Class']]],
-  ['setname_23',['setName',['../classMessage.html#a1a71bb3a593b0ed1f9d77cc0a1cba869',1,'Message::setName()'],['../classRelationship.html#a8451b136152544a37fdecba035c90ffc',1,'Relationship::setName()'],['../classMethodParameter.html#aa4c9580b94ca7de6d8967402d8c1f099',1,'MethodParameter::setName()'],['../classMessageNode.html#a268c46fad5c530ccee06888d050d9865',1,'MessageNode::setName()'],['../classClassMember.html#abf04800eca337d87b378a2db0d870a38',1,'ClassMember::setName()'],['../classClass.html#a9eba120964aac4371012e3a23b96f20c',1,'Class::setName()']]],
+  ['setname_23',['setName',['../classMessageNode.html#a268c46fad5c530ccee06888d050d9865',1,'MessageNode::setName()'],['../classRelationship.html#a8451b136152544a37fdecba035c90ffc',1,'Relationship::setName()'],['../classMethodParameter.html#aa4c9580b94ca7de6d8967402d8c1f099',1,'MethodParameter::setName()'],['../classMessage.html#af9e17829092936fb11ab5d13e763ce2e',1,'Message::setName()'],['../classClassMember.html#abf04800eca337d87b378a2db0d870a38',1,'ClassMember::setName()'],['../classClass.html#a9eba120964aac4371012e3a23b96f20c',1,'Class::setName()']]],
   ['setobjects_24',['setObjects',['../classSequenceDiagram.html#ac22543f9023103e301352005dac3cc5a',1,'SequenceDiagram']]],
   ['setparameters_25',['setParameters',['../classClassMethod.html#a936673fc1b8c10d456cb2f8bdcfaa9ae',1,'ClassMethod']]],
   ['setrelationships_26',['setRelationships',['../classClassDiagram.html#a1a3434367f85ae4c511b92fa2344cf91',1,'ClassDiagram']]],
@@ -31,5 +31,6 @@ var searchData=
   ['setsecondclasscardinality_28',['setSecondClassCardinality',['../classUndirectedAssociation.html#aa6821de70ad60c684137016de0103f8b',1,'UndirectedAssociation']]],
   ['setsendingtime_29',['setSendingTime',['../classMessage.html#a380931c2c82afb985478abbf9a45db53',1,'Message']]],
   ['settype_30',['setType',['../classClassMethod.html#ae2f0f71e60f87487d040d8aa558ed285',1,'ClassMethod']]],
-  ['sync_31',['SYNC',['../classMessageType.html#a83997cfec75a3f7346975e7411fb65eea9c4712ce28636d02d3a3d4c9a7111429',1,'MessageType']]]
+  ['storepointer_31',['storePointer',['../classClassReference.html#ab82b51c813915a95f18796fa6d095871',1,'ClassReference::storePointer()'],['../classMethodReference.html#ace8379db4ac41780f1062c08ed859efe',1,'MethodReference::storePointer()']]],
+  ['sync_32',['SYNC',['../classMessageType.html#a83997cfec75a3f7346975e7411fb65eea9c4712ce28636d02d3a3d4c9a7111429',1,'MessageType']]]
 ];

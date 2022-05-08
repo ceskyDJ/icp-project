@@ -105,6 +105,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a02e0585a243150f901bb2a97769a8aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc7caf39032dd6b928ee0c2cacc3d3c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClass.html#adc7caf39032dd6b928ee0c2cacc3d3c6">addMethod</a> (<a class="el" href="classClassMethod.html">ClassMethod</a> method)</td></tr>
 <tr class="separator:adc7caf39032dd6b928ee0c2cacc3d3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579716ad172c96dcda2a250efccd32a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassMethod.html">ClassMethod</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClass.html#a579716ad172c96dcda2a250efccd32a0">findMethodByName</a> (std::string nameToFind)</td></tr>
+<tr class="separator:a579716ad172c96dcda2a250efccd32a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee9bc6efdb53e7090368f32b91fe6db4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClass.html#aee9bc6efdb53e7090368f32b91fe6db4">operator==</a> (const <a class="el" href="classClass.html">Class</a> &amp;other)</td></tr>
 <tr class="separator:aee9bc6efdb53e7090368f32b91fe6db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a125afbbdbac66da5ad21715aa0affddb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClass.html#a125afbbdbac66da5ad21715aa0affddb">operator!=</a> (const <a class="el" href="classClass.html">Class</a> &amp;other)</td></tr>
@@ -264,6 +266,40 @@ Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="Class_8h_source.html#l00196">196</a> of file <a class="el" href="Class_8h_source.html">Class.h</a>.</p>
+
+</div>
+</div>
+<a id="a579716ad172c96dcda2a250efccd32a0" name="a579716ad172c96dcda2a250efccd32a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a579716ad172c96dcda2a250efccd32a0">&#9670;&nbsp;</a></span>findMethodByName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classClassMethod.html">ClassMethod</a> * Class::findMethodByName </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>nameToFind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Finds class method by its name</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nameToFind</td><td>Name of the class method search for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to found class method </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>Non-existing class method with searched name in this class </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Class_8cpp_source.html#l00019">19</a> of file <a class="el" href="Class_8cpp_source.html">Class.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,7 +567,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Are classes not equal? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Class_8h_source.html#l00218">218</a> of file <a class="el" href="Class_8h_source.html">Class.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Class_8h_source.html#l00227">227</a> of file <a class="el" href="Class_8h_source.html">Class.h</a>.</p>
 
 </div>
 </div>
@@ -567,7 +603,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Are classes equal? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Class_8h_source.html#l00207">207</a> of file <a class="el" href="Class_8h_source.html">Class.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Class_8h_source.html#l00216">216</a> of file <a class="el" href="Class_8h_source.html">Class.h</a>.</p>
 
 </div>
 </div>
@@ -711,8 +747,9 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="Class_8h_source.html">Class.h</a></li>
+<li>src/<a class="el" href="Class_8cpp_source.html">Class.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
