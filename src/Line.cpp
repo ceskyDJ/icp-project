@@ -13,6 +13,7 @@
 #include <QPainter>
 #include <QTextItem>
 #include <QInputDialog>
+#include <QRectF>
 #include <QGraphicsSceneMouseEvent>
 
 class LineText;
@@ -49,7 +50,7 @@ void Line::drawLine()
  * @param node node, where should be counted a middle point
  * @return point where is middle of node
  */
-QPointF Line::getCenterPos(ClassNode *node)
+QPointF Line::getCenterPos(ClassNode *node) const
 {
     QRectF rect = node->boundingRect();
     qreal a = rect.x();
@@ -65,7 +66,7 @@ QPointF Line::getCenterPos(ClassNode *node)
  * @param second Second selected node (target)
  * @return Shotest line between points
  */
-QLineF Line::getShortestLine(ClassNode *first, ClassNode *second)
+QLineF Line::getShortestLine(ClassNode *first, ClassNode *second) const
 {
     QPointF firstPoint = getCenterPos(first);
     QPointF secondPoint = getCenterPos(second);
@@ -87,7 +88,7 @@ QLineF Line::getShortestLine(ClassNode *first, ClassNode *second)
  * @param node Node of which will be count an intersection
  * @return Intersection point
  */
-QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node)
+QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node) const
 {
     QRectF rect = node->boundingRect();
     qreal xPos = node->x() + rect.x();
@@ -117,12 +118,12 @@ void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QW
 {
     QLineF line = getShortestLine(fromClassNode, toClassNode);
     QFontMetricsF metrics{qApp->font()};
-    QRectF boundingRect = metrics.boundingRect(name);
+    QRectF fontBoundingRect = metrics.boundingRect(name);
 
-    QRectF rect = boundingRect;
+    QRectF rect = fontBoundingRect;
     rect.setTopLeft(line.center());
-    rect.setSize(boundingRect.size());
-    painter->drawText(rect,Qt::AlignLeft ,name, &boundingRect);
+    rect.setSize(fontBoundingRect.size());
+    painter->drawText(rect,Qt::AlignLeft ,name, &fontBoundingRect);
     QGraphicsLineItem::paint(painter, option, widget);
 }
 

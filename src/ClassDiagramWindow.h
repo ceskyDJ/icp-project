@@ -21,8 +21,9 @@
 #include "ClassEditDialog.h"
 #include "Line.h"
 #include "GeneralizationLine.h"
-#include "AgregationLine.h"
+#include "LineWithArrow.h"
 #include "CompositionLine.h"
+#include "AgregationLine.h"
 
 class ClassDiagramWindow : public QMainWindow
 {

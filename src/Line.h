@@ -27,9 +27,9 @@ protected:
     QString name = "relName";
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
-    QPointF getCenterPos(ClassNode *node);
-    QPointF getIntersectPoint(QLineF connectingLine, ClassNode *node);
-    QLineF getShortestLine(ClassNode *first, ClassNode *second);
+    QPointF getCenterPos(ClassNode *node) const;
+    QPointF getIntersectPoint(QLineF connectingLine, ClassNode *node) const;
+    QLineF getShortestLine(ClassNode *first, ClassNode *second) const;
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
 

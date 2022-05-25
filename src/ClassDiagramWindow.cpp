@@ -263,7 +263,7 @@ void ClassDiagramWindow::agregationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AgregationLine;
+    newLine = new AgregationLine();
 }
 
 /**

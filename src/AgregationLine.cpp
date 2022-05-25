@@ -1,45 +1,38 @@
 /**
  * @class AgregationLine
- * Represents agregation line in class diagram. Allows to paint a line.
+ * Represents agreagation line in class diagram. Allows to draw an agragation line with arrow.
  *
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
  */
+
 #include "AgregationLine.h"
 
-#include <QPainter>
+/**
+ * Sets arrow height and width.
+ */
+AgregationLine::AgregationLine()
+{
+    arrowHeight = 5;
+    arrowWidth = 20;
+}
 
 /**
-     * Paints line and arrow. Inherited from QGraphicsItem
-     *
-     * @param painter object that allowes to paint
-     * @param option options of graphics item
-     * @param widget pointer to widget
-     */
-void AgregationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
+ * Draws an arrow to position (0,0) in the end of the line in the middle of boundingbox.
+ * Painter has to be corectly placed and rotated.
+ *
+ * @param painter to paint arrow
+ */
+void AgregationLine::drawArrow(QPainter *painter) const
 {
-    int size = 20;
-    painter->setPen(QPen{Qt::black, 2, Qt::SolidLine});
-
-    QLineF line = getShortestLine(fromClassNode, toClassNode);
-    line.setLength(line.length() - size);
-    QPointF arrow = line.p2();
-
-    QList<QPoint> rectangle;
-    rectangle.append(QPoint(arrow.x(), arrow.y()));
-    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() + size/2));
-
-    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() + size/2));
-    rectangle.append(QPoint(arrow.x() + size, arrow.y()));
-
-    rectangle.append(QPoint(arrow.x() + size, arrow.y()));
-    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() - size/2));
-
-    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() - size/2));
-    rectangle.append(QPoint(arrow.x(), arrow.y()));
-
-    for (int i = 0; i < rectangle.count(); i+=2)
-        painter->drawLine(rectangle[i], rectangle[i+1]);
-    painter->drawLine(line);
+    std::vector<QPointF> arrowPoints = {
+        QPointF{- arrowWidth / 2,0},
+        QPointF{0, arrowHeight},
+        QPointF{arrowWidth / 2, 0},
+        QPointF{0, -arrowHeight},
+        QPointF{- arrowWidth / 2,0}
+    };
+    for(int i = 0; (size_t)i < arrowPoints.size() - 1; i++)
+        painter->drawLine(arrowPoints[i], arrowPoints[i+1]);
 }
