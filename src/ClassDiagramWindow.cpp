@@ -47,7 +47,7 @@ void ClassDiagramWindow::initializeComponents()
     toolBox = new QToolBox;
 
     agregationToolItem = new QToolButton;
-    realizationToolItem = new QToolButton;
+    associationToolItem = new QToolButton;
     compositionToolItem = new QToolButton;
     generalisationToolItem = new QToolButton;
     classShapeToolItem     = new QToolButton;
@@ -153,7 +153,7 @@ void ClassDiagramWindow::setTooBox()
 
     QWidget *agregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregation", agregationToolItem);
     QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", compositionToolItem);
-    QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Realization", realizationToolItem);
+    QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Association", associationToolItem);
     QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalization", generalisationToolItem);
     QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Class node", classShapeToolItem);
     QWidget *removeSelectedWidget = prepareToolItem(QIcon{":/closeCross.png"}, "Remove selected", removeSelectedToolItem);
@@ -209,7 +209,7 @@ void ClassDiagramWindow::connectComponents()
 {
     connect(classShapeToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::addClassNode);
     connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeClassNode);
-    connect(realizationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::relationShipSelected);
+    connect(associationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::associationSelected);
     
     connect(compositionToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::compositionSelected);
     connect(agregationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::agregationSelected);
@@ -239,11 +239,11 @@ void ClassDiagramWindow::setAllNodesColor(QColor color)
 /**
  * ClassDiagramWindow::relationShipSelected To a new pointer creates line
  */
-void ClassDiagramWindow::relationShipSelected()
+void ClassDiagramWindow::associationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new Line;
+    newLine = new AssociationLine;
 }
 
 /**
@@ -273,7 +273,7 @@ void ClassDiagramWindow::generalisationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new GeneralizationLine;
+    newLine = new GeneralizationLine();
 }
 
 /**

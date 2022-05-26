@@ -12,6 +12,7 @@
 #include <QGraphicsLineItem>
 #include "classNode.h"
 #include <QPointF>
+#include <QPen>
 
 class ClassNode;
 class LineText;
@@ -23,15 +24,23 @@ public:
     void drawLine();
     ~Line();
     void initialize(ClassNode *fromNode, ClassNode *toNode);
+
+    /**
+     * Returns a classNode that is pointed to in relationship.
+     *
+     * @return second class node
+     */
+    ClassNode *getToClassNode()
+    {
+        return toClassNode;
+    }
 protected:
-    QString name = "relName";
+    QPen pen{Qt::black, 2, Qt::SolidLine};
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
     QPointF getCenterPos(ClassNode *node) const;
     QPointF getIntersectPoint(QLineF connectingLine, ClassNode *node) const;
     QLineF getShortestLine(ClassNode *first, ClassNode *second) const;
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
-
 };
 #endif // LINE_H

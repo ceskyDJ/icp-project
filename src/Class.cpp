@@ -24,5 +24,5 @@ ClassMethod *Class::findMethodByName(std::string nameToFind)
         }
     }
 
-    throw std::invalid_argument{"Class method with name \"" + name + "\" doesn't exist in the class"};
+    return nullptr;
 }

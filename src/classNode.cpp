@@ -12,6 +12,8 @@
 #include "QPlainTextEdit"
 #include <QStyleOptionGraphicsItem>
 #include "ClassEditDialog.h"
+#include "GeneralizationLine.h"
+#include "Line.h"
 
 /**
  * Sets a class node entity.
@@ -59,7 +61,8 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     QRectF nameRect = getNameBoundigRect();
     int incHeight = nameRect.height();
     std::vector<QString> attributeVector = getAttributePrintable();
-    std::vector<QString> methodVector = getMethodPrintable();
+    std::vector<int> inheritedMethods(0);
+    std::vector<QString> methodVector = getMethodPrintable(&inheritedMethods);
     QRectF wholeRect = getWholeRect(attributeVector, methodVector);
 
     int maxWidth = wholeRect.width();
@@ -95,8 +98,19 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     {
         if(methodEntities[i].getType() == (ClassMethodType)ClassMethodType::ABSTRACT)
             setFontItalic(true, painter);
+        QColor penOriginColor = pen.color();
+        if(std::find(inheritedMethods.begin(), inheritedMethods.end(), i) != inheritedMethods.end())//metoda je zdedena
+        {
+            pen.setColor(Qt::darkYellow);
+            painter->setPen(pen);
+        }
         incrementalRect.setHeight(incrementalRect.height() + incHeight);
+
         painter->drawText(incrementalRect, Qt::AlignBottom, methodVector[i]);
+
+        pen.setColor(penOriginColor);
+        painter->setPen(pen);
+
         if(methodEntities[i].getType() == (ClassMethodType)ClassMethodType::ABSTRACT)
             setFontItalic(false, painter);
     }
@@ -196,7 +210,8 @@ std::vector<QString> ClassNode::getAttributePrintable() const
  *
  * @return Vector of all class methods prepared to print.
  */
-std::vector<QString> ClassNode::getMethodPrintable() const
+std::vector<QString> ClassNode::getMethodPrintable(
+        std::vector<int> *inheritedIndexes) const
 {
     std::vector<ClassMethod> methods = classEntity.getMethods();
     std::vector<QString> methodString(methods.size());
@@ -207,6 +222,9 @@ std::vector<QString> ClassNode::getMethodPrintable() const
         QString methodName = QString::fromStdString(methods[i].getName());
         QString parameterString = getMethodParametersPrintable(methods[i].getParameters());
         QString returnType = QString::fromStdString(methods[i].getReturnDataType());
+
+        if(isMethodInherited(methodName))
+            inheritedIndexes->push_back((int)i);
 
         methodString[i] = "  " + accesModifier + methodName + "(" + parameterString + ")" + " : " + returnType;
     }
@@ -317,4 +335,29 @@ QVariant ClassNode::itemChange(GraphicsItemChange change, const QVariant &value)
     if (change == ItemPositionHasChanged)
         rePaintLines();
     return QGraphicsItem::itemChange(change, value);
+}
+
+/**
+ * Checks if method is inherited from another (by name)
+ *
+ * @param methodName Method that is being checked.
+ * @return if method is inherited than returns true otherwise retrun false;
+ */
+bool ClassNode::isMethodInherited(QString methodName) const
+{
+    QVector<ClassNode *> generalisations(QVector<ClassNode *>(0));
+    for (Line * relationship: connectedLines)
+    {
+        GeneralizationLine *temp = (GeneralizationLine *)relationship;
+        if(temp && temp->getToClassNode() != this)
+            generalisations.push_back(temp->getToClassNode());
+    }
+
+    for(ClassNode *node: generalisations)
+    {
+        if (node->getClassEntity().findMethodByName(methodName.toStdString()) != nullptr)
+            return true;
+    }
+
+    return false;
 }

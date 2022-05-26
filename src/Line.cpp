@@ -114,27 +114,11 @@ QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node) const
  * @param option const QStyleOptionGraphicsItem
  * @param widget QWidget
  */
-void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
+void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
 {
+    painter->setPen(pen);
     QLineF line = getShortestLine(fromClassNode, toClassNode);
-    QFontMetricsF metrics{qApp->font()};
-    QRectF fontBoundingRect = metrics.boundingRect(name);
-
-    QRectF rect = fontBoundingRect;
-    rect.setTopLeft(line.center());
-    rect.setSize(fontBoundingRect.size());
-    painter->drawText(rect,Qt::AlignLeft ,name, &fontBoundingRect);
-    QGraphicsLineItem::paint(painter, option, widget);
-}
-
-/**
- * @brief Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship
- * @param event
- */
-void Line::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
-{
-    name = QInputDialog::getText(event->widget(), "Edit name", "Enter new Name:", QLineEdit::Normal, name);
-    update();
+    painter->drawLine(line);
 }
 
 /**

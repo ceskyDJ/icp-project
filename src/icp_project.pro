@@ -27,6 +27,7 @@ QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
 # Source codes
 HEADERS += \
     AgregationLine.h \
+    AssociationLine.h \
     ClassDiagram.h \
     Line.h \
     LineWithArrow.h \
@@ -77,6 +78,7 @@ HEADERS += \
 SOURCES += \
     AccessModifier.cpp \
     AgregationLine.cpp \
+    AssociationLine.cpp \
     ClassMethodType.cpp \
     ClassType.cpp \
     LineWithArrow.cpp \
