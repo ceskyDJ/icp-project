@@ -1,38 +1,29 @@
 /**
- * @class GeneralizationLine
- * Generalization line.
+ * @file GeneralizationLine.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
  */
 #include "GeneralizationLine.h"
-#include <QPainter>
 
 /**
- * @brief GeneralizationLine::paint paints line with right arrow
- * @param painter painter allowing to paint line and arrow
+ * Sets arrow height and Width
  */
-void GeneralizationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
+GeneralizationLine::GeneralizationLine()
 {
-    int size = 20;
-    painter->setPen(QPen{Qt::black, 2, Qt::SolidLine});
+    arrowHeight = 20;
+    arrowWidth = 20;
+}
 
-    QLineF line = getShortestLine(fromClassNode, toClassNode);
-    line.setLength(line.length() - size);
-    QPointF arrow = line.p2();
-
-    QList<QPoint> rectangle;
-    rectangle.append(QPoint(arrow.x(), arrow.y() - size/2));
-    rectangle.append(QPoint(arrow.x(), arrow.y() + size/2));
-    rectangle.append(QPoint(arrow.x(), arrow.y() + size/2));
-    rectangle.append(QPoint(arrow.x() + size, arrow.y()));
-    rectangle.append(QPoint(arrow.x() + size, arrow.y()));
-    rectangle.append(QPoint(arrow.x(), arrow.y() - size/2));
-
-
-    for (int i = 0; i < rectangle.count(); i+=2)
-        painter->drawLine(rectangle[i], rectangle[i+1]);
-
-    painter->drawLine(line);
+void GeneralizationLine::drawArrow(QPainter *painter) const
+{
+    QVector<QPointF> points = {
+        QPointF{-arrowWidth / 2 + 1, arrowHeight / 2},
+        QPointF{arrowWidth / 2, 0},
+        QPointF{-arrowWidth / 2 + 1, -arrowHeight / 2},
+        QPointF{-arrowWidth / 2 + 1, arrowHeight / 2}
+    };
+    for(int i = 0; i < points.size() - 1; i++)
+        painter->drawLine(points[i], points[i + 1]);
 }

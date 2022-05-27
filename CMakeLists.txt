@@ -26,8 +26,13 @@ set(CMAKE_AUTORCC ON)
 
 add_executable(icp_project
         # Header files
+        src/AgregationLine.h
+        src/AssociationLine.h
+        src/AssociationLineEditDialog.h
         src/ClassDiagram.h
         src/Line.h
+        src/LineWithArrow.h
+        src/LineWithArrowEditDialog.h
         src/MethodParameterEditWidget.h
         src/SequenceDiagram.h
         src/ClassMember.h
@@ -69,14 +74,18 @@ add_executable(icp_project
         src/ClassEditDialog.h
         src/AttributeEditWidget.h
         src/MethodEditWidget.h
-        src/AgregationLine.h
         src/CompositionLine.h
         src/GeneralizationLine.h
 
         # Source files
         src/AccessModifier.cpp
+        src/AgregationLine.cpp
+        src/AssociationLine.cpp
+        src/AssociationLineEditDialog.cpp
         src/ClassMethodType.cpp
         src/ClassType.cpp
+        src/LineWithArrow.cpp
+        src/LineWithArrowEditDialog.cpp
         src/MessageType.cpp
         src/ClassDiagram.cpp
         src/SequenceDiagram.cpp
@@ -92,7 +101,6 @@ add_executable(icp_project
         src/ClassEditDialog.cpp
         src/AttributeEditWidget.cpp
         src/MethodEditWidget.cpp
-        src/AgregationLine.cpp
         src/CompositionLine.cpp
         src/GeneralizationLine.cpp
         src/main.cpp

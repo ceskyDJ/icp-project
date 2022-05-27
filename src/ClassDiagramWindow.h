@@ -21,8 +21,10 @@
 #include "ClassEditDialog.h"
 #include "Line.h"
 #include "GeneralizationLine.h"
-#include "AgregationLine.h"
+#include "LineWithArrow.h"
 #include "CompositionLine.h"
+#include "AgregationLine.h"
+#include "AssociationLine.h"
 
 class ClassDiagramWindow : public QMainWindow
 {
@@ -43,7 +45,7 @@ private:
     ClassEditDialog *classEditDialog;
 
     QToolButton *agregationToolItem;
-    QToolButton *realizationToolItem;
+    QToolButton *associationToolItem;
     QToolButton *compositionToolItem;
     QToolButton *generalisationToolItem;
     QToolButton *classShapeToolItem;
@@ -74,7 +76,7 @@ private:
 private slots:
     void addClassNode();
     void removeClassNode();
-    void relationShipSelected();
+    void associationSelected();
     void selectionChanged();
 };
 

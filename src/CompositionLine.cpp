@@ -1,34 +1,47 @@
 /**
- * @class CompositionLine
- * Composition line.
+ * @file CompositionLine.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
  */
 #include "CompositionLine.h"
-
-#include <QPainter>
+#include <QVector>
+#include <QPolygonF>
+#include <QPainterPath>
+#include <QLinearGradient>
 
 /**
- * @brief CompositionLine::paint paints a composition line with right arrow
- * @param painter painter that allows to paint
+ * Sets arrow width and height.
  */
-void CompositionLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
+CompositionLine::CompositionLine()
 {
-    int size = 20;
-    painter->setPen(QPen{Qt::black, 2, Qt::SolidLine});
+    arrowWidth = 20;
+    arrowHeight = 5;
+}
 
-    QLineF line = getShortestLine(fromClassNode, toClassNode);
-    line.setLength(line.length() - size);
-    QPointF arrow = line.p2();
+/**
+ * Draws an arrow to position (0,0) in the end of the line in the middle of boundingbox.
+ * Painter has to be corectly placed and rotated.
+ *
+ * @param painter to paint arrow
+ */
+void CompositionLine::drawArrow(QPainter *painter) const
+{
+    QVector<QPointF> arrowPoints = {
+        QPointF{- arrowWidth / 2,0},
+        QPointF{0, arrowHeight},
+        QPointF{arrowWidth / 2, 0},
+        QPointF{0, -arrowHeight},
+        QPointF{- arrowWidth / 2,0}
+    };
+    QPolygonF arrowPolygon{arrowPoints};
+    QPainterPath arrowPath{};
+    QLinearGradient arrowGradient{};
+    arrowGradient.setColorAt(0,Qt::black);
+    arrowGradient.setColorAt(1,Qt::black);
+    arrowPath.addPolygon(arrowPolygon);
+    painter->setBrush(arrowGradient);
+    painter->drawPath(arrowPath);
 
-    for(int i = 0; i < size/2; ++i)
-    {
-        QPoint one = QPoint(arrow.x() + i, arrow.y() - i);
-        QPoint two = QPoint(arrow.x() + size/2 + i, arrow.y() + size/2 - i);
-        painter->drawLine(one, two);
-    }
-
-    painter->drawLine(line);
 }

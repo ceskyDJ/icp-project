@@ -26,8 +26,13 @@ QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
 
 # Source codes
 HEADERS += \
+    AgregationLine.h \
+    AssociationLine.h \
+    AssociationLineEditDialog.h \
     ClassDiagram.h \
     Line.h \
+    LineWithArrow.h \
+    LineWithArrowEditDialog.h \
     MethodParameterEditWidget.h \
     SequenceDiagram.h \
     ClassMember.h \
@@ -69,14 +74,18 @@ HEADERS += \
     ClassEditDialog.h \
     AttributeEditWidget.h \
     MethodEditWidget.h \
-    AgregationLine.h \
     CompositionLine.h \
     GeneralizationLine.h
 
 SOURCES += \
     AccessModifier.cpp \
+    AgregationLine.cpp \
+    AssociationLine.cpp \
+    AssociationLineEditDialog.cpp \
     ClassMethodType.cpp \
     ClassType.cpp \
+    LineWithArrow.cpp \
+    LineWithArrowEditDialog.cpp \
     MessageType.cpp \
     ClassDiagram.cpp \
     SequenceDiagram.cpp \
@@ -92,7 +101,6 @@ SOURCES += \
     ClassEditDialog.cpp \
     AttributeEditWidget.cpp \
     MethodEditWidget.cpp \
-    AgregationLine.cpp \
     CompositionLine.cpp \
     GeneralizationLine.cpp \
     main.cpp

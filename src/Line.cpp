@@ -1,6 +1,5 @@
 /**
- * @class Line
- * General line - others are abstract.
+ * @file Line.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -13,7 +12,9 @@
 #include <QPainter>
 #include <QTextItem>
 #include <QInputDialog>
+#include <QRectF>
 #include <QGraphicsSceneMouseEvent>
+#include <QPolygonF>
 
 class LineText;
 
@@ -49,7 +50,7 @@ void Line::drawLine()
  * @param node node, where should be counted a middle point
  * @return point where is middle of node
  */
-QPointF Line::getCenterPos(ClassNode *node)
+QPointF Line::getCenterPos(ClassNode *node) const
 {
     QRectF rect = node->boundingRect();
     qreal a = rect.x();
@@ -65,7 +66,7 @@ QPointF Line::getCenterPos(ClassNode *node)
  * @param second Second selected node (target)
  * @return Shotest line between points
  */
-QLineF Line::getShortestLine(ClassNode *first, ClassNode *second)
+QLineF Line::getShortestLine(ClassNode *first, ClassNode *second) const
 {
     QPointF firstPoint = getCenterPos(first);
     QPointF secondPoint = getCenterPos(second);
@@ -87,7 +88,7 @@ QLineF Line::getShortestLine(ClassNode *first, ClassNode *second)
  * @param node Node of which will be count an intersection
  * @return Intersection point
  */
-QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node)
+QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node) const
 {
     QRectF rect = node->boundingRect();
     qreal xPos = node->x() + rect.x();
@@ -113,27 +114,11 @@ QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node)
  * @param option const QStyleOptionGraphicsItem
  * @param widget QWidget
  */
-void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
+void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
 {
+    painter->setPen(pen);
     QLineF line = getShortestLine(fromClassNode, toClassNode);
-    QFontMetricsF metrics{qApp->font()};
-    QRectF boundingRect = metrics.boundingRect(name);
-
-    QRectF rect = boundingRect;
-    rect.setTopLeft(line.center());
-    rect.setSize(boundingRect.size());
-    painter->drawText(rect,Qt::AlignLeft ,name, &boundingRect);
-    QGraphicsLineItem::paint(painter, option, widget);
-}
-
-/**
- * @brief Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship
- * @param event
- */
-void Line::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
-{
-    name = QInputDialog::getText(event->widget(), "Edit name", "Enter new Name:", QLineEdit::Normal, name);
-    update();
+    painter->drawLine(line);
 }
 
 /**
@@ -143,4 +128,59 @@ Line::~Line()
 {
     fromClassNode->removeConnection(this);
     toClassNode->removeConnection(this);
+}
+
+void Line::switchNodes()
+{
+    ClassNode *temp = fromClassNode;
+    fromClassNode = toClassNode;
+    toClassNode = temp;   
+}
+
+/**
+ * Sets a shape of line - it will be same line but with bigger width
+ *
+ * @return QPainterPath - path of line but wider
+ */
+QPainterPath Line::shape() const
+{
+    QLineF line = getShortestLine(fromClassNode, toClassNode);
+    QLineF first_perpendicularLine = line.normalVector();
+    QLineF second_perpendicularLine = first_perpendicularLine;
+    first_perpendicularLine.setLength(lineBoundingWidth);
+    second_perpendicularLine.setAngle(first_perpendicularLine.angle() + 180);
+    second_perpendicularLine.setLength(lineBoundingWidth);
+
+
+    QLineF parallelLine1 = getParallelLine(line, first_perpendicularLine.p2());
+    QLineF parallelLine2 = getParallelLine(line, second_perpendicularLine.p2());
+
+    QVector<QPointF> points = {
+        parallelLine1.p1(),
+        parallelLine1.p2(),
+        parallelLine2.p2(),
+        parallelLine2.p1(),
+        parallelLine1.p1()
+    };
+
+    QPolygonF pathPolygon{points};
+    QPainterPath newPath{};
+    newPath.addPolygon(pathPolygon);
+    return newPath;
+}
+
+/**
+ * Returns a line that is parallel with parallelLine but starts in another p1.
+ *
+ * @param lineToPerpend Line that will be copied.
+ * @param startPoint new start point
+ * @return Parallel line with startPoint as p1
+ */
+QLineF Line::getParallelLine(QLineF parallelLine, QPointF startPoint) const
+{
+    QLineF newLine{};
+    newLine.setP1(startPoint);
+    newLine.setAngle(parallelLine.angle());
+    newLine.setLength(parallelLine.length());
+    return newLine;
 }

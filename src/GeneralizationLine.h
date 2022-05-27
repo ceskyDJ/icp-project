@@ -10,13 +10,22 @@
 #define GENERALIZATIONLINE_H
 
 #include "Line.h"
-
-class GeneralizationLine : public Line
+#include "LineWithArrow.h"
+#include <QPainter>
+class GeneralizationLine : public LineWithArrow
 {
 public:
-    using Line::Line;
-private:
-    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
+    /**
+     * Sets arrow width and height
+     */
+    GeneralizationLine();
+protected:
+    /**
+     * Draws and arrow - rectangle
+     *
+     * @param painter to draw
+     */
+    void drawArrow(QPainter *painter) const;
 };
 
 #endif // GENERALIZATIONLINE_H

@@ -1,6 +1,5 @@
 /**
- * @class AttributeEditWidget
- * Widget that allows to load, show and edit data of Class atributes.
+ * @file AttributeEditWidget.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

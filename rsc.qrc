@@ -8,5 +8,7 @@
     <file alias="closeCross.png">resources/closeCross.png</file>
     <file alias="addCross.png">resources/addCross.png</file>
     <file alias="nike.png">resources/nike.png</file>
+    <file alias="cancel.png">resources/cancel.png</file>
+    <file alias="switch.png">resources/switch.png</file>
 </qresource>
 </RCC>
