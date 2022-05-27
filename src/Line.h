@@ -46,8 +46,27 @@ public:
         return fromClassNode;
     }
 
-    void switchNodes();
+    /**
+     * Sets a classNode that is pointed to, in relationship.
+     *
+     * @return second class node
+     */
+    void setToClassNode(ClassNode *newToNode)
+    {
+        toClassNode = newToNode;
+    }
 
+    /**
+     * Sets a classNode that is pointed from, in relationship.
+     *
+     * @return second class node
+     */
+    void setFromClassNode(ClassNode *newFromNode)
+    {
+        fromClassNode = newFromNode;
+    }
+
+    void switchNodes();
 protected:
     QPen pen{Qt::black, 2, Qt::SolidLine};
     ClassNode *fromClassNode;

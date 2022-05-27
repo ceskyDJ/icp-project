@@ -7,23 +7,29 @@
  */
 
 #include "AssociationLine.h"
-#include <QInputDialog>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QFontMetricsF>
 #include <QRectF>
+#include "AssociationLineEditDialog.h"
 
 /**
  * @brief Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship
  * @param event
  */
-void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
-    QString returnName = QInputDialog::getText(event->widget(), "Edit name", "Enter new Name:",
-                                            QLineEdit::Normal, associationName);
-    if(returnName.count() > 0)
-        associationName = returnName;
-    update();
+    AssociationLineEditDialog *editDialog = new AssociationLineEditDialog(this);
+    editDialog->exec();
+    if(editDialog->accepted())
+    {
+        AssociationLineEditDialog::copyLine(this, editDialog->getRelationship());
+        update();
+    }
+    else if(editDialog->deleteRelationship())
+        delete this;
+
+
 }
 
 /**
@@ -43,18 +49,24 @@ void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem *
     QRectF nameRect = prepareBoundingBox(getTextBoundingBox(associationName));
 
     int wayModifier = -1;
+    qreal firstAdditionPadding = 0;
+    qreal secondAdditionPadding = 0;
     if(line.angle() < 90 || line.angle() > 270)
     {
         painter->rotate(-line.angle());
+        secondAdditionPadding = getTextBoundingBox(secondCardinality).width();
     }
     else
     {
         painter->rotate(-line.angle() + 180);
         wayModifier = 1;
+        firstAdditionPadding = getTextBoundingBox(firstCardinality).width();
     }
 
-    QRectF firstCardinalityRect = locateCardinality(prepareBoundingBox(getTextBoundingBox(firstCardinality)), wayModifier, line);
-    QRectF secondCardinalityRect = locateCardinality(prepareBoundingBox(getTextBoundingBox(secondCardinality)), -wayModifier, line);
+    QRectF firstCardinalityRect = locateCardinality(prepareBoundingBox(getTextBoundingBox(firstCardinality)),
+                                                    wayModifier, line, firstAdditionPadding);
+    QRectF secondCardinalityRect = locateCardinality(prepareBoundingBox(getTextBoundingBox(secondCardinality)),
+                                                    -wayModifier, line, secondAdditionPadding);
 
     painter->drawText(nameRect, Qt::TextSingleLine, associationName);
     painter->drawText(firstCardinalityRect, Qt::TextSingleLine, firstCardinality);
@@ -116,10 +128,10 @@ QRectF AssociationLine::prepareBoundingBox(QRectF rect)
  * @param line line of relationship
  * @return modified QRectF
  */
-QRectF AssociationLine::locateCardinality(QRectF rect, int modifier, QLineF line)
+QRectF AssociationLine::locateCardinality(QRectF rect, int modifier, QLineF line, qreal additionPadding)
 {
     qreal fcwidth = rect.width();
-    rect.setLeft(line.length() / 2 * modifier + padding * (-modifier));
+    rect.setLeft(line.length() / 2 * modifier + (padding + additionPadding) * (-modifier));
     rect.setWidth(fcwidth);
     return rect;
 }
