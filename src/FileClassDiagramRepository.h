@@ -53,10 +53,10 @@ class FileClassDiagramRepository: public ClassDiagramRepository
      * Loads single class from XML element
      *
      * @param xmlClass XML element with class
-     * @return Loaded class
+     * @return Pointer to loaded class
      * @throw InvalidInputDataException Invalid structure of input data
      */
-    Class loadClass(QDomElement &xmlClass);
+    Class *loadClass(QDomElement &xmlClass);
 
     /**
      * Loads single class attribute from XML element

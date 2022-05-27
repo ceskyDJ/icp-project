@@ -75,8 +75,14 @@ void LineWithArrowEditDialog::setAllButtons()
  */
 void LineWithArrowEditDialog::switchArrow()
 {
+    // Update scene
     relationshipLine->switchNodes();
     setTitle();
+
+    // Update relationship in class diagram
+    std::unordered_map<Line *, Relationship *> *existingRelationships = relationshipLine->getExistingRelationships();
+    Relationship *relationship = existingRelationships->find(relationshipLine)->second;
+    relationship->swapClasses();
 }
 
 /**
@@ -84,6 +90,15 @@ void LineWithArrowEditDialog::switchArrow()
  */
 void LineWithArrowEditDialog::removeRelationship()
 {
+    // Delete from class diagram and existing relationships
+    std::unordered_map<Line *, Relationship *> *existingRelationships = relationshipLine->getExistingRelationships();
+    ClassDiagram *classDiagram = relationshipLine->getClassDiagram();
+    auto relationship = existingRelationships->find(relationshipLine)->second;
+
+    classDiagram->removeRelationship(relationship);
+    existingRelationships->erase(relationshipLine);
+
+    // Delete from scene and memory
     relationshipLine->getFromClassNode()->removeConnection(relationshipLine);
     relationshipLine->getToClassNode()->removeConnection(relationshipLine);
     delete relationshipLine;

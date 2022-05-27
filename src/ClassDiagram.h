@@ -19,9 +19,9 @@
 class ClassDiagram
 {
     /**
-     * Classes contained in class diagram
+     * Pointers to classes contained in class diagram
      */
-    std::vector<Class> classes;
+    std::vector<Class *> classes;
     /**
      * Pointers to relationships between classes
      */
@@ -35,20 +35,20 @@ class ClassDiagram
     /**
      * Constructor for initializing class diagram with known classes and relationships
      *
-     * @param classes Classes
+     * @param classes Pointers to classes
      * @param relationships Pointers to relationships between classes
      */
     ClassDiagram(
-        std::vector<Class> classes,
+        std::vector<Class *> classes,
         std::vector<Relationship *> relationships
     ): classes{classes}, relationships{relationships} {};
 
     /**
      * Getter for classes
      *
-     * @return Vector of stored classes
+     * @return Vector of pointers to stored classes
      */
-    std::vector<Class> &getClasses()
+    std::vector<Class *> &getClasses()
     {
         return classes;
     }
@@ -56,9 +56,9 @@ class ClassDiagram
     /**
      * Constant getter for classes
      *
-     * @return Vector of stored classes
+     * @return Vector of pointers to stored classes
      */
-    const std::vector<Class> &getClasses() const
+    const std::vector<Class *> &getClasses() const
     {
         return classes;
     }
@@ -66,9 +66,9 @@ class ClassDiagram
     /**
      * Setter for classes
      *
-     * @param newClasses New vector of classes to store
+     * @param newClasses New vector of pointers to classes to store
      */
-    void setClasses(std::vector<Class> &newClasses)
+    void setClasses(std::vector<Class *> &newClasses)
     {
         classes = newClasses;
     }
@@ -76,9 +76,9 @@ class ClassDiagram
     /**
      * Adds a new class to diagram
      *
-     * @param newClass New class to add
+     * @param newClass Pointer to new class to add
      */
-    void addClass(Class newClass)
+    void addClass(Class *newClass)
     {
         classes.push_back(newClass);
     }
@@ -86,10 +86,10 @@ class ClassDiagram
     /**
      * Removes class from diagram
      *
-     * @param classToRemove Class to remove from diagram
+     * @param classToRemove Pointer to class to remove from diagram
      * @throw std::invalid_argument Class is not in diagram
      */
-    void removeClass(Class classToRemove);
+    void removeClass(Class *classToRemove);
 
     /**
      * Finds class by name

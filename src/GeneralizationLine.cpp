@@ -9,8 +9,14 @@
 
 /**
  * Sets arrow height and Width
+ *
+ * @param existingRelationships Pointer to map of existing relationships and their lines
+ * @param classDiagram Pointer to class diagram
  */
-GeneralizationLine::GeneralizationLine()
+GeneralizationLine::GeneralizationLine(
+    std::unordered_map<Line *, Relationship *> *existingRelationships,
+    ClassDiagram *classDiagram
+): LineWithArrow{existingRelationships, classDiagram}
 {
     arrowHeight = 20;
     arrowWidth = 20;

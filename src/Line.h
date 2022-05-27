@@ -5,26 +5,39 @@
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
+ * @author Michal Šmahel (xsmahe01)
  */
 #ifndef LINE_H
 #define LINE_H
 
 #include <QGraphicsLineItem>
-#include "classNode.h"
 #include <QPointF>
 #include <QPen>
 #include <QPainterPath>
 #include <QPainter>
+#include "classNode.h"
+#include "ClassDiagram.h"
 
 class ClassNode;
 class LineText;
 
-class Line : public QGraphicsLineItem
-{
+class Line : public QGraphicsLineItem {
 public:
-    Line();
-    void drawLine();
+    /**
+     * Line constructor
+     *
+     * @param existingRelationships Pointer to map of existing relationships and their lines
+     * @param classDiagram Pointer to class diagram
+     */
+    Line(
+        std::unordered_map<Line *, Relationship *> *existingRelationships,
+        ClassDiagram *classDiagram
+    ): existingRelationships{existingRelationships}, classDiagram{classDiagram} {};
+
     ~Line();
+
+    void drawLine();
+
     void initialize(ClassNode *fromNode, ClassNode *toNode);
 
     /**
@@ -32,8 +45,7 @@ public:
      *
      * @return second class node
      */
-    ClassNode *getToClassNode()
-    {
+    ClassNode *getToClassNode() {
         return toClassNode;
     }
 
@@ -42,8 +54,7 @@ public:
      *
      * @return second class node
      */
-    ClassNode *getFromClassNode()
-    {
+    ClassNode *getFromClassNode() {
         return fromClassNode;
     }
 
@@ -52,8 +63,7 @@ public:
      *
      * @return second class node
      */
-    void setToClassNode(ClassNode *newToNode)
-    {
+    void setToClassNode(ClassNode *newToNode) {
         toClassNode = newToNode;
     }
 
@@ -62,9 +72,28 @@ public:
      *
      * @return second class node
      */
-    void setFromClassNode(ClassNode *newFromNode)
-    {
+    void setFromClassNode(ClassNode *newFromNode) {
         fromClassNode = newFromNode;
+    }
+
+    /**
+     * Getter for existing relationships
+     *
+     * @return Pointer to existing relationships
+     */
+    std::unordered_map<Line *, Relationship *> *getExistingRelationships()
+    {
+        return existingRelationships;
+    }
+
+    /**
+     * Getter for class diagram
+     *
+     * @return Pointer to class diagram
+     */
+    ClassDiagram *getClassDiagram()
+    {
+        return classDiagram;
     }
 
     void switchNodes();
@@ -73,6 +102,14 @@ protected:
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
     qreal lineBoundingWidth = 10;
+    /**
+     * Pointer to map of existing relationships and their lines
+     */
+    std::unordered_map<Line *, Relationship *> *existingRelationships;
+    /**
+     * Pointer to class diagram
+     */
+    ClassDiagram *classDiagram;
 
 
     QPointF getCenterPos(ClassNode *node) const;

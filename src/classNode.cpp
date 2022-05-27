@@ -21,12 +21,15 @@
  *
  * @param classEntity Class which is going to be drawn.
  */
-ClassNode::ClassNode(Class classEntity): classEntity{classEntity}
+ClassNode::ClassNode(
+    std::unordered_map<std::string, ClassNode *> *existingClasses,
+    Class *classEntity
+): classEntity{classEntity}, existingClasses{existingClasses}
 {
     setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
 
     // Set initial position
-    auto classCoords = classEntity.getCoordinates();
+    auto classCoords = classEntity->getCoordinates();
     setPos(std::get<0>(classCoords), std::get<1>(classCoords));
 
     prepareGeometryChange();
@@ -57,7 +60,7 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     else
         pen = QPen{borderColor, 2, Qt::SolidLine};
 
-    if (classEntity.getClassType() == (ClassType)ClassType::ABSTRACT_CLASS)
+    if (classEntity->getClassType() == (ClassType)ClassType::ABSTRACT_CLASS)
         setFontItalic(true, painter);
 
     painter->setPen(pen);
@@ -75,15 +78,15 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
     nameRect.setWidth(maxWidth);
     nameRect.setHeight(nameRect.height() + Padding);
-    if(classEntity.getClassType() == (ClassType)ClassType::INTERFACE)
+    if(classEntity->getClassType() == (ClassType)ClassType::INTERFACE)
     {
         painter->drawText(nameRect, Qt::AlignHCenter,"<<interface>>");
         nameRect.setHeight(nameRect.height() + incHeight);
     }
     painter->drawRect(nameRect);
-    painter->drawText(nameRect, Qt::AlignCenter, QString::fromStdString(classEntity.getName()));
+    painter->drawText(nameRect, Qt::AlignCenter, QString::fromStdString(classEntity->getName()));
 
-    if (classEntity.getClassType() == (ClassType)ClassType::ABSTRACT_CLASS)
+    if (classEntity->getClassType() == (ClassType)ClassType::ABSTRACT_CLASS)
         setFontItalic(false, painter);
 
     QRectF incrementalRect = nameRect;
@@ -97,7 +100,7 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->drawRect(incrementalRect);
     incrementalRect.setHeight(incrementalRect.height() + lineIndent);
 
-    std::vector<ClassMethod> methodEntities = classEntity.getMethods();
+    std::vector<ClassMethod> methodEntities = classEntity->getMethods();
     for(int i = 0; static_cast<size_t>(i) < methodVector.size(); i++)
     {
         if(methodEntities[i].getType() == (ClassMethodType)ClassMethodType::ABSTRACT)
@@ -129,7 +132,7 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 QRectF ClassNode::getNameBoundigRect() const
 {
     QFontMetricsF metrics{qApp->font()};
-    QRectF rect = metrics.boundingRect(QString::fromStdString(classEntity.getName()));
+    QRectF rect = metrics.boundingRect(QString::fromStdString(classEntity->getName()));
     return rect;
 }
 
@@ -155,7 +158,7 @@ QRectF ClassNode::getWholeRect(std::vector<QString> &attributePrintable,
                                std::vector<QString> &methodPrintable) const
 {
     QFontMetricsF metrics{qApp->font()};
-    QRectF nameRect = metrics.boundingRect(QString::fromStdString(classEntity.getName()));
+    QRectF nameRect = metrics.boundingRect(QString::fromStdString(classEntity->getName()));
 
     int maxWidth = nameRect.width();
     getMaxWidth(attributePrintable, &maxWidth);
@@ -167,7 +170,7 @@ QRectF ClassNode::getWholeRect(std::vector<QString> &attributePrintable,
     wholeRect.setHeight(nameRect.height() + 2 * lineIndent + nameRect.height() * attributePrintable.size()
                         + nameRect.height() * methodPrintable.size());
     wholeRect.adjust(0, -Padding, 0, Padding);
-    if(classEntity.getClassType() == (ClassType)ClassType::INTERFACE)
+    if(classEntity->getClassType() == (ClassType)ClassType::INTERFACE)
         wholeRect.setHeight(wholeRect.height() + nameRect.height() );
     return wholeRect;
 }
@@ -195,7 +198,7 @@ void ClassNode::getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const
  */
 std::vector<QString> ClassNode::getAttributePrintable() const
 {
-    std::vector<ClassAttribute> attributes = classEntity.getAttributes();
+    std::vector<ClassAttribute> attributes = classEntity->getAttributes();
     std::vector<QString> attributeString(attributes.size());
 
     for(size_t i = 0; i < attributes.size(); i++)
@@ -217,7 +220,7 @@ std::vector<QString> ClassNode::getAttributePrintable() const
 std::vector<QString> ClassNode::getMethodPrintable(
         std::vector<int> *inheritedIndexes) const
 {
-    std::vector<ClassMethod> methods = classEntity.getMethods();
+    std::vector<ClassMethod> methods = classEntity->getMethods();
     std::vector<QString> methodString(methods.size());
 
     for(size_t i = 0; i < methods.size(); i++)
@@ -283,7 +286,19 @@ void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
     ClassEditDialog *classEditDialog = new ClassEditDialog(this->getClassEntity());
     if(classEditDialog->exec() == QDialog::Accepted)
     {
-        this->setEntity(classEditDialog->getClassEntity());
+        Class *newClassEntity{classEditDialog->getClassEntity()};
+
+        // Propagate name change to existing classes map
+        if (classEntity->getName() != newClassEntity->getName()) {
+            // Delete old key with this class node
+            auto itemForDeletion = existingClasses->find(classEntity->getName());
+            existingClasses->erase(itemForDeletion);
+
+            // Add this class node with updated key
+            existingClasses->insert({newClassEntity->getName(), this});
+        }
+
+        this->setEntity(newClassEntity);
         update();
     }
 
@@ -340,7 +355,7 @@ QVariant ClassNode::itemChange(GraphicsItemChange change, const QVariant &value)
         // Update coordinates in entity
         QPoint newPoint{value.toPoint()};
         std::tuple<int, int> newCoords{newPoint.x(), newPoint.y()};
-        classEntity.setCoordinates(newCoords);
+        classEntity->setCoordinates(newCoords);
 
         rePaintLines();
     }
@@ -366,7 +381,7 @@ bool ClassNode::isMethodInherited(QString methodName) const
 
     for(ClassNode *node: generalisations)
     {
-        if (node->getClassEntity().findMethodByName(methodName.toStdString()) != nullptr)
+        if (node->getClassEntity()->findMethodByName(methodName.toStdString()) != nullptr)
             return true;
     }
 

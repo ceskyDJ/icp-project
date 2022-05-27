@@ -12,10 +12,10 @@
 /**
  * Removes class from diagram
  *
- * @param classToRemove Class to remove from diagram
+ * @param classToRemove Pointer to class to remove from diagram
  * @throw std::invalid_argument Class is not in diagram
  */
-void ClassDiagram::removeClass(Class classToRemove)
+void ClassDiagram::removeClass(Class *classToRemove)
 {
     for (auto iterator = classes.begin(); iterator != classes.end(); iterator++) {
         if (*iterator == classToRemove) {
@@ -37,9 +37,9 @@ void ClassDiagram::removeClass(Class classToRemove)
  */
 Class *ClassDiagram::findClassByName(std::string name)
 {
-    for (Class &currClass: classes) {
-        if (currClass.getName() == name) {
-            return &currClass;
+    for (Class *currClass: classes) {
+        if (currClass->getName() == name) {
+            return currClass;
         }
     }
 

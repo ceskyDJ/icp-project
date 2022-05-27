@@ -63,10 +63,10 @@ private:
     QHBoxLayout *buttonLayout;
     QVBoxLayout *mainLayout;
     QFormLayout *lineEditLayout;
-    AssociationLine *relationship = new AssociationLine;
+    AssociationLine *relationship;
     bool acceptSelected = false;
     bool removeSelected = false;
-    
+
     void initializeComponents();
     void connectComponents();
     void setAllLayouts();

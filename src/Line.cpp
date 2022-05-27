@@ -18,11 +18,6 @@
 
 class LineText;
 
-Line::Line()
-{
-
-}
-
 /**
  * @brief Line::initialize initializes line - from and to + pen
  * @param fromNode source node
@@ -132,9 +127,7 @@ Line::~Line()
 
 void Line::switchNodes()
 {
-    ClassNode *temp = fromClassNode;
-    fromClassNode = toClassNode;
-    toClassNode = temp;   
+    std::swap(fromClassNode, toClassNode);
 }
 
 /**

@@ -19,7 +19,7 @@
                 <method name="getApproximateAge" access-modifier="PUBLIC" return-type="int" type="NORMAL" />
             </methods>
         </class>
-        <class name="Programmer" type="NORMAL_CLASS" x-coord="410" y-coord="10">
+        <class name="Programmer" type="NORMAL_CLASS" x-coord="510" y-coord="10">
             <attributes>
                 <attribute access-modifier="PUBLIC" data-type="Skill[]">skills</attribute>
             </attributes>
@@ -30,7 +30,7 @@
                 </method>
             </methods>
         </class>
-        <class name="KnowsProgramming" type="INTERFACE" x-coord="810" y-coord="10">
+        <class name="KnowsProgramming" type="INTERFACE" x-coord="1010" y-coord="10">
             <!-- Missing arguments (interface has only methods in base concept) -->
             <methods>
                 <method name="makeProgram" access-modifier="PUBLIC" return-type="Program" type="ABSTRACT">
@@ -38,7 +38,7 @@
                 </method>
             </methods>
         </class>
-        <class name="Skill" type="ABSTRACT_CLASS" x-coord="410" y-coord="610">
+        <class name="Skill" type="ABSTRACT_CLASS" x-coord="410" y-coord="410">
             <attributes>
                 <attribute access-modifier="PROTECTED" data-type="int">level</attribute>
             </attributes>

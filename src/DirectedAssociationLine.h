@@ -13,7 +13,7 @@
 class DirectedAssociationLine : public LineWithArrow
 {
 public:
-    DirectedAssociationLine();
+    DirectedAssociationLine(std::unordered_map<Line *, Relationship *> *existingRelationships, ClassDiagram *classDiagram);
 protected:
     void drawArrow(QPainter *painter) const;
 };

@@ -25,7 +25,7 @@ class Line;
 class ClassNode : public QGraphicsItem
 {
 public:
-    ClassNode(Class classEntity = Class{"Nová třída", std::make_tuple(1, 1)});
+    ClassNode(std::unordered_map<std::string, ClassNode *> *existingClasses, Class *classEntity);
     /**
      * Overrided method that returns object bounding rect.
      *
@@ -49,7 +49,7 @@ public:
      */
     void setName(QString newName)
     {
-        classEntity.setName(newName.toStdString());
+        classEntity->setName(newName.toStdString());
         update();
     }
 
@@ -60,7 +60,7 @@ public:
      */
     void addAtribute(ClassAttribute newAtribute)
     {
-        classEntity.addAttribute(newAtribute);
+        classEntity->addAttribute(newAtribute);
         update();
     }
 
@@ -71,7 +71,7 @@ public:
      */
     void addMethod(ClassMethod newMethod)
     {
-        classEntity.addMethod(newMethod);
+        classEntity->addMethod(newMethod);
         update();
     }
 
@@ -82,7 +82,7 @@ public:
      */
     QString getName()
     {
-        return QString::fromStdString(classEntity.getName());
+        return QString::fromStdString(classEntity->getName());
     }
 
     /**
@@ -92,7 +92,7 @@ public:
      */
     std::vector<ClassAttribute> getAtributes()
     {
-        return classEntity.getAttributes();
+        return classEntity->getAttributes();
     }
 
     /**
@@ -102,7 +102,7 @@ public:
      */
     std::vector<ClassMethod> getMethods()
     {
-        return classEntity.getMethods();
+        return classEntity->getMethods();
     }
 
     /**
@@ -112,7 +112,7 @@ public:
      */
     void setAtributes(std::vector<ClassAttribute> attributes)
     {
-        classEntity.setAttributes(attributes);
+        classEntity->setAttributes(attributes);
         update();
     }
 
@@ -123,7 +123,7 @@ public:
      */
     void setMethods(std::vector<ClassMethod> methods)
     {
-        classEntity.setMethods(methods);
+        classEntity->setMethods(methods);
         update();
     }
 
@@ -132,7 +132,7 @@ public:
      *
      * @param newEntity new class
      */
-    void setEntity(Class newEntity)
+    void setEntity(Class *newEntity)
     {
         classEntity = newEntity;
         update();
@@ -143,7 +143,7 @@ public:
      *
      * @return Class
      */
-    Class getClassEntity()
+    Class *getClassEntity()
     {
         return classEntity;
     }
@@ -192,15 +192,20 @@ public:
     }
 
 private:
+    /**
+     * Pointer to stored class
+     */
+    Class *classEntity;
+
     QRectF borederRect();
     QRectF getNameBoundigRect() const;
     QRectF getWholeRect() const;
     QRectF getWholeRect(std::vector<QString> &attributePrintable, std::vector<QString> &methodPrintable) const;
     const int lineIndent = 5;
     const int Padding = 10;
-    Class classEntity;
     QColor borderColor = Qt::black;
     QSet<Line *> connectedLines;
+    std::unordered_map<std::string, ClassNode *> *existingClasses;
 
 
     std::vector<QString> getMethodPrintable(

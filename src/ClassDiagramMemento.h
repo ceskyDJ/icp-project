@@ -18,11 +18,11 @@
 class ClassDiagramMemento
 {
     /**
-     * Classes contained in class diagram
+     * Pointers to classes contained in class diagram
      *
      * @warning To access this class attribute use getter getClasses()
      */
-    std::vector<Class> classes;
+    std::vector<Class *> classes;
     /**
      * Pointers to relationships between classes
      *
@@ -43,20 +43,20 @@ private:
     /**
      * Constructor for defining memento's state
      *
-     * @param classes Current classes
-     * @param relationships Current relationships
+     * @param classes Current pointers to classes
+     * @param relationships Current pointers to relationships
      */
     ClassDiagramMemento(
-            std::vector<Class> classes,
+            std::vector<Class *> classes,
             std::vector<Relationship *> relationships
     ): classes{classes}, relationships{relationships} {};
 
     /**
      * Getter for classes
      *
-     * @return Remembered state of classes
+     * @return Remembered state of pointers to classes
      */
-    std::vector<Class> getClasses()
+    std::vector<Class *> getClasses()
     {
         return classes;
     }
@@ -64,7 +64,7 @@ private:
     /**
      * Getter for relationships
      *
-     * @return Remembered state of relationships
+     * @return Remembered state of pointers to relationships
      */
     std::vector<Relationship *> getRelationships()
     {

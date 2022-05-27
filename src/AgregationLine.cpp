@@ -10,8 +10,14 @@
 
 /**
  * Sets arrow height and width.
+ *
+ * @param existingRelationships Pointer to map of existing relationships and their lines
+ * @param classDiagram Pointer to class diagram
  */
-AgregationLine::AgregationLine()
+AgregationLine::AgregationLine(
+    std::unordered_map<Line *, Relationship *> *existingRelationships,
+    ClassDiagram *classDiagram
+): LineWithArrow{existingRelationships, classDiagram}
 {
     arrowHeight = 5;
     arrowWidth = 20;

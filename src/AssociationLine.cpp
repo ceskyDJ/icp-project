@@ -11,6 +11,7 @@
 #include <QFontMetricsF>
 #include <QRectF>
 #include "AssociationLineEditDialog.h"
+#include "UndirectedAssociation.h"
 
 /**
  * @brief Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship
@@ -24,9 +25,24 @@ void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
     {
         AssociationLineEditDialog::copyLine(this, editDialog->getRelationship());
         update();
+
+        // Update class diagram
+        auto undirectedAssociation = dynamic_cast<UndirectedAssociation *>(existingRelationships->find(this)->second);
+        undirectedAssociation->setName(associationName.toStdString());
+        undirectedAssociation->setFirstClassCardinality(firstCardinality.toStdString());
+        undirectedAssociation->setSecondClassCardinality(secondCardinality.toStdString());
     }
-    else if(editDialog->deleteRelationship())
+    else if(editDialog->deleteRelationship()) {
+        // Delete from class diagram
+        Relationship *undirectedAssociation = existingRelationships->find(this)->second;
+        classDiagram->removeRelationship(undirectedAssociation);
+
+        // Delete from existing relationships
+        existingRelationships->erase(this);
+
+        // Delete from memory and scene
         delete this;
+    }
 
 
 }

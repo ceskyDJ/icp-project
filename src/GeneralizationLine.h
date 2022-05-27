@@ -17,8 +17,11 @@ class GeneralizationLine : public LineWithArrow
 public:
     /**
      * Sets arrow width and height
+     *
+     * @param existingRelationships Pointer to map of existing relationships and their lines
+     * @param classDiagram Class diagram
      */
-    GeneralizationLine();
+    GeneralizationLine(std::unordered_map<Line *, Relationship *> *existingRelationships, ClassDiagram *classDiagram);
 protected:
     /**
      * Draws and arrow - rectangle

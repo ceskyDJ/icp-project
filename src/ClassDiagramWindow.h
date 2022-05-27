@@ -5,6 +5,7 @@
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
+ * @author Michal Šmahel (xsmahe01)
  */
 #ifndef CLASSDIAGRAMWINDOW_H
 #define CLASSDIAGRAMWINDOW_H
@@ -27,14 +28,18 @@
 #include "AssociationLine.h"
 #include "DirectedAssociationLine.h"
 #include "RealizationLine.h"
+#include "ClassDiagramManager.h"
 
 class ClassDiagramWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit ClassDiagramWindow();
+    explicit ClassDiagramWindow(ClassDiagramManager *classDiagramManager);
 
 private:
+    // Dependencies
+    ClassDiagramManager *classDiagramManager;
+
     int minToolboxWidth = 200;
     int toolboxItemSize = 70;
 
@@ -45,6 +50,11 @@ private:
     QGraphicsView *classDiagramView;
     QWidget *classDiagramCenterWidget;
     ClassEditDialog *classEditDialog;
+
+    // Wrapping collections
+    ClassDiagram classDiagram;
+    std::unordered_map<std::string, ClassNode *> storedClasses;
+    std::unordered_map<Line *, Relationship *> storedRelationships;
 
     QToolButton *agregationToolItem;
     QToolButton *associationToolItem;
@@ -61,6 +71,10 @@ private:
     QColor nodeColor = nodeNormalColor;
     QColor nodeFirstSelectedColor = Qt::darkMagenta;
     Line *newLine;
+    /**
+     * Is currently edited diagram saved to persistent storage (after last update)?
+     */
+    bool isSaved = false;
 
     void setModellingSpace();
     void setTaskBars();
@@ -74,9 +88,12 @@ private:
     QWidget *prepareSequencDiagramTab(QString label);
     ClassNode *getSelectedNode();
     void connectNodes();
+    void removeClassNode(ClassNode *classNode);
+    void clearScene();
+    void redrawClassDiagram();
 private slots:
     void addClassNode();
-    void removeClassNode();
+    void removeSelectedClassNodes();
     void associationSelected();
     void selectionChanged();
     void compositionSelected();

@@ -4,34 +4,38 @@
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
+ * @author Michal Šmahel (xsmahe01)
  */
 #include <QPushButton>
 #include <QResource>
 #include <iostream>
+#include <QFileDialog>
+#include <QMessageBox>
 #include "ClassDiagramWindow.h"
 #include "ClassAttribute.h"
+#include "Aggregation.h"
+#include "Composition.h"
+#include "DirectedAssociation.h"
+#include "Generalization.h"
+#include "Realization.h"
+#include "UndirectedAssociation.h"
+#include "InvalidDataStorageException.h"
+#include "InvalidInputDataException.h"
 
 /**
  * ClassDiagramWindow::ClassDiagramWindow Initialiezes components and prepare all QWidgets and controls.
+ *
+ * @param classDiagramManager Pointer to class diagram manager (dependency)
  */
-ClassDiagramWindow::ClassDiagramWindow()
+ClassDiagramWindow::ClassDiagramWindow(
+    ClassDiagramManager *classDiagramManager
+): classDiagramManager{classDiagramManager}, storedClasses{}, storedRelationships{}
 {
     initializeComponents();
     connectComponents();
     setTooBox();
     setTaskBars();
     setMainWindow();
-
-
-    ///////////////TESTING//////////////
-    Class newOne = Class{"Moje Třída", std::make_tuple(0,0)};
-    ClassNode *node = new ClassNode(newOne);
-    node->addAtribute(ClassAttribute{"atribut hej",AccessModifier::PRIVATE,"string"});
-    node->addAtribute(ClassAttribute{"další atribut",AccessModifier::PROTECTED,"int"});
-    std::vector<MethodParameter> par1{MethodParameter{"par1", "int"}, MethodParameter{"par2", "DateTime"}, MethodParameter{"long parameter3", "string"}};
-    node->addMethod(ClassMethod{"Metoda 1",AccessModifier::PROTECTED, par1,"string"});
-    node->addMethod(ClassMethod{"Metoda 2",AccessModifier::PACKAGE_PRIVATE, par1,"DateTime"});
-    classDiagramScene->addItem(node);
 }
 
 /**
@@ -187,30 +191,74 @@ void ClassDiagramWindow::setTooBox()
  */
 void ClassDiagramWindow::addClassNode()
 {
-    ClassNode *newOne = new ClassNode();
-    newOne->setPos(0,0);
-    classDiagramScene->addItem(newOne);
+    // Numbering for unique names
+    static int classNumber = 1;
+
+    // Create new class in class diagram
+    Class *newClass = new Class{"New class " + std::to_string(classNumber++), std::make_tuple(0, 0)};
+
+    classDiagram.addClass(newClass);
+
+    // Create new GUI class node
+    auto *newClassNode = new ClassNode(&storedClasses, newClass);
+
+    classDiagramScene->addItem(newClassNode);
+    storedClasses.insert({newClass->getName(), newClassNode});
 }
 
 /**
- * ClassDiagramWindow::removeClassNode Removes all selected class nodes.
+ * ClassDiagramWindow::removeSelectedClassNodes Removes all selected class nodes.
  */
-void ClassDiagramWindow::removeClassNode()
+void ClassDiagramWindow::removeSelectedClassNodes()
 {
     QList<QGraphicsItem *> selectedItems =  classDiagramScene->selectedItems();
     for (QGraphicsItem *item : selectedItems)
     {
-        ClassNode *node = dynamic_cast<ClassNode *>(item);
-        if(node)
-        {
-            QSet<Line *> connections = node->getConnections();
-            for(Line * connection : connections)
-                delete connection;
-
-            classDiagramScene->removeItem(item);
-            delete item;
+        auto node = dynamic_cast<ClassNode *>(item);
+        if(node) {
+            removeClassNode(node);
         }
     }
+}
+
+/**
+ * Removes single class node
+ *
+ * @param classNode Pointer to class node to remove
+ */
+void ClassDiagramWindow::removeClassNode(ClassNode *classNode)
+{
+    QSet<Line *> connections = classNode->getConnections();
+    for(Line *connection: connections) {
+        // Delete corresponding relationship from class diagram and memory
+        Relationship *relationship = storedRelationships.find(connection)->second;
+
+        classDiagram.removeRelationship(relationship);
+        delete relationship;
+
+        // Delete from stored relationships
+        storedRelationships.erase(connection);
+
+        // Delete from scene and memory
+        classDiagramScene->removeItem(connection);
+        delete connection;
+    }
+
+    // Get corresponding class (entity)
+    Class *classEntity = classNode->getClassEntity();
+
+    // Delete from scene and memory
+    classDiagramScene->removeItem(classNode);
+    delete classNode;
+
+    std::cerr << classEntity->getName() << "\n";
+
+    // Delete from stored classes
+    storedClasses.erase(storedClasses.find(classEntity->getName()));
+
+    // Delete class from diagram and memory
+    classDiagram.removeClass(classEntity);
+    delete classEntity;
 }
 
 /**
@@ -219,7 +267,7 @@ void ClassDiagramWindow::removeClassNode()
 void ClassDiagramWindow::connectComponents()
 {
     connect(classShapeToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::addClassNode);
-    connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeClassNode);
+    connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeSelectedClassNodes);
     connect(associationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::associationSelected);
     
     connect(compositionToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::compositionSelected);
@@ -256,7 +304,7 @@ void ClassDiagramWindow::associationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AssociationLine;
+    newLine = new AssociationLine{&storedRelationships, &classDiagram};
 }
 
 /**
@@ -266,7 +314,7 @@ void ClassDiagramWindow::compositionSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new CompositionLine;
+    newLine = new CompositionLine{&storedRelationships, &classDiagram};
 }
 
 /**
@@ -276,7 +324,7 @@ void ClassDiagramWindow::agregationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AgregationLine();
+    newLine = new AgregationLine{&storedRelationships, &classDiagram};
 }
 
 /**
@@ -286,7 +334,7 @@ void ClassDiagramWindow::generalisationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new GeneralizationLine();
+    newLine = new GeneralizationLine{&storedRelationships, &classDiagram};
 }
 
 /**
@@ -296,7 +344,7 @@ void ClassDiagramWindow::directedAssociationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new DirectedAssociationLine();
+    newLine = new DirectedAssociationLine{&storedRelationships, &classDiagram};
 }
 
 /**
@@ -306,7 +354,7 @@ void ClassDiagramWindow::realizationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new RealizationLine();
+    newLine = new RealizationLine{&storedRelationships, &classDiagram};
 }
 
 /**
@@ -364,13 +412,121 @@ ClassNode *ClassDiagramWindow::getSelectedNode()
  */
 void ClassDiagramWindow::connectNodes()
 {
+    // Create new line in scene
     newLine->initialize(firstToSelect, secondToSelect);
     classDiagramScene->addItem(newLine);
     firstToSelect->addLine(newLine);
     secondToSelect->addLine(newLine);
 
+    // Create new relationship in class diagram
+    Relationship *relationship;
+    const std::type_info &relationshipType = typeid(*newLine);
+    if (relationshipType == typeid(AgregationLine)) {
+        relationship = new Aggregation{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
+    } else if (relationshipType == typeid(CompositionLine)) {
+        relationship = new Composition{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
+    } else if (relationshipType == typeid(DirectedAssociationLine)) {
+        relationship = new DirectedAssociation{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
+    } else if (relationshipType == typeid(GeneralizationLine)) {
+        relationship = new Generalization{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
+    } else if (relationshipType == typeid(RealizationLine)) {
+        relationship = new Realization{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
+    } else if (relationshipType == typeid(AssociationLine)) {
+        auto *associationLine = dynamic_cast<AssociationLine *>(newLine);
+
+        relationship = new UndirectedAssociation{
+            firstToSelect->getClassEntity(),
+            secondToSelect->getClassEntity(),
+            associationLine->getName().toStdString(),
+            associationLine->getFirstCardinality().toStdString(),
+            associationLine->getSecondCardinality().toStdString()
+        };
+    } else {
+        throw std::logic_error{"Unknown type of the line"};
+    }
+
+    classDiagram.addRelationship(relationship);
+    storedRelationships.insert({newLine, relationship});
+
     firstToSelect = nullptr;
     secondToSelect = nullptr;
+}
+
+void ClassDiagramWindow::clearScene()
+{
+    std::vector<ClassNode *> nodesForRemoval{};
+    for (auto &item: classDiagramScene->items()) {
+        if (typeid(*item) == typeid(ClassNode)) {
+            auto classNode = dynamic_cast<ClassNode *>(item);
+
+            nodesForRemoval.push_back(classNode);
+        }
+    }
+
+    for (auto &classNode: nodesForRemoval) {
+        removeClassNode(classNode);
+    }
+}
+
+/**
+ * Redraws scene using updated class diagram
+ *
+ * @warning Does not clear scene. clearScene() should be called before
+ */
+void ClassDiagramWindow::redrawClassDiagram()
+{
+    // Add classes
+    for (const auto &item: classDiagram.getClasses()) {
+        auto classNode = new ClassNode(&storedClasses, item);
+
+        classDiagramScene->addItem(classNode);
+        storedClasses.insert({item->getName(), classNode});
+    }
+
+    // Add relationships
+    for (auto item: classDiagram.getRelationships()) {
+        std::string firstClassName{item->getFirstClass()->getName()};
+        std::string secondClassName{item->getSecondClass()->getName()};
+
+        ClassNode *firstClassNode = storedClasses.find(firstClassName)->second;
+        ClassNode *secondClassNode = storedClasses.find(secondClassName)->second;
+
+        Line *line;
+        const std::type_info &relationshipType = typeid(*item);
+        if (relationshipType == typeid(Aggregation)) {
+            line = new AgregationLine{&storedRelationships, &classDiagram};
+        } else if (relationshipType == typeid(Composition)) {
+            line = new CompositionLine{&storedRelationships, &classDiagram};
+        } else if (relationshipType == typeid(DirectedAssociation)) {
+            line = new DirectedAssociationLine{&storedRelationships, &classDiagram};
+        } else if (relationshipType == typeid(Generalization)) {
+            line = new GeneralizationLine{&storedRelationships, &classDiagram};
+        } else if (relationshipType == typeid(Realization)) {
+            line = new RealizationLine{&storedRelationships, &classDiagram};
+        } else if (relationshipType == typeid(UndirectedAssociation)) {
+            line = new AssociationLine{&storedRelationships, &classDiagram};
+            auto *associationLine = dynamic_cast<AssociationLine *>(line);
+
+            // Add cardinalities
+            auto *undirectedAssociation = dynamic_cast<UndirectedAssociation *>(item);
+            auto firstCardinality = QString::fromStdString(undirectedAssociation->getFirstClassCardinality());
+            auto secondCardinality = QString::fromStdString(undirectedAssociation->getSecondClassCardinality());
+
+            associationLine->setFirstCardinality(firstCardinality);
+            associationLine->setSecondCardinality(secondCardinality);
+        } else {
+            throw std::logic_error{"Unknown relationship"};
+        }
+
+        // Add to stored relationships
+        storedRelationships.insert({line, item});
+
+        // Add to scene
+        line->initialize(firstClassNode, secondClassNode);
+        classDiagramScene->addItem(line);
+        firstClassNode->addLine(line);
+        secondClassNode->addLine(line);
+    }
 }
 
 /**
@@ -378,7 +534,45 @@ void ClassDiagramWindow::connectNodes()
  */
 void ClassDiagramWindow::openButtonClicked()
 {
-    std::cerr << "Clicked on \"Open\" button!\n";
+    if (!classDiagramScene->items().isEmpty() && !isSaved) {
+        auto clickedButton = QMessageBox::question(
+            this,
+            "Class diagram opening collision",
+            "You are trying to open new class diagram before saving the edited one. Are you sure to continue?"
+            " Canvas content will be replaced with loaded diagram."
+        );
+
+        if (clickedButton == QMessageBox::No) {
+            // Stop here, nothing will be loaded
+            return;
+        }
+    }
+
+    QString file = QFileDialog::getOpenFileName(
+        this,
+        "Choose diagram to open",
+        "",
+        "XML files (*.xml)",
+        nullptr,
+        QFileDialog::HideNameFilterDetails
+    );
+
+    try {
+        ClassDiagram loadedDiagram = classDiagramManager->loadDiagram(file.toStdString());
+
+        // Clear canvas
+        if (!classDiagramScene->items().isEmpty()) {
+            clearScene();
+        }
+
+        // Draw new diagram
+        classDiagram = loadedDiagram;
+        redrawClassDiagram();
+    } catch (InvalidDataStorageException &e) {
+        QMessageBox::critical(this, "Class diagram opening error", e.what());
+    } catch (InvalidInputDataException &e) {
+        QMessageBox::critical(this, "Class diagram opening error", e.what());
+    }
 }
 
 /**

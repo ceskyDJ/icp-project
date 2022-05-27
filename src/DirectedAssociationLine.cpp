@@ -12,8 +12,14 @@
 
 /**
  * Set arrow height and width.
+ *
+ * @param existingRelationships Pointer to map of existing relationships and their lines
+ * @param classDiagram Pointer to class diagram
  */
-DirectedAssociationLine::DirectedAssociationLine()
+DirectedAssociationLine::DirectedAssociationLine(
+    std::unordered_map<Line *, Relationship *> *existingRelationships,
+    ClassDiagram *classDiagram
+): LineWithArrow{existingRelationships, classDiagram}
 {
     arrowHeight = 20;
     arrowWidth = 20;

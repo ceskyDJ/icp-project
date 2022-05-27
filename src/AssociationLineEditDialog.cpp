@@ -15,6 +15,7 @@
  */
 AssociationLineEditDialog::AssociationLineEditDialog(AssociationLine *line)
 {
+    relationship = new AssociationLine{line->getExistingRelationships(), line->getClassDiagram()};
     copyLine(relationship, line);
     setWindowTitle("Edit association");
     initializeComponents();

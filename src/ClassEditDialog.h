@@ -26,15 +26,15 @@
 class ClassEditDialog : public QDialog
 {
 public:
-    ClassEditDialog(Class classEntity);
-    Class getClassEntity()
+    explicit ClassEditDialog(Class *classEntity);
+    Class *getClassEntity()
     {
         return classEntity;
     }
     static QWidget* createTitle(QPushButton *addPushButton, QString title, QString label);
 
 private:
-    Class classEntity;
+    Class *classEntity;
     QLineEdit *nameTextEdit;
     QVBoxLayout *dialogLayout;
     std::vector<AttributeEditWidget*> atributeEdits;

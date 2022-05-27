@@ -43,12 +43,15 @@ class Relationship
         std::string name = ""
     ): firstClass{firstClass}, secondClass{secondClass}, name{name} {};
 
-    /**
-     * Default virtual destructor for converting class to polymorphic one
-     */
-    virtual ~Relationship() = default;
-
   public:
+    /**
+     * Swaps first and second class of relationship (turns over the arrow)
+     */
+    void swapClasses()
+    {
+        std::swap(firstClass, secondClass);
+    }
+
     /**
      * Getter for the first class of relationship
      *
@@ -114,6 +117,11 @@ class Relationship
     {
         return !operator==(other);
     }
+
+    /**
+     * Default virtual destructor for converting class to polymorphic one
+     */
+    virtual ~Relationship() = default;
 };
 
 #endif //ICP_PROJECT_RELATIONSHIP_H
