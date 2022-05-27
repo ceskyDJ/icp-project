@@ -1,6 +1,5 @@
 /**
- * @class MethodEditWidget
- * Allows to edit method.
+ * @file MethodEditWidget
  *
  * ICP project (Class and sequence diagram editor)
  *

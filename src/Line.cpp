@@ -1,6 +1,5 @@
 /**
- * @class Line
- * General line - others are abstract.
+ * @file Line.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -15,6 +14,7 @@
 #include <QInputDialog>
 #include <QRectF>
 #include <QGraphicsSceneMouseEvent>
+#include <QPolygonF>
 
 class LineText;
 
@@ -135,4 +135,52 @@ void Line::switchNodes()
     ClassNode *temp = fromClassNode;
     fromClassNode = toClassNode;
     toClassNode = temp;   
+}
+
+/**
+ * Sets a shape of line - it will be same line but with bigger width
+ *
+ * @return QPainterPath - path of line but wider
+ */
+QPainterPath Line::shape() const
+{
+    QLineF line = getShortestLine(fromClassNode, toClassNode);
+    QLineF first_perpendicularLine = line.normalVector();
+    QLineF second_perpendicularLine = first_perpendicularLine;
+    first_perpendicularLine.setLength(lineBoundingWidth);
+    second_perpendicularLine.setAngle(first_perpendicularLine.angle() + 180);
+    second_perpendicularLine.setLength(lineBoundingWidth);
+
+
+    QLineF parallelLine1 = getParallelLine(line, first_perpendicularLine.p2());
+    QLineF parallelLine2 = getParallelLine(line, second_perpendicularLine.p2());
+
+    QVector<QPointF> points = {
+        parallelLine1.p1(),
+        parallelLine1.p2(),
+        parallelLine2.p2(),
+        parallelLine2.p1(),
+        parallelLine1.p1()
+    };
+
+    QPolygonF pathPolygon{points};
+    QPainterPath newPath{};
+    newPath.addPolygon(pathPolygon);
+    return newPath;
+}
+
+/**
+ * Returns a line that is parallel with parallelLine but starts in another p1.
+ *
+ * @param lineToPerpend Line that will be copied.
+ * @param startPoint new start point
+ * @return Parallel line with startPoint as p1
+ */
+QLineF Line::getParallelLine(QLineF parallelLine, QPointF startPoint) const
+{
+    QLineF newLine{};
+    newLine.setP1(startPoint);
+    newLine.setAngle(parallelLine.angle());
+    newLine.setLength(parallelLine.length());
+    return newLine;
 }

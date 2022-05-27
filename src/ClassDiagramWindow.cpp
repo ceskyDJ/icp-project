@@ -1,6 +1,5 @@
 /**
- * @class ClassDiagramWindow.cpp
- * Implementation of class whisch shows class diagrams.
+ * @file ClassDiagramWindow.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

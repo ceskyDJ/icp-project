@@ -1,6 +1,5 @@
 /**
- * @class classNode
- * Implementation of class node.
+ * @file classNode.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

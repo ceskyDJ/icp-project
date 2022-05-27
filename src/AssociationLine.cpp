@@ -1,6 +1,5 @@
 /**
- * @class AssociationLine.h
- * Represents association line in class diagram.
+ * @file AssociationLine.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -20,8 +19,10 @@
  */
 void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
-    associationName = QInputDialog::getText(event->widget(), "Edit name", "Enter new Name:",
+    QString returnName = QInputDialog::getText(event->widget(), "Edit name", "Enter new Name:",
                                             QLineEdit::Normal, associationName);
+    if(returnName.count() > 0)
+        associationName = returnName;
     update();
 }
 
@@ -38,7 +39,6 @@ void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem *
     QLineF line = getShortestLine(fromClassNode, toClassNode);
     painter->drawLine(line);
     painter->translate(0.5 * line.p1() + 0.5 * line.p2());
-    painter->setPen(pen);
 
     QRectF nameRect = prepareBoundingBox(getTextBoundingBox(associationName));
 
@@ -69,6 +69,7 @@ void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem *
  */
 QRectF AssociationLine::getTextBoundingBox(QString text) const
 {
+    text = (text.count() == 0)? "I":text;
     static const QFontMetricsF metrics{qApp->font()};
     return metrics.boundingRect(text);
 }

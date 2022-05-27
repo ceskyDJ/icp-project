@@ -1,6 +1,5 @@
 /**
- * @class CompositionLine
- * Composition line.
+ * @file CompositionLine.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

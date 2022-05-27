@@ -1,6 +1,5 @@
 /**
- * @class AgregationLine
- * Represents agreagation line in class diagram. Allows to draw an agragation line with arrow.
+ * @file AgregationLine.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

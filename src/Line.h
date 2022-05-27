@@ -13,6 +13,7 @@
 #include "classNode.h"
 #include <QPointF>
 #include <QPen>
+#include <QPainterPath>
 
 class ClassNode;
 class LineText;
@@ -51,9 +52,14 @@ protected:
     QPen pen{Qt::black, 2, Qt::SolidLine};
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
+    qreal lineBoundingWidth = 10;
+
+
     QPointF getCenterPos(ClassNode *node) const;
     QPointF getIntersectPoint(QLineF connectingLine, ClassNode *node) const;
     QLineF getShortestLine(ClassNode *first, ClassNode *second) const;
-    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
+    void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget);
+    QPainterPath shape() const;
+    QLineF getParallelLine(QLineF parallelLine, QPointF startPoint) const;
 };
 #endif // LINE_H

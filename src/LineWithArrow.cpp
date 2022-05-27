@@ -1,6 +1,5 @@
 /**
- * @class LineWithArrow
- * Represents line with arrow in class diagram. Allows to draw a line with arrow.
+ * @file LineWithArrow.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

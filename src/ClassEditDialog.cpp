@@ -1,6 +1,5 @@
 /**
- * @class ClassEditDialog
- * Dialog allows to eddit all data of class entity.
+ * @file ClassEditDialog.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

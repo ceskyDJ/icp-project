@@ -1,6 +1,5 @@
 /**
- * @class GeneralizationLine
- * Generalization line.
+ * @file GeneralizationLine.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

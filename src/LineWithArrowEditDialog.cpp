@@ -1,6 +1,5 @@
 /**
- * @class LineWithArrowEditDialog
- * Dialog which allow to revers line directory or remove reltaionship.
+ * @file LineWithArrowEditDialog.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -117,3 +116,4 @@ void LineWithArrowEditDialog::connectComponents()
     connect(switchNodesButton, &QPushButton::pressed, this, &LineWithArrowEditDialog::switchArrow);
     connect(removeRelationshipButton, &QPushButton::pressed, this, &LineWithArrowEditDialog::removeRelationship);
 }
+
