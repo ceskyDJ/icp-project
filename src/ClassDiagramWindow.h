@@ -84,6 +84,11 @@ private slots:
     void generalisationSelected();
     void directedAssociationSelected();
     void realizationSelected();
+    void openButtonClicked();
+    void saveButtonClicked();
+    void saveAsButtonClicked();
+    void undoButtonClicked();
+    void redoButtonClicked();
 };
 
 #endif // CLASSDIAGRAMWINDOW_H

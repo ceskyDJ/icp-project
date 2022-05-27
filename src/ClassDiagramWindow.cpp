@@ -7,6 +7,7 @@
  */
 #include <QPushButton>
 #include <QResource>
+#include <iostream>
 #include "ClassDiagramWindow.h"
 #include "ClassAttribute.h"
 
@@ -85,11 +86,11 @@ void ClassDiagramWindow::setMainWindow()
  */
 void ClassDiagramWindow::setTaskBars()
 {
-    taskBar->addAction("Open");
-    taskBar->addAction("Save");
-    taskBar->addAction("Save as...");
-    taskBar->addAction("Undo");
-    taskBar->addAction("Redo");
+    taskBar->addAction("Open", this, &ClassDiagramWindow::openButtonClicked);
+    taskBar->addAction("Save", this, &ClassDiagramWindow::saveButtonClicked);
+    taskBar->addAction("Save as...", this, &ClassDiagramWindow::saveAsButtonClicked);
+    taskBar->addAction("Undo", this, &ClassDiagramWindow::undoButtonClicked);
+    taskBar->addAction("Redo", this, &ClassDiagramWindow::redoButtonClicked);
 
 
     diagramTabs->addWidget(prepareSequencDiagramTab("Třídní diagram"));
@@ -120,6 +121,7 @@ QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString, QT
 
     QWidget* toolboxItem = new QWidget;
     toolboxItem->setLayout(toolboxItemLayout);
+    //toolboxItem->setMaximumSize(toolboxItemSize, toolboxItemSize + label->size().height() + 20);
     return toolboxItem;
 }
 
@@ -371,3 +373,42 @@ void ClassDiagramWindow::connectNodes()
     secondToSelect = nullptr;
 }
 
+/**
+ * Slot for handling click action on "Open" button
+ */
+void ClassDiagramWindow::openButtonClicked()
+{
+    std::cerr << "Clicked on \"Open\" button!\n";
+}
+
+/**
+ * Slot for handling click action on "Save" button
+ */
+void ClassDiagramWindow::saveButtonClicked()
+{
+    std::cerr << "Clicked on \"Save\" button!\n";
+}
+
+/**
+ * Slot for handling click action on "Save as..." button
+ */
+void ClassDiagramWindow::saveAsButtonClicked()
+{
+    std::cerr << "Clicked on \"Save as...\" button!\n";
+}
+
+/**
+ * Slot for handling click action on "Undo" button
+ */
+void ClassDiagramWindow::undoButtonClicked()
+{
+    std::cerr << "Clicked on \"Undo\" button!\n";
+}
+
+/**
+ * Slot for handling click action on "Redo" button
+ */
+void ClassDiagramWindow::redoButtonClicked()
+{
+    std::cerr << "Clicked on \"Redo\" button!\n";
+}
