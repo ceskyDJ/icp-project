@@ -11,7 +11,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(CMAKE_PREFIX_PATH "/opt/Qt/5.12.12/gcc_64")
+set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/qt5/")
 
 find_package(Qt5 COMPONENTS
         Core
@@ -20,18 +20,85 @@ find_package(Qt5 COMPONENTS
         Xml
         REQUIRED)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
 add_executable(icp_project
-        src/main.cpp src/ClassDiagram.h src/SequenceDiagram.h src/ClassMember.h src/ClassMethod.h src/ClassAttribute.h
-        src/Class.h src/Object.h src/MethodParameter.h src/Message.h src/Relationship.h src/Generalization.h
-        src/Aggregation.h src/Composition.h src/AccessModifier.h src/ClassType.h src/MessageType.h src/Actor.h
-        src/ClassMethodType.h src/UndirectedAssociation.h src/DirectedAssociation.h src/MessageNode.h
-        src/AccessModifier.cpp src/ClassMethodType.cpp src/ClassType.cpp src/MessageType.cpp src/Realization.h
-        src/ClassDiagram.cpp src/SequenceDiagram.cpp src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
-        src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
-        src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
-        src/InvalidInputDataException.h src/SequenceDiagram.cpp src/ClassReference.h src/MethodReference.h src/Class.cpp
-        src/ClassDiagramManager.cpp src/ClassDiagramManager.h src/SequenceDiagramManager.cpp
-        src/SequenceDiagramManager.h src/HistoryStack.h src/ClassDiagramMemento.h src/SequenceDiagramMemento.h)
+        # Header files
+        src/ClassDiagram.h
+        src/Line.h
+        src/MethodParameterEditWidget.h
+        src/SequenceDiagram.h
+        src/ClassMember.h
+        src/ClassMethod.h
+        src/ClassAttribute.h
+        src/Class.h
+        src/Object.h
+        src/MethodParameter.h
+        src/Message.h
+        src/Relationship.h
+        src/Generalization.h
+        src/Aggregation.h
+        src/Composition.h
+        src/AccessModifier.h
+        src/ClassType.h
+        src/MessageType.h
+        src/Actor.h
+        src/ClassMethodType.h
+        src/UndirectedAssociation.h
+        src/DirectedAssociation.h
+        src/MessageNode.h
+        src/Realization.h
+        src/ClassDiagramRepository.h
+        src/FileClassDiagramRepository.h
+        src/SequenceDiagramRepository.h
+        src/FileSequenceDiagramRepository.h
+        src/AppException.h
+        src/InvalidDataStorageException.h
+        src/InvalidInputDataException.h
+        src/MethodReference.h
+        src/ClassDiagramManager.h
+        src/SequenceDiagramManager.h
+        src/HistoryStack.h
+        src/ClassDiagramMemento.h
+        src/SequenceDiagramMemento.h
+        src/ClassDiagramWindow.h
+        src/MethodParameterEditWidget.h
+        src/Line.h
+        src/ClassEditDialog.h
+        src/AttributeEditWidget.h
+        src/MethodEditWidget.h
+        src/AgregationLine.h
+        src/CompositionLine.h
+        src/GeneralizationLine.h
+
+        # Source files
+        src/AccessModifier.cpp
+        src/ClassMethodType.cpp
+        src/ClassType.cpp
+        src/MessageType.cpp
+        src/ClassDiagram.cpp
+        src/SequenceDiagram.cpp
+        src/Class.cpp
+        src/FileClassDiagramRepository.cpp
+        src/FileSequenceDiagramRepository.cpp
+        src/ClassDiagramManager.cpp
+        src/SequenceDiagramManager.cpp
+        src/ClassDiagramWindow.cpp
+        src/MethodParameterEditWidget.cpp
+        src/Line.cpp
+        src/classNode.cpp
+        src/ClassEditDialog.cpp
+        src/AttributeEditWidget.cpp
+        src/MethodEditWidget.cpp
+        src/AgregationLine.cpp
+        src/CompositionLine.cpp
+        src/GeneralizationLine.cpp
+        src/main.cpp
+
+        # Qrc files
+        rsc.qrc)
 target_link_libraries(icp_project
         Qt5::Core
         Qt5::Gui
@@ -64,7 +131,8 @@ add_executable(test_save_sequence_diagram
         src/Realization.h src/ClassDiagramRepository.h src/FileClassDiagramRepository.cpp
         src/FileClassDiagramRepository.h src/SequenceDiagramRepository.h src/FileSequenceDiagramRepository.cpp
         src/FileSequenceDiagramRepository.h src/InvalidDataStorageException.h src/AppException.h
-        src/InvalidInputDataException.h src/SequenceDiagram.cpp src/ClassReference.h src/MethodReference.h src/Class.cpp)
+        src/InvalidInputDataException.h src/SequenceDiagram.cpp src/ClassReference.h src/MethodReference.h
+        src/Class.cpp)
 target_link_libraries(test_save_sequence_diagram
         Qt5::Core
         Qt5::Gui
