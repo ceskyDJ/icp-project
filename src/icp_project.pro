@@ -57,7 +57,6 @@ HEADERS += \
     AppException.h \
     InvalidDataStorageException.h \
     InvalidInputDataException.h \
-    ObjectReference.h \
     MethodReference.h \
     ClassDiagramManager.h \
     SequenceDiagramManager.h \
