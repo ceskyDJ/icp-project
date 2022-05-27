@@ -26,7 +26,7 @@ public:
     void initialize(ClassNode *fromNode, ClassNode *toNode);
 
     /**
-     * Returns a classNode that is pointed to in relationship.
+     * Returns a classNode that is pointed to, in relationship.
      *
      * @return second class node
      */
@@ -34,6 +34,19 @@ public:
     {
         return toClassNode;
     }
+
+    /**
+     * Returns a classNode that is pointed from, in relationship.
+     *
+     * @return second class node
+     */
+    ClassNode *getFromClassNode()
+    {
+        return fromClassNode;
+    }
+
+    void switchNodes();
+
 protected:
     QPen pen{Qt::black, 2, Qt::SolidLine};
     ClassNode *fromClassNode;

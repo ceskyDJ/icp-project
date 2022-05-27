@@ -31,6 +31,7 @@ HEADERS += \
     ClassDiagram.h \
     Line.h \
     LineWithArrow.h \
+    LineWithArrowEditDialog.h \
     MethodParameterEditWidget.h \
     SequenceDiagram.h \
     ClassMember.h \
@@ -82,6 +83,7 @@ SOURCES += \
     ClassMethodType.cpp \
     ClassType.cpp \
     LineWithArrow.cpp \
+    LineWithArrowEditDialog.cpp \
     MessageType.cpp \
     ClassDiagram.cpp \
     SequenceDiagram.cpp \

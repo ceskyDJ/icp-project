@@ -81,8 +81,8 @@ QRectF AssociationLine::getTextBoundingBox(QString text) const
 QRectF AssociationLine::boundingRect() const
 {
     QLineF line = getShortestLine(fromClassNode, toClassNode);
-    QPointF leftTop = QPointF{ fmin(line.p1().x(), line.p2().x()), fmin(line.p1().y(), line.p2().y())};
-    QPointF rightBot = QPointF{ fmax(line.p1().x(), line.p2().x()), fmax(line.p1().y(), line.p2().y())};
+    QPointF leftTop = QPointF{ std::min(line.p1().x(), line.p2().x()), std::min(line.p1().y(), line.p2().y())};
+    QPointF rightBot = QPointF{ std::max(line.p1().x(), line.p2().x()), std::max(line.p1().y(), line.p2().y())};
     QRectF bounding = QRectF{leftTop,rightBot};
     QRectF name = getTextBoundingBox(associationName);
 

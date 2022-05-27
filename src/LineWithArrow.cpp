@@ -9,6 +9,7 @@
 #include "LineWithArrow.h"
 #include <cmath>
 #include <QPainter>
+#include "LineWithArrowEditDialog.h"
 
 /**
      * Paints line and arrow. Inherited from QGraphicsItem
@@ -59,4 +60,14 @@ QRectF LineWithArrow::boundingRect() const
  */
 void LineWithArrow::drawArrow(QPainter */*painter*/) const
 {
+}
+
+
+/**
+ * Shows dialog to edit relationship.
+ */
+void LineWithArrow::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
+{
+    LineWithArrowEditDialog *edit = new LineWithArrowEditDialog(this);
+    edit->exec();
 }

@@ -41,6 +41,11 @@ protected:
      * @param painter to paint arrow
      */
     virtual void drawArrow(QPainter *painter) const;
+
+    /**
+     * Shows dialog to edit relationship.
+     */
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
 };
 
 #endif // LINEWITHARROW_H

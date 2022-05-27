@@ -23,7 +23,7 @@ protected:
     qreal padding = 20;
 
 
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
     QRectF getTextBoundingBox(QString text) const;
     QRectF boundingRect() const;

@@ -129,3 +129,10 @@ Line::~Line()
     fromClassNode->removeConnection(this);
     toClassNode->removeConnection(this);
 }
+
+void Line::switchNodes()
+{
+    ClassNode *temp = fromClassNode;
+    fromClassNode = toClassNode;
+    toClassNode = temp;   
+}
