@@ -69,34 +69,28 @@ $(function() {
   <div class="headertitle"><div class="title">GeneralizationLine.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;GeneralizationLine.h&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QPainter&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keywordtype">void</span> GeneralizationLine::paint(QPainter * painter, <span class="keyword">const</span> QStyleOptionGraphicsItem * <span class="comment">/*option*/</span>, QWidget * <span class="comment">/*widget*/</span>)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">int</span> size = 20;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    painter-&gt;setPen(QPen{Qt::black, 2, Qt::SolidLine});</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    QLineF line = <a class="code hl_function" href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9">getShortestLine</a>(fromClassNode, toClassNode);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    line.setLength(line.length() - size);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    QPointF arrow = line.p2();</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    QList&lt;QPoint&gt; rectangle;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    rectangle.append(QPoint(arrow.x(), arrow.y() - size/2));</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    rectangle.append(QPoint(arrow.x(), arrow.y() + size/2));</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    rectangle.append(QPoint(arrow.x(), arrow.y() + size/2));</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    rectangle.append(QPoint(arrow.x() + size, arrow.y()));</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    rectangle.append(QPoint(arrow.x() + size, arrow.y()));</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    rectangle.append(QPoint(arrow.x(), arrow.y() - size/2));</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; rectangle.count(); i+=2)</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        painter-&gt;drawLine(rectangle[i], rectangle[i+1]);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    painter-&gt;drawLine(line);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
-<div class="ttc" id="aclassLine_html_af7dd2cd4a125f064122ad5e9fb7248f9"><div class="ttname"><a href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9">Line::getShortestLine</a></div><div class="ttdeci">QLineF getShortestLine(ClassNode *first, ClassNode *second)</div><div class="ttdoc">Line::getShortestLine Counts shortest line connected between 2 nodes.</div><div class="ttdef"><b>Definition:</b> <a href="Line_8cpp_source.html#l00068">Line.cpp:68</a></div></div>
+<a href="GeneralizationLine_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;GeneralizationLine.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classGeneralizationLine.html#a907fa009b2c30972532dc97f22f31f58">   13</a></span><a class="code hl_function" href="classGeneralizationLine.html#a907fa009b2c30972532dc97f22f31f58">GeneralizationLine::GeneralizationLine</a>()</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    arrowHeight = 20;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    arrowWidth = 20;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classGeneralizationLine.html#a06280f8614ace5f2739c4dec825c087d">   19</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classGeneralizationLine.html#a06280f8614ace5f2739c4dec825c087d">GeneralizationLine::drawArrow</a>(QPainter *painter)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    QVector&lt;QPointF&gt; points = {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        QPointF{-arrowWidth / 2 + 1, arrowHeight / 2},</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        QPointF{arrowWidth / 2, 0},</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        QPointF{-arrowWidth / 2 + 1, -arrowHeight / 2},</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        QPointF{-arrowWidth / 2 + 1, arrowHeight / 2}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; points.size() - 1; i++)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        painter-&gt;drawLine(points[i], points[i + 1]);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+<div class="ttc" id="aclassGeneralizationLine_html_a06280f8614ace5f2739c4dec825c087d"><div class="ttname"><a href="classGeneralizationLine.html#a06280f8614ace5f2739c4dec825c087d">GeneralizationLine::drawArrow</a></div><div class="ttdeci">void drawArrow(QPainter *painter) const</div><div class="ttdef"><b>Definition:</b> <a href="GeneralizationLine_8cpp_source.html#l00019">GeneralizationLine.cpp:19</a></div></div>
+<div class="ttc" id="aclassGeneralizationLine_html_a907fa009b2c30972532dc97f22f31f58"><div class="ttname"><a href="classGeneralizationLine.html#a907fa009b2c30972532dc97f22f31f58">GeneralizationLine::GeneralizationLine</a></div><div class="ttdeci">GeneralizationLine()</div><div class="ttdef"><b>Definition:</b> <a href="GeneralizationLine_8cpp_source.html#l00013">GeneralizationLine.cpp:13</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

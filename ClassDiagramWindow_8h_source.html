@@ -85,69 +85,71 @@ $(function() {
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;ClassEditDialog.h&quot;</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;Line.h&quot;</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;GeneralizationLine.h&quot;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;AgregationLine.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;LineWithArrow.h&quot;</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;CompositionLine.h&quot;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classClassDiagramWindow.html">   27</a></span><span class="keyword">class </span><a class="code hl_class" href="classClassDiagramWindow.html">ClassDiagramWindow</a> : <span class="keyword">public</span> QMainWindow</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    Q_OBJECT</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd">ClassDiagramWindow</a>();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> minToolboxWidth = 200;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> toolboxItemSize = 50;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    QToolBar *taskBar;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    QToolBar *diagramTabs;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    QToolBox *toolBox;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    QGraphicsScene *classDiagramScene;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    QGraphicsView *classDiagramView;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    QWidget *classDiagramCenterWidget;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_class" href="classClassEditDialog.html">ClassEditDialog</a> *classEditDialog;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    QToolButton *agregationToolItem;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    QToolButton *realizationToolItem;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    QToolButton *compositionToolItem;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    QToolButton *generalisationToolItem;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    QToolButton *classShapeToolItem;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    QToolButton *removeSelectedToolItem;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *firstToSelect = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *secondToSelect = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    QColor realtionShipSelectedColor = Qt::darkGreen;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    QColor nodeNormalColor = Qt::black;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    QColor nodeColor = nodeNormalColor;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    QColor nodeFirstSelectedColor = Qt::darkMagenta;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_class" href="classLine.html">Line</a> *newLine;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> setModellingSpace();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> setTaskBars();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> initializeComponents();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> setWindowLayout();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> setMainWindow();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> setTooBox();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> connectComponents();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> setAllNodesColor(QColor color);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    QWidget *prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    QWidget *prepareSequencDiagramTab(QString label);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *getSelectedNode();</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> connectNodes();</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> compositionSelected();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> agregationSelected();</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> generalisationSelected();</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">private</span> slots:</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> addClassNode();</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> removeClassNode();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> relationShipSelected();</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> selectionChanged();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif </span><span class="comment">// CLASSDIAGRAMWINDOW_H</span></div>
-<div class="ttc" id="aclassClassDiagramWindow_html"><div class="ttname"><a href="classClassDiagramWindow.html">ClassDiagramWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramWindow_8h_source.html#l00027">ClassDiagramWindow.h:28</a></div></div>
-<div class="ttc" id="aclassClassDiagramWindow_html_a7b5d2357b205fa01e82ffaaf122d16bd"><div class="ttname"><a href="classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd">ClassDiagramWindow::ClassDiagramWindow</a></div><div class="ttdeci">ClassDiagramWindow()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramWindow_8cpp_source.html#l00017">ClassDiagramWindow.cpp:17</a></div></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;AgregationLine.h&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;AssociationLine.h&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classClassDiagramWindow.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="classClassDiagramWindow.html">ClassDiagramWindow</a> : <span class="keyword">public</span> QMainWindow</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    Q_OBJECT</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd">ClassDiagramWindow</a>();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span> minToolboxWidth = 200;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">int</span> toolboxItemSize = 50;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    QToolBar *taskBar;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    QToolBar *diagramTabs;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    QToolBox *toolBox;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    QGraphicsScene *classDiagramScene;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    QGraphicsView *classDiagramView;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    QWidget *classDiagramCenterWidget;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classClassEditDialog.html">ClassEditDialog</a> *classEditDialog;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    QToolButton *agregationToolItem;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    QToolButton *associationToolItem;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    QToolButton *compositionToolItem;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    QToolButton *generalisationToolItem;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    QToolButton *classShapeToolItem;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    QToolButton *removeSelectedToolItem;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *firstToSelect = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *secondToSelect = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    QColor realtionShipSelectedColor = Qt::darkGreen;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    QColor nodeNormalColor = Qt::black;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    QColor nodeColor = nodeNormalColor;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    QColor nodeFirstSelectedColor = Qt::darkMagenta;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_class" href="classLine.html">Line</a> *newLine;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> setModellingSpace();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> setTaskBars();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> initializeComponents();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> setWindowLayout();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> setMainWindow();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> setTooBox();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> connectComponents();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> setAllNodesColor(QColor color);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    QWidget *prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    QWidget *prepareSequencDiagramTab(QString label);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *getSelectedNode();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> connectNodes();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> compositionSelected();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span> agregationSelected();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> generalisationSelected();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">private</span> slots:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> addClassNode();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> removeClassNode();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> associationSelected();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> selectionChanged();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#endif </span><span class="comment">// CLASSDIAGRAMWINDOW_H</span></div>
+<div class="ttc" id="aclassClassDiagramWindow_html"><div class="ttname"><a href="classClassDiagramWindow.html">ClassDiagramWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramWindow_8h_source.html#l00029">ClassDiagramWindow.h:30</a></div></div>
+<div class="ttc" id="aclassClassDiagramWindow_html_a7b5d2357b205fa01e82ffaaf122d16bd"><div class="ttname"><a href="classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd">ClassDiagramWindow::ClassDiagramWindow</a></div><div class="ttdeci">ClassDiagramWindow()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramWindow_8cpp_source.html#l00016">ClassDiagramWindow.cpp:16</a></div></div>
 <div class="ttc" id="aclassClassEditDialog_html"><div class="ttname"><a href="classClassEditDialog.html">ClassEditDialog</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassEditDialog_8h_source.html#l00026">ClassEditDialog.h:27</a></div></div>
 <div class="ttc" id="aclassClassNode_html"><div class="ttname"><a href="classClassNode.html">ClassNode</a></div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00025">classNode.h:26</a></div></div>
-<div class="ttc" id="aclassLine_html"><div class="ttname"><a href="classLine.html">Line</a></div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00019">Line.h:20</a></div></div>
+<div class="ttc" id="aclassLine_html"><div class="ttname"><a href="classLine.html">Line</a></div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00021">Line.h:22</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

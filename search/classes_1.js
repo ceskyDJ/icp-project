@@ -16,6 +16,5 @@ var searchData=
   ['classreference_13',['ClassReference',['../classClassReference.html',1,'']]],
   ['classtype_14',['ClassType',['../classClassType.html',1,'']]],
   ['composition_15',['Composition',['../classComposition.html',1,'']]],
-  ['compositionline_16',['CompositionLine',['../classCompositionLine.html',1,'']]],
-  ['cpp_17',['cpp',['../classClassDiagramWindow_1_1cpp.html',1,'']]]
+  ['compositionline_16',['CompositionLine',['../classCompositionLine.html',1,'']]]
 ];

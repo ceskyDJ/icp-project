@@ -95,8 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac417f885c88d26eb3f167d204d3c75aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8560d7bcab1bf13eff5758690ac50af4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classClassMethod.html">ClassMethod</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassNode.html#a8560d7bcab1bf13eff5758690ac50af4">getMethods</a> ()</td></tr>
 <tr class="separator:a8560d7bcab1bf13eff5758690ac50af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c37cb30bac694e7cf1004ed2121586d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassNode.html#a6c37cb30bac694e7cf1004ed2121586d">setAtributes</a> (std::vector&lt; <a class="el" href="classClassAttribute.html">ClassAttribute</a> &gt; atributes)</td></tr>
-<tr class="separator:a6c37cb30bac694e7cf1004ed2121586d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ea1392ffd799b82e4b450d717b81119"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassNode.html#a8ea1392ffd799b82e4b450d717b81119">setAtributes</a> (std::vector&lt; <a class="el" href="classClassAttribute.html">ClassAttribute</a> &gt; attributes)</td></tr>
+<tr class="separator:a8ea1392ffd799b82e4b450d717b81119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec4eb21628820d3ed42b5452a9dfaf93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassNode.html#aec4eb21628820d3ed42b5452a9dfaf93">setMethods</a> (std::vector&lt; <a class="el" href="classClassMethod.html">ClassMethod</a> &gt; methods)</td></tr>
 <tr class="separator:aec4eb21628820d3ed42b5452a9dfaf93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d6585274db48307641a770897f336bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassNode.html#a2d6585274db48307641a770897f336bd">setEntity</a> (<a class="el" href="classClass.html">Class</a> newEntity)</td></tr>
@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00021">21</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00022">22</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -171,8 +171,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Adds an attribute to the class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newAtribute</td><td>Attribute that should be added to the class. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00038">38</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00061">61</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -200,7 +207,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00286">286</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00303">303</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,8 +234,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Adds a method to the class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newMethod</td><td>Method that should be added into class. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00044">44</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00072">72</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -254,10 +268,12 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Override method which returns bounding rect of <a class="el" href="classclassNode.html">classNode</a>.</p>
+<p >Overrided method that returns object bounding rect.</p>
+<dl class="section return"><dt>Returns</dt><dd>bounding rect of classnode</dd></dl>
+<p>Override method which returns bounding rect of <a class="el" href="classclassNode.html">classNode</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>QRectF A rectnagle around <a class="el" href="classclassNode.html">classNode</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00035">35</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00036">36</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,8 +299,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Returns an attributes of class.</p>
+<dl class="section return"><dt>Returns</dt><dd>attributes of class in std::vector </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00055">55</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00093">93</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -310,8 +328,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Returns whole class entity.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classClass.html">Class</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00083">83</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00146">146</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -337,8 +357,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Returns all connections of class.</p>
+<dl class="section return"><dt>Returns</dt><dd>QSet of line * (connections). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00097">97</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00179">179</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -364,8 +386,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Gets methods of class.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector of class methods </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00060">60</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00103">103</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -391,8 +415,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Returns a name of the class.</p>
+<dl class="section return"><dt>Returns</dt><dd>name of class </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00050">50</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00083">83</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -435,7 +461,16 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Draws a <a class="el" href="classclassNode.html">classNode</a> - overrride method of QGraphicsItem.</p>
+<p >Draws a class node with its methods and attribures</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">painter</td><td>to draw </td></tr>
+    <tr><td class="paramname">option</td><td>options </td></tr>
+    <tr><td class="paramname">widget</td><td>widget</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Draws a <a class="el" href="classclassNode.html">classNode</a> - overrride method of QGraphicsItem.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">painter</td><td>Painter that will be used to draw node. </td></tr>
@@ -443,7 +478,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00045">45</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00046">46</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -470,8 +505,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Removes a connection from this node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td>Connection that should be replaced </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00102">102</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00189">189</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -499,12 +541,12 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00295">295</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8cpp_source.html#l00312">312</a> of file <a class="el" href="classNode_8cpp_source.html">classNode.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a6c37cb30bac694e7cf1004ed2121586d" name="a6c37cb30bac694e7cf1004ed2121586d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c37cb30bac694e7cf1004ed2121586d">&#9670;&nbsp;</a></span>setAtributes()</h2>
+<a id="a8ea1392ffd799b82e4b450d717b81119" name="a8ea1392ffd799b82e4b450d717b81119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ea1392ffd799b82e4b450d717b81119">&#9670;&nbsp;</a></span>setAtributes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -516,7 +558,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void ClassNode::setAtributes </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; <a class="el" href="classClassAttribute.html">ClassAttribute</a> &gt;&#160;</td>
-          <td class="paramname"><em>atributes</em></td><td>)</td>
+          <td class="paramname"><em>attributes</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -526,8 +568,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Replaces current attributes in class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">atributes</td><td>New attributes that will be set as attributes in class. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00065">65</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00113">113</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -554,8 +603,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Sers a new border Color.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Color</td><td>that should be set. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00088">88</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00156">156</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -582,8 +638,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Replaces whole class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newEntity</td><td>new class </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00077">77</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00135">135</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -610,8 +673,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Replaces class methods.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">methods</td><td>New methods that will be set as methods in class. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00071">71</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00124">124</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>
@@ -638,8 +708,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Sets name of class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newName</td><td>new name of class </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00032">32</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="classNode_8h_source.html#l00050">50</a> of file <a class="el" href="classNode_8h_source.html">classNode.h</a>.</p>
 
 </div>
 </div>

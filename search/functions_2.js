@@ -15,6 +15,8 @@ var searchData=
   ['classreference_12',['ClassReference',['../classClassReference.html#ac62464d4cd17891dd324831148d09d27',1,'ClassReference::ClassReference(Class *referredClass)'],['../classClassReference.html#a75eb734d24234c580304fc47b670281b',1,'ClassReference::ClassReference(std::string referredClassName)']]],
   ['classtype_13',['ClassType',['../classClassType.html#a892c1feb7e35031b3e732f32d227d526',1,'ClassType::ClassType()=default'],['../classClassType.html#aaf64fdb6c4f4b769f1bb941684ede83f',1,'ClassType::ClassType(Value value)']]],
   ['composition_14',['Composition',['../classComposition.html#a8fa91acb6cadd32a6366950256307b38',1,'Composition']]],
-  ['creatememento_15',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]],
-  ['createtitle_16',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]]
+  ['compositionline_15',['CompositionLine',['../classCompositionLine.html#a401e5a5fd1686df7c240c3e2d80eafd0',1,'CompositionLine']]],
+  ['copyline_16',['copyLine',['../classAssociationLineEditDialog.html#a5a094d2500dec0910e24d43fca676394',1,'AssociationLineEditDialog']]],
+  ['creatememento_17',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]],
+  ['createtitle_18',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]]
 ];

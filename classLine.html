@@ -78,9 +78,11 @@ Inheritance diagram for Line:</div>
  <div class="center">
   <img src="classLine.png" usemap="#Line_map" alt=""/>
   <map id="Line_map" name="Line_map">
-<area href="classAgregationLine.html" alt="AgregationLine" shape="rect" coords="0,112,119,136"/>
-<area href="classCompositionLine.html" alt="CompositionLine" shape="rect" coords="129,112,248,136"/>
-<area href="classGeneralizationLine.html" alt="GeneralizationLine" shape="rect" coords="258,112,377,136"/>
+<area href="classAssociationLine.html" alt="AssociationLine" shape="rect" coords="0,112,119,136"/>
+<area href="classLineWithArrow.html" alt="LineWithArrow" shape="rect" coords="129,112,248,136"/>
+<area href="classAgregationLine.html" alt="AgregationLine" shape="rect" coords="0,168,119,192"/>
+<area href="classCompositionLine.html" alt="CompositionLine" shape="rect" coords="129,168,248,192"/>
+<area href="classGeneralizationLine.html" alt="GeneralizationLine" shape="rect" coords="258,168,377,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -95,40 +97,53 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a864dcfed95000676235b428da5e14fbc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a864dcfed95000676235b428da5e14fbc">initialize</a> (<a class="el" href="classClassNode.html">ClassNode</a> *fromNode, <a class="el" href="classClassNode.html">ClassNode</a> *toNode)</td></tr>
 <tr class="memdesc:a864dcfed95000676235b428da5e14fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#a864dcfed95000676235b428da5e14fbc" title="Line::initialize initializes line - from and to + pen.">Line::initialize</a> initializes line - from and to + pen.  <a href="classLine.html#a864dcfed95000676235b428da5e14fbc">More...</a><br /></td></tr>
 <tr class="separator:a864dcfed95000676235b428da5e14fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a422bd718590f408327bc386de068e7ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a> ()</td></tr>
+<tr class="separator:a422bd718590f408327bc386de068e7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6b7321e4ba9f155388e58b906de6018"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a> ()</td></tr>
+<tr class="separator:aa6b7321e4ba9f155388e58b906de6018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6122b37d1344fea6f21279516553bc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#aa6122b37d1344fea6f21279516553bc9">setToClassNode</a> (<a class="el" href="classClassNode.html">ClassNode</a> *newToNode)</td></tr>
+<tr class="separator:aa6122b37d1344fea6f21279516553bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09df4369636e35d604e9b2a5bf505d05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a09df4369636e35d604e9b2a5bf505d05">setFromClassNode</a> (<a class="el" href="classClassNode.html">ClassNode</a> *newFromNode)</td></tr>
+<tr class="separator:a09df4369636e35d604e9b2a5bf505d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dc80c58f456bd3fc49e57dcfc589d61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a5dc80c58f456bd3fc49e57dcfc589d61">switchNodes</a> ()</td></tr>
+<tr class="separator:a5dc80c58f456bd3fc49e57dcfc589d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:adc93f972239195dcaaa215b6bdd1535c"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#adc93f972239195dcaaa215b6bdd1535c">getCenterPos</a> (<a class="el" href="classClassNode.html">ClassNode</a> *node)</td></tr>
-<tr class="memdesc:adc93f972239195dcaaa215b6bdd1535c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#adc93f972239195dcaaa215b6bdd1535c" title="Line::getCenterPos Gets Center position of widget.">Line::getCenterPos</a> Gets Center position of widget.  <a href="classLine.html#adc93f972239195dcaaa215b6bdd1535c">More...</a><br /></td></tr>
-<tr class="separator:adc93f972239195dcaaa215b6bdd1535c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0d0f277daa244607151ecd76e352d53"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#af0d0f277daa244607151ecd76e352d53">getIntersectPoint</a> (QLineF connectingLine, <a class="el" href="classClassNode.html">ClassNode</a> *node)</td></tr>
-<tr class="memdesc:af0d0f277daa244607151ecd76e352d53"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#af0d0f277daa244607151ecd76e352d53" title="Line::getIntersectPoint Counts point which intersects line border and line from one node to second no...">Line::getIntersectPoint</a> Counts point which intersects line border and line from one node to second node.  <a href="classLine.html#af0d0f277daa244607151ecd76e352d53">More...</a><br /></td></tr>
-<tr class="separator:af0d0f277daa244607151ecd76e352d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7dd2cd4a125f064122ad5e9fb7248f9"><td class="memItemLeft" align="right" valign="top">QLineF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9">getShortestLine</a> (<a class="el" href="classClassNode.html">ClassNode</a> *first, <a class="el" href="classClassNode.html">ClassNode</a> *second)</td></tr>
-<tr class="memdesc:af7dd2cd4a125f064122ad5e9fb7248f9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9" title="Line::getShortestLine Counts shortest line connected between 2 nodes.">Line::getShortestLine</a> Counts shortest line connected between 2 nodes.  <a href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9">More...</a><br /></td></tr>
-<tr class="separator:af7dd2cd4a125f064122ad5e9fb7248f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d4bb8e839b8271ee3a888c7df73aa92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a4d4bb8e839b8271ee3a888c7df73aa92">paint</a> (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)</td></tr>
-<tr class="memdesc:a4d4bb8e839b8271ee3a888c7df73aa92"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#a4d4bb8e839b8271ee3a888c7df73aa92" title="Line::paint Draws a line.">Line::paint</a> Draws a line.  <a href="classLine.html#a4d4bb8e839b8271ee3a888c7df73aa92">More...</a><br /></td></tr>
-<tr class="separator:a4d4bb8e839b8271ee3a888c7df73aa92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0978e4462d00d097a43faa1d441641fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a0978e4462d00d097a43faa1d441641fa">mouseDoubleClickEvent</a> (QGraphicsSceneMouseEvent *)</td></tr>
-<tr class="memdesc:a0978e4462d00d097a43faa1d441641fa"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#a0978e4462d00d097a43faa1d441641fa" title="Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship.">Line::mouseDoubleClickEvent</a> Handles a double click event - shows input dialog to rename relationship.  <a href="classLine.html#a0978e4462d00d097a43faa1d441641fa">More...</a><br /></td></tr>
-<tr class="separator:a0978e4462d00d097a43faa1d441641fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7d6bae8923420b49a3f232c591d6346"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#ab7d6bae8923420b49a3f232c591d6346">getCenterPos</a> (<a class="el" href="classClassNode.html">ClassNode</a> *node) const</td></tr>
+<tr class="memdesc:ab7d6bae8923420b49a3f232c591d6346"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#ab7d6bae8923420b49a3f232c591d6346" title="Line::getCenterPos Gets Center position of widget.">Line::getCenterPos</a> Gets Center position of widget.  <a href="classLine.html#ab7d6bae8923420b49a3f232c591d6346">More...</a><br /></td></tr>
+<tr class="separator:ab7d6bae8923420b49a3f232c591d6346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c16748a7ef05f330ee41b9e17829c5f"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a0c16748a7ef05f330ee41b9e17829c5f">getIntersectPoint</a> (QLineF connectingLine, <a class="el" href="classClassNode.html">ClassNode</a> *node) const</td></tr>
+<tr class="memdesc:a0c16748a7ef05f330ee41b9e17829c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#a0c16748a7ef05f330ee41b9e17829c5f" title="Line::getIntersectPoint Counts point which intersects line border and line from one node to second no...">Line::getIntersectPoint</a> Counts point which intersects line border and line from one node to second node.  <a href="classLine.html#a0c16748a7ef05f330ee41b9e17829c5f">More...</a><br /></td></tr>
+<tr class="separator:a0c16748a7ef05f330ee41b9e17829c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6260094b6f15ca916d5ebf1cf17cf6"><td class="memItemLeft" align="right" valign="top">QLineF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#aab6260094b6f15ca916d5ebf1cf17cf6">getShortestLine</a> (<a class="el" href="classClassNode.html">ClassNode</a> *first, <a class="el" href="classClassNode.html">ClassNode</a> *second) const</td></tr>
+<tr class="memdesc:aab6260094b6f15ca916d5ebf1cf17cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#aab6260094b6f15ca916d5ebf1cf17cf6" title="Line::getShortestLine Counts shortest line connected between 2 nodes.">Line::getShortestLine</a> Counts shortest line connected between 2 nodes.  <a href="classLine.html#aab6260094b6f15ca916d5ebf1cf17cf6">More...</a><br /></td></tr>
+<tr class="separator:aab6260094b6f15ca916d5ebf1cf17cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d34527c909d04e7e4dc321a7087dcd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a7d34527c909d04e7e4dc321a7087dcd4">paint</a> (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)</td></tr>
+<tr class="memdesc:a7d34527c909d04e7e4dc321a7087dcd4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#a7d34527c909d04e7e4dc321a7087dcd4" title="Line::paint Draws a line.">Line::paint</a> Draws a line.  <a href="classLine.html#a7d34527c909d04e7e4dc321a7087dcd4">More...</a><br /></td></tr>
+<tr class="separator:a7d34527c909d04e7e4dc321a7087dcd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7b6644d0ac202e356ee6cf89c932b2a"><td class="memItemLeft" align="right" valign="top">QPainterPath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#aa7b6644d0ac202e356ee6cf89c932b2a">shape</a> () const</td></tr>
+<tr class="separator:aa7b6644d0ac202e356ee6cf89c932b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bd8a6f6bd8d3d0a2402215940da97d5"><td class="memItemLeft" align="right" valign="top">QLineF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a7bd8a6f6bd8d3d0a2402215940da97d5">getParallelLine</a> (QLineF parallelLine, QPointF startPoint) const</td></tr>
+<tr class="separator:a7bd8a6f6bd8d3d0a2402215940da97d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a53fc65454c55ff9e9318f6f988fa52e3"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a53fc65454c55ff9e9318f6f988fa52e3">name</a> = &quot;relName&quot;</td></tr>
-<tr class="separator:a53fc65454c55ff9e9318f6f988fa52e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c91b330b7292f88453def819f007140"><td class="memItemLeft" align="right" valign="top">QPen&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a6c91b330b7292f88453def819f007140">pen</a> {Qt::black, 2, Qt::SolidLine}</td></tr>
+<tr class="separator:a6c91b330b7292f88453def819f007140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64286175a607b24cea05e79f747acf04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a64286175a607b24cea05e79f747acf04">fromClassNode</a></td></tr>
 <tr class="separator:a64286175a607b24cea05e79f747acf04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58e59370e22ddde8cd9546e762eef817"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a58e59370e22ddde8cd9546e762eef817">toClassNode</a></td></tr>
 <tr class="separator:a58e59370e22ddde8cd9546e762eef817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7a4cddff641cd1e542524e08d2e1cec"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#ac7a4cddff641cd1e542524e08d2e1cec">lineBoundingWidth</a> = 10</td></tr>
+<tr class="separator:ac7a4cddff641cd1e542524e08d2e1cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >General line - others are abstract.</p>
 <p >ICP project (<a class="el" href="classClass.html">Class</a> and sequence diagram editor)</p>
 <dl class="section author"><dt>Author</dt><dd>Jakub Dvořák (xdvora3q) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00019">19</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00021">21</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acc11b8a429d8cdd63ba6803dff5602b3" name="acc11b8a429d8cdd63ba6803dff5602b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc11b8a429d8cdd63ba6803dff5602b3">&#9670;&nbsp;</a></span>Line()</h2>
@@ -145,7 +160,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00020">20</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00021">21</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
 </div>
 </div>
@@ -166,7 +181,7 @@ Protected Attributes</h2></td></tr>
 
 <p><a class="el" href="classLine.html#aabe85f48d22d92b62257091f48174fac" title="Line::~Line destructs line - disconnect it first.">Line::~Line</a> destructs line - disconnect it first. </p>
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00142">142</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00127">127</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
 </div>
 </div>
@@ -188,12 +203,12 @@ Protected Attributes</h2></td></tr>
 
 <p><a class="el" href="classLine.html#a42dad6d99fa2ac5246ab0f7b4cfa038b" title="Line::drawLine draws a line.">Line::drawLine</a> draws a line. </p>
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00042">42</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00043">43</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
 </div>
 </div>
-<a id="adc93f972239195dcaaa215b6bdd1535c" name="adc93f972239195dcaaa215b6bdd1535c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc93f972239195dcaaa215b6bdd1535c">&#9670;&nbsp;</a></span>getCenterPos()</h2>
+<a id="ab7d6bae8923420b49a3f232c591d6346" name="ab7d6bae8923420b49a3f232c591d6346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d6bae8923420b49a3f232c591d6346">&#9670;&nbsp;</a></span>getCenterPos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,7 +221,7 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -216,7 +231,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classLine.html#adc93f972239195dcaaa215b6bdd1535c" title="Line::getCenterPos Gets Center position of widget.">Line::getCenterPos</a> Gets Center position of widget. </p>
+<p><a class="el" href="classLine.html#ab7d6bae8923420b49a3f232c591d6346" title="Line::getCenterPos Gets Center position of widget.">Line::getCenterPos</a> Gets Center position of widget. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">node</td><td>node, where should be counted a middle point </td></tr>
@@ -225,12 +240,41 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>point where is middle of node </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00052">52</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00053">53</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
 </div>
 </div>
-<a id="af0d0f277daa244607151ecd76e352d53" name="af0d0f277daa244607151ecd76e352d53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0d0f277daa244607151ecd76e352d53">&#9670;&nbsp;</a></span>getIntersectPoint()</h2>
+<a id="aa6b7321e4ba9f155388e58b906de6018" name="aa6b7321e4ba9f155388e58b906de6018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6b7321e4ba9f155388e58b906de6018">&#9670;&nbsp;</a></span>getFromClassNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classClassNode.html">ClassNode</a> * Line::getFromClassNode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Returns a <a class="el" href="classclassNode.html">classNode</a> that is pointed from, in relationship.</p>
+<dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00044">44</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+
+</div>
+</div>
+<a id="a0c16748a7ef05f330ee41b9e17829c5f" name="a0c16748a7ef05f330ee41b9e17829c5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c16748a7ef05f330ee41b9e17829c5f">&#9670;&nbsp;</a></span>getIntersectPoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +297,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -263,7 +307,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classLine.html#af0d0f277daa244607151ecd76e352d53" title="Line::getIntersectPoint Counts point which intersects line border and line from one node to second no...">Line::getIntersectPoint</a> Counts point which intersects line border and line from one node to second node. </p>
+<p><a class="el" href="classLine.html#a0c16748a7ef05f330ee41b9e17829c5f" title="Line::getIntersectPoint Counts point which intersects line border and line from one node to second no...">Line::getIntersectPoint</a> Counts point which intersects line border and line from one node to second node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">connectingLine</td><td>line between center of nodes </td></tr>
@@ -273,12 +317,59 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Intersection point </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00090">90</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00091">91</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
 </div>
 </div>
-<a id="af7dd2cd4a125f064122ad5e9fb7248f9" name="af7dd2cd4a125f064122ad5e9fb7248f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7dd2cd4a125f064122ad5e9fb7248f9">&#9670;&nbsp;</a></span>getShortestLine()</h2>
+<a id="a7bd8a6f6bd8d3d0a2402215940da97d5" name="a7bd8a6f6bd8d3d0a2402215940da97d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bd8a6f6bd8d3d0a2402215940da97d5">&#9670;&nbsp;</a></span>getParallelLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QLineF Line::getParallelLine </td>
+          <td>(</td>
+          <td class="paramtype">QLineF&#160;</td>
+          <td class="paramname"><em>parallelLine</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QPointF&#160;</td>
+          <td class="paramname"><em>startPoint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Returns a line that is parallel with parallelLine but starts in another p1.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lineToPerpend</td><td><a class="el" href="classLine.html">Line</a> that will be copied. </td></tr>
+    <tr><td class="paramname">startPoint</td><td>new start point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Parallel line with startPoint as p1 </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00179">179</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aab6260094b6f15ca916d5ebf1cf17cf6" name="aab6260094b6f15ca916d5ebf1cf17cf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab6260094b6f15ca916d5ebf1cf17cf6">&#9670;&nbsp;</a></span>getShortestLine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,7 +392,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -311,7 +402,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9" title="Line::getShortestLine Counts shortest line connected between 2 nodes.">Line::getShortestLine</a> Counts shortest line connected between 2 nodes. </p>
+<p><a class="el" href="classLine.html#aab6260094b6f15ca916d5ebf1cf17cf6" title="Line::getShortestLine Counts shortest line connected between 2 nodes.">Line::getShortestLine</a> Counts shortest line connected between 2 nodes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">first</td><td>First selected node (source) </td></tr>
@@ -321,7 +412,36 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Shotest line between points </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00068">68</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00069">69</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a422bd718590f408327bc386de068e7ce" name="a422bd718590f408327bc386de068e7ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a422bd718590f408327bc386de068e7ce">&#9670;&nbsp;</a></span>getToClassNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classClassNode.html">ClassNode</a> * Line::getToClassNode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Returns a <a class="el" href="classclassNode.html">classNode</a> that is pointed to, in relationship.</p>
+<dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00034">34</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -360,48 +480,12 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00030">30</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00031">31</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a0978e4462d00d097a43faa1d441641fa" name="a0978e4462d00d097a43faa1d441641fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0978e4462d00d097a43faa1d441641fa">&#9670;&nbsp;</a></span>mouseDoubleClickEvent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Line::mouseDoubleClickEvent </td>
-          <td>(</td>
-          <td class="paramtype">QGraphicsSceneMouseEvent *&#160;</td>
-          <td class="paramname"><em>event</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><a class="el" href="classLine.html#a0978e4462d00d097a43faa1d441641fa" title="Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship.">Line::mouseDoubleClickEvent</a> Handles a double click event - shows input dialog to rename relationship. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">event</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00133">133</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a4d4bb8e839b8271ee3a888c7df73aa92" name="a4d4bb8e839b8271ee3a888c7df73aa92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d4bb8e839b8271ee3a888c7df73aa92">&#9670;&nbsp;</a></span>paint()</h2>
+<a id="a7d34527c909d04e7e4dc321a7087dcd4" name="a7d34527c909d04e7e4dc321a7087dcd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d34527c909d04e7e4dc321a7087dcd4">&#9670;&nbsp;</a></span>paint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,7 +509,7 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QWidget *&#160;</td>
-          <td class="paramname"><em>widget</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>widget</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -440,7 +524,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classLine.html#a4d4bb8e839b8271ee3a888c7df73aa92" title="Line::paint Draws a line.">Line::paint</a> Draws a line. </p>
+<p><a class="el" href="classLine.html#a7d34527c909d04e7e4dc321a7087dcd4" title="Line::paint Draws a line.">Line::paint</a> Draws a line. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">painter</td><td>Painter allows to draw a line </td></tr>
@@ -450,7 +534,115 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00116">116</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00117">117</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a09df4369636e35d604e9b2a5bf505d05" name="a09df4369636e35d604e9b2a5bf505d05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09df4369636e35d604e9b2a5bf505d05">&#9670;&nbsp;</a></span>setFromClassNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Line::setFromClassNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td>
+          <td class="paramname"><em>newFromNode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Sets a <a class="el" href="classclassNode.html">classNode</a> that is pointed from, in relationship.</p>
+<dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00064">64</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+
+</div>
+</div>
+<a id="aa6122b37d1344fea6f21279516553bc9" name="aa6122b37d1344fea6f21279516553bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6122b37d1344fea6f21279516553bc9">&#9670;&nbsp;</a></span>setToClassNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Line::setToClassNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td>
+          <td class="paramname"><em>newToNode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Sets a <a class="el" href="classclassNode.html">classNode</a> that is pointed to, in relationship.</p>
+<dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00054">54</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+
+</div>
+</div>
+<a id="aa7b6644d0ac202e356ee6cf89c932b2a" name="aa7b6644d0ac202e356ee6cf89c932b2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b6644d0ac202e356ee6cf89c932b2a">&#9670;&nbsp;</a></span>shape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPainterPath Line::shape </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Sets a shape of line - it will be same line but with bigger width</p>
+<dl class="section return"><dt>Returns</dt><dd>QPainterPath - path of line but wider </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00145">145</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a5dc80c58f456bd3fc49e57dcfc589d61" name="a5dc80c58f456bd3fc49e57dcfc589d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dc80c58f456bd3fc49e57dcfc589d61">&#9670;&nbsp;</a></span>switchNodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Line::switchNodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00133">133</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
 </div>
 </div>
@@ -475,12 +667,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00028">28</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00072">72</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
-<a id="a53fc65454c55ff9e9318f6f988fa52e3" name="a53fc65454c55ff9e9318f6f988fa52e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53fc65454c55ff9e9318f6f988fa52e3">&#9670;&nbsp;</a></span>name</h2>
+<a id="ac7a4cddff641cd1e542524e08d2e1cec" name="ac7a4cddff641cd1e542524e08d2e1cec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7a4cddff641cd1e542524e08d2e1cec">&#9670;&nbsp;</a></span>lineBoundingWidth</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -489,7 +681,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QString Line::name = &quot;relName&quot;</td>
+          <td class="memname">qreal Line::lineBoundingWidth = 10</td>
         </tr>
       </table>
   </td>
@@ -499,7 +691,31 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00027">27</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00074">74</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+
+</div>
+</div>
+<a id="a6c91b330b7292f88453def819f007140" name="a6c91b330b7292f88453def819f007140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c91b330b7292f88453def819f007140">&#9670;&nbsp;</a></span>pen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPen Line::pen {Qt::black, 2, Qt::SolidLine}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00071">71</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +739,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00029">29</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00073">73</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>

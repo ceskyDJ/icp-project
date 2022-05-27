@@ -69,38 +69,29 @@ $(function() {
   <div class="headertitle"><div class="title">AgregationLine.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<a href="AgregationLine_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;AgregationLine.h&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;QPainter&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">void</span> AgregationLine::paint(QPainter * painter, <span class="keyword">const</span> QStyleOptionGraphicsItem * <span class="comment">/*option*/</span>, QWidget * <span class="comment">/*widget*/</span>)</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">int</span> size = 20;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    painter-&gt;setPen(QPen{Qt::black, 2, Qt::SolidLine});</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    QLineF line = <a class="code hl_function" href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9">getShortestLine</a>(fromClassNode, toClassNode);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    line.setLength(line.length() - size);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    QPointF arrow = line.p2();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    QList&lt;QPoint&gt; rectangle;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    rectangle.append(QPoint(arrow.x(), arrow.y()));</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() + size/2));</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() + size/2));</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    rectangle.append(QPoint(arrow.x() + size, arrow.y()));</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    rectangle.append(QPoint(arrow.x() + size, arrow.y()));</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() - size/2));</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    rectangle.append(QPoint(arrow.x() + size/2, arrow.y() - size/2));</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    rectangle.append(QPoint(arrow.x(), arrow.y()));</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; rectangle.count(); i+=2)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        painter-&gt;drawLine(rectangle[i], rectangle[i+1]);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    painter-&gt;drawLine(line);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
-<div class="ttc" id="aclassLine_html_af7dd2cd4a125f064122ad5e9fb7248f9"><div class="ttname"><a href="classLine.html#af7dd2cd4a125f064122ad5e9fb7248f9">Line::getShortestLine</a></div><div class="ttdeci">QLineF getShortestLine(ClassNode *first, ClassNode *second)</div><div class="ttdoc">Line::getShortestLine Counts shortest line connected between 2 nodes.</div><div class="ttdef"><b>Definition:</b> <a href="Line_8cpp_source.html#l00068">Line.cpp:68</a></div></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classAgregationLine.html#a5838ce8ce9a7b57953c356656b895e11">   14</a></span><a class="code hl_function" href="classAgregationLine.html#a5838ce8ce9a7b57953c356656b895e11">AgregationLine::AgregationLine</a>()</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    arrowHeight = 5;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    arrowWidth = 20;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classAgregationLine.html#af3fc84f59cc572b607511e23c0ac0be1">   26</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classAgregationLine.html#af3fc84f59cc572b607511e23c0ac0be1">AgregationLine::drawArrow</a>(QPainter *painter)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::vector&lt;QPointF&gt; arrowPoints = {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        QPointF{- arrowWidth / 2,0},</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        QPointF{0, arrowHeight},</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        QPointF{arrowWidth / 2, 0},</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        QPointF{0, -arrowHeight},</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        QPointF{- arrowWidth / 2,0}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    };</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; (size_t)i &lt; arrowPoints.size() - 1; i++)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        painter-&gt;drawLine(arrowPoints[i], arrowPoints[i+1]);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+<div class="ttc" id="aclassAgregationLine_html_a5838ce8ce9a7b57953c356656b895e11"><div class="ttname"><a href="classAgregationLine.html#a5838ce8ce9a7b57953c356656b895e11">AgregationLine::AgregationLine</a></div><div class="ttdeci">AgregationLine()</div><div class="ttdef"><b>Definition:</b> <a href="AgregationLine_8cpp_source.html#l00014">AgregationLine.cpp:14</a></div></div>
+<div class="ttc" id="aclassAgregationLine_html_af3fc84f59cc572b607511e23c0ac0be1"><div class="ttname"><a href="classAgregationLine.html#af3fc84f59cc572b607511e23c0ac0be1">AgregationLine::drawArrow</a></div><div class="ttdeci">void drawArrow(QPainter *painter) const</div><div class="ttdef"><b>Definition:</b> <a href="AgregationLine_8cpp_source.html#l00026">AgregationLine.cpp:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

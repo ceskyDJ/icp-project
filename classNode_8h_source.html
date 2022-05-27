@@ -89,109 +89,113 @@ $(function() {
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_function" href="classClassNode.html#a6559bf10938d73fb6fd846e8dd10d2d9">ClassNode</a>(<a class="code hl_class" href="classClass.html">Class</a> classEntity = <a class="code hl_class" href="classClass.html">Class</a>{<span class="stringliteral">&quot;Nová třída&quot;</span>, std::make_tuple(1, 1)});</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    QRectF <a class="code hl_function" href="classClassNode.html#a31937fabb7e8dacc4599cf23072d3ca9">boundingRect</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#ae7b93070f82b97564be5f7dce50a7d2b">paint</a>(QPainter *painter, <span class="keyword">const</span> QStyleOptionGraphicsItem *option,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                   QWidget *widget) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> setName(QString newName)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        classEntity.<a class="code hl_function" href="classClass.html#a9eba120964aac4371012e3a23b96f20c">setName</a>(newName.toStdString());</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        update();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> addAtribute(<a class="code hl_class" href="classClassAttribute.html">ClassAttribute</a> newAtribute)</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        classEntity.<a class="code hl_function" href="classClass.html#ac39356667393d40063da8c82747c5c92">addAttribute</a>(newAtribute);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        update();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> addMethod(<a class="code hl_class" href="classClassMethod.html">ClassMethod</a> newMethod)</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        classEntity.<a class="code hl_function" href="classClass.html#adc7caf39032dd6b928ee0c2cacc3d3c6">addMethod</a>(newMethod);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        update();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    QString getName()</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    QRectF <a class="code hl_function" href="classClassNode.html#a31937fabb7e8dacc4599cf23072d3ca9">boundingRect</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#ae7b93070f82b97564be5f7dce50a7d2b">paint</a>(QPainter *painter, <span class="keyword">const</span> QStyleOptionGraphicsItem *option,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                   QWidget *widget) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classClassNode.html#ae55a4cea8663d5dfc1fc86b4f8904efa">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#ae55a4cea8663d5dfc1fc86b4f8904efa">setName</a>(QString newName)</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">return</span> QString::fromStdString(classEntity.<a class="code hl_function" href="classClass.html#a71a4039f289d71a01ff4b2ff238bc44b">getName</a>());</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::vector&lt;ClassAttribute&gt; getAtributes()</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> classEntity.<a class="code hl_function" href="classClass.html#acdd60df168c989537d72d209e535a3c9">getAttributes</a>();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    std::vector&lt;ClassMethod&gt; getMethods()</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> classEntity.<a class="code hl_function" href="classClass.html#af697d075cf2762b41dfe17f45486d261">getMethods</a>();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> setAtributes(std::vector&lt;ClassAttribute&gt; atributes)</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        classEntity.<a class="code hl_function" href="classClass.html#ab49e5fa4bff1370ad7ef0f80290c92dc">setAttributes</a>(atributes);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        update();</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> setMethods(std::vector&lt;ClassMethod&gt; methods)</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        classEntity.<a class="code hl_function" href="classClass.html#a02e0585a243150f901bb2a97769a8aae">setMethods</a>(methods);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        update();</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> setEntity(<a class="code hl_class" href="classClass.html">Class</a> newEntity)</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        classEntity = newEntity;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        update();</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_class" href="classClass.html">Class</a> getClassEntity()</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        classEntity.<a class="code hl_function" href="classClass.html#a9eba120964aac4371012e3a23b96f20c">setName</a>(newName.toStdString());</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        update();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classClassNode.html#aac8d6e6fde5884470ecde035c42a0c56">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#aac8d6e6fde5884470ecde035c42a0c56">addAtribute</a>(<a class="code hl_class" href="classClassAttribute.html">ClassAttribute</a> newAtribute)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        classEntity.<a class="code hl_function" href="classClass.html#ac39356667393d40063da8c82747c5c92">addAttribute</a>(newAtribute);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        update();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classClassNode.html#ac43e7d17f4c2d6e0079ed3ba811f1e03">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#ac43e7d17f4c2d6e0079ed3ba811f1e03">addMethod</a>(<a class="code hl_class" href="classClassMethod.html">ClassMethod</a> newMethod)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        classEntity.<a class="code hl_function" href="classClass.html#adc7caf39032dd6b928ee0c2cacc3d3c6">addMethod</a>(newMethod);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        update();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">   83</a></span>    QString <a class="code hl_function" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">getName</a>()</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">return</span> classEntity;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">return</span> QString::fromStdString(classEntity.<a class="code hl_function" href="classClass.html#a71a4039f289d71a01ff4b2ff238bc44b">getName</a>());</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> setBorderColor(QColor color)</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    {</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        borderColor = color;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        update();</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">addLine</a>(<a class="code hl_class" href="classLine.html">Line</a>* newLine);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#a2dd484ccc5e6e38698209c7ffd073cfa">removeLine</a>(<a class="code hl_class" href="classLine.html">Line</a>* oldLine);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    QSet&lt;Line *&gt; getConnections()</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> connectedLines;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span> removeConnection(<a class="code hl_class" href="classLine.html">Line</a> *line)</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        connectedLines.remove(line);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    QRectF borederRect();</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    QRectF getNameBoundigRect() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    QRectF getWholeRect() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    QRectF getWholeRect(std::vector&lt;QString&gt; attributePrintable, std::vector&lt;QString&gt; methodPrintable) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> lineIndent = 5;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> Padding = 10;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <a class="code hl_class" href="classClass.html">Class</a> classEntity;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    QColor borderColor = Qt::black;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    QSet&lt;Line *&gt; connectedLines;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classClassNode.html#ac417f885c88d26eb3f167d204d3c75aa">   93</a></span>    std::vector&lt;ClassAttribute&gt; <a class="code hl_function" href="classClassNode.html#ac417f885c88d26eb3f167d204d3c75aa">getAtributes</a>()</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> classEntity.<a class="code hl_function" href="classClass.html#acdd60df168c989537d72d209e535a3c9">getAttributes</a>();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classClassNode.html#a8560d7bcab1bf13eff5758690ac50af4">  103</a></span>    std::vector&lt;ClassMethod&gt; <a class="code hl_function" href="classClassNode.html#a8560d7bcab1bf13eff5758690ac50af4">getMethods</a>()</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">return</span> classEntity.<a class="code hl_function" href="classClass.html#af697d075cf2762b41dfe17f45486d261">getMethods</a>();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classClassNode.html#a8ea1392ffd799b82e4b450d717b81119">  113</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#a8ea1392ffd799b82e4b450d717b81119">setAtributes</a>(std::vector&lt;ClassAttribute&gt; attributes)</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        classEntity.<a class="code hl_function" href="classClass.html#ab49e5fa4bff1370ad7ef0f80290c92dc">setAttributes</a>(attributes);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        update();</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    std::vector&lt;QString&gt; getAttributePrintable() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    std::vector&lt;QString&gt; getMethodPrintable() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    QString getMethodParametersPrintable(std::vector&lt;MethodParameter&gt; parameters) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    QString modifierToString(<a class="code hl_class" href="classAccessModifier.html">AccessModifier</a> mod);</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    QString modifierToString(<a class="code hl_class" href="classAccessModifier.html">AccessModifier</a> mod) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span> getMaxWidth(std::vector&lt;QString&gt; toCompare, <span class="keywordtype">int</span> *maxWidth) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordtype">void</span> setFontItalic(<span class="keywordtype">bool</span> enable, QPainter *painter);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">void</span> mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    QVariant itemChange(GraphicsItemChange change, <span class="keyword">const</span> QVariant &amp;value);</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordtype">void</span> rePaintLines();</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>};</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#endif </span><span class="comment">// CLASSNODE_H</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classClassNode.html#aec4eb21628820d3ed42b5452a9dfaf93">  124</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#aec4eb21628820d3ed42b5452a9dfaf93">setMethods</a>(std::vector&lt;ClassMethod&gt; methods)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        classEntity.<a class="code hl_function" href="classClass.html#a02e0585a243150f901bb2a97769a8aae">setMethods</a>(methods);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        update();</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classClassNode.html#a2d6585274db48307641a770897f336bd">  135</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#a2d6585274db48307641a770897f336bd">setEntity</a>(<a class="code hl_class" href="classClass.html">Class</a> newEntity)</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        classEntity = newEntity;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        update();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classClassNode.html#a5862c6162dd89117233a9e61bb091a15">  146</a></span>    <a class="code hl_class" href="classClass.html">Class</a> <a class="code hl_function" href="classClassNode.html#a5862c6162dd89117233a9e61bb091a15">getClassEntity</a>()</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> classEntity;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classClassNode.html#a42c0ed7fbc10850db0e5da6d0a57bf4c">  156</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#a42c0ed7fbc10850db0e5da6d0a57bf4c">setBorderColor</a>(QColor color)</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        borderColor = color;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        update();</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">addLine</a>(<a class="code hl_class" href="classLine.html">Line</a>* newLine);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#a2dd484ccc5e6e38698209c7ffd073cfa">removeLine</a>(<a class="code hl_class" href="classLine.html">Line</a>* oldLine);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classClassNode.html#a8597078011a66fc3eff87c672a53b532">  179</a></span>    QSet&lt;Line *&gt; <a class="code hl_function" href="classClassNode.html#a8597078011a66fc3eff87c672a53b532">getConnections</a>()</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">return</span> connectedLines;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    }</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">  189</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">removeConnection</a>(<a class="code hl_class" href="classLine.html">Line</a> *line)</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        connectedLines.remove(line);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    QRectF borederRect();</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    QRectF getNameBoundigRect() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    QRectF getWholeRect() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    QRectF getWholeRect(std::vector&lt;QString&gt; attributePrintable, std::vector&lt;QString&gt; methodPrintable) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> lineIndent = 5;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> Padding = 10;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <a class="code hl_class" href="classClass.html">Class</a> classEntity;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    QColor borderColor = Qt::black;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    QSet&lt;Line *&gt; connectedLines;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    std::vector&lt;QString&gt; getMethodPrintable(</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            std::vector&lt;int&gt; *inheritedIndexes = <span class="keyword">new</span> std::vector&lt;int&gt;(0)) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    std::vector&lt;QString&gt; getAttributePrintable() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    QString getMethodParametersPrintable(std::vector&lt;MethodParameter&gt; parameters) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    QString modifierToString(<a class="code hl_class" href="classAccessModifier.html">AccessModifier</a> mod);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    QString modifierToString(<a class="code hl_class" href="classAccessModifier.html">AccessModifier</a> mod) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">void</span> getMaxWidth(std::vector&lt;QString&gt; toCompare, <span class="keywordtype">int</span> *maxWidth) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">void</span> setFontItalic(<span class="keywordtype">bool</span> enable, QPainter *painter);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordtype">void</span> mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    QVariant itemChange(GraphicsItemChange change, <span class="keyword">const</span> QVariant &amp;value);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">void</span> rePaintLines();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">bool</span> isMethodInherited(QString methodName) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>};</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="preprocessor">#endif </span><span class="comment">// CLASSNODE_H</span></div>
 <div class="ttc" id="aClassAttribute_8h_html"><div class="ttname"><a href="ClassAttribute_8h.html">ClassAttribute.h</a></div></div>
 <div class="ttc" id="aClassMethod_8h_html"><div class="ttname"><a href="ClassMethod_8h.html">ClassMethod.h</a></div></div>
 <div class="ttc" id="aClass_8h_html"><div class="ttname"><a href="Class_8h.html">Class.h</a></div></div>
@@ -199,11 +203,24 @@ $(function() {
 <div class="ttc" id="aclassClassAttribute_html"><div class="ttname"><a href="classClassAttribute.html">ClassAttribute</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassAttribute_8h_source.html#l00017">ClassAttribute.h:18</a></div></div>
 <div class="ttc" id="aclassClassMethod_html"><div class="ttname"><a href="classClassMethod.html">ClassMethod</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassMethod_8h_source.html#l00020">ClassMethod.h:21</a></div></div>
 <div class="ttc" id="aclassClassNode_html"><div class="ttname"><a href="classClassNode.html">ClassNode</a></div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00025">classNode.h:26</a></div></div>
-<div class="ttc" id="aclassClassNode_html_a2dd484ccc5e6e38698209c7ffd073cfa"><div class="ttname"><a href="classClassNode.html#a2dd484ccc5e6e38698209c7ffd073cfa">ClassNode::removeLine</a></div><div class="ttdeci">void removeLine(Line *oldLine)</div><div class="ttdoc">ClassNode::removeLine removes line form connected list.</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00295">classNode.cpp:295</a></div></div>
-<div class="ttc" id="aclassClassNode_html_a31937fabb7e8dacc4599cf23072d3ca9"><div class="ttname"><a href="classClassNode.html#a31937fabb7e8dacc4599cf23072d3ca9">ClassNode::boundingRect</a></div><div class="ttdeci">QRectF boundingRect() const override</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00035">classNode.cpp:35</a></div></div>
-<div class="ttc" id="aclassClassNode_html_a5d0b6a13e0fe89d9e16d39aa6c7c2596"><div class="ttname"><a href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">ClassNode::addLine</a></div><div class="ttdeci">void addLine(Line *newLine)</div><div class="ttdoc">ClassNode::addLine adds new connections.</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00286">classNode.cpp:286</a></div></div>
-<div class="ttc" id="aclassClassNode_html_a6559bf10938d73fb6fd846e8dd10d2d9"><div class="ttname"><a href="classClassNode.html#a6559bf10938d73fb6fd846e8dd10d2d9">ClassNode::ClassNode</a></div><div class="ttdeci">ClassNode(Class classEntity=Class{&quot;Nová třída&quot;, std::make_tuple(1, 1)})</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00021">classNode.cpp:21</a></div></div>
-<div class="ttc" id="aclassClassNode_html_ae7b93070f82b97564be5f7dce50a7d2b"><div class="ttname"><a href="classClassNode.html#ae7b93070f82b97564be5f7dce50a7d2b">ClassNode::paint</a></div><div class="ttdeci">void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00045">classNode.cpp:45</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a2d6585274db48307641a770897f336bd"><div class="ttname"><a href="classClassNode.html#a2d6585274db48307641a770897f336bd">ClassNode::setEntity</a></div><div class="ttdeci">void setEntity(Class newEntity)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00135">classNode.h:135</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a2dd484ccc5e6e38698209c7ffd073cfa"><div class="ttname"><a href="classClassNode.html#a2dd484ccc5e6e38698209c7ffd073cfa">ClassNode::removeLine</a></div><div class="ttdeci">void removeLine(Line *oldLine)</div><div class="ttdoc">ClassNode::removeLine removes line form connected list.</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00312">classNode.cpp:312</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a31937fabb7e8dacc4599cf23072d3ca9"><div class="ttname"><a href="classClassNode.html#a31937fabb7e8dacc4599cf23072d3ca9">ClassNode::boundingRect</a></div><div class="ttdeci">QRectF boundingRect() const override</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00036">classNode.cpp:36</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a42c0ed7fbc10850db0e5da6d0a57bf4c"><div class="ttname"><a href="classClassNode.html#a42c0ed7fbc10850db0e5da6d0a57bf4c">ClassNode::setBorderColor</a></div><div class="ttdeci">void setBorderColor(QColor color)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00156">classNode.h:156</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a5862c6162dd89117233a9e61bb091a15"><div class="ttname"><a href="classClassNode.html#a5862c6162dd89117233a9e61bb091a15">ClassNode::getClassEntity</a></div><div class="ttdeci">Class getClassEntity()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00146">classNode.h:146</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a5d0b6a13e0fe89d9e16d39aa6c7c2596"><div class="ttname"><a href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">ClassNode::addLine</a></div><div class="ttdeci">void addLine(Line *newLine)</div><div class="ttdoc">ClassNode::addLine adds new connections.</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00303">classNode.cpp:303</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a6559bf10938d73fb6fd846e8dd10d2d9"><div class="ttname"><a href="classClassNode.html#a6559bf10938d73fb6fd846e8dd10d2d9">ClassNode::ClassNode</a></div><div class="ttdeci">ClassNode(Class classEntity=Class{&quot;Nová třída&quot;, std::make_tuple(1, 1)})</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00022">classNode.cpp:22</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a8560d7bcab1bf13eff5758690ac50af4"><div class="ttname"><a href="classClassNode.html#a8560d7bcab1bf13eff5758690ac50af4">ClassNode::getMethods</a></div><div class="ttdeci">std::vector&lt; ClassMethod &gt; getMethods()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00103">classNode.h:103</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a8597078011a66fc3eff87c672a53b532"><div class="ttname"><a href="classClassNode.html#a8597078011a66fc3eff87c672a53b532">ClassNode::getConnections</a></div><div class="ttdeci">QSet&lt; Line * &gt; getConnections()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00179">classNode.h:179</a></div></div>
+<div class="ttc" id="aclassClassNode_html_a8ea1392ffd799b82e4b450d717b81119"><div class="ttname"><a href="classClassNode.html#a8ea1392ffd799b82e4b450d717b81119">ClassNode::setAtributes</a></div><div class="ttdeci">void setAtributes(std::vector&lt; ClassAttribute &gt; attributes)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00113">classNode.h:113</a></div></div>
+<div class="ttc" id="aclassClassNode_html_aac8d6e6fde5884470ecde035c42a0c56"><div class="ttname"><a href="classClassNode.html#aac8d6e6fde5884470ecde035c42a0c56">ClassNode::addAtribute</a></div><div class="ttdeci">void addAtribute(ClassAttribute newAtribute)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00061">classNode.h:61</a></div></div>
+<div class="ttc" id="aclassClassNode_html_ab7380831ea315bf8e19766998a5eed00"><div class="ttname"><a href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">ClassNode::getName</a></div><div class="ttdeci">QString getName()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00083">classNode.h:83</a></div></div>
+<div class="ttc" id="aclassClassNode_html_ac417f885c88d26eb3f167d204d3c75aa"><div class="ttname"><a href="classClassNode.html#ac417f885c88d26eb3f167d204d3c75aa">ClassNode::getAtributes</a></div><div class="ttdeci">std::vector&lt; ClassAttribute &gt; getAtributes()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00093">classNode.h:93</a></div></div>
+<div class="ttc" id="aclassClassNode_html_ac43e7d17f4c2d6e0079ed3ba811f1e03"><div class="ttname"><a href="classClassNode.html#ac43e7d17f4c2d6e0079ed3ba811f1e03">ClassNode::addMethod</a></div><div class="ttdeci">void addMethod(ClassMethod newMethod)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00072">classNode.h:72</a></div></div>
+<div class="ttc" id="aclassClassNode_html_ae55a4cea8663d5dfc1fc86b4f8904efa"><div class="ttname"><a href="classClassNode.html#ae55a4cea8663d5dfc1fc86b4f8904efa">ClassNode::setName</a></div><div class="ttdeci">void setName(QString newName)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00050">classNode.h:50</a></div></div>
+<div class="ttc" id="aclassClassNode_html_ae7b93070f82b97564be5f7dce50a7d2b"><div class="ttname"><a href="classClassNode.html#ae7b93070f82b97564be5f7dce50a7d2b">ClassNode::paint</a></div><div class="ttdeci">void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8cpp_source.html#l00046">classNode.cpp:46</a></div></div>
+<div class="ttc" id="aclassClassNode_html_aec4eb21628820d3ed42b5452a9dfaf93"><div class="ttname"><a href="classClassNode.html#aec4eb21628820d3ed42b5452a9dfaf93">ClassNode::setMethods</a></div><div class="ttdeci">void setMethods(std::vector&lt; ClassMethod &gt; methods)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00124">classNode.h:124</a></div></div>
+<div class="ttc" id="aclassClassNode_html_af899ff4279f2d4681b1f029e3b6cf547"><div class="ttname"><a href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">ClassNode::removeConnection</a></div><div class="ttdeci">void removeConnection(Line *line)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00189">classNode.h:189</a></div></div>
 <div class="ttc" id="aclassClass_html"><div class="ttname"><a href="classClass.html">Class</a></div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00023">Class.h:24</a></div></div>
 <div class="ttc" id="aclassClass_html_a02e0585a243150f901bb2a97769a8aae"><div class="ttname"><a href="classClass.html#a02e0585a243150f901bb2a97769a8aae">Class::setMethods</a></div><div class="ttdeci">void setMethods(std::vector&lt; ClassMethod &gt; &amp;new_methods)</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00206">Class.h:206</a></div></div>
 <div class="ttc" id="aclassClass_html_a71a4039f289d71a01ff4b2ff238bc44b"><div class="ttname"><a href="classClass.html#a71a4039f289d71a01ff4b2ff238bc44b">Class::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00069">Class.h:69</a></div></div>
@@ -213,7 +230,7 @@ $(function() {
 <div class="ttc" id="aclassClass_html_acdd60df168c989537d72d209e535a3c9"><div class="ttname"><a href="classClass.html#acdd60df168c989537d72d209e535a3c9">Class::getAttributes</a></div><div class="ttdeci">std::vector&lt; ClassAttribute &gt; &amp; getAttributes()</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00146">Class.h:146</a></div></div>
 <div class="ttc" id="aclassClass_html_adc7caf39032dd6b928ee0c2cacc3d3c6"><div class="ttname"><a href="classClass.html#adc7caf39032dd6b928ee0c2cacc3d3c6">Class::addMethod</a></div><div class="ttdeci">void addMethod(ClassMethod method)</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00216">Class.h:216</a></div></div>
 <div class="ttc" id="aclassClass_html_af697d075cf2762b41dfe17f45486d261"><div class="ttname"><a href="classClass.html#af697d075cf2762b41dfe17f45486d261">Class::getMethods</a></div><div class="ttdeci">std::vector&lt; ClassMethod &gt; &amp; getMethods()</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00186">Class.h:186</a></div></div>
-<div class="ttc" id="aclassLine_html"><div class="ttname"><a href="classLine.html">Line</a></div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00019">Line.h:20</a></div></div>
+<div class="ttc" id="aclassLine_html"><div class="ttname"><a href="classLine.html">Line</a></div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00021">Line.h:22</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
