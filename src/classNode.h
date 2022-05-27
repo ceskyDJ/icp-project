@@ -195,7 +195,7 @@ private:
     QRectF borederRect();
     QRectF getNameBoundigRect() const;
     QRectF getWholeRect() const;
-    QRectF getWholeRect(std::vector<QString> attributePrintable, std::vector<QString> methodPrintable) const;
+    QRectF getWholeRect(std::vector<QString> &attributePrintable, std::vector<QString> &methodPrintable) const;
     const int lineIndent = 5;
     const int Padding = 10;
     Class classEntity;

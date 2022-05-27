@@ -5,11 +5,13 @@
  *
  * Některé funkce byly inspirovány příklady od Petra Peringera
  * @author Jakub Dvořák (xdvora3q)
+ * @author Michal Šmahel (xsmahe01)
  */
 #include "classNode.h"
 #include "qpainter.h"
 #include "QPlainTextEdit"
 #include <QStyleOptionGraphicsItem>
+#include <iostream>
 #include "ClassEditDialog.h"
 #include "GeneralizationLine.h"
 #include "Line.h"
@@ -19,11 +21,14 @@
  *
  * @param classEntity Class which is going to be drawn.
  */
-ClassNode::ClassNode(Class classEntity)
+ClassNode::ClassNode(Class classEntity): classEntity{classEntity}
 {
-    setFlags(ItemIsMovable | ItemIsSelectable);
-    setFlag(ItemSendsGeometryChanges);
-    ClassNode::classEntity = classEntity;
+    setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
+
+    // Set initial position
+    auto classCoords = classEntity.getCoordinates();
+    setPos(std::get<0>(classCoords), std::get<1>(classCoords));
+
     prepareGeometryChange();
     update();
 }
@@ -146,8 +151,8 @@ QRectF ClassNode::getWholeRect() const
  * @param attributePrintable QStrings of all class attributes
  * @return QRectF - whole rect of ClassNode.
  */
-QRectF ClassNode::getWholeRect(std::vector<QString> attributePrintable,
-                               std::vector<QString> methodPrintable) const
+QRectF ClassNode::getWholeRect(std::vector<QString> &attributePrintable,
+                               std::vector<QString> &methodPrintable) const
 {
     QFontMetricsF metrics{qApp->font()};
     QRectF nameRect = metrics.boundingRect(QString::fromStdString(classEntity.getName()));
@@ -331,8 +336,15 @@ void ClassNode::rePaintLines()
  */
 QVariant ClassNode::itemChange(GraphicsItemChange change, const QVariant &value)
 {
-    if (change == ItemPositionHasChanged)
+    if (change == ItemPositionHasChanged) {
+        // Update coordinates in entity
+        QPoint newPoint{value.toPoint()};
+        std::tuple<int, int> newCoords{newPoint.x(), newPoint.y()};
+        classEntity.setCoordinates(newCoords);
+
         rePaintLines();
+    }
+
     return QGraphicsItem::itemChange(change, value);
 }
 
