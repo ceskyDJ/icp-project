@@ -30,10 +30,12 @@ add_executable(icp_project
         src/AssociationLine.h
         src/AssociationLineEditDialog.h
         src/ClassDiagram.h
+        src/DirectedAssociationLine.h
         src/Line.h
         src/LineWithArrow.h
         src/LineWithArrowEditDialog.h
         src/MethodParameterEditWidget.h
+        src/RealizationLine.h
         src/SequenceDiagram.h
         src/ClassMember.h
         src/ClassMethod.h
@@ -84,10 +86,12 @@ add_executable(icp_project
         src/AssociationLineEditDialog.cpp
         src/ClassMethodType.cpp
         src/ClassType.cpp
+        src/DirectedAssociationLine.cpp
         src/LineWithArrow.cpp
         src/LineWithArrowEditDialog.cpp
         src/MessageType.cpp
         src/ClassDiagram.cpp
+        src/RealizationLine.cpp
         src/SequenceDiagram.cpp
         src/Class.cpp
         src/FileClassDiagramRepository.cpp
