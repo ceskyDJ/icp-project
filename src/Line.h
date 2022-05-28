@@ -14,6 +14,7 @@
 #include <QPointF>
 #include <QPen>
 #include <QPainterPath>
+#include <QPainter>
 
 class ClassNode;
 class LineText;

@@ -8,7 +8,6 @@
 
 #include "AssociationLine.h"
 #include <QGraphicsSceneMouseEvent>
-#include <QPainter>
 #include <QFontMetricsF>
 #include <QRectF>
 #include "AssociationLineEditDialog.h"
@@ -42,6 +41,7 @@ void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
 {
     painter->setPen(pen);
+    painter->setRenderHint(QPainter::Antialiasing, true);
     QLineF line = getShortestLine(fromClassNode, toClassNode);
     painter->drawLine(line);
     painter->translate(0.5 * line.p1() + 0.5 * line.p2());

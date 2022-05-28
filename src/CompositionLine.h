@@ -11,7 +11,6 @@
 
 #include "Line.h"
 #include "LineWithArrow.h"
-#include <QPainter>
 
 class CompositionLine: public LineWithArrow
 {

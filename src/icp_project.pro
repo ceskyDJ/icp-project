@@ -30,10 +30,12 @@ HEADERS += \
     AssociationLine.h \
     AssociationLineEditDialog.h \
     ClassDiagram.h \
+    DirectedAssociationLine.h \
     Line.h \
     LineWithArrow.h \
     LineWithArrowEditDialog.h \
     MethodParameterEditWidget.h \
+    RealizationLine.h \
     SequenceDiagram.h \
     ClassMember.h \
     ClassMethod.h \
@@ -84,10 +86,12 @@ SOURCES += \
     AssociationLineEditDialog.cpp \
     ClassMethodType.cpp \
     ClassType.cpp \
+    DirectedAssociationLine.cpp \
     LineWithArrow.cpp \
     LineWithArrowEditDialog.cpp \
     MessageType.cpp \
     ClassDiagram.cpp \
+    RealizationLine.cpp \
     SequenceDiagram.cpp \
     Class.cpp \
     FileClassDiagramRepository.cpp \
