@@ -43,5 +43,4 @@ void CompositionLine::drawArrow(QPainter *painter) const
     arrowPath.addPolygon(arrowPolygon);
     painter->setBrush(arrowGradient);
     painter->drawPath(arrowPath);
-
 }

@@ -10,5 +10,7 @@
     <file alias="nike.png">resources/nike.png</file>
     <file alias="cancel.png">resources/cancel.png</file>
     <file alias="switch.png">resources/switch.png</file>
+    <file alias="realization.png">resources/realization.png</file>
+    <file alias="directedAssociation.png">resources/directedAssociation.png</file>
 </qresource>
 </RCC>

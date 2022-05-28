@@ -1,6 +1,6 @@
 /**
- * @file ClassDiagramWindow.h
- * Má z úkol vytvořit okno pro kreslení UML diagramů tříd.
+ * @class ClassDiagramWindow.h
+ * Windows that allows user to draw diagrams.
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -25,6 +25,8 @@
 #include "CompositionLine.h"
 #include "AgregationLine.h"
 #include "AssociationLine.h"
+#include "DirectedAssociationLine.h"
+#include "RealizationLine.h"
 
 class ClassDiagramWindow : public QMainWindow
 {
@@ -34,7 +36,7 @@ public:
 
 private:
     int minToolboxWidth = 200;
-    int toolboxItemSize = 50;
+    int toolboxItemSize = 70;
 
     QToolBar *taskBar;
     QToolBar *diagramTabs;
@@ -48,6 +50,8 @@ private:
     QToolButton *associationToolItem;
     QToolButton *compositionToolItem;
     QToolButton *generalisationToolItem;
+    QToolButton *directedAssociationToolItem;
+    QToolButton *realizationToolItem;
     QToolButton *classShapeToolItem;
     QToolButton *removeSelectedToolItem;
     ClassNode *firstToSelect = nullptr;
@@ -70,14 +74,16 @@ private:
     QWidget *prepareSequencDiagramTab(QString label);
     ClassNode *getSelectedNode();
     void connectNodes();
-    void compositionSelected();
-    void agregationSelected();
-    void generalisationSelected();
 private slots:
     void addClassNode();
     void removeClassNode();
     void associationSelected();
     void selectionChanged();
+    void compositionSelected();
+    void agregationSelected();
+    void generalisationSelected();
+    void directedAssociationSelected();
+    void realizationSelected();
 };
 
 #endif // CLASSDIAGRAMWINDOW_H

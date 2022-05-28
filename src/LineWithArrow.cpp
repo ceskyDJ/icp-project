@@ -20,6 +20,7 @@
 void LineWithArrow::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
 {
     painter->setPen(pen);
+    painter->setRenderHint(QPainter::Antialiasing, true);
 
     QLineF line = getShortestLine(fromClassNode, toClassNode);
     line.setLength(line.length() - arrowWidth / 2);

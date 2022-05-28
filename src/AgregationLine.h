@@ -3,9 +3,6 @@
 
 #include "LineWithArrow.h"
 #include "Line.h"
-#include <QPainter>
-#include <QInputDialog>
-#include <QLineEdit>
 
 class AgregationLine : public LineWithArrow
 {

@@ -49,6 +49,8 @@ void ClassDiagramWindow::initializeComponents()
     associationToolItem = new QToolButton;
     compositionToolItem = new QToolButton;
     generalisationToolItem = new QToolButton;
+    realizationToolItem = new QToolButton;
+    directedAssociationToolItem = new QToolButton;
     classShapeToolItem     = new QToolButton;
     removeSelectedToolItem = new QToolButton;
 }
@@ -113,10 +115,11 @@ QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString, QT
     toolboxItemLayout->addWidget(newToolButton);
     QLabel *label = new QLabel(labelString);
     toolboxItemLayout->addWidget(label);
+    toolboxItemLayout->setAlignment(newToolButton, Qt::AlignHCenter);
+    toolboxItemLayout->setAlignment(label, Qt::AlignHCenter);
 
     QWidget* toolboxItem = new QWidget;
     toolboxItem->setLayout(toolboxItemLayout);
-    //toolboxItem->setMaximumSize(toolboxItemSize, toolboxItemSize + label->size().height() + 20);
     return toolboxItem;
 }
 
@@ -154,6 +157,11 @@ void ClassDiagramWindow::setTooBox()
     QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", compositionToolItem);
     QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Association", associationToolItem);
     QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalization", generalisationToolItem);
+    QWidget *realizationLineWidget = prepareToolItem(QIcon{":/realization.png"}, "Realization", realizationToolItem);
+    QIcon aaa = QIcon{":/realization.png"};
+    (void)aaa;
+    QWidget *directedLineWidget = prepareToolItem(QIcon{":/directedAssociation.png"},
+                                                  "Directed association", directedAssociationToolItem);
     QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Class node", classShapeToolItem);
     QWidget *removeSelectedWidget = prepareToolItem(QIcon{":/closeCross.png"}, "Remove selected", removeSelectedToolItem);
 
@@ -161,8 +169,10 @@ void ClassDiagramWindow::setTooBox()
     toolboxLayout->addWidget(fellowshipLineWidget, 1, 0);
     toolboxLayout->addWidget(compositionLineWidget, 0, 1);
     toolboxLayout->addWidget(generalisationLineWidget, 1, 1);
-    toolboxLayout->addWidget(classShapeWidget, 2, 0);
-    toolboxLayout->addWidget(removeSelectedWidget, 2, 1);
+    toolboxLayout->addWidget(realizationLineWidget, 2, 0);
+    toolboxLayout->addWidget(directedLineWidget, 2, 1);
+    toolboxLayout->addWidget(classShapeWidget, 3, 0);
+    toolboxLayout->addWidget(removeSelectedWidget, 3, 1);
 
     toolboxItems->setLayout(toolboxLayout);
     toolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
@@ -213,6 +223,8 @@ void ClassDiagramWindow::connectComponents()
     connect(compositionToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::compositionSelected);
     connect(agregationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::agregationSelected);
     connect(generalisationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::generalisationSelected);
+    connect(directedAssociationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::directedAssociationSelected);
+    connect(realizationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::realizationSelected);
 
     connect(classDiagramScene, &QGraphicsScene::selectionChanged, this, &ClassDiagramWindow::selectionChanged);
 
@@ -236,7 +248,7 @@ void ClassDiagramWindow::setAllNodesColor(QColor color)
 }
 
 /**
- * ClassDiagramWindow::relationShipSelected To a new pointer creates line
+ * To a newLine pointer creates line
  */
 void ClassDiagramWindow::associationSelected()
 {
@@ -246,7 +258,7 @@ void ClassDiagramWindow::associationSelected()
 }
 
 /**
- * ClassDiagramWindow::compositionSelected To a new pointer creates composition line
+ * To a newLine pointer creates composition line
  */
 void ClassDiagramWindow::compositionSelected()
 {
@@ -256,7 +268,7 @@ void ClassDiagramWindow::compositionSelected()
 }
 
 /**
- * @brief ClassDiagramWindow::agregationSelected To a new pointer creates agregation line
+ * To a newLine pointer creates agregation line
  */
 void ClassDiagramWindow::agregationSelected()
 {
@@ -266,13 +278,33 @@ void ClassDiagramWindow::agregationSelected()
 }
 
 /**
- * @brief ClassDiagramWindow::generalisationSelected To a new pointer creates generalisation line
+ * To a newLine pointer creates generalisation line
  */
 void ClassDiagramWindow::generalisationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
     newLine = new GeneralizationLine();
+}
+
+/**
+ * To a newLine pointer creates directed association line
+ */
+void ClassDiagramWindow::directedAssociationSelected()
+{
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+    newLine = new DirectedAssociationLine();
+}
+
+/**
+ * To a newLine pointer creates realization line
+ */
+void ClassDiagramWindow::realizationSelected()
+{
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+    newLine = new RealizationLine();
 }
 
 /**
@@ -338,3 +370,4 @@ void ClassDiagramWindow::connectNodes()
     firstToSelect = nullptr;
     secondToSelect = nullptr;
 }
+
