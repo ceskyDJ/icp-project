@@ -72,7 +72,7 @@ $(function() {
 <a href="ClassDiagramWindow_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QResource&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="ClassDiagramWindow_8h.html">ClassDiagramWindow.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;ClassDiagramWindow.h&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="ClassAttribute_8h.html">ClassAttribute.h</a>&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd">   16</a></span><a class="code hl_function" href="classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd">ClassDiagramWindow::ClassDiagramWindow</a>()</div>
@@ -107,242 +107,268 @@ $(function() {
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    associationToolItem = <span class="keyword">new</span> QToolButton;</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    compositionToolItem = <span class="keyword">new</span> QToolButton;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    generalisationToolItem = <span class="keyword">new</span> QToolButton;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    classShapeToolItem     = <span class="keyword">new</span> QToolButton;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    removeSelectedToolItem = <span class="keyword">new</span> QToolButton;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keywordtype">void</span> ClassDiagramWindow::setMainWindow()</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    QGridLayout *windowLayout = <span class="keyword">new</span> QGridLayout;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    QGridLayout *modellingLayout = <span class="keyword">new</span> QGridLayout;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    modellingLayout-&gt;addWidget(toolBox,0,0);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    modellingLayout-&gt;addWidget(classDiagramView,0,1);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    QWidget *modellingSpace = <span class="keyword">new</span> QWidget;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    modellingSpace-&gt;setLayout(modellingLayout);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    windowLayout-&gt;addWidget(modellingSpace,0,0);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    windowLayout-&gt;addWidget(diagramTabs,1,0);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    classDiagramCenterWidget = <span class="keyword">new</span> QWidget;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    classDiagramCenterWidget-&gt;setLayout(windowLayout);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    setCentralWidget(classDiagramCenterWidget);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    this-&gt;setMinimumSize(800,600);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    this-&gt;setWindowTitle(<span class="stringliteral">&quot;UML Class Creator&quot;</span>);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keywordtype">void</span> ClassDiagramWindow::setTaskBars()</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>{</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Open&quot;</span>);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Save&quot;</span>);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Save as...&quot;</span>);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Undo&quot;</span>);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Redo&quot;</span>);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    diagramTabs-&gt;addWidget(prepareSequencDiagramTab(<span class="stringliteral">&quot;Třídní diagram&quot;</span>));</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    diagramTabs-&gt;addWidget(prepareSequencDiagramTab(<span class="stringliteral">&quot;Sekvenční 1&quot;</span>));</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    diagramTabs-&gt;addWidget(prepareSequencDiagramTab(<span class="stringliteral">&quot;Sekvenční 2&quot;</span>));</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton)</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>{</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    newToolButton-&gt;setIcon(icon);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    newToolButton-&gt;setIconSize(QSize(toolboxItemSize, toolboxItemSize));</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    newToolButton-&gt;setMaximumSize(toolboxItemSize, toolboxItemSize);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    newToolButton-&gt;setMinimumSize(toolboxItemSize, toolboxItemSize);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    QVBoxLayout *toolboxItemLayout = <span class="keyword">new</span> QVBoxLayout();</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    toolboxItemLayout-&gt;addWidget(newToolButton);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    QLabel *label = <span class="keyword">new</span> QLabel(labelString);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    toolboxItemLayout-&gt;addWidget(label);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    QWidget* toolboxItem = <span class="keyword">new</span> QWidget;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    toolboxItem-&gt;setLayout(toolboxItemLayout);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">//toolboxItem-&gt;setMaximumSize(toolboxItemSize, toolboxItemSize + label-&gt;size().height() + 20);</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">return</span> toolboxItem;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QString label)</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">static</span> QIcon icon = QIcon(<span class="stringliteral">&quot;:/closeCross.png&quot;</span>);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    QWidget *newTab = <span class="keyword">new</span> QWidget;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    QPushButton *picture = <span class="keyword">new</span> QPushButton(icon,<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    QGridLayout *actionLayout = <span class="keyword">new</span> QGridLayout();</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    actionLayout-&gt;addWidget(<span class="keyword">new</span> QPushButton(label),0,0);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    actionLayout-&gt;addWidget(picture,0,1);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    newTab-&gt;setLayout(actionLayout);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">return</span> newTab;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    realizationToolItem = <span class="keyword">new</span> QToolButton;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    directedAssociationToolItem = <span class="keyword">new</span> QToolButton;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    classShapeToolItem     = <span class="keyword">new</span> QToolButton;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    removeSelectedToolItem = <span class="keyword">new</span> QToolButton;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">void</span> ClassDiagramWindow::setMainWindow()</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    QGridLayout *windowLayout = <span class="keyword">new</span> QGridLayout;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    QGridLayout *modellingLayout = <span class="keyword">new</span> QGridLayout;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    modellingLayout-&gt;addWidget(toolBox,0,0);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    modellingLayout-&gt;addWidget(classDiagramView,0,1);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    QWidget *modellingSpace = <span class="keyword">new</span> QWidget;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    modellingSpace-&gt;setLayout(modellingLayout);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    windowLayout-&gt;addWidget(modellingSpace,0,0);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    windowLayout-&gt;addWidget(diagramTabs,1,0);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    classDiagramCenterWidget = <span class="keyword">new</span> QWidget;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    classDiagramCenterWidget-&gt;setLayout(windowLayout);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    setCentralWidget(classDiagramCenterWidget);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    this-&gt;setMinimumSize(800,600);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    this-&gt;setWindowTitle(<span class="stringliteral">&quot;UML Class Creator&quot;</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keywordtype">void</span> ClassDiagramWindow::setTaskBars()</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Open&quot;</span>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Save&quot;</span>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Save as...&quot;</span>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Undo&quot;</span>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    taskBar-&gt;addAction(<span class="stringliteral">&quot;Redo&quot;</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    diagramTabs-&gt;addWidget(prepareSequencDiagramTab(<span class="stringliteral">&quot;Třídní diagram&quot;</span>));</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    diagramTabs-&gt;addWidget(prepareSequencDiagramTab(<span class="stringliteral">&quot;Sekvenční 1&quot;</span>));</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    diagramTabs-&gt;addWidget(prepareSequencDiagramTab(<span class="stringliteral">&quot;Sekvenční 2&quot;</span>));</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    newToolButton-&gt;setIcon(icon);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    newToolButton-&gt;setIconSize(QSize(toolboxItemSize, toolboxItemSize));</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    newToolButton-&gt;setMaximumSize(toolboxItemSize, toolboxItemSize);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    newToolButton-&gt;setMinimumSize(toolboxItemSize, toolboxItemSize);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    QVBoxLayout *toolboxItemLayout = <span class="keyword">new</span> QVBoxLayout();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    toolboxItemLayout-&gt;addWidget(newToolButton);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    QLabel *label = <span class="keyword">new</span> QLabel(labelString);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    toolboxItemLayout-&gt;addWidget(label);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    toolboxItemLayout-&gt;setAlignment(newToolButton, Qt::AlignHCenter);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    toolboxItemLayout-&gt;setAlignment(label, Qt::AlignHCenter);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    QWidget* toolboxItem = <span class="keyword">new</span> QWidget;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    toolboxItem-&gt;setLayout(toolboxItemLayout);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">return</span> toolboxItem;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>QWidget *ClassDiagramWindow::prepareSequencDiagramTab(QString label)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>{</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">static</span> QIcon icon = QIcon(<span class="stringliteral">&quot;:/closeCross.png&quot;</span>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    QWidget *newTab = <span class="keyword">new</span> QWidget;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    QPushButton *picture = <span class="keyword">new</span> QPushButton(icon,<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    QGridLayout *actionLayout = <span class="keyword">new</span> QGridLayout();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    actionLayout-&gt;addWidget(<span class="keyword">new</span> QPushButton(label),0,0);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    actionLayout-&gt;addWidget(picture,0,1);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    newTab-&gt;setLayout(actionLayout);</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keywordtype">void</span> ClassDiagramWindow::setTooBox()</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>{</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    toolBox-&gt;setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    toolBox-&gt;setMinimumWidth(minToolboxWidth);</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    QGroupBox *toolboxItems = <span class="keyword">new</span> QGroupBox;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    QGridLayout *toolboxLayout = <span class="keyword">new</span> QGridLayout;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    QWidget *agregationLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/agLine.png&quot;</span>}, <span class="stringliteral">&quot;Agregation&quot;</span>, agregationToolItem);</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    QWidget *fellowshipLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/coLine.png&quot;</span>}, <span class="stringliteral">&quot;Composition&quot;</span>, compositionToolItem);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    QWidget *compositionLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/feLine.png&quot;</span>}, <span class="stringliteral">&quot;Association&quot;</span>, associationToolItem);</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    QWidget *generalisationLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/geLine.png&quot;</span>}, <span class="stringliteral">&quot;Generalization&quot;</span>, generalisationToolItem);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    QWidget *classShapeWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/classShape.png&quot;</span>}, <span class="stringliteral">&quot;Class node&quot;</span>, classShapeToolItem);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    QWidget *removeSelectedWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/closeCross.png&quot;</span>}, <span class="stringliteral">&quot;Remove selected&quot;</span>, removeSelectedToolItem);</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    toolboxLayout-&gt;addWidget(agregationLineWidget, 0, 0);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    toolboxLayout-&gt;addWidget(fellowshipLineWidget, 1, 0);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    toolboxLayout-&gt;addWidget(compositionLineWidget, 0, 1);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    toolboxLayout-&gt;addWidget(generalisationLineWidget, 1, 1);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    toolboxLayout-&gt;addWidget(classShapeWidget, 2, 0);</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    toolboxLayout-&gt;addWidget(removeSelectedWidget, 2, 1);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    toolboxItems-&gt;setLayout(toolboxLayout);</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    toolboxItems-&gt;setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    toolBox-&gt;addItem(toolboxItems, <span class="stringliteral">&quot;Prvky třídního diagramu&quot;</span>);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keywordtype">void</span> ClassDiagramWindow::addClassNode()</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>{</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *newOne = <span class="keyword">new</span> <a class="code hl_class" href="classClassNode.html">ClassNode</a>();</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    newOne-&gt;setPos(0,0);</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    classDiagramScene-&gt;addItem(newOne);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">return</span> newTab;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="keywordtype">void</span> ClassDiagramWindow::setTooBox()</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>{</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    toolBox-&gt;setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    toolBox-&gt;setMinimumWidth(minToolboxWidth);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    QGroupBox *toolboxItems = <span class="keyword">new</span> QGroupBox;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    QGridLayout *toolboxLayout = <span class="keyword">new</span> QGridLayout;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    QWidget *agregationLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/agLine.png&quot;</span>}, <span class="stringliteral">&quot;Agregation&quot;</span>, agregationToolItem);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    QWidget *fellowshipLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/coLine.png&quot;</span>}, <span class="stringliteral">&quot;Composition&quot;</span>, compositionToolItem);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    QWidget *compositionLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/feLine.png&quot;</span>}, <span class="stringliteral">&quot;Association&quot;</span>, associationToolItem);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    QWidget *generalisationLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/geLine.png&quot;</span>}, <span class="stringliteral">&quot;Generalization&quot;</span>, generalisationToolItem);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    QWidget *realizationLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/realization.png&quot;</span>}, <span class="stringliteral">&quot;Realization&quot;</span>, realizationToolItem);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    QIcon aaa = QIcon{<span class="stringliteral">&quot;:/realization.png&quot;</span>};</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    (void)aaa;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    QWidget *directedLineWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/directedAssociation.png&quot;</span>},</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>                                                  <span class="stringliteral">&quot;Directed association&quot;</span>, directedAssociationToolItem);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    QWidget *classShapeWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/classShape.png&quot;</span>}, <span class="stringliteral">&quot;Class node&quot;</span>, classShapeToolItem);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    QWidget *removeSelectedWidget = prepareToolItem(QIcon{<span class="stringliteral">&quot;:/closeCross.png&quot;</span>}, <span class="stringliteral">&quot;Remove selected&quot;</span>, removeSelectedToolItem);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    toolboxLayout-&gt;addWidget(agregationLineWidget, 0, 0);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    toolboxLayout-&gt;addWidget(fellowshipLineWidget, 1, 0);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    toolboxLayout-&gt;addWidget(compositionLineWidget, 0, 1);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    toolboxLayout-&gt;addWidget(generalisationLineWidget, 1, 1);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    toolboxLayout-&gt;addWidget(realizationLineWidget, 2, 0);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    toolboxLayout-&gt;addWidget(directedLineWidget, 2, 1);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    toolboxLayout-&gt;addWidget(classShapeWidget, 3, 0);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    toolboxLayout-&gt;addWidget(removeSelectedWidget, 3, 1);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    toolboxItems-&gt;setLayout(toolboxLayout);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    toolboxItems-&gt;setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    toolBox-&gt;addItem(toolboxItems, <span class="stringliteral">&quot;Prvky třídního diagramu&quot;</span>);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="keywordtype">void</span> ClassDiagramWindow::removeClassNode()</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="keywordtype">void</span> ClassDiagramWindow::addClassNode()</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>{</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    QList&lt;QGraphicsItem *&gt; selectedItems =  classDiagramScene-&gt;selectedItems();</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordflow">for</span> (QGraphicsItem *item : selectedItems)</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    {</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <a class="code hl_class" href="classClassNode.html">ClassNode</a> *node = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *<span class="keyword">&gt;</span>(item);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <span class="keywordflow">if</span>(node)</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        {</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            QSet&lt;Line *&gt; connections = node-&gt;<a class="code hl_function" href="classClassNode.html#a8597078011a66fc3eff87c672a53b532">getConnections</a>();</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>            <span class="keywordflow">for</span>(<a class="code hl_class" href="classLine.html">Line</a> * connection : connections)</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                <span class="keyword">delete</span> connection;</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            classDiagramScene-&gt;removeItem(item);</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <span class="keyword">delete</span> item;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    }</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>}</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="keywordtype">void</span> ClassDiagramWindow::connectComponents()</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>{</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    connect(classShapeToolItem,  &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::addClassNode);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    connect(removeSelectedToolItem,  &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::removeClassNode);</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    connect(associationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::associationSelected);</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    connect(compositionToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::compositionSelected);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    connect(agregationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::agregationSelected);</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    connect(generalisationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::generalisationSelected);</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    connect(classDiagramScene, &amp;QGraphicsScene::selectionChanged, <span class="keyword">this</span>, &amp;ClassDiagramWindow::selectionChanged);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>}</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keywordtype">void</span> ClassDiagramWindow::setAllNodesColor(QColor color)</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>{</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    nodeColor = color;</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    QList&lt;QGraphicsItem *&gt; allNodes = classDiagramScene-&gt;items();</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordflow">for</span>(QGraphicsItem *maybeNode : allNodes)</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    {</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <a class="code hl_class" href="classClassNode.html">ClassNode</a> *definetlyNode = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *<span class="keyword">&gt;</span>(maybeNode);</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">if</span>(definetlyNode)</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            definetlyNode-&gt;<a class="code hl_function" href="classClassNode.html#a42c0ed7fbc10850db0e5da6d0a57bf4c">setBorderColor</a>(nodeColor);</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    }</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>}</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="keywordtype">void</span> ClassDiagramWindow::associationSelected()</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>{</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    classDiagramScene-&gt;clearSelection();</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    setAllNodesColor(realtionShipSelectedColor);</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classAssociationLine.html">AssociationLine</a>;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>}</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keywordtype">void</span> ClassDiagramWindow::compositionSelected()</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>{</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    classDiagramScene-&gt;clearSelection();</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    setAllNodesColor(realtionShipSelectedColor);</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classCompositionLine.html">CompositionLine</a>;</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>}</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="keywordtype">void</span> ClassDiagramWindow::agregationSelected()</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>{</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    classDiagramScene-&gt;clearSelection();</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    setAllNodesColor(realtionShipSelectedColor);</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classAgregationLine.html">AgregationLine</a>();</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>}</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keywordtype">void</span> ClassDiagramWindow::generalisationSelected()</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>{</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    classDiagramScene-&gt;clearSelection();</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    setAllNodesColor(realtionShipSelectedColor);</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classGeneralizationLine.html">GeneralizationLine</a>();</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>}</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keywordtype">void</span> ClassDiagramWindow::selectionChanged()</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>{</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordflow">if</span> (nodeColor == Qt::black)</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keywordflow">if</span>(nodeColor == realtionShipSelectedColor &amp;&amp; firstToSelect == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    {</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        firstToSelect = getSelectedNode();</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordflow">if</span>(firstToSelect)</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>            firstToSelect-&gt;<a class="code hl_function" href="classClassNode.html#a42c0ed7fbc10850db0e5da6d0a57bf4c">setBorderColor</a>(nodeFirstSelectedColor);</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        classDiagramScene-&gt;clearSelection();</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    }</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(nodeColor == realtionShipSelectedColor &amp;&amp; firstToSelect != <span class="keyword">nullptr</span>) <span class="comment">//first node selected and still in selctionMode</span></div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    {</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        secondToSelect = getSelectedNode();</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        <span class="keywordflow">if</span>(secondToSelect &amp;&amp; secondToSelect != firstToSelect)</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        {</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            setAllNodesColor(nodeNormalColor);</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>            classDiagramScene-&gt;clearSelection();</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>            connectNodes();</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        }</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    }</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>}</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *ClassDiagramWindow::getSelectedNode()</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>{</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *toReturn;</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    QList&lt;QGraphicsItem *&gt; selectedNodes = classDiagramScene-&gt;selectedItems();</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keywordflow">if</span>(selectedNodes.count() &gt; 1)</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    {</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <span class="keywordflow">for</span>(QGraphicsItem *node : selectedNodes)</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        {</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>            toReturn = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a>*<span class="keyword">&gt;</span>(node);</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>            <span class="keywordflow">if</span>(toReturn)</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>                <span class="keywordflow">return</span> toReturn;</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        }</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    }</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (selectedNodes.count() == 1)</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *<span class="keyword">&gt;</span>(selectedNodes[0]);</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>}</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="keywordtype">void</span> ClassDiagramWindow::connectNodes()</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>{</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    newLine-&gt;<a class="code hl_function" href="classLine.html#a864dcfed95000676235b428da5e14fbc">initialize</a>(firstToSelect, secondToSelect);</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    classDiagramScene-&gt;addItem(newLine);</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    firstToSelect-&gt;<a class="code hl_function" href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">addLine</a>(newLine);</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    secondToSelect-&gt;<a class="code hl_function" href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">addLine</a>(newLine);</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    firstToSelect = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    secondToSelect = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>}</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *newOne = <span class="keyword">new</span> <a class="code hl_class" href="classClassNode.html">ClassNode</a>();</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    newOne-&gt;setPos(0,0);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    classDiagramScene-&gt;addItem(newOne);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>}</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keywordtype">void</span> ClassDiagramWindow::removeClassNode()</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>{</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    QList&lt;QGraphicsItem *&gt; selectedItems =  classDiagramScene-&gt;selectedItems();</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordflow">for</span> (QGraphicsItem *item : selectedItems)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <a class="code hl_class" href="classClassNode.html">ClassNode</a> *node = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *<span class="keyword">&gt;</span>(item);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keywordflow">if</span>(node)</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        {</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            QSet&lt;Line *&gt; connections = node-&gt;<a class="code hl_function" href="classClassNode.html#a8597078011a66fc3eff87c672a53b532">getConnections</a>();</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <span class="keywordflow">for</span>(<a class="code hl_class" href="classLine.html">Line</a> * connection : connections)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                <span class="keyword">delete</span> connection;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            classDiagramScene-&gt;removeItem(item);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            <span class="keyword">delete</span> item;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>}</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keywordtype">void</span> ClassDiagramWindow::connectComponents()</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>{</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    connect(classShapeToolItem,  &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::addClassNode);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    connect(removeSelectedToolItem,  &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::removeClassNode);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    connect(associationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::associationSelected);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    connect(compositionToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::compositionSelected);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    connect(agregationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::agregationSelected);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    connect(generalisationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::generalisationSelected);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    connect(directedAssociationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::directedAssociationSelected);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    connect(realizationToolItem, &amp;QToolButton::pressed, <span class="keyword">this</span>, &amp;ClassDiagramWindow::realizationSelected);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    connect(classDiagramScene, &amp;QGraphicsScene::selectionChanged, <span class="keyword">this</span>, &amp;ClassDiagramWindow::selectionChanged);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>}</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="keywordtype">void</span> ClassDiagramWindow::setAllNodesColor(QColor color)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>{</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    nodeColor = color;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    QList&lt;QGraphicsItem *&gt; allNodes = classDiagramScene-&gt;items();</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">for</span>(QGraphicsItem *maybeNode : allNodes)</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <a class="code hl_class" href="classClassNode.html">ClassNode</a> *definetlyNode = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *<span class="keyword">&gt;</span>(maybeNode);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">if</span>(definetlyNode)</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            definetlyNode-&gt;<a class="code hl_function" href="classClassNode.html#a42c0ed7fbc10850db0e5da6d0a57bf4c">setBorderColor</a>(nodeColor);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>}</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="keywordtype">void</span> ClassDiagramWindow::associationSelected()</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>{</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    setAllNodesColor(realtionShipSelectedColor);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classAssociationLine.html">AssociationLine</a>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>}</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="keywordtype">void</span> ClassDiagramWindow::compositionSelected()</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>{</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    setAllNodesColor(realtionShipSelectedColor);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classCompositionLine.html">CompositionLine</a>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>}</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="keywordtype">void</span> ClassDiagramWindow::agregationSelected()</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>{</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    setAllNodesColor(realtionShipSelectedColor);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classAgregationLine.html">AgregationLine</a>();</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>}</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="keywordtype">void</span> ClassDiagramWindow::generalisationSelected()</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>{</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    setAllNodesColor(realtionShipSelectedColor);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classGeneralizationLine.html">GeneralizationLine</a>();</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="keywordtype">void</span> ClassDiagramWindow::directedAssociationSelected()</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>{</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    setAllNodesColor(realtionShipSelectedColor);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classDirectedAssociationLine.html">DirectedAssociationLine</a>();</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>}</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="keywordtype">void</span> ClassDiagramWindow::realizationSelected()</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>{</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    setAllNodesColor(realtionShipSelectedColor);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    newLine = <span class="keyword">new</span> <a class="code hl_class" href="classRealizationLine.html">RealizationLine</a>();</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>}</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="keywordtype">void</span> ClassDiagramWindow::selectionChanged()</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>{</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keywordflow">if</span> (nodeColor == Qt::black)</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keywordflow">if</span>(nodeColor == realtionShipSelectedColor &amp;&amp; firstToSelect == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    {</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        firstToSelect = getSelectedNode();</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">if</span>(firstToSelect)</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>            firstToSelect-&gt;<a class="code hl_function" href="classClassNode.html#a42c0ed7fbc10850db0e5da6d0a57bf4c">setBorderColor</a>(nodeFirstSelectedColor);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    }</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(nodeColor == realtionShipSelectedColor &amp;&amp; firstToSelect != <span class="keyword">nullptr</span>) <span class="comment">//first node selected and still in selctionMode</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        secondToSelect = getSelectedNode();</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <span class="keywordflow">if</span>(secondToSelect &amp;&amp; secondToSelect != firstToSelect)</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        {</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>            setAllNodesColor(nodeNormalColor);</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>            classDiagramScene-&gt;clearSelection();</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>            connectNodes();</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        }</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    }</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>}</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *ClassDiagramWindow::getSelectedNode()</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>{</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <a class="code hl_class" href="classClassNode.html">ClassNode</a> *toReturn;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    QList&lt;QGraphicsItem *&gt; selectedNodes = classDiagramScene-&gt;selectedItems();</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keywordflow">if</span>(selectedNodes.count() &gt; 1)</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    {</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        <span class="keywordflow">for</span>(QGraphicsItem *node : selectedNodes)</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        {</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>            toReturn = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a>*<span class="keyword">&gt;</span>(node);</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>            <span class="keywordflow">if</span>(toReturn)</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                <span class="keywordflow">return</span> toReturn;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        }</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    }</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (selectedNodes.count() == 1)</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classClassNode.html">ClassNode</a> *<span class="keyword">&gt;</span>(selectedNodes[0]);</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>}</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="keywordtype">void</span> ClassDiagramWindow::connectNodes()</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>{</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    newLine-&gt;<a class="code hl_function" href="classLine.html#a864dcfed95000676235b428da5e14fbc">initialize</a>(firstToSelect, secondToSelect);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    classDiagramScene-&gt;addItem(newLine);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    firstToSelect-&gt;<a class="code hl_function" href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">addLine</a>(newLine);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    secondToSelect-&gt;<a class="code hl_function" href="classClassNode.html#a5d0b6a13e0fe89d9e16d39aa6c7c2596">addLine</a>(newLine);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    firstToSelect = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    secondToSelect = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
 <div class="ttc" id="aClassAttribute_8h_html"><div class="ttname"><a href="ClassAttribute_8h.html">ClassAttribute.h</a></div></div>
-<div class="ttc" id="aClassDiagramWindow_8h_html"><div class="ttname"><a href="ClassDiagramWindow_8h.html">ClassDiagramWindow.h</a></div></div>
 <div class="ttc" id="aclassAccessModifier_html_a27b6690ec7ccb01c93bd287085431689a07aa209593304b908de21406a0386090"><div class="ttname"><a href="classAccessModifier.html#a27b6690ec7ccb01c93bd287085431689a07aa209593304b908de21406a0386090">AccessModifier::PACKAGE_PRIVATE</a></div><div class="ttdeci">@ PACKAGE_PRIVATE</div><div class="ttdef"><b>Definition:</b> <a href="AccessModifier_8h_source.html#l00048">AccessModifier.h:47</a></div></div>
 <div class="ttc" id="aclassAccessModifier_html_a27b6690ec7ccb01c93bd287085431689aa4f4bdd2935e1e472237cccaf3dbaf4b"><div class="ttname"><a href="classAccessModifier.html#a27b6690ec7ccb01c93bd287085431689aa4f4bdd2935e1e472237cccaf3dbaf4b">AccessModifier::PRIVATE</a></div><div class="ttdeci">@ PRIVATE</div><div class="ttdef"><b>Definition:</b> <a href="AccessModifier_8h_source.html#l00039">AccessModifier.h:39</a></div></div>
 <div class="ttc" id="aclassAccessModifier_html_a27b6690ec7ccb01c93bd287085431689ac23f9ff35613c623289e364d92925982"><div class="ttname"><a href="classAccessModifier.html#a27b6690ec7ccb01c93bd287085431689ac23f9ff35613c623289e364d92925982">AccessModifier::PROTECTED</a></div><div class="ttdeci">@ PROTECTED</div><div class="ttdef"><b>Definition:</b> <a href="AccessModifier_8h_source.html#l00043">AccessModifier.h:43</a></div></div>
-<div class="ttc" id="aclassAgregationLine_html"><div class="ttname"><a href="classAgregationLine.html">AgregationLine</a></div><div class="ttdef"><b>Definition:</b> <a href="AgregationLine_8h_source.html#l00010">AgregationLine.h:11</a></div></div>
+<div class="ttc" id="aclassAgregationLine_html"><div class="ttname"><a href="classAgregationLine.html">AgregationLine</a></div><div class="ttdef"><b>Definition:</b> <a href="AgregationLine_8h_source.html#l00007">AgregationLine.h:8</a></div></div>
 <div class="ttc" id="aclassAssociationLine_html"><div class="ttname"><a href="classAssociationLine.html">AssociationLine</a></div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00014">AssociationLine.h:15</a></div></div>
 <div class="ttc" id="aclassClassAttribute_html"><div class="ttname"><a href="classClassAttribute.html">ClassAttribute</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassAttribute_8h_source.html#l00017">ClassAttribute.h:18</a></div></div>
 <div class="ttc" id="aclassClassDiagramWindow_html_a7b5d2357b205fa01e82ffaaf122d16bd"><div class="ttname"><a href="classClassDiagramWindow.html#a7b5d2357b205fa01e82ffaaf122d16bd">ClassDiagramWindow::ClassDiagramWindow</a></div><div class="ttdeci">ClassDiagramWindow()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramWindow_8cpp_source.html#l00016">ClassDiagramWindow.cpp:16</a></div></div>
@@ -354,11 +380,13 @@ $(function() {
 <div class="ttc" id="aclassClassNode_html_aac8d6e6fde5884470ecde035c42a0c56"><div class="ttname"><a href="classClassNode.html#aac8d6e6fde5884470ecde035c42a0c56">ClassNode::addAtribute</a></div><div class="ttdeci">void addAtribute(ClassAttribute newAtribute)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00061">classNode.h:61</a></div></div>
 <div class="ttc" id="aclassClassNode_html_ac43e7d17f4c2d6e0079ed3ba811f1e03"><div class="ttname"><a href="classClassNode.html#ac43e7d17f4c2d6e0079ed3ba811f1e03">ClassNode::addMethod</a></div><div class="ttdeci">void addMethod(ClassMethod newMethod)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00072">classNode.h:72</a></div></div>
 <div class="ttc" id="aclassClass_html"><div class="ttname"><a href="classClass.html">Class</a></div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00023">Class.h:24</a></div></div>
-<div class="ttc" id="aclassCompositionLine_html"><div class="ttname"><a href="classCompositionLine.html">CompositionLine</a></div><div class="ttdef"><b>Definition:</b> <a href="CompositionLine_8h_source.html#l00016">CompositionLine.h:17</a></div></div>
+<div class="ttc" id="aclassCompositionLine_html"><div class="ttname"><a href="classCompositionLine.html">CompositionLine</a></div><div class="ttdef"><b>Definition:</b> <a href="CompositionLine_8h_source.html#l00015">CompositionLine.h:16</a></div></div>
+<div class="ttc" id="aclassDirectedAssociationLine_html"><div class="ttname"><a href="classDirectedAssociationLine.html">DirectedAssociationLine</a></div><div class="ttdef"><b>Definition:</b> <a href="DirectedAssociationLine_8h_source.html#l00013">DirectedAssociationLine.h:14</a></div></div>
 <div class="ttc" id="aclassGeneralizationLine_html"><div class="ttname"><a href="classGeneralizationLine.html">GeneralizationLine</a></div><div class="ttdef"><b>Definition:</b> <a href="GeneralizationLine_8h_source.html#l00015">GeneralizationLine.h:16</a></div></div>
-<div class="ttc" id="aclassLine_html"><div class="ttname"><a href="classLine.html">Line</a></div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00021">Line.h:22</a></div></div>
+<div class="ttc" id="aclassLine_html"><div class="ttname"><a href="classLine.html">Line</a></div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00022">Line.h:23</a></div></div>
 <div class="ttc" id="aclassLine_html_a864dcfed95000676235b428da5e14fbc"><div class="ttname"><a href="classLine.html#a864dcfed95000676235b428da5e14fbc">Line::initialize</a></div><div class="ttdeci">void initialize(ClassNode *fromNode, ClassNode *toNode)</div><div class="ttdoc">Line::initialize initializes line - from and to + pen.</div><div class="ttdef"><b>Definition:</b> <a href="Line_8cpp_source.html#l00031">Line.cpp:31</a></div></div>
 <div class="ttc" id="aclassMethodParameter_html"><div class="ttname"><a href="classMethodParameter.html">MethodParameter</a></div><div class="ttdef"><b>Definition:</b> <a href="MethodParameter_8h_source.html#l00017">MethodParameter.h:18</a></div></div>
+<div class="ttc" id="aclassRealizationLine_html"><div class="ttname"><a href="classRealizationLine.html">RealizationLine</a></div><div class="ttdef"><b>Definition:</b> <a href="RealizationLine_8h_source.html#l00014">RealizationLine.h:15</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
