@@ -98,6 +98,7 @@ void ClassDiagramWindow::setMainWindow()
  */
 void ClassDiagramWindow::setTaskBars()
 {
+    taskBar->setMovable(false);
     taskBar->addAction("Open", this, &ClassDiagramWindow::openButtonClicked);
     taskBar->addAction("Save", this, &ClassDiagramWindow::saveButtonClicked);
     taskBar->addAction("Save as...", this, &ClassDiagramWindow::saveAsButtonClicked);
