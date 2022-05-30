@@ -36,7 +36,11 @@ public:
         ClassDiagram *classDiagram,
         SceneUpdateObservable *sceneUpdateObservable
     ): existingRelationships{existingRelationships}, classDiagram{classDiagram},
-        sceneUpdateObservable{sceneUpdateObservable} {};
+            sceneUpdateObservable{sceneUpdateObservable} {
+        pen = QPen{Qt::black, 2, Qt::SolidLine};
+        fromClassNode = nullptr;
+        toClassNode = nullptr;
+    };
 
     ~Line();
 
@@ -49,7 +53,8 @@ public:
      *
      * @return second class node
      */
-    ClassNode *getToClassNode() {
+    ClassNode *getToClassNode()
+    {
         return toClassNode;
     }
 
@@ -58,7 +63,8 @@ public:
      *
      * @return second class node
      */
-    ClassNode *getFromClassNode() {
+    ClassNode *getFromClassNode()
+    {
         return fromClassNode;
     }
 
@@ -67,7 +73,8 @@ public:
      *
      * @return second class node
      */
-    void setToClassNode(ClassNode *newToNode) {
+    void setToClassNode(ClassNode *newToNode)
+    {
         toClassNode = newToNode;
     }
 
@@ -76,7 +83,8 @@ public:
      *
      * @return second class node
      */
-    void setFromClassNode(ClassNode *newFromNode) {
+    void setFromClassNode(ClassNode *newFromNode)
+    {
         fromClassNode = newFromNode;
     }
 
@@ -126,7 +134,7 @@ protected:
      */
     SceneUpdateObservable *sceneUpdateObservable;
 
-    QPen pen{Qt::black, 2, Qt::SolidLine};
+    QPen pen;
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
     qreal lineBoundingWidth = 10;

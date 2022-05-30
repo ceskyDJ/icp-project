@@ -104,6 +104,7 @@ private:
     QWidget *prepareSequencDiagramTab(QString label);
     ClassNode *getSelectedNode();
     void connectNodes();
+    void createNewLine(Line *line);
     void removeClassNode(ClassNode *classNode);
     void clearScene();
     void redrawClassDiagram();

@@ -15,9 +15,9 @@ class LineWithArrow: public Line
 {
 public:
     using Line::Line;
+protected:
     double arrowHeight = 5;
     double arrowWidth = 20;
-protected:
     /**
      * Paints line and arrow. Inherited from QGraphicsItem
      *

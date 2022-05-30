@@ -35,6 +35,7 @@ ClassDiagramWindow::ClassDiagramWindow(
 {
     // Register this observer for scene updates
     sceneUpdateObservable->registerObserver(this);
+    newLine = nullptr;
 
     initializeComponents();
     connectComponents();
@@ -192,7 +193,6 @@ void ClassDiagramWindow::setTooBox()
     toolboxItems->setLayout(toolboxLayout);
     toolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
     toolBox->addItem(toolboxItems, "Prvky třídního diagramu");
-
 }
 
 /**
@@ -315,9 +315,7 @@ void ClassDiagramWindow::setAllNodesColor(QColor color)
  */
 void ClassDiagramWindow::associationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -325,9 +323,7 @@ void ClassDiagramWindow::associationSelected()
  */
 void ClassDiagramWindow::compositionSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -335,9 +331,7 @@ void ClassDiagramWindow::compositionSelected()
  */
 void ClassDiagramWindow::agregationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -345,9 +339,7 @@ void ClassDiagramWindow::agregationSelected()
  */
 void ClassDiagramWindow::generalisationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -355,9 +347,7 @@ void ClassDiagramWindow::generalisationSelected()
  */
 void ClassDiagramWindow::directedAssociationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -365,13 +355,11 @@ void ClassDiagramWindow::directedAssociationSelected()
  */
 void ClassDiagramWindow::realizationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
- * ClassDiagramWindow::selectionChanged When selection changes and a new relationship is invoked,
+ * When selection changes and a new relationship is invoked,
  * handle adding new relationship.
  */
 void ClassDiagramWindow::selectionChanged()
@@ -393,12 +381,13 @@ void ClassDiagramWindow::selectionChanged()
             setAllNodesColor(nodeNormalColor);
             classDiagramScene->clearSelection();
             connectNodes();
+            newLine = nullptr;
         }
     }
 }
 
 /**
- * ClassDiagramWindow::getSelectedNode finds first selected node
+ * finds first selected node
  *
  * @return selected node
  */
@@ -465,6 +454,18 @@ void ClassDiagramWindow::connectNodes()
     secondToSelect = nullptr;
 
     sceneUpdateObservable->sceneChanged();
+}
+
+/**
+ * Checks if new line is nullptr (if no, deletes it) and insert line into newLine
+ */
+void ClassDiagramWindow::createNewLine(Line *line)
+{
+    if (newLine != nullptr)
+        delete newLine;
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+    newLine = line;
 }
 
 void ClassDiagramWindow::clearScene()

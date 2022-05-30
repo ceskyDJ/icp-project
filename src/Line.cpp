@@ -121,8 +121,10 @@ void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/
  */
 Line::~Line()
 {
-    fromClassNode->removeConnection(this);
-    toClassNode->removeConnection(this);
+    if(fromClassNode != nullptr)
+        fromClassNode->removeConnection(this);
+    if (toClassNode != nullptr)
+        toClassNode->removeConnection(this);
 }
 
 void Line::switchNodes()
