@@ -86,6 +86,8 @@ protected:
     void adjustBounding(QRectF *rect) const;
     QRectF prepareBoundingBox(QRectF rect);
     QRectF locateCardinality(QRectF rect, int modifier, QLineF line, qreal additionPadding = 0);
+    QRectF adjustSelfRect(QRectF rect, int multiply) const;
+    void paintSelfRelationship(QPainter *painter);
 };
 
 #endif // ASSOCIATIONLINE_H

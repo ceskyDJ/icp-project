@@ -53,7 +53,7 @@ protected:
      * Shows dialog to edit relationship.
      */
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
-    QRectF adjustSelfRect(QRectF rect, int multyply) const;
+    QRectF adjustSelfRect(QRectF rect, int multiply) const;
 };
 
 #endif // LINEWITHARROW_H

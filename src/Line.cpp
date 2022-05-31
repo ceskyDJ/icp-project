@@ -176,7 +176,7 @@ QPainterPath Line::selfRealtionshipShape() const
 {
     QRectF bounding = boundingRect();
     bounding = adjustSelfRect(bounding, -1);
-    qreal leftPadding = bounding.x() + bounding.width() - selfPadding;
+    qreal leftPadding = bounding.x() + bounding.width() - selfPadding - specialSelfWidthPadding;
     qreal botPadding = bounding.y() + bounding.height() - selfPadding;
 
     QVector<QPointF> linePoints = {
@@ -233,12 +233,12 @@ QRectF Line::getTextBoundingBox(QString text) const
  * Adjusts bounding rect for self relationship
  *
  * @param rect rect to adjust
- * @param multyply 1 for bounding rect, -1 for drawing
+ * @param multiply 1 for bounding rect, -1 for drawing
  */
-QRectF Line::adjustSelfRect(QRectF rect, int multyply) const
+QRectF Line::adjustSelfRect(QRectF rect, int multiply) const
 {
-    rect.adjust((lineBoundingWidth * 2) * -multyply, lineBoundingWidth * 2 * -multyply,
-                (lineBoundingWidth * 2) * multyply, lineBoundingWidth * 2 * multyply);
+    rect.adjust((lineBoundingWidth * 2) * -multiply, lineBoundingWidth * 2 * -multiply,
+                (lineBoundingWidth * 2) * multiply, lineBoundingWidth * 2 * multiply);
     return rect;
 }
 
@@ -256,7 +256,7 @@ QRectF Line::boundingRect() const
         threeQuater.setX(threeQuater.x() + nodeBounding.width() * 0.25);
         threeQuater.setY(threeQuater.y() + nodeBounding.height() * 0.25);
         nodeBounding.setTopLeft(threeQuater);
-        nodeBounding.adjust(0,0, selfPadding, selfPadding);
+        nodeBounding.adjust(0, 0, selfPadding + specialSelfWidthPadding, selfPadding);
         nodeBounding = adjustSelfRect(nodeBounding, 1);
         nodeBounding.translate(fromClassNode->pos());
         return nodeBounding;
@@ -273,4 +273,9 @@ QRectF Line::boundingRect() const
 void Line::adjustBounding(QRectF *rect) const
 {
     rect->adjust(0,0,0,0);
+}
+
+void Line::paintSelfRelationship(QPainter *)
+{
+
 }

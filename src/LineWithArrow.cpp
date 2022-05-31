@@ -106,11 +106,11 @@ void LineWithArrow::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
  * Adjusts bounding rect for self relationship
  *
  * @param rect rect to adjust
- * @param multyply 1 for bounding rect, -1 for drawing
+ * @param multiply 1 for bounding rect, -1 for drawing
  */
-QRectF LineWithArrow::adjustSelfRect(QRectF rect, int multyply) const
+QRectF LineWithArrow::adjustSelfRect(QRectF rect, int multiply) const
 {
-    rect.adjust((arrowWidth + lineBoundingWidth * 2) * -multyply, lineBoundingWidth * 2 * -multyply,
-                (arrowWidth + lineBoundingWidth * 2) * multyply, lineBoundingWidth * 2 * multyply);
+    rect.adjust((arrowWidth + lineBoundingWidth * 2) * -multiply, lineBoundingWidth * 2 * -multiply,
+                (arrowWidth + lineBoundingWidth * 2) * multiply, lineBoundingWidth * 2 * multiply);
     return rect;
 }

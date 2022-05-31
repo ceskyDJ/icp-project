@@ -41,6 +41,7 @@ public:
         fromClassNode = nullptr;
         toClassNode = nullptr;
         selfRealtionshipFlag = false;
+        specialSelfWidthPadding = 0;
     };
 
     ~Line();
@@ -136,6 +137,7 @@ protected:
     SceneUpdateObservable *sceneUpdateObservable;
 
     qreal selfPadding = 50;
+    qreal specialSelfWidthPadding;
     QPen pen;
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
@@ -150,8 +152,9 @@ protected:
     QLineF getParallelLine(QLineF parallelLine, QPointF startPoint) const;
     QRectF getTextBoundingBox(QString text) const;
     QPainterPath selfRealtionshipShape() const;
-    virtual QRectF adjustSelfRect(QRectF rect, int multyply) const;
+    virtual QRectF adjustSelfRect(QRectF rect, int multiply) const;
     virtual void adjustBounding(QRectF *rect) const;
     QRectF boundingRect() const;
+    virtual void paintSelfRelationship(QPainter *painter);
 };
 #endif // LINE_H
