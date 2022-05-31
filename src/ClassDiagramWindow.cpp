@@ -215,7 +215,7 @@ void ClassDiagramWindow::addClassNode()
     newClassNode->setPos((newClassNode->boundingRect().width() + nodeSpace) * (classNumber % 5),
                          (newClassNode->boundingRect().height() + nodeSpace) * (classNumber / 5));
 
-    connect(newClassNode->emitor, &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
+    connect(&(newClassNode->emitor), &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
     classDiagramScene->addItem(newClassNode);
     storedClasses.insert({newClass->getName(), newClassNode});
 
@@ -478,7 +478,7 @@ void ClassDiagramWindow::redrawClassDiagram()
     for (const auto &item: classDiagram.getClasses()) {
         auto classNode = new ClassNode(item, &storedClasses, sceneUpdateObservable);
 
-        connect(classNode->emitor, &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
+        connect(&(classNode->emitor), &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
         classDiagramScene->addItem(classNode);
         storedClasses.insert({item->getName(), classNode});
     }

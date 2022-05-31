@@ -17,7 +17,6 @@
 #include "Line.h"
 #include "SceneUpdateObservable.h"
 #include "AccessModifier.h"
-#include "ClassNodeEmmitor.h"
 
 /**
  * Sets a class node entity.
@@ -30,10 +29,8 @@ ClassNode::ClassNode(
     Class *classEntity,
     std::unordered_map<std::string, ClassNode *> *existingClasses,
     SceneUpdateObservable *sceneUpdateObservable
-): classEntity{classEntity}, existingClasses{existingClasses}, sceneUpdateObservable{sceneUpdateObservable}
+): emitor{nullptr, this}, classEntity{classEntity}, existingClasses{existingClasses}, sceneUpdateObservable{sceneUpdateObservable}
 {
-    emitor = new ClassNodeEmmitor(nullptr, this);
-
     setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
 
     // Set initial position
@@ -300,7 +297,7 @@ void ClassNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseReleaseEvent(event);
 
-    emitor->emitNodePresed();
+    emitor.emitNodePresed();
 
     if (isMoved) {
         sceneUpdateObservable->sceneChanged();

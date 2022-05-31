@@ -74,6 +74,7 @@ add_executable(icp_project
         src/ClassDiagramWindow.h
         src/MethodParameterEditWidget.h
         src/Line.h
+        src/classNode.h
         src/ClassEditDialog.h
         src/AttributeEditWidget.h
         src/MethodEditWidget.h

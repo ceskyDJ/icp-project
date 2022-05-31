@@ -10,8 +10,9 @@
 #define CLASSNODEEMMITOR_H
 
 #include <QObject>
-#include "classNode.h"
 
+// There is a circular dependency between ClassNodeEmmitor and ClassNode
+// Warning: #include can't be used for ClassNode's header!
 class ClassNode;
 
 class ClassNodeEmmitor : public QObject

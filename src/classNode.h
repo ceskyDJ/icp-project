@@ -23,7 +23,6 @@
 #include "ClassNodeEmmitor.h"
 
 class Line;
-class ClassNodeEmmitor;
 
 class ClassNode : public QGraphicsItem
 {
@@ -206,7 +205,7 @@ public:
         connectedLines.remove(line);
     }
 
-    ClassNodeEmmitor* emitor;
+    ClassNodeEmmitor emitor;
 private:
     /**
      * Pointer to stored class
@@ -246,8 +245,8 @@ private:
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
     void setFontItalic(bool enable, QPainter *painter);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
     void rePaintLines();
     bool isMethodInherited(QString methodName) const;

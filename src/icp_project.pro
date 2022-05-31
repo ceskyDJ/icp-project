@@ -74,6 +74,7 @@ HEADERS += \
     ClassDiagramWindow.h \
     MethodParameterEditWidget.h \
     Line.h \
+    classNode.h \
     ClassEditDialog.h \
     AttributeEditWidget.h \
     MethodEditWidget.h \
