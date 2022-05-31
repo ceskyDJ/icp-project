@@ -77,6 +77,7 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     std::vector<QString> methodVector = getMethodPrintable(&inheritedMethods);
     QRectF wholeRect = getWholeRect(attributeVector, methodVector);
 
+    painter->fillRect(wholeRect, Qt::white);
     int maxWidth = wholeRect.width();
     nameRect.setLeft(wholeRect.x());
     nameRect.setTop(wholeRect.y());
@@ -336,7 +337,7 @@ void ClassNode::setFontItalic(bool enable, QPainter *painter)
  */
 void ClassNode::addLine(Line* newLine)
 {
-    connectedLines.insert(newLine);
+    connectedLines.push_back(newLine);
 }
 
 /**
@@ -345,7 +346,7 @@ void ClassNode::addLine(Line* newLine)
  */
 void ClassNode::removeLine(Line* oldLine)
 {
-    connectedLines.remove(oldLine);
+    connectedLines.remove(connectedLines.indexOf(oldLine));
 }
 
 /**
@@ -403,4 +404,32 @@ bool ClassNode::isMethodInherited(QString methodName) const
     }
 
     return false;
+}
+
+/**
+ * Count number of connections with exactly these nodes in
+ * parameters and store index of comparedLine into index.
+ *
+ * @param secondNode one node in connection line
+ * @param comparedLine Line that we are looking for.
+ * @param index returns order of same connections
+ * @return Count of connections with exactly these 2 nodes.
+ */
+int ClassNode::getNumberOfConnectionsWithNode(ClassNode *secondNode, const Line *comparedLine, int *index) const
+{
+    int counter = 0;
+    *index = -1;
+    for(int i = 0; i < connectedLines.size(); i++)
+    {
+        ClassNode *fromNode = connectedLines[i]->getFromClassNode();
+        ClassNode *toNode = connectedLines[i]->getToClassNode();
+        if((this == fromNode && toNode == secondNode) || (this == toNode && fromNode == secondNode))
+        {
+            if(comparedLine == connectedLines[i])
+                *index = counter;
+            ++counter;
+
+        }
+    }
+    return counter;
 }

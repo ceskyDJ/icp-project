@@ -121,6 +121,7 @@ public:
     }
 
     void switchNodes();
+    QRectF boundingRect() const;
 protected:
     // Dependencies
     /**
@@ -154,7 +155,10 @@ protected:
     QPainterPath selfRealtionshipShape() const;
     virtual QRectF adjustSelfRect(QRectF rect, int multiply) const;
     virtual void adjustBounding(QRectF *rect) const;
-    QRectF boundingRect() const;
     virtual void paintSelfRelationship(QPainter *painter);
+    void movePointsByConnectionCount(QPointF *firstPoint, QPointF *secondPoint,
+                                           ClassNode *firstNode, ClassNode *secondNode) const;
+    QLineF qrectIntersectsLine(QRectF rect, QLineF line) const;
+    void movePointInLine(QLineF line, QPointF *point,int connectionCount, int index) const;
 };
 #endif // LINE_H

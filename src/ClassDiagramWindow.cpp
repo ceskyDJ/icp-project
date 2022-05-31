@@ -246,7 +246,7 @@ void ClassDiagramWindow::removeSelectedClassNodes()
  */
 void ClassDiagramWindow::removeClassNode(ClassNode *classNode)
 {
-    QSet<Line *> connections = classNode->getConnections();
+    QVector<Line *> connections = classNode->getConnections();
     for(Line *connection: connections) {
         // Delete corresponding relationship from class diagram and memory
         Relationship *relationship = storedRelationships.find(connection)->second;

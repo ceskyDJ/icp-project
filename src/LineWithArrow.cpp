@@ -99,7 +99,6 @@ void LineWithArrow::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
     LineWithArrowEditDialog *edit = new LineWithArrowEditDialog(this);
     edit->exec();
-    update();
 }
 
 /**

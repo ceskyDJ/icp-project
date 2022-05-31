@@ -190,7 +190,7 @@ public:
      *
      * @return QSet of line * (connections).
      */
-    QSet<Line *> getConnections()
+    QVector<Line *> getConnections()
     {
         return connectedLines;
     }
@@ -202,10 +202,13 @@ public:
      */
     void removeConnection(Line *line)
     {
-        connectedLines.remove(line);
+        int index = connectedLines.indexOf(line);
+        if(index != -1)
+            connectedLines.remove(index);
     }
 
     ClassNodeEmmitor emitor;
+    int getNumberOfConnectionsWithNode(ClassNode *secondNode, const Line *comparedLine, int *index) const;
 private:
     /**
      * Pointer to stored class
@@ -229,7 +232,7 @@ private:
     const int lineIndent = 5;
     const int Padding = 10;
     QColor borderColor = Qt::black;
-    QSet<Line *> connectedLines;
+    QVector<Line *> connectedLines;
     /**
      * Is class node moved since last scene change log
      *
