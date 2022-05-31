@@ -135,6 +135,7 @@ protected:
      */
     SceneUpdateObservable *sceneUpdateObservable;
 
+    qreal selfPadding = 50;
     QPen pen;
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
@@ -148,5 +149,9 @@ protected:
     QPainterPath shape() const;
     QLineF getParallelLine(QLineF parallelLine, QPointF startPoint) const;
     QRectF getTextBoundingBox(QString text) const;
+    QPainterPath selfRealtionshipShape() const;
+    virtual QRectF adjustSelfRect(QRectF rect, int multyply) const;
+    virtual void adjustBounding(QRectF *rect) const;
+    QRectF boundingRect() const;
 };
 #endif // LINE_H

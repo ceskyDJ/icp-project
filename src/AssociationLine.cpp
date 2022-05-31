@@ -95,22 +95,15 @@ void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem *
     painter->drawText(secondCardinalityRect, Qt::TextSingleLine, secondCardinality);
 }
 
-
 /**
- * Override method which returns bounding rect of line.
+ * Adjusts regular boundingbox
  *
- * @return QRectF A rectnagle around classNode.
+ * @param rect that should be adjusted
  */
-QRectF AssociationLine::boundingRect() const
+void AssociationLine::adjustBounding(QRectF *rect) const
 {
-    QLineF line = getShortestLine(fromClassNode, toClassNode);
-    QPointF leftTop = QPointF{ std::min(line.p1().x(), line.p2().x()), std::min(line.p1().y(), line.p2().y())};
-    QPointF rightBot = QPointF{ std::max(line.p1().x(), line.p2().x()), std::max(line.p1().y(), line.p2().y())};
-    QRectF bounding = QRectF{leftTop,rightBot};
     QRectF name = getTextBoundingBox(associationName);
-
-    bounding.adjust(-name.width() * 3 / 2, -name.height() * 3 / 2, name.width() * 3 / 2, name.height() * 3 / 2);
-    return bounding;
+    rect->adjust(-name.width() * 3 / 2, -name.height() * 3 / 2, name.width() * 3 / 2, name.height() * 3 / 2);
 }
 
 /**

@@ -138,6 +138,10 @@ void Line::switchNodes()
  */
 QPainterPath Line::shape() const
 {
+    if (selfRealtionshipFlag)
+    {
+        return selfRealtionshipShape();
+    }
     QLineF line = getShortestLine(fromClassNode, toClassNode);
     QLineF first_perpendicularLine = line.normalVector();
     QLineF second_perpendicularLine = first_perpendicularLine;
@@ -161,6 +165,38 @@ QPainterPath Line::shape() const
     QPainterPath newPath{};
     newPath.addPolygon(pathPolygon);
     return newPath;
+}
+
+/**
+ * Returns a shape for self relationship.
+ *
+ * @return QPainterPath - shape for self relationship
+ */
+QPainterPath Line::selfRealtionshipShape() const
+{
+    QRectF bounding = boundingRect();
+    bounding = adjustSelfRect(bounding, -1);
+    qreal leftPadding = bounding.x() + bounding.width() - selfPadding;
+    qreal botPadding = bounding.y() + bounding.height() - selfPadding;
+
+    QVector<QPointF> linePoints = {
+        QPointF{leftPadding, bounding.y() + lineBoundingWidth},
+        QPointF{leftPadding, bounding.y() - lineBoundingWidth},
+        QPointF{bounding.x() + bounding.width() + lineBoundingWidth, bounding.y() - lineBoundingWidth},
+        QPointF{bounding.x() + bounding.width() + lineBoundingWidth, bounding.y() + bounding.height() + lineBoundingWidth},
+        QPointF{bounding.x() - lineBoundingWidth, bounding.y() + bounding.height() + lineBoundingWidth},
+        QPointF{bounding.x() - lineBoundingWidth, botPadding},
+        QPointF{bounding.x() + lineBoundingWidth, botPadding},
+        QPointF{bounding.x() + lineBoundingWidth, bounding.y() + bounding.height() - lineBoundingWidth },
+        QPointF{bounding.x() + bounding.width() - lineBoundingWidth, bounding.y() + bounding.height() - lineBoundingWidth },
+        QPointF{bounding.x() + bounding.width() - lineBoundingWidth, bounding.y() + lineBoundingWidth },
+        QPointF{leftPadding, bounding.y() + lineBoundingWidth}
+    };
+
+    QPainterPath path;
+    QPolygonF temp{linePoints};
+    path.addPolygon(temp);
+    return path;
 }
 
 /**
@@ -191,4 +227,50 @@ QRectF Line::getTextBoundingBox(QString text) const
     text = (text.count() == 0)? "I":text;
     static const QFontMetricsF metrics{qApp->font()};
     return metrics.boundingRect(text);
+}
+
+/**
+ * Adjusts bounding rect for self relationship
+ *
+ * @param rect rect to adjust
+ * @param multyply 1 for bounding rect, -1 for drawing
+ */
+QRectF Line::adjustSelfRect(QRectF rect, int multyply) const
+{
+    rect.adjust((lineBoundingWidth * 2) * -multyply, lineBoundingWidth * 2 * -multyply,
+                (lineBoundingWidth * 2) * multyply, lineBoundingWidth * 2 * multyply);
+    return rect;
+}
+
+/**
+ * Override method which returns bounding rect of line.
+ *
+ * @return QRectF A rectnagle around classNode.
+ */
+QRectF Line::boundingRect() const
+{
+    if (selfRealtionshipFlag)
+    {
+        QRectF nodeBounding = fromClassNode->boundingRect();
+        QPointF threeQuater{nodeBounding.x() + nodeBounding.width() / 2, nodeBounding.y() + nodeBounding.height() / 2};
+        threeQuater.setX(threeQuater.x() + nodeBounding.width() * 0.25);
+        threeQuater.setY(threeQuater.y() + nodeBounding.height() * 0.25);
+        nodeBounding.setTopLeft(threeQuater);
+        nodeBounding.adjust(0,0, selfPadding, selfPadding);
+        nodeBounding = adjustSelfRect(nodeBounding, 1);
+        nodeBounding.translate(fromClassNode->pos());
+        return nodeBounding;
+    }
+    QLineF line = getShortestLine(fromClassNode, toClassNode);
+    QPointF leftTop = QPointF{ std::min(line.p1().x(), line.p2().x()), std::min(line.p1().y(), line.p2().y())};
+    QPointF rightBot = QPointF{ std::max(line.p1().x(), line.p2().x()), std::max(line.p1().y(), line.p2().y())};
+    QRectF bounding = QRectF{leftTop,rightBot};
+
+    adjustBounding(&bounding);
+    return bounding;
+}
+
+void Line::adjustBounding(QRectF *rect) const
+{
+    rect->adjust(0,0,0,0);
 }

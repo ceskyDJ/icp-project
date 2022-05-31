@@ -81,10 +81,9 @@ protected:
     QString secondCardinality = "*s";
     qreal padding = 20;
 
-
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
-    QRectF boundingRect() const;
+    void adjustBounding(QRectF *rect) const;
     QRectF prepareBoundingBox(QRectF rect);
     QRectF locateCardinality(QRectF rect, int modifier, QLineF line, qreal additionPadding = 0);
 };

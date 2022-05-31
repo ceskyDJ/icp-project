@@ -16,7 +16,6 @@ class LineWithArrow: public Line
 public:
     using Line::Line;
 protected:
-    qreal selfPadding = 50;
     double arrowHeight = 5;
     double arrowWidth = 20;
     /**
@@ -36,11 +35,11 @@ protected:
     void paintSelfRelationship(QPainter *painter);
 
     /**
-     * Override method which returns bounding rect of line.
+     * Override Adjusts bounding rectangle
      *
      * @return QRectF A rectnagle around classNode.
      */
-    QRectF boundingRect() const;
+    void adjustBounding(QRectF *rect) const;
 
     /**
      * Draws an arrow to position (0,0) in the end of the line in the middle of boundingbox.
@@ -55,7 +54,6 @@ protected:
      */
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
     QRectF adjustSelfRect(QRectF rect, int multyply) const;
-    QPainterPath shape() const;
 };
 
 #endif // LINEWITHARROW_H
