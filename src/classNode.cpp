@@ -14,6 +14,7 @@
 #include <iostream>
 #include "ClassEditDialog.h"
 #include "GeneralizationLine.h"
+#include "RealizationLine.h"
 #include "Line.h"
 #include "SceneUpdateObservable.h"
 #include "AccessModifier.h"
@@ -396,7 +397,9 @@ bool ClassNode::isMethodInherited(QString methodName) const
     QVector<ClassNode *> generalisations(QVector<ClassNode *>(0));
     for (Line * relationship: connectedLines)
     {
-        GeneralizationLine *temp = dynamic_cast<GeneralizationLine *>(relationship);
+        Line *temp = dynamic_cast<GeneralizationLine *>(relationship);
+        if(!temp)
+            temp = dynamic_cast<RealizationLine *>(relationship);
         if(temp && temp->getToClassNode() != this)
             generalisations.push_back(temp->getToClassNode());
     }
