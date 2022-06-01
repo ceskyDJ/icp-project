@@ -312,6 +312,7 @@ void Line::movePointsByConnectionCount(QPointF *firstPoint, QPointF *secondPoint
     int connectionCount = firstNode->getNumberOfConnectionsWithNode(secondNode, this, &lineIndex);
     if(connectionCount == 1)//optimalization - no need to count all that things if there is just one connection
         return;
+
     QLineF line{*firstPoint, *secondPoint};
     QRectF firstRect = firstNode->boundingRect();
     firstRect.translate(firstNode->pos());
@@ -327,8 +328,10 @@ void Line::movePointsByConnectionCount(QPointF *firstPoint, QPointF *secondPoint
     perpen.setLength(secondRect.width() + secondRect.height());
     QLineF secondIntLine = qrectIntersectsLine(secondRect, perpen);
 
+    setEndPoints(&firstIntLine);
     movePointInLine(firstIntLine, firstPoint, connectionCount, lineIndex);
-    QLineF reversedSecondIntLine{secondIntLine.p2(), secondIntLine.p1()}; ///this
+    QLineF reversedSecondIntLine{secondIntLine.p2(), secondIntLine.p1()};
+    setEndPoints(&reversedSecondIntLine);
     movePointInLine(reversedSecondIntLine, secondPoint, connectionCount, lineIndex);
 }
 
@@ -385,4 +388,25 @@ QLineF Line::qrectIntersectsLine(QRectF rect, QLineF line) const
     }
 
     return QLineF{intPointOne, intPointTwo};
+}
+
+/**
+ * Sets endpoints by their x position, to be same in both sides
+ *
+ * @param line line that could be reversed
+ */
+void Line::setEndPoints(QLineF *line) const
+{
+    QLineF reversedLine{line->p2(), line->p1()};
+
+    if(reversedLine.x1() > line->x1())
+    {
+        line->setP1(reversedLine.p1());
+        line->setP2(reversedLine.p2());
+    }
+    else if(reversedLine.x1() == line->x1() && reversedLine.y1() > line->y1())
+    {
+        line->setP1(reversedLine.p1());
+        line->setP2(reversedLine.p2());
+    }
 }

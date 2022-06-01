@@ -168,8 +168,9 @@ protected:
     virtual void adjustBounding(QRectF *rect) const;
     virtual void paintSelfRelationship(QPainter *painter);
     void movePointsByConnectionCount(QPointF *firstPoint, QPointF *secondPoint,
-                                           ClassNode *firstNode, ClassNode *secondNode) const;
+                                     ClassNode *firstNode, ClassNode *secondNode) const;
     QLineF qrectIntersectsLine(QRectF rect, QLineF line) const;
     void movePointInLine(QLineF line, QPointF *point,int connectionCount, int index) const;
+    void setEndPoints(QLineF *line) const;
 };
 #endif // LINE_H
