@@ -174,7 +174,7 @@ void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
     }
 
     // Relationships
-    QDomElement relationshipsContainer{xml.createElement("relationshipsContainer")};
+    QDomElement relationshipsContainer{xml.createElement("relationships")};
     for (Relationship *relationship: diagram.getRelationships()) {
         const std::type_info &relationshipType = typeid(*relationship);
 

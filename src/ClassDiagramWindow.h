@@ -75,6 +75,14 @@ private:
      * Is currently edited diagram saved to persistent storage (after last update)?
      */
     bool isSaved = false;
+    /**
+     * Name of the file where the final diagram should be stored in (with absolute path to it)
+     *
+     * @par This is the file, where changes will be saved when just clicking to "Save"
+     * button, not "Save as...". It is a place used for possible auto saving, etc.
+     * @par When diagram is loaded from file, the source file will be used.
+     */
+    std::string targetFileName{};
 
     void setModellingSpace();
     void setTaskBars();
@@ -106,6 +114,7 @@ private slots:
     void saveAsButtonClicked();
     void undoButtonClicked();
     void redoButtonClicked();
+    void sceneUpdated();
 };
 
 #endif // CLASSDIAGRAMWINDOW_H

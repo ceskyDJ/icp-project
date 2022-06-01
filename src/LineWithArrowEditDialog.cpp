@@ -83,6 +83,8 @@ void LineWithArrowEditDialog::switchArrow()
     std::unordered_map<Line *, Relationship *> *existingRelationships = relationshipLine->getExistingRelationships();
     Relationship *relationship = existingRelationships->find(relationshipLine)->second;
     relationship->swapClasses();
+
+    relationshipLine->update();
 }
 
 /**

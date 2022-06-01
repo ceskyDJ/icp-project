@@ -251,8 +251,6 @@ void ClassDiagramWindow::removeClassNode(ClassNode *classNode)
     classDiagramScene->removeItem(classNode);
     delete classNode;
 
-    std::cerr << classEntity->getName() << "\n";
-
     // Delete from stored classes
     storedClasses.erase(storedClasses.find(classEntity->getName()));
 
@@ -277,7 +275,7 @@ void ClassDiagramWindow::connectComponents()
     connect(realizationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::realizationSelected);
 
     connect(classDiagramScene, &QGraphicsScene::selectionChanged, this, &ClassDiagramWindow::selectionChanged);
-
+    connect(classDiagramScene, &QGraphicsScene::changed, this, &ClassDiagramWindow::sceneUpdated);
 }
 
 /**
@@ -560,6 +558,9 @@ void ClassDiagramWindow::openButtonClicked()
     try {
         ClassDiagram loadedDiagram = classDiagramManager->loadDiagram(file.toStdString());
 
+        // Remember source file
+        targetFileName = file.toStdString();
+
         // Clear canvas
         if (!classDiagramScene->items().isEmpty()) {
             clearScene();
@@ -568,6 +569,9 @@ void ClassDiagramWindow::openButtonClicked()
         // Draw new diagram
         classDiagram = loadedDiagram;
         redrawClassDiagram();
+
+        // Diagram has just been loaded from file
+        isSaved = true;
     } catch (InvalidDataStorageException &e) {
         QMessageBox::critical(this, "Class diagram opening error", e.what());
     } catch (InvalidInputDataException &e) {
@@ -580,7 +584,25 @@ void ClassDiagramWindow::openButtonClicked()
  */
 void ClassDiagramWindow::saveButtonClicked()
 {
-    std::cerr << "Clicked on \"Save\" button!\n";
+    // Target file must be selected
+    if (targetFileName.empty()) {
+        QMessageBox::warning(this, "Class diagram saving error", "Edited diagram wasn't loaded from"
+            " any file and target file hasn't been selected. You need to select target file first.");
+
+        // Simulate clicking on "Save as..." button, user must select the target file
+        saveAsButtonClicked();
+
+        return;
+    }
+
+    try {
+        classDiagramManager->saveDiagram(targetFileName, classDiagram);
+
+        // Set diagram as saved
+        isSaved = true;
+    } catch (InvalidDataStorageException &e) {
+        QMessageBox::critical(this, "Class diagram saving error", e.what());
+    }
 }
 
 /**
@@ -588,7 +610,26 @@ void ClassDiagramWindow::saveButtonClicked()
  */
 void ClassDiagramWindow::saveAsButtonClicked()
 {
-    std::cerr << "Clicked on \"Save as...\" button!\n";
+    // Prompt user to select the target file
+    QString file = QFileDialog::getSaveFileName(
+        this,
+        "Choose target file for saving diagram",
+        targetFileName.empty() ? "class-diagram.xml" : QString::fromStdString(targetFileName),
+        "XML files (*.xml)",
+        nullptr,
+        QFileDialog::HideNameFilterDetails
+    );
+
+    if (file.isEmpty()) {
+        // Dialog has been canceled
+        return;
+    }
+
+    // Update target file
+    targetFileName = file.toStdString();
+
+    // Now just save diagram into selected file
+    saveButtonClicked();
 }
 
 /**
@@ -605,4 +646,12 @@ void ClassDiagramWindow::undoButtonClicked()
 void ClassDiagramWindow::redoButtonClicked()
 {
     std::cerr << "Clicked on \"Redo\" button!\n";
+}
+
+/**
+ * Slot for handling update of scene
+ */
+void ClassDiagramWindow::sceneUpdated()
+{
+    isSaved = false;
 }
