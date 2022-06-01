@@ -114,14 +114,9 @@ void DirectedAssociationLineEditDialog::setAllButtons()
     setOneButton(QIcon{":/cancel.png"}, "Cancel", cancelButton);
     setOneButton(QIcon{":/switch.png"}, "Switch arrow", switchArrowsButton);
     acceptButton->setAutoDefault(true);
-    acceptButton->setDefault(true);
     removeButton->setAutoDefault(false);
-    removeButton->setDefault(false);
     cancelButton->setAutoDefault(false);
-    cancelButton->setDefault(false);
     switchArrowsButton->setAutoDefault(false);
-    switchArrowsButton->setDefault(false);
-
 }
 
 /**

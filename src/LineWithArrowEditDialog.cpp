@@ -70,7 +70,9 @@ void LineWithArrowEditDialog::setAllButtons()
     setOneButton(QIcon{":/closeCross.png"}, "Remove relationship", removeRelationshipButton);
     setOneButton(QIcon{":/switch.png"}, "Swicth arrow", switchNodesButton);
     setOneButton(QIcon{":/cancel.png"}, "Cancel", cancelButton);
-    cancelButton->setDefault(true);
+    cancelButton->setAutoDefault(true);
+    removeRelationshipButton->setAutoDefault(false);
+    switchNodesButton->setAutoDefault(false);
 }
 
 /**
