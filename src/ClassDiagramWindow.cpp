@@ -423,10 +423,21 @@ void ClassDiagramWindow::createNewLine(Line *line)
 {
     if (newLine != nullptr)
         delete newLine;
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = line;
-    currentState = state::lineCreation;
+    QList<QGraphicsItem *> items = classDiagramScene->selectedItems();
+    if(items.count() == 2)
+    {
+        newLine = line;
+        firstToSelect = dynamic_cast<ClassNode*>(items[0]);
+        secondToSelect = dynamic_cast<ClassNode*>(items[1]);
+        connectNodes();
+    }
+    else
+    {
+        classDiagramScene->clearSelection();
+        setAllNodesColor(realtionShipSelectedColor);
+        newLine = line;
+        currentState = state::lineCreation;
+    }
 }
 
 /**
