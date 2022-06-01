@@ -29,7 +29,7 @@ ClassNode::ClassNode(
     Class *classEntity,
     std::unordered_map<std::string, ClassNode *> *existingClasses,
     SceneUpdateObservable *sceneUpdateObservable
-): emitor{nullptr, this}, classEntity{classEntity}, existingClasses{existingClasses}, sceneUpdateObservable{sceneUpdateObservable}
+): emitter{nullptr, this}, classEntity{classEntity}, existingClasses{existingClasses}, sceneUpdateObservable{sceneUpdateObservable}
 {
     setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
 
@@ -298,7 +298,7 @@ void ClassNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseReleaseEvent(event);
 
-    emitor.emitNodePresed();
+    emitter.emitNodePresed();
 
     if (isMoved) {
         sceneUpdateObservable->sceneChanged();

@@ -5,15 +5,14 @@
  *
  * @author Jakub Dvořák (xdvora3q)
  */
-#include "ClassNodeEmmitor.h"
+#include "ClassNodeEmitter.h"
 
-ClassNodeEmmitor::ClassNodeEmmitor(QObject *parent, ClassNode *node)
-    : QObject{parent}
+ClassNodeEmitter::ClassNodeEmitter(QObject *parent, ClassNode *node): QObject{parent}
 {
     this->node = node;
 }
 
-void ClassNodeEmmitor::emitNodePresed()
+void ClassNodeEmitter::emitNodePresed()
 {
     emit nodePressed(node);
 }

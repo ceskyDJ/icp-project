@@ -20,7 +20,7 @@
 #include "ClassMethod.h"
 #include "Line.h"
 #include "SceneUpdateObservable.h"
-#include "ClassNodeEmmitor.h"
+#include "ClassNodeEmitter.h"
 
 class Line;
 
@@ -207,7 +207,7 @@ public:
             connectedLines.remove(index);
     }
 
-    ClassNodeEmmitor emitor;
+    ClassNodeEmitter emitter;
     int getNumberOfConnectionsWithNode(ClassNode *secondNode, const Line *comparedLine, int *index) const;
 private:
     /**

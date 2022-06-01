@@ -6,8 +6,8 @@
  *
  * @author Jakub Dvořák (xdvora3q)
  */
-#ifndef CLASSNODEEMMITOR_H
-#define CLASSNODEEMMITOR_H
+#ifndef CLASSNODEEMITTER_H
+#define CLASSNODEEMITTER_H
 
 #include <QObject>
 
@@ -15,11 +15,11 @@
 // Warning: #include can't be used for ClassNode's header!
 class ClassNode;
 
-class ClassNodeEmmitor : public QObject
+class ClassNodeEmitter : public QObject
 {
     Q_OBJECT
 public:
-    explicit ClassNodeEmmitor(QObject *parent = nullptr, ClassNode *node = nullptr);
+    explicit ClassNodeEmitter(QObject *parent = nullptr, ClassNode *node = nullptr);
 
     /**
      * Emits signal nodePressed
@@ -36,4 +36,4 @@ private:
     ClassNode *node;
 };
 
-#endif // CLASSNODEEMMITOR_H
+#endif // CLASSNODEEMITTER_H

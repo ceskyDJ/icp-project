@@ -120,6 +120,17 @@ public:
         return sceneUpdateObservable;
     }
 
+    /**
+     * Return realtionship self flag
+     *
+     * @return true if line is self-relationship
+     * @return false if line is NOT self-relationship
+     */
+    bool isSelfRelationship()
+    {
+        return selfRealtionshipFlag;
+    }
+
     void switchNodes();
     QRectF boundingRect() const;
 protected:
