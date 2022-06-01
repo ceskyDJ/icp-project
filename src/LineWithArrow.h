@@ -54,6 +54,7 @@ protected:
      */
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
     QRectF adjustSelfRect(QRectF rect, int multiply) const;
+    virtual void drawTexts(QPainter *painter, QLineF line) const;
 };
 
 #endif // LINEWITHARROW_H

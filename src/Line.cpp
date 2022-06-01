@@ -382,7 +382,6 @@ QLineF Line::qrectIntersectsLine(QRectF rect, QLineF line) const
                 line.intersects(QLineF(rectPoints[i - 2], rectPoints[i - 1]), &intPointTwo);
             break;
         }
-
     }
 
     return QLineF{intPointOne, intPointTwo};

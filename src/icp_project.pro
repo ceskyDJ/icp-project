@@ -32,6 +32,7 @@ HEADERS += \
     ClassDiagram.h \
     ClassNodeEmitter.h \
     DirectedAssociationLine.h \
+    DirectedAssociationLineEditDialog.h \
     Line.h \
     LineWithArrow.h \
     LineWithArrowEditDialog.h \
@@ -92,6 +93,7 @@ SOURCES += \
     ClassNodeEmitter.cpp \
     ClassType.cpp \
     DirectedAssociationLine.cpp \
+    DirectedAssociationLineEditDialog.cpp \
     LineWithArrow.cpp \
     LineWithArrowEditDialog.cpp \
     MessageType.cpp \
