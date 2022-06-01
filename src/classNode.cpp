@@ -263,7 +263,7 @@ QString ClassNode::getMethodParametersPrintable(std::vector<MethodParameter> par
 }
 
 /**
- * @brief ClassNode::mouseDoubleClickEvent Handles double click event - shows eddit dialog, then changes entity.
+ *  Handles double click event - shows eddit dialog, then changes entity.
  */
 void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
@@ -320,7 +320,8 @@ void ClassNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 }
 
 /**
- * @brief ClassNode::setFontItalic sets font to italic or to normal
+ * Sets font to italic or to normal.
+ *
  * @param enable true = italic, false = normal
  * @param painter pointer to painter that should be eddited
  */
@@ -332,7 +333,8 @@ void ClassNode::setFontItalic(bool enable, QPainter *painter)
 }
 
 /**
- * @brief ClassNode::addLine adds new connections
+ * Adds new connections
+ *
  * @param newLine line to connect
  */
 void ClassNode::addLine(Line* newLine)
@@ -341,7 +343,8 @@ void ClassNode::addLine(Line* newLine)
 }
 
 /**
- * @brief ClassNode::removeLine removes line form connected list
+ * Removes line form connected list.
+ *
  * @param oldLine line to remove
  */
 void ClassNode::removeLine(Line* oldLine)
@@ -350,7 +353,7 @@ void ClassNode::removeLine(Line* oldLine)
 }
 
 /**
- * @brief ClassNode::rePaintLines Paints a line again
+ * Paints a line again
  */
 void ClassNode::rePaintLines()
 {
@@ -359,7 +362,8 @@ void ClassNode::rePaintLines()
 }
 
 /**
- * @brief ClassNode::itemChange When item is changed then repaint it
+ * When item is changed then repaint it.
+ *
  * @param change GraphicsItemChange
  * @param value const QVariant
  * @return itemchange
@@ -392,7 +396,7 @@ bool ClassNode::isMethodInherited(QString methodName) const
     QVector<ClassNode *> generalisations(QVector<ClassNode *>(0));
     for (Line * relationship: connectedLines)
     {
-        GeneralizationLine *temp = (GeneralizationLine *)relationship;
+        GeneralizationLine *temp = dynamic_cast<GeneralizationLine *>(relationship);
         if(temp && temp->getToClassNode() != this)
             generalisations.push_back(temp->getToClassNode());
     }

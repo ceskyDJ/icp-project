@@ -19,7 +19,7 @@
 class LineText;
 
 /**
- * @brief Line::initialize initializes line - from and to + pen
+ * Initializes line - from and to + initializes pen.
  * @param fromNode source node
  * @param toNode target node
  */
@@ -29,7 +29,7 @@ void Line::initialize(ClassNode *fromNode, ClassNode *toNode, bool selfRealtions
     fromClassNode = fromNode;
     toClassNode = toNode;
     setZValue(-1);
-    setPen(QPen{Qt::black, 2, Qt::SolidLine});
+    setPen(pen);
     drawLine();
 }
 
@@ -42,7 +42,8 @@ void Line::drawLine()
 }
 
 /**
- * @brief Line::getCenterPos Gets Center position of widget.
+ * Gets Center position of widget.
+ *
  * @param node node, where should be counted a middle point
  * @return point where is middle of node
  */
@@ -55,7 +56,8 @@ QPointF Line::getCenterPos(ClassNode *node) const
 }
 
 /**
- * @brief Line::getShortestLine Counts shortest line connected between 2 nodes
+ * Counts shortest line connected between 2 nodes
+ *
  * @param first First selected node (source)
  * @param second Second selected node (target)
  * @return Shotest line between points
@@ -79,7 +81,8 @@ QLineF Line::getShortestLine(ClassNode *first, ClassNode *second) const
 }
 
 /**
- * @brief Line::getIntersectPoint Counts point which intersects line border and line from one node to second node.
+ * Counts point which intersects line border and line from one node to second node.
+ *
  * @param connectingLine line between center of nodes
  * @param node Node of which will be count an intersection
  * @return Intersection point
@@ -105,7 +108,8 @@ QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node) const
 }
 
 /**
- * @brief Line::paint Draws a line
+ * Draws a line.
+ *
  * @param painter Painter allows to draw a line
  * @param option const QStyleOptionGraphicsItem
  * @param widget QWidget
@@ -118,7 +122,7 @@ void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/
 }
 
 /**
- * @brief Line::~Line destructs line - disconnect it first
+ * Destructs line - disconnect it first
  */
 Line::~Line()
 {
@@ -128,6 +132,9 @@ Line::~Line()
         toClassNode->removeConnection(this);
 }
 
+/**
+ * Switches nodes in line. 'From node' is set as 'to node' and 'to Node' is set as 'from node'.
+ */
 void Line::switchNodes()
 {
     std::swap(fromClassNode, toClassNode);
@@ -272,11 +279,19 @@ QRectF Line::boundingRect() const
     return bounding;
 }
 
+/**
+ * Adjusts bounding by specific requirements.
+ *
+ * @param pointer to rect to adjust
+ */
 void Line::adjustBounding(QRectF *rect) const
 {
     rect->adjust(0,0,0,0);
 }
 
+/**
+ * Method that paints self relationship (virtual) - need to ne implemented at child.
+ */
 void Line::paintSelfRelationship(QPainter *)
 {
 
@@ -295,6 +310,8 @@ void Line::movePointsByConnectionCount(QPointF *firstPoint, QPointF *secondPoint
 {
     int lineIndex;
     int connectionCount = firstNode->getNumberOfConnectionsWithNode(secondNode, this, &lineIndex);
+    if(connectionCount == 1)//optimalization - no need to count all that things if there is just one connection
+        return;
     QLineF line{*firstPoint, *secondPoint};
     QRectF firstRect = firstNode->boundingRect();
     firstRect.translate(firstNode->pos());
