@@ -96,8 +96,13 @@ void AssociationLineEditDialog::setFormLayout()
  */
 void AssociationLineEditDialog::setMainLayout()
 {
-    mainLayout->addLayout(lineEditLayout);
-    mainLayout->addLayout(buttonLayout);
+    QWidget *lineEditWidget = new QWidget();
+    lineEditWidget->setLayout(lineEditLayout);
+    QWidget *buttonWidget = new QWidget();
+    buttonWidget->setLayout(buttonLayout);
+
+    mainLayout->addWidget(lineEditWidget);
+    mainLayout->addWidget(buttonWidget);
     setLayout(mainLayout);
 }
 
