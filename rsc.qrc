@@ -12,5 +12,10 @@
     <file alias="switch.png">resources/switch.png</file>
     <file alias="realization.png">resources/realization.png</file>
     <file alias="directedAssociation.png">resources/directedAssociation.png</file>
+    <file alias="asyncMsg.png">resources/asyncMsg.png</file>
+    <file alias="createMsg.png">resources/createMsg.png</file>
+    <file alias="destroyMsg.png">resources/destroyMsg.png</file>
+    <file alias="replyMsg.png">resources/replyMsg.png</file>
+    <file alias="syncMsg.png">resources/syncMsg.png</file>
 </qresource>
 </RCC>
