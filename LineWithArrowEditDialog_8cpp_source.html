@@ -118,15 +118,15 @@ $(function() {
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// Update scene</span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    relationshipLine-&gt;switchNodes();</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    setTitle();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    relationshipLine-&gt;update();</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// Update relationship in class diagram</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    std::unordered_map&lt;Line *, Relationship *&gt; *existingRelationships = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#ab375882b7b1b79b7f0f72abf96fbf4fd">getExistingRelationships</a>();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_class" href="classRelationship.html">Relationship</a> *relationship = existingRelationships-&gt;find(relationshipLine)-&gt;second;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    relationship-&gt;<a class="code hl_function" href="classRelationship.html#abc968b1d6c89c4716039e2b66b92ba80">swapClasses</a>();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    relationshipLine-&gt;update();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Update relationship in class diagram</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::unordered_map&lt;Line *, Relationship *&gt; *existingRelationships = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#ab375882b7b1b79b7f0f72abf96fbf4fd">getExistingRelationships</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_class" href="classRelationship.html">Relationship</a> *relationship = existingRelationships-&gt;find(relationshipLine)-&gt;second;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    relationship-&gt;<a class="code hl_function" href="classRelationship.html#abc968b1d6c89c4716039e2b66b92ba80">swapClasses</a>();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    close();</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">void</span> LineWithArrowEditDialog::removeRelationship()</div>
