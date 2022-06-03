@@ -68,13 +68,13 @@ ClassDiagram FileClassDiagramRepository::loadDiagram()
 
     QDomElement currClass{classes.item(0).toElement()};
     while (!currClass.isNull()) {
-        Class loadedClass{loadClass(currClass)};
+        Class *loadedClass = loadClass(currClass);
 
         // Check for class name duplicities
         try {
-            classDiagram.findClassByName(loadedClass.getName());
+            classDiagram.findClassByName(loadedClass->getName());
 
-            throw InvalidInputDataException{"Class names must be unique. Duplicate class name: " + loadedClass.getName()};
+            throw InvalidInputDataException{"Class names must be unique. Duplicate class name: " + loadedClass->getName()};
         } catch (std::invalid_argument &e) {}
 
         classDiagram.addClass(loadedClass);
@@ -110,7 +110,7 @@ ClassDiagram FileClassDiagramRepository::loadDiagram()
  * @param diagram Class diagram to save
  * @throw InvalidDataStorageException Invalid file
  */
-void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
+void FileClassDiagramRepository::saveDiagram(const ClassDiagram &diagram)
 {
     if (storageName.empty()) {
         throw InvalidDataStorageException{"No target file set"};
@@ -124,18 +124,18 @@ void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
 
     // Classes
     QDomElement classesContainer{xml.createElement("classes")};
-    for (Class currClass: diagram.getClasses()) {
-        auto [xCoord, yCoord] = currClass.getCoordinates();
+    for (Class *currClass: diagram.getClasses()) {
+        auto [xCoord, yCoord] = currClass->getCoordinates();
 
         QDomElement xmlClass{xml.createElement("class")};
-        xmlClass.setAttribute("name", currClass.getName().c_str());
-        xmlClass.setAttribute("type", currClass.getClassType().serialize().c_str());
+        xmlClass.setAttribute("name", currClass->getName().c_str());
+        xmlClass.setAttribute("type", currClass->getClassType().serialize().c_str());
         xmlClass.setAttribute("x-coord", xCoord);
         xmlClass.setAttribute("y-coord", yCoord);
 
         // Attributes
         QDomElement attributesContainer{xml.createElement("attributes")};
-        for (const ClassAttribute &objAttribute: currClass.getAttributes()) {
+        for (const ClassAttribute &objAttribute: currClass->getAttributes()) {
             QDomElement xmlAttribute{xml.createElement("attribute")};
             xmlAttribute.setAttribute("access-modifier", objAttribute.getAccessModifier().serialize().c_str());
             xmlAttribute.setAttribute("data-type", objAttribute.getDataType().c_str());
@@ -148,7 +148,7 @@ void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
 
         // Methods
         QDomElement methodsContainer{xml.createElement("methods")};
-        for (const ClassMethod &objMethod: currClass.getMethods()) {
+        for (const ClassMethod &objMethod: currClass->getMethods()) {
             QDomElement xmlMethod{xml.createElement("method")};
             xmlMethod.setAttribute("name", objMethod.getName().c_str());
             xmlMethod.setAttribute("access-modifier", objMethod.getAccessModifier().serialize().c_str());
@@ -174,7 +174,7 @@ void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
     }
 
     // Relationships
-    QDomElement relationshipsContainer{xml.createElement("relationshipsContainer")};
+    QDomElement relationshipsContainer{xml.createElement("relationships")};
     for (Relationship *relationship: diagram.getRelationships()) {
         const std::type_info &relationshipType = typeid(*relationship);
 
@@ -240,10 +240,10 @@ void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
  * Loads single class from XML element
  *
  * @param xmlClass XML element with class
- * @return Loaded class
+ * @return Pointer to loaded class
  * @throw InvalidInputDataException Invalid structure of input data
  */
-Class FileClassDiagramRepository::loadClass(QDomElement &xmlClass)
+Class *FileClassDiagramRepository::loadClass(QDomElement &xmlClass)
 {
     // Class name
     if (!xmlClass.hasAttribute("name")) {
@@ -278,7 +278,7 @@ Class FileClassDiagramRepository::loadClass(QDomElement &xmlClass)
         }
     }
 
-    Class obj_class{xmlClass.attribute("name").toStdString(), coords, classType};
+    auto *obj_class = new Class{xmlClass.attribute("name").toStdString(), coords, classType};
 
     // Class attributes
     QDomNodeList attributesContainerSearch{xmlClass.elementsByTagName("attributes")};
@@ -293,7 +293,7 @@ Class FileClassDiagramRepository::loadClass(QDomElement &xmlClass)
         if (attributes.size() > 0 && !attributes.item(0).isNull()) {
             QDomElement xml_attribute{attributes.item(0).toElement()};
             while (!xml_attribute.isNull()) {
-                obj_class.addAttribute(loadAttribute(xml_attribute));
+                obj_class->addAttribute(loadAttribute(xml_attribute));
 
                 xml_attribute = xml_attribute.nextSiblingElement("attribute");
             }
@@ -313,7 +313,7 @@ Class FileClassDiagramRepository::loadClass(QDomElement &xmlClass)
         if (methods.size() > 0 && !methods.item(0).isNull()) {
             QDomElement xml_method{methods.item(0).toElement()};
             while (!xml_method.isNull()) {
-                obj_class.addMethod(loadMethod(xml_method));
+                obj_class->addMethod(loadMethod(xml_method));
 
                 xml_method = xml_method.nextSiblingElement("method");
             }
@@ -450,17 +450,18 @@ ClassMethod FileClassDiagramRepository::loadMethod(QDomElement &xmlMethod) {
  */
 Relationship *FileClassDiagramRepository::loadRelationship(QDomElement &xmlRelationship, ClassDiagram &classDiagram)
 {
-    static std::set<std::string> validRelationships{
+    static std::vector<std::string> validRelationships{
+        "directed-association",
+        "undirected-association",
         "aggregation",
         "composition",
-        "directed-association",
         "generalization",
         "realization",
-        "undirected-association"
     };
 
     // Check relationship name
-    auto foundRelationship{validRelationships.find(xmlRelationship.tagName().toStdString())};
+    auto foundRelationship{std::find(validRelationships.begin(), validRelationships.end(),
+             xmlRelationship.tagName().toStdString())};
     if (foundRelationship == validRelationships.end()) {
         throw InvalidInputDataException{
             R"(Element "relationships" can contains only elements: "directed-association", )"

@@ -4,39 +4,24 @@
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
+ * @author Michal Šmahel (xsmahe01)
  */
 #include "AssociationLineEditDialog.h"
 #include <QWidget>
 
 /**
- * @brief Construct a new Association Line.
+ * Class constructor
  * 
- * @param line Line which should be edited.
+ * @param relationship Relationship which should be edited
  */
-AssociationLineEditDialog::AssociationLineEditDialog(AssociationLine *line)
+AssociationLineEditDialog::AssociationLineEditDialog(UndirectedAssociation *relationship): relationship{relationship}
 {
-    copyLine(relationship, line);
     setWindowTitle("Edit association");
     initializeComponents();
     setAllButtons();
     connectComponents();
     setAllLayouts();
     setMainLayout();
-}
-
-/**
- * Copy AsssociationLine name and cardinalities.
- * 
- * @param copy This will be a copy of lineToCopy.
- * @param lineToCopy This line will be copied.
- */
-void AssociationLineEditDialog::copyLine(AssociationLine *copy, AssociationLine *lineToCopy)
-{
-    copy->setName(lineToCopy->getName());
-    copy->setFirstCardinality(lineToCopy->getFirstCardinality());
-    copy->setSecondCardinality(lineToCopy->getSecondCardinality());
-    copy->setFromClassNode(lineToCopy->getFromClassNode());
-    copy->setToClassNode(lineToCopy->getToClassNode());
 }
 
 /**
@@ -94,15 +79,16 @@ void AssociationLineEditDialog::setButtonLayout()
  */
 void AssociationLineEditDialog::setFormLayout()
 {
-    associationNameLineEdit->setText(relationship->getName());
-    firstCardinalityLineEdit->setText(relationship->getFirstCardinality());
-    secondCardinalityLineEdit->setText(relationship->getSecondCardinality());
+    associationNameLineEdit->setText(QString::fromStdString(relationship->getName()));
+    firstCardinalityLineEdit->setText(QString::fromStdString(relationship->getFirstClassCardinality()));
+    secondCardinalityLineEdit->setText(QString::fromStdString(relationship->getSecondClassCardinality()));
+
+    QString firstClassName = QString::fromStdString(relationship->getFirstClass()->getName());
+    QString secondClassName = QString::fromStdString(relationship->getSecondClass()->getName());
 
     lineEditLayout->addRow("Association name", associationNameLineEdit);
-    lineEditLayout->addRow("Cardinality (near " + relationship->getFromClassNode()->getName() + ")",
-                           firstCardinalityLineEdit);
-    lineEditLayout->addRow("Cardinality (near " + relationship->getToClassNode()->getName() + ")",
-                           secondCardinalityLineEdit);
+    lineEditLayout->addRow("Cardinality (near " + firstClassName + ")", firstCardinalityLineEdit);
+    lineEditLayout->addRow("Cardinality (near " + secondClassName + ")", secondCardinalityLineEdit);
 }
 
 /**
@@ -171,7 +157,7 @@ void AssociationLineEditDialog::removeAssociation()
  */
 void AssociationLineEditDialog::setName(QString newName)
 {
-    relationship->setName(newName);
+    relationship->setName(newName.toStdString());
 }
 
 /**
@@ -181,7 +167,7 @@ void AssociationLineEditDialog::setName(QString newName)
  */
 void AssociationLineEditDialog::setFirstCardinality(QString newCardinality)
 {
-    relationship->setFirstCardinality(newCardinality);
+    relationship->setFirstClassCardinality(newCardinality.toStdString());
 }
 
 /**
@@ -191,5 +177,5 @@ void AssociationLineEditDialog::setFirstCardinality(QString newCardinality)
  */
 void AssociationLineEditDialog::setSecondCardinality(QString newCardinality)
 {
-    relationship->setSecondCardinality(newCardinality);
+    relationship->setSecondClassCardinality(newCardinality.toStdString());
 }

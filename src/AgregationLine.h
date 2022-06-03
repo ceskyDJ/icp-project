@@ -7,7 +7,11 @@
 class AgregationLine : public LineWithArrow
 {
 public:
-        AgregationLine();
+    AgregationLine(
+        std::unordered_map<Line *, Relationship *> *existingRelationships,
+        ClassDiagram *classDiagram,
+        SceneUpdateObservable *sceneUpdateObservable
+    );
 protected:
     /**
      * Draws an arrow to position (0,0) in the end of the line in the middle of boundingbox.

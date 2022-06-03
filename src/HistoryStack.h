@@ -40,20 +40,6 @@ template<class T> class HistoryStack
     HistoryStack(): records{}, returnedRecords{} {};
 
     /**
-     * Copy assignment operator
-     *
-     * @param other Object to copy from
-     * @return New copy of object other
-     */
-    HistoryStack &operator=(const HistoryStack &other)
-    {
-        records = other.records;
-        returnedRecords = other.returnedRecords;
-
-        return *this;
-    }
-
-    /**
      * Add a record to history "stack"
      *
      * @par When top isn't at newest record, newer records is deleted:
@@ -108,6 +94,9 @@ template<class T> class HistoryStack
      */
     T back()
     {
+        debugLog("Before back ");
+
+        // There is at least one item in history
         if (!records.empty()) {
             T record{records.back()};
             records.pop_back();
@@ -115,9 +104,18 @@ template<class T> class HistoryStack
             // Add to returned records
             returnedRecords.push_back(record);
 
-            return record;
+            if (!records.empty()) {
+                debugLog("After back ");
+
+                return records.back();
+            }
+
+            // There were only 1 item in history --> similar to no items at all
         }
 
+        debugLog("After back ");
+
+        // There are no items in history
         return T{};
     }
 
@@ -138,6 +136,9 @@ template<class T> class HistoryStack
      */
     T forward()
     {
+        debugLog("Before forward ");
+
+        // There is at least 1 item in returned items history
         if (!returnedRecords.empty()) {
             T record{returnedRecords.back()};
             returnedRecords.pop_back();
@@ -145,14 +146,47 @@ template<class T> class HistoryStack
             // Add back to history
             records.push_back(record);
 
+            debugLog("After forward ");
+
             return record;
         }
 
+        debugLog("After forward ");
+
+        // There are no items in returned items history
         if (!records.empty()) {
             return records.back();
         } else {
             return T{};
         }
+    }
+
+    void debugLog(const char *prefix)
+    {
+        std::cerr << prefix << "History stack content:\n";
+        for (const auto &item: returnedRecords) {
+            std::cerr << "\t" << typeid(item).name() << "\n";
+        }
+
+        std::cerr << "\t--------------------------\n";
+
+        for (const auto &item: records) {
+            std::cerr << "\t" << typeid(item).name() << "\n";
+        }
+    }
+
+    /**
+     * Copy assignment operator
+     *
+     * @param other Object to copy from
+     * @return New copy of object other
+     */
+    HistoryStack &operator=(HistoryStack &&other) noexcept
+    {
+        records = std::move(other.records);
+        returnedRecords = std::move(other.returnedRecords);
+
+        return *this;
     }
 };
 

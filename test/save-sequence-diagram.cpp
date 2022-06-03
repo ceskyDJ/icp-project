@@ -8,7 +8,6 @@
 
 #include "../src/ClassDiagram.h"
 #include "../src/Generalization.h"
-#include "../src/FileClassDiagramRepository.h"
 #include "../src/FileSequenceDiagramRepository.h"
 
 /**
@@ -19,42 +18,43 @@ int main()
     // Class classDiagram
     ClassDiagram classDiagram{};
 
-    Class electronicDevice{"ElectronicDevice", std::tuple<int, int>{10, 10}};
-    electronicDevice.addAttribute(ClassAttribute{"price", AccessModifier::PROTECTED, "int"});
-    electronicDevice.addAttribute(ClassAttribute{"color", AccessModifier::PROTECTED, "string"});
+    auto electronicDevice = new Class{"ElectronicDevice", std::tuple<int, int>{10, 10}};
+    electronicDevice->addAttribute(ClassAttribute{"price", AccessModifier::PROTECTED, "int"});
+    electronicDevice->addAttribute(ClassAttribute{"color", AccessModifier::PROTECTED, "string"});
     classDiagram.addClass(electronicDevice);
 
-    Class phone{"Phone", std::tuple<int, int>{410, 10}};
-    phone.addAttribute(ClassAttribute{"batterySize", AccessModifier::PRIVATE, "int"});
-    phone.addMethod(ClassMethod{"isValuable", AccessModifier::PUBLIC, std::vector<MethodParameter> {}, "bool"});
-    phone.addMethod(ClassMethod{"setColor", AccessModifier::PUBLIC, std::vector<MethodParameter> {
+    auto phone = new Class{"Phone", std::tuple<int, int>{410, 10}};
+    phone->addAttribute(ClassAttribute{"batterySize", AccessModifier::PRIVATE, "int"});
+    phone->addMethod(ClassMethod{"isValuable", AccessModifier::PUBLIC, std::vector<MethodParameter> {}, "bool"});
+    phone->addMethod(ClassMethod{"setColor", AccessModifier::PUBLIC, std::vector<MethodParameter> {
             MethodParameter{"newColor", "string"}
     }});
     classDiagram.addClass(phone);
 
-    Generalization phoneInheritsElectronicDevice{&phone, &electronicDevice};
-    classDiagram.addRelationship(&phoneInheritsElectronicDevice);
+    auto phoneInheritsElectronicDevice = new Generalization{phone, electronicDevice};
+    classDiagram.addRelationship(phoneInheritsElectronicDevice);
 
     // Sequence classDiagram
     SequenceDiagram sequenceDiagram{};
 
-    Actor user{"User"};
+    auto user = new Actor {"User"};
     sequenceDiagram.addActor(user);
 
-    Object samsungPhone{&phone, 0.3, 0.7, "someSamsung"};
+    auto samsungPhone = new Object{phone, 0.3, 0.7, "someSamsung"};
     sequenceDiagram.addObject(samsungPhone);
 
-    Object xiaomiPhone{&phone, 0.2, 0.3, "someXiaomi"};
+    auto xiaomiPhone = new Object{phone, 0.2, 0.3, "someXiaomi"};
     sequenceDiagram.addObject(xiaomiPhone);
 
-    Message createSamsung{MethodReference{"<<create>>"}, MessageType::CREATE, &user, &samsungPhone, 0.2};
+    auto createSamsung = new Message{MethodReference{"<<create>>"}, MessageType::CREATE, user, samsungPhone, 0.2};
     sequenceDiagram.addMessage(createSamsung);
-    Message createXiaomi{MethodReference{"<<create>>"}, MessageType::CREATE, &user, &xiaomiPhone, 0.1};
+    auto createXiaomi = new Message{MethodReference{"<<create>>"}, MessageType::CREATE, user, xiaomiPhone, 0.1};
     sequenceDiagram.addMessage(createXiaomi);
-    Message isSamsungValuable{MethodReference{"isValuable()"}, MessageType::SYNC, &user, &samsungPhone, 0.4};
+    auto isSamsungValuable = new Message{MethodReference{"isValuable()"}, MessageType::SYNC, user, samsungPhone, 0.4};
     sequenceDiagram.addMessage(isSamsungValuable);
-    Message samsungValuableReply{MethodReference{"result"}, MessageType::REPLY, &samsungPhone, &user, 0.6};
-    Message destroyXiaomi{MethodReference{"<<destroy>>"}, MessageType::DESTROY, &user, &xiaomiPhone, 0.4};
+    auto samsungValuableReply = new Message{MethodReference{"result"}, MessageType::REPLY, samsungPhone, user, 0.6};
+    auto destroyXiaomi = new Message{MethodReference{"<<destroy>>"}, MessageType::DESTROY, user, xiaomiPhone, 0.4};
+    sequenceDiagram.addMessage(samsungValuableReply);
     sequenceDiagram.addMessage(destroyXiaomi);
 
     FileSequenceDiagramRepository repo{classDiagram, "examples/sequence-diagram-output.xml"};

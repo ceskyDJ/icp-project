@@ -1,14 +1,20 @@
 #include <QApplication>
-#include <QPushButton>
 #include "ClassDiagramWindow.h"
+#include "ClassDiagramManager.h"
+#include "FileClassDiagramRepository.h"
 
 int main(int argc, char **argv)
 {
- QApplication app (argc, argv);
+    QApplication app{argc, argv};
 
- ClassDiagramWindow classDiagramWindow;
+    // Dependencies
+    FileClassDiagramRepository classDiagramRepository{};
+    ClassDiagramManager classDiagramManager{&classDiagramRepository};
+    SceneUpdateObservable sceneUpdateObservable{};
 
- classDiagramWindow.showMaximized();
+    ClassDiagramWindow classDiagramWindow{&classDiagramManager, &sceneUpdateObservable};
 
- return app.exec();
+    classDiagramWindow.showMaximized();
+
+    return app.exec();
 }

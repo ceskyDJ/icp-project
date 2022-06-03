@@ -77,7 +77,9 @@ HEADERS += \
     AttributeEditWidget.h \
     MethodEditWidget.h \
     CompositionLine.h \
-    GeneralizationLine.h
+    GeneralizationLine.h \
+    SceneUpdateObserver.h \
+    SceneUpdateObservable.h
 
 SOURCES += \
     AccessModifier.cpp \

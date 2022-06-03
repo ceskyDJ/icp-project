@@ -18,24 +18,33 @@
  */
 class SequenceDiagramMemento
 {
+    friend class SequenceDiagram;
+
     /**
-     * Used actors
-     *
-     * @warning For access this class attribute use getter getActors()
+     * Pointers to used actors
      */
-    std::vector<Actor> actors;
+    const std::vector<Actor *> actors;
     /**
-     * Used objects
-     *
-     * @warning For access this class attribute use getter getObjects()
+     * Pointers to used objects
      */
-    std::vector<Object> objects;
+    const std::vector<Object *> objects;
     /**
-     * Contained messages
-     *
-     * @warning For access this class attribute use getter getMessages()
+     * Pointers to contained messages
      */
-    std::vector<Message> messages;
+    const std::vector<Message *> messages;
+
+    /**
+     * Private constructor for defining memento's state
+     *
+     * @param actors Current pointers to actors
+     * @param objects Current pointers to objects
+     * @param messages Current pointers to messages
+     */
+    SequenceDiagramMemento(
+        std::vector<Actor *> actors,
+        std::vector<Object *> objects,
+        std::vector<Message *> messages
+    ): actors{actors}, objects{objects}, messages{messages} {};
 
   public:
     /**
@@ -44,48 +53,6 @@ class SequenceDiagramMemento
      * @par Creates memento with states of empty sequence diagram
      */
     SequenceDiagramMemento(): actors{}, objects{}, messages{} {};
-
-  private:
-    friend class SequenceDiagram;
-    /**
-     * Constructor for defining memento's state
-     *
-     * @param actors Current actors
-     * @param objects Current objects
-     * @param messages Current messages
-     */
-    SequenceDiagramMemento(
-        std::vector<Actor> actors,
-        std::vector<Object> objects,
-        std::vector<Message> messages
-    ): actors{actors}, objects{objects}, messages{messages} {};
-
-    /**
-     * Getter for actors
-     *
-     * @return Remembered state of actors
-     */
-    std::vector<Actor> getActors() {
-        return actors;
-    }
-
-    /**
-     * Getter for objects
-     *
-     * @return Remembered state of objects
-     */
-    std::vector<Object> getObjects() {
-        return objects;
-    }
-
-    /**
-     * Getter for messages
-     *
-     * @return Remembered state of messages
-     */
-    std::vector<Message> getMessages() {
-        return messages;
-    }
 };
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_MEMENTO_H

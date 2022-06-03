@@ -18,8 +18,14 @@
 class LineWithArrowEditDialog : public QDialog
 {
 public:
-    LineWithArrowEditDialog(LineWithArrow *relationship);
+    explicit LineWithArrowEditDialog(LineWithArrow *relationship);
 private:
+    // Dependencies
+    /**
+     * Observable for distributing information about scene changes
+     */
+    SceneUpdateObservable *sceneUpdateObservable;
+
     QPushButton *switchNodesButton;
     QPushButton *removeRelationshipButton;
     QPushButton *cancelButton;

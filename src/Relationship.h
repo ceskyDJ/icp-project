@@ -43,12 +43,15 @@ class Relationship
         std::string name = ""
     ): firstClass{firstClass}, secondClass{secondClass}, name{name} {};
 
-    /**
-     * Default virtual destructor for converting class to polymorphic one
-     */
-    virtual ~Relationship() = default;
-
   public:
+    /**
+     * Swaps first and second class of relationship (turns over the arrow)
+     */
+    void swapClasses()
+    {
+        std::swap(firstClass, secondClass);
+    }
+
     /**
      * Getter for the first class of relationship
      *
@@ -60,6 +63,16 @@ class Relationship
     }
 
     /**
+     * Setter for the first class of relationship
+     *
+     * @param newFirstClass Pointer to the new first class
+     */
+    void setFirstClass(Class *newFirstClass)
+    {
+        firstClass = newFirstClass;
+    }
+
+    /**
      * Getter for the second class of relationship
      *
      * @return Pointer to the second class
@@ -67,6 +80,16 @@ class Relationship
     Class *getSecondClass() const
     {
         return secondClass;
+    }
+
+    /**
+     * Setter for the second class of relationship
+     *
+     * @param newSecondClass Pointer to the new second class
+     */
+    void setSecondClass(Class *newSecondClass)
+    {
+        secondClass = newSecondClass;
     }
 
     /**
@@ -95,7 +118,7 @@ class Relationship
      * @param other Relationship to compare with
      * @return Are relationships equal?
      */
-    virtual bool operator==(Relationship &other)
+    virtual bool operator==(const Relationship &other) const
     {
         if (typeid(other) == typeid(*this)) {
             return firstClass == other.firstClass && secondClass == other.secondClass && name == other.name;
@@ -110,10 +133,15 @@ class Relationship
      * @param other Relationship to compare with
      * @return Are relationships not equal?
      */
-    virtual bool operator!=(Relationship &other)
+    virtual bool operator!=(const Relationship &other) const
     {
         return !operator==(other);
     }
+
+    /**
+     * Default virtual destructor for converting class to polymorphic one
+     */
+    virtual ~Relationship() = default;
 };
 
 #endif //ICP_PROJECT_RELATIONSHIP_H

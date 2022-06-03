@@ -19,13 +19,26 @@
 #include "ClassAttribute.h"
 #include "ClassMethod.h"
 #include "Line.h"
+#include "SceneUpdateObservable.h"
 
 class Line;
 
 class ClassNode : public QGraphicsItem
 {
 public:
-    ClassNode(Class classEntity = Class{"Nová třída", std::make_tuple(1, 1)});
+    /**
+     * Sets a class node entity.
+     *
+     * @param classEntity Class which is going to be drawn
+     * @param existingClasses Classes existing in diagram
+     * @param sceneUpdateObservable Observable for notifying about scene changes
+     */
+    ClassNode(
+        Class *classEntity,
+        std::unordered_map<std::string, ClassNode *> *existingClasses,
+        SceneUpdateObservable *sceneUpdateObservable
+    );
+
     /**
      * Overrided method that returns object bounding rect.
      *
@@ -49,7 +62,7 @@ public:
      */
     void setName(QString newName)
     {
-        classEntity.setName(newName.toStdString());
+        classEntity->setName(newName.toStdString());
         update();
     }
 
@@ -60,7 +73,7 @@ public:
      */
     void addAtribute(ClassAttribute newAtribute)
     {
-        classEntity.addAttribute(newAtribute);
+        classEntity->addAttribute(newAtribute);
         update();
     }
 
@@ -71,7 +84,7 @@ public:
      */
     void addMethod(ClassMethod newMethod)
     {
-        classEntity.addMethod(newMethod);
+        classEntity->addMethod(newMethod);
         update();
     }
 
@@ -82,7 +95,7 @@ public:
      */
     QString getName()
     {
-        return QString::fromStdString(classEntity.getName());
+        return QString::fromStdString(classEntity->getName());
     }
 
     /**
@@ -92,7 +105,7 @@ public:
      */
     std::vector<ClassAttribute> getAtributes()
     {
-        return classEntity.getAttributes();
+        return classEntity->getAttributes();
     }
 
     /**
@@ -102,7 +115,7 @@ public:
      */
     std::vector<ClassMethod> getMethods()
     {
-        return classEntity.getMethods();
+        return classEntity->getMethods();
     }
 
     /**
@@ -112,7 +125,7 @@ public:
      */
     void setAtributes(std::vector<ClassAttribute> attributes)
     {
-        classEntity.setAttributes(attributes);
+        classEntity->setAttributes(attributes);
         update();
     }
 
@@ -123,7 +136,7 @@ public:
      */
     void setMethods(std::vector<ClassMethod> methods)
     {
-        classEntity.setMethods(methods);
+        classEntity->setMethods(methods);
         update();
     }
 
@@ -132,7 +145,7 @@ public:
      *
      * @param newEntity new class
      */
-    void setEntity(Class newEntity)
+    void setEntity(Class *newEntity)
     {
         classEntity = newEntity;
         update();
@@ -143,7 +156,7 @@ public:
      *
      * @return Class
      */
-    Class getClassEntity()
+    Class *getClassEntity()
     {
         return classEntity;
     }
@@ -192,16 +205,36 @@ public:
     }
 
 private:
+    /**
+     * Pointer to stored class
+     */
+    Class *classEntity;
+
+    // Dependencies
+    /**
+     * Classes existing in class diagram mapped to class nodes
+     */
+    std::unordered_map<std::string, ClassNode *> *existingClasses;
+    /**
+     * Observable for distributing information about scene changes
+     */
+    SceneUpdateObservable *sceneUpdateObservable;
+
     QRectF borederRect();
     QRectF getNameBoundigRect() const;
     QRectF getWholeRect() const;
-    QRectF getWholeRect(std::vector<QString> attributePrintable, std::vector<QString> methodPrintable) const;
+    QRectF getWholeRect(std::vector<QString> &attributePrintable, std::vector<QString> &methodPrintable) const;
     const int lineIndent = 5;
     const int Padding = 10;
-    Class classEntity;
     QColor borderColor = Qt::black;
     QSet<Line *> connectedLines;
-
+    /**
+     * Is class node moved since last scene change log
+     *
+     * @par This is used for excluding (double)clicks on class node
+     * without its moving
+     */
+    bool isMoved = false;
 
     std::vector<QString> getMethodPrintable(
             std::vector<int> *inheritedIndexes = new std::vector<int>(0)) const;
@@ -212,6 +245,8 @@ private:
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
     void setFontItalic(bool enable, QPainter *painter);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
     void rePaintLines();
     bool isMethodInherited(QString methodName) const;

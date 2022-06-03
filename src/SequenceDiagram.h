@@ -20,17 +20,17 @@
 class SequenceDiagram
 {
     /**
-     * Used actors
+     * Pointers to used actors
      */
-    std::vector<Actor> actors;
+    std::vector<Actor *> actors;
     /**
-     * Used objects
+     * Pointers to used objects
      */
-    std::vector<Object> objects;
+    std::vector<Object *> objects;
     /**
-     * Contained messages
+     * Pointers to contained messages
      */
-    std::vector<Message> messages;
+    std::vector<Message *> messages;
 
   public:
     /**
@@ -40,22 +40,22 @@ class SequenceDiagram
     /**
      * Constructor for initializing sequence diagram with known actors, objects and messages
      *
-     * @param actors Actors to use
-     * @param objects Objects to use
-     * @param messages Messages to use
+     * @param actors Pointers to actors to use
+     * @param objects Pointers to objects to use
+     * @param messages Pointers to messages to use
      */
     SequenceDiagram(
-        std::vector<Actor> actors,
-        std::vector<Object> objects,
-        std::vector<Message> messages
+        std::vector<Actor *> actors,
+        std::vector<Object *> objects,
+        std::vector<Message *> messages
     ): actors{actors}, objects{objects}, messages{messages} {};
 
     /**
      * Getter for used actors
      *
-     * @return Vector of used actors
+     * @return Pointers to used actors
      */
-    std::vector<Actor> &getActors()
+    std::vector<Actor *> &getActors()
     {
         return actors;
     }
@@ -63,9 +63,9 @@ class SequenceDiagram
     /**
      * Constant getter for used actors
      *
-     * @return Vector of used actors
+     * @return Pointer to used actors
      */
-    const std::vector<Actor> &getActors() const
+    const std::vector<Actor *> &getActors() const
     {
         return actors;
     }
@@ -73,9 +73,9 @@ class SequenceDiagram
     /**
      * Setter for actors
      *
-     * @param newActor New vector of actors to use
+     * @param newActor New pointers to actors to use
      */
-    void setActors(std::vector<Actor> &newActors)
+    void setActors(std::vector<Actor *> &newActors)
     {
         actors = newActors;
     }
@@ -83,9 +83,9 @@ class SequenceDiagram
     /**
      * Adds a new actor to diagram
      *
-     * @param actor New actor to add
+     * @param actor Pointer to new actor to add
      */
-    void addActor(Actor actor)
+    void addActor(Actor *actor)
     {
         actors.push_back(actor);
     }
@@ -93,26 +93,38 @@ class SequenceDiagram
     /**
      * Removes actor from sequence diagram
      *
-     * @param actorToRemove Actor to remove from sequence diagram
+     * @param actorToRemove Pointer to actor to remove from sequence diagram
      * @throw std::invalid_argument Actor is not in sequence diagram
      */
-    void removeActor(Actor actorToRemove);
+    void removeActor(Actor *actorToRemove);
 
     /**
      * Finds actor by its name
      *
      * @param name Name of the actor to search for
-     * @return Found actor
+     * @return Pointer to found actor
      * @throw std::invalid_argument Actor doesn't exist in sequence diagram
      */
-    Actor *findActorByName(std::string name);
+    Actor *findActorByName(const std::string &name);
+
+    /**
+     * Finds actor by its name
+     *
+     * @param name Name of the actor to search for
+     * @return Pointer to found actor
+     * @throw std::invalid_argument Actor doesn't exist in sequence diagram
+     */
+    Actor *findActorByName(const std::string &&name)
+    {
+        return findActorByName(name);
+    }
 
     /**
      * Getter for used objects
      *
-     * @return Vector of used objects
+     * @return Pointers to used objects
      */
-    std::vector<Object> &getObjects()
+    std::vector<Object *> &getObjects()
     {
         return objects;
     }
@@ -120,9 +132,9 @@ class SequenceDiagram
     /**
      * Constant getter for used objects
      *
-     * @return Vector of used objects
+     * @return Pointers to used objects
      */
-    const std::vector<Object> &getObjects() const
+    const std::vector<Object *> &getObjects() const
     {
         return objects;
     }
@@ -130,9 +142,9 @@ class SequenceDiagram
     /**
      * Setter for used objects
      *
-     * @param newObjects New vector of objects to use
+     * @param newObjects New pointers to objects to use
      */
-    void setObjects(std::vector<Object> &newObjects)
+    void setObjects(std::vector<Object *> &newObjects)
     {
         objects = newObjects;
     }
@@ -140,9 +152,9 @@ class SequenceDiagram
     /**
      * Adds a new object to diagram
      *
-     * @param newObject New object to add
+     * @param newObject Pointer to new object to add
      */
-    void addObject(Object newObject)
+    void addObject(Object *newObject)
     {
         objects.push_back(newObject);
     }
@@ -150,26 +162,38 @@ class SequenceDiagram
     /**
      * Removes object from sequence diagram
      *
-     * @param objectToRemove Object to remove from sequence diagram
+     * @param objectToRemove Pointer to object to remove from sequence diagram
      * @throw std::invalid_argument Object is not in sequence diagram
      */
-    void removeObject(Object objectToRemove);
+    void removeObject(Object *objectToRemove);
 
     /**
      * Finds object by its name
      *
      * @param name Name of the object to search for
-     * @return Found object
+     * @return Pointer to found object
      * @throw std::invalid_argument Object doesn't exist in sequence diagram
      */
-    Object *findObjectByName(std::string name);
+    Object *findObjectByName(const std::string &name);
+
+    /**
+     * Finds object by its name
+     *
+     * @param name Name of the object to search for
+     * @return Pointer to found object
+     * @throw std::invalid_argument Object doesn't exist in sequence diagram
+     */
+    Object *findObjectByName(const std::string &&name)
+    {
+        return findObjectByName(name);
+    }
 
     /**
      * Getter for used messages
      *
-     * @return Vector of used messages
+     * @return Pointers to used messages
      */
-    std::vector<Message> &getMessages()
+    std::vector<Message *> &getMessages()
     {
         return messages;
     }
@@ -177,9 +201,9 @@ class SequenceDiagram
     /**
      * Constant getter for used messages
      *
-     * @return Vector of used messages
+     * @return Pointers to used messages
      */
-    const std::vector<Message> &getMessages() const
+    const std::vector<Message *> &getMessages() const
     {
         return messages;
     }
@@ -187,9 +211,9 @@ class SequenceDiagram
     /**
      * Setter for used messages
      *
-     * @param newMessages New vector of messages to use
+     * @param newMessages New pointers to messages to use
      */
-    void setMessages(std::vector<Message> &newMessages)
+    void setMessages(std::vector<Message *> &newMessages)
     {
         messages = newMessages;
     }
@@ -197,9 +221,9 @@ class SequenceDiagram
     /**
      * Adds a new message to diagram
      *
-     * @param newMessage New message to add
+     * @param newMessage Pointer to new message to add
      */
-    void addMessage(Message newMessage)
+    void addMessage(Message *newMessage)
     {
         messages.push_back(newMessage);
     }
@@ -207,32 +231,48 @@ class SequenceDiagram
     /**
      * Removes message from sequence diagram
      *
-     * @param messageToRemove Message to remove from sequence diagram
+     * @param messageToRemove Pointer to message to remove from sequence diagram
      * @throw std::invalid_argument Message is not in sequence diagram
      */
-    void removeMessage(Message messageToRemove);
+    void removeMessage(Message *messageToRemove);
 
     /**
      * Creates memento of current state
      *
      * @return Created memento
      */
-    SequenceDiagramMemento createMemento()
-    {
-        return SequenceDiagramMemento{actors, objects, messages};
-    }
+    SequenceDiagramMemento createMemento();
 
     /**
      * Sets state from memento
      *
      * @param memento Memento to use
      */
-    void setMemento(SequenceDiagramMemento memento)
-    {
-        actors = memento.getActors();
-        objects = memento.getObjects();
-        messages = memento.getMessages();
-    }
+    void setMemento(const SequenceDiagramMemento &memento);
 };
+
+/**
+ * Creates a deep clone of actors
+ *
+ * @param sourceActors Actors to clone (as pointers)
+ * @return Pointers to newly allocated space with actors deep clone
+ */
+inline std::vector<Actor *> deepCloneActors(const std::vector<Actor *> &sourceActors);
+
+/**
+ * Creates a deep clone of objects
+ *
+ * @param sourceObjects Objects to clone (as pointers)
+ * @return Pointers to newly allocated space with objects deep clone
+ */
+inline std::vector<Object *> deepCloneObjects(const std::vector<Object *> &sourceObjects);
+
+/**
+ * Creates a deep clone of messages
+ *
+ * @param sourceMessages Messages to clone (as pointers)
+ * @return Pointers to newly allocated space with messages deep clone
+ */
+inline std::vector<Message *> deepCloneMessages(const std::vector<Message *> &sourceMessages);
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_H

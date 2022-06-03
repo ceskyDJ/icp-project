@@ -45,7 +45,7 @@ class ClassDiagramManager
      * @throw InvalidDataStorageException Invalid source
      * @throw InvalidInputDataException Invalid data structure in given source
      */
-    ClassDiagram loadDiagram(std::string sourceName);
+    ClassDiagram loadDiagram(const std::string &sourceName);
 
     /**
      * Saves class diagram
@@ -54,7 +54,7 @@ class ClassDiagramManager
      * @param classDiagram Class diagram to save
      * @throw InvalidDataStorageException Invalid target
      */
-    void saveDiagram(std::string targetName, ClassDiagram classDiagram);
+    void saveDiagram(const std::string &targetName, const ClassDiagram &classDiagram);
 
     /**
      * Creates a backup of class diagram

@@ -119,6 +119,51 @@ class ClassMethod: public ClassMember
     {
         returnDataType = newReturnDataType;
     }
+
+    /**
+     * Equals operator for two class methods
+     *
+     * @param other Other class method
+     * @return Are class methods equal?
+     */
+    bool operator==(const ClassMethod &other) const
+    {
+        return ClassMember::operator==(other) && type == other.type && parameters == other.parameters
+            && returnDataType == other.returnDataType;
+    }
+
+    /**
+     * Equals operator for class method and other class member
+     *
+     * @param other Other class member
+     * @return Class members are of different type, so false is returned everytime
+     */
+    bool operator==(const ClassMember &) const override
+    {
+        return false;
+    }
+
+    /**
+     * Not equals operator for two class methods
+     *
+     * @param other Other class method
+     * @return Are class methods not equal?
+     */
+    bool operator!=(const ClassMethod &other) const
+    {
+        return !operator==(other);
+    }
+
+    /**
+     * Not equals operator for class method and other class member
+     *
+     * @param other Other class member
+     * @return Class members are of different type, so true is always returned
+     */
+    bool operator!=(const ClassMember &) const override
+    {
+        return true;
+    }
 };
 
 #endif //ICP_PROJECT_CLASS_METHOD_H

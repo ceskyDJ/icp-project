@@ -6,6 +6,7 @@
  * @author Michal Šmahel (xsmahe01)
  */
 
+#include <functional>
 #include "ClassDiagramManager.h"
 
 /**
@@ -16,7 +17,7 @@
  * @throw InvalidDataStorageException Invalid file
  * @throw InvalidInputDataException Invalid data structure in given file
  */
-ClassDiagram ClassDiagramManager::loadDiagram(std::string sourceName)
+ClassDiagram ClassDiagramManager::loadDiagram(const std::string &sourceName)
 {
     classDiagramRepository->setStorageName(sourceName);
 
@@ -30,7 +31,7 @@ ClassDiagram ClassDiagramManager::loadDiagram(std::string sourceName)
  * @param classDiagram Class diagram to save
  * @throw InvalidDataStorageException Invalid target
  */
-void ClassDiagramManager::saveDiagram(std::string targetName, ClassDiagram classDiagram)
+void ClassDiagramManager::saveDiagram(const std::string &targetName, const ClassDiagram &classDiagram)
 {
     classDiagramRepository->setStorageName(targetName);
 
@@ -55,6 +56,8 @@ void ClassDiagramManager::backupDiagram(ClassDiagram *classDiagram)
  * Does undo operation for backed up class diagram
  *
  * @param classDiagram Pointer to class diagram to apply undo operation for
+ * @param preprocessing Func to call before reverting class diagram backup
+ * @param postprocessing Func to call after reverting class diagram backup
  */
 void ClassDiagramManager::undoDiagramChanges(ClassDiagram *classDiagram)
 {
@@ -69,6 +72,8 @@ void ClassDiagramManager::undoDiagramChanges(ClassDiagram *classDiagram)
  * Does redo operation for backed up class diagram
  *
  * @param classDiagram Pointer to class diagram to apply redo operation for
+ * @param preprocessing Func to call before reverting class diagram backup
+ * @param postprocessing Func to call after reverting class diagram backup
  */
 void ClassDiagramManager::redoDiagramChanges(ClassDiagram *classDiagram)
 {

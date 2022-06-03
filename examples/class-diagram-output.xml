@@ -19,10 +19,10 @@
             </methods>
         </class>
     </classes>
-    <relationshipsContainer>
+    <relationships>
         <generalization name="">
             <first-class>Phone</first-class>
             <second-class>ElectronicDevice</second-class>
         </generalization>
-    </relationshipsContainer>
+    </relationships>
 </class-diagram>

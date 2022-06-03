@@ -14,7 +14,11 @@
 class RealizationLine : public LineWithArrow
 {
 public:
-    RealizationLine();
+    RealizationLine(
+        std::unordered_map<Line *, Relationship *> *existingRelationships,
+        ClassDiagram *classDiagram,
+        SceneUpdateObservable *sceneUpdateObservable
+    );
 protected:
     void drawArrow(QPainter *painter) const;
 

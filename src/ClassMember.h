@@ -15,8 +15,7 @@
 /**
  * General entity for class members
  */
-class ClassMember
-{
+class ClassMember {
     /**
      * Name of the class member
      */
@@ -33,7 +32,15 @@ class ClassMember
      * @param name Name of the class member
      * @param accessModifier Class member's access modifier
      */
-    explicit ClassMember(std::string name, AccessModifier accessModifier): name{name}, accessModifier{accessModifier} {};
+    explicit ClassMember(
+        std::string name,
+        AccessModifier accessModifier
+    ): name{name}, accessModifier{accessModifier} {};
+
+    /**
+     * Implicit class destructor
+     */
+    virtual ~ClassMember() = default;
 
   public:
     /**
@@ -41,8 +48,7 @@ class ClassMember
      *
      * @return Class member name
      */
-    std::string getName() const
-    {
+    std::string getName() const {
         return name;
     }
 
@@ -51,8 +57,7 @@ class ClassMember
      *
      * @param newName New class member name
      */
-    void setName(const std::string &newName)
-    {
+    void setName(const std::string &newName) {
         name = newName;
     }
 
@@ -61,8 +66,7 @@ class ClassMember
      *
      * @return Access modifier
      */
-    AccessModifier getAccessModifier() const
-    {
+    AccessModifier getAccessModifier() const {
         return accessModifier;
     }
 
@@ -71,9 +75,30 @@ class ClassMember
      *
      * @param newAccessModifier New access modifier
      */
-    void setAccessModifier(const AccessModifier newAccessModifier)
-    {
+    void setAccessModifier(const AccessModifier newAccessModifier) {
         accessModifier = newAccessModifier;
+    }
+
+    /**
+     * Equals operator
+     *
+     * @param other Other class member
+     * @return Are class members equal?
+     */
+    virtual bool operator==(const ClassMember &other) const
+    {
+        return name == other.name && accessModifier == other.accessModifier;
+    }
+
+    /**
+     * Not equals operator
+     *
+     * @param other Other class member
+     * @return Are class members not equal?
+     */
+    virtual bool operator!=(const ClassMember &other) const
+    {
+        return !operator==(other);
     }
 };
 

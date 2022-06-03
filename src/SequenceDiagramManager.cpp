@@ -17,7 +17,7 @@
  * @throw InvalidDataStorageException Invalid source
  * @throw InvalidInputDataException Invalid data structure in given source
  */
-SequenceDiagram SequenceDiagramManager::loadDiagram(ClassDiagram classDiagram, std::string sourceName)
+SequenceDiagram SequenceDiagramManager::loadDiagram(const ClassDiagram &classDiagram, const std::string &sourceName)
 {
     sequenceDiagramRepository->setClassDiagram(classDiagram);
     sequenceDiagramRepository->setStorageName(sourceName);
@@ -32,7 +32,7 @@ SequenceDiagram SequenceDiagramManager::loadDiagram(ClassDiagram classDiagram, s
  * @param sequenceDiagram Sequence diagram to save
  * @throw InvalidDataStorageException Invalid target
  */
-void SequenceDiagramManager::saveDiagram(std::string targetName, SequenceDiagram sequenceDiagram)
+void SequenceDiagramManager::saveDiagram(const std::string &targetName, const SequenceDiagram &sequenceDiagram)
 {
     sequenceDiagramRepository->setStorageName(targetName);
 

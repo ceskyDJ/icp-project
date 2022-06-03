@@ -73,6 +73,28 @@ class MethodParameter
     {
         dataType = newDataType;
     }
+
+    /**
+     * Equals operator
+     *
+     * @param other Other method parameter
+     * @return Are method parameters equal?
+     */
+    bool operator==(const MethodParameter &other) const
+    {
+        return name == other.name && dataType == other.dataType;
+    }
+
+    /**
+     * Not equals operator
+     *
+     * @param other Other method parameter
+     * @return Are method parameters not equal?
+     */
+    bool operator!=(const MethodParameter &other) const
+    {
+        return !operator==(other);
+    }
 };
 
 #endif //ICP_PROJECT_METHOD_PARAMETER_H

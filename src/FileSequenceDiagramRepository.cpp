@@ -65,13 +65,13 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
             throw InvalidInputDataException{R"(Element "actor" must contain actor's name)"};
         }
 
-        Actor objActor{xmlActor.text().toStdString()};
+        auto *objActor = new Actor{xmlActor.text().toStdString()};
 
         // Check for actor name duplicities
         try {
-            sequenceDiagram.findActorByName(objActor.getName());
+            sequenceDiagram.findActorByName(objActor->getName());
 
-            throw InvalidInputDataException{"Names of actors must be unique. Duplicate name: " + objActor.getName()};
+            throw InvalidInputDataException{"Names of actors must be unique. Duplicate name: " + objActor->getName()};
         } catch (std::invalid_argument &e) {}
 
         sequenceDiagram.addActor(objActor);
@@ -90,12 +90,12 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
 
     QDomElement xmlObject{objects.item(0).toElement()};
     while (!xmlObject.isNull()) {
-        Object loadedObject{loadObject(xmlObject)};
+        auto *loadedObject = loadObject(xmlObject);
 
         try {
-            sequenceDiagram.findObjectByName(loadedObject.getName());
+            sequenceDiagram.findObjectByName(loadedObject->getName());
 
-            throw InvalidInputDataException{"Names of objects must be unique. Duplicate name: " + loadedObject.getName()};
+            throw InvalidInputDataException{"Names of objects must be unique. Duplicate name: " + loadedObject->getName()};
         } catch (std::invalid_argument &e) {}
 
         sequenceDiagram.addObject(loadedObject);
@@ -128,7 +128,7 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
  * @param diagram Sequence diagram to save
  * @throw InvalidDataStorageException Invalid file
  */
-void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
+void FileSequenceDiagramRepository::saveDiagram(const SequenceDiagram &diagram)
 {
     if (storageName.empty()) {
         throw InvalidDataStorageException{"No target file set"};
@@ -142,10 +142,10 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
 
     // Actors
     QDomElement actorsContainer{xml.createElement("actors")};
-    for (const Actor &actor: diagram.getActors()) {
+    for (const Actor *actor: diagram.getActors()) {
         QDomElement xmlActor{xml.createElement("actor")};
 
-        QDomText actorName{xml.createTextNode(actor.getName().c_str())};
+        QDomText actorName{xml.createTextNode(actor->getName().c_str())};
         xmlActor.appendChild(actorName);
 
         actorsContainer.appendChild(xmlActor);
@@ -153,13 +153,13 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
 
     // Objects
     QDomElement objectsContainer{xml.createElement("objects")};
-    for (const Object &object: diagram.getObjects()) {
+    for (const Object *object: diagram.getObjects()) {
         QDomElement xmlObject{xml.createElement("object")};
-        xmlObject.setAttribute("instance-class", object.getInstanceClass()->getName().c_str());
-        xmlObject.setAttribute("life-start", object.getLifeStart());
-        xmlObject.setAttribute("life-length", object.getLifeLength());
+        xmlObject.setAttribute("instance-class", object->getInstanceClass()->getName().c_str());
+        xmlObject.setAttribute("life-start", object->getLifeStart());
+        xmlObject.setAttribute("life-length", object->getLifeLength());
 
-        QDomText objectName{xml.createTextNode(object.getName().c_str())};
+        QDomText objectName{xml.createTextNode(object->getName().c_str())};
         xmlObject.appendChild(objectName);
 
         objectsContainer.appendChild(xmlObject);
@@ -167,16 +167,16 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
 
     // Messages
     QDomElement messagesContainer{xml.createElement("messages")};
-    for (const Message &message: diagram.getMessages()) {
+    for (const Message *message: diagram.getMessages()) {
         QDomElement xmlMessage{xml.createElement("message")};
-        xmlMessage.setAttribute("name", message.getMethod()->getName().c_str());
-        xmlMessage.setAttribute("type", message.getType().serialize().c_str());
-        xmlMessage.setAttribute("sending-time", message.getSendingTime());
+        xmlMessage.setAttribute("name", message->getMethod()->getName().c_str());
+        xmlMessage.setAttribute("type", message->getType().serialize().c_str());
+        xmlMessage.setAttribute("sending-time", message->getSendingTime());
 
         // Message sender
         QDomElement xmlMessageSender{xml.createElement("sender")};
 
-        Message::MessageSender *messageSender{message.getMessageSender()};
+        Message::MessageSender *messageSender{message->getMessageSender()};
         if (typeid(*messageSender) == typeid(Actor)) {
             xmlMessageSender.setAttribute("type", "ACTOR");
         } else {
@@ -190,7 +190,7 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
         // Message recipient
         QDomElement xmlMessageRecipient{xml.createElement("recipient")};
 
-        Message::MessageRecipient *messageRecipient{message.getMessageRecipient()};
+        Message::MessageRecipient *messageRecipient{message->getMessageRecipient()};
         if (typeid(*messageRecipient) == typeid(Actor)) {
             xmlMessageRecipient.setAttribute("type", "ACTOR");
         } else {
@@ -226,10 +226,10 @@ void FileSequenceDiagramRepository::saveDiagram(SequenceDiagram diagram)
  * Loads single object from XML element
  *
  * @param xmlObject XML element with object
- * @return Loaded object
+ * @return Pointer to loaded object
  * @throw InvalidInputDataException Invalid structure of input data
  */
-Object FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
+Object *FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
 {
     // Instance class
     if (!xmlObject.hasAttribute("instance-class")) {
@@ -268,7 +268,7 @@ Object FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
         throw InvalidInputDataException{R"(Element "object" must contain object name)"};
     }
 
-    return Object{instanceClass, lifeStart, lifeLength, xmlObject.text().toStdString()};
+    return new Object{instanceClass, lifeStart, lifeLength, xmlObject.text().toStdString()};
 }
 
 /**
@@ -276,10 +276,10 @@ Object FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
  *
  * @param xmlMessage XML element with message
  * @param sequenceDiagram Sequence diagram for linking objects and actors
- * @return Loaded message
+ * @return Pointer to loaded message
  * @throw InvalidInputDataException Invalid structure of input data
  */
-Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, SequenceDiagram &sequenceDiagram)
+Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, SequenceDiagram &sequenceDiagram)
 {
     // Message type
     if (!xmlMessage.hasAttribute("type")) {
@@ -391,7 +391,7 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
     } catch (std::invalid_argument &e) {}
 
     if (typeid(*messageSender) == typeid(Actor) && typeid(*messageRecipient) == typeid(Object)) {
-        return Message{
+        return new Message{
             method,
             type,
             dynamic_cast<Actor *>(messageSender),
@@ -399,7 +399,7 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
             sendingTime
         };
     } else if (typeid(*messageSender) == typeid(Object) && typeid(*messageRecipient) == typeid(Object)) {
-        return Message{
+        return new Message{
             method,
             type,
             dynamic_cast<Object *>(messageSender),
@@ -407,7 +407,7 @@ Message FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Sequ
             sendingTime
         };
     } else if (typeid(*messageSender) == typeid(Object) && typeid(*messageRecipient) == typeid(Actor)) {
-        return Message{
+        return new Message{
             method,
             type,
             dynamic_cast<Object *>(messageSender),

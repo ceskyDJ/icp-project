@@ -15,9 +15,10 @@
  *
  * @param relationship
  */
-LineWithArrowEditDialog::LineWithArrowEditDialog(LineWithArrow *relationship)
+LineWithArrowEditDialog::LineWithArrowEditDialog(
+    LineWithArrow *relationship
+): sceneUpdateObservable{relationship->getSceneUpdateObservable()}, relationshipLine{relationship}
 {
-    relationshipLine = relationship;
     initializeComponents();
     setAllButtons();
     connectComponents();
@@ -75,8 +76,17 @@ void LineWithArrowEditDialog::setAllButtons()
  */
 void LineWithArrowEditDialog::switchArrow()
 {
+    // Update scene
     relationshipLine->switchNodes();
     setTitle();
+    relationshipLine->update();
+
+    // Update relationship in class diagram
+    std::unordered_map<Line *, Relationship *> *existingRelationships = relationshipLine->getExistingRelationships();
+    Relationship *relationship = existingRelationships->find(relationshipLine)->second;
+    relationship->swapClasses();
+
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -84,10 +94,21 @@ void LineWithArrowEditDialog::switchArrow()
  */
 void LineWithArrowEditDialog::removeRelationship()
 {
+    // Delete from class diagram and existing relationships
+    std::unordered_map<Line *, Relationship *> *existingRelationships = relationshipLine->getExistingRelationships();
+    ClassDiagram *classDiagram = relationshipLine->getClassDiagram();
+    auto relationship = existingRelationships->find(relationshipLine)->second;
+
+    classDiagram->removeRelationship(relationship);
+    existingRelationships->erase(relationshipLine);
+
+    // Delete from scene and memory
     relationshipLine->getFromClassNode()->removeConnection(relationshipLine);
     relationshipLine->getToClassNode()->removeConnection(relationshipLine);
     delete relationshipLine;
     close();
+
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**

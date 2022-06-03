@@ -29,7 +29,7 @@ class FileClassDiagramRepository: public ClassDiagramRepository
      *
      * @param fileName Name of the file to work with (full relative/absolute path)
      */
-    explicit FileClassDiagramRepository(std::string fileName): ClassDiagramRepository{fileName} {};
+    explicit FileClassDiagramRepository(const std::string &fileName): ClassDiagramRepository{fileName} {};
 
     /**
      * Loads diagram from defined source
@@ -46,17 +46,17 @@ class FileClassDiagramRepository: public ClassDiagramRepository
      * @param diagram Class diagram to save
      * @throw InvalidDataStorageException Invalid file
      */
-    void saveDiagram(ClassDiagram diagram) override;
+    void saveDiagram(const ClassDiagram &diagram) override;
 
   private:
     /**
      * Loads single class from XML element
      *
      * @param xmlClass XML element with class
-     * @return Loaded class
+     * @return Pointer to loaded class
      * @throw InvalidInputDataException Invalid structure of input data
      */
-    Class loadClass(QDomElement &xmlClass);
+    Class *loadClass(QDomElement &xmlClass);
 
     /**
      * Loads single class attribute from XML element

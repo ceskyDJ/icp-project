@@ -9,8 +9,16 @@
 
 /**
  * Sets arrow width, height and line style to dash line
+ *
+ * @param existingRelationships Pointer to map of existing relationships and their lines
+ * @param classDiagram Pointer to class diagram
+ * @param sceneUpdateObservable Observable for distributing information about scene changes
  */
-RealizationLine::RealizationLine()
+RealizationLine::RealizationLine(
+    std::unordered_map<Line *, Relationship *> *existingRelationships,
+    ClassDiagram *classDiagram,
+    SceneUpdateObservable *sceneUpdateObservable
+): LineWithArrow{existingRelationships, classDiagram, sceneUpdateObservable}
 {
     arrowHeight = 20;
     arrowWidth = 20;
