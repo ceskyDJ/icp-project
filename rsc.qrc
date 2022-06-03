@@ -17,5 +17,7 @@
     <file alias="destroyMsg.png">resources/destroyMsg.png</file>
     <file alias="replyMsg.png">resources/replyMsg.png</file>
     <file alias="syncMsg.png">resources/syncMsg.png</file>
+    <file alias="actor.png">resources/actor.png</file>
+    <file alias="object.png">resources/object.png</file>
 </qresource>
 </RCC>
