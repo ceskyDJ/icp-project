@@ -78,7 +78,6 @@ void LineWithArrowEditDialog::switchArrow()
 {
     // Update scene
     relationshipLine->switchNodes();
-    setTitle();
     relationshipLine->update();
 
     // Update relationship in class diagram
@@ -87,6 +86,7 @@ void LineWithArrowEditDialog::switchArrow()
     relationship->swapClasses();
 
     sceneUpdateObservable->sceneChanged();
+    close();
 }
 
 /**

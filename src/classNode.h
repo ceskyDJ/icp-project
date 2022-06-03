@@ -240,8 +240,6 @@ private:
             std::vector<int> *inheritedIndexes = new std::vector<int>(0)) const;
     std::vector<QString> getAttributePrintable() const;
     QString getMethodParametersPrintable(std::vector<MethodParameter> parameters) const;
-    QString modifierToString(AccessModifier mod);
-    QString modifierToString(AccessModifier mod) const;
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
     void setFontItalic(bool enable, QPainter *painter);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);

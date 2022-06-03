@@ -98,6 +98,7 @@ void ClassDiagramWindow::setMainWindow()
  */
 void ClassDiagramWindow::setTaskBars()
 {
+    taskBar->setMovable(false);
     taskBar->addAction("Open", this, &ClassDiagramWindow::openButtonClicked);
     taskBar->addAction("Save", this, &ClassDiagramWindow::saveButtonClicked);
     taskBar->addAction("Save as...", this, &ClassDiagramWindow::saveAsButtonClicked);
@@ -199,8 +200,9 @@ void ClassDiagramWindow::setTooBox()
  */
 void ClassDiagramWindow::addClassNode()
 {
-    // Numbering for unique names
+    // Numbering and positioning unique names
     static int classNumber = 1;
+    static const unsigned int nodeSpace = 50;
 
     // Create new class in class diagram
     Class *newClass = new Class{"New class " + std::to_string(classNumber++), std::make_tuple(0, 0)};
@@ -209,6 +211,8 @@ void ClassDiagramWindow::addClassNode()
 
     // Create new GUI class node
     auto *newClassNode = new ClassNode(newClass, &storedClasses, sceneUpdateObservable);
+    newClassNode->setPos((newClassNode->boundingRect().width() + nodeSpace) * (classNumber % 5),
+                         (newClassNode->boundingRect().height() + nodeSpace) * (classNumber / 5));
 
     classDiagramScene->addItem(newClassNode);
     storedClasses.insert({newClass->getName(), newClassNode});

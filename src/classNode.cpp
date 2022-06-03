@@ -16,6 +16,7 @@
 #include "GeneralizationLine.h"
 #include "Line.h"
 #include "SceneUpdateObservable.h"
+#include "AccessModifier.h"
 
 /**
  * Sets a class node entity.
@@ -207,7 +208,7 @@ std::vector<QString> ClassNode::getAttributePrintable() const
 
     for(size_t i = 0; i < attributes.size(); i++)
     {
-        QString accesModifier = modifierToString(attributes[i].getAccessModifier());
+        QString accesModifier = QString::fromStdString(std::string(attributes[i].getAccessModifier()));
         QString attributeName = QString::fromStdString(attributes[i].getName());
         QString attributeType = QString::fromStdString(attributes[i].getDataType());
 
@@ -229,7 +230,7 @@ std::vector<QString> ClassNode::getMethodPrintable(
 
     for(size_t i = 0; i < methods.size(); i++)
     {
-        QString accesModifier = modifierToString(methods[i].getAccessModifier());
+        QString accesModifier = QString::fromStdString(std::string(methods[i].getAccessModifier()));
         QString methodName = QString::fromStdString(methods[i].getName());
         QString parameterString = getMethodParametersPrintable(methods[i].getParameters());
         QString returnType = QString::fromStdString(methods[i].getReturnDataType());
@@ -258,28 +259,6 @@ QString ClassNode::getMethodParametersPrintable(std::vector<MethodParameter> par
             methodString += ", ";
     }
     return methodString;
-}
-
-/**
- * Converts AccessModifier to string representation.
- *
- * @param mod AccessModifier which should be modified.
- * @return QString representation of AccessModifier.
- */
-QString ClassNode::modifierToString(AccessModifier mod) const
-{
-    switch (mod) {
-    case AccessModifier::PUBLIC:
-        return "+";
-    case AccessModifier::PRIVATE:
-        return "-";
-    case AccessModifier::PROTECTED:
-        return "#";
-    case AccessModifier::PACKAGE_PRIVATE:
-        return "~";
-    default:
-        return "";
-    }
 }
 
 /**
