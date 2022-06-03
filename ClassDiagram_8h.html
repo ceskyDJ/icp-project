@@ -67,13 +67,20 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">ClassDiagram.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="Class_8h_source.html">Class.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Relationship_8h_source.html">Relationship.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ClassDiagramMemento_8h_source.html">ClassDiagramMemento.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Aggregation_8h_source.html">Aggregation.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Composition_8h_source.html">Composition.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DirectedAssociation_8h_source.html">DirectedAssociation.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Generalization_8h_source.html">Generalization.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Realization_8h_source.html">Realization.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="UndirectedAssociation_8h_source.html">UndirectedAssociation.h</a>&quot;</code><br />
 </div>
 <p><a href="ClassDiagram_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -81,13 +88,104 @@ $(function() {
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagram.html">ClassDiagram</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a1814cc6ec6dc3600714675a0b1b08f4a"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; std::vector&lt; <a class="el" href="classClass.html">Class</a> * &gt;, std::map&lt; <a class="el" href="classClass.html">Class</a> *, <a class="el" href="classClass.html">Class</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ClassDiagram_8h.html#a1814cc6ec6dc3600714675a0b1b08f4a">deepCloneClasses</a> (const std::vector&lt; <a class="el" href="classClass.html">Class</a> * &gt; &amp;sourceClasses)</td></tr>
+<tr class="separator:a1814cc6ec6dc3600714675a0b1b08f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59805d11747ad73a297bd6c965c279b7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classRelationship.html">Relationship</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ClassDiagram_8h.html#a59805d11747ad73a297bd6c965c279b7">deepCloneRelationships</a> (const std::vector&lt; <a class="el" href="classRelationship.html">Relationship</a> * &gt; &amp;sourceRelationships, const std::map&lt; <a class="el" href="classClass.html">Class</a> *, <a class="el" href="classClass.html">Class</a> * &gt; &amp;classMap)</td></tr>
+<tr class="separator:a59805d11747ad73a297bd6c965c279b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >ICP project (<a class="el" href="classClass.html">Class</a> and sequence diagram editor)</p>
 <dl class="section author"><dt>Author</dt><dd>Michal Šmahel (xsmahe01) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="ClassDiagram_8h_source.html">ClassDiagram.h</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a1814cc6ec6dc3600714675a0b1b08f4a" name="a1814cc6ec6dc3600714675a0b1b08f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1814cc6ec6dc3600714675a0b1b08f4a">&#9670;&nbsp;</a></span>deepCloneClasses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; std::vector&lt; <a class="el" href="classClass.html">Class</a> * &gt;, std::map&lt; <a class="el" href="classClass.html">Class</a> *, <a class="el" href="classClass.html">Class</a> * &gt; &gt; deepCloneClasses </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classClass.html">Class</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sourceClasses</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Creates a deep clone of classes</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourceClasses</td><td>Classes to clone (as pointers) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointers to newly allocated space with classes deep clone and map of old and new pointers (in tuple) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8cpp_source.html#l00114">114</a> of file <a class="el" href="ClassDiagram_8cpp_source.html">ClassDiagram.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a59805d11747ad73a297bd6c965c279b7" name="a59805d11747ad73a297bd6c965c279b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59805d11747ad73a297bd6c965c279b7">&#9670;&nbsp;</a></span>deepCloneRelationships()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classRelationship.html">Relationship</a> * &gt; deepCloneRelationships </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classRelationship.html">Relationship</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sourceRelationships</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; <a class="el" href="classClass.html">Class</a> *, <a class="el" href="classClass.html">Class</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>classMap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Creates a deep clone of relationships</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourceRelationships</td><td>Relationships to clone (as pointers) </td></tr>
+    <tr><td class="paramname">classMap</td><td>Map of old and new class pointers (for updating pointers in relationships) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointers to newly allocated space with relationships deep clone </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ClassDiagram_8cpp_source.html#l00136">136</a> of file <a class="el" href="ClassDiagram_8cpp_source.html">ClassDiagram.cpp</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2

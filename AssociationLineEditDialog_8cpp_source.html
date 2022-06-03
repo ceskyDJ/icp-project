@@ -70,12 +70,11 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="AssociationLineEditDialog_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AssociationLineEditDialog.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;QWidget&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classAssociationLineEditDialog.html#aee8cfe5e9d3e03318d291b64e2873252">   16</a></span><a class="code hl_function" href="classAssociationLineEditDialog.html#aee8cfe5e9d3e03318d291b64e2873252">AssociationLineEditDialog::AssociationLineEditDialog</a>(<a class="code hl_class" href="classAssociationLine.html">AssociationLine</a> *line)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="classAssociationLineEditDialog.html#a5a094d2500dec0910e24d43fca676394">copyLine</a>(relationship, line);</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;AssociationLineEditDialog.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QWidget&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classAssociationLineEditDialog.html#ab75e5ec81fb95e9332e374d846af8dae">   17</a></span><a class="code hl_function" href="classAssociationLineEditDialog.html#ab75e5ec81fb95e9332e374d846af8dae">AssociationLineEditDialog::AssociationLineEditDialog</a>(<a class="code hl_class" href="classUndirectedAssociation.html">UndirectedAssociation</a> *relationship): relationship{relationship}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    setWindowTitle(<span class="stringliteral">&quot;Edit association&quot;</span>);</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    initializeComponents();</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    setAllButtons();</div>
@@ -84,131 +83,120 @@ $(function() {
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    setMainLayout();</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classAssociationLineEditDialog.html#a5a094d2500dec0910e24d43fca676394">   33</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classAssociationLineEditDialog.html#a5a094d2500dec0910e24d43fca676394">AssociationLineEditDialog::copyLine</a>(<a class="code hl_class" href="classAssociationLine.html">AssociationLine</a> *copy, <a class="code hl_class" href="classAssociationLine.html">AssociationLine</a> *lineToCopy)</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    copy-&gt;<a class="code hl_function" href="classAssociationLine.html#aebc7cca81281cafce3b3749ccc877527">setName</a>(lineToCopy-&gt;<a class="code hl_function" href="classAssociationLine.html#a0b5ba6bb0574e2e2a52baa250f267959">getName</a>());</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    copy-&gt;<a class="code hl_function" href="classAssociationLine.html#a20bbda92b85254ffd4fcb88cb9335909">setFirstCardinality</a>(lineToCopy-&gt;<a class="code hl_function" href="classAssociationLine.html#abd7957dbb53a9e4812ce8186faf88f70">getFirstCardinality</a>());</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    copy-&gt;<a class="code hl_function" href="classAssociationLine.html#adaa6a0dfe8a7811bd7be0171adea828a">setSecondCardinality</a>(lineToCopy-&gt;<a class="code hl_function" href="classAssociationLine.html#a29b43b30fbeae330a04764ac04e8ff1b">getSecondCardinality</a>());</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    copy-&gt;<a class="code hl_function" href="classLine.html#a09df4369636e35d604e9b2a5bf505d05">setFromClassNode</a>(lineToCopy-&gt;<a class="code hl_function" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a>());</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    copy-&gt;<a class="code hl_function" href="classLine.html#aa6122b37d1344fea6f21279516553bc9">setToClassNode</a>(lineToCopy-&gt;<a class="code hl_function" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a>());</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">void</span> AssociationLineEditDialog::initializeComponents()</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    acceptButton = <span class="keyword">new</span> QPushButton;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    cancelButton = <span class="keyword">new</span> QPushButton;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    deleteButton = <span class="keyword">new</span> QPushButton;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    associationNameLineEdit = <span class="keyword">new</span> QLineEdit;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    firstCardinalityLineEdit = <span class="keyword">new</span> QLineEdit;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    secondCardinalityLineEdit = <span class="keyword">new</span> QLineEdit;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    buttonLayout = <span class="keyword">new</span> QHBoxLayout;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    mainLayout = <span class="keyword">new</span> QVBoxLayout;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    lineEditLayout = <span class="keyword">new</span> QFormLayout;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">void</span> AssociationLineEditDialog::connectComponents()</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>{</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    connect(cancelButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::cancel);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    connect(acceptButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::acceptChanges);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    connect(deleteButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::removeAssociation);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span> AssociationLineEditDialog::initializeComponents()</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    acceptButton = <span class="keyword">new</span> QPushButton;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    cancelButton = <span class="keyword">new</span> QPushButton;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    deleteButton = <span class="keyword">new</span> QPushButton;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    associationNameLineEdit = <span class="keyword">new</span> QLineEdit;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    firstCardinalityLineEdit = <span class="keyword">new</span> QLineEdit;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    secondCardinalityLineEdit = <span class="keyword">new</span> QLineEdit;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    buttonLayout = <span class="keyword">new</span> QHBoxLayout;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    mainLayout = <span class="keyword">new</span> QVBoxLayout;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    lineEditLayout = <span class="keyword">new</span> QFormLayout;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">void</span> AssociationLineEditDialog::connectComponents()</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    connect(cancelButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::cancel);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    connect(acceptButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::acceptChanges);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    connect(deleteButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::removeAssociation);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    connect(associationNameLineEdit, &amp;QLineEdit::textChanged, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::setName);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    connect(firstCardinalityLineEdit, &amp;QLineEdit::textChanged, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::setFirstCardinality);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    connect(secondCardinalityLineEdit, &amp;QLineEdit::textChanged, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::setSecondCardinality);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">void</span> AssociationLineEditDialog::setAllLayouts()</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    setFormLayout();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    setButtonLayout();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    setMainLayout();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    connect(associationNameLineEdit, &amp;QLineEdit::textChanged, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::setName);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    connect(firstCardinalityLineEdit, &amp;QLineEdit::textChanged, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::setFirstCardinality);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    connect(secondCardinalityLineEdit, &amp;QLineEdit::textChanged, <span class="keyword">this</span>, &amp;AssociationLineEditDialog::setSecondCardinality);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keywordtype">void</span> AssociationLineEditDialog::setAllLayouts()</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>{</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    setFormLayout();</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    setButtonLayout();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    setMainLayout();</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keywordtype">void</span> AssociationLineEditDialog::setButtonLayout()</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>{</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    buttonLayout-&gt;addWidget(deleteButton);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    buttonLayout-&gt;addWidget(cancelButton);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    buttonLayout-&gt;addWidget(acceptButton);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">void</span> AssociationLineEditDialog::setFormLayout()</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>{</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    associationNameLineEdit-&gt;setText(relationship-&gt;<a class="code hl_function" href="classAssociationLine.html#a0b5ba6bb0574e2e2a52baa250f267959">getName</a>());</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    firstCardinalityLineEdit-&gt;setText(relationship-&gt;<a class="code hl_function" href="classAssociationLine.html#abd7957dbb53a9e4812ce8186faf88f70">getFirstCardinality</a>());</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    secondCardinalityLineEdit-&gt;setText(relationship-&gt;<a class="code hl_function" href="classAssociationLine.html#a29b43b30fbeae330a04764ac04e8ff1b">getSecondCardinality</a>());</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    lineEditLayout-&gt;addRow(<span class="stringliteral">&quot;Association name&quot;</span>, associationNameLineEdit);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    lineEditLayout-&gt;addRow(<span class="stringliteral">&quot;Cardinality (near &quot;</span> + relationship-&gt;<a class="code hl_function" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">getName</a>() + <span class="stringliteral">&quot;)&quot;</span>,</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                           firstCardinalityLineEdit);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    lineEditLayout-&gt;addRow(<span class="stringliteral">&quot;Cardinality (near &quot;</span> + relationship-&gt;<a class="code hl_function" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">getName</a>() + <span class="stringliteral">&quot;)&quot;</span>,</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                           secondCardinalityLineEdit);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keywordtype">void</span> AssociationLineEditDialog::setMainLayout()</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>{</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    mainLayout-&gt;addLayout(lineEditLayout);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    mainLayout-&gt;addLayout(buttonLayout);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    setLayout(mainLayout);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordtype">void</span> AssociationLineEditDialog::setAllButtons()</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keywordtype">void</span> AssociationLineEditDialog::setButtonLayout()</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    buttonLayout-&gt;addWidget(deleteButton);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    buttonLayout-&gt;addWidget(cancelButton);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    buttonLayout-&gt;addWidget(acceptButton);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keywordtype">void</span> AssociationLineEditDialog::setFormLayout()</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>{</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    associationNameLineEdit-&gt;setText(QString::fromStdString(relationship-&gt;<a class="code hl_function" href="classRelationship.html#aad7007e66eb68e9329eaedbd5ebef79f">getName</a>()));</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    firstCardinalityLineEdit-&gt;setText(QString::fromStdString(relationship-&gt;<a class="code hl_function" href="classUndirectedAssociation.html#a72670f0f74c326d59ab84a89154c69e0">getFirstClassCardinality</a>()));</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    secondCardinalityLineEdit-&gt;setText(QString::fromStdString(relationship-&gt;<a class="code hl_function" href="classUndirectedAssociation.html#a6962dfc4f4442c53457dfe359b8ee642">getSecondClassCardinality</a>()));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    QString firstClassName = QString::fromStdString(relationship-&gt;<a class="code hl_function" href="classRelationship.html#a365de5e791ccfcc7d4a88e6a4b32c8b6">getFirstClass</a>()-&gt;<a class="code hl_function" href="classClass.html#a71a4039f289d71a01ff4b2ff238bc44b">getName</a>());</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    QString secondClassName = QString::fromStdString(relationship-&gt;<a class="code hl_function" href="classRelationship.html#a463f375a93e7df6eaa3276030831d719">getSecondClass</a>()-&gt;<a class="code hl_function" href="classClass.html#a71a4039f289d71a01ff4b2ff238bc44b">getName</a>());</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    lineEditLayout-&gt;addRow(<span class="stringliteral">&quot;Association name&quot;</span>, associationNameLineEdit);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    lineEditLayout-&gt;addRow(<span class="stringliteral">&quot;Cardinality (near &quot;</span> + firstClassName + <span class="stringliteral">&quot;)&quot;</span>, firstCardinalityLineEdit);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    lineEditLayout-&gt;addRow(<span class="stringliteral">&quot;Cardinality (near &quot;</span> + secondClassName + <span class="stringliteral">&quot;)&quot;</span>, secondCardinalityLineEdit);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keywordtype">void</span> AssociationLineEditDialog::setMainLayout()</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>{</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    mainLayout-&gt;addLayout(lineEditLayout);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    mainLayout-&gt;addLayout(buttonLayout);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    setLayout(mainLayout);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">void</span> AssociationLineEditDialog::setAllButtons()</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/closeCross.png&quot;</span>}, <span class="stringliteral">&quot;Remove relationship&quot;</span>, deleteButton);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/nike.png&quot;</span>}, <span class="stringliteral">&quot;Accept changes&quot;</span>, acceptButton);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/cancel.png&quot;</span>}, <span class="stringliteral">&quot;Cancel&quot;</span>, cancelButton);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordtype">void</span> AssociationLineEditDialog::setOneButton(QIcon icon, QString text, QPushButton *button)</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>{</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/closeCross.png&quot;</span>}, <span class="stringliteral">&quot;Remove relationship&quot;</span>, deleteButton);</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/nike.png&quot;</span>}, <span class="stringliteral">&quot;Accept changes&quot;</span>, acceptButton);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/cancel.png&quot;</span>}, <span class="stringliteral">&quot;Cancel&quot;</span>, cancelButton);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keywordtype">void</span> AssociationLineEditDialog::setOneButton(QIcon icon, QString text, QPushButton *button)</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>{</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    button-&gt;setIcon(icon);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    button-&gt;setText(text);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>}</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keywordtype">void</span> AssociationLineEditDialog::cancel()</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>{</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    close();</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>}</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="keywordtype">void</span> AssociationLineEditDialog::acceptChanges()</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>{</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    acceptSelected = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    close();</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>}</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keywordtype">void</span> AssociationLineEditDialog::removeAssociation()</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>{</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    removeSelected = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    close();</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="keywordtype">void</span> AssociationLineEditDialog::setName(QString newName)</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>{</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    relationship-&gt;<a class="code hl_function" href="classAssociationLine.html#aebc7cca81281cafce3b3749ccc877527">setName</a>(newName);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keywordtype">void</span> AssociationLineEditDialog::setFirstCardinality(QString newCardinality)</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>{</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    relationship-&gt;<a class="code hl_function" href="classAssociationLine.html#a20bbda92b85254ffd4fcb88cb9335909">setFirstCardinality</a>(newCardinality);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>}</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keywordtype">void</span> AssociationLineEditDialog::setSecondCardinality(QString newCardinality)</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>{</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    relationship-&gt;<a class="code hl_function" href="classAssociationLine.html#adaa6a0dfe8a7811bd7be0171adea828a">setSecondCardinality</a>(newCardinality);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>}</div>
-<div class="ttc" id="aclassAssociationLineEditDialog_html_a5a094d2500dec0910e24d43fca676394"><div class="ttname"><a href="classAssociationLineEditDialog.html#a5a094d2500dec0910e24d43fca676394">AssociationLineEditDialog::copyLine</a></div><div class="ttdeci">static void copyLine(AssociationLine *copy, AssociationLine *lineToCopy)</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLineEditDialog_8cpp_source.html#l00033">AssociationLineEditDialog.cpp:33</a></div></div>
-<div class="ttc" id="aclassAssociationLineEditDialog_html_aee8cfe5e9d3e03318d291b64e2873252"><div class="ttname"><a href="classAssociationLineEditDialog.html#aee8cfe5e9d3e03318d291b64e2873252">AssociationLineEditDialog::AssociationLineEditDialog</a></div><div class="ttdeci">AssociationLineEditDialog(AssociationLine *line)</div><div class="ttdoc">Construct a new Association Line.</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLineEditDialog_8cpp_source.html#l00016">AssociationLineEditDialog.cpp:16</a></div></div>
-<div class="ttc" id="aclassAssociationLine_html"><div class="ttname"><a href="classAssociationLine.html">AssociationLine</a></div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00014">AssociationLine.h:15</a></div></div>
-<div class="ttc" id="aclassAssociationLine_html_a0b5ba6bb0574e2e2a52baa250f267959"><div class="ttname"><a href="classAssociationLine.html#a0b5ba6bb0574e2e2a52baa250f267959">AssociationLine::getName</a></div><div class="ttdeci">QString getName()</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00024">AssociationLine.h:24</a></div></div>
-<div class="ttc" id="aclassAssociationLine_html_a20bbda92b85254ffd4fcb88cb9335909"><div class="ttname"><a href="classAssociationLine.html#a20bbda92b85254ffd4fcb88cb9335909">AssociationLine::setFirstCardinality</a></div><div class="ttdeci">void setFirstCardinality(QString cardinality)</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00064">AssociationLine.h:64</a></div></div>
-<div class="ttc" id="aclassAssociationLine_html_a29b43b30fbeae330a04764ac04e8ff1b"><div class="ttname"><a href="classAssociationLine.html#a29b43b30fbeae330a04764ac04e8ff1b">AssociationLine::getSecondCardinality</a></div><div class="ttdeci">QString getSecondCardinality()</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00044">AssociationLine.h:44</a></div></div>
-<div class="ttc" id="aclassAssociationLine_html_abd7957dbb53a9e4812ce8186faf88f70"><div class="ttname"><a href="classAssociationLine.html#abd7957dbb53a9e4812ce8186faf88f70">AssociationLine::getFirstCardinality</a></div><div class="ttdeci">QString getFirstCardinality()</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00034">AssociationLine.h:34</a></div></div>
-<div class="ttc" id="aclassAssociationLine_html_adaa6a0dfe8a7811bd7be0171adea828a"><div class="ttname"><a href="classAssociationLine.html#adaa6a0dfe8a7811bd7be0171adea828a">AssociationLine::setSecondCardinality</a></div><div class="ttdeci">void setSecondCardinality(QString cardinality)</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00074">AssociationLine.h:74</a></div></div>
-<div class="ttc" id="aclassAssociationLine_html_aebc7cca81281cafce3b3749ccc877527"><div class="ttname"><a href="classAssociationLine.html#aebc7cca81281cafce3b3749ccc877527">AssociationLine::setName</a></div><div class="ttdeci">void setName(QString name)</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLine_8h_source.html#l00054">AssociationLine.h:54</a></div></div>
-<div class="ttc" id="aclassClassNode_html_ab7380831ea315bf8e19766998a5eed00"><div class="ttname"><a href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">ClassNode::getName</a></div><div class="ttdeci">QString getName()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00083">classNode.h:83</a></div></div>
-<div class="ttc" id="aclassLine_html_a09df4369636e35d604e9b2a5bf505d05"><div class="ttname"><a href="classLine.html#a09df4369636e35d604e9b2a5bf505d05">Line::setFromClassNode</a></div><div class="ttdeci">void setFromClassNode(ClassNode *newFromNode)</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00065">Line.h:65</a></div></div>
-<div class="ttc" id="aclassLine_html_a422bd718590f408327bc386de068e7ce"><div class="ttname"><a href="classLine.html#a422bd718590f408327bc386de068e7ce">Line::getToClassNode</a></div><div class="ttdeci">ClassNode * getToClassNode()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00035">Line.h:35</a></div></div>
-<div class="ttc" id="aclassLine_html_aa6122b37d1344fea6f21279516553bc9"><div class="ttname"><a href="classLine.html#aa6122b37d1344fea6f21279516553bc9">Line::setToClassNode</a></div><div class="ttdeci">void setToClassNode(ClassNode *newToNode)</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00055">Line.h:55</a></div></div>
-<div class="ttc" id="aclassLine_html_aa6b7321e4ba9f155388e58b906de6018"><div class="ttname"><a href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">Line::getFromClassNode</a></div><div class="ttdeci">ClassNode * getFromClassNode()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00045">Line.h:45</a></div></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    button-&gt;setIcon(icon);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    button-&gt;setText(text);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keywordtype">void</span> AssociationLineEditDialog::cancel()</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    close();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>}</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keywordtype">void</span> AssociationLineEditDialog::acceptChanges()</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>{</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    acceptSelected = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    close();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keywordtype">void</span> AssociationLineEditDialog::removeAssociation()</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>{</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    removeSelected = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    close();</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="keywordtype">void</span> AssociationLineEditDialog::setName(QString newName)</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    relationship-&gt;<a class="code hl_function" href="classRelationship.html#a8451b136152544a37fdecba035c90ffc">setName</a>(newName.toStdString());</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="keywordtype">void</span> AssociationLineEditDialog::setFirstCardinality(QString newCardinality)</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>{</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    relationship-&gt;<a class="code hl_function" href="classUndirectedAssociation.html#a830f75fb203d02537adb4477bd41cbed">setFirstClassCardinality</a>(newCardinality.toStdString());</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keywordtype">void</span> AssociationLineEditDialog::setSecondCardinality(QString newCardinality)</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>{</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    relationship-&gt;<a class="code hl_function" href="classUndirectedAssociation.html#aa6821de70ad60c684137016de0103f8b">setSecondClassCardinality</a>(newCardinality.toStdString());</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
+<div class="ttc" id="aclassAssociationLineEditDialog_html_ab75e5ec81fb95e9332e374d846af8dae"><div class="ttname"><a href="classAssociationLineEditDialog.html#ab75e5ec81fb95e9332e374d846af8dae">AssociationLineEditDialog::AssociationLineEditDialog</a></div><div class="ttdeci">AssociationLineEditDialog(UndirectedAssociation *relationship)</div><div class="ttdef"><b>Definition:</b> <a href="AssociationLineEditDialog_8cpp_source.html#l00017">AssociationLineEditDialog.cpp:17</a></div></div>
+<div class="ttc" id="aclassClass_html_a71a4039f289d71a01ff4b2ff238bc44b"><div class="ttname"><a href="classClass.html#a71a4039f289d71a01ff4b2ff238bc44b">Class::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00069">Class.h:69</a></div></div>
+<div class="ttc" id="aclassRelationship_html_a365de5e791ccfcc7d4a88e6a4b32c8b6"><div class="ttname"><a href="classRelationship.html#a365de5e791ccfcc7d4a88e6a4b32c8b6">Relationship::getFirstClass</a></div><div class="ttdeci">Class * getFirstClass() const</div><div class="ttdef"><b>Definition:</b> <a href="Relationship_8h_source.html#l00060">Relationship.h:60</a></div></div>
+<div class="ttc" id="aclassRelationship_html_a463f375a93e7df6eaa3276030831d719"><div class="ttname"><a href="classRelationship.html#a463f375a93e7df6eaa3276030831d719">Relationship::getSecondClass</a></div><div class="ttdeci">Class * getSecondClass() const</div><div class="ttdef"><b>Definition:</b> <a href="Relationship_8h_source.html#l00080">Relationship.h:80</a></div></div>
+<div class="ttc" id="aclassRelationship_html_a8451b136152544a37fdecba035c90ffc"><div class="ttname"><a href="classRelationship.html#a8451b136152544a37fdecba035c90ffc">Relationship::setName</a></div><div class="ttdeci">void setName(const std::string &amp;newName)</div><div class="ttdef"><b>Definition:</b> <a href="Relationship_8h_source.html#l00110">Relationship.h:110</a></div></div>
+<div class="ttc" id="aclassRelationship_html_aad7007e66eb68e9329eaedbd5ebef79f"><div class="ttname"><a href="classRelationship.html#aad7007e66eb68e9329eaedbd5ebef79f">Relationship::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdef"><b>Definition:</b> <a href="Relationship_8h_source.html#l00100">Relationship.h:100</a></div></div>
+<div class="ttc" id="aclassUndirectedAssociation_html"><div class="ttname"><a href="classUndirectedAssociation.html">UndirectedAssociation</a></div><div class="ttdef"><b>Definition:</b> <a href="UndirectedAssociation_8h_source.html#l00019">UndirectedAssociation.h:20</a></div></div>
+<div class="ttc" id="aclassUndirectedAssociation_html_a6962dfc4f4442c53457dfe359b8ee642"><div class="ttname"><a href="classUndirectedAssociation.html#a6962dfc4f4442c53457dfe359b8ee642">UndirectedAssociation::getSecondClassCardinality</a></div><div class="ttdeci">std::string getSecondClassCardinality() const</div><div class="ttdef"><b>Definition:</b> <a href="UndirectedAssociation_8h_source.html#l00074">UndirectedAssociation.h:74</a></div></div>
+<div class="ttc" id="aclassUndirectedAssociation_html_a72670f0f74c326d59ab84a89154c69e0"><div class="ttname"><a href="classUndirectedAssociation.html#a72670f0f74c326d59ab84a89154c69e0">UndirectedAssociation::getFirstClassCardinality</a></div><div class="ttdeci">std::string getFirstClassCardinality() const</div><div class="ttdef"><b>Definition:</b> <a href="UndirectedAssociation_8h_source.html#l00054">UndirectedAssociation.h:54</a></div></div>
+<div class="ttc" id="aclassUndirectedAssociation_html_a830f75fb203d02537adb4477bd41cbed"><div class="ttname"><a href="classUndirectedAssociation.html#a830f75fb203d02537adb4477bd41cbed">UndirectedAssociation::setFirstClassCardinality</a></div><div class="ttdeci">void setFirstClassCardinality(const std::string &amp;newFirstClassCardinality)</div><div class="ttdef"><b>Definition:</b> <a href="UndirectedAssociation_8h_source.html#l00064">UndirectedAssociation.h:64</a></div></div>
+<div class="ttc" id="aclassUndirectedAssociation_html_aa6821de70ad60c684137016de0103f8b"><div class="ttname"><a href="classUndirectedAssociation.html#aa6821de70ad60c684137016de0103f8b">UndirectedAssociation::setSecondClassCardinality</a></div><div class="ttdeci">void setSecondClassCardinality(const std::string &amp;newSecondClassCardinality)</div><div class="ttdef"><b>Definition:</b> <a href="UndirectedAssociation_8h_source.html#l00084">UndirectedAssociation.h:84</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

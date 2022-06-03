@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['storagename_0',['storageName',['../classClassDiagramRepository.html#a3fb03b259f1195b38ebea240fce2bfde',1,'ClassDiagramRepository::storageName()'],['../classSequenceDiagramRepository.html#a2726dc11a860ca5a583aaf827e8145e1',1,'SequenceDiagramRepository::storageName()']]]
+  ['history_5fcapacity_0',['HISTORY_CAPACITY',['../classHistoryStack.html#a7ff2a42b4e3ce6cdf70d4d727b7e5f12',1,'HistoryStack']]]
 ];

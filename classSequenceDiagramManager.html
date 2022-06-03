@@ -75,10 +75,10 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a676b38fedc89be5bc0c1573be50a3348"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#a676b38fedc89be5bc0c1573be50a3348">SequenceDiagramManager</a> (<a class="el" href="classSequenceDiagramRepository.html">SequenceDiagramRepository</a> *sequenceDiagramRepository)</td></tr>
 <tr class="separator:a676b38fedc89be5bc0c1573be50a3348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc0511817aa1df9acf691b5470909188"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSequenceDiagram.html">SequenceDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#afc0511817aa1df9acf691b5470909188">loadDiagram</a> (<a class="el" href="classClassDiagram.html">ClassDiagram</a> classDiagram, std::string sourceName)</td></tr>
-<tr class="separator:afc0511817aa1df9acf691b5470909188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a1b462f2eba4d8373f015d6a09ebd35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#a6a1b462f2eba4d8373f015d6a09ebd35">saveDiagram</a> (std::string targetName, <a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> sequenceDiagram)</td></tr>
-<tr class="separator:a6a1b462f2eba4d8373f015d6a09ebd35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa29a6ca51c71149dee8e9aa5e1cc7b10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSequenceDiagram.html">SequenceDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#aa29a6ca51c71149dee8e9aa5e1cc7b10">loadDiagram</a> (const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;classDiagram, const std::string &amp;sourceName)</td></tr>
+<tr class="separator:aa29a6ca51c71149dee8e9aa5e1cc7b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa54c828dd6ba4ce8f940a9f32a050b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#aa54c828dd6ba4ce8f940a9f32a050b9c">saveDiagram</a> (const std::string &amp;targetName, const <a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> &amp;sequenceDiagram)</td></tr>
+<tr class="separator:aa54c828dd6ba4ce8f940a9f32a050b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50f8a62432d8a42552ec7219cd69c596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#a50f8a62432d8a42552ec7219cd69c596">backupDiagram</a> (<a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> *sequenceDiagram)</td></tr>
 <tr class="separator:a50f8a62432d8a42552ec7219cd69c596"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a305326898da787f249d2147d9e0f731a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#a305326898da787f249d2147d9e0f731a">undoDiagramChanges</a> (<a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> *sequenceDiagram)</td></tr>
@@ -110,7 +110,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -154,8 +154,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afc0511817aa1df9acf691b5470909188" name="afc0511817aa1df9acf691b5470909188"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc0511817aa1df9acf691b5470909188">&#9670;&nbsp;</a></span>loadDiagram()</h2>
+<a id="aa29a6ca51c71149dee8e9aa5e1cc7b10" name="aa29a6ca51c71149dee8e9aa5e1cc7b10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa29a6ca51c71149dee8e9aa5e1cc7b10">&#9670;&nbsp;</a></span>loadDiagram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,13 +163,13 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> SequenceDiagramManager::loadDiagram </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;&#160;</td>
           <td class="paramname"><em>classDiagram</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>sourceName</em>&#160;</td>
         </tr>
         <tr>
@@ -227,8 +227,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6a1b462f2eba4d8373f015d6a09ebd35" name="a6a1b462f2eba4d8373f015d6a09ebd35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a1b462f2eba4d8373f015d6a09ebd35">&#9670;&nbsp;</a></span>saveDiagram()</h2>
+<a id="aa54c828dd6ba4ce8f940a9f32a050b9c" name="aa54c828dd6ba4ce8f940a9f32a050b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa54c828dd6ba4ce8f940a9f32a050b9c">&#9670;&nbsp;</a></span>saveDiagram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,13 +236,13 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void SequenceDiagramManager::saveDiagram </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>targetName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classSequenceDiagram.html">SequenceDiagram</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> &amp;&#160;</td>
           <td class="paramname"><em>sequenceDiagram</em>&#160;</td>
         </tr>
         <tr>

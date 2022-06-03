@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['line_0',['Line',['../classLine.html',1,'']]],
-  ['line_2ecpp_1',['Line.cpp',['../Line_8cpp.html',1,'']]],
-  ['linewitharrow_2',['LineWithArrow',['../classLineWithArrow.html',1,'']]],
-  ['linewitharrow_2ecpp_3',['LineWithArrow.cpp',['../LineWithArrow_8cpp.html',1,'']]],
-  ['linewitharroweditdialog_4',['LineWithArrowEditDialog',['../classLineWithArrowEditDialog.html',1,'LineWithArrowEditDialog'],['../classLineWithArrowEditDialog.html#a83b67c18a92b0872ab94dbd8e54beac6',1,'LineWithArrowEditDialog::LineWithArrowEditDialog()']]],
-  ['linewitharroweditdialog_2ecpp_5',['LineWithArrowEditDialog.cpp',['../LineWithArrowEditDialog_8cpp.html',1,'']]],
-  ['loaddiagram_6',['loadDiagram',['../classClassDiagramManager.html#aa4fcc864346ff9f24bcec31930e63e97',1,'ClassDiagramManager::loadDiagram()'],['../classClassDiagramRepository.html#ac33a29618e75314d6fc5b5ebeb0346d3',1,'ClassDiagramRepository::loadDiagram()'],['../classFileClassDiagramRepository.html#aed3634e072059627719aab1724cd4b4b',1,'FileClassDiagramRepository::loadDiagram()'],['../classFileSequenceDiagramRepository.html#adb0116480f395466b39d3432a3b1dc87',1,'FileSequenceDiagramRepository::loadDiagram()'],['../classSequenceDiagramManager.html#afc0511817aa1df9acf691b5470909188',1,'SequenceDiagramManager::loadDiagram()'],['../classSequenceDiagramRepository.html#a9b95172b08560cf161abb7d20089395c',1,'SequenceDiagramRepository::loadDiagram()']]],
-  ['locatecardinality_7',['locateCardinality',['../classAssociationLine.html#ad1060e1cd81ae42ca5dbd75953807cc4',1,'AssociationLine']]]
+  ['initialize_0',['initialize',['../classLine.html#a864dcfed95000676235b428da5e14fbc',1,'Line']]],
+  ['interface_1',['INTERFACE',['../classClassType.html#abd18ee8521314909267c6923865e97daa210cf4820cfadcaad8b85632209c659b',1,'ClassType']]],
+  ['invalidatepointer_2',['invalidatePointer',['../classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e',1,'ClassReference::invalidatePointer()'],['../classMethodReference.html#aca324fbaf892df453cb42dd389d8c9b3',1,'MethodReference::invalidatePointer()']]],
+  ['invaliddatastorageexception_3',['InvalidDataStorageException',['../classInvalidDataStorageException.html',1,'']]],
+  ['invaliddatastorageexception_2eh_4',['InvalidDataStorageException.h',['../InvalidDataStorageException_8h.html',1,'']]],
+  ['invalidinputdataexception_5',['InvalidInputDataException',['../classInvalidInputDataException.html',1,'']]],
+  ['invalidinputdataexception_2eh_6',['InvalidInputDataException.h',['../InvalidInputDataException_8h.html',1,'']]],
+  ['isvalid_7',['isValid',['../classClassReference.html#ace566ff729552e40d610885dc2dee8a1',1,'ClassReference::isValid()'],['../classMethodReference.html#a49234a3f7b5ab1f73398da05ebdf1d99',1,'MethodReference::isValid()']]]
 ];

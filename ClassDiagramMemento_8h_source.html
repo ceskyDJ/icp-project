@@ -74,43 +74,32 @@ $(function() {
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define ICP_PROJECT_CLASS_DIAGRAM_MEMENTO_H</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="Class_8h.html">Class.h</a>&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="Relationship_8h.html">Relationship.h</a>&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classClassDiagramMemento.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classClassDiagramMemento.html">ClassDiagramMemento</a></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    std::vector&lt;Class&gt; classes;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::vector&lt;Relationship *&gt; relationships;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">   39</a></span>    <a class="code hl_function" href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">ClassDiagramMemento</a>(): classes{}, relationships{} {};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classClassDiagram.html">ClassDiagram</a>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">ClassDiagramMemento</a>(</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            std::vector&lt;Class&gt; classes,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            std::vector&lt;Relationship *&gt; relationships</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    ): classes{classes}, relationships{relationships} {};</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    std::vector&lt;Class&gt; <a class="code hl_function" href="classClassDiagram.html#a217806bc9dd30cca57128bd5674aa454">getClasses</a>()</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> classes;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::vector&lt;Relationship *&gt; <a class="code hl_function" href="classClassDiagram.html#a615b4130d21ab1a94f17876f7cab5607">getRelationships</a>()</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> relationships;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif </span><span class="comment">//ICP_PROJECT_CLASS_DIAGRAM_MEMENTO_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="Class_8h.html">Class.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="Relationship_8h.html">Relationship.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classClassDiagramMemento.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classClassDiagramMemento.html">ClassDiagramMemento</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classClassDiagram.html">ClassDiagram</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> std::vector&lt;Class *&gt; classes;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">const</span> std::vector&lt;Relationship *&gt; relationships;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_function" href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">ClassDiagramMemento</a>(</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            std::vector&lt;Class *&gt; classes,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            std::vector&lt;Relationship *&gt; relationships</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    ): classes{classes}, relationships{relationships} {};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">   49</a></span>    <a class="code hl_function" href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">ClassDiagramMemento</a>(): classes{}, relationships{} {};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif </span><span class="comment">//ICP_PROJECT_CLASS_DIAGRAM_MEMENTO_H</span></div>
 <div class="ttc" id="aClass_8h_html"><div class="ttname"><a href="Class_8h.html">Class.h</a></div></div>
 <div class="ttc" id="aRelationship_8h_html"><div class="ttname"><a href="Relationship_8h.html">Relationship.h</a></div></div>
-<div class="ttc" id="aclassClassDiagramMemento_html"><div class="ttname"><a href="classClassDiagramMemento.html">ClassDiagramMemento</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramMemento_8h_source.html#l00018">ClassDiagramMemento.h:19</a></div></div>
-<div class="ttc" id="aclassClassDiagramMemento_html_a16cb3302334e29749d814dab40c3742a"><div class="ttname"><a href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">ClassDiagramMemento::ClassDiagramMemento</a></div><div class="ttdeci">ClassDiagramMemento()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramMemento_8h_source.html#l00039">ClassDiagramMemento.h:39</a></div></div>
-<div class="ttc" id="aclassClassDiagram_html"><div class="ttname"><a href="classClassDiagram.html">ClassDiagram</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8h_source.html#l00019">ClassDiagram.h:20</a></div></div>
-<div class="ttc" id="aclassClassDiagram_html_a217806bc9dd30cca57128bd5674aa454"><div class="ttname"><a href="classClassDiagram.html#a217806bc9dd30cca57128bd5674aa454">ClassDiagram::getClasses</a></div><div class="ttdeci">std::vector&lt; Class &gt; &amp; getClasses()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8h_source.html#l00051">ClassDiagram.h:51</a></div></div>
-<div class="ttc" id="aclassClassDiagram_html_a615b4130d21ab1a94f17876f7cab5607"><div class="ttname"><a href="classClassDiagram.html#a615b4130d21ab1a94f17876f7cab5607">ClassDiagram::getRelationships</a></div><div class="ttdeci">std::vector&lt; Relationship * &gt; &amp; getRelationships()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8h_source.html#l00108">ClassDiagram.h:108</a></div></div>
+<div class="ttc" id="aclassClassDiagramMemento_html"><div class="ttname"><a href="classClassDiagramMemento.html">ClassDiagramMemento</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramMemento_8h_source.html#l00019">ClassDiagramMemento.h:20</a></div></div>
+<div class="ttc" id="aclassClassDiagramMemento_html_a16cb3302334e29749d814dab40c3742a"><div class="ttname"><a href="classClassDiagramMemento.html#a16cb3302334e29749d814dab40c3742a">ClassDiagramMemento::ClassDiagramMemento</a></div><div class="ttdeci">ClassDiagramMemento()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagramMemento_8h_source.html#l00049">ClassDiagramMemento.h:49</a></div></div>
+<div class="ttc" id="aclassClassDiagram_html"><div class="ttname"><a href="classClassDiagram.html">ClassDiagram</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8h_source.html#l00025">ClassDiagram.h:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

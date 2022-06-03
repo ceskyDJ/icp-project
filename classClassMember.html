@@ -92,11 +92,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a47f0ad5883a9af99f445ac0d61e75019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a323fe10a227582f8904a6a1d8ae2197f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassMember.html#a323fe10a227582f8904a6a1d8ae2197f">setAccessModifier</a> (const <a class="el" href="classAccessModifier.html">AccessModifier</a> newAccessModifier)</td></tr>
 <tr class="separator:a323fe10a227582f8904a6a1d8ae2197f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f308b2f328018a709d78c521d8a87d1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassMember.html#a5f308b2f328018a709d78c521d8a87d1">operator==</a> (const <a class="el" href="classClassMember.html">ClassMember</a> &amp;other) const</td></tr>
+<tr class="separator:a5f308b2f328018a709d78c521d8a87d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41801a0b33473bd1697e3eae6b2f972e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassMember.html#a41801a0b33473bd1697e3eae6b2f972e">operator!=</a> (const <a class="el" href="classClassMember.html">ClassMember</a> &amp;other) const</td></tr>
+<tr class="separator:a41801a0b33473bd1697e3eae6b2f972e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a919f6712e92858147317e47f675dff73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassMember.html#a919f6712e92858147317e47f675dff73">ClassMember</a> (std::string name, <a class="el" href="classAccessModifier.html">AccessModifier</a> accessModifier)</td></tr>
 <tr class="separator:a919f6712e92858147317e47f675dff73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d4c3545af8e900d317a476c9afe165"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassMember.html#ae7d4c3545af8e900d317a476c9afe165">~ClassMember</a> ()=default</td></tr>
+<tr class="separator:ae7d4c3545af8e900d317a476c9afe165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >General entity for class members </p>
@@ -145,7 +151,33 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00036">36</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00035">35</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+
+</div>
+</div>
+<a id="ae7d4c3545af8e900d317a476c9afe165" name="ae7d4c3545af8e900d317a476c9afe165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7d4c3545af8e900d317a476c9afe165">&#9670;&nbsp;</a></span>~ClassMember()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ClassMember::~ClassMember </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Implicit class destructor </p>
 
 </div>
 </div>
@@ -175,7 +207,7 @@ Protected Member Functions</h2></td></tr>
 <p >Getter for class member access modifier</p>
 <dl class="section return"><dt>Returns</dt><dd>Access modifier </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00064">64</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00069">69</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +236,83 @@ Protected Member Functions</h2></td></tr>
 <p >Getter for class member name</p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classClass.html">Class</a> member name </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00044">44</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00051">51</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+
+</div>
+</div>
+<a id="a41801a0b33473bd1697e3eae6b2f972e" name="a41801a0b33473bd1697e3eae6b2f972e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41801a0b33473bd1697e3eae6b2f972e">&#9670;&nbsp;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ClassMember::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classClassMember.html">ClassMember</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Not equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Other class member </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are class members not equal? </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classClassAttribute.html#a5cc7b033efd754c6fbe79f8f15eb098a">ClassAttribute</a>, and <a class="el" href="classClassMethod.html#a6333f48db21a1620d372dd2088be00bb">ClassMethod</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00099">99</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+
+</div>
+</div>
+<a id="a5f308b2f328018a709d78c521d8a87d1" name="a5f308b2f328018a709d78c521d8a87d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f308b2f328018a709d78c521d8a87d1">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ClassMember::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classClassMember.html">ClassMember</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Other class member </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Are class members equal? </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classClassAttribute.html#a1c6a1f90599e300dec63366339ae9134">ClassAttribute</a>, and <a class="el" href="classClassMethod.html#af6db395d3d95efd09d00175cef63869f">ClassMethod</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00088">88</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
 
 </div>
 </div>
@@ -239,7 +347,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00074">74</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00078">78</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +382,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00054">54</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassMember_8h_source.html#l00060">60</a> of file <a class="el" href="ClassMember_8h_source.html">ClassMember.h</a>.</p>
 
 </div>
 </div>

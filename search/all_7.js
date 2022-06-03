@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['initialize_0',['initialize',['../classLine.html#a864dcfed95000676235b428da5e14fbc',1,'Line']]],
-  ['interface_1',['INTERFACE',['../classClassType.html#abd18ee8521314909267c6923865e97daa210cf4820cfadcaad8b85632209c659b',1,'ClassType']]],
-  ['invalidatepointer_2',['invalidatePointer',['../classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e',1,'ClassReference::invalidatePointer()'],['../classMethodReference.html#aca324fbaf892df453cb42dd389d8c9b3',1,'MethodReference::invalidatePointer()']]],
-  ['invaliddatastorageexception_3',['InvalidDataStorageException',['../classInvalidDataStorageException.html',1,'']]],
-  ['invaliddatastorageexception_2eh_4',['InvalidDataStorageException.h',['../InvalidDataStorageException_8h.html',1,'']]],
-  ['invalidinputdataexception_5',['InvalidInputDataException',['../classInvalidInputDataException.html',1,'']]],
-  ['invalidinputdataexception_2eh_6',['InvalidInputDataException.h',['../InvalidInputDataException_8h.html',1,'']]],
-  ['isvalid_7',['isValid',['../classClassReference.html#ace566ff729552e40d610885dc2dee8a1',1,'ClassReference::isValid()'],['../classMethodReference.html#a49234a3f7b5ab1f73398da05ebdf1d99',1,'MethodReference::isValid()']]]
+  ['h_0',['h',['../classAssociationLine_1_1h.html',1,'h'],['../classClassDiagramWindow_1_1h.html',1,'h']]],
+  ['history_5fcapacity_1',['HISTORY_CAPACITY',['../classHistoryStack.html#a7ff2a42b4e3ce6cdf70d4d727b7e5f12',1,'HistoryStack']]],
+  ['historystack_2',['HistoryStack',['../classHistoryStack.html',1,'HistoryStack&lt; T &gt;'],['../classHistoryStack.html#ad977682deef22990f0c5c7ccb4362859',1,'HistoryStack::HistoryStack()']]],
+  ['historystack_2eh_3',['HistoryStack.h',['../HistoryStack_8h.html',1,'']]]
 ];

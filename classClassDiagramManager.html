@@ -75,10 +75,10 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae3d521bdbf634add77cb12ec877cc8ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramManager.html#ae3d521bdbf634add77cb12ec877cc8ae">ClassDiagramManager</a> (<a class="el" href="classClassDiagramRepository.html">ClassDiagramRepository</a> *classDiagramRepository)</td></tr>
 <tr class="separator:ae3d521bdbf634add77cb12ec877cc8ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4fcc864346ff9f24bcec31930e63e97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramManager.html#aa4fcc864346ff9f24bcec31930e63e97">loadDiagram</a> (std::string sourceName)</td></tr>
-<tr class="separator:aa4fcc864346ff9f24bcec31930e63e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30b90096140d8a979e0deb9a4c3dccdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramManager.html#a30b90096140d8a979e0deb9a4c3dccdd">saveDiagram</a> (std::string targetName, <a class="el" href="classClassDiagram.html">ClassDiagram</a> classDiagram)</td></tr>
-<tr class="separator:a30b90096140d8a979e0deb9a4c3dccdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea4181b9c659869bba3dfe4ecc8c6d42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramManager.html#aea4181b9c659869bba3dfe4ecc8c6d42">loadDiagram</a> (const std::string &amp;sourceName)</td></tr>
+<tr class="separator:aea4181b9c659869bba3dfe4ecc8c6d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6190b98f074c5fc700d9b345c0e14c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramManager.html#ae6190b98f074c5fc700d9b345c0e14c4">saveDiagram</a> (const std::string &amp;targetName, const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;classDiagram)</td></tr>
+<tr class="separator:ae6190b98f074c5fc700d9b345c0e14c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86235eb00c05d1e09655cf256a684c0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramManager.html#a86235eb00c05d1e09655cf256a684c0b">backupDiagram</a> (<a class="el" href="classClassDiagram.html">ClassDiagram</a> *classDiagram)</td></tr>
 <tr class="separator:a86235eb00c05d1e09655cf256a684c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c7203d96a64aed1bddb00ff299599b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramManager.html#aa4c7203d96a64aed1bddb00ff299599b">undoDiagramChanges</a> (<a class="el" href="classClassDiagram.html">ClassDiagram</a> *classDiagram)</td></tr>
@@ -150,12 +150,12 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00045">45</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00046">46</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aa4fcc864346ff9f24bcec31930e63e97" name="aa4fcc864346ff9f24bcec31930e63e97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4fcc864346ff9f24bcec31930e63e97">&#9670;&nbsp;</a></span>loadDiagram()</h2>
+<a id="aea4181b9c659869bba3dfe4ecc8c6d42" name="aea4181b9c659869bba3dfe4ecc8c6d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea4181b9c659869bba3dfe4ecc8c6d42">&#9670;&nbsp;</a></span>loadDiagram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,7 +163,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classClassDiagram.html">ClassDiagram</a> ClassDiagramManager::loadDiagram </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>sourceName</em></td><td>)</td>
           <td></td>
         </tr>
@@ -200,7 +200,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00019">19</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00020">20</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,17 +222,26 @@ Public Member Functions</h2></td></tr>
 <p >Does redo operation for backed up class diagram</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">classDiagram</td><td>Pointer to class diagram to apply redo operation for</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Does redo operation for backed up class diagram</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">classDiagram</td><td>Pointer to class diagram to apply redo operation for </td></tr>
+    <tr><td class="paramname">preprocessing</td><td>Func to call before reverting class diagram backup </td></tr>
+    <tr><td class="paramname">postprocessing</td><td>Func to call after reverting class diagram backup </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00073">73</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00078">78</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a30b90096140d8a979e0deb9a4c3dccdd" name="a30b90096140d8a979e0deb9a4c3dccdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30b90096140d8a979e0deb9a4c3dccdd">&#9670;&nbsp;</a></span>saveDiagram()</h2>
+<a id="ae6190b98f074c5fc700d9b345c0e14c4" name="ae6190b98f074c5fc700d9b345c0e14c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6190b98f074c5fc700d9b345c0e14c4">&#9670;&nbsp;</a></span>saveDiagram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,13 +249,13 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void ClassDiagramManager::saveDiagram </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>targetName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;&#160;</td>
           <td class="paramname"><em>classDiagram</em>&#160;</td>
         </tr>
         <tr>
@@ -271,7 +280,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00033">33</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00034">34</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -293,12 +302,21 @@ Public Member Functions</h2></td></tr>
 <p >Does undo operation for backed up class diagram</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">classDiagram</td><td>Pointer to class diagram to apply undo operation for</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Does undo operation for backed up class diagram</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">classDiagram</td><td>Pointer to class diagram to apply undo operation for </td></tr>
+    <tr><td class="paramname">preprocessing</td><td>Func to call before reverting class diagram backup </td></tr>
+    <tr><td class="paramname">postprocessing</td><td>Func to call after reverting class diagram backup </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00059">59</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassDiagramManager_8cpp_source.html#l00062">62</a> of file <a class="el" href="ClassDiagramManager_8cpp_source.html">ClassDiagramManager.cpp</a>.</p>
 
 </div>
 </div>

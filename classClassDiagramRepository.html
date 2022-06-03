@@ -90,15 +90,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aed96df40843e3880c8642611fbdc8b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac33a29618e75314d6fc5b5ebeb0346d3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramRepository.html#ac33a29618e75314d6fc5b5ebeb0346d3">loadDiagram</a> ()=0</td></tr>
 <tr class="separator:ac33a29618e75314d6fc5b5ebeb0346d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2792d98f6c735c038ebf0563136dd3f0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramRepository.html#a2792d98f6c735c038ebf0563136dd3f0">saveDiagram</a> (<a class="el" href="classClassDiagram.html">ClassDiagram</a> diagram)=0</td></tr>
-<tr class="separator:a2792d98f6c735c038ebf0563136dd3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c2855a718cc7b2f1e4350aa2a4bd54f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramRepository.html#a6c2855a718cc7b2f1e4350aa2a4bd54f">saveDiagram</a> (const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;diagram)=0</td></tr>
+<tr class="separator:a6c2855a718cc7b2f1e4350aa2a4bd54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a3d88b4ac24f62d26c229079cd4750528"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramRepository.html#a3d88b4ac24f62d26c229079cd4750528">ClassDiagramRepository</a> ()</td></tr>
 <tr class="separator:a3d88b4ac24f62d26c229079cd4750528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6fd916a6809351e8dd4cf172561e671"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramRepository.html#ac6fd916a6809351e8dd4cf172561e671">ClassDiagramRepository</a> (std::string <a class="el" href="classClassDiagramRepository.html#a3fb03b259f1195b38ebea240fce2bfde">storageName</a>)</td></tr>
-<tr class="separator:ac6fd916a6809351e8dd4cf172561e671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fe2b8816863adf35023d86993b9a784"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramRepository.html#a8fe2b8816863adf35023d86993b9a784">ClassDiagramRepository</a> (const std::string &amp;<a class="el" href="classClassDiagramRepository.html#a3fb03b259f1195b38ebea240fce2bfde">storageName</a>)</td></tr>
+<tr class="separator:a8fe2b8816863adf35023d86993b9a784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33b46214154f34b6e4126e0923c6fa3e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassDiagramRepository.html#a33b46214154f34b6e4126e0923c6fa3e">~ClassDiagramRepository</a> ()=default</td></tr>
 <tr class="separator:a33b46214154f34b6e4126e0923c6fa3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -140,8 +140,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac6fd916a6809351e8dd4cf172561e671" name="ac6fd916a6809351e8dd4cf172561e671"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6fd916a6809351e8dd4cf172561e671">&#9670;&nbsp;</a></span>ClassDiagramRepository() <span class="overload">[2/2]</span></h2>
+<a id="a8fe2b8816863adf35023d86993b9a784" name="a8fe2b8816863adf35023d86993b9a784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fe2b8816863adf35023d86993b9a784">&#9670;&nbsp;</a></span>ClassDiagramRepository() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,7 +152,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">ClassDiagramRepository::ClassDiagramRepository </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>storageName</em></td><td>)</td>
           <td></td>
         </tr>
@@ -267,8 +267,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2792d98f6c735c038ebf0563136dd3f0" name="a2792d98f6c735c038ebf0563136dd3f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2792d98f6c735c038ebf0563136dd3f0">&#9670;&nbsp;</a></span>saveDiagram()</h2>
+<a id="a6c2855a718cc7b2f1e4350aa2a4bd54f" name="a6c2855a718cc7b2f1e4350aa2a4bd54f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c2855a718cc7b2f1e4350aa2a4bd54f">&#9670;&nbsp;</a></span>saveDiagram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,7 +279,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void ClassDiagramRepository::saveDiagram </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classClassDiagram.html">ClassDiagram</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;&#160;</td>
           <td class="paramname"><em>diagram</em></td><td>)</td>
           <td></td>
         </tr>
@@ -304,7 +304,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classFileClassDiagramRepository.html#afd9d1ef9db606244d310b4623347dbca">FileClassDiagramRepository</a>.</p>
+<p>Implemented in <a class="el" href="classFileClassDiagramRepository.html#a1fab2df33fa4abf09cb39ae048f22fb7">FileClassDiagramRepository</a>.</p>
 
 </div>
 </div>
