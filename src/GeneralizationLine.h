@@ -20,8 +20,13 @@ public:
      *
      * @param existingRelationships Pointer to map of existing relationships and their lines
      * @param classDiagram Class diagram
+     * @param sceneUpdateObservable Observable for distributing information about scene changes
      */
-    GeneralizationLine(std::unordered_map<Line *, Relationship *> *existingRelationships, ClassDiagram *classDiagram);
+    GeneralizationLine(
+        std::unordered_map<Line *, Relationship *> *existingRelationships,
+        ClassDiagram *classDiagram,
+        SceneUpdateObservable *sceneUpdateObservable
+    );
 protected:
     /**
      * Draws and arrow - rectangle

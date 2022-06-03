@@ -12,6 +12,12 @@
 #include "Class.h"
 #include "Relationship.h"
 #include "ClassDiagramMemento.h"
+#include "Aggregation.h"
+#include "Composition.h"
+#include "DirectedAssociation.h"
+#include "Generalization.h"
+#include "Realization.h"
+#include "UndirectedAssociation.h"
 
 /**
  * Entity for complete class diagram
@@ -98,7 +104,19 @@ class ClassDiagram
      * @return Pointer to found class
      * @throw std::invalid_argument Non-existing class with this name
      */
-    Class *findClassByName(std::string name);
+    Class *findClassByName(const std::string &name);
+
+    /**
+     * Finds class by name
+     *
+     * @param name Name of the class to search for
+     * @return Pointer to found class
+     * @throw std::invalid_argument Non-existing class with this name
+     */
+    Class *findClassByName(const std::string &&name)
+    {
+        return findClassByName(name);
+    }
 
     /**
      * Getter for relationships between classes
@@ -153,21 +171,36 @@ class ClassDiagram
      *
      * @return Created memento
      */
-    ClassDiagramMemento createMemento()
-    {
-        return ClassDiagramMemento{classes, relationships};
-    }
+    ClassDiagramMemento createMemento();
 
     /**
      * Sets state from memento
      *
      * @param memento Memento to use
      */
-    void setMemento(ClassDiagramMemento memento)
-    {
-        classes = memento.getClasses();
-        relationships = memento.getRelationships();
-    }
+    void setMemento(const ClassDiagramMemento &memento);
 };
+
+/**
+ * Creates a deep clone of classes
+ *
+ * @param sourceClasses Classes to clone (as pointers)
+ * @return Pointers to newly allocated space with classes deep clone and map of old and new pointers (in tuple)
+ */
+inline std::tuple<std::vector<Class *>, std::map<Class *, Class *>> deepCloneClasses(
+    const std::vector<Class *> &sourceClasses
+);
+
+/**
+ * Creates a deep clone of relationships
+ *
+ * @param sourceRelationships Relationships to clone (as pointers)
+ * @param classMap Map of old and new class pointers (for updating pointers in relationships)
+ * @return Pointers to newly allocated space with relationships deep clone
+ */
+inline std::vector<Relationship *> deepCloneRelationships(
+    const std::vector<Relationship *> &sourceRelationships,
+    const std::map<Class *, Class *> &classMap
+);
 
 #endif //ICP_PROJECT_CLASS_DIAGRAM_H

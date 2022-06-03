@@ -103,7 +103,7 @@ class UndirectedAssociation: public Relationship
      *
      * @return They are relationships of different types, so every time false is returned
      */
-    bool operator==(Relationship &) override
+    bool operator==(const Relationship &) const override
     {
         return false;
     }
@@ -114,7 +114,7 @@ class UndirectedAssociation: public Relationship
      * @param other Undirected association to compare with
      * @return Are undirected associations not equal?
      */
-    bool operator!=(UndirectedAssociation &other)
+    bool operator!=(const UndirectedAssociation &other) const
     {
         return !operator==(other);
     }
@@ -124,7 +124,7 @@ class UndirectedAssociation: public Relationship
      *
      * @return They are relationships of different types, so every time true is returned
      */
-    bool operator!=(Relationship &) override
+    bool operator!=(const Relationship &) const override
     {
         return true;
     }

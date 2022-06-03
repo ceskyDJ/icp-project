@@ -33,7 +33,7 @@ class ClassDiagramRepository
      * @param storageName Name of the storage to use (when type of the storage needs
      * it otherwise use implicit constructor)
      */
-    explicit ClassDiagramRepository(std::string storageName): storageName{storageName} {};
+    explicit ClassDiagramRepository(const std::string &storageName): storageName{storageName} {};
 
     /**
      * Virtual default destructor
@@ -77,7 +77,7 @@ class ClassDiagramRepository
      * @param diagram Class diagram to save
      * @throw InvalidDataStorageException Invalid data storage
      */
-    virtual void saveDiagram(ClassDiagram diagram) = 0;
+    virtual void saveDiagram(const ClassDiagram &diagram) = 0;
 };
 
 #endif //ICP_PROJECT_CLASS_DIAGRAM_REPOSITORY_H

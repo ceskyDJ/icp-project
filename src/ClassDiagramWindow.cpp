@@ -28,14 +28,22 @@
  * @param classDiagramManager Pointer to class diagram manager (dependency)
  */
 ClassDiagramWindow::ClassDiagramWindow(
-    ClassDiagramManager *classDiagramManager
-): classDiagramManager{classDiagramManager}, storedClasses{}, storedRelationships{}
+    ClassDiagramManager *classDiagramManager,
+    SceneUpdateObservable *sceneUpdateObservable
+): classDiagramManager{classDiagramManager}, sceneUpdateObservable{sceneUpdateObservable}, storedClasses{},
+    storedRelationships{}
 {
+    // Register this observer for scene updates
+    sceneUpdateObservable->registerObserver(this);
+
     initializeComponents();
     connectComponents();
     setTooBox();
     setTaskBars();
     setMainWindow();
+
+    // Log empty scene
+//    sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -200,10 +208,12 @@ void ClassDiagramWindow::addClassNode()
     classDiagram.addClass(newClass);
 
     // Create new GUI class node
-    auto *newClassNode = new ClassNode(&storedClasses, newClass);
+    auto *newClassNode = new ClassNode(newClass, &storedClasses, sceneUpdateObservable);
 
     classDiagramScene->addItem(newClassNode);
     storedClasses.insert({newClass->getName(), newClassNode});
+
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -219,6 +229,8 @@ void ClassDiagramWindow::removeSelectedClassNodes()
             removeClassNode(node);
         }
     }
+
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -275,7 +287,6 @@ void ClassDiagramWindow::connectComponents()
     connect(realizationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::realizationSelected);
 
     connect(classDiagramScene, &QGraphicsScene::selectionChanged, this, &ClassDiagramWindow::selectionChanged);
-    connect(classDiagramScene, &QGraphicsScene::changed, this, &ClassDiagramWindow::sceneUpdated);
 }
 
 /**
@@ -302,7 +313,7 @@ void ClassDiagramWindow::associationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AssociationLine{&storedRelationships, &classDiagram};
+    newLine = new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
 }
 
 /**
@@ -312,7 +323,7 @@ void ClassDiagramWindow::compositionSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new CompositionLine{&storedRelationships, &classDiagram};
+    newLine = new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
 }
 
 /**
@@ -322,7 +333,7 @@ void ClassDiagramWindow::agregationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AgregationLine{&storedRelationships, &classDiagram};
+    newLine = new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
 }
 
 /**
@@ -332,7 +343,7 @@ void ClassDiagramWindow::generalisationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new GeneralizationLine{&storedRelationships, &classDiagram};
+    newLine = new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
 }
 
 /**
@@ -342,7 +353,7 @@ void ClassDiagramWindow::directedAssociationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new DirectedAssociationLine{&storedRelationships, &classDiagram};
+    newLine = new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
 }
 
 /**
@@ -352,7 +363,7 @@ void ClassDiagramWindow::realizationSelected()
 {
     classDiagramScene->clearSelection();
     setAllNodesColor(realtionShipSelectedColor);
-    newLine = new RealizationLine{&storedRelationships, &classDiagram};
+    newLine = new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
 }
 
 /**
@@ -448,6 +459,8 @@ void ClassDiagramWindow::connectNodes()
 
     firstToSelect = nullptr;
     secondToSelect = nullptr;
+
+    sceneUpdateObservable->sceneChanged();
 }
 
 void ClassDiagramWindow::clearScene()
@@ -475,7 +488,7 @@ void ClassDiagramWindow::redrawClassDiagram()
 {
     // Add classes
     for (const auto &item: classDiagram.getClasses()) {
-        auto classNode = new ClassNode(&storedClasses, item);
+        auto classNode = new ClassNode(item, &storedClasses, sceneUpdateObservable);
 
         classDiagramScene->addItem(classNode);
         storedClasses.insert({item->getName(), classNode});
@@ -492,17 +505,17 @@ void ClassDiagramWindow::redrawClassDiagram()
         Line *line;
         const std::type_info &relationshipType = typeid(*item);
         if (relationshipType == typeid(Aggregation)) {
-            line = new AgregationLine{&storedRelationships, &classDiagram};
+            line = new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
         } else if (relationshipType == typeid(Composition)) {
-            line = new CompositionLine{&storedRelationships, &classDiagram};
+            line = new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
         } else if (relationshipType == typeid(DirectedAssociation)) {
-            line = new DirectedAssociationLine{&storedRelationships, &classDiagram};
+            line = new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
         } else if (relationshipType == typeid(Generalization)) {
-            line = new GeneralizationLine{&storedRelationships, &classDiagram};
+            line = new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
         } else if (relationshipType == typeid(Realization)) {
-            line = new RealizationLine{&storedRelationships, &classDiagram};
+            line = new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
         } else if (relationshipType == typeid(UndirectedAssociation)) {
-            line = new AssociationLine{&storedRelationships, &classDiagram};
+            line = new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
             auto *associationLine = dynamic_cast<AssociationLine *>(line);
 
             // Add cardinalities
@@ -572,6 +585,8 @@ void ClassDiagramWindow::openButtonClicked()
 
         // Diagram has just been loaded from file
         isSaved = true;
+
+        sceneUpdateObservable->sceneChanged();
     } catch (InvalidDataStorageException &e) {
         QMessageBox::critical(this, "Class diagram opening error", e.what());
     } catch (InvalidInputDataException &e) {
@@ -637,7 +652,28 @@ void ClassDiagramWindow::saveAsButtonClicked()
  */
 void ClassDiagramWindow::undoButtonClicked()
 {
-    std::cerr << "Clicked on \"Undo\" button!\n";
+    // Clear canvas
+    if (!classDiagramScene->items().isEmpty()) {
+        clearScene();
+    }
+
+    classDiagramManager->undoDiagramChanges(&classDiagram);
+
+    std::cerr << "State to undo:\n";
+    std::cerr << "\tClasses:\n";
+    for (const auto &item: classDiagram.getClasses()) {
+        std::cerr << "\t\t- " << item->getName() << "\n";
+    }
+    std::cerr << "\tRelationships:\n";
+    for (const auto &item: classDiagram.getRelationships()) {
+        std::cerr << "\t\t- " << typeid(*item).name() << ": " << item->getFirstClass()->getName() << " <-> "
+                  << item->getSecondClass()->getName() << "\n";
+    }
+
+    // Draw new diagram
+    redrawClassDiagram();
+
+//        sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -645,13 +681,50 @@ void ClassDiagramWindow::undoButtonClicked()
  */
 void ClassDiagramWindow::redoButtonClicked()
 {
-    std::cerr << "Clicked on \"Redo\" button!\n";
+    // Clear canvas
+    if (!classDiagramScene->items().isEmpty()) {
+        clearScene();
+    }
+
+    classDiagramManager->redoDiagramChanges(&classDiagram);
+
+    std::cerr << "State to redo:\n";
+    std::cerr << "\tClasses:\n";
+    for (const auto &item: classDiagram.getClasses()) {
+        std::cerr << "\t\t- " << item->getName() << "\n";
+    }
+    std::cerr << "\tRelationships:\n";
+    for (const auto &item: classDiagram.getRelationships()) {
+        std::cerr << "\t\t- " << typeid(*item).name() << ": " << item->getFirstClass()->getName() << " <-> "
+                  << item->getSecondClass()->getName() << "\n";
+    }
+
+    // Draw new diagram
+    redrawClassDiagram();
+
+//        sceneUpdateObservable->sceneChanged();
 }
 
 /**
- * Slot for handling update of scene
+ * Logs scene changes for saving and undo/redo mechanisms
  */
-void ClassDiagramWindow::sceneUpdated()
+void ClassDiagramWindow::logChanges() noexcept
 {
     isSaved = false;
+
+    classDiagramManager->backupDiagram(&classDiagram);
+
+    auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    std::cerr << "Scene changed: " << std::ctime(&time);
+
+    std::cerr << "Current state:\n";
+    std::cerr << "\tClasses:\n";
+    for (const auto &item: classDiagram.getClasses()) {
+        std::cerr << "\t\t- " << item->getName() << "\n";
+    }
+    std::cerr << "\tRelationships:\n";
+    for (const auto &item: classDiagram.getRelationships()) {
+        std::cerr << "\t\t- " << typeid(*item).name() << ": " << item->getFirstClass()->getName() << " <-> "
+            << item->getSecondClass()->getName() << "\n";
+    }
 }

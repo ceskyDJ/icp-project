@@ -5,6 +5,7 @@
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
+ * @author Michal Šmahe (xsmahe01)
  */
 #ifndef ASSOCIATIONLINEEDITDIALOG_H
 #define ASSOCIATIONLINEEDITDIALOG_H
@@ -22,7 +23,7 @@
 class AssociationLineEditDialog : public QDialog
 {
 public:
-    AssociationLineEditDialog(AssociationLine *line);
+    AssociationLineEditDialog(UndirectedAssociation *relationship);
     /**
      * Checks if dialog was confirmed.
      * 
@@ -38,7 +39,7 @@ public:
      * getRelationship Get edited relationship.
      * @return edited relationship
      */
-    AssociationLine *getRelationship()
+    UndirectedAssociation *getRelationship()
     {
         return relationship;
     }
@@ -52,7 +53,6 @@ public:
     {
         return removeSelected;
     }
-    static void copyLine(AssociationLine *copy, AssociationLine *lineToCopy);
 private:
     QPushButton *acceptButton;
     QPushButton *cancelButton;
@@ -63,7 +63,7 @@ private:
     QHBoxLayout *buttonLayout;
     QVBoxLayout *mainLayout;
     QFormLayout *lineEditLayout;
-    AssociationLine *relationship;
+    UndirectedAssociation *relationship;
     bool acceptSelected = false;
     bool removeSelected = false;
 

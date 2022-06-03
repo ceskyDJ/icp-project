@@ -78,6 +78,8 @@ add_executable(icp_project
         src/MethodEditWidget.h
         src/CompositionLine.h
         src/GeneralizationLine.h
+        src/SceneUpdateObserver.h
+        src/SceneUpdateObservable.h
 
         # Source files
         src/AccessModifier.cpp

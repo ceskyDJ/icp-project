@@ -110,7 +110,7 @@ ClassDiagram FileClassDiagramRepository::loadDiagram()
  * @param diagram Class diagram to save
  * @throw InvalidDataStorageException Invalid file
  */
-void FileClassDiagramRepository::saveDiagram(ClassDiagram diagram)
+void FileClassDiagramRepository::saveDiagram(const ClassDiagram &diagram)
 {
     if (storageName.empty()) {
         throw InvalidDataStorageException{"No target file set"};

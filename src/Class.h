@@ -233,9 +233,10 @@ class Class
      * @param other Class to compare with
      * @return Are classes equal?
      */
-    bool operator==(const Class &other)
+    bool operator==(const Class &other) const
     {
-        return name == other.name;
+        return name == other.name && coordinates == other.coordinates && classType == other.classType
+            && attributes == other.attributes && methods == other.methods;
     }
 
     /**
@@ -244,7 +245,7 @@ class Class
      * @param other Class to compare with
      * @return Are classes not equal?
      */
-    bool operator!=(const Class &other)
+    bool operator!=(const Class &other) const
     {
         return name != other.name;
     }

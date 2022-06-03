@@ -33,7 +33,7 @@ class SequenceDiagramManager
      *
      * @param sequenceDiagramRepository Sequence diagram repository to use
      */
-    SequenceDiagramManager(
+    explicit SequenceDiagramManager(
         SequenceDiagramRepository *sequenceDiagramRepository
     ): sequenceDiagramRepository{sequenceDiagramRepository} {};
 
@@ -46,7 +46,7 @@ class SequenceDiagramManager
      * @throw InvalidDataStorageException Invalid source
      * @throw InvalidInputDataException Invalid data structure in given source
      */
-    SequenceDiagram loadDiagram(ClassDiagram classDiagram, std::string sourceName);
+    SequenceDiagram loadDiagram(const ClassDiagram &classDiagram, const std::string &sourceName);
 
     /**
      * Saves sequence diagram
@@ -55,7 +55,7 @@ class SequenceDiagramManager
      * @param sequenceDiagram Sequence diagram to save
      * @throw InvalidDataStorageException Invalid target
      */
-    void saveDiagram(std::string targetName, SequenceDiagram sequenceDiagram);
+    void saveDiagram(const std::string &targetName, const SequenceDiagram &sequenceDiagram);
 
     /**
      * Creates a backup of sequence diagram

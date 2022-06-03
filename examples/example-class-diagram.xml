@@ -1,71 +1,55 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<!-- Data types are in PHP 7+ notation (easy to write and understand) -->
 <class-diagram>
     <classes>
-        <class name="Human" type="ABSTRACT_CLASS" x-coord="10" y-coord="10">
+        <class type="ABSTRACT_CLASS" y-coord="-35" name="Human" x-coord="-26">
             <attributes>
                 <attribute access-modifier="PRIVATE" data-type="int">age</attribute>
                 <attribute access-modifier="PUBLIC" data-type="string">fullName</attribute>
                 <attribute access-modifier="PROTECTED" data-type="Education">education</attribute>
             </attributes>
-
             <methods>
-                <!-- Missing type -->
-                <method name="getAlmaMater" access-modifier="PUBLIC" return-type="string">
+                <method type="NORMAL" name="getAlmaMater" access-modifier="PUBLIC" return-type="string">
                     <parameter data-type="string">degree</parameter>
                     <parameter data-type="int">degreeNumber</parameter>
                 </method>
-                <method name="getApproximateAge" access-modifier="PUBLIC" return-type="int" type="NORMAL" />
+                <method type="NORMAL" name="getApproximateAge" access-modifier="PUBLIC" return-type="int"/>
             </methods>
         </class>
-        <class name="Programmer" type="NORMAL_CLASS" x-coord="510" y-coord="10">
+        <class type="NORMAL_CLASS" y-coord="-78" name="Programmer" x-coord="549">
             <attributes>
                 <attribute access-modifier="PUBLIC" data-type="Skill[]">skills</attribute>
             </attributes>
-
             <methods>
-                <method name="makeProgram" access-modifier="PUBLIC" return-type="Program" type="NORMAL">
+                <method type="NORMAL" name="makeProgram" access-modifier="PUBLIC" return-type="Program">
                     <parameter data-type="ProgramAssignment">assignment</parameter>
                 </method>
             </methods>
         </class>
-        <class name="KnowsProgramming" type="INTERFACE" x-coord="1010" y-coord="10">
-            <!-- Missing arguments (interface has only methods in base concept) -->
+        <class type="INTERFACE" y-coord="-147" name="KnowsProgramming" x-coord="1140">
+            <attributes/>
             <methods>
-                <method name="makeProgram" access-modifier="PUBLIC" return-type="Program" type="ABSTRACT">
+                <method type="ABSTRACT" name="makeProgram" access-modifier="PUBLIC" return-type="Program">
                     <parameter data-type="ProgramAssignment">assignment</parameter>
                 </method>
             </methods>
         </class>
-        <class name="Skill" type="ABSTRACT_CLASS" x-coord="410" y-coord="410">
+        <class type="ABSTRACT_CLASS" y-coord="269" name="Skill" x-coord="649">
             <attributes>
                 <attribute access-modifier="PROTECTED" data-type="int">level</attribute>
             </attributes>
-
             <methods>
-                <method name="getLevel" access-modifier="PUBLIC" return-type="int" type="NORMAL" />
-                <!-- Without return type -->
-                <method name="incLevel" access-modifier="PUBLIC" type="NORMAL" />
-                <method name="getName" access-modifier="PUBLIC" return-type="string" type="ABSTRACT" />
+                <method type="NORMAL" name="getLevel" access-modifier="PUBLIC" return-type="int"/>
+                <method type="NORMAL" name="incLevel" access-modifier="PUBLIC" return-type="void"/>
+                <method type="ABSTRACT" name="getName" access-modifier="PUBLIC" return-type="string"/>
             </methods>
         </class>
     </classes>
-
-    <!-- Classes are mandatory but relationships are optional (element relationships doesn't have to be here) -->
     <relationships>
-        <!-- Without name attribute -->
-        <generalization>
-            <!-- Child -->
+        <generalization name="">
             <first-class>Programmer</first-class>
-            <!-- Parent -->
             <second-class>Human</second-class>
         </generalization>
-        <!-- Without name attribute -->
-        <realization>
-            <!-- Implementation class -->
+        <realization name="">
             <first-class>Programmer</first-class>
-            <!-- Interface -->
             <second-class>KnowsProgramming</second-class>
         </realization>
         <undirected-association name="has">

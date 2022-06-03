@@ -19,13 +19,26 @@
 #include "ClassAttribute.h"
 #include "ClassMethod.h"
 #include "Line.h"
+#include "SceneUpdateObservable.h"
 
 class Line;
 
 class ClassNode : public QGraphicsItem
 {
 public:
-    ClassNode(std::unordered_map<std::string, ClassNode *> *existingClasses, Class *classEntity);
+    /**
+     * Sets a class node entity.
+     *
+     * @param classEntity Class which is going to be drawn
+     * @param existingClasses Classes existing in diagram
+     * @param sceneUpdateObservable Observable for notifying about scene changes
+     */
+    ClassNode(
+        Class *classEntity,
+        std::unordered_map<std::string, ClassNode *> *existingClasses,
+        SceneUpdateObservable *sceneUpdateObservable
+    );
+
     /**
      * Overrided method that returns object bounding rect.
      *
@@ -197,6 +210,16 @@ private:
      */
     Class *classEntity;
 
+    // Dependencies
+    /**
+     * Classes existing in class diagram mapped to class nodes
+     */
+    std::unordered_map<std::string, ClassNode *> *existingClasses;
+    /**
+     * Observable for distributing information about scene changes
+     */
+    SceneUpdateObservable *sceneUpdateObservable;
+
     QRectF borederRect();
     QRectF getNameBoundigRect() const;
     QRectF getWholeRect() const;
@@ -205,8 +228,13 @@ private:
     const int Padding = 10;
     QColor borderColor = Qt::black;
     QSet<Line *> connectedLines;
-    std::unordered_map<std::string, ClassNode *> *existingClasses;
-
+    /**
+     * Is class node moved since last scene change log
+     *
+     * @par This is used for excluding (double)clicks on class node
+     * without its moving
+     */
+    bool isMoved = false;
 
     std::vector<QString> getMethodPrintable(
             std::vector<int> *inheritedIndexes = new std::vector<int>(0)) const;
@@ -217,6 +245,8 @@ private:
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
     void setFontItalic(bool enable, QPainter *painter);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
     void rePaintLines();
     bool isMethodInherited(QString methodName) const;

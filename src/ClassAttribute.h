@@ -55,6 +55,50 @@ class ClassAttribute: public ClassMember
     {
         dataType = newDataType;
     }
+
+    /**
+     * Equals operator for two class attributes
+     *
+     * @param other Other class attribute
+     * @return Are class attributes equal?
+     */
+    bool operator==(const ClassAttribute &other) const
+    {
+        return ClassMember::operator==(other) && dataType == other.dataType;
+    }
+
+    /**
+     * Equals operator for class attribute and other class member
+     *
+     * @param other Other class member
+     * @return Class members are of different type, so false is returned everytime
+     */
+    bool operator==(const ClassMember &) const override
+    {
+        return false;
+    }
+
+    /**
+     * Not equals operator for two class attributes
+     *
+     * @param other Other class attribute
+     * @return Are class attributes not equal?
+     */
+    bool operator!=(const ClassAttribute &other) const
+    {
+        return !operator==(other);
+    }
+
+    /**
+     * Not equals operator for class attribute and other class member
+     *
+     * @param other Other class member
+     * @return Class memebers are of different type, so always true is returned
+     */
+    bool operator!=(const ClassMember &) const override
+    {
+        return true;
+    }
 };
 
 #endif //ICP_PROJECT_CLASS_ATTRIBUTE_H

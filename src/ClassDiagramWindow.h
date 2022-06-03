@@ -29,16 +29,24 @@
 #include "DirectedAssociationLine.h"
 #include "RealizationLine.h"
 #include "ClassDiagramManager.h"
+#include "SceneUpdateObserver.h"
+#include "SceneUpdateObservable.h"
 
-class ClassDiagramWindow : public QMainWindow
+class ClassDiagramWindow : public QMainWindow, SceneUpdateObserver
 {
     Q_OBJECT
 public:
-    explicit ClassDiagramWindow(ClassDiagramManager *classDiagramManager);
+    explicit ClassDiagramWindow(ClassDiagramManager *classDiagramManager, SceneUpdateObservable *sceneUpdateObservable);
+
+    /**
+     * Logs scene changes for saving and undo/redo mechanisms
+     */
+    void logChanges() noexcept override;
 
 private:
     // Dependencies
     ClassDiagramManager *classDiagramManager;
+    SceneUpdateObservable *sceneUpdateObservable;
 
     int minToolboxWidth = 200;
     int toolboxItemSize = 70;
@@ -114,7 +122,6 @@ private slots:
     void saveAsButtonClicked();
     void undoButtonClicked();
     void redoButtonClicked();
-    void sceneUpdated();
 };
 
 #endif // CLASSDIAGRAMWINDOW_H

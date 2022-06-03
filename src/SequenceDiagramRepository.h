@@ -41,8 +41,8 @@ class SequenceDiagramRepository
      * it otherwise use implicit constructor)
      */
     explicit SequenceDiagramRepository(
-        ClassDiagram classDiagram,
-        std::string storageName
+        const ClassDiagram &classDiagram,
+        const std::string &storageName
     ): classDiagram{classDiagram}, storageName{storageName} {};
 
     /**
@@ -105,7 +105,7 @@ class SequenceDiagramRepository
      * @param diagram Sequence diagram to save
      * @throw InvalidDataStorageException Invalid data storage
      */
-    virtual void saveDiagram(SequenceDiagram diagram) = 0;
+    virtual void saveDiagram(const SequenceDiagram &diagram) = 0;
 };
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_REPOSITORY_H

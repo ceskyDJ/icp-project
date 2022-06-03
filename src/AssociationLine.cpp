@@ -4,6 +4,7 @@
  * ICP project (Class and sequence diagram editor)
  *
  * @author Jakub Dvořák (xdvora3q)
+ * @author Michal Šmahel (xsmahe01)
  */
 
 #include "AssociationLine.h"
@@ -19,32 +20,37 @@
  */
 void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
-    AssociationLineEditDialog *editDialog = new AssociationLineEditDialog(this);
-    editDialog->exec();
-    if(editDialog->accepted())
-    {
-        AssociationLineEditDialog::copyLine(this, editDialog->getRelationship());
+    UndirectedAssociation *oldUndirectedAssociation = dynamic_cast<UndirectedAssociation *>(
+        existingRelationships->find(this)->second);
+    UndirectedAssociation newUndirectedAssociation{*oldUndirectedAssociation};
+
+    AssociationLineEditDialog editDialog{&newUndirectedAssociation};
+    editDialog.exec();
+    if(editDialog.accepted() && newUndirectedAssociation != *oldUndirectedAssociation) {
+        // Update
+        setName(QString::fromStdString(newUndirectedAssociation.getName()));
+        setFirstCardinality(QString::fromStdString(newUndirectedAssociation.getFirstClassCardinality()));
+        setSecondCardinality(QString::fromStdString(newUndirectedAssociation.getSecondClassCardinality()));
         update();
 
         // Update class diagram
-        auto undirectedAssociation = dynamic_cast<UndirectedAssociation *>(existingRelationships->find(this)->second);
-        undirectedAssociation->setName(associationName.toStdString());
-        undirectedAssociation->setFirstClassCardinality(firstCardinality.toStdString());
-        undirectedAssociation->setSecondClassCardinality(secondCardinality.toStdString());
-    }
-    else if(editDialog->deleteRelationship()) {
-        // Delete from class diagram
+        *oldUndirectedAssociation = newUndirectedAssociation;
+
+        sceneUpdateObservable->sceneChanged();
+    } else if(editDialog.deleteRelationship()) {
+        // Delete from class diagram and memory
         Relationship *undirectedAssociation = existingRelationships->find(this)->second;
         classDiagram->removeRelationship(undirectedAssociation);
+        delete undirectedAssociation;
 
         // Delete from existing relationships
         existingRelationships->erase(this);
 
         // Delete from memory and scene
         delete this;
+
+        sceneUpdateObservable->sceneChanged();
     }
-
-
 }
 
 /**

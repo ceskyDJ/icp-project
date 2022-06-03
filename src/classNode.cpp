@@ -15,16 +15,20 @@
 #include "ClassEditDialog.h"
 #include "GeneralizationLine.h"
 #include "Line.h"
+#include "SceneUpdateObservable.h"
 
 /**
  * Sets a class node entity.
  *
- * @param classEntity Class which is going to be drawn.
+ * @param classEntity Class which is going to be drawn
+ * @param existingClasses Classes existing in diagram
+ * @param sceneUpdateObservable Observable for notifying about scene changes
  */
 ClassNode::ClassNode(
+    Class *classEntity,
     std::unordered_map<std::string, ClassNode *> *existingClasses,
-    Class *classEntity
-): classEntity{classEntity}, existingClasses{existingClasses}
+    SceneUpdateObservable *sceneUpdateObservable
+): classEntity{classEntity}, existingClasses{existingClasses}, sceneUpdateObservable{sceneUpdateObservable}
 {
     setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
 
@@ -283,25 +287,54 @@ QString ClassNode::modifierToString(AccessModifier mod) const
  */
 void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
-    ClassEditDialog *classEditDialog = new ClassEditDialog(this->getClassEntity());
-    if(classEditDialog->exec() == QDialog::Accepted)
-    {
-        Class *newClassEntity{classEditDialog->getClassEntity()};
+    Class newClassEntity{*classEntity};
+    auto *classEditDialog = new ClassEditDialog(&newClassEntity);
 
+    if (classEditDialog->exec() == QDialog::Accepted) {
         // Propagate name change to existing classes map
-        if (classEntity->getName() != newClassEntity->getName()) {
+        if (classEntity->getName() != newClassEntity.getName()) {
             // Delete old key with this class node
             auto itemForDeletion = existingClasses->find(classEntity->getName());
             existingClasses->erase(itemForDeletion);
 
             // Add this class node with updated key
-            existingClasses->insert({newClassEntity->getName(), this});
+            existingClasses->insert({newClassEntity.getName(), this});
         }
 
-        this->setEntity(newClassEntity);
-        update();
+        // Update class entity
+        if (*classEntity != newClassEntity) {
+            *classEntity = newClassEntity;
+            update();
+        }
     }
+}
 
+/**
+ * Event handler for mouse release event
+ *
+ * @param event Event details
+ */
+void ClassNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mouseReleaseEvent(event);
+
+    if (isMoved) {
+        sceneUpdateObservable->sceneChanged();
+
+        isMoved = false;
+    }
+}
+
+/**
+ * Event handler for mouse move event
+ *
+ * @param event Event details
+ */
+void ClassNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsItem::mouseMoveEvent(event);
+
+    isMoved = true;
 }
 
 /**
@@ -358,6 +391,9 @@ QVariant ClassNode::itemChange(GraphicsItemChange change, const QVariant &value)
         classEntity->setCoordinates(newCoords);
 
         rePaintLines();
+
+        // FIXME: Generates too many mementos
+//        sceneUpdateObservable->sceneChanged();
     }
 
     return QGraphicsItem::itemChange(change, value);

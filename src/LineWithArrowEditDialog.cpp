@@ -15,9 +15,10 @@
  *
  * @param relationship
  */
-LineWithArrowEditDialog::LineWithArrowEditDialog(LineWithArrow *relationship)
+LineWithArrowEditDialog::LineWithArrowEditDialog(
+    LineWithArrow *relationship
+): sceneUpdateObservable{relationship->getSceneUpdateObservable()}, relationshipLine{relationship}
 {
-    relationshipLine = relationship;
     initializeComponents();
     setAllButtons();
     connectComponents();
@@ -78,13 +79,14 @@ void LineWithArrowEditDialog::switchArrow()
     // Update scene
     relationshipLine->switchNodes();
     setTitle();
+    relationshipLine->update();
 
     // Update relationship in class diagram
     std::unordered_map<Line *, Relationship *> *existingRelationships = relationshipLine->getExistingRelationships();
     Relationship *relationship = existingRelationships->find(relationshipLine)->second;
     relationship->swapClasses();
 
-    relationshipLine->update();
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -105,6 +107,8 @@ void LineWithArrowEditDialog::removeRelationship()
     relationshipLine->getToClassNode()->removeConnection(relationshipLine);
     delete relationshipLine;
     close();
+
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**

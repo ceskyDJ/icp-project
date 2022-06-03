@@ -17,22 +17,26 @@
 #include <QPainter>
 #include "classNode.h"
 #include "ClassDiagram.h"
+#include "SceneUpdateObservable.h"
 
 class ClassNode;
 class LineText;
 
-class Line : public QGraphicsLineItem {
+class Line: public QGraphicsLineItem {
 public:
     /**
      * Line constructor
      *
      * @param existingRelationships Pointer to map of existing relationships and their lines
      * @param classDiagram Pointer to class diagram
+     * @param sceneUpdateObservable Observable for distributing information about scene changes
      */
     Line(
         std::unordered_map<Line *, Relationship *> *existingRelationships,
-        ClassDiagram *classDiagram
-    ): existingRelationships{existingRelationships}, classDiagram{classDiagram} {};
+        ClassDiagram *classDiagram,
+        SceneUpdateObservable *sceneUpdateObservable
+    ): existingRelationships{existingRelationships}, classDiagram{classDiagram},
+        sceneUpdateObservable{sceneUpdateObservable} {};
 
     ~Line();
 
@@ -96,12 +100,19 @@ public:
         return classDiagram;
     }
 
+    /**
+     * Getter for scene update observable
+     *
+     * @return Pointer to observable for distributing information about scene changes
+     */
+    SceneUpdateObservable *getSceneUpdateObservable()
+    {
+        return sceneUpdateObservable;
+    }
+
     void switchNodes();
 protected:
-    QPen pen{Qt::black, 2, Qt::SolidLine};
-    ClassNode *fromClassNode;
-    ClassNode *toClassNode;
-    qreal lineBoundingWidth = 10;
+    // Dependencies
     /**
      * Pointer to map of existing relationships and their lines
      */
@@ -110,6 +121,15 @@ protected:
      * Pointer to class diagram
      */
     ClassDiagram *classDiagram;
+    /**
+     * Observable for distributing information about scene changes
+     */
+    SceneUpdateObservable *sceneUpdateObservable;
+
+    QPen pen{Qt::black, 2, Qt::SolidLine};
+    ClassNode *fromClassNode;
+    ClassNode *toClassNode;
+    qreal lineBoundingWidth = 10;
 
 
     QPointF getCenterPos(ClassNode *node) const;

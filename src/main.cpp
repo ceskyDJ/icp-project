@@ -7,10 +7,12 @@ int main(int argc, char **argv)
 {
     QApplication app{argc, argv};
 
+    // Dependencies
     FileClassDiagramRepository classDiagramRepository{};
     ClassDiagramManager classDiagramManager{&classDiagramRepository};
+    SceneUpdateObservable sceneUpdateObservable{};
 
-    ClassDiagramWindow classDiagramWindow{&classDiagramManager};
+    ClassDiagramWindow classDiagramWindow{&classDiagramManager, &sceneUpdateObservable};
 
     classDiagramWindow.showMaximized();
 
