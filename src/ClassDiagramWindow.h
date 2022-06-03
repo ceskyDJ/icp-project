@@ -78,6 +78,7 @@ private:
     QColor nodeNormalColor = Qt::black;
     QColor nodeColor = nodeNormalColor;
     QColor nodeFirstSelectedColor = Qt::darkMagenta;
+    QColor firstPhaseSelectedColor = Qt::darkCyan;
     Line *newLine;
     /**
      * Is currently edited diagram saved to persistent storage (after last update)?
@@ -102,7 +103,6 @@ private:
     void setAllNodesColor(QColor color);
     QWidget *prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton);
     QWidget *prepareSequencDiagramTab(QString label);
-    ClassNode *getSelectedNode();
     void connectNodes();
     void createNewLine(Line *line);
     void removeClassNode(ClassNode *classNode);
@@ -112,7 +112,7 @@ private slots:
     void addClassNode();
     void removeSelectedClassNodes();
     void associationSelected();
-    void selectionChanged();
+    void nodePressed(ClassNode *node);
     void compositionSelected();
     void agregationSelected();
     void generalisationSelected();

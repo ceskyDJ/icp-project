@@ -16,6 +16,7 @@ class LineWithArrow: public Line
 public:
     using Line::Line;
 protected:
+    qreal selfPadding = 50;
     double arrowHeight = 5;
     double arrowWidth = 20;
     /**
@@ -26,6 +27,13 @@ protected:
      * @param widget pointer to widget
      */
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
+
+    /**
+     * Paints self realtionship.
+     *
+     * @param painter Painter to paint relationship
+     */
+    void paintSelfRelationship(QPainter *painter);
 
     /**
      * Override method which returns bounding rect of line.
@@ -46,6 +54,8 @@ protected:
      * Shows dialog to edit relationship.
      */
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
+    QRectF adjustSelfRect(QRectF rect, int multyply) const;
+    QPainterPath shape() const;
 };
 
 #endif // LINEWITHARROW_H

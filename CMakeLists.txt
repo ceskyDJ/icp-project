@@ -30,6 +30,7 @@ add_executable(icp_project
         src/AssociationLine.h
         src/AssociationLineEditDialog.h
         src/ClassDiagram.h
+        src/ClassNodeEmmitor.h
         src/DirectedAssociationLine.h
         src/Line.h
         src/LineWithArrow.h
@@ -87,6 +88,7 @@ add_executable(icp_project
         src/AssociationLine.cpp
         src/AssociationLineEditDialog.cpp
         src/ClassMethodType.cpp
+        src/ClassNodeEmmitor.cpp
         src/ClassType.cpp
         src/DirectedAssociationLine.cpp
         src/LineWithArrow.cpp

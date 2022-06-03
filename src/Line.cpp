@@ -23,8 +23,9 @@ class LineText;
  * @param fromNode source node
  * @param toNode target node
  */
-void Line::initialize(ClassNode *fromNode, ClassNode *toNode)
+void Line::initialize(ClassNode *fromNode, ClassNode *toNode, bool selfRealtionship)
 {
+    selfRealtionshipFlag = selfRealtionship;
     fromClassNode = fromNode;
     toClassNode = toNode;
     setZValue(-1);
@@ -48,8 +49,6 @@ void Line::drawLine()
 QPointF Line::getCenterPos(ClassNode *node) const
 {
     QRectF rect = node->boundingRect();
-    qreal a = rect.x();
-    (void)a;
     int xMid = rect.x() + rect.width()/2;
     int yMid = rect.y() + rect.height()/2;
     return QPointF{node->x() + xMid , node->y()+yMid};
@@ -178,4 +177,18 @@ QLineF Line::getParallelLine(QLineF parallelLine, QPointF startPoint) const
     newLine.setAngle(parallelLine.angle());
     newLine.setLength(parallelLine.length());
     return newLine;
+}
+
+
+/**
+ * Returns bounding rect of text with current font.
+ *
+ * @param text - bounding rectangle around this text
+ * @return bounding rectangle around parameter
+ */
+QRectF Line::getTextBoundingBox(QString text) const
+{
+    text = (text.count() == 0)? "I":text;
+    static const QFontMetricsF metrics{qApp->font()};
+    return metrics.boundingRect(text);
 }

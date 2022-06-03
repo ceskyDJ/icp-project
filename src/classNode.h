@@ -20,8 +20,10 @@
 #include "ClassMethod.h"
 #include "Line.h"
 #include "SceneUpdateObservable.h"
+#include "ClassNodeEmmitor.h"
 
 class Line;
+class ClassNodeEmmitor;
 
 class ClassNode : public QGraphicsItem
 {
@@ -204,6 +206,7 @@ public:
         connectedLines.remove(line);
     }
 
+    ClassNodeEmmitor* emitor;
 private:
     /**
      * Pointer to stored class

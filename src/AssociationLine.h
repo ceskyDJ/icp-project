@@ -84,7 +84,6 @@ protected:
 
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
-    QRectF getTextBoundingBox(QString text) const;
     QRectF boundingRect() const;
     QRectF prepareBoundingBox(QRectF rect);
     QRectF locateCardinality(QRectF rect, int modifier, QLineF line, qreal additionPadding = 0);

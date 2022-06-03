@@ -40,13 +40,14 @@ public:
         pen = QPen{Qt::black, 2, Qt::SolidLine};
         fromClassNode = nullptr;
         toClassNode = nullptr;
+        selfRealtionshipFlag = false;
     };
 
     ~Line();
 
     void drawLine();
 
-    void initialize(ClassNode *fromNode, ClassNode *toNode);
+    void initialize(ClassNode *fromNode, ClassNode *toNode, bool selfRealtionship);
 
     /**
      * Returns a classNode that is pointed to, in relationship.
@@ -138,7 +139,7 @@ protected:
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
     qreal lineBoundingWidth = 10;
-
+    bool selfRealtionshipFlag;
 
     QPointF getCenterPos(ClassNode *node) const;
     QPointF getIntersectPoint(QLineF connectingLine, ClassNode *node) const;
@@ -146,5 +147,6 @@ protected:
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget);
     QPainterPath shape() const;
     QLineF getParallelLine(QLineF parallelLine, QPointF startPoint) const;
+    QRectF getTextBoundingBox(QString text) const;
 };
 #endif // LINE_H

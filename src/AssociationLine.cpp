@@ -95,18 +95,6 @@ void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem *
     painter->drawText(secondCardinalityRect, Qt::TextSingleLine, secondCardinality);
 }
 
-/**
- * Returns bounding rect of text with current font.
- *
- * @param text - bounding rectangle around this text
- * @return bounding rectangle around parameter
- */
-QRectF AssociationLine::getTextBoundingBox(QString text) const
-{
-    text = (text.count() == 0)? "I":text;
-    static const QFontMetricsF metrics{qApp->font()};
-    return metrics.boundingRect(text);
-}
 
 /**
  * Override method which returns bounding rect of line.
