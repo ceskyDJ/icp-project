@@ -78,18 +78,39 @@ void DirectedAssociationLine::drawTexts(QPainter *painter, QLineF line) const
 void DirectedAssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
 {
     DirectedAssociationLineEditDialog dialog{this};
-    if (dialog.exec() == QDialog::Accepted)
-    {
+    if (dialog.exec() == QDialog::Accepted && relationshipName != dialog.getNewName()) {
+        // Update scene
         relationshipName = dialog.getNewName();
         update();
+
+        // Update class diagram
+        auto directedAssociation = dynamic_cast<DirectedAssociation *>(existingRelationships->find(this)->second);
+        directedAssociation->setName(relationshipName.toStdString());
+
+        sceneUpdateObservable->sceneChanged();
     }
-    else if (dialog.switchArrowsPressed())
-    {
-        ClassNode *temp = fromClassNode;
-        fromClassNode = toClassNode;
-        toClassNode = temp;
+    else if (dialog.switchArrowsPressed()) {
+        // Update scene
+        std::swap(fromClassNode, toClassNode);
         update();
+
+        // Update class diagram
+        auto directedAssociation = dynamic_cast<DirectedAssociation *>(existingRelationships->find(this)->second);
+        directedAssociation->swapClasses();
+
+        sceneUpdateObservable->sceneChanged();
     }
-    else if(dialog.removePressed())
+    else if(dialog.removePressed()) {
+        // Delete from class diagram
+        Relationship *relationship = existingRelationships->find(this)->second;
+        classDiagram->removeRelationship(relationship);
+
+        // Delete from existing relationships
+        existingRelationships->erase(this);
+
+        // Delete from scene and memory
         delete this;
+
+        sceneUpdateObservable->sceneChanged();
+    }
 }

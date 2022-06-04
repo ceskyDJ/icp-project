@@ -34,15 +34,15 @@ public:
      *
      * @param newName that will be set as relationship name.
      */
-    void setName(QString newName)
+    void setName(QString &newName)
     {
         relationshipName = newName;
     }
 protected:
-    void drawArrow(QPainter *painter) const;
-    void drawTexts(QPainter *painter, QLineF line) const;
-    QString relationshipName = "Relationship";
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
+    void drawArrow(QPainter *painter) const override;
+    void drawTexts(QPainter *painter, QLineF line) const override;
+    QString relationshipName = "relationship name";
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/) override;
 };
 
 #endif // DIRECTEDASSOCIATIONLINE_H

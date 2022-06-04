@@ -391,7 +391,13 @@ void ClassDiagramWindow::connectNodes()
     } else if (relationshipType == typeid(CompositionLine)) {
         relationship = new Composition{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
     } else if (relationshipType == typeid(DirectedAssociationLine)) {
-        relationship = new DirectedAssociation{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
+        auto *directedAssociationLine = dynamic_cast<DirectedAssociationLine *>(newLine);
+
+        relationship = new DirectedAssociation{
+            firstToSelect->getClassEntity(),
+            secondToSelect->getClassEntity(),
+            directedAssociationLine->getName().toStdString()
+        };
     } else if (relationshipType == typeid(GeneralizationLine)) {
         relationship = new Generalization{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
     } else if (relationshipType == typeid(RealizationLine)) {
@@ -548,6 +554,12 @@ void ClassDiagramWindow::redrawClassDiagram()
             line = new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
         } else if (relationshipType == typeid(DirectedAssociation)) {
             line = new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+            auto *directedAssociationLine = dynamic_cast<DirectedAssociationLine *>(line);
+
+            // Add name
+            auto name = QString::fromStdString(item->getName());
+
+            directedAssociationLine->setName(name);
         } else if (relationshipType == typeid(Generalization)) {
             line = new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
         } else if (relationshipType == typeid(Realization)) {
@@ -556,11 +568,13 @@ void ClassDiagramWindow::redrawClassDiagram()
             line = new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
             auto *associationLine = dynamic_cast<AssociationLine *>(line);
 
-            // Add cardinalities
+            // Add name and cardinalities
             auto *undirectedAssociation = dynamic_cast<UndirectedAssociation *>(item);
+            auto name = QString::fromStdString(undirectedAssociation->getName());
             auto firstCardinality = QString::fromStdString(undirectedAssociation->getFirstClassCardinality());
             auto secondCardinality = QString::fromStdString(undirectedAssociation->getSecondClassCardinality());
 
+            associationLine->setName(name);
             associationLine->setFirstCardinality(firstCardinality);
             associationLine->setSecondCardinality(secondCardinality);
         } else {
