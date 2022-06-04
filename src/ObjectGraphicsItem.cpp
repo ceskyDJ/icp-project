@@ -11,6 +11,8 @@
 #include <QStyleOptionGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QtDebug>
+#include "ObjectGraphicsItemEditDialog.h"
+
 /**
  * Initializes new graphics object in sequence diagram.
  *
@@ -108,7 +110,7 @@ qreal ObjectGraphicsItem::width() const
 {
     std::string longer = std::max(object->getInstanceClass().getReferredClassName() + ":",
                                   object->getName(),
-                                  [](std::string a, std::string b) {return a.size() > b.size();});
+                                  [](std::string a, std::string b) {return a.size() < b.size();});
     return getTextBoundingBox(QString::fromStdString(longer)).width() + textPadding * 2.0;
 }
 
@@ -133,14 +135,6 @@ int ObjectGraphicsItem::getSceneHeight()
     QList <QGraphicsView *> allViews = scene()->views();
     QGraphicsView *firstView = allViews[0];
     return firstView->height();
-}
-
-/**
- * Handles double click event - shows eddit dialog, then changes object.
- */
-void ObjectGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
-{
-
 }
 
 /**
@@ -254,4 +248,29 @@ QRectF ObjectGraphicsItem::resizeArea()
 void ObjectGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 {
     this->setCursor(Qt::ArrowCursor);
+}
+
+/**
+ * If cursor is in header area and double clicked, the dialog for edit object name and class will be shown
+ * and handled.
+ *
+ * @param event recieved event
+ */
+void ObjectGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    QRectF headerArea{0,0, width(), headerHeight};
+    if(headerArea.contains(event->pos()))
+    {
+        ObjectGraphicsItemEditDialog dialog{QString::fromStdString(object->getName()),
+                    QString::fromStdString(object->getInstanceClass().getReferredClassName())};
+        int result = dialog.exec();
+        if(result == QDialog::Accepted)
+        {
+            object->setName(dialog.getObjectName().toStdString());
+            //TODO set class reference
+            update();
+        }
+        else if (result == QDialog::Rejected)
+            delete this;
+    }
 }
