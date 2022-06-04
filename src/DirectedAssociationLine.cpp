@@ -9,6 +9,7 @@
 #include <QPolygonF>
 #include <QLinearGradient>
 #include <QPainterPath>
+#include "DirectedAssociationLineEditDialog.h"
 
 /**
  * Set arrow height and width.
@@ -49,4 +50,46 @@ void DirectedAssociationLine::drawArrow(QPainter *painter) const
     arrowPath.addPolygon(arrowPolygon);
     painter->setBrush(arrowGradient);
     painter->drawPath(arrowPath);
+}
+
+/**
+ * Draws relationship name in the middle of the line
+ *
+ * @param painter painter to draw a text
+ * @param line currnet line
+ */
+void DirectedAssociationLine::drawTexts(QPainter *painter, QLineF line) const
+{
+    QRectF textRect = getTextBoundingBox(relationshipName);
+    textRect.setY(-textRect.height() * 1.5);
+    textRect.setX(-textRect.width() * 0.5);
+
+    qreal angle = (line.angle() < 90 || line.angle() > 270)? -line.angle(): - line.angle() + 180;
+    painter->translate(line.center());
+    painter->rotate(angle);
+    painter->drawText(textRect, relationshipName);
+    painter->rotate(-angle);
+    painter->translate(-line.center());
+}
+
+/**
+ * Opens dialog for edditing line attributes and then handles with return value.
+ */
+void DirectedAssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
+{
+    DirectedAssociationLineEditDialog dialog{this};
+    if (dialog.exec() == QDialog::Accepted)
+    {
+        relationshipName = dialog.getNewName();
+        update();
+    }
+    else if (dialog.switchArrowsPressed())
+    {
+        ClassNode *temp = fromClassNode;
+        fromClassNode = toClassNode;
+        toClassNode = temp;
+        update();
+    }
+    else if(dialog.removePressed())
+        delete this;
 }

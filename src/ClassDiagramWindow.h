@@ -36,12 +36,14 @@ class ClassDiagramWindow : public QMainWindow, SceneUpdateObserver
 {
     Q_OBJECT
 public:
-    explicit ClassDiagramWindow(ClassDiagramManager *classDiagramManager, SceneUpdateObservable *sceneUpdateObservable);
+    ClassDiagramWindow(ClassDiagramManager *classDiagramManager, SceneUpdateObservable *sceneUpdateObservable);
 
     /**
      * Logs scene changes for saving and undo/redo mechanisms
      */
     void logChanges() noexcept override;
+
+    enum state{lineCreation, nodeRemoving, none};
 
 private:
     // Dependencies
@@ -92,6 +94,7 @@ private:
      * @par When diagram is loaded from file, the source file will be used.
      */
     std::string targetFileName{};
+    state currentState;
 
     void setModellingSpace();
     void setTaskBars();
@@ -108,9 +111,12 @@ private:
     void removeClassNode(ClassNode *classNode);
     void clearScene();
     void redrawClassDiagram();
+    void setupLineHandle(ClassNode* selectedOne);
+    void removeHandle(ClassNode* selectedOne);
+    void removeClassNodes(QList<QGraphicsItem *> selectedItems);
 private slots:
     void addClassNode();
-    void removeSelectedClassNodes();
+    void removeSelected();
     void associationSelected();
     void nodePressed(ClassNode *node);
     void compositionSelected();

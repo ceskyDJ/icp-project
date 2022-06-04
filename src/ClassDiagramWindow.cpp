@@ -21,7 +21,7 @@
 #include "UndirectedAssociation.h"
 #include "InvalidDataStorageException.h"
 #include "InvalidInputDataException.h"
-#include "ClassNodeEmmitor.h"
+#include "ClassNodeEmitter.h"
 
 /**
  * ClassDiagramWindow::ClassDiagramWindow Initialiezes components and prepare all QWidgets and controls.
@@ -36,16 +36,15 @@ ClassDiagramWindow::ClassDiagramWindow(
 {
     // Register this observer for scene updates
     sceneUpdateObservable->registerObserver(this);
+
     newLine = nullptr;
+    currentState = state::none;
 
     initializeComponents();
     connectComponents();
     setTooBox();
     setTaskBars();
     setMainWindow();
-
-    // Log empty scene
-//    sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -215,7 +214,7 @@ void ClassDiagramWindow::addClassNode()
     newClassNode->setPos((newClassNode->boundingRect().width() + nodeSpace) * (classNumber % 5),
                          (newClassNode->boundingRect().height() + nodeSpace) * (classNumber / 5));
 
-    connect(newClassNode->emitor, &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
+    connect(&(newClassNode->emitter), &ClassNodeEmitter::nodePressed, this, &ClassDiagramWindow::nodePressed);
     classDiagramScene->addItem(newClassNode);
     storedClasses.insert({newClass->getName(), newClassNode});
 
@@ -223,11 +222,10 @@ void ClassDiagramWindow::addClassNode()
 }
 
 /**
- * ClassDiagramWindow::removeSelectedClassNodes Removes all selected class nodes.
+ * Removes all selected class nodes.
  */
-void ClassDiagramWindow::removeSelectedClassNodes()
+void ClassDiagramWindow::removeClassNodes(QList<QGraphicsItem *> selectedItems)
 {
-    QList<QGraphicsItem *> selectedItems =  classDiagramScene->selectedItems();
     for (QGraphicsItem *item : selectedItems)
     {
         auto node = dynamic_cast<ClassNode *>(item);
@@ -246,7 +244,7 @@ void ClassDiagramWindow::removeSelectedClassNodes()
  */
 void ClassDiagramWindow::removeClassNode(ClassNode *classNode)
 {
-    QSet<Line *> connections = classNode->getConnections();
+    QVector<Line *> connections = classNode->getConnections();
     for(Line *connection: connections) {
         // Delete corresponding relationship from class diagram and memory
         Relationship *relationship = storedRelationships.find(connection)->second;
@@ -283,7 +281,7 @@ void ClassDiagramWindow::removeClassNode(ClassNode *classNode)
 void ClassDiagramWindow::connectComponents()
 {
     connect(classShapeToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::addClassNode);
-    connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeSelectedClassNodes);
+    connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeSelected);
     connect(associationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::associationSelected);
 
     connect(compositionToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::compositionSelected);
@@ -306,7 +304,6 @@ void ClassDiagramWindow::setAllNodesColor(QColor color)
         ClassNode *definetlyNode = dynamic_cast<ClassNode *>(maybeNode);
         if(definetlyNode)
             definetlyNode->setBorderColor(nodeColor);
-
     }
 }
 
@@ -364,28 +361,10 @@ void ClassDiagramWindow::realizationSelected()
  */
 void ClassDiagramWindow::nodePressed(ClassNode *selectedOne)
 {
-    if (nodeColor == Qt::black)
-        return;
-    if(nodeColor == realtionShipSelectedColor && firstToSelect == nullptr)
-    {
-        firstToSelect = selectedOne;
-        if(firstToSelect)
-        {
-            setAllNodesColor(firstPhaseSelectedColor);
-            firstToSelect->setBorderColor(nodeFirstSelectedColor);
-        }
-    }
-    else if(nodeColor == firstPhaseSelectedColor && firstToSelect != nullptr) //first node selected and still in selctionMode
-    {
-        secondToSelect = selectedOne;
-        if(secondToSelect)
-        {
-            setAllNodesColor(nodeNormalColor);
-            classDiagramScene->clearSelection();
-            connectNodes();
-        }
-    }
-    classDiagramScene->clearSelection();
+    if(currentState == state::lineCreation)
+        setupLineHandle(selectedOne);
+    else if (currentState == state::nodeRemoving)
+        removeHandle(selectedOne);
 }
 
 /**
@@ -444,11 +423,74 @@ void ClassDiagramWindow::createNewLine(Line *line)
 {
     if (newLine != nullptr)
         delete newLine;
+    QList<QGraphicsItem *> items = classDiagramScene->selectedItems();
+    if(items.count() == 2)
+    {
+        newLine = line;
+        firstToSelect = dynamic_cast<ClassNode*>(items[0]);
+        secondToSelect = dynamic_cast<ClassNode*>(items[1]);
+        connectNodes();
+    }
+    else
+    {
+        classDiagramScene->clearSelection();
+        setAllNodesColor(realtionShipSelectedColor);
+        newLine = line;
+        currentState = state::lineCreation;
+    }
+}
+
+/**
+ * Handles situation when button for a new line was pressed.
+ */
+void ClassDiagramWindow::setupLineHandle(ClassNode* selectedOne)
+{
+    if(nodeColor == realtionShipSelectedColor && firstToSelect == nullptr)
+    {
+        firstToSelect = selectedOne;
+        if(firstToSelect)
+        {
+            setAllNodesColor(firstPhaseSelectedColor);
+            firstToSelect->setBorderColor(nodeFirstSelectedColor);
+        }
+    }
+    else if(nodeColor == firstPhaseSelectedColor && firstToSelect != nullptr) //first node selected and still in selctionMode
+    {
+        secondToSelect = selectedOne;
+        if(secondToSelect)
+        {
+            setAllNodesColor(nodeNormalColor);
+            classDiagramScene->clearSelection();
+            connectNodes();
+            currentState = state::none;
+        }
+    }
     classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    classDiagramScene->clearFocus();
-    classDiagramScene->clearSelection();
-    newLine = line;
+}
+
+/**
+ * Handles situation when button for remove was selected
+ */
+void ClassDiagramWindow::removeHandle(ClassNode* selectedOne)
+{
+    removeClassNodes(QList<QGraphicsItem *> {selectedOne});
+    currentState = state::none;
+    setAllNodesColor(nodeNormalColor);
+}
+
+/**
+ * Slot is invoked when removeButton was pressed.
+ */
+void ClassDiagramWindow::removeSelected()
+{
+    QList<QGraphicsItem *> selectedItems = classDiagramScene->selectedItems();
+    if(selectedItems.size() > 0)
+        removeClassNodes(selectedItems);
+    else
+    {
+        setAllNodesColor(Qt::red);
+        currentState = state::nodeRemoving;
+    }
 }
 
 void ClassDiagramWindow::clearScene()
@@ -478,7 +520,7 @@ void ClassDiagramWindow::redrawClassDiagram()
     for (const auto &item: classDiagram.getClasses()) {
         auto classNode = new ClassNode(item, &storedClasses, sceneUpdateObservable);
 
-        connect(classNode->emitor, &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
+        connect(&(classNode->emitter), &ClassNodeEmitter::nodePressed, this, &ClassDiagramWindow::nodePressed);
         classDiagramScene->addItem(classNode);
         storedClasses.insert({item->getName(), classNode});
     }

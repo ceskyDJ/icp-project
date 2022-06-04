@@ -77,8 +77,8 @@ public:
     }
 protected:
     QString associationName = "association name";
-    QString firstCardinality = "*f";
-    QString secondCardinality = "*s";
+    QString firstCardinality = "*";
+    QString secondCardinality = "*";
     qreal padding = 20;
 
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);

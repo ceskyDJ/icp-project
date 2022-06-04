@@ -96,8 +96,13 @@ void AssociationLineEditDialog::setFormLayout()
  */
 void AssociationLineEditDialog::setMainLayout()
 {
-    mainLayout->addLayout(lineEditLayout);
-    mainLayout->addLayout(buttonLayout);
+    QWidget *lineEditWidget = new QWidget();
+    lineEditWidget->setLayout(lineEditLayout);
+    QWidget *buttonWidget = new QWidget();
+    buttonWidget->setLayout(buttonLayout);
+
+    mainLayout->addWidget(lineEditWidget);
+    mainLayout->addWidget(buttonWidget);
     setLayout(mainLayout);
 }
 
@@ -109,7 +114,9 @@ void AssociationLineEditDialog::setAllButtons()
     setOneButton(QIcon{":/closeCross.png"}, "Remove relationship", deleteButton);
     setOneButton(QIcon{":/nike.png"}, "Accept changes", acceptButton);
     setOneButton(QIcon{":/cancel.png"}, "Cancel", cancelButton);
-    acceptButton->setDefault(true);
+    acceptButton->setAutoDefault(true);
+    deleteButton->setAutoDefault(false);
+    cancelButton->setAutoDefault(false);
 }
 
 /**

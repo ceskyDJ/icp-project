@@ -33,6 +33,7 @@ void LineWithArrow::paint(QPainter * painter, const QStyleOptionGraphicsItem * /
     qreal centerY = line.p2().y();
     painter->drawLine(line);
 
+    drawTexts(painter, line);
     painter->translate(centerX, centerY);
     painter->rotate(-line.angle());
     double side = sqrt((arrowWidth * arrowWidth)/2);
@@ -64,6 +65,7 @@ void LineWithArrow::paintSelfRelationship(QPainter *painter)
     for (int i = 0; i < linePoints.size() - 1; i++)
         painter->drawLine(linePoints[i], linePoints[i + 1]);
 
+    drawTexts(painter, QLineF{linePoints[2], linePoints[3]});
     painter->translate(QPointF{bounding.x(), botPadding + arrowWidth / 2});
     painter->rotate(270);
     QRect arrow = QRect(-arrowWidth / 2, -arrowHeight / 2, arrowWidth, arrowHeight);
@@ -99,7 +101,6 @@ void LineWithArrow::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
     LineWithArrowEditDialog *edit = new LineWithArrowEditDialog(this);
     edit->exec();
-    update();
 }
 
 /**
@@ -113,4 +114,15 @@ QRectF LineWithArrow::adjustSelfRect(QRectF rect, int multiply) const
     rect.adjust((arrowWidth + lineBoundingWidth * 2) * -multiply, lineBoundingWidth * 2 * -multiply,
                 (arrowWidth + lineBoundingWidth * 2) * multiply, lineBoundingWidth * 2 * multiply);
     return rect;
+}
+
+/**
+ * Draws text if needed
+ *
+ * @param painter
+ * @param line
+ */
+void LineWithArrow::drawTexts(QPainter *, QLineF) const
+{
+
 }

@@ -20,10 +20,9 @@
 #include "ClassMethod.h"
 #include "Line.h"
 #include "SceneUpdateObservable.h"
-#include "ClassNodeEmmitor.h"
+#include "ClassNodeEmitter.h"
 
 class Line;
-class ClassNodeEmmitor;
 
 class ClassNode : public QGraphicsItem
 {
@@ -191,7 +190,7 @@ public:
      *
      * @return QSet of line * (connections).
      */
-    QSet<Line *> getConnections()
+    QVector<Line *> getConnections()
     {
         return connectedLines;
     }
@@ -203,10 +202,13 @@ public:
      */
     void removeConnection(Line *line)
     {
-        connectedLines.remove(line);
+        int index = connectedLines.indexOf(line);
+        if(index != -1)
+            connectedLines.remove(index);
     }
 
-    ClassNodeEmmitor* emitor;
+    ClassNodeEmitter emitter;
+    int getNumberOfConnectionsWithNode(ClassNode *secondNode, const Line *comparedLine, int *index) const;
 private:
     /**
      * Pointer to stored class
@@ -230,7 +232,7 @@ private:
     const int lineIndent = 5;
     const int Padding = 10;
     QColor borderColor = Qt::black;
-    QSet<Line *> connectedLines;
+    QVector<Line *> connectedLines;
     /**
      * Is class node moved since last scene change log
      *
@@ -246,8 +248,8 @@ private:
     void getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const;
     void setFontItalic(bool enable, QPainter *painter);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
     void rePaintLines();
     bool isMethodInherited(QString methodName) const;

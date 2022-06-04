@@ -19,7 +19,7 @@ class LineWithArrowEditDialog : public QDialog
 {
 public:
     explicit LineWithArrowEditDialog(LineWithArrow *relationship);
-private:
+protected:
     // Dependencies
     /**
      * Observable for distributing information about scene changes

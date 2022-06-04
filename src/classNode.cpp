@@ -14,10 +14,10 @@
 #include <iostream>
 #include "ClassEditDialog.h"
 #include "GeneralizationLine.h"
+#include "RealizationLine.h"
 #include "Line.h"
 #include "SceneUpdateObservable.h"
 #include "AccessModifier.h"
-#include "ClassNodeEmmitor.h"
 
 /**
  * Sets a class node entity.
@@ -30,10 +30,8 @@ ClassNode::ClassNode(
     Class *classEntity,
     std::unordered_map<std::string, ClassNode *> *existingClasses,
     SceneUpdateObservable *sceneUpdateObservable
-): classEntity{classEntity}, existingClasses{existingClasses}, sceneUpdateObservable{sceneUpdateObservable}
+): emitter{nullptr, this}, classEntity{classEntity}, existingClasses{existingClasses}, sceneUpdateObservable{sceneUpdateObservable}
 {
-    emitor = new ClassNodeEmmitor(nullptr, this);
-
     setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
 
     // Set initial position
@@ -80,6 +78,7 @@ void ClassNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     std::vector<QString> methodVector = getMethodPrintable(&inheritedMethods);
     QRectF wholeRect = getWholeRect(attributeVector, methodVector);
 
+    painter->fillRect(wholeRect, Qt::white);
     int maxWidth = wholeRect.width();
     nameRect.setLeft(wholeRect.x());
     nameRect.setTop(wholeRect.y());
@@ -265,7 +264,7 @@ QString ClassNode::getMethodParametersPrintable(std::vector<MethodParameter> par
 }
 
 /**
- * @brief ClassNode::mouseDoubleClickEvent Handles double click event - shows eddit dialog, then changes entity.
+ *  Handles double click event - shows eddit dialog, then changes entity.
  */
 void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
@@ -300,7 +299,7 @@ void ClassNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseReleaseEvent(event);
 
-    emitor->emitNodePresed();
+    emitter.emitNodePresed();
 
     if (isMoved) {
         sceneUpdateObservable->sceneChanged();
@@ -322,7 +321,8 @@ void ClassNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 }
 
 /**
- * @brief ClassNode::setFontItalic sets font to italic or to normal
+ * Sets font to italic or to normal.
+ *
  * @param enable true = italic, false = normal
  * @param painter pointer to painter that should be eddited
  */
@@ -334,25 +334,27 @@ void ClassNode::setFontItalic(bool enable, QPainter *painter)
 }
 
 /**
- * @brief ClassNode::addLine adds new connections
+ * Adds new connections
+ *
  * @param newLine line to connect
  */
 void ClassNode::addLine(Line* newLine)
 {
-    connectedLines.insert(newLine);
+    connectedLines.push_back(newLine);
 }
 
 /**
- * @brief ClassNode::removeLine removes line form connected list
+ * Removes line form connected list.
+ *
  * @param oldLine line to remove
  */
 void ClassNode::removeLine(Line* oldLine)
 {
-    connectedLines.remove(oldLine);
+    connectedLines.remove(connectedLines.indexOf(oldLine));
 }
 
 /**
- * @brief ClassNode::rePaintLines Paints a line again
+ * Paints a line again
  */
 void ClassNode::rePaintLines()
 {
@@ -361,7 +363,8 @@ void ClassNode::rePaintLines()
 }
 
 /**
- * @brief ClassNode::itemChange When item is changed then repaint it
+ * When item is changed then repaint it.
+ *
  * @param change GraphicsItemChange
  * @param value const QVariant
  * @return itemchange
@@ -394,7 +397,9 @@ bool ClassNode::isMethodInherited(QString methodName) const
     QVector<ClassNode *> generalisations(QVector<ClassNode *>(0));
     for (Line * relationship: connectedLines)
     {
-        GeneralizationLine *temp = (GeneralizationLine *)relationship;
+        Line *temp = dynamic_cast<GeneralizationLine *>(relationship);
+        if(!temp)
+            temp = dynamic_cast<RealizationLine *>(relationship);
         if(temp && temp->getToClassNode() != this)
             generalisations.push_back(temp->getToClassNode());
     }
@@ -406,4 +411,32 @@ bool ClassNode::isMethodInherited(QString methodName) const
     }
 
     return false;
+}
+
+/**
+ * Count number of connections with exactly these nodes in
+ * parameters and store index of comparedLine into index.
+ *
+ * @param secondNode one node in connection line
+ * @param comparedLine Line that we are looking for.
+ * @param index returns order of same connections
+ * @return Count of connections with exactly these 2 nodes.
+ */
+int ClassNode::getNumberOfConnectionsWithNode(ClassNode *secondNode, const Line *comparedLine, int *index) const
+{
+    int counter = 0;
+    *index = -1;
+    for(int i = 0; i < connectedLines.size(); i++)
+    {
+        ClassNode *fromNode = connectedLines[i]->getFromClassNode();
+        ClassNode *toNode = connectedLines[i]->getToClassNode();
+        if((this == fromNode && toNode == secondNode) || (this == toNode && fromNode == secondNode))
+        {
+            if(comparedLine == connectedLines[i])
+                *index = counter;
+            ++counter;
+
+        }
+    }
+    return counter;
 }

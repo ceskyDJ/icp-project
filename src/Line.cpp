@@ -19,7 +19,7 @@
 class LineText;
 
 /**
- * @brief Line::initialize initializes line - from and to + pen
+ * Initializes line - from and to + initializes pen.
  * @param fromNode source node
  * @param toNode target node
  */
@@ -29,7 +29,7 @@ void Line::initialize(ClassNode *fromNode, ClassNode *toNode, bool selfRealtions
     fromClassNode = fromNode;
     toClassNode = toNode;
     setZValue(-1);
-    setPen(QPen{Qt::black, 2, Qt::SolidLine});
+    setPen(pen);
     drawLine();
 }
 
@@ -42,7 +42,8 @@ void Line::drawLine()
 }
 
 /**
- * @brief Line::getCenterPos Gets Center position of widget.
+ * Gets Center position of widget.
+ *
  * @param node node, where should be counted a middle point
  * @return point where is middle of node
  */
@@ -55,7 +56,8 @@ QPointF Line::getCenterPos(ClassNode *node) const
 }
 
 /**
- * @brief Line::getShortestLine Counts shortest line connected between 2 nodes
+ * Counts shortest line connected between 2 nodes
+ *
  * @param first First selected node (source)
  * @param second Second selected node (target)
  * @return Shotest line between points
@@ -64,6 +66,8 @@ QLineF Line::getShortestLine(ClassNode *first, ClassNode *second) const
 {
     QPointF firstPoint = getCenterPos(first);
     QPointF secondPoint = getCenterPos(second);
+
+    movePointsByConnectionCount(&firstPoint, &secondPoint, first, second);
 
     QPointF firstIntersectionPoint;
     QPointF secondIntersectionPoint;
@@ -77,7 +81,8 @@ QLineF Line::getShortestLine(ClassNode *first, ClassNode *second) const
 }
 
 /**
- * @brief Line::getIntersectPoint Counts point which intersects line border and line from one node to second node.
+ * Counts point which intersects line border and line from one node to second node.
+ *
  * @param connectingLine line between center of nodes
  * @param node Node of which will be count an intersection
  * @return Intersection point
@@ -103,7 +108,8 @@ QPointF Line::getIntersectPoint(QLineF connectingLine, ClassNode *node) const
 }
 
 /**
- * @brief Line::paint Draws a line
+ * Draws a line.
+ *
  * @param painter Painter allows to draw a line
  * @param option const QStyleOptionGraphicsItem
  * @param widget QWidget
@@ -116,7 +122,7 @@ void Line::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/
 }
 
 /**
- * @brief Line::~Line destructs line - disconnect it first
+ * Destructs line - disconnect it first
  */
 Line::~Line()
 {
@@ -126,6 +132,9 @@ Line::~Line()
         toClassNode->removeConnection(this);
 }
 
+/**
+ * Switches nodes in line. 'From node' is set as 'to node' and 'to Node' is set as 'from node'.
+ */
 void Line::switchNodes()
 {
     std::swap(fromClassNode, toClassNode);
@@ -270,12 +279,134 @@ QRectF Line::boundingRect() const
     return bounding;
 }
 
+/**
+ * Adjusts bounding by specific requirements.
+ *
+ * @param pointer to rect to adjust
+ */
 void Line::adjustBounding(QRectF *rect) const
 {
     rect->adjust(0,0,0,0);
 }
 
+/**
+ * Method that paints self relationship (virtual) - need to ne implemented at child.
+ */
 void Line::paintSelfRelationship(QPainter *)
 {
 
+}
+
+/**
+ * Move Points in rectangle according to number of connections (one should't lie on other ones)
+ *
+ * @param firstPoint center point in first node
+ * @param secondPoint center point in second node
+ * @param first classnode (where firstPoint is it's middle point in scene)
+ * @param second classnode (where secondPoint is it's middle point in scene)
+ */
+void Line::movePointsByConnectionCount(QPointF *firstPoint, QPointF *secondPoint,
+                                       ClassNode *firstNode, ClassNode *secondNode) const
+{
+    int lineIndex;
+    int connectionCount = firstNode->getNumberOfConnectionsWithNode(secondNode, this, &lineIndex);
+    if(connectionCount == 1)//optimalization - no need to count all that things if there is just one connection
+        return;
+
+    QLineF line{*firstPoint, *secondPoint};
+    QRectF firstRect = firstNode->boundingRect();
+    firstRect.translate(firstNode->pos());
+
+    QRectF secondRect = secondNode->boundingRect();
+    secondRect.translate(secondNode->pos());
+
+    QLineF perpen = line.normalVector();
+    perpen.setLength(firstRect.width() + firstRect.height()); // nessacary for situation when line is shorter than node
+    QLineF firstIntLine = qrectIntersectsLine(firstRect, perpen);
+    QLineF reversedLine{line.p2(), line.p1()};
+    perpen = reversedLine.normalVector();
+    perpen.setLength(secondRect.width() + secondRect.height());
+    QLineF secondIntLine = qrectIntersectsLine(secondRect, perpen);
+
+    setEndPoints(&firstIntLine);
+    movePointInLine(firstIntLine, firstPoint, connectionCount, lineIndex);
+    QLineF reversedSecondIntLine{secondIntLine.p2(), secondIntLine.p1()};
+    setEndPoints(&reversedSecondIntLine);
+    movePointInLine(reversedSecondIntLine, secondPoint, connectionCount, lineIndex);
+}
+
+/**
+ * Move point in line according to the index by index in connection count.
+ * EXAMLPLE connectionCount is 2, so there are 2 * 2 parts and line is from top middle point to bot middle point:
+ * new point is on position (line_Lenght / 2*2) [4 parts] * (index * 2 + 1) [to reach middle of part if separated to 2 parts]
+ * for index 0 there will be selected part1 which is middle of the first half
+ * for index 1 there will be selected part3 which is middle of the second half
+ *          |----|  <--node beg
+ * node --> |----|  <--part1
+ *          |----|  <--part2
+ *          |----|  <--part3
+ *          |----|  <--node end
+ *
+ * @param line line where to move
+ * @param point new value is stored here
+ * @param connectionCount count of all connections with same nodes
+ * @param index index of line in connections
+ */
+void Line::movePointInLine(QLineF line, QPointF *point,int connectionCount, int index) const
+{
+    line.setLength((line.length() / (connectionCount * 2)) * (index * 2 + 1));
+    *point = QPointF{line.p2()};
+}
+
+/**
+ * Find intersectionPoints of line and rect and creates line between them.
+ *
+ * @param rect rectanlge that should be intersected
+ * @param line line that should be intersected
+ */
+QLineF Line::qrectIntersectsLine(QRectF rect, QLineF line) const
+{
+    QVector<QPointF> rectPoints{ rect.topLeft(),
+                QPointF{rect.x() + rect.width(), rect.y()},
+                QPointF{rect.x() + rect.width(), rect.y() + rect.height()},
+                QPointF{rect.x(), rect.y() + rect.height()},
+                rect.topLeft()
+    };
+
+    QPointF intPointOne;
+    QPointF intPointTwo;
+    for(int i = 0; i < rectPoints.size() - 1; i++)
+    {
+        if(line.intersects(QLineF{rectPoints[i], rectPoints[i + 1]}, &intPointOne) == QLineF::BoundedIntersection)
+        {
+            if(i < 2)
+                line.intersects(QLineF(rectPoints[i + 2], rectPoints[i + 3]), &intPointTwo);
+            else
+                line.intersects(QLineF(rectPoints[i - 2], rectPoints[i - 1]), &intPointTwo);
+            break;
+        }
+    }
+
+    return QLineF{intPointOne, intPointTwo};
+}
+
+/**
+ * Sets endpoints by their x position, to be same in both sides
+ *
+ * @param line line that could be reversed
+ */
+void Line::setEndPoints(QLineF *line) const
+{
+    QLineF reversedLine{line->p2(), line->p1()};
+
+    if(reversedLine.x1() > line->x1())
+    {
+        line->setP1(reversedLine.p1());
+        line->setP2(reversedLine.p2());
+    }
+    else if(reversedLine.x1() == line->x1() && reversedLine.y1() > line->y1())
+    {
+        line->setP1(reversedLine.p1());
+        line->setP2(reversedLine.p2());
+    }
 }
