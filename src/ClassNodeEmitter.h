@@ -1,6 +1,5 @@
 /**
- * @class classNodeEmmitor
- * Provides slots and singnals object for QGraphicsItem (ClassNode)
+ * @file classNodeEmitter.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -15,6 +14,9 @@
 // Warning: #include can't be used for ClassNode's header!
 class ClassNode;
 
+/**
+ * Provides slots and signals object for QGraphicsItem (ClassNode)
+ */
 class ClassNodeEmitter : public QObject
 {
     Q_OBJECT

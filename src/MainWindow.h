@@ -1,6 +1,5 @@
 /**
- * @class ClassDiagramWindow.h
- * Windows that allows user to draw diagrams.
+ * @file MainWindow.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -32,11 +31,14 @@
 #include "SceneUpdateObserver.h"
 #include "SceneUpdateObservable.h"
 
-class ClassDiagramWindow : public QMainWindow, SceneUpdateObserver
+/**
+ * Windows that allows user to draw diagrams.
+ */
+class MainWindow : public QMainWindow, SceneUpdateObserver
 {
     Q_OBJECT
 public:
-    ClassDiagramWindow(ClassDiagramManager *classDiagramManager, SceneUpdateObservable *sceneUpdateObservable);
+    MainWindow(ClassDiagramManager *classDiagramManager, SceneUpdateObservable *sceneUpdateObservable);
 
     /**
      * Logs scene changes for saving and undo/redo mechanisms

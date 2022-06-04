@@ -72,7 +72,7 @@ HEADERS += \
     HistoryStack.h \
     ClassDiagramMemento.h \
     SequenceDiagramMemento.h \
-    ClassDiagramWindow.h \
+    MainWindow.h \
     MethodParameterEditWidget.h \
     Line.h \
     classNode.h \
@@ -105,7 +105,7 @@ SOURCES += \
     FileSequenceDiagramRepository.cpp \
     ClassDiagramManager.cpp \
     SequenceDiagramManager.cpp \
-    ClassDiagramWindow.cpp \
+    MainWindow.cpp \
     MethodParameterEditWidget.cpp \
     Line.cpp \
     classNode.cpp \

@@ -72,7 +72,7 @@ add_executable(icp_project
         src/HistoryStack.h
         src/ClassDiagramMemento.h
         src/SequenceDiagramMemento.h
-        src/ClassDiagramWindow.h
+        src/MainWindow.h
         src/MethodParameterEditWidget.h
         src/Line.h
         src/classNode.h
@@ -105,7 +105,7 @@ add_executable(icp_project
         src/FileSequenceDiagramRepository.cpp
         src/ClassDiagramManager.cpp
         src/SequenceDiagramManager.cpp
-        src/ClassDiagramWindow.cpp
+        src/MainWindow.cpp
         src/MethodParameterEditWidget.cpp
         src/Line.cpp
         src/classNode.cpp

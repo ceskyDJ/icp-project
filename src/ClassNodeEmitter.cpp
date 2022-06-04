@@ -1,5 +1,5 @@
 /**
- * @file ClassDiagramWindow.cpp
+ * @file ClassNodeEmitter.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *
