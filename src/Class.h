@@ -247,7 +247,7 @@ class Class
      */
     bool operator!=(const Class &other) const
     {
-        return name != other.name;
+        return !operator==(other);
     }
 };
 

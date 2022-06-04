@@ -82,7 +82,7 @@ class ClassType
      * @param other Access modifier to compare with
      * @return Are access modifiers equal?
      */
-    constexpr bool operator==(ClassType other) const
+    constexpr bool operator==(const ClassType &other) const
     {
         return storedValue == other.storedValue;
     }
@@ -93,9 +93,9 @@ class ClassType
      * @param other Access modifier to compare with
      * @return Are access modifier not equal?
      */
-    constexpr bool operator!=(ClassType other) const
+    constexpr bool operator!=(const ClassType &other) const
     {
-        return storedValue != other.storedValue;
+        return !operator==(other);
     }
 
     /**
@@ -114,6 +114,11 @@ class ClassType
      */
     static ClassType deserialize(std::string serializedForm);
 
+    /**
+     * Getter for all available values
+     *
+     * @return All available values
+     */
     static std::vector<ClassType> values()
     {
         return std::vector<ClassType>{Value::NORMAL_CLASS, Value::ABSTRACT_CLASS, Value::INTERFACE};
