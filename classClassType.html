@@ -91,10 +91,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1447ab5cc2ef700339ef4f8f815cc6b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7b5fe253d56adbb7af2fa9c313b4182"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassType.html#ac7b5fe253d56adbb7af2fa9c313b4182">operator Value</a> () const</td></tr>
 <tr class="separator:ac7b5fe253d56adbb7af2fa9c313b4182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f4e5eb31c74448ff0c5cbd642db508d"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassType.html#a0f4e5eb31c74448ff0c5cbd642db508d">operator==</a> (<a class="el" href="classClassType.html">ClassType</a> other) const</td></tr>
-<tr class="separator:a0f4e5eb31c74448ff0c5cbd642db508d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18d5639ffd7afe6ea25c91043cf29a95"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassType.html#a18d5639ffd7afe6ea25c91043cf29a95">operator!=</a> (<a class="el" href="classClassType.html">ClassType</a> other) const</td></tr>
-<tr class="separator:a18d5639ffd7afe6ea25c91043cf29a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32c126737f81fb83ccc9dbe53d28d225"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassType.html#a32c126737f81fb83ccc9dbe53d28d225">operator==</a> (const <a class="el" href="classClassType.html">ClassType</a> &amp;other) const</td></tr>
+<tr class="separator:a32c126737f81fb83ccc9dbe53d28d225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a391f9fa54927e57aeeff03a92b62c77d"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassType.html#a391f9fa54927e57aeeff03a92b62c77d">operator!=</a> (const <a class="el" href="classClassType.html">ClassType</a> &amp;other) const</td></tr>
+<tr class="separator:a391f9fa54927e57aeeff03a92b62c77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd5c3d66a147e3c7f46e37cc80ccf14f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClassType.html#abd5c3d66a147e3c7f46e37cc80ccf14f">serialize</a> ()</td></tr>
 <tr class="separator:abd5c3d66a147e3c7f46e37cc80ccf14f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -297,8 +297,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a18d5639ffd7afe6ea25c91043cf29a95" name="a18d5639ffd7afe6ea25c91043cf29a95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18d5639ffd7afe6ea25c91043cf29a95">&#9670;&nbsp;</a></span>operator!=()</h2>
+<a id="a391f9fa54927e57aeeff03a92b62c77d" name="a391f9fa54927e57aeeff03a92b62c77d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a391f9fa54927e57aeeff03a92b62c77d">&#9670;&nbsp;</a></span>operator!=()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +309,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">constexpr bool ClassType::operator!= </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classClassType.html">ClassType</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classClassType.html">ClassType</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -333,8 +333,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0f4e5eb31c74448ff0c5cbd642db508d" name="a0f4e5eb31c74448ff0c5cbd642db508d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f4e5eb31c74448ff0c5cbd642db508d">&#9670;&nbsp;</a></span>operator==()</h2>
+<a id="a32c126737f81fb83ccc9dbe53d28d225" name="a32c126737f81fb83ccc9dbe53d28d225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c126737f81fb83ccc9dbe53d28d225">&#9670;&nbsp;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -345,7 +345,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">constexpr bool ClassType::operator== </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classClassType.html">ClassType</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="classClassType.html">ClassType</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -412,8 +412,10 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Getter for all available values</p>
+<dl class="section return"><dt>Returns</dt><dd>All available values </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ClassType_8h_source.html#l00117">117</a> of file <a class="el" href="ClassType_8h_source.html">ClassType.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ClassType_8h_source.html#l00122">122</a> of file <a class="el" href="ClassType_8h_source.html">ClassType.h</a>.</p>
 
 </div>
 </div>
