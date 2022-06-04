@@ -36,20 +36,27 @@ public:
         ClassDiagram *classDiagram,
         SceneUpdateObservable *sceneUpdateObservable
     ): existingRelationships{existingRelationships}, classDiagram{classDiagram},
-        sceneUpdateObservable{sceneUpdateObservable} {};
+            sceneUpdateObservable{sceneUpdateObservable} {
+        pen = QPen{Qt::black, 2, Qt::SolidLine};
+        fromClassNode = nullptr;
+        toClassNode = nullptr;
+        selfRealtionshipFlag = false;
+        specialSelfWidthPadding = 0;
+    };
 
     ~Line();
 
     void drawLine();
 
-    void initialize(ClassNode *fromNode, ClassNode *toNode);
+    void initialize(ClassNode *fromNode, ClassNode *toNode, bool selfRealtionship);
 
     /**
      * Returns a classNode that is pointed to, in relationship.
      *
      * @return second class node
      */
-    ClassNode *getToClassNode() {
+    ClassNode *getToClassNode()
+    {
         return toClassNode;
     }
 
@@ -58,7 +65,8 @@ public:
      *
      * @return second class node
      */
-    ClassNode *getFromClassNode() {
+    ClassNode *getFromClassNode()
+    {
         return fromClassNode;
     }
 
@@ -67,7 +75,8 @@ public:
      *
      * @return second class node
      */
-    void setToClassNode(ClassNode *newToNode) {
+    void setToClassNode(ClassNode *newToNode)
+    {
         toClassNode = newToNode;
     }
 
@@ -76,7 +85,8 @@ public:
      *
      * @return second class node
      */
-    void setFromClassNode(ClassNode *newFromNode) {
+    void setFromClassNode(ClassNode *newFromNode)
+    {
         fromClassNode = newFromNode;
     }
 
@@ -126,11 +136,13 @@ protected:
      */
     SceneUpdateObservable *sceneUpdateObservable;
 
-    QPen pen{Qt::black, 2, Qt::SolidLine};
+    qreal selfPadding = 50;
+    qreal specialSelfWidthPadding;
+    QPen pen;
     ClassNode *fromClassNode;
     ClassNode *toClassNode;
     qreal lineBoundingWidth = 10;
-
+    bool selfRealtionshipFlag;
 
     QPointF getCenterPos(ClassNode *node) const;
     QPointF getIntersectPoint(QLineF connectingLine, ClassNode *node) const;
@@ -138,5 +150,11 @@ protected:
     void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget);
     QPainterPath shape() const;
     QLineF getParallelLine(QLineF parallelLine, QPointF startPoint) const;
+    QRectF getTextBoundingBox(QString text) const;
+    QPainterPath selfRealtionshipShape() const;
+    virtual QRectF adjustSelfRect(QRectF rect, int multiply) const;
+    virtual void adjustBounding(QRectF *rect) const;
+    QRectF boundingRect() const;
+    virtual void paintSelfRelationship(QPainter *painter);
 };
 #endif // LINE_H

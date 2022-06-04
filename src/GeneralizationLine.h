@@ -12,6 +12,7 @@
 #include "Line.h"
 #include "LineWithArrow.h"
 #include <QPainter>
+
 class GeneralizationLine : public LineWithArrow
 {
 public:

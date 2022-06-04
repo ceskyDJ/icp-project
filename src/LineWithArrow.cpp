@@ -19,9 +19,14 @@
      */
 void LineWithArrow::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
 {
+    prepareGeometryChange();
     painter->setPen(pen);
     painter->setRenderHint(QPainter::Antialiasing, true);
-
+    if(selfRealtionshipFlag)
+    {
+        paintSelfRelationship(painter);
+        return;
+    }
     QLineF line = getShortestLine(fromClassNode, toClassNode);
     line.setLength(line.length() - arrowWidth / 2);
     qreal centerX = line.p2().x();
@@ -38,18 +43,42 @@ void LineWithArrow::paint(QPainter * painter, const QStyleOptionGraphicsItem * /
 }
 
 /**
- * Override method which returns bounding rect of line.
+ * Paints self realtionship.
  *
- * @return QRectF A rectnagle around classNode.
+ * @param painter Painter to paint relationship
  */
-QRectF LineWithArrow::boundingRect() const
+void LineWithArrow::paintSelfRelationship(QPainter *painter)
 {
-    QLineF line = getShortestLine(fromClassNode, toClassNode);
-    QPointF leftTop = QPointF{ fmin(line.p1().x(), line.p2().x()), fmin(line.p1().y(), line.p2().y())};
-    QPointF rightBot = QPointF{ fmax(line.p1().x(), line.p2().x()), fmax(line.p1().y(), line.p2().y())};
-    QRectF bounding = QRectF{leftTop,rightBot};
-    bounding.adjust(-arrowWidth, -arrowHeight, arrowWidth, arrowHeight);
-    return bounding;
+    QRectF bounding = boundingRect();
+    bounding = adjustSelfRect(bounding, -1);
+    qreal leftPadding = bounding.x() + bounding.width() - selfPadding;
+    qreal botPadding = bounding.y() + bounding.height() - selfPadding;
+
+    QVector<QPointF> linePoints = {
+        QPointF{leftPadding, bounding.y()},
+        QPointF{bounding.x() + bounding.width(), bounding.y()},
+        QPointF{bounding.x() + bounding.width(), bounding.y() + bounding.height()},
+        QPointF{bounding.x(), bounding.y() + bounding.height()},
+        QPointF{bounding.x(), botPadding + arrowHeight / 2}
+    };
+    for (int i = 0; i < linePoints.size() - 1; i++)
+        painter->drawLine(linePoints[i], linePoints[i + 1]);
+
+    painter->translate(QPointF{bounding.x(), botPadding + arrowWidth / 2});
+    painter->rotate(270);
+    QRect arrow = QRect(-arrowWidth / 2, -arrowHeight / 2, arrowWidth, arrowHeight);
+    painter->fillRect(arrow,QBrush(Qt::white));
+    drawArrow(painter);
+}
+
+/**
+ * Adjusts regular boundingbox
+ *
+ * @param rect that should be adjusted
+ */
+void LineWithArrow::adjustBounding(QRectF *rect) const
+{
+    rect->adjust(-arrowWidth, -arrowHeight, arrowWidth, arrowHeight);
 }
 
 /**
@@ -70,4 +99,18 @@ void LineWithArrow::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {
     LineWithArrowEditDialog *edit = new LineWithArrowEditDialog(this);
     edit->exec();
+    update();
+}
+
+/**
+ * Adjusts bounding rect for self relationship
+ *
+ * @param rect rect to adjust
+ * @param multiply 1 for bounding rect, -1 for drawing
+ */
+QRectF LineWithArrow::adjustSelfRect(QRectF rect, int multiply) const
+{
+    rect.adjust((arrowWidth + lineBoundingWidth * 2) * -multiply, lineBoundingWidth * 2 * -multiply,
+                (arrowWidth + lineBoundingWidth * 2) * multiply, lineBoundingWidth * 2 * multiply);
+    return rect;
 }

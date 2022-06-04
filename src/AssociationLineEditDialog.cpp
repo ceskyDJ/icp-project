@@ -109,6 +109,7 @@ void AssociationLineEditDialog::setAllButtons()
     setOneButton(QIcon{":/closeCross.png"}, "Remove relationship", deleteButton);
     setOneButton(QIcon{":/nike.png"}, "Accept changes", acceptButton);
     setOneButton(QIcon{":/cancel.png"}, "Cancel", cancelButton);
+    acceptButton->setDefault(true);
 }
 
 /**

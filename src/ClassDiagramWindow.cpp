@@ -21,6 +21,7 @@
 #include "UndirectedAssociation.h"
 #include "InvalidDataStorageException.h"
 #include "InvalidInputDataException.h"
+#include "ClassNodeEmmitor.h"
 
 /**
  * ClassDiagramWindow::ClassDiagramWindow Initialiezes components and prepare all QWidgets and controls.
@@ -35,6 +36,7 @@ ClassDiagramWindow::ClassDiagramWindow(
 {
     // Register this observer for scene updates
     sceneUpdateObservable->registerObserver(this);
+    newLine = nullptr;
 
     initializeComponents();
     connectComponents();
@@ -51,6 +53,7 @@ ClassDiagramWindow::ClassDiagramWindow(
  */
 void ClassDiagramWindow::initializeComponents()
 {
+    newLine = nullptr;
     classDiagramScene = new QGraphicsScene();
     classDiagramView = new QGraphicsView(classDiagramScene);
 
@@ -134,7 +137,6 @@ QWidget *ClassDiagramWindow::prepareToolItem(QIcon icon, QString labelString, QT
 
     QWidget* toolboxItem = new QWidget;
     toolboxItem->setLayout(toolboxItemLayout);
-    //toolboxItem->setMaximumSize(toolboxItemSize, toolboxItemSize + label->size().height() + 20);
     return toolboxItem;
 }
 
@@ -192,16 +194,15 @@ void ClassDiagramWindow::setTooBox()
     toolboxItems->setLayout(toolboxLayout);
     toolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
     toolBox->addItem(toolboxItems, "Prvky třídního diagramu");
-
 }
 
 /**
- * ClassDiagramWindow::addClassNode Insert new claasNode into scene of class diagram Window.
+ * Insert new claasNode into scene of class diagram Window.
  */
 void ClassDiagramWindow::addClassNode()
 {
     // Numbering and positioning unique names
-    static int classNumber = 1;
+    static unsigned int classNumber = 1;
     static const unsigned int nodeSpace = 50;
 
     // Create new class in class diagram
@@ -214,6 +215,7 @@ void ClassDiagramWindow::addClassNode()
     newClassNode->setPos((newClassNode->boundingRect().width() + nodeSpace) * (classNumber % 5),
                          (newClassNode->boundingRect().height() + nodeSpace) * (classNumber / 5));
 
+    connect(newClassNode->emitor, &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
     classDiagramScene->addItem(newClassNode);
     storedClasses.insert({newClass->getName(), newClassNode});
 
@@ -283,14 +285,12 @@ void ClassDiagramWindow::connectComponents()
     connect(classShapeToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::addClassNode);
     connect(removeSelectedToolItem,  &QToolButton::pressed, this, &ClassDiagramWindow::removeSelectedClassNodes);
     connect(associationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::associationSelected);
-    
+
     connect(compositionToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::compositionSelected);
     connect(agregationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::agregationSelected);
     connect(generalisationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::generalisationSelected);
     connect(directedAssociationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::directedAssociationSelected);
     connect(realizationToolItem, &QToolButton::pressed, this, &ClassDiagramWindow::realizationSelected);
-
-    connect(classDiagramScene, &QGraphicsScene::selectionChanged, this, &ClassDiagramWindow::selectionChanged);
 }
 
 /**
@@ -315,9 +315,7 @@ void ClassDiagramWindow::setAllNodesColor(QColor color)
  */
 void ClassDiagramWindow::associationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -325,9 +323,7 @@ void ClassDiagramWindow::associationSelected()
  */
 void ClassDiagramWindow::compositionSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -335,9 +331,7 @@ void ClassDiagramWindow::compositionSelected()
  */
 void ClassDiagramWindow::agregationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -345,9 +339,7 @@ void ClassDiagramWindow::agregationSelected()
  */
 void ClassDiagramWindow::generalisationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -355,9 +347,7 @@ void ClassDiagramWindow::generalisationSelected()
  */
 void ClassDiagramWindow::directedAssociationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
@@ -365,59 +355,37 @@ void ClassDiagramWindow::directedAssociationSelected()
  */
 void ClassDiagramWindow::realizationSelected()
 {
-    classDiagramScene->clearSelection();
-    setAllNodesColor(realtionShipSelectedColor);
-    newLine = new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
+    createNewLine(new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
 /**
- * ClassDiagramWindow::selectionChanged When selection changes and a new relationship is invoked,
+ * When selection changes and a new relationship is invoked,
  * handle adding new relationship.
  */
-void ClassDiagramWindow::selectionChanged()
+void ClassDiagramWindow::nodePressed(ClassNode *selectedOne)
 {
     if (nodeColor == Qt::black)
         return;
     if(nodeColor == realtionShipSelectedColor && firstToSelect == nullptr)
     {
-        firstToSelect = getSelectedNode();
+        firstToSelect = selectedOne;
         if(firstToSelect)
+        {
+            setAllNodesColor(firstPhaseSelectedColor);
             firstToSelect->setBorderColor(nodeFirstSelectedColor);
-        classDiagramScene->clearSelection();
+        }
     }
-    else if(nodeColor == realtionShipSelectedColor && firstToSelect != nullptr) //first node selected and still in selctionMode
+    else if(nodeColor == firstPhaseSelectedColor && firstToSelect != nullptr) //first node selected and still in selctionMode
     {
-        secondToSelect = getSelectedNode();
-        if(secondToSelect && secondToSelect != firstToSelect)
+        secondToSelect = selectedOne;
+        if(secondToSelect)
         {
             setAllNodesColor(nodeNormalColor);
             classDiagramScene->clearSelection();
             connectNodes();
         }
     }
-}
-
-/**
- * ClassDiagramWindow::getSelectedNode finds first selected node
- *
- * @return selected node
- */
-ClassNode *ClassDiagramWindow::getSelectedNode()
-{
-    ClassNode *toReturn;
-    QList<QGraphicsItem *> selectedNodes = classDiagramScene->selectedItems();
-    if(selectedNodes.count() > 1)
-    {
-        for(QGraphicsItem *node : selectedNodes)
-        {
-            toReturn = dynamic_cast<ClassNode*>(node);
-            if(toReturn)
-                return toReturn;
-        }
-    }
-    else if (selectedNodes.count() == 1)
-        return dynamic_cast<ClassNode *>(selectedNodes[0]);
-    return nullptr;
+    classDiagramScene->clearSelection();
 }
 
 /**
@@ -426,10 +394,11 @@ ClassNode *ClassDiagramWindow::getSelectedNode()
 void ClassDiagramWindow::connectNodes()
 {
     // Create new line in scene
-    newLine->initialize(firstToSelect, secondToSelect);
+    newLine->initialize(firstToSelect, secondToSelect, firstToSelect == secondToSelect);
     classDiagramScene->addItem(newLine);
     firstToSelect->addLine(newLine);
-    secondToSelect->addLine(newLine);
+    if(firstToSelect != secondToSelect)
+        secondToSelect->addLine(newLine);
 
     // Create new relationship in class diagram
     Relationship *relationship;
@@ -463,8 +432,23 @@ void ClassDiagramWindow::connectNodes()
 
     firstToSelect = nullptr;
     secondToSelect = nullptr;
+    newLine = nullptr;
 
     sceneUpdateObservable->sceneChanged();
+}
+
+/**
+ * Checks if new line is nullptr (if no, deletes it) and insert line into newLine
+ */
+void ClassDiagramWindow::createNewLine(Line *line)
+{
+    if (newLine != nullptr)
+        delete newLine;
+    classDiagramScene->clearSelection();
+    setAllNodesColor(realtionShipSelectedColor);
+    classDiagramScene->clearFocus();
+    classDiagramScene->clearSelection();
+    newLine = line;
 }
 
 void ClassDiagramWindow::clearScene()
@@ -494,6 +478,7 @@ void ClassDiagramWindow::redrawClassDiagram()
     for (const auto &item: classDiagram.getClasses()) {
         auto classNode = new ClassNode(item, &storedClasses, sceneUpdateObservable);
 
+        connect(classNode->emitor, &ClassNodeEmmitor::nodePressed, this, &ClassDiagramWindow::nodePressed);
         classDiagramScene->addItem(classNode);
         storedClasses.insert({item->getName(), classNode});
     }
@@ -537,7 +522,7 @@ void ClassDiagramWindow::redrawClassDiagram()
         storedRelationships.insert({line, item});
 
         // Add to scene
-        line->initialize(firstClassNode, secondClassNode);
+        line->initialize(firstClassNode, secondClassNode, firstClassNode == secondClassNode);
         classDiagramScene->addItem(line);
         firstClassNode->addLine(line);
         secondClassNode->addLine(line);

@@ -62,8 +62,18 @@ void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
  */
 void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * /*option*/, QWidget * /*widget*/)
 {
-    painter->setPen(pen);
+    prepareGeometryChange();
+    specialSelfWidthPadding = std::max(getTextBoundingBox(associationName).width() - selfPadding,
+                                       getTextBoundingBox(firstCardinality).width());
     painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(pen);
+    if(selfRealtionshipFlag)
+    {
+        paintSelfRelationship(painter);
+        return;
+    }
+
+
     QLineF line = getShortestLine(fromClassNode, toClassNode);
     painter->drawLine(line);
     painter->translate(0.5 * line.p1() + 0.5 * line.p2());
@@ -96,33 +106,14 @@ void AssociationLine::paint(QPainter * painter, const QStyleOptionGraphicsItem *
 }
 
 /**
- * Returns bounding rect of text with current font.
+ * Adjusts regular boundingbox
  *
- * @param text - bounding rectangle around this text
- * @return bounding rectangle around parameter
+ * @param rect that should be adjusted
  */
-QRectF AssociationLine::getTextBoundingBox(QString text) const
+void AssociationLine::adjustBounding(QRectF *rect) const
 {
-    text = (text.count() == 0)? "I":text;
-    static const QFontMetricsF metrics{qApp->font()};
-    return metrics.boundingRect(text);
-}
-
-/**
- * Override method which returns bounding rect of line.
- *
- * @return QRectF A rectnagle around classNode.
- */
-QRectF AssociationLine::boundingRect() const
-{
-    QLineF line = getShortestLine(fromClassNode, toClassNode);
-    QPointF leftTop = QPointF{ std::min(line.p1().x(), line.p2().x()), std::min(line.p1().y(), line.p2().y())};
-    QPointF rightBot = QPointF{ std::max(line.p1().x(), line.p2().x()), std::max(line.p1().y(), line.p2().y())};
-    QRectF bounding = QRectF{leftTop,rightBot};
     QRectF name = getTextBoundingBox(associationName);
-
-    bounding.adjust(-name.width() * 3 / 2, -name.height() * 3 / 2, name.width() * 3 / 2, name.height() * 3 / 2);
-    return bounding;
+    rect->adjust(-name.width() * 3 / 2, -name.height() * 3 / 2, name.width() * 3 / 2, name.height() * 3 / 2);
 }
 
 /**
@@ -156,4 +147,58 @@ QRectF AssociationLine::locateCardinality(QRectF rect, int modifier, QLineF line
     rect.setLeft(line.length() / 2 * modifier + (padding + additionPadding) * (-modifier));
     rect.setWidth(fcwidth);
     return rect;
+}
+
+/**
+ * Adjusts bounding rectangle for self realtionship.
+ *
+ * @param rect rectangle to adjust
+ * @param multiply 1 for adjust, -1 for resolving line from bounding rect
+ * @return adjusted BoundingRect
+ */
+QRectF AssociationLine::adjustSelfRect(QRectF rect, int multiply) const
+{
+    rect.adjust((getTextBoundingBox(secondCardinality).width() + lineBoundingWidth) * -multiply,
+                getTextBoundingBox(firstCardinality).height() * 1.5 * -multiply,
+                lineBoundingWidth * multiply,
+                lineBoundingWidth * multiply);
+    return rect;
+}
+
+/**
+ * Paints self realtionship.
+ *
+ * @param painter Painter to paint relationship
+ */
+void AssociationLine::paintSelfRelationship(QPainter *painter)
+{
+    QRectF bounding = boundingRect();
+    bounding = adjustSelfRect(bounding, -1);
+    qreal leftPadding = bounding.x() + bounding.width() - selfPadding - specialSelfWidthPadding;
+    qreal botPadding = bounding.y() + bounding.height() - selfPadding;
+
+    QVector<QPointF> linePoints = {
+        QPointF{leftPadding, bounding.y()},
+        QPointF{bounding.x() + bounding.width(), bounding.y()},
+        QPointF{bounding.x() + bounding.width(), bounding.y() + bounding.height()},
+        QPointF{bounding.x(), bounding.y() + bounding.height()},
+        QPointF{bounding.x(), botPadding}
+    };
+    for (int i = 0; i < linePoints.size() - 1; i++)
+        painter->drawLine(linePoints[i], linePoints[i + 1]);
+
+    QRectF firstCardinalityBounding = prepareBoundingBox(getTextBoundingBox(firstCardinality));
+    firstCardinalityBounding.translate(QPointF{linePoints[0].x() + firstCardinalityBounding.width() * 0.5 + 10,
+                                               linePoints[0].y()});
+    painter->drawText(firstCardinalityBounding, firstCardinality);
+
+    QRectF secondCardinalityBounding = getTextBoundingBox(secondCardinality);
+    secondCardinalityBounding.translate(
+                QPointF{linePoints[linePoints.size() -1].x() - secondCardinalityBounding.width() - 10,
+                        linePoints[linePoints.size() -1].y() - secondCardinalityBounding.y()});
+    painter->drawText(secondCardinalityBounding, secondCardinality);
+
+    QRectF associationNameRect = prepareBoundingBox(getTextBoundingBox(associationName));
+    associationNameRect.translate(QRectF(linePoints[2], linePoints[3]).center());
+    painter->drawText(associationNameRect, associationName);
 }

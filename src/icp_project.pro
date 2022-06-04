@@ -30,6 +30,7 @@ HEADERS += \
     AssociationLine.h \
     AssociationLineEditDialog.h \
     ClassDiagram.h \
+    ClassNodeEmmitor.h \
     DirectedAssociationLine.h \
     Line.h \
     LineWithArrow.h \
@@ -87,6 +88,7 @@ SOURCES += \
     AssociationLine.cpp \
     AssociationLineEditDialog.cpp \
     ClassMethodType.cpp \
+    ClassNodeEmmitor.cpp \
     ClassType.cpp \
     DirectedAssociationLine.cpp \
     LineWithArrow.cpp \
