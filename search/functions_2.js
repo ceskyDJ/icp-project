@@ -16,6 +16,7 @@ var searchData=
   ['classtype_13',['ClassType',['../classClassType.html#a892c1feb7e35031b3e732f32d227d526',1,'ClassType::ClassType()=default'],['../classClassType.html#aaf64fdb6c4f4b769f1bb941684ede83f',1,'ClassType::ClassType(Value value)']]],
   ['composition_14',['Composition',['../classComposition.html#a8fa91acb6cadd32a6366950256307b38',1,'Composition']]],
   ['compositionline_15',['CompositionLine',['../classCompositionLine.html#a13ffd50c63d381f272f1fab2dde50b6f',1,'CompositionLine']]],
-  ['creatememento_16',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]],
-  ['createtitle_17',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]]
+  ['connectcomponents_16',['connectComponents',['../classDirectedAssociationLineEditDialog.html#a58b72455db93cca3cb0d504a45660834',1,'DirectedAssociationLineEditDialog::connectComponents()'],['../classLineWithArrowEditDialog.html#a75f2c8afdf2ce47d3e00e52ee8a5f1ed',1,'LineWithArrowEditDialog::connectComponents()']]],
+  ['creatememento_17',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]],
+  ['createtitle_18',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]]
 ];

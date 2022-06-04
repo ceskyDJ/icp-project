@@ -13,7 +13,7 @@ var searchData=
   ['addobject_10',['addObject',['../classSequenceDiagram.html#abd498c18c1cefa06d3ecb77bf011c5f0',1,'SequenceDiagram']]],
   ['addrecord_11',['addRecord',['../classHistoryStack.html#aa38a2b03cca895b9fb4e5b5cc024cb6e',1,'HistoryStack']]],
   ['addrelationship_12',['addRelationship',['../classClassDiagram.html#a8a902c4cf59fdc6fa5e75899311cc203',1,'ClassDiagram']]],
-  ['adjustbounding_13',['adjustBounding',['../classAssociationLine.html#a2b8be2c49629d90bd98249820cc2c5e1',1,'AssociationLine::adjustBounding()'],['../classLineWithArrow.html#ae0d8fe5d2c228646d85202520fb16ef5',1,'LineWithArrow::adjustBounding()']]],
+  ['adjustbounding_13',['adjustBounding',['../classAssociationLine.html#a2b8be2c49629d90bd98249820cc2c5e1',1,'AssociationLine::adjustBounding()'],['../classLine.html#a586e6fe7aa2d5b1c1aec3c1c83496aff',1,'Line::adjustBounding()'],['../classLineWithArrow.html#ae0d8fe5d2c228646d85202520fb16ef5',1,'LineWithArrow::adjustBounding()']]],
   ['adjustselfrect_14',['adjustSelfRect',['../classAssociationLine.html#a846e9007c899906c3f41f53cf9d999fc',1,'AssociationLine::adjustSelfRect()'],['../classLine.html#aa236730473b3288b159c4030f32064c7',1,'Line::adjustSelfRect()'],['../classLineWithArrow.html#a0f48a24374d56dbd72517a806c06cb4e',1,'LineWithArrow::adjustSelfRect()']]],
   ['aggregation_15',['Aggregation',['../classAggregation.html#a03b442f72f7400ba0b6e48bf9a2e876a',1,'Aggregation']]],
   ['agregationline_16',['AgregationLine',['../classAgregationLine.html#ad81e12dc8225d407405a22b38bec3fc1',1,'AgregationLine']]],

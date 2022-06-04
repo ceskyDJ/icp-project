@@ -15,5 +15,7 @@ var searchData=
   ['methodparametereditwidget_12',['MethodParameterEditWidget',['../classMethodParameterEditWidget.html',1,'MethodParameterEditWidget'],['../classMethodParameterEditWidget.html#a724d4154a7370e4b94d7441090480cb0',1,'MethodParameterEditWidget::MethodParameterEditWidget()']]],
   ['methodreference_13',['MethodReference',['../classMethodReference.html',1,'MethodReference'],['../classMethodReference.html#a738fbe3e7c00596fc39c4479644cd362',1,'MethodReference::MethodReference(ClassMethod *referredMethod)'],['../classMethodReference.html#ade4c140a642307bf2b3529e0a7f428be',1,'MethodReference::MethodReference(std::string referredMethodName)']]],
   ['methodreference_2eh_14',['MethodReference.h',['../MethodReference_8h.html',1,'']]],
-  ['mousedoubleclickevent_15',['mouseDoubleClickEvent',['../classAssociationLine.html#aa4900f35d495bfec2039b27fa4ca56de',1,'AssociationLine::mouseDoubleClickEvent()'],['../classLineWithArrow.html#a643bddc4b53480a25065ca4d2444a408',1,'LineWithArrow::mouseDoubleClickEvent()']]]
+  ['mousedoubleclickevent_15',['mouseDoubleClickEvent',['../classAssociationLine.html#aa4900f35d495bfec2039b27fa4ca56de',1,'AssociationLine::mouseDoubleClickEvent()'],['../classDirectedAssociationLine.html#a6e6070633c5b60b1803a03b75867f008',1,'DirectedAssociationLine::mouseDoubleClickEvent()'],['../classLineWithArrow.html#a643bddc4b53480a25065ca4d2444a408',1,'LineWithArrow::mouseDoubleClickEvent()']]],
+  ['movepointinline_16',['movePointInLine',['../classLine.html#a949094f54679d7c049ddafaa37fba1a0',1,'Line']]],
+  ['movepointsbyconnectioncount_17',['movePointsByConnectionCount',['../classLine.html#a3f6e9c02817603ae9a52b4f726cbb9a0',1,'Line']]]
 ];

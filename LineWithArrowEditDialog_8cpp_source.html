@@ -78,14 +78,14 @@ $(function() {
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classLineWithArrow.html">LineWithArrow</a> *relationship</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>): sceneUpdateObservable{relationship-&gt;getSceneUpdateObservable()}, relationshipLine{relationship}</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    initializeComponents();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    setAllButtons();</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    connectComponents();</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    setMyLayout();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    setTitle();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#aaf12fedd84f04a2dc5f9aa685a71e34e">initializeComponents</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#a5a1975edf166e8398f409a69c928b7bb">setAllButtons</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#a75f2c8afdf2ce47d3e00e52ee8a5f1ed">connectComponents</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#a0bdaaf95e222da1caf4017aaed1387b2">setMyLayout</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#a193e3e5e94b1162e9188e0b6fbad1d76">setTitle</a>();</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keywordtype">void</span> LineWithArrowEditDialog::initializeComponents()</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classLineWithArrowEditDialog.html#aaf12fedd84f04a2dc5f9aa685a71e34e">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classLineWithArrowEditDialog.html#aaf12fedd84f04a2dc5f9aa685a71e34e">LineWithArrowEditDialog::initializeComponents</a>()</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    switchNodesButton = <span class="keyword">new</span> QPushButton;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    removeRelationshipButton = <span class="keyword">new</span> QPushButton;</div>
@@ -93,7 +93,7 @@ $(function() {
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    mainLayout = <span class="keyword">new</span> QHBoxLayout;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keywordtype">void</span> LineWithArrowEditDialog::setMyLayout()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classLineWithArrowEditDialog.html#a0bdaaf95e222da1caf4017aaed1387b2">   43</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classLineWithArrowEditDialog.html#a0bdaaf95e222da1caf4017aaed1387b2">LineWithArrowEditDialog::setMyLayout</a>()</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    mainLayout-&gt;addWidget(removeRelationshipButton);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    mainLayout-&gt;addWidget(cancelButton);</div>
@@ -101,82 +101,94 @@ $(function() {
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    setLayout(mainLayout);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> LineWithArrowEditDialog::setOneButton(QIcon icon, QString text, QPushButton *button)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classLineWithArrowEditDialog.html#a24d6c29263ba33fb146c09cabfeb4675">   58</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classLineWithArrowEditDialog.html#a24d6c29263ba33fb146c09cabfeb4675">LineWithArrowEditDialog::setOneButton</a>(QIcon icon, QString text, QPushButton *button)</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    button-&gt;setIcon(icon);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    button-&gt;setText(text);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keywordtype">void</span> LineWithArrowEditDialog::setAllButtons()</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classLineWithArrowEditDialog.html#a5a1975edf166e8398f409a69c928b7bb">   67</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classLineWithArrowEditDialog.html#a5a1975edf166e8398f409a69c928b7bb">LineWithArrowEditDialog::setAllButtons</a>()</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/closeCross.png&quot;</span>}, <span class="stringliteral">&quot;Remove relationship&quot;</span>, removeRelationshipButton);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/switch.png&quot;</span>}, <span class="stringliteral">&quot;Swicth arrow&quot;</span>, switchNodesButton);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    setOneButton(QIcon{<span class="stringliteral">&quot;:/cancel.png&quot;</span>}, <span class="stringliteral">&quot;Cancel&quot;</span>, cancelButton);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    cancelButton-&gt;setDefault(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">void</span> LineWithArrowEditDialog::switchArrow()</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// Update scene</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    relationshipLine-&gt;switchNodes();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    relationshipLine-&gt;update();</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// Update relationship in class diagram</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    std::unordered_map&lt;Line *, Relationship *&gt; *existingRelationships = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#ab375882b7b1b79b7f0f72abf96fbf4fd">getExistingRelationships</a>();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_class" href="classRelationship.html">Relationship</a> *relationship = existingRelationships-&gt;find(relationshipLine)-&gt;second;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    relationship-&gt;<a class="code hl_function" href="classRelationship.html#abc968b1d6c89c4716039e2b66b92ba80">swapClasses</a>();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    close();</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keywordtype">void</span> LineWithArrowEditDialog::removeRelationship()</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>{</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// Delete from class diagram and existing relationships</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    std::unordered_map&lt;Line *, Relationship *&gt; *existingRelationships = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#ab375882b7b1b79b7f0f72abf96fbf4fd">getExistingRelationships</a>();</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_class" href="classClassDiagram.html">ClassDiagram</a> *classDiagram = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#a6962ad55b600f5f3936b5705ef87c6f0">getClassDiagram</a>();</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">auto</span> relationship = existingRelationships-&gt;find(relationshipLine)-&gt;second;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    classDiagram-&gt;<a class="code hl_function" href="classClassDiagram.html#a5e1a3b164030fdaf3fe84f33dfbe8866">removeRelationship</a>(relationship);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    existingRelationships-&gt;erase(relationshipLine);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    switchNodesButton-&gt;setDisabled(relationshipLine-&gt;<a class="code hl_function" href="classLine.html#ac93502c4586334cc88dd21dcd5af4936">isSelfRelationship</a>());</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#a24d6c29263ba33fb146c09cabfeb4675">setOneButton</a>(QIcon{<span class="stringliteral">&quot;:/closeCross.png&quot;</span>}, <span class="stringliteral">&quot;Remove relationship&quot;</span>, removeRelationshipButton);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#a24d6c29263ba33fb146c09cabfeb4675">setOneButton</a>(QIcon{<span class="stringliteral">&quot;:/switch.png&quot;</span>}, <span class="stringliteral">&quot;Swicth arrow&quot;</span>, switchNodesButton);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_function" href="classLineWithArrowEditDialog.html#a24d6c29263ba33fb146c09cabfeb4675">setOneButton</a>(QIcon{<span class="stringliteral">&quot;:/cancel.png&quot;</span>}, <span class="stringliteral">&quot;Cancel&quot;</span>, cancelButton);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    cancelButton-&gt;setAutoDefault(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    removeRelationshipButton-&gt;setAutoDefault(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    switchNodesButton-&gt;setAutoDefault(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">void</span> LineWithArrowEditDialog::switchArrow()</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Update scene</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    relationshipLine-&gt;<a class="code hl_function" href="classLine.html#a5dc80c58f456bd3fc49e57dcfc589d61">switchNodes</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    relationshipLine-&gt;update();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// Update relationship in class diagram</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    std::unordered_map&lt;Line *, Relationship *&gt; *existingRelationships = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#ab375882b7b1b79b7f0f72abf96fbf4fd">getExistingRelationships</a>();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_class" href="classRelationship.html">Relationship</a> *relationship = existingRelationships-&gt;find(relationshipLine)-&gt;second;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    relationship-&gt;<a class="code hl_function" href="classRelationship.html#abc968b1d6c89c4716039e2b66b92ba80">swapClasses</a>();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_variable" href="classLineWithArrowEditDialog.html#a3c4df2412071c7498b2041043820a4fd">sceneUpdateObservable</a>-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    close();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keywordtype">void</span> LineWithArrowEditDialog::removeRelationship()</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">// Delete from class diagram and existing relationships</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    std::unordered_map&lt;Line *, Relationship *&gt; *existingRelationships = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#ab375882b7b1b79b7f0f72abf96fbf4fd">getExistingRelationships</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <a class="code hl_class" href="classClassDiagram.html">ClassDiagram</a> *classDiagram = relationshipLine-&gt;<a class="code hl_function" href="classLine.html#a6962ad55b600f5f3936b5705ef87c6f0">getClassDiagram</a>();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">auto</span> relationship = existingRelationships-&gt;find(relationshipLine)-&gt;second;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// Delete from scene and memory</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    relationshipLine-&gt;<a class="code hl_function" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">removeConnection</a>(relationshipLine);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    relationshipLine-&gt;<a class="code hl_function" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">removeConnection</a>(relationshipLine);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">delete</span> relationshipLine;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    close();</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    classDiagram-&gt;<a class="code hl_function" href="classClassDiagram.html#a5e1a3b164030fdaf3fe84f33dfbe8866">removeRelationship</a>(relationship);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    existingRelationships-&gt;erase(relationshipLine);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// Delete from scene and memory</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    relationshipLine-&gt;<a class="code hl_function" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">removeConnection</a>(relationshipLine);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    relationshipLine-&gt;<a class="code hl_function" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">removeConnection</a>(relationshipLine);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">delete</span> relationshipLine;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    close();</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordtype">void</span> LineWithArrowEditDialog::cancel()</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>{</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    close();</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keywordtype">void</span> LineWithArrowEditDialog::setTitle()</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    setWindowTitle(<span class="stringliteral">&quot;Relationship: &quot;</span> + relationshipLine-&gt;<a class="code hl_function" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">getName</a>() + <span class="stringliteral">&quot; ---&gt; &quot;</span> +</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                   relationshipLine-&gt;<a class="code hl_function" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">getName</a>());</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keywordtype">void</span> LineWithArrowEditDialog::connectComponents()</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>{</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    connect(cancelButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;LineWithArrowEditDialog::cancel);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    connect(switchNodesButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;LineWithArrowEditDialog::switchArrow);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    connect(removeRelationshipButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;LineWithArrowEditDialog::removeRelationship);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_variable" href="classLineWithArrowEditDialog.html#a3c4df2412071c7498b2041043820a4fd">sceneUpdateObservable</a>-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordtype">void</span> LineWithArrowEditDialog::cancel()</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>{</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    close();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classLineWithArrowEditDialog.html#a193e3e5e94b1162e9188e0b6fbad1d76">  129</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classLineWithArrowEditDialog.html#a193e3e5e94b1162e9188e0b6fbad1d76">LineWithArrowEditDialog::setTitle</a>()</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    setWindowTitle(<span class="stringliteral">&quot;Relationship: &quot;</span> + relationshipLine-&gt;<a class="code hl_function" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">getName</a>() + <span class="stringliteral">&quot; ---&gt; &quot;</span> +</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                   relationshipLine-&gt;<a class="code hl_function" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a>()-&gt;<a class="code hl_function" href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">getName</a>());</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>}</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classLineWithArrowEditDialog.html#a75f2c8afdf2ce47d3e00e52ee8a5f1ed">  138</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classLineWithArrowEditDialog.html#a75f2c8afdf2ce47d3e00e52ee8a5f1ed">LineWithArrowEditDialog::connectComponents</a>()</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>{</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    connect(cancelButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;LineWithArrowEditDialog::cancel);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    connect(switchNodesButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;LineWithArrowEditDialog::switchArrow);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    connect(removeRelationshipButton, &amp;QPushButton::pressed, <span class="keyword">this</span>, &amp;LineWithArrowEditDialog::removeRelationship);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>}</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
 <div class="ttc" id="aclassClassDiagram_html"><div class="ttname"><a href="classClassDiagram.html">ClassDiagram</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8h_source.html#l00025">ClassDiagram.h:26</a></div></div>
 <div class="ttc" id="aclassClassDiagram_html_a5e1a3b164030fdaf3fe84f33dfbe8866"><div class="ttname"><a href="classClassDiagram.html#a5e1a3b164030fdaf3fe84f33dfbe8866">ClassDiagram::removeRelationship</a></div><div class="ttdeci">void removeRelationship(Relationship *relationshipToRemove)</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8cpp_source.html#l00056">ClassDiagram.cpp:56</a></div></div>
-<div class="ttc" id="aclassClassNode_html_ab7380831ea315bf8e19766998a5eed00"><div class="ttname"><a href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">ClassNode::getName</a></div><div class="ttdeci">QString getName()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00098">classNode.h:98</a></div></div>
-<div class="ttc" id="aclassClassNode_html_af899ff4279f2d4681b1f029e3b6cf547"><div class="ttname"><a href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">ClassNode::removeConnection</a></div><div class="ttdeci">void removeConnection(Line *line)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00204">classNode.h:204</a></div></div>
+<div class="ttc" id="aclassClassNode_html_ab7380831ea315bf8e19766998a5eed00"><div class="ttname"><a href="classClassNode.html#ab7380831ea315bf8e19766998a5eed00">ClassNode::getName</a></div><div class="ttdeci">QString getName()</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00097">classNode.h:97</a></div></div>
+<div class="ttc" id="aclassClassNode_html_af899ff4279f2d4681b1f029e3b6cf547"><div class="ttname"><a href="classClassNode.html#af899ff4279f2d4681b1f029e3b6cf547">ClassNode::removeConnection</a></div><div class="ttdeci">void removeConnection(Line *line)</div><div class="ttdef"><b>Definition:</b> <a href="classNode_8h_source.html#l00203">classNode.h:203</a></div></div>
+<div class="ttc" id="aclassLineWithArrowEditDialog_html_a0bdaaf95e222da1caf4017aaed1387b2"><div class="ttname"><a href="classLineWithArrowEditDialog.html#a0bdaaf95e222da1caf4017aaed1387b2">LineWithArrowEditDialog::setMyLayout</a></div><div class="ttdeci">void setMyLayout()</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8cpp_source.html#l00043">LineWithArrowEditDialog.cpp:43</a></div></div>
+<div class="ttc" id="aclassLineWithArrowEditDialog_html_a193e3e5e94b1162e9188e0b6fbad1d76"><div class="ttname"><a href="classLineWithArrowEditDialog.html#a193e3e5e94b1162e9188e0b6fbad1d76">LineWithArrowEditDialog::setTitle</a></div><div class="ttdeci">void setTitle()</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8cpp_source.html#l00129">LineWithArrowEditDialog.cpp:129</a></div></div>
+<div class="ttc" id="aclassLineWithArrowEditDialog_html_a24d6c29263ba33fb146c09cabfeb4675"><div class="ttname"><a href="classLineWithArrowEditDialog.html#a24d6c29263ba33fb146c09cabfeb4675">LineWithArrowEditDialog::setOneButton</a></div><div class="ttdeci">void setOneButton(QIcon icon, QString text, QPushButton *button)</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8cpp_source.html#l00058">LineWithArrowEditDialog.cpp:58</a></div></div>
+<div class="ttc" id="aclassLineWithArrowEditDialog_html_a3c4df2412071c7498b2041043820a4fd"><div class="ttname"><a href="classLineWithArrowEditDialog.html#a3c4df2412071c7498b2041043820a4fd">LineWithArrowEditDialog::sceneUpdateObservable</a></div><div class="ttdeci">SceneUpdateObservable * sceneUpdateObservable</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8h_source.html#l00027">LineWithArrowEditDialog.h:27</a></div></div>
+<div class="ttc" id="aclassLineWithArrowEditDialog_html_a5a1975edf166e8398f409a69c928b7bb"><div class="ttname"><a href="classLineWithArrowEditDialog.html#a5a1975edf166e8398f409a69c928b7bb">LineWithArrowEditDialog::setAllButtons</a></div><div class="ttdeci">void setAllButtons()</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8cpp_source.html#l00067">LineWithArrowEditDialog.cpp:67</a></div></div>
+<div class="ttc" id="aclassLineWithArrowEditDialog_html_a75f2c8afdf2ce47d3e00e52ee8a5f1ed"><div class="ttname"><a href="classLineWithArrowEditDialog.html#a75f2c8afdf2ce47d3e00e52ee8a5f1ed">LineWithArrowEditDialog::connectComponents</a></div><div class="ttdeci">void connectComponents()</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8cpp_source.html#l00138">LineWithArrowEditDialog.cpp:138</a></div></div>
 <div class="ttc" id="aclassLineWithArrowEditDialog_html_a83b67c18a92b0872ab94dbd8e54beac6"><div class="ttname"><a href="classLineWithArrowEditDialog.html#a83b67c18a92b0872ab94dbd8e54beac6">LineWithArrowEditDialog::LineWithArrowEditDialog</a></div><div class="ttdeci">LineWithArrowEditDialog(LineWithArrow *relationship)</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8cpp_source.html#l00018">LineWithArrowEditDialog.cpp:18</a></div></div>
+<div class="ttc" id="aclassLineWithArrowEditDialog_html_aaf12fedd84f04a2dc5f9aa685a71e34e"><div class="ttname"><a href="classLineWithArrowEditDialog.html#aaf12fedd84f04a2dc5f9aa685a71e34e">LineWithArrowEditDialog::initializeComponents</a></div><div class="ttdeci">void initializeComponents()</div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrowEditDialog_8cpp_source.html#l00032">LineWithArrowEditDialog.cpp:32</a></div></div>
 <div class="ttc" id="aclassLineWithArrow_html"><div class="ttname"><a href="classLineWithArrow.html">LineWithArrow</a></div><div class="ttdef"><b>Definition:</b> <a href="LineWithArrow_8h_source.html#l00014">LineWithArrow.h:15</a></div></div>
 <div class="ttc" id="aclassLine_html_a422bd718590f408327bc386de068e7ce"><div class="ttname"><a href="classLine.html#a422bd718590f408327bc386de068e7ce">Line::getToClassNode</a></div><div class="ttdeci">ClassNode * getToClassNode()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00058">Line.h:58</a></div></div>
+<div class="ttc" id="aclassLine_html_a5dc80c58f456bd3fc49e57dcfc589d61"><div class="ttname"><a href="classLine.html#a5dc80c58f456bd3fc49e57dcfc589d61">Line::switchNodes</a></div><div class="ttdeci">void switchNodes()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8cpp_source.html#l00138">Line.cpp:138</a></div></div>
 <div class="ttc" id="aclassLine_html_a6962ad55b600f5f3936b5705ef87c6f0"><div class="ttname"><a href="classLine.html#a6962ad55b600f5f3936b5705ef87c6f0">Line::getClassDiagram</a></div><div class="ttdeci">ClassDiagram * getClassDiagram()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00108">Line.h:108</a></div></div>
 <div class="ttc" id="aclassLine_html_aa6b7321e4ba9f155388e58b906de6018"><div class="ttname"><a href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">Line::getFromClassNode</a></div><div class="ttdeci">ClassNode * getFromClassNode()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00068">Line.h:68</a></div></div>
 <div class="ttc" id="aclassLine_html_ab375882b7b1b79b7f0f72abf96fbf4fd"><div class="ttname"><a href="classLine.html#ab375882b7b1b79b7f0f72abf96fbf4fd">Line::getExistingRelationships</a></div><div class="ttdeci">std::unordered_map&lt; Line *, Relationship * &gt; * getExistingRelationships()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00098">Line.h:98</a></div></div>
+<div class="ttc" id="aclassLine_html_ac93502c4586334cc88dd21dcd5af4936"><div class="ttname"><a href="classLine.html#ac93502c4586334cc88dd21dcd5af4936">Line::isSelfRelationship</a></div><div class="ttdeci">bool isSelfRelationship()</div><div class="ttdef"><b>Definition:</b> <a href="Line_8h_source.html#l00129">Line.h:129</a></div></div>
 <div class="ttc" id="aclassRelationship_html"><div class="ttname"><a href="classRelationship.html">Relationship</a></div><div class="ttdef"><b>Definition:</b> <a href="Relationship_8h_source.html#l00017">Relationship.h:18</a></div></div>
 <div class="ttc" id="aclassRelationship_html_abc968b1d6c89c4716039e2b66b92ba80"><div class="ttname"><a href="classRelationship.html#abc968b1d6c89c4716039e2b66b92ba80">Relationship::swapClasses</a></div><div class="ttdeci">void swapClasses()</div><div class="ttdef"><b>Definition:</b> <a href="Relationship_8h_source.html#l00050">Relationship.h:50</a></div></div>
 <div class="ttc" id="aclassSceneUpdateObservable_html_aea8b0fc5cf0142d24f9e6b9465d6bdac"><div class="ttname"><a href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">SceneUpdateObservable::sceneChanged</a></div><div class="ttdeci">void sceneChanged()</div><div class="ttdef"><b>Definition:</b> <a href="SceneUpdateObservable_8h_source.html#l00038">SceneUpdateObservable.h:38</a></div></div>
