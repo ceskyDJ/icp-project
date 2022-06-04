@@ -380,9 +380,6 @@ QVariant ClassNode::itemChange(GraphicsItemChange change, const QVariant &value)
         classEntity->setCoordinates(newCoords);
 
         rePaintLines();
-
-        // FIXME: Generates too many mementos
-//        sceneUpdateObservable->sceneChanged();
     }
 
     return QGraphicsItem::itemChange(change, value);

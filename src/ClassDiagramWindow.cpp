@@ -7,8 +7,6 @@
  * @author Michal Šmahel (xsmahe01)
  */
 #include <QPushButton>
-#include <QResource>
-#include <iostream>
 #include <QFileDialog>
 #include <QMessageBox>
 #include "ClassDiagramWindow.h"
@@ -711,21 +709,8 @@ void ClassDiagramWindow::undoButtonClicked()
 
     classDiagramManager->undoDiagramChanges(&classDiagram);
 
-    std::cerr << "State to undo:\n";
-    std::cerr << "\tClasses:\n";
-    for (const auto &item: classDiagram.getClasses()) {
-        std::cerr << "\t\t- " << item->getName() << "\n";
-    }
-    std::cerr << "\tRelationships:\n";
-    for (const auto &item: classDiagram.getRelationships()) {
-        std::cerr << "\t\t- " << typeid(*item).name() << ": " << item->getFirstClass()->getName() << " <-> "
-                  << item->getSecondClass()->getName() << "\n";
-    }
-
     // Draw new diagram
     redrawClassDiagram();
-
-//        sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -740,21 +725,8 @@ void ClassDiagramWindow::redoButtonClicked()
 
     classDiagramManager->redoDiagramChanges(&classDiagram);
 
-    std::cerr << "State to redo:\n";
-    std::cerr << "\tClasses:\n";
-    for (const auto &item: classDiagram.getClasses()) {
-        std::cerr << "\t\t- " << item->getName() << "\n";
-    }
-    std::cerr << "\tRelationships:\n";
-    for (const auto &item: classDiagram.getRelationships()) {
-        std::cerr << "\t\t- " << typeid(*item).name() << ": " << item->getFirstClass()->getName() << " <-> "
-                  << item->getSecondClass()->getName() << "\n";
-    }
-
     // Draw new diagram
     redrawClassDiagram();
-
-//        sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -765,18 +737,4 @@ void ClassDiagramWindow::logChanges() noexcept
     isSaved = false;
 
     classDiagramManager->backupDiagram(&classDiagram);
-
-    auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-    std::cerr << "Scene changed: " << std::ctime(&time);
-
-    std::cerr << "Current state:\n";
-    std::cerr << "\tClasses:\n";
-    for (const auto &item: classDiagram.getClasses()) {
-        std::cerr << "\t\t- " << item->getName() << "\n";
-    }
-    std::cerr << "\tRelationships:\n";
-    for (const auto &item: classDiagram.getRelationships()) {
-        std::cerr << "\t\t- " << typeid(*item).name() << ": " << item->getFirstClass()->getName() << " <-> "
-            << item->getSecondClass()->getName() << "\n";
-    }
 }

@@ -291,6 +291,4 @@ void ClassEditDialog::onClassTypeChanged(QString newType)
 {
     std::string classType = newType.toStdString();
     classEntity->setClassType(ClassType::deserialize(classType));
-
-    std::cerr << classEntity->getClassType().serialize() << "\n";
 }
