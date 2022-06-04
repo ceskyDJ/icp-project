@@ -289,6 +289,8 @@ void ClassEditDialog::fillData()
  */
 void ClassEditDialog::onClassTypeChanged(QString newType)
 {
-    std::string methodType = newType.toStdString();
-    classEntity->setClassType(ClassType::deserialize(methodType));
+    std::string classType = newType.toStdString();
+    classEntity->setClassType(ClassType::deserialize(classType));
+
+    std::cerr << classEntity->getClassType().serialize() << "\n";
 }

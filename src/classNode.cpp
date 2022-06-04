@@ -271,7 +271,7 @@ void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
     Class newClassEntity{*classEntity};
     auto *classEditDialog = new ClassEditDialog(&newClassEntity);
 
-    if (classEditDialog->exec() == QDialog::Accepted) {
+    if (classEditDialog->exec() == QDialog::Accepted && *classEntity != newClassEntity) {
         // Propagate name change to existing classes map
         if (classEntity->getName() != newClassEntity.getName()) {
             // Delete old key with this class node
@@ -282,11 +282,13 @@ void ClassNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
             existingClasses->insert({newClassEntity.getName(), this});
         }
 
-        // Update class entity
-        if (*classEntity != newClassEntity) {
-            *classEntity = newClassEntity;
-            update();
-        }
+        // Update class entity in class diagram
+        *classEntity = newClassEntity;
+
+        // Update scene
+        update();
+
+        sceneUpdateObservable->sceneChanged();
     }
 }
 
