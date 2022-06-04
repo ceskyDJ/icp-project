@@ -244,8 +244,12 @@ void ClassDiagramWindow::removeClassNodes(QList<QGraphicsItem *> selectedItems)
  */
 void ClassDiagramWindow::removeClassNode(ClassNode *classNode)
 {
-    QVector<Line *> connections = classNode->getConnections();
-    for(Line *connection: connections) {
+    // One connection could have the same class node at its both ends
+    // One line (connection) could be deleted only once, so these class nodes'
+    // connections must be filtered for duplicates (set contains only unique items)
+    QVector<Line *> allConnections = classNode->getConnections();
+    QSet<Line *> uniqueConnections{allConnections.begin(), allConnections.end()};
+    for(Line *connection: uniqueConnections) {
         // Delete corresponding relationship from class diagram and memory
         Relationship *relationship = storedRelationships.find(connection)->second;
 
@@ -493,10 +497,13 @@ void ClassDiagramWindow::removeSelected()
     }
 }
 
+/**
+ * Automatically clears the whole scene
+ */
 void ClassDiagramWindow::clearScene()
 {
     std::vector<ClassNode *> nodesForRemoval{};
-    for (auto &item: classDiagramScene->items()) {
+    for (auto item: classDiagramScene->items()) {
         if (typeid(*item) == typeid(ClassNode)) {
             auto classNode = dynamic_cast<ClassNode *>(item);
 
