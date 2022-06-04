@@ -11,10 +11,12 @@ var searchData=
   ['classmember_8',['ClassMember',['../classClassMember.html',1,'']]],
   ['classmethod_9',['ClassMethod',['../classClassMethod.html',1,'']]],
   ['classmethodtype_10',['ClassMethodType',['../classClassMethodType.html',1,'']]],
-  ['classnode_11',['ClassNode',['../classClassNode.html',1,'']]],
-  ['classnode_12',['classNode',['../classclassNode.html',1,'']]],
-  ['classreference_13',['ClassReference',['../classClassReference.html',1,'']]],
-  ['classtype_14',['ClassType',['../classClassType.html',1,'']]],
-  ['composition_15',['Composition',['../classComposition.html',1,'']]],
-  ['compositionline_16',['CompositionLine',['../classCompositionLine.html',1,'']]]
+  ['classnode_11',['classNode',['../classclassNode.html',1,'']]],
+  ['classnode_12',['ClassNode',['../classClassNode.html',1,'']]],
+  ['classnodeemmitor_13',['classNodeEmmitor',['../classclassNodeEmmitor.html',1,'']]],
+  ['classnodeemmitor_14',['ClassNodeEmmitor',['../classClassNodeEmmitor.html',1,'']]],
+  ['classreference_15',['ClassReference',['../classClassReference.html',1,'']]],
+  ['classtype_16',['ClassType',['../classClassType.html',1,'']]],
+  ['composition_17',['Composition',['../classComposition.html',1,'']]],
+  ['compositionline_18',['CompositionLine',['../classCompositionLine.html',1,'']]]
 ];

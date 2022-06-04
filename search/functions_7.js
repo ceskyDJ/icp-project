@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['initialize_0',['initialize',['../classLine.html#a864dcfed95000676235b428da5e14fbc',1,'Line']]],
-  ['invalidatepointer_1',['invalidatePointer',['../classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e',1,'ClassReference::invalidatePointer()'],['../classMethodReference.html#aca324fbaf892df453cb42dd389d8c9b3',1,'MethodReference::invalidatePointer()']]],
-  ['isvalid_2',['isValid',['../classClassReference.html#ace566ff729552e40d610885dc2dee8a1',1,'ClassReference::isValid()'],['../classMethodReference.html#a49234a3f7b5ab1f73398da05ebdf1d99',1,'MethodReference::isValid()']]]
+  ['historystack_0',['HistoryStack',['../classHistoryStack.html#ad977682deef22990f0c5c7ccb4362859',1,'HistoryStack']]]
 ];

@@ -105,9 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a42dad6d99fa2ac5246ab0f7b4cfa038b inherit pub_methods_classLine"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a42dad6d99fa2ac5246ab0f7b4cfa038b">drawLine</a> ()</td></tr>
 <tr class="memdesc:a42dad6d99fa2ac5246ab0f7b4cfa038b inherit pub_methods_classLine"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#a42dad6d99fa2ac5246ab0f7b4cfa038b" title="Line::drawLine draws a line.">Line::drawLine</a> draws a line.  <a href="classLine.html#a42dad6d99fa2ac5246ab0f7b4cfa038b">More...</a><br /></td></tr>
 <tr class="separator:a42dad6d99fa2ac5246ab0f7b4cfa038b inherit pub_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a864dcfed95000676235b428da5e14fbc inherit pub_methods_classLine"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a864dcfed95000676235b428da5e14fbc">initialize</a> (<a class="el" href="classClassNode.html">ClassNode</a> *fromNode, <a class="el" href="classClassNode.html">ClassNode</a> *toNode)</td></tr>
-<tr class="memdesc:a864dcfed95000676235b428da5e14fbc inherit pub_methods_classLine"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#a864dcfed95000676235b428da5e14fbc" title="Line::initialize initializes line - from and to + pen.">Line::initialize</a> initializes line - from and to + pen.  <a href="classLine.html#a864dcfed95000676235b428da5e14fbc">More...</a><br /></td></tr>
-<tr class="separator:a864dcfed95000676235b428da5e14fbc inherit pub_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa21dda8834df70f03e7881e1acaedd63 inherit pub_methods_classLine"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#aa21dda8834df70f03e7881e1acaedd63">initialize</a> (<a class="el" href="classClassNode.html">ClassNode</a> *fromNode, <a class="el" href="classClassNode.html">ClassNode</a> *toNode, bool selfRealtionship)</td></tr>
+<tr class="memdesc:aa21dda8834df70f03e7881e1acaedd63 inherit pub_methods_classLine"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#aa21dda8834df70f03e7881e1acaedd63" title="Line::initialize initializes line - from and to + pen.">Line::initialize</a> initializes line - from and to + pen.  <a href="classLine.html#aa21dda8834df70f03e7881e1acaedd63">More...</a><br /></td></tr>
+<tr class="separator:aa21dda8834df70f03e7881e1acaedd63 inherit pub_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a422bd718590f408327bc386de068e7ce inherit pub_methods_classLine"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a422bd718590f408327bc386de068e7ce">getToClassNode</a> ()</td></tr>
 <tr class="separator:a422bd718590f408327bc386de068e7ce inherit pub_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6b7321e4ba9f155388e58b906de6018 inherit pub_methods_classLine"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#aa6b7321e4ba9f155388e58b906de6018">getFromClassNode</a> ()</td></tr>
@@ -132,14 +132,16 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:aa4900f35d495bfec2039b27fa4ca56de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a915dfbf22621b86b2ff113a9412b5a23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#a915dfbf22621b86b2ff113a9412b5a23">paint</a> (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)</td></tr>
 <tr class="separator:a915dfbf22621b86b2ff113a9412b5a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f363e944c8cdc15c820ccf6706e9984"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#a5f363e944c8cdc15c820ccf6706e9984">getTextBoundingBox</a> (QString text) const</td></tr>
-<tr class="separator:a5f363e944c8cdc15c820ccf6706e9984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cd02aa454ba41924002bf8039b342bd"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#a5cd02aa454ba41924002bf8039b342bd">boundingRect</a> () const</td></tr>
-<tr class="separator:a5cd02aa454ba41924002bf8039b342bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b8be2c49629d90bd98249820cc2c5e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#a2b8be2c49629d90bd98249820cc2c5e1">adjustBounding</a> (QRectF *rect) const</td></tr>
+<tr class="separator:a2b8be2c49629d90bd98249820cc2c5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf1d41842aca14d74e5c784dd74e7859"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#abf1d41842aca14d74e5c784dd74e7859">prepareBoundingBox</a> (QRectF rect)</td></tr>
 <tr class="separator:abf1d41842aca14d74e5c784dd74e7859"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1060e1cd81ae42ca5dbd75953807cc4"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#ad1060e1cd81ae42ca5dbd75953807cc4">locateCardinality</a> (QRectF rect, int modifier, QLineF line, qreal additionPadding=0)</td></tr>
 <tr class="separator:ad1060e1cd81ae42ca5dbd75953807cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a846e9007c899906c3f41f53cf9d999fc"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#a846e9007c899906c3f41f53cf9d999fc">adjustSelfRect</a> (QRectF rect, int multiply) const</td></tr>
+<tr class="separator:a846e9007c899906c3f41f53cf9d999fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b4b987c43cb21b8286e44d1dba81d3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAssociationLine.html#a8b4b987c43cb21b8286e44d1dba81d3f">paintSelfRelationship</a> (QPainter *painter)</td></tr>
+<tr class="separator:a8b4b987c43cb21b8286e44d1dba81d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classLine"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classLine')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classLine.html">Line</a></td></tr>
 <tr class="memitem:ab7d6bae8923420b49a3f232c591d6346 inherit pro_methods_classLine"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#ab7d6bae8923420b49a3f232c591d6346">getCenterPos</a> (<a class="el" href="classClassNode.html">ClassNode</a> *node) const</td></tr>
 <tr class="memdesc:ab7d6bae8923420b49a3f232c591d6346 inherit pro_methods_classLine"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLine.html#ab7d6bae8923420b49a3f232c591d6346" title="Line::getCenterPos Gets Center position of widget.">Line::getCenterPos</a> Gets Center position of widget.  <a href="classLine.html#ab7d6bae8923420b49a3f232c591d6346">More...</a><br /></td></tr>
@@ -157,6 +159,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:aa7b6644d0ac202e356ee6cf89c932b2a inherit pro_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bd8a6f6bd8d3d0a2402215940da97d5 inherit pro_methods_classLine"><td class="memItemLeft" align="right" valign="top">QLineF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a7bd8a6f6bd8d3d0a2402215940da97d5">getParallelLine</a> (QLineF parallelLine, QPointF startPoint) const</td></tr>
 <tr class="separator:a7bd8a6f6bd8d3d0a2402215940da97d5 inherit pro_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acffc6e0cad3f8254cc4cf38fec691065 inherit pro_methods_classLine"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#acffc6e0cad3f8254cc4cf38fec691065">getTextBoundingBox</a> (QString text) const</td></tr>
+<tr class="separator:acffc6e0cad3f8254cc4cf38fec691065 inherit pro_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef900170dd9938541424cdfdbdd47f5 inherit pro_methods_classLine"><td class="memItemLeft" align="right" valign="top">QPainterPath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a0ef900170dd9938541424cdfdbdd47f5">selfRealtionshipShape</a> () const</td></tr>
+<tr class="separator:a0ef900170dd9938541424cdfdbdd47f5 inherit pro_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22c41c4c2b8dbf8a402b969bcda75b03 inherit pro_methods_classLine"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a22c41c4c2b8dbf8a402b969bcda75b03">boundingRect</a> () const</td></tr>
+<tr class="separator:a22c41c4c2b8dbf8a402b969bcda75b03 inherit pro_methods_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -175,7 +183,11 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ae5eb30b56d14b09f7d4486222ef23d9c inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af52b4a42f67cb505f649fa87d47b87bd inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#af52b4a42f67cb505f649fa87d47b87bd">sceneUpdateObservable</a></td></tr>
 <tr class="separator:af52b4a42f67cb505f649fa87d47b87bd inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c91b330b7292f88453def819f007140 inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top">QPen&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a6c91b330b7292f88453def819f007140">pen</a> {Qt::black, 2, Qt::SolidLine}</td></tr>
+<tr class="memitem:aa991456a3007a6673250d7d4462eef6f inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#aa991456a3007a6673250d7d4462eef6f">selfPadding</a> = 50</td></tr>
+<tr class="separator:aa991456a3007a6673250d7d4462eef6f inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6761b7d93d59050d32d20c6eb4ae228a inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a6761b7d93d59050d32d20c6eb4ae228a">specialSelfWidthPadding</a></td></tr>
+<tr class="separator:a6761b7d93d59050d32d20c6eb4ae228a inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c91b330b7292f88453def819f007140 inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top">QPen&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a6c91b330b7292f88453def819f007140">pen</a></td></tr>
 <tr class="separator:a6c91b330b7292f88453def819f007140 inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64286175a607b24cea05e79f747acf04 inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassNode.html">ClassNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a64286175a607b24cea05e79f747acf04">fromClassNode</a></td></tr>
 <tr class="separator:a64286175a607b24cea05e79f747acf04 inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,13 +195,15 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a58e59370e22ddde8cd9546e762eef817 inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7a4cddff641cd1e542524e08d2e1cec inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#ac7a4cddff641cd1e542524e08d2e1cec">lineBoundingWidth</a> = 10</td></tr>
 <tr class="separator:ac7a4cddff641cd1e542524e08d2e1cec inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eaad15d972aa1aaf85d8b3709308887 inherit pro_attribs_classLine"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLine.html#a6eaad15d972aa1aaf85d8b3709308887">selfRealtionshipFlag</a></td></tr>
+<tr class="separator:a6eaad15d972aa1aaf85d8b3709308887 inherit pro_attribs_classLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="AssociationLine_8h_source.html#l00014">14</a> of file <a class="el" href="AssociationLine_8h_source.html">AssociationLine.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5cd02aa454ba41924002bf8039b342bd" name="a5cd02aa454ba41924002bf8039b342bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cd02aa454ba41924002bf8039b342bd">&#9670;&nbsp;</a></span>boundingRect()</h2>
+<a id="a2b8be2c49629d90bd98249820cc2c5e1" name="a2b8be2c49629d90bd98249820cc2c5e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b8be2c49629d90bd98249820cc2c5e1">&#9670;&nbsp;</a></span>adjustBounding()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,22 +212,79 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QRectF AssociationLine::boundingRect </td>
+          <td class="memname">void AssociationLine::adjustBounding </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">QRectF *&#160;</td>
+          <td class="paramname"><em>rect</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Override method which returns bounding rect of line.</p>
-<dl class="section return"><dt>Returns</dt><dd>QRectF A rectnagle around <a class="el" href="classclassNode.html">classNode</a>. </dd></dl>
+<p >Adjusts regular boundingbox</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>that should be adjusted </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00116">116</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
+<p>Reimplemented from <a class="el" href="classLine.html">Line</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00113">113</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a846e9007c899906c3f41f53cf9d999fc" name="a846e9007c899906c3f41f53cf9d999fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a846e9007c899906c3f41f53cf9d999fc">&#9670;&nbsp;</a></span>adjustSelfRect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QRectF AssociationLine::adjustSelfRect </td>
+          <td>(</td>
+          <td class="paramtype">QRectF&#160;</td>
+          <td class="paramname"><em>rect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>multiply</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Adjusts bounding rectangle for self realtionship.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>rectangle to adjust </td></tr>
+    <tr><td class="paramname">multiply</td><td>1 for adjust, -1 for resolving line from bounding rect </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>adjusted BoundingRect </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classLine.html#aa236730473b3288b159c4030f32064c7">Line</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00159">159</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
 
 </div>
 </div>
@@ -301,42 +372,6 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>QString second cardinality </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="AssociationLine_8h_source.html#l00044">44</a> of file <a class="el" href="AssociationLine_8h_source.html">AssociationLine.h</a>.</p>
-
-</div>
-</div>
-<a id="a5f363e944c8cdc15c820ccf6706e9984" name="a5f363e944c8cdc15c820ccf6706e9984"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f363e944c8cdc15c820ccf6706e9984">&#9670;&nbsp;</a></span>getTextBoundingBox()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">QRectF AssociationLine::getTextBoundingBox </td>
-          <td>(</td>
-          <td class="paramtype">QString&#160;</td>
-          <td class="paramname"><em>text</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p >Returns bounding rect of text with current font.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">text</td><td>- bounding rectangle around this text </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>bounding rectangle around parameter </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00104">104</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
 
 </div>
 </div>
@@ -449,7 +484,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>modified QRectF </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00153">153</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00144">144</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
 
 </div>
 </div>
@@ -542,6 +577,43 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a8b4b987c43cb21b8286e44d1dba81d3f" name="a8b4b987c43cb21b8286e44d1dba81d3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b4b987c43cb21b8286e44d1dba81d3f">&#9670;&nbsp;</a></span>paintSelfRelationship()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AssociationLine::paintSelfRelationship </td>
+          <td>(</td>
+          <td class="paramtype">QPainter *&#160;</td>
+          <td class="paramname"><em>painter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Paints self realtionship.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">painter</td><td>Painter to paint relationship </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classLine.html">Line</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00173">173</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
+
+</div>
+</div>
 <a id="abf1d41842aca14d74e5c784dd74e7859" name="abf1d41842aca14d74e5c784dd74e7859"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf1d41842aca14d74e5c784dd74e7859">&#9670;&nbsp;</a></span>prepareBoundingBox()</h2>
 
@@ -574,7 +646,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>transformed rectangle </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00134">134</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AssociationLine_8cpp_source.html#l00125">125</a> of file <a class="el" href="AssociationLine_8cpp_source.html">AssociationLine.cpp</a>.</p>
 
 </div>
 </div>

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['line_0',['Line',['../classLine.html#a8e13a727d09793cff0e9653324cc861c',1,'Line::Line()'],['../classAssociationLine.html#a8e13a727d09793cff0e9653324cc861c',1,'AssociationLine::Line()'],['../classLineWithArrow.html#a8e13a727d09793cff0e9653324cc861c',1,'LineWithArrow::Line()']]],
-  ['linewitharroweditdialog_1',['LineWithArrowEditDialog',['../classLineWithArrowEditDialog.html#a83b67c18a92b0872ab94dbd8e54beac6',1,'LineWithArrowEditDialog']]],
-  ['loaddiagram_2',['loadDiagram',['../classClassDiagramManager.html#aea4181b9c659869bba3dfe4ecc8c6d42',1,'ClassDiagramManager::loadDiagram()'],['../classClassDiagramRepository.html#ac33a29618e75314d6fc5b5ebeb0346d3',1,'ClassDiagramRepository::loadDiagram()'],['../classFileClassDiagramRepository.html#aed3634e072059627719aab1724cd4b4b',1,'FileClassDiagramRepository::loadDiagram()'],['../classFileSequenceDiagramRepository.html#adb0116480f395466b39d3432a3b1dc87',1,'FileSequenceDiagramRepository::loadDiagram()'],['../classSequenceDiagramManager.html#aa29a6ca51c71149dee8e9aa5e1cc7b10',1,'SequenceDiagramManager::loadDiagram()'],['../classSequenceDiagramRepository.html#a9b95172b08560cf161abb7d20089395c',1,'SequenceDiagramRepository::loadDiagram()']]],
-  ['locatecardinality_3',['locateCardinality',['../classAssociationLine.html#ad1060e1cd81ae42ca5dbd75953807cc4',1,'AssociationLine']]],
-  ['logchanges_4',['logChanges',['../classClassDiagramWindow.html#a5606d936bf724dc3da35c76effb3f810',1,'ClassDiagramWindow::logChanges()'],['../classSceneUpdateObserver.html#af9078638404e37b8ac0c3f220a78fbe7',1,'SceneUpdateObserver::logChanges()']]]
+  ['initialize_0',['initialize',['../classLine.html#aa21dda8834df70f03e7881e1acaedd63',1,'Line']]],
+  ['invalidatepointer_1',['invalidatePointer',['../classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e',1,'ClassReference::invalidatePointer()'],['../classMethodReference.html#aca324fbaf892df453cb42dd389d8c9b3',1,'MethodReference::invalidatePointer()']]],
+  ['isvalid_2',['isValid',['../classClassReference.html#ace566ff729552e40d610885dc2dee8a1',1,'ClassReference::isValid()'],['../classMethodReference.html#a49234a3f7b5ab1f73398da05ebdf1d99',1,'MethodReference::isValid()']]]
 ];

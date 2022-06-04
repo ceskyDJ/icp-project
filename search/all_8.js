@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['initialize_0',['initialize',['../classLine.html#a864dcfed95000676235b428da5e14fbc',1,'Line']]],
+  ['initialize_0',['initialize',['../classLine.html#aa21dda8834df70f03e7881e1acaedd63',1,'Line']]],
   ['interface_1',['INTERFACE',['../classClassType.html#abd18ee8521314909267c6923865e97daa210cf4820cfadcaad8b85632209c659b',1,'ClassType']]],
   ['invalidatepointer_2',['invalidatePointer',['../classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e',1,'ClassReference::invalidatePointer()'],['../classMethodReference.html#aca324fbaf892df453cb42dd389d8c9b3',1,'MethodReference::invalidatePointer()']]],
   ['invaliddatastorageexception_3',['InvalidDataStorageException',['../classInvalidDataStorageException.html',1,'']]],

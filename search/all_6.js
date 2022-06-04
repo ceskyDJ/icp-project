@@ -47,7 +47,7 @@ var searchData=
   ['getsendingtime_44',['getSendingTime',['../classMessage.html#a5883477bb4283dbd5ff1eab61a01e391',1,'Message']]],
   ['getshortestline_45',['getShortestLine',['../classLine.html#aab6260094b6f15ca916d5ebf1cf17cf6',1,'Line']]],
   ['getstoragename_46',['getStorageName',['../classClassDiagramRepository.html#ad425d0da95fddee829374ec32fac50f5',1,'ClassDiagramRepository::getStorageName()'],['../classSequenceDiagramRepository.html#ad3610013dabe74cc2d74b71629129279',1,'SequenceDiagramRepository::getStorageName()']]],
-  ['gettextboundingbox_47',['getTextBoundingBox',['../classAssociationLine.html#a5f363e944c8cdc15c820ccf6706e9984',1,'AssociationLine']]],
+  ['gettextboundingbox_47',['getTextBoundingBox',['../classLine.html#acffc6e0cad3f8254cc4cf38fec691065',1,'Line']]],
   ['gettoclassnode_48',['getToClassNode',['../classLine.html#a422bd718590f408327bc386de068e7ce',1,'Line']]],
   ['gettype_49',['getType',['../classClassMethod.html#ac48fdbb124d17e6445131a6143c697f0',1,'ClassMethod::getType()'],['../classMessage.html#a995db3fb8b9b0d1af2819f481d81d0e3',1,'Message::getType()']]]
 ];
