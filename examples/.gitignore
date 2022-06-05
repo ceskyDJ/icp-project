@@ -1,5 +1,5 @@
 # Final version examples
-class-diagram-output.xml
-example-class-diagram.xml
-example-sequence-diagram.xml
-sequence-diagram-output.xml
+class-diagram-output.cls.xml
+example-class-diagram.cls.xml
+example-sequence-diagram.seq.xml
+sequence-diagram-output.seq.xml

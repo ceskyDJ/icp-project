@@ -57,7 +57,7 @@ int main()
     sequenceDiagram.addMessage(samsungValuableReply);
     sequenceDiagram.addMessage(destroyXiaomi);
 
-    FileSequenceDiagramRepository repo{classDiagram, "examples/sequence-diagram-output.xml"};
+    FileSequenceDiagramRepository repo{classDiagram, "examples/sequence-diagram-output.seq.xml"};
     repo.saveDiagram(sequenceDiagram);
 
     return 0;

@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "ClassDiagramWindow.h"
+#include "MainWindow.h"
 #include "ClassDiagramManager.h"
 #include "FileClassDiagramRepository.h"
 
@@ -12,9 +12,9 @@ int main(int argc, char **argv)
     ClassDiagramManager classDiagramManager{&classDiagramRepository};
     SceneUpdateObservable sceneUpdateObservable{};
 
-    ClassDiagramWindow classDiagramWindow{&classDiagramManager, &sceneUpdateObservable};
+    MainWindow mainWindow{&classDiagramManager, &sceneUpdateObservable};
 
-    classDiagramWindow.showMaximized();
+    mainWindow.showMaximized();
 
     return app.exec();
 }

@@ -31,6 +31,8 @@ add_executable(icp_project
         src/AssociationLineEditDialog.h
         src/ClassDiagram.h
         src/ClassNodeEmitter.h
+        src/ClassDiagramScene.h
+        src/CustomScene.h
         src/DirectedAssociationLine.h
         src/DirectedAssociationLineEditDialog.h
         src/Line.h
@@ -72,7 +74,7 @@ add_executable(icp_project
         src/HistoryStack.h
         src/ClassDiagramMemento.h
         src/SequenceDiagramMemento.h
-        src/ClassDiagramWindow.h
+        src/MainWindow.h
         src/MethodParameterEditWidget.h
         src/Line.h
         src/classNode.h
@@ -92,6 +94,8 @@ add_executable(icp_project
         src/ClassMethodType.cpp
         src/ClassNodeEmitter.cpp
         src/ClassType.cpp
+        src/ClassDiagramScene.cpp
+        src/CustomScene.cpp
         src/DirectedAssociationLine.cpp
         src/DirectedAssociationLineEditDialog.cpp
         src/LineWithArrow.cpp
@@ -105,7 +109,7 @@ add_executable(icp_project
         src/FileSequenceDiagramRepository.cpp
         src/ClassDiagramManager.cpp
         src/SequenceDiagramManager.cpp
-        src/ClassDiagramWindow.cpp
+        src/MainWindow.cpp
         src/MethodParameterEditWidget.cpp
         src/Line.cpp
         src/classNode.cpp

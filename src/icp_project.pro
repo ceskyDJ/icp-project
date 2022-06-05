@@ -31,6 +31,8 @@ HEADERS += \
     AssociationLineEditDialog.h \
     ClassDiagram.h \
     ClassNodeEmitter.h \
+    ClassDiagramScene.h \
+    CustomScene.h \
     DirectedAssociationLine.h \
     DirectedAssociationLineEditDialog.h \
     Line.h \
@@ -72,7 +74,7 @@ HEADERS += \
     HistoryStack.h \
     ClassDiagramMemento.h \
     SequenceDiagramMemento.h \
-    ClassDiagramWindow.h \
+    MainWindow.h \
     MethodParameterEditWidget.h \
     Line.h \
     classNode.h \
@@ -92,6 +94,8 @@ SOURCES += \
     ClassMethodType.cpp \
     ClassNodeEmitter.cpp \
     ClassType.cpp \
+    ClassDiagramScene.cpp \
+    CustomScene.cpp \
     DirectedAssociationLine.cpp \
     DirectedAssociationLineEditDialog.cpp \
     LineWithArrow.cpp \
@@ -105,7 +109,7 @@ SOURCES += \
     FileSequenceDiagramRepository.cpp \
     ClassDiagramManager.cpp \
     SequenceDiagramManager.cpp \
-    ClassDiagramWindow.cpp \
+    MainWindow.cpp \
     MethodParameterEditWidget.cpp \
     Line.cpp \
     classNode.cpp \
