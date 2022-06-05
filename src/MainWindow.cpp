@@ -10,91 +10,90 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "MainWindow.h"
-#include "ClassAttribute.h"
-#include "Aggregation.h"
-#include "Composition.h"
-#include "DirectedAssociation.h"
-#include "Generalization.h"
-#include "Realization.h"
-#include "UndirectedAssociation.h"
 #include "InvalidDataStorageException.h"
-#include "InvalidInputDataException.h"
 #include "ClassNodeEmitter.h"
+#include "ClassDiagramScene.h"
 
 /**
- * MainWindow::MainWindow Initialiezes components and prepare all QWidgets and controls.
+ * Class constructor
  *
- * @param classDiagramManager Pointer to class diagram manager (dependency)
+ * @par Initialiezes components and prepare all QWidgets and controls.
+ *
+ * @param classDiagramManager Class diagram manage (dependency)
+ * @param sceneUpdateObservable Observable for providing information about scene changes (dependency)
  */
-MainWindow::MainWindow(
+MainWindow::MainWindow( // NOLINT(cppcoreguidelines-pro-type-member-init)
     ClassDiagramManager *classDiagramManager,
     SceneUpdateObservable *sceneUpdateObservable
-): classDiagramManager{classDiagramManager}, sceneUpdateObservable{sceneUpdateObservable}, storedClasses{},
-    storedRelationships{}
+): classDiagramManager{classDiagramManager}, sceneUpdateObservable{sceneUpdateObservable}
 {
     // Register this observer for scene updates
     sceneUpdateObservable->registerObserver(this);
 
-    newLine = nullptr;
-    currentState = state::none;
-
     initializeComponents();
     connectComponents();
-    setTooBox();
+    setToolBox();
     setTaskBars();
     setMainWindow();
 }
 
 /**
- * MainWindow::initializeComponents Initializes components - creates a new instances of primary attributes.
+ * Logs scene changes for saving and undo/redo mechanisms
+ */
+void MainWindow::logChanges() noexcept
+{
+    currentScene->logChanges();
+}
+
+/**
+ * Initializes components - creates a new instances of primary attributes.
  */
 void MainWindow::initializeComponents()
 {
-    newLine = nullptr;
-    classDiagramScene = new QGraphicsScene();
-    classDiagramView = new QGraphicsView(classDiagramScene);
+    currentScene = new ClassDiagramScene{this, classDiagramManager, sceneUpdateObservable};
+    diagramView = new QGraphicsView(currentScene);
 
     taskBar = addToolBar("TaskBar");
     diagramTabs = new QToolBar();
     toolBox = new QToolBox;
 
-    agregationToolItem = new QToolButton;
+    aggregationToolItem = new QToolButton;
     associationToolItem = new QToolButton;
     compositionToolItem = new QToolButton;
     generalisationToolItem = new QToolButton;
     realizationToolItem = new QToolButton;
     directedAssociationToolItem = new QToolButton;
-    classShapeToolItem     = new QToolButton;
+    classShapeToolItem = new QToolButton;
     removeSelectedToolItem = new QToolButton;
 }
 
 /**
- * MainWindow::setMainWindow Arranges controls in layout and sets window properties.
+ * Arranges controls in layout and sets window properties.
  */
 void MainWindow::setMainWindow()
 {
-    QGridLayout *windowLayout = new QGridLayout;
-    QGridLayout *modellingLayout = new QGridLayout;
+    auto *windowLayout = new QGridLayout;
+    auto *modellingLayout = new QGridLayout;
 
     modellingLayout->addWidget(toolBox,0,0);
-    modellingLayout->addWidget(classDiagramView,0,1);
+    modellingLayout->addWidget(diagramView, 0, 1);
 
-    QWidget *modellingSpace = new QWidget;
+    auto *modellingSpace = new QWidget;
     modellingSpace->setLayout(modellingLayout);
 
     windowLayout->addWidget(modellingSpace,0,0);
     windowLayout->addWidget(diagramTabs,1,0);
 
-    classDiagramCenterWidget = new QWidget;
-    classDiagramCenterWidget->setLayout(windowLayout);
+    centerWidget = new QWidget;
+    centerWidget->setLayout(windowLayout);
 
-    setCentralWidget(classDiagramCenterWidget);
+    setCentralWidget(centerWidget);
     this->setMinimumSize(800,600);
     this->setWindowTitle("UML Class Creator");
 }
 
 /**
- * MainWindow::setTaskBars Sets taskbar (task as open, save) and create a place for sequence diagrams.
+ * Creates top taskbar (open, save, ...) and bottom taskbar with tabs for switching diagrams
  */
 void MainWindow::setTaskBars()
 {
@@ -106,50 +105,49 @@ void MainWindow::setTaskBars()
     taskBar->addAction("Redo", this, &MainWindow::redoButtonClicked);
 
 
-    diagramTabs->addWidget(prepareSequencDiagramTab("Třídní diagram"));
-    diagramTabs->addWidget(prepareSequencDiagramTab("Sekvenční 1"));
-    diagramTabs->addWidget(prepareSequencDiagramTab("Sekvenční 2"));
+    // TODO: Connect to scene
+    diagramTabs->addWidget(prepareDiagramTab("Unnamed class diagram"));
 }
 
 /**
- * MainWindow::prepareToolItem Places buttons to a layout and creates a toolbar with the layout.
+ * Places buttons to a layout and creates a toolbar with the layout.
  *
  * @param icon Icon that should be placed in button.
  * @param labelString String that will be under the icon.
  * @return QWidget representing a toolbar.
  */
-QWidget *MainWindow::prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton)
+QWidget *MainWindow::prepareToolItem(const QIcon &icon, const QString &labelString, QToolButton *newToolButton)
 {
     newToolButton->setIcon(icon);
     newToolButton->setIconSize(QSize(toolboxItemSize, toolboxItemSize));
     newToolButton->setMaximumSize(toolboxItemSize, toolboxItemSize);
     newToolButton->setMinimumSize(toolboxItemSize, toolboxItemSize);
 
-    QVBoxLayout *toolboxItemLayout = new QVBoxLayout();
+    auto toolboxItemLayout = new QVBoxLayout();
     toolboxItemLayout->addWidget(newToolButton);
-    QLabel *label = new QLabel(labelString);
+    auto label = new QLabel(labelString);
     toolboxItemLayout->addWidget(label);
     toolboxItemLayout->setAlignment(newToolButton, Qt::AlignHCenter);
     toolboxItemLayout->setAlignment(label, Qt::AlignHCenter);
 
-    QWidget* toolboxItem = new QWidget;
+    auto toolboxItem = new QWidget;
     toolboxItem->setLayout(toolboxItemLayout);
     return toolboxItem;
 }
 
 /**
- * MainWindow::prepareSequencDiagramTab Creates a tabs for sequence diagrams.
+ * Creates tabs for diagrams.
  *
- * @param label QString of text which will be written on a tab.
- * @return QWidget representig a diagram tab manager.
+ * @param label QString of text which will be written on a tab
+ * @return QWidget representing a diagram tab manager
  */
-QWidget *MainWindow::prepareSequencDiagramTab(QString label)
+QWidget *MainWindow::prepareDiagramTab(const QString &label)
 {
     static QIcon icon = QIcon(":/closeCross.png");
-    QWidget *newTab = new QWidget;
-    QPushButton *picture = new QPushButton(icon,"");
+    auto newTab = new QWidget;
+    auto picture = new QPushButton(icon,"");
 
-    QGridLayout *actionLayout = new QGridLayout();
+    auto actionLayout = new QGridLayout();
     actionLayout->addWidget(new QPushButton(label),0,0);
     actionLayout->addWidget(picture,0,1);
     newTab->setLayout(actionLayout);
@@ -158,28 +156,26 @@ QWidget *MainWindow::prepareSequencDiagramTab(QString label)
 }
 
 /**
- * MainWindow::setTooBox Place all demanded Widgets into a toolar.
+ * Places all demanded Widgets into a toolbar.
  */
-void MainWindow::setTooBox()
+void MainWindow::setToolBox()
 {
     toolBox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
     toolBox->setMinimumWidth(minToolboxWidth);
-    QGroupBox *toolboxItems = new QGroupBox;
-    QGridLayout *toolboxLayout = new QGridLayout;
+    auto toolboxItems = new QGroupBox;
+    auto toolboxLayout = new QGridLayout;
 
-    QWidget *agregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregation", agregationToolItem);
+    QWidget *aggregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregation", aggregationToolItem);
     QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", compositionToolItem);
     QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Association", associationToolItem);
     QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalization", generalisationToolItem);
     QWidget *realizationLineWidget = prepareToolItem(QIcon{":/realization.png"}, "Realization", realizationToolItem);
-    QIcon aaa = QIcon{":/realization.png"};
-    (void)aaa;
     QWidget *directedLineWidget = prepareToolItem(QIcon{":/directedAssociation.png"},
                                                   "Directed association", directedAssociationToolItem);
     QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Class node", classShapeToolItem);
     QWidget *removeSelectedWidget = prepareToolItem(QIcon{":/closeCross.png"}, "Remove selected", removeSelectedToolItem);
 
-    toolboxLayout->addWidget(agregationLineWidget, 0, 0);
+    toolboxLayout->addWidget(aggregationLineWidget, 0, 0);
     toolboxLayout->addWidget(fellowshipLineWidget, 1, 0);
     toolboxLayout->addWidget(compositionLineWidget, 0, 1);
     toolboxLayout->addWidget(generalisationLineWidget, 1, 1);
@@ -190,417 +186,152 @@ void MainWindow::setTooBox()
 
     toolboxItems->setLayout(toolboxLayout);
     toolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
-    toolBox->addItem(toolboxItems, "Prvky třídního diagramu");
+    toolBox->addItem(toolboxItems, "Class diagram elements");
 }
 
 /**
- * Insert new claasNode into scene of class diagram Window.
- */
-void MainWindow::addClassNode()
-{
-    // Numbering and positioning unique names
-    static unsigned int classNumber = 1;
-    static const unsigned int nodeSpace = 50;
-
-    // Create new class in class diagram
-    Class *newClass = new Class{"New class " + std::to_string(classNumber++), std::make_tuple(0, 0)};
-
-    classDiagram.addClass(newClass);
-
-    // Create new GUI class node
-    auto *newClassNode = new ClassNode(newClass, &storedClasses, sceneUpdateObservable);
-    newClassNode->setPos((newClassNode->boundingRect().width() + nodeSpace) * (classNumber % 5),
-                         (newClassNode->boundingRect().height() + nodeSpace) * (classNumber / 5));
-
-    connect(&(newClassNode->emitter), &ClassNodeEmitter::nodePressed, this, &MainWindow::nodePressed);
-    classDiagramScene->addItem(newClassNode);
-    storedClasses.insert({newClass->getName(), newClassNode});
-
-    sceneUpdateObservable->sceneChanged();
-}
-
-/**
- * Removes all selected class nodes.
- */
-void MainWindow::removeClassNodes(QList<QGraphicsItem *> selectedItems)
-{
-    for (QGraphicsItem *item : selectedItems)
-    {
-        auto node = dynamic_cast<ClassNode *>(item);
-        if(node) {
-            removeClassNode(node);
-        }
-    }
-
-    sceneUpdateObservable->sceneChanged();
-}
-
-/**
- * Removes single class node
- *
- * @param classNode Pointer to class node to remove
- */
-void MainWindow::removeClassNode(ClassNode *classNode)
-{
-    // One connection could have the same class node at its both ends
-    // One line (connection) could be deleted only once, so these class nodes'
-    // connections must be filtered for duplicates (set contains only unique items)
-    QVector<Line *> allConnections = classNode->getConnections();
-    QSet<Line *> uniqueConnections{allConnections.begin(), allConnections.end()};
-    for(Line *connection: uniqueConnections) {
-        // Delete corresponding relationship from class diagram and memory
-        Relationship *relationship = storedRelationships.find(connection)->second;
-
-        classDiagram.removeRelationship(relationship);
-        delete relationship;
-
-        // Delete from stored relationships
-        storedRelationships.erase(connection);
-
-        // Delete from scene and memory
-        classDiagramScene->removeItem(connection);
-        delete connection;
-    }
-
-    // Get corresponding class (entity)
-    Class *classEntity = classNode->getClassEntity();
-
-    // Delete from scene and memory
-    classDiagramScene->removeItem(classNode);
-    delete classNode;
-
-    // Delete from stored classes
-    storedClasses.erase(storedClasses.find(classEntity->getName()));
-
-    // Delete class from diagram and memory
-    classDiagram.removeClass(classEntity);
-    delete classEntity;
-}
-
-/**
- * MainWindow::connectComponents Connets all signals and slots
+ * Connects all signals and slots
  */
 void MainWindow::connectComponents()
 {
+    // Class diagrams
     connect(classShapeToolItem,  &QToolButton::pressed, this, &MainWindow::addClassNode);
-    connect(removeSelectedToolItem,  &QToolButton::pressed, this, &MainWindow::removeSelected);
+    connect(removeSelectedToolItem,  &QToolButton::pressed, this, &MainWindow::removeSelectedClassNodes);
     connect(associationToolItem, &QToolButton::pressed, this, &MainWindow::associationSelected);
-
     connect(compositionToolItem, &QToolButton::pressed, this, &MainWindow::compositionSelected);
-    connect(agregationToolItem, &QToolButton::pressed, this, &MainWindow::agregationSelected);
+    connect(aggregationToolItem, &QToolButton::pressed, this, &MainWindow::aggregationSelected);
     connect(generalisationToolItem, &QToolButton::pressed, this, &MainWindow::generalisationSelected);
     connect(directedAssociationToolItem, &QToolButton::pressed, this, &MainWindow::directedAssociationSelected);
     connect(realizationToolItem, &QToolButton::pressed, this, &MainWindow::realizationSelected);
 }
 
 /**
- * MainWindow::setAllNodesColor Sets border color to all nodes and to nodeColor
- * @param color new node color
+ * Slot for handling click on button for adding new class node
  */
-void MainWindow::setAllNodesColor(QColor color)
+void MainWindow::addClassNode()
 {
-    nodeColor = color;
-    QList<QGraphicsItem *> allNodes = classDiagramScene->items();
-    for(QGraphicsItem *maybeNode : allNodes)
-    {
-        ClassNode *definetlyNode = dynamic_cast<ClassNode *>(maybeNode);
-        if(definetlyNode)
-            definetlyNode->setBorderColor(nodeColor);
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
     }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->addClassNode();
 }
 
 /**
- * To a newLine pointer creates line
+ * Slot is invoked when class node remove button was pressed.
+ */
+void MainWindow::removeSelectedClassNodes()
+{
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
+    }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->removeSelectedNodes();
+}
+
+/**
+ * Slot for handling click on button for selecting association relationship
  */
 void MainWindow::associationSelected()
 {
-    createNewLine(new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
+    }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->prepareUndirectedAssociation();
 }
 
 /**
- * To a newLine pointer creates composition line
+ * Slot for handling click on button for selecting composition relationship
  */
 void MainWindow::compositionSelected()
 {
-    createNewLine(new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
+    }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->prepareComposition();
 }
 
 /**
- * To a newLine pointer creates agregation line
+ * Slot for handling click on button for selecting aggregation relationship
  */
-void MainWindow::agregationSelected()
+void MainWindow::aggregationSelected()
 {
-    createNewLine(new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
+    }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->prepareAggregation();
 }
 
 /**
- * To a newLine pointer creates generalisation line
+ * Slot for handling click on button for selecting generalization relationship
  */
 void MainWindow::generalisationSelected()
 {
-    createNewLine(new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
+    }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->prepareGeneralisation();
 }
 
 /**
- * To a newLine pointer creates directed association line
+ * Slot for handling click on button for selecting directed association relationship
  */
 void MainWindow::directedAssociationSelected()
 {
-    createNewLine(new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
+    }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->prepareDirectedAssociation();
 }
 
 /**
- * To a newLine pointer creates realization line
+ * Slot for handling click on button for selecting realization relationship
  */
 void MainWindow::realizationSelected()
 {
-    createNewLine(new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
+    if (typeid(*currentScene) != typeid(ClassDiagramScene)) {
+        return;
+    }
+
+    auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
+    classDiagramScene->prepareRealization();
 }
 
 /**
- * When selection changes and a new relationship is invoked,
- * handle adding new relationship.
- */
-void MainWindow::nodePressed(ClassNode *selectedOne)
-{
-    if(currentState == state::lineCreation)
-        setupLineHandle(selectedOne);
-    else if (currentState == state::nodeRemoving)
-        removeHandle(selectedOne);
-}
-
-/**
- * MainWindow::connectNodes Connect two nodes by relationship
- */
-void MainWindow::connectNodes()
-{
-    // Create new line in scene
-    newLine->initialize(firstToSelect, secondToSelect, firstToSelect == secondToSelect);
-    classDiagramScene->addItem(newLine);
-    firstToSelect->addLine(newLine);
-    if(firstToSelect != secondToSelect)
-        secondToSelect->addLine(newLine);
-
-    // Create new relationship in class diagram
-    Relationship *relationship;
-    const std::type_info &relationshipType = typeid(*newLine);
-    if (relationshipType == typeid(AgregationLine)) {
-        relationship = new Aggregation{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
-    } else if (relationshipType == typeid(CompositionLine)) {
-        relationship = new Composition{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
-    } else if (relationshipType == typeid(DirectedAssociationLine)) {
-        auto *directedAssociationLine = dynamic_cast<DirectedAssociationLine *>(newLine);
-
-        relationship = new DirectedAssociation{
-            firstToSelect->getClassEntity(),
-            secondToSelect->getClassEntity(),
-            directedAssociationLine->getName().toStdString()
-        };
-    } else if (relationshipType == typeid(GeneralizationLine)) {
-        relationship = new Generalization{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
-    } else if (relationshipType == typeid(RealizationLine)) {
-        relationship = new Realization{firstToSelect->getClassEntity(), secondToSelect->getClassEntity()};
-    } else if (relationshipType == typeid(AssociationLine)) {
-        auto *associationLine = dynamic_cast<AssociationLine *>(newLine);
-
-        relationship = new UndirectedAssociation{
-            firstToSelect->getClassEntity(),
-            secondToSelect->getClassEntity(),
-            associationLine->getName().toStdString(),
-            associationLine->getFirstCardinality().toStdString(),
-            associationLine->getSecondCardinality().toStdString()
-        };
-    } else {
-        throw std::logic_error{"Unknown type of the line"};
-    }
-
-    classDiagram.addRelationship(relationship);
-    storedRelationships.insert({newLine, relationship});
-
-    firstToSelect = nullptr;
-    secondToSelect = nullptr;
-    newLine = nullptr;
-
-    sceneUpdateObservable->sceneChanged();
-}
-
-/**
- * Checks if new line is nullptr (if no, deletes it) and insert line into newLine
- */
-void MainWindow::createNewLine(Line *line)
-{
-    if (newLine != nullptr)
-        delete newLine;
-    QList<QGraphicsItem *> items = classDiagramScene->selectedItems();
-    if(items.count() == 2)
-    {
-        newLine = line;
-        firstToSelect = dynamic_cast<ClassNode*>(items[0]);
-        secondToSelect = dynamic_cast<ClassNode*>(items[1]);
-        connectNodes();
-    }
-    else
-    {
-        classDiagramScene->clearSelection();
-        setAllNodesColor(realtionShipSelectedColor);
-        newLine = line;
-        currentState = state::lineCreation;
-    }
-}
-
-/**
- * Handles situation when button for a new line was pressed.
- */
-void MainWindow::setupLineHandle(ClassNode* selectedOne)
-{
-    if(nodeColor == realtionShipSelectedColor && firstToSelect == nullptr)
-    {
-        firstToSelect = selectedOne;
-        if(firstToSelect)
-        {
-            setAllNodesColor(firstPhaseSelectedColor);
-            firstToSelect->setBorderColor(nodeFirstSelectedColor);
-        }
-    }
-    else if(nodeColor == firstPhaseSelectedColor && firstToSelect != nullptr) //first node selected and still in selctionMode
-    {
-        secondToSelect = selectedOne;
-        if(secondToSelect)
-        {
-            setAllNodesColor(nodeNormalColor);
-            classDiagramScene->clearSelection();
-            connectNodes();
-            currentState = state::none;
-        }
-    }
-    classDiagramScene->clearSelection();
-}
-
-/**
- * Handles situation when button for remove was selected
- */
-void MainWindow::removeHandle(ClassNode* selectedOne)
-{
-    removeClassNodes(QList<QGraphicsItem *> {selectedOne});
-    currentState = state::none;
-    setAllNodesColor(nodeNormalColor);
-}
-
-/**
- * Slot is invoked when removeButton was pressed.
- */
-void MainWindow::removeSelected()
-{
-    QList<QGraphicsItem *> selectedItems = classDiagramScene->selectedItems();
-    if(selectedItems.size() > 0)
-        removeClassNodes(selectedItems);
-    else
-    {
-        setAllNodesColor(Qt::red);
-        currentState = state::nodeRemoving;
-    }
-}
-
-/**
- * Automatically clears the whole scene
- */
-void MainWindow::clearScene()
-{
-    std::vector<ClassNode *> nodesForRemoval{};
-    for (auto item: classDiagramScene->items()) {
-        if (typeid(*item) == typeid(ClassNode)) {
-            auto classNode = dynamic_cast<ClassNode *>(item);
-
-            nodesForRemoval.push_back(classNode);
-        }
-    }
-
-    for (auto &classNode: nodesForRemoval) {
-        removeClassNode(classNode);
-    }
-}
-
-/**
- * Redraws scene using updated class diagram
- *
- * @warning Does not clear scene. clearScene() should be called before
- */
-void MainWindow::redrawClassDiagram()
-{
-    // Add classes
-    for (const auto &item: classDiagram.getClasses()) {
-        auto classNode = new ClassNode(item, &storedClasses, sceneUpdateObservable);
-
-        connect(&(classNode->emitter), &ClassNodeEmitter::nodePressed, this, &MainWindow::nodePressed);
-        classDiagramScene->addItem(classNode);
-        storedClasses.insert({item->getName(), classNode});
-    }
-
-    // Add relationships
-    for (auto item: classDiagram.getRelationships()) {
-        std::string firstClassName{item->getFirstClass()->getName()};
-        std::string secondClassName{item->getSecondClass()->getName()};
-
-        ClassNode *firstClassNode = storedClasses.find(firstClassName)->second;
-        ClassNode *secondClassNode = storedClasses.find(secondClassName)->second;
-
-        Line *line;
-        const std::type_info &relationshipType = typeid(*item);
-        if (relationshipType == typeid(Aggregation)) {
-            line = new AgregationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
-        } else if (relationshipType == typeid(Composition)) {
-            line = new CompositionLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
-        } else if (relationshipType == typeid(DirectedAssociation)) {
-            line = new DirectedAssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
-            auto *directedAssociationLine = dynamic_cast<DirectedAssociationLine *>(line);
-
-            // Add name
-            auto name = QString::fromStdString(item->getName());
-
-            directedAssociationLine->setName(name);
-        } else if (relationshipType == typeid(Generalization)) {
-            line = new GeneralizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
-        } else if (relationshipType == typeid(Realization)) {
-            line = new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
-        } else if (relationshipType == typeid(UndirectedAssociation)) {
-            line = new AssociationLine{&storedRelationships, &classDiagram, sceneUpdateObservable};
-            auto *associationLine = dynamic_cast<AssociationLine *>(line);
-
-            // Add name and cardinalities
-            auto *undirectedAssociation = dynamic_cast<UndirectedAssociation *>(item);
-            auto name = QString::fromStdString(undirectedAssociation->getName());
-            auto firstCardinality = QString::fromStdString(undirectedAssociation->getFirstClassCardinality());
-            auto secondCardinality = QString::fromStdString(undirectedAssociation->getSecondClassCardinality());
-
-            associationLine->setName(name);
-            associationLine->setFirstCardinality(firstCardinality);
-            associationLine->setSecondCardinality(secondCardinality);
-        } else {
-            throw std::logic_error{"Unknown relationship"};
-        }
-
-        // Add to stored relationships
-        storedRelationships.insert({line, item});
-
-        // Add to scene
-        line->initialize(firstClassNode, secondClassNode, firstClassNode == secondClassNode);
-        classDiagramScene->addItem(line);
-        firstClassNode->addLine(line);
-        secondClassNode->addLine(line);
-    }
-}
-
-/**
- * Slot for handling click action on "Open" button
+ * Slot for handling click action on "Save" button
  */
 void MainWindow::openButtonClicked()
 {
-    if (!classDiagramScene->items().isEmpty() && !isSaved) {
+    // TODO: Class diagrams --> .cls.xml, sequence diagrams --> .seq.xml
+    // TODO: check if the filter is working
+    QString file = QFileDialog::getOpenFileName(
+        this,
+        "Choose diagram to open",
+        "",
+        "Class diagrams (*.cls.xml);;Sequence diagrams (*.seq.xml)",
+        nullptr,
+        QFileDialog::HideNameFilterDetails
+    );
+
+    // TODO: for diagram type without option to open multiple diagrams stop processing here
+    if (!currentScene->items().isEmpty() && !currentScene->isSaved()) {
         auto clickedButton = QMessageBox::question(
-            this,
-            "Class diagram opening collision",
-            "You are trying to open new class diagram before saving the edited one. Are you sure to continue?"
-            " Canvas content will be replaced with loaded diagram."
+                this,
+                "Diagram opening error",
+                "You are trying to open new diagram before saving the edited one. Are you sure to continue?"
+                " Canvas content will be replaced with loaded diagram."
         );
 
         if (clickedButton == QMessageBox::No) {
@@ -609,49 +340,20 @@ void MainWindow::openButtonClicked()
         }
     }
 
-    QString file = QFileDialog::getOpenFileName(
-        this,
-        "Choose diagram to open",
-        "",
-        "XML files (*.xml)",
-        nullptr,
-        QFileDialog::HideNameFilterDetails
-    );
+    // Remember source file
+    currentScene->setTargetFile(file.toStdString());
 
-    try {
-        ClassDiagram loadedDiagram = classDiagramManager->loadDiagram(file.toStdString());
-
-        // Remember source file
-        targetFileName = file.toStdString();
-
-        // Clear canvas
-        if (!classDiagramScene->items().isEmpty()) {
-            clearScene();
-        }
-
-        // Draw new diagram
-        classDiagram = loadedDiagram;
-        redrawClassDiagram();
-
-        // Diagram has just been loaded from file
-        isSaved = true;
-
-        sceneUpdateObservable->sceneChanged();
-    } catch (InvalidDataStorageException &e) {
-        QMessageBox::critical(this, "Class diagram opening error", e.what());
-    } catch (InvalidInputDataException &e) {
-        QMessageBox::critical(this, "Class diagram opening error", e.what());
-    }
+    currentScene->loadFromFile();
 }
 
 /**
  * Slot for handling click action on "Save" button
  */
-void MainWindow::saveButtonClicked()
+void MainWindow::saveButtonClicked() // NOLINT(misc-no-recursion)
 {
     // Target file must be selected
-    if (targetFileName.empty()) {
-        QMessageBox::warning(this, "Class diagram saving error", "Edited diagram wasn't loaded from"
+    if (currentScene->getTargetFile().empty()) {
+        QMessageBox::warning(this, "Diagram saving error", "Edited diagram wasn't loaded from"
             " any file and target file hasn't been selected. You need to select target file first.");
 
         // Simulate clicking on "Save as..." button, user must select the target file
@@ -660,26 +362,22 @@ void MainWindow::saveButtonClicked()
         return;
     }
 
-    try {
-        classDiagramManager->saveDiagram(targetFileName, classDiagram);
-
-        // Set diagram as saved
-        isSaved = true;
-    } catch (InvalidDataStorageException &e) {
-        QMessageBox::critical(this, "Class diagram saving error", e.what());
-    }
+    currentScene->saveToFile();
 }
 
 /**
- * Slot for handling click action on "Save as..." button
+ * Slot for handling click action on "Undo" button
  */
-void MainWindow::saveAsButtonClicked()
+void MainWindow::saveAsButtonClicked() // NOLINT(misc-no-recursion)
 {
+    std::string currentTargetFile{currentScene->getTargetFile()};
+
+    // TODO: Class diagrams --> .cls.xml, sequence diagrams --> .seq.xml
     // Prompt user to select the target file
     QString file = QFileDialog::getSaveFileName(
         this,
         "Choose target file for saving diagram",
-        targetFileName.empty() ? "class-diagram.xml" : QString::fromStdString(targetFileName),
+        currentTargetFile.empty() ? "new-diagram.xml" : QString::fromStdString(currentTargetFile),
         "XML files (*.xml)",
         nullptr,
         QFileDialog::HideNameFilterDetails
@@ -691,7 +389,7 @@ void MainWindow::saveAsButtonClicked()
     }
 
     // Update target file
-    targetFileName = file.toStdString();
+    currentScene->setTargetFile(file.toStdString());
 
     // Now just save diagram into selected file
     saveButtonClicked();
@@ -702,15 +400,7 @@ void MainWindow::saveAsButtonClicked()
  */
 void MainWindow::undoButtonClicked()
 {
-    // Clear canvas
-    if (!classDiagramScene->items().isEmpty()) {
-        clearScene();
-    }
-
-    classDiagramManager->undoDiagramChanges(&classDiagram);
-
-    // Draw new diagram
-    redrawClassDiagram();
+    currentScene->undoLastChange();
 }
 
 /**
@@ -718,23 +408,5 @@ void MainWindow::undoButtonClicked()
  */
 void MainWindow::redoButtonClicked()
 {
-    // Clear canvas
-    if (!classDiagramScene->items().isEmpty()) {
-        clearScene();
-    }
-
-    classDiagramManager->redoDiagramChanges(&classDiagram);
-
-    // Draw new diagram
-    redrawClassDiagram();
-}
-
-/**
- * Logs scene changes for saving and undo/redo mechanisms
- */
-void MainWindow::logChanges() noexcept
-{
-    isSaved = false;
-
-    classDiagramManager->backupDiagram(&classDiagram);
+    currentScene->redoRevertedChange();
 }

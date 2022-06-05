@@ -31,6 +31,8 @@ HEADERS += \
     AssociationLineEditDialog.h \
     ClassDiagram.h \
     ClassNodeEmitter.h \
+    ClassDiagramScene.h \
+    CustomScene.h \
     DirectedAssociationLine.h \
     DirectedAssociationLineEditDialog.h \
     Line.h \
@@ -92,6 +94,8 @@ SOURCES += \
     ClassMethodType.cpp \
     ClassNodeEmitter.cpp \
     ClassType.cpp \
+    ClassDiagramScene.cpp \
+    CustomScene.cpp \
     DirectedAssociationLine.cpp \
     DirectedAssociationLineEditDialog.cpp \
     LineWithArrow.cpp \

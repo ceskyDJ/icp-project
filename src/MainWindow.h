@@ -6,8 +6,8 @@
  * @author Jakub Dvořák (xdvora3q)
  * @author Michal Šmahel (xsmahe01)
  */
-#ifndef CLASSDIAGRAMWINDOW_H
-#define CLASSDIAGRAMWINDOW_H
+#ifndef CLASS_DIAGRAM_WINDOW_H
+#define CLASS_DIAGRAM_WINDOW_H
 #include "qmainwindow.h"
 #include <QWidget>
 #include <QToolBar>
@@ -30,6 +30,7 @@
 #include "ClassDiagramManager.h"
 #include "SceneUpdateObserver.h"
 #include "SceneUpdateObservable.h"
+#include "CustomScene.h"
 
 /**
  * Windows that allows user to draw diagrams.
@@ -38,6 +39,14 @@ class MainWindow : public QMainWindow, SceneUpdateObserver
 {
     Q_OBJECT
 public:
+    /**
+     * Class constructor
+     *
+     * @par Initialiezes components and prepare all QWidgets and controls.
+     *
+     * @param classDiagramManager Class diagram manage (dependency)
+     * @param sceneUpdateObservable Observable for providing information about scene changes (dependency)
+     */
     MainWindow(ClassDiagramManager *classDiagramManager, SceneUpdateObservable *sceneUpdateObservable);
 
     /**
@@ -45,30 +54,28 @@ public:
      */
     void logChanges() noexcept override;
 
-    enum state{lineCreation, nodeRemoving, none};
-
 private:
     // Dependencies
     ClassDiagramManager *classDiagramManager;
     SceneUpdateObservable *sceneUpdateObservable;
 
-    int minToolboxWidth = 200;
-    int toolboxItemSize = 70;
+    // Containers
+    std::vector<CustomScene *> scenes;
 
+    // Settings
+    const int minToolboxWidth = 200;
+    const int toolboxItemSize = 70;
+
+    // Widgets
     QToolBar *taskBar;
     QToolBar *diagramTabs;
     QToolBox *toolBox;
-    QGraphicsScene *classDiagramScene;
-    QGraphicsView *classDiagramView;
-    QWidget *classDiagramCenterWidget;
-    ClassEditDialog *classEditDialog;
+    CustomScene *currentScene;
+    QGraphicsView *diagramView;
+    QWidget *centerWidget;
 
-    // Wrapping collections
-    ClassDiagram classDiagram;
-    std::unordered_map<std::string, ClassNode *> storedClasses;
-    std::unordered_map<Line *, Relationship *> storedRelationships;
-
-    QToolButton *agregationToolItem;
+    // Tool items
+    QToolButton *aggregationToolItem;
     QToolButton *associationToolItem;
     QToolButton *compositionToolItem;
     QToolButton *generalisationToolItem;
@@ -76,61 +83,75 @@ private:
     QToolButton *realizationToolItem;
     QToolButton *classShapeToolItem;
     QToolButton *removeSelectedToolItem;
-    ClassNode *firstToSelect = nullptr;
-    ClassNode *secondToSelect = nullptr;
-    QColor realtionShipSelectedColor = Qt::darkGreen;
-    QColor nodeNormalColor = Qt::black;
-    QColor nodeColor = nodeNormalColor;
-    QColor nodeFirstSelectedColor = Qt::darkMagenta;
-    QColor firstPhaseSelectedColor = Qt::darkCyan;
-    Line *newLine;
-    /**
-     * Is currently edited diagram saved to persistent storage (after last update)?
-     */
-    bool isSaved = false;
-    /**
-     * Name of the file where the final diagram should be stored in (with absolute path to it)
-     *
-     * @par This is the file, where changes will be saved when just clicking to "Save"
-     * button, not "Save as...". It is a place used for possible auto saving, etc.
-     * @par When diagram is loaded from file, the source file will be used.
-     */
-    std::string targetFileName{};
-    state currentState;
 
-    void setModellingSpace();
-    void setTaskBars();
+    // Setup
+    /**
+     * Initializes components - creates a new instances of primary attributes.
+     */
     void initializeComponents();
-    void setWindowLayout();
+    /**
+     * Arranges controls in layout and sets window properties.
+     */
     void setMainWindow();
-    void setTooBox();
+    /**
+     * Creates top taskbar (open, save, ...) and bottom taskbar with tabs for switching diagrams
+     */
+    void setTaskBars();
+    /**
+     * Places buttons to a layout and creates a toolbar with the layout.
+     *
+     * @param icon Icon that should be placed in button.
+     * @param labelString String that will be under the icon.
+     * @return QWidget representing a toolbar.
+     */
+    QWidget *prepareToolItem(const QIcon &icon, const QString &labelString, QToolButton *newToolButton);
+    /**
+     * Creates tabs for diagrams.
+     *
+     * @param label QString of text which will be written on a tab
+     * @return QWidget representing a diagram tab manager
+     */
+    QWidget *prepareDiagramTab(const QString &label);
+    /**
+     * Places all demanded Widgets into a toolbar.
+     */
+    void setToolBox();
+    /**
+     * Connects all signals and slots
+     */
     void connectComponents();
-    void setAllNodesColor(QColor color);
-    QWidget *prepareToolItem(QIcon icon, QString labelString, QToolButton *newToolButton);
-    QWidget *prepareSequencDiagramTab(QString label);
-    void connectNodes();
-    void createNewLine(Line *line);
-    void removeClassNode(ClassNode *classNode);
-    void clearScene();
-    void redrawClassDiagram();
-    void setupLineHandle(ClassNode* selectedOne);
-    void removeHandle(ClassNode* selectedOne);
-    void removeClassNodes(QList<QGraphicsItem *> selectedItems);
 private slots:
+    // Tool box items' actions
     void addClassNode();
-    void removeSelected();
+    void removeSelectedClassNodes();
     void associationSelected();
-    void nodePressed(ClassNode *node);
     void compositionSelected();
-    void agregationSelected();
+    void aggregationSelected();
     void generalisationSelected();
     void directedAssociationSelected();
     void realizationSelected();
+
+    // Top toolbar buttons' actions
+    /**
+     * Slot for handling click action on "Save" button
+     */
     void openButtonClicked();
+    /**
+     * Slot for handling click action on "Save" button
+     */
     void saveButtonClicked();
+    /**
+     * Slot for handling click action on "Undo" button
+     */
     void saveAsButtonClicked();
+    /**
+     * Slot for handling click action on "Undo" button
+     */
     void undoButtonClicked();
+    /**
+     * Slot for handling click action on "Redo" button
+     */
     void redoButtonClicked();
 };
 
-#endif // CLASSDIAGRAMWINDOW_H
+#endif // CLASS_DIAGRAM_WINDOW_H

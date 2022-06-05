@@ -33,7 +33,7 @@ int main()
     auto phoneInheritsElectronicDevice = new Generalization{phone, electronicDevice};
     diagram.addRelationship(phoneInheritsElectronicDevice);
 
-    FileClassDiagramRepository repo{"examples/class-diagram-output.xml"};
+    FileClassDiagramRepository repo{"examples/class-diagram-output.cls.xml"};
     repo.saveDiagram(diagram);
 
     return 0;
