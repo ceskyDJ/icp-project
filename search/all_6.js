@@ -27,11 +27,11 @@ var searchData=
   ['getlifelength_24',['getLifeLength',['../classObject.html#a3fc9c00c014b34a83c85bfab64dd6238',1,'Object']]],
   ['getlifestart_25',['getLifeStart',['../classObject.html#ae5b731dac7e354ff9847f4d023aeb1a6',1,'Object']]],
   ['getmessagerecipient_26',['getMessageRecipient',['../classMessage.html#a4e75e270d33e25ca58c07765b9c8656d',1,'Message']]],
-  ['getmessages_27',['getMessages',['../classSequenceDiagram.html#aab0dbc831fc9c1f6718f359da6b2bad3',1,'SequenceDiagram::getMessages() const'],['../classSequenceDiagram.html#aec9b0963513fe0d5861eb21865ac944f',1,'SequenceDiagram::getMessages()']]],
+  ['getmessages_27',['getMessages',['../classSequenceDiagram.html#aec9b0963513fe0d5861eb21865ac944f',1,'SequenceDiagram::getMessages()'],['../classSequenceDiagram.html#aab0dbc831fc9c1f6718f359da6b2bad3',1,'SequenceDiagram::getMessages() const']]],
   ['getmessagesender_28',['getMessageSender',['../classMessage.html#ad7070dfcacf96f70a091d5d3510a3435',1,'Message']]],
   ['getmethod_29',['getMethod',['../classMessage.html#afa1ffa4c6543fdcd2c715a17446f4d32',1,'Message']]],
-  ['getmethods_30',['getMethods',['../classClass.html#af697d075cf2762b41dfe17f45486d261',1,'Class::getMethods()'],['../classClass.html#a625fceade2dc2ffef98a0f10964e728c',1,'Class::getMethods() const'],['../classClassNode.html#a8560d7bcab1bf13eff5758690ac50af4',1,'ClassNode::getMethods()']]],
-  ['getname_31',['getName',['../classMessageNode.html#a02c767461cf03579daf18e83a549780e',1,'MessageNode::getName()'],['../classRelationship.html#aad7007e66eb68e9329eaedbd5ebef79f',1,'Relationship::getName()'],['../classMethodParameter.html#aa45dcc6121cb6c611663b0837549e7c7',1,'MethodParameter::getName()'],['../classDirectedAssociationLine.html#aba7e5d8b92ffc29db0fe142f53686194',1,'DirectedAssociationLine::getName()'],['../classClassNode.html#ab7380831ea315bf8e19766998a5eed00',1,'ClassNode::getName()'],['../classClassMember.html#ace3b68ee6056a1c803aaa5d8a1a12639',1,'ClassMember::getName()'],['../classClass.html#a71a4039f289d71a01ff4b2ff238bc44b',1,'Class::getName()'],['../classAssociationLine.html#a0b5ba6bb0574e2e2a52baa250f267959',1,'AssociationLine::getName()']]],
+  ['getmethods_30',['getMethods',['../classClass.html#af697d075cf2762b41dfe17f45486d261',1,'Class::getMethods()'],['../classClassNode.html#a8560d7bcab1bf13eff5758690ac50af4',1,'ClassNode::getMethods()'],['../classClass.html#a625fceade2dc2ffef98a0f10964e728c',1,'Class::getMethods()']]],
+  ['getname_31',['getName',['../classAssociationLine.html#a0b5ba6bb0574e2e2a52baa250f267959',1,'AssociationLine::getName()'],['../classRelationship.html#aad7007e66eb68e9329eaedbd5ebef79f',1,'Relationship::getName()'],['../classMethodParameter.html#aa45dcc6121cb6c611663b0837549e7c7',1,'MethodParameter::getName()'],['../classMessageNode.html#a02c767461cf03579daf18e83a549780e',1,'MessageNode::getName()'],['../classDirectedAssociationLine.html#aba7e5d8b92ffc29db0fe142f53686194',1,'DirectedAssociationLine::getName()'],['../classClassNode.html#ab7380831ea315bf8e19766998a5eed00',1,'ClassNode::getName()'],['../classClassMember.html#ace3b68ee6056a1c803aaa5d8a1a12639',1,'ClassMember::getName()'],['../classClass.html#a71a4039f289d71a01ff4b2ff238bc44b',1,'Class::getName()']]],
   ['getnewname_32',['getNewName',['../classDirectedAssociationLineEditDialog.html#a335fb9df3c10507fff9deb03addd608e',1,'DirectedAssociationLineEditDialog']]],
   ['getnumberofconnectionswithnode_33',['getNumberOfConnectionsWithNode',['../classClassNode.html#aa5680febdc1556a0fe29acbac40cfda6',1,'ClassNode']]],
   ['getobjects_34',['getObjects',['../classSequenceDiagram.html#aef809f686cac88c5075575816dc351dd',1,'SequenceDiagram::getObjects()'],['../classSequenceDiagram.html#a55856ff24cde7f0be1cc1d4810483a34',1,'SequenceDiagram::getObjects() const']]],
@@ -49,7 +49,8 @@ var searchData=
   ['getsendingtime_46',['getSendingTime',['../classMessage.html#a5883477bb4283dbd5ff1eab61a01e391',1,'Message']]],
   ['getshortestline_47',['getShortestLine',['../classLine.html#aab6260094b6f15ca916d5ebf1cf17cf6',1,'Line']]],
   ['getstoragename_48',['getStorageName',['../classClassDiagramRepository.html#ad425d0da95fddee829374ec32fac50f5',1,'ClassDiagramRepository::getStorageName()'],['../classSequenceDiagramRepository.html#ad3610013dabe74cc2d74b71629129279',1,'SequenceDiagramRepository::getStorageName()']]],
-  ['gettextboundingbox_49',['getTextBoundingBox',['../classLine.html#acffc6e0cad3f8254cc4cf38fec691065',1,'Line']]],
-  ['gettoclassnode_50',['getToClassNode',['../classLine.html#a422bd718590f408327bc386de068e7ce',1,'Line']]],
-  ['gettype_51',['getType',['../classClassMethod.html#ac48fdbb124d17e6445131a6143c697f0',1,'ClassMethod::getType()'],['../classMessage.html#a995db3fb8b9b0d1af2819f481d81d0e3',1,'Message::getType()']]]
+  ['gettargetfile_49',['getTargetFile',['../classCustomScene.html#a423c630add3e6544ca9fd22c45f51307',1,'CustomScene']]],
+  ['gettextboundingbox_50',['getTextBoundingBox',['../classLine.html#acffc6e0cad3f8254cc4cf38fec691065',1,'Line']]],
+  ['gettoclassnode_51',['getToClassNode',['../classLine.html#a422bd718590f408327bc386de068e7ce',1,'Line']]],
+  ['gettype_52',['getType',['../classClassMethod.html#ac48fdbb124d17e6445131a6143c697f0',1,'ClassMethod::getType()'],['../classMessage.html#a995db3fb8b9b0d1af2819f481d81d0e3',1,'Message::getType()']]]
 ];

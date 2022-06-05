@@ -8,6 +8,7 @@ var searchData=
   ['invaliddatastorageexception_2eh_5',['InvalidDataStorageException.h',['../InvalidDataStorageException_8h.html',1,'']]],
   ['invalidinputdataexception_6',['InvalidInputDataException',['../classInvalidInputDataException.html',1,'']]],
   ['invalidinputdataexception_2eh_7',['InvalidInputDataException.h',['../InvalidInputDataException_8h.html',1,'']]],
-  ['isselfrelationship_8',['isSelfRelationship',['../classLine.html#ac93502c4586334cc88dd21dcd5af4936',1,'Line']]],
-  ['isvalid_9',['isValid',['../classClassReference.html#ace566ff729552e40d610885dc2dee8a1',1,'ClassReference::isValid()'],['../classMethodReference.html#a49234a3f7b5ab1f73398da05ebdf1d99',1,'MethodReference::isValid()']]]
+  ['issaved_8',['isSaved',['../classCustomScene.html#a1210be28115594c5791c36d66470a302',1,'CustomScene']]],
+  ['isselfrelationship_9',['isSelfRelationship',['../classLine.html#ac93502c4586334cc88dd21dcd5af4936',1,'Line']]],
+  ['isvalid_10',['isValid',['../classClassReference.html#ace566ff729552e40d610885dc2dee8a1',1,'ClassReference::isValid()'],['../classMethodReference.html#a49234a3f7b5ab1f73398da05ebdf1d99',1,'MethodReference::isValid()']]]
 ];
