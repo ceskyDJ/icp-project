@@ -14,17 +14,16 @@
 #include "ObjectGraphicsItemEditDialog.h"
 
 /**
- * Initializes new graphics object in sequence diagram.
+ * Initializes new graphics object in sequence diagram if height is negative, keeps it value
  *
  * @param newObject object which is going to be used as new object (it keeps pointer destination)
  * @param height Total height of object.
  */
-ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, qreal height)
+ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject)
 {
     object = newObject;
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
     setAcceptHoverEvents(true);
-    ObjectGraphicsItem::height = height;
 }
 
 /**
@@ -50,8 +49,8 @@ void ObjectGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
     painter->drawText(0,0, textWidth, headerHeight, Qt::AlignCenter,
                       QString::fromStdString(":" + object->getInstanceClass().getReferredClassName() + "\n" + object->getName()));
     //drawing life line
-    painter->setPen(QPen{Qt::black, 2, Qt::DashLine});
-    painter->drawLine(textWidth / 2, headerHeight, textWidth / 2, height + getSceneHeight());
+    painter->setPen(lifeLinePen);
+    painter->drawLine(textWidth / 2, headerHeight, textWidth / 2, height);
     painter->setPen(penToUse);
 
     //drawing lifebox
@@ -60,45 +59,17 @@ void ObjectGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
     painter->drawRect(lifeBox);
 
     //drawing end and start of life area
-    painter->setPen(QPen{Qt::darkGreen, 1, Qt::DashLine});
+    painter->setPen(lifeLineBorderPen);
     painter->drawLine(0, headerHeight + lifeSpaceStart, textWidth, headerHeight + lifeSpaceStart);
     painter->drawLine(0, height, textWidth, height);
 
 
+    //TODO DELETE
     painter->setPen(QPen{Qt::green, 1, Qt::SolidLine});
     painter->drawRect(boundingRect());
 
     painter->setPen(QPen{Qt::blue, 1, Qt::SolidLine});
     painter->drawPath(shape());
-}
-
-/**
- * Returns a bounding rect of whole item.
- *
- * @return bounding rect of whole item
- */
-QRectF ObjectGraphicsItem::boundingRect() const
-{
-    QRectF bounding{
-            0,
-            0,
-            width(),
-            height};
-    bounding.adjust(-selectedPen.width(), -selectedPen.width(), selectedPen.width(), selectedPen.width());
-    return bounding;
-}
-
-/**
- * Return bounding box that is as big as is indeed for given text
- *
- * @param text text around which is rectangle counted for.
- * @return bounding rect around text
- */
-QRectF ObjectGraphicsItem::getTextBoundingBox(QString text) const
-{
-    text = (text.count() == 0)? "I":text;
-    static const QFontMetricsF metrics{qApp->font()};
-    return metrics.boundingRect(text);
 }
 
 /**
@@ -108,33 +79,11 @@ QRectF ObjectGraphicsItem::getTextBoundingBox(QString text) const
  */
 qreal ObjectGraphicsItem::width() const
 {
-    std::string longer = std::max(object->getInstanceClass().getReferredClassName() + ":",
-                                  object->getName(),
-                                  [](std::string a, std::string b) {return a.size() < b.size();});
-    return getTextBoundingBox(QString::fromStdString(longer)).width() + textPadding * 2.0;
-}
-
-/**
- * Informs object that height was updated and object has to be redrawe
- *
- * @param newHeight new height of object
- */
-void ObjectGraphicsItem::heightUpdated(qreal newHeight)
-{
-    height = newHeight;
-    update();
-}
-
-/**
- * Returns scene height.
- *
- * @return Height of first scene it appears to.
- */
-int ObjectGraphicsItem::getSceneHeight()
-{
-    QList <QGraphicsView *> allViews = scene()->views();
-    QGraphicsView *firstView = allViews[0];
-    return firstView->height();
+    qreal longer = std::max(
+                getTextBoundingBox(
+                QString::fromStdString(object->getInstanceClass().getReferredClassName() + ":")).width(),
+                getTextBoundingBox(QString::fromStdString(object->getName())).width());
+    return longer + textPadding * 2.0;
 }
 
 /**
@@ -179,23 +128,21 @@ void ObjectGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
 
     }
-    else if(this->cursor() == Qt::SizeVerCursor)
+    else if(this->cursor() == Qt::SizeVerCursor)//resizing mode
     {
         QRectF lifebox = lifeBoxRect();
         qreal dy = event->pos().y() - pressedPos.y();
         qreal newLength = (lifebox.height() + dy) / (height - lifeSpaceStart - headerHeight);
         if (lifebox.y() + dy + lifebox.height() > height)
         {
-            height += dy;
-            update();
+            pressedPos = event->pos();
+            return;
         }
         else if(newLength <= 0)
             return;
         else
             object->setLifeLength(newLength);
     }
-
-    update();
     pressedPos = event->pos();
 }
 
@@ -253,24 +200,19 @@ void ObjectGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 /**
  * If cursor is in header area and double clicked, the dialog for edit object name and class will be shown
  * and handled.
- *
- * @param event recieved event
  */
-void ObjectGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+void ObjectGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
 {
-    QRectF headerArea{0,0, width(), headerHeight};
-    if(headerArea.contains(event->pos()))
+    ObjectGraphicsItemEditDialog dialog{QString::fromStdString(object->getName()),
+                QString::fromStdString(object->getInstanceClass().getReferredClassName())};
+    int result = dialog.exec();
+    if(result == QDialog::Accepted)
     {
-        ObjectGraphicsItemEditDialog dialog{QString::fromStdString(object->getName()),
-                    QString::fromStdString(object->getInstanceClass().getReferredClassName())};
-        int result = dialog.exec();
-        if(result == QDialog::Accepted)
-        {
-            object->setName(dialog.getObjectName().toStdString());
-            //TODO set class reference
-            update();
-        }
-        else if (result == QDialog::Rejected)
-            delete this;
+        object->setName(dialog.getObjectName().toStdString());
+        //TODO set class reference
+        update();
     }
+    else if (result == ObjectGraphicsItemEditDialog::remove)
+        delete this;
+
 }

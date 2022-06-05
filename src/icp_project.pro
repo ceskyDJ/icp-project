@@ -27,6 +27,8 @@ QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
 # Source codes
 HEADERS += \
     ActivationGraphicsObjectBase.h \
+    ActorGraphicsItem.h \
+    ActorGraphicsItemEditDialog.h \
     AgregationLine.h \
     AssociationLine.h \
     AssociationLineEditDialog.h \
@@ -36,6 +38,7 @@ HEADERS += \
     CustomScene.h \
     DirectedAssociationLine.h \
     DirectedAssociationLineEditDialog.h \
+    EditDialogBase.h \
     Line.h \
     LineWithArrow.h \
     LineWithArrowEditDialog.h \
@@ -93,6 +96,9 @@ HEADERS += \
 
 SOURCES += \
     AccessModifier.cpp \
+    ActivationGraphicsObjectBase.cpp \
+    ActorGraphicsItem.cpp \
+    ActorGraphicsItemEditDialog.cpp \
     AgregationLine.cpp \
     AssociationLine.cpp \
     AssociationLineEditDialog.cpp \
@@ -103,6 +109,7 @@ SOURCES += \
     CustomScene.cpp \
     DirectedAssociationLine.cpp \
     DirectedAssociationLineEditDialog.cpp \
+    EditDialogBase.cpp \
     LineWithArrow.cpp \
     LineWithArrowEditDialog.cpp \
     MessageType.cpp \

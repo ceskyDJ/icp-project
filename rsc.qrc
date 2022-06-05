@@ -19,5 +19,7 @@
     <file alias="syncMsg.png">resources/syncMsg.png</file>
     <file alias="actor.png">resources/actor.png</file>
     <file alias="object.png">resources/object.png</file>
+    <file alias="actorMin.png">resources/actorMin.png</file>
+    <file alias="selActorMin.png">resources/selActorMin.png</file>
 </qresource>
 </RCC>

@@ -15,27 +15,20 @@
 #include "ActivationGraphicsObjectBase.h"
 #include <QPainterPath>
 
-class ObjectGraphicsItem : public QGraphicsItem, public ActivationGraphicsObjectBase
+class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
     Object *object;
 
-    ObjectGraphicsItem(Object *newObject, qreal height);
+    ObjectGraphicsItem(Object *newObject);
     qreal width() const;
 protected:
     /**
-     * Padding int object header |[padding]><NAME>[Padding]|
+     * Padding int object header |[padding]<NAME>[Padding]|
      */
     qreal textPadding = 10.0;
-    QPen regularPen{Qt::black, 2, Qt::SolidLine};
-    QPen selectedPen{Qt::red, 3, Qt::DashLine};
-    QPointF pressedPos;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    QRectF boundingRect() const override;
-    QRectF getTextBoundingBox(QString text) const;
-    void heightUpdated(qreal newHeight);
-    int getSceneHeight();
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

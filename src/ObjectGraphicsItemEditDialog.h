@@ -1,7 +1,14 @@
+/**
+ * @class ObjectGraphicsItemEditDialog
+ * Dialog to edit ObjectGraphicsItem
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #ifndef OBJECTGRAPHICSITEMEDITDIALOG_H
 #define OBJECTGRAPHICSITEMEDITDIALOG_H
 
-#include <QDialog>
 #include <QFormLayout>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -9,12 +16,12 @@
 #include <QAbstractSpinBox>
 #include <QPushButton>
 #include <QComboBox>
+#include "EditDialogBase.h"
 
-class ObjectGraphicsItemEditDialog : public QDialog
+class ObjectGraphicsItemEditDialog : public EditDialogBase
 {
 public:
     ObjectGraphicsItemEditDialog(QString objectName, QString className);
-    const static int canceled = -1;
 
     /**
      * Getter for class name.
@@ -50,16 +57,12 @@ private:
 
     void connectComponents();
     void setAllLayouts();
-    void setOneButton(QPushButton *button ,QIcon icon, QString text, bool setDefault);
     void setAllButtons();
     void setButtonLayout();
     void setPropertyLayout();
 private slots:
    void objectNameChanged(QString newName);
    void newClassSelected(QString newText);
-   void acceptButtonPressed();
-   void cancelButtonPressed();
-   void removeButtonPressed();
 };
 
 #endif // OBJECTGRAPHICSITEMEDITDIALOG_H

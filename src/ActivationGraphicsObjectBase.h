@@ -1,16 +1,35 @@
+/**
+ * @class ActivationGraphicsObjectBase
+ * Base functionality, variables and func declarations that are necessary for object in sequence diagram
+ * which has life box.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #ifndef ACTIVATIONGRAPHICSOBJECTBASE_H
 #define ACTIVATIONGRAPHICSOBJECTBASE_H
 
 #include <QRectF>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsItem>
 
-class ActivationGraphicsObjectBase
+class ActivationGraphicsObjectBase : public QGraphicsItem
 {
-  public:
+public:
 
+  protected:
+    /**
+     * Max height of object.
+     */
+    static qreal height;
+
+    static const int minHeight = 100;
     /**
      * Height of header (actor picture / box size)
      */
-    qreal headerHeight = 50;
+    static qreal headerHeight;
 
     /**
      * Space between header and life box.
@@ -18,28 +37,53 @@ class ActivationGraphicsObjectBase
     qreal lifeSpaceStart = 10;
 
     /**
-     * Max height of object.
-     */
-    qreal height;
-
-    /**
      * Width of lifebox
      */
     qreal lifeboxWidth = 20;
 
+    /**
+     * Position of cursor when pressed to an object.
+     */
+    QPointF pressedPos;
+
+    /**
+     * Pen used in regular drawing
+     */
+    QPen regularPen{Qt::black, 2, Qt::SolidLine};
+
+    /**
+     * Pen used in drawing object when object is selected
+     */
+    QPen selectedPen{Qt::red, 3, Qt::DashLine};
+
+    /**
+     * Pen used to draw life line.
+     */
+    QPen lifeLinePen{Qt::black, 2, Qt::DashLine};
+
+    /**
+     * Pen used for drawing lifeline border
+     */
+    QPen lifeLineBorderPen{Qt::darkGreen, 1, Qt::DashLine};
 
     /**
      * Returns width of object with activation/life box
      */
     virtual qreal width() const = 0;
 
+    /**
+     * Returns bounding rect of actor.
+     *
+     * @return bounding rect of actor
+     */
+    QRectF boundingRect() const override;
 
     /**
-     * Informs object that height was updated and object has to be redrawe
+     * Return bounding box that is as big as is indeed for given text
      *
-     * @param newHeight new height of object
+     * @param text text around which is rectangle counted for.
+     * @return bounding rect around text
      */
-    virtual void heightUpdated(qreal newHeight) = 0;
+    QRectF getTextBoundingBox(QString text) const;
 };
-
 #endif // ACTIVATIONGRAPHICSOBJECTBASE_H

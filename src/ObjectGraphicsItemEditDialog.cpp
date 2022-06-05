@@ -1,3 +1,10 @@
+/**
+ * @file ObjectGraphicsItemEditDialog.cpp
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #include "ObjectGraphicsItemEditDialog.h"
 
 ObjectGraphicsItemEditDialog::ObjectGraphicsItemEditDialog(QString objectName, QString className)
@@ -36,24 +43,13 @@ void ObjectGraphicsItemEditDialog::setAllLayouts()
 }
 
 /**
- * Set one Button - gives it icon and label + set default and autodefault.
- */
-void ObjectGraphicsItemEditDialog::setOneButton(QPushButton *button ,QIcon icon, QString text, bool setDefault)
-{
-    button->setIcon(icon);
-    button->setText(text);
-    button->setAutoDefault(setDefault);
-    button->setDefault(setDefault);
-}
-
-/**
  * Set all buttons - gives them icon and label.
  */
 void ObjectGraphicsItemEditDialog::setAllButtons()
 {
-    setOneButton(&acceptButton, QIcon{":/nike.png"}, "Accept", true);
-    setOneButton(&cancelButton, QIcon{":/cancel.png"}, "Cancel", false);
-    setOneButton(&removeButton, QIcon{":/closeCross.png"}, "Remove object", false);
+    setAsAcceptButton(&acceptButton, true);
+    setAsRemoveButton(&removeButton, false);
+    setAsCancelButton(&cancelButton, false);
 }
 
 /**
@@ -97,28 +93,4 @@ void ObjectGraphicsItemEditDialog::objectNameChanged(QString newName)
 void ObjectGraphicsItemEditDialog::newClassSelected(QString newText)
 {
     className = newText;
-}
-
-/**
- * Slot handles when accept button is pressed. Close dialog with QDialog::Accepted.
- */
-void ObjectGraphicsItemEditDialog::acceptButtonPressed()
-{
-    accept();
-}
-
-/**
- * Slot handles when cancel button is pressed. Close dialog with return code caceled.
- */
-void ObjectGraphicsItemEditDialog::cancelButtonPressed()
-{
-    done(canceled);
-}
-
-/**
- * Slot handles when cancel button is pressed. Close dialog with QDialog::Rejected.
- */
-void ObjectGraphicsItemEditDialog::removeButtonPressed()
-{
-    reject();
 }
