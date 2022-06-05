@@ -13,11 +13,12 @@
 #include "InvalidDataStorageException.h"
 #include "ClassNodeEmitter.h"
 #include "ClassDiagramScene.h"
+#include "SequenceDiagramScene.h"
 
 /**
  * Class constructor
  *
- * @par Initialiezes components and prepare all QWidgets and controls.
+ * @par Initializes components and prepare all QWidgets and controls.
  *
  * @param classDiagramManager Class diagram manage (dependency)
  * @param sceneUpdateObservable Observable for providing information about scene changes (dependency)
@@ -205,6 +206,43 @@ void MainWindow::connectComponents()
     connect(realizationToolItem, &QToolButton::pressed, this, &MainWindow::realizationSelected);
 }
 
+// Helper methods --------------------------------------------------------------------------------------- Helper methods
+/**
+ * Finds and returns class diagram scene from opened scenes
+ *
+ * @return Pointer to class diagram scene or nullptr when there is no class diagram scene
+ */
+ClassDiagramScene *MainWindow::getClassDiagramScene()
+{
+    for (auto item: scenes) {
+        if (typeid(*item) == typeid(ClassDiagramScene)) {
+            auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(item);
+
+            return classDiagramScene;
+        }
+    }
+
+    throw std::logic_error{"There is no class diagram scene"};
+}
+
+/**
+ * Checks if specified file is used by some scene
+ *
+ * @param fileName Name of the file to check (its full path)
+ * @return Is the file used by some scene?
+ */
+bool MainWindow::isFileUsedBySomeScene(QString &fileName)
+{
+    for (const auto item: scenes) {
+        if (item->getTargetFile() == fileName) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Slots --------------------------------------------------------------------------------------------------------- Slots
 /**
  * Slot for handling click on button for adding new class node
  */
@@ -314,8 +352,6 @@ void MainWindow::realizationSelected()
  */
 void MainWindow::openButtonClicked()
 {
-    // TODO: Class diagrams --> .cls.xml, sequence diagrams --> .seq.xml
-    // TODO: check if the filter is working
     QString file = QFileDialog::getOpenFileName(
         this,
         "Choose diagram to open",
@@ -325,23 +361,51 @@ void MainWindow::openButtonClicked()
         QFileDialog::HideNameFilterDetails
     );
 
-    // TODO: for diagram type without option to open multiple diagrams stop processing here
-    if (!currentScene->items().isEmpty() && !currentScene->isSaved()) {
-        auto clickedButton = QMessageBox::question(
-                this,
-                "Diagram opening error",
-                "You are trying to open new diagram before saving the edited one. Are you sure to continue?"
-                " Canvas content will be replaced with loaded diagram."
-        );
+    if (file.endsWith(".cls.xml")) {
+        // Class diagram
+        ClassDiagramScene *classDiagramScene = getClassDiagramScene();
 
-        if (clickedButton == QMessageBox::No) {
+        if (!classDiagramScene->items().isEmpty() && !classDiagramScene->isSaved()) {
+            auto clickedButton = QMessageBox::question(
+                this,
+                "Unsaved class diagram",
+                "You are trying to open new class diagram before saving the edited one. Are you sure to"
+                " continue? Canvas content will be replaced with loaded diagram."
+            );
+
+            if (clickedButton == QMessageBox::No) {
+                // Stop here, nothing will be loaded
+                return;
+            }
+        }
+
+        // TODO: switch to scene with class diagram
+    } else if (file.endsWith(".seq.xml")) {
+        // Sequence diagram
+
+        // One file can be used only in one scene
+        if (isFileUsedBySomeScene(file)) {
+            QMessageBox::critical(
+                    this,
+                    "Diagram opening error",
+                    "Selected file is already used by some of diagrams you are editing. Select different file or close"
+                    " edited diagram from the file before opening again."
+            );
+
             // Stop here, nothing will be loaded
             return;
         }
+
+        // TODO: create new scene for sequence diagram
+    } else {
+        // File with bad extension --> stop processing
+        QMessageBox::critical(this, "Diagram opening error", "Selected file has bad extension.");
+
+        return;
     }
 
     // Remember source file
-    currentScene->setTargetFile(file.toStdString());
+    currentScene->setTargetFile(file);
 
     currentScene->loadFromFile();
 }
@@ -352,7 +416,7 @@ void MainWindow::openButtonClicked()
 void MainWindow::saveButtonClicked() // NOLINT(misc-no-recursion)
 {
     // Target file must be selected
-    if (currentScene->getTargetFile().empty()) {
+    if (currentScene->getTargetFile().isEmpty()) {
         QMessageBox::warning(this, "Diagram saving error", "Edited diagram wasn't loaded from"
             " any file and target file hasn't been selected. You need to select target file first.");
 
@@ -370,15 +434,27 @@ void MainWindow::saveButtonClicked() // NOLINT(misc-no-recursion)
  */
 void MainWindow::saveAsButtonClicked() // NOLINT(misc-no-recursion)
 {
-    std::string currentTargetFile{currentScene->getTargetFile()};
+    QString currentTargetFile{currentScene->getTargetFile()};
 
-    // TODO: Class diagrams --> .cls.xml, sequence diagrams --> .seq.xml
+    // Choose filter by diagram type
+    QString filter{};
+    QString defaultFileName{};
+    if (typeid(*currentScene) == typeid(ClassDiagramScene)) {
+        // Class diagram
+        filter = "Class diagrams (*.cls.xml)";
+        defaultFileName = "new-class-diagram.cls.xml";
+    } else {
+        // Sequence diagram
+        filter = "Sequence diagrams (*.seq.xml)";
+        defaultFileName = "new-sequence-diagram.seq.xml";
+    }
+
     // Prompt user to select the target file
     QString file = QFileDialog::getSaveFileName(
         this,
         "Choose target file for saving diagram",
-        currentTargetFile.empty() ? "new-diagram.xml" : QString::fromStdString(currentTargetFile),
-        "XML files (*.xml)",
+        currentTargetFile.isEmpty() ? defaultFileName : currentTargetFile,
+        filter,
         nullptr,
         QFileDialog::HideNameFilterDetails
     );
@@ -388,8 +464,46 @@ void MainWindow::saveAsButtonClicked() // NOLINT(misc-no-recursion)
         return;
     }
 
+    // Check for extension validity
+    if (typeid(*currentScene) == typeid(ClassDiagramScene) && !file.endsWith(".cls.xml")) {
+        // Class diagram
+        QMessageBox::critical(
+            this,
+            "Class diagram saving error",
+            "Your file has invalid extension. Class diagrams must be saved with name like: \"*.cls.xml\" (without"
+            " quotes)."
+        );
+
+        // Stop here, nothing will be saved
+        return;
+    } else if(typeid(*currentScene) == typeid(SequenceDiagramScene) && !file.endsWith(".seq.xml")) {
+        // Sequence diagram
+        QMessageBox::critical(
+            this,
+            "Sequence diagram saving error",
+            "Your file has invalid extension. Sequence diagrams must be saved with name like: \"*.seq.xml\""
+            " (without quotes)."
+        );
+
+        // Stop here, nothing will be saved
+        return;
+    }
+
+    // File used by some scene cannot be rewritten
+    if (isFileUsedBySomeScene(file) && currentTargetFile != file) {
+        QMessageBox::critical(
+            this,
+            "Diagram saving error",
+            "Selected file is used as a target for saving one of edited diagrams. Choose different file for saving"
+            " the diagram, please."
+            );
+
+        // Stop here, nothing will be saved
+        return;
+    }
+
     // Update target file
-    currentScene->setTargetFile(file.toStdString());
+    currentScene->setTargetFile(file);
 
     // Now just save diagram into selected file
     saveButtonClicked();

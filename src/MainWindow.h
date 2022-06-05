@@ -31,6 +31,7 @@
 #include "SceneUpdateObserver.h"
 #include "SceneUpdateObservable.h"
 #include "CustomScene.h"
+#include "ClassDiagramScene.h"
 
 /**
  * Windows that allows user to draw diagrams.
@@ -120,6 +121,21 @@ private:
      * Connects all signals and slots
      */
     void connectComponents();
+
+    // Helper methods
+    /**
+     * Finds and returns class diagram scene from opened scenes
+     *
+     * @return Pointer to class diagram scene
+     */
+    ClassDiagramScene *getClassDiagramScene();
+    /**
+     * Checks if specified file is used by some scene
+     *
+     * @param fileName Name of the file to check (its full path)
+     * @return Is the file used by some scene?
+     */
+    bool isFileUsedBySomeScene(QString &fileName);
 private slots:
     // Tool box items' actions
     void addClassNode();

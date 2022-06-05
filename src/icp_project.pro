@@ -84,7 +84,8 @@ HEADERS += \
     CompositionLine.h \
     GeneralizationLine.h \
     SceneUpdateObserver.h \
-    SceneUpdateObservable.h
+    SceneUpdateObservable.h \
+    SequenceDiagramScene.h
 
 SOURCES += \
     AccessModifier.cpp \

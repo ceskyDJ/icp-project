@@ -85,6 +85,7 @@ add_executable(icp_project
         src/GeneralizationLine.h
         src/SceneUpdateObserver.h
         src/SceneUpdateObservable.h
+        src/SequenceDiagramScene.h
 
         # Source files
         src/AccessModifier.cpp
