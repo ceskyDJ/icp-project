@@ -41,6 +41,7 @@ HEADERS += \
     MethodParameterEditWidget.h \
     RealizationLine.h \
     SequenceDiagram.h \
+    SequenceDiagramScene.h \
     ClassMember.h \
     ClassMethod.h \
     ClassAttribute.h \
@@ -85,7 +86,7 @@ HEADERS += \
     GeneralizationLine.h \
     SceneUpdateObserver.h \
     SceneUpdateObservable.h \
-    SequenceDiagramScene.h
+    TabWidget.h
 
 SOURCES += \
     AccessModifier.cpp \
@@ -105,6 +106,7 @@ SOURCES += \
     ClassDiagram.cpp \
     RealizationLine.cpp \
     SequenceDiagram.cpp \
+    SequenceDiagramScene.cpp \
     Class.cpp \
     FileClassDiagramRepository.cpp \
     FileSequenceDiagramRepository.cpp \
@@ -119,4 +121,5 @@ SOURCES += \
     MethodEditWidget.cpp \
     CompositionLine.cpp \
     GeneralizationLine.cpp \
+    TabWidget.cpp \
     main.cpp

@@ -20,13 +20,16 @@
  *
  * @par Initializes components and prepare all QWidgets and controls.
  *
- * @param classDiagramManager Class diagram manage (dependency)
+ * @param classDiagramManager Class diagram manager (dependency)
+ * @param sequenceDiagramManager Sequence diagram manager (dependency)
  * @param sceneUpdateObservable Observable for providing information about scene changes (dependency)
  */
 MainWindow::MainWindow( // NOLINT(cppcoreguidelines-pro-type-member-init)
     ClassDiagramManager *classDiagramManager,
+    SequenceDiagramManager *sequenceDiagramManager,
     SceneUpdateObservable *sceneUpdateObservable
-): classDiagramManager{classDiagramManager}, sceneUpdateObservable{sceneUpdateObservable}
+): classDiagramManager{classDiagramManager}, sequenceDiagramManager{sequenceDiagramManager},
+        sceneUpdateObservable{sceneUpdateObservable}
 {
     // Register this observer for scene updates
     sceneUpdateObservable->registerObserver(this);
@@ -51,13 +54,12 @@ void MainWindow::logChanges() noexcept
  */
 void MainWindow::initializeComponents()
 {
-    currentScene = new ClassDiagramScene{this, classDiagramManager, sceneUpdateObservable};
-    diagramView = new QGraphicsView(currentScene);
-
+    // Taskbars and tool boxes
     taskBar = addToolBar("TaskBar");
     diagramTabs = new QToolBar();
     toolBox = new QToolBox;
 
+    // Class diagram tool items
     aggregationToolItem = new QToolButton;
     associationToolItem = new QToolButton;
     compositionToolItem = new QToolButton;
@@ -66,6 +68,10 @@ void MainWindow::initializeComponents()
     directedAssociationToolItem = new QToolButton;
     classShapeToolItem = new QToolButton;
     removeSelectedToolItem = new QToolButton;
+
+    // Drawing scene
+    currentScene = createScene(SceneType::ClassDiagram);
+    diagramView = new QGraphicsView(currentScene);
 }
 
 /**
@@ -104,10 +110,6 @@ void MainWindow::setTaskBars()
     taskBar->addAction("Save as...", this, &MainWindow::saveAsButtonClicked);
     taskBar->addAction("Undo", this, &MainWindow::undoButtonClicked);
     taskBar->addAction("Redo", this, &MainWindow::redoButtonClicked);
-
-
-    // TODO: Connect to scene
-    diagramTabs->addWidget(prepareDiagramTab("Unnamed class diagram"));
 }
 
 /**
@@ -134,26 +136,6 @@ QWidget *MainWindow::prepareToolItem(const QIcon &icon, const QString &labelStri
     auto toolboxItem = new QWidget;
     toolboxItem->setLayout(toolboxItemLayout);
     return toolboxItem;
-}
-
-/**
- * Creates tabs for diagrams.
- *
- * @param label QString of text which will be written on a tab
- * @return QWidget representing a diagram tab manager
- */
-QWidget *MainWindow::prepareDiagramTab(const QString &label)
-{
-    static QIcon icon = QIcon(":/closeCross.png");
-    auto newTab = new QWidget;
-    auto picture = new QPushButton(icon,"");
-
-    auto actionLayout = new QGridLayout();
-    actionLayout->addWidget(new QPushButton(label),0,0);
-    actionLayout->addWidget(picture,0,1);
-    newTab->setLayout(actionLayout);
-
-    return newTab;
 }
 
 /**
@@ -204,6 +186,48 @@ void MainWindow::connectComponents()
     connect(generalisationToolItem, &QToolButton::pressed, this, &MainWindow::generalisationSelected);
     connect(directedAssociationToolItem, &QToolButton::pressed, this, &MainWindow::directedAssociationSelected);
     connect(realizationToolItem, &QToolButton::pressed, this, &MainWindow::realizationSelected);
+}
+
+/**
+ * Creates a new scene
+ *
+ * @param type Scene type
+ * @param name Scene name (optional)
+ * @return Pointer to created scene
+ */
+CustomScene *MainWindow::createScene(const SceneType &type, const QString &name)
+{
+    // Numbering for unique names
+    static unsigned int classDiagramNumber = 1;
+    static unsigned int sequenceDiagramNumber = 1;
+
+    // Create new scene instance
+    CustomScene *newScene{};
+    QString defaultName{};
+    switch (type) {
+        case SceneType::ClassDiagram:
+            newScene = new ClassDiagramScene{this, classDiagramManager, sceneUpdateObservable};
+            defaultName = "New class diagram " + QString::number(classDiagramNumber++);
+            break;
+        case SceneType::SequenceDiagram:
+            newScene = new SequenceDiagramScene{this, sequenceDiagramManager, sceneUpdateObservable};
+            defaultName = "New sequence diagram " + QString::number(sequenceDiagramNumber++);
+            break;
+    }
+
+    scenes.push_back(newScene);
+
+    // Create tab for scene
+    auto newTab = new TabWidget{(name.isEmpty() ? defaultName : name)};
+    tabs.push_back(newTab);
+
+    diagramTabs->addWidget(newTab);
+
+    // Connect signals from tab buttons
+    connect(newTab->getTabButton(), &QPushButton::pressed, this, &MainWindow::selectTab);
+    connect(newTab->getCloseButton(), &QPushButton::pressed, this, &MainWindow::closeTab);
+
+    return newScene;
 }
 
 // Helper methods --------------------------------------------------------------------------------------- Helper methods
@@ -397,6 +421,7 @@ void MainWindow::openButtonClicked()
         }
 
         // TODO: create new scene for sequence diagram
+//        CustomScene *newScene = createScene(SceneType::SequenceDiagram, file.replace(".seq.xml", ""));
     } else {
         // File with bad extension --> stop processing
         QMessageBox::critical(this, "Diagram opening error", "Selected file has bad extension.");
@@ -523,4 +548,28 @@ void MainWindow::undoButtonClicked()
 void MainWindow::redoButtonClicked()
 {
     currentScene->redoRevertedChange();
+}
+
+// Bottom tab bar tab's actions ----------------------------------------------------------- Bottom tab bar tab's actions
+/**
+ * Slot for handling click action on some select tab button
+ */
+void MainWindow::selectTab()
+{
+    auto button = qobject_cast<QPushButton *>(sender());
+    auto tab = qobject_cast<TabWidget *>(button->parentWidget());
+
+    std::cerr << "Clicked on select tab button: " << tab->getTabButton()->text().toStdString() << "\n";
+}
+
+/**
+ * Slot for handling click action on some close tab button
+ */
+void MainWindow::closeTab()
+{
+    auto button = qobject_cast<QPushButton *>(sender());
+    auto tab = qobject_cast<TabWidget *>(button->parentWidget());
+
+    // Note: close buttons always has empty text (it isn't an issue)
+    std::cerr << "Clicked on close tab button: " << tab->getCloseButton()->text().toStdString() << "\n";
 }
