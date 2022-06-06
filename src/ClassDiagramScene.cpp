@@ -65,10 +65,10 @@ void ClassDiagramScene::loadFromFile()
         classDiagram = loadedDiagram;
         redrawClassDiagram();
 
+        sceneUpdateObservable->sceneChanged();
+
         // Diagram has just been loaded from file
         saved = true;
-
-        sceneUpdateObservable->sceneChanged();
     } catch (InvalidDataStorageException &e) {
         QMessageBox::critical(parentWindow, "Class diagram opening error", e.what());
     } catch (InvalidInputDataException &e) {

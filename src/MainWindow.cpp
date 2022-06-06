@@ -56,8 +56,9 @@ void MainWindow::initializeComponents()
 {
     // Taskbars and tool boxes
     taskBar = addToolBar("TaskBar");
-    diagramTabs = new QToolBar();
-    toolBox = new QToolBox;
+    diagramTabs = new QToolBar{};
+    toolBox = new QToolBox{};
+    sceneView = new QGraphicsView{};
 
     // Class diagram tool items
     aggregationToolItem = new QToolButton;
@@ -70,8 +71,8 @@ void MainWindow::initializeComponents()
     removeSelectedToolItem = new QToolButton;
 
     // Drawing scene
-    currentScene = createScene(SceneType::ClassDiagram);
-    diagramView = new QGraphicsView(currentScene);
+    auto sceneData = createScene(SceneType::ClassDiagram, "", false);
+    setActiveTab(std::get<1>(sceneData));
 }
 
 /**
@@ -83,7 +84,7 @@ void MainWindow::setMainWindow()
     auto *modellingLayout = new QGridLayout;
 
     modellingLayout->addWidget(toolBox,0,0);
-    modellingLayout->addWidget(diagramView, 0, 1);
+    modellingLayout->addWidget(sceneView, 0, 1);
 
     auto *modellingSpace = new QWidget;
     modellingSpace->setLayout(modellingLayout);
@@ -96,7 +97,6 @@ void MainWindow::setMainWindow()
 
     setCentralWidget(centerWidget);
     this->setMinimumSize(800,600);
-    this->setWindowTitle("UML Class Creator");
 }
 
 /**
@@ -148,7 +148,7 @@ void MainWindow::setToolBox()
     auto toolboxItems = new QGroupBox;
     auto toolboxLayout = new QGridLayout;
 
-    QWidget *aggregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregation", aggregationToolItem);
+    QWidget *aggregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Aggregation", aggregationToolItem);
     QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", compositionToolItem);
     QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Association", associationToolItem);
     QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalization", generalisationToolItem);
@@ -193,10 +193,14 @@ void MainWindow::connectComponents()
  *
  * @param type Scene type
  * @param name Scene name (optional)
- * @return Pointer to created scene
+ * @param closeable Could the scene be closed? (optional, default: true)
+ * @return Pointer to created scene and pointer to corresponding tab
  */
-CustomScene *MainWindow::createScene(const SceneType &type, const QString &name)
-{
+std::tuple<CustomScene *, TabWidget *> MainWindow::createScene(
+    const SceneType &type,
+    const QString &name,
+    bool closeable
+) {
     // Numbering for unique names
     static unsigned int classDiagramNumber = 1;
     static unsigned int sequenceDiagramNumber = 1;
@@ -218,7 +222,7 @@ CustomScene *MainWindow::createScene(const SceneType &type, const QString &name)
     scenes.push_back(newScene);
 
     // Create tab for scene
-    auto newTab = new TabWidget{(name.isEmpty() ? defaultName : name)};
+    auto newTab = new TabWidget{(name.isEmpty() ? defaultName : name), newScene, closeable};
     tabs.push_back(newTab);
 
     diagramTabs->addWidget(newTab);
@@ -227,7 +231,53 @@ CustomScene *MainWindow::createScene(const SceneType &type, const QString &name)
     connect(newTab->getTabButton(), &QPushButton::pressed, this, &MainWindow::selectTab);
     connect(newTab->getCloseButton(), &QPushButton::pressed, this, &MainWindow::closeTab);
 
-    return newScene;
+    return {newScene, newTab};
+}
+
+// Manipulators ------------------------------------------------------------------------------------------- Manipulators
+/**
+ * Switch active tab to specified one
+ *
+ * @par Of course switches corresponding scene, too.
+ *
+ * @param tab Tab to set as active
+ */
+void MainWindow::setActiveTab(TabWidget *tab)
+{
+    // Switch scene
+    currentScene = tab->getScene();
+    sceneView->setScene(currentScene);
+
+    // Switch tab
+    for (auto item: tabs) {
+        item->setActive(false);
+    }
+    tab->setActive(true);
+
+    currentTab = tab;
+
+    updateTab(tab);
+}
+
+/**
+ * Updates specified tab
+ *
+ * @par Normally tab's state and displayed label are updated.
+ * If the tab is active, window title is updated, too.
+ *
+ * @param tab Tab to be updates
+ */
+void MainWindow::updateTab(TabWidget *tab)
+{
+    // Update tab's state
+    tab->updateState();
+
+    // Update main window title
+    if (tab == currentTab) {
+        this->setWindowTitle(mainWindowTitle + " - " + tab->getLabel());
+    }
+
+    update();
 }
 
 // Helper methods --------------------------------------------------------------------------------------- Helper methods
@@ -385,6 +435,10 @@ void MainWindow::openButtonClicked()
         QFileDialog::HideNameFilterDetails
     );
 
+    // Get short file name (end of path)
+    QFileInfo fileInfo{file};
+    QString shortFileName{fileInfo.fileName()};
+
     if (file.endsWith(".cls.xml")) {
         // Class diagram
         ClassDiagramScene *classDiagramScene = getClassDiagramScene();
@@ -403,7 +457,10 @@ void MainWindow::openButtonClicked()
             }
         }
 
-        // TODO: switch to scene with class diagram
+        // Switch to class diagram scene
+        // Class diagram is always in the first tab
+        tabs[0]->setLabel(shortFileName);
+        setActiveTab(tabs[0]);
     } else if (file.endsWith(".seq.xml")) {
         // Sequence diagram
 
@@ -420,8 +477,9 @@ void MainWindow::openButtonClicked()
             return;
         }
 
-        // TODO: create new scene for sequence diagram
-//        CustomScene *newScene = createScene(SceneType::SequenceDiagram, file.replace(".seq.xml", ""));
+        // Add new scene for diagram to be loaded and switch to it
+        auto sceneData = createScene(SceneType::SequenceDiagram, shortFileName);
+        setActiveTab(std::get<1>(sceneData));
     } else {
         // File with bad extension --> stop processing
         QMessageBox::critical(this, "Diagram opening error", "Selected file has bad extension.");
@@ -432,7 +490,11 @@ void MainWindow::openButtonClicked()
     // Remember source file
     currentScene->setTargetFile(file);
 
+    // Load diagram from file
     currentScene->loadFromFile();
+
+    // Update tab
+    updateTab(currentTab);
 }
 
 /**
@@ -451,7 +513,11 @@ void MainWindow::saveButtonClicked() // NOLINT(misc-no-recursion)
         return;
     }
 
+    // Save diagram to file
     currentScene->saveToFile();
+
+    // Update tab
+    updateTab(currentTab);
 }
 
 /**
@@ -530,6 +596,13 @@ void MainWindow::saveAsButtonClicked() // NOLINT(misc-no-recursion)
     // Update target file
     currentScene->setTargetFile(file);
 
+    // Get short file name (end of path)
+    QFileInfo fileInfo{file};
+    QString shortFileName{fileInfo.fileName()};
+
+    // Update tab label
+    currentTab->setLabel(shortFileName);
+
     // Now just save diagram into selected file
     saveButtonClicked();
 }
@@ -559,7 +632,7 @@ void MainWindow::selectTab()
     auto button = qobject_cast<QPushButton *>(sender());
     auto tab = qobject_cast<TabWidget *>(button->parentWidget());
 
-    std::cerr << "Clicked on select tab button: " << tab->getTabButton()->text().toStdString() << "\n";
+    setActiveTab(tab);
 }
 
 /**

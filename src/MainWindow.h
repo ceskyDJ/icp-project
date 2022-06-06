@@ -96,6 +96,10 @@ private:
 
     // Settings
     /**
+     * Title of main window
+     */
+    const QString mainWindowTitle = "UML Class Creator";
+    /**
      * Minimum width of toolbox
      */
     const int minToolboxWidth = 200;
@@ -118,17 +122,21 @@ private:
      */
     QToolBox *toolBox;
     /**
-     * Currently edited scene
-     */
-    CustomScene *currentScene;
-    /**
      * Widget wrapper for current scene (for displaying its content)
      */
-    QGraphicsView *diagramView;
+    QGraphicsView *sceneView;
     /**
      * TODO: add doc comment
      */
     QWidget *centerWidget;
+    /**
+     * Currently edited scene
+     */
+    CustomScene *currentScene;
+    /**
+     * Currently opened tab
+     */
+    TabWidget *currentTab;
 
     // Tool items
     /**
@@ -198,9 +206,34 @@ private:
      *
      * @param type Scene type
      * @param name Scene name (optional)
-     * @return Pointer to created scene
+     * @param closeable Could the scene be closed? (optional, default: true)
+     * @return Pointer to created scene and pointer to corresponding tab
      */
-    CustomScene *createScene(const SceneType &type, const QString &name = "");
+    std::tuple<CustomScene *, TabWidget *> createScene(
+        const SceneType &type,
+        const QString &name = "",
+        bool closeable = true
+   );
+
+    // Manipulators
+    /**
+     * Switch active tab to specified one
+     *
+     * @par Of course switches corresponding scene, too.
+     *
+     * @param tab Tab to set as active
+     */
+    void setActiveTab(TabWidget *tab);
+
+    /**
+     * Updates specified tab
+     *
+     * @par Normally tab's state and displayed label are updated.
+     * If the tab is active, window title is updated, too.
+     *
+     * @param tab Tab to be updates
+     */
+    void updateTab(TabWidget *tab);
 
     // Helper methods
     /**
@@ -218,13 +251,37 @@ private:
     bool isFileUsedBySomeScene(QString &fileName);
 private slots:
     // Tool box items' actions
+    /**
+     * Slot for handling click on button for adding new class node
+     */
     void addClassNode();
+    /**
+     * Slot is invoked when class node remove button was pressed.
+     */
     void removeSelectedClassNodes();
+    /**
+     * Slot for handling click on button for selecting association relationship
+     */
     void associationSelected();
+    /**
+     * Slot for handling click on button for selecting composition relationship
+     */
     void compositionSelected();
+    /**
+     * Slot for handling click on button for selecting aggregation relationship
+     */
     void aggregationSelected();
+    /**
+     * Slot for handling click on button for selecting generalization relationship
+     */
     void generalisationSelected();
+    /**
+     * Slot for handling click on button for selecting directed association relationship
+     */
     void directedAssociationSelected();
+    /**
+     * Slot for handling click on button for selecting realization relationship
+     */
     void realizationSelected();
 
     // Top toolbar buttons' actions

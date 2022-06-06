@@ -13,6 +13,7 @@
 #include <QIcon>
 #include <QGridLayout>
 #include <QPushButton>
+#include "CustomScene.h"
 
 /**
  * Qt widget for representing tab in bottom tab bar
@@ -29,6 +30,10 @@ class TabWidget: public QWidget
      * Label to show in tab bar
      */
     QString label;
+    /**
+     * Scene connected to this tab
+     */
+    CustomScene *scene;
 
     // Widgets
     /**
@@ -51,8 +56,10 @@ class TabWidget: public QWidget
      * Class constructor
      *
      * @param label Label to show in tab bar
+     * @param scene Connected scene
+     * @param closeable Could the tab be closed?
      */
-    explicit TabWidget(const QString &label);
+    explicit TabWidget(const QString &label, CustomScene *scene, bool closeable = true);
 
     /**
      * Sets tab as active/inactive
@@ -62,11 +69,38 @@ class TabWidget: public QWidget
     void setActive(bool state);
 
     /**
-     * Sets tab as saved (corresponding scene is saved)
+     * Updates tab's state using information from corresponding scene
      *
-     * @param state Is corresponding scene saved (set as saved)?
+     * @par The star is added after label if the scene isn't saved.
      */
-    void setSaved(bool state);
+    void updateState();
+
+    /**
+     * Setter for label
+     *
+     * @param newLabel New label shown in tab bar
+     */
+    void setLabel(const QString &newLabel);
+
+    /**
+     * Getter for label
+     *
+     * @return Label shown in tab bar
+     */
+    QString getLabel()
+    {
+        return label;
+    }
+
+    /**
+     * Getter for connected scene
+     *
+     * @return Pointer to connected scene
+     */
+    CustomScene *getScene()
+    {
+        return scene;
+    }
 
     /**
      * Getter for tab button
