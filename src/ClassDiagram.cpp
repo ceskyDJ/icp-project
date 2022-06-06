@@ -36,7 +36,7 @@ void ClassDiagram::removeClass(Class *classToRemove)
  * @return Pointer to found class
  * @throw std::invalid_argument Non-existing class with this name
  */
-Class *ClassDiagram::findClassByName(const std::string &name)
+Class *ClassDiagram::findClassByName(const std::string &name) const
 {
     for (Class *currClass: classes) {
         if (currClass->getName() == name) {

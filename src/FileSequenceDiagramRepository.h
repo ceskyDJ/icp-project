@@ -26,11 +26,11 @@ class FileSequenceDiagramRepository: public SequenceDiagramRepository
     /**
      * Constructor for initialization with known name of file
      *
-     * @param classDiagram Class diagram to use as a source for classes, methods, etc.
+     * @param classDiagram Pointer to class diagram to use as a source for classes, methods, etc.
      * @param fileName Name of the file to work with (full relative/absolute path)
      */
     explicit FileSequenceDiagramRepository(
-        const ClassDiagram &classDiagram,
+        const ClassDiagram *classDiagram,
         const std::string &fileName
     ): SequenceDiagramRepository{classDiagram, fileName} {};
 

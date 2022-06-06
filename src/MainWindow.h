@@ -48,9 +48,9 @@ public:
      *
      * @par Initializes components and prepare all QWidgets and controls.
      *
-     * @param classDiagramManager Class diagram manager (dependency)
-     * @param sequenceDiagramManager Sequence diagram manager (dependency)
-     * @param sceneUpdateObservable Observable for providing information about scene changes (dependency)
+     * @param classDiagramManager Pointer to class diagram manager (dependency)
+     * @param sequenceDiagramManager Pointer to sequence diagram manager (dependency)
+     * @param sceneUpdateObservable Pointer to observable for providing information about scene changes (dependency)
      */
     MainWindow(
         ClassDiagramManager *classDiagramManager,
@@ -66,15 +66,15 @@ public:
 private:
     // Dependencies
     /**
-     * Class diagram manager (for backend operations)
+     * Pointer to class diagram manager (for backend operations)
      */
     ClassDiagramManager *classDiagramManager;
     /**
-     * Sequence diagram manager (for backend operations)
+     * Pointer to sequence diagram manager (for backend operations)
      */
     SequenceDiagramManager *sequenceDiagramManager;
     /**
-     * Observable for distributing information about scene changes
+     * Pointer to observable for distributing information about scene changes
      */
     SceneUpdateObservable *sceneUpdateObservable;
 

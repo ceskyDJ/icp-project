@@ -238,7 +238,7 @@ Object *FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
 
     ClassReference instanceClass{xmlObject.attribute("instance-class").toStdString()};
     try {
-        instanceClass = classDiagram.findClassByName(instanceClass.getReferredClassName());
+        instanceClass = classDiagram->findClassByName(instanceClass.getReferredClassName());
     } catch (std::invalid_argument &e) {}
 
     // Life start
@@ -384,7 +384,7 @@ Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Seq
     try {
         // Only object has methods, actor doesn't
         if (recipientType == "OBJECT") {
-            Object *object = dynamic_cast<Object *>(messageRecipient);
+            auto object = dynamic_cast<Object *>(messageRecipient);
 
             method = object->getInstanceClass()->findMethodByName(method.getReferredMethodName());
         }
