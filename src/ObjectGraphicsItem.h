@@ -19,9 +19,11 @@ class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
     Object *object;
-
     ObjectGraphicsItem(Object *newObject);
     qreal width() const;
+    QRectF lifeBoxRect();
+    qreal getStartOfLifeBox();
+    qreal getLifeLength();
 protected:
     /**
      * Padding int object header |[padding]<NAME>[Padding]|
@@ -34,8 +36,12 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
-    QRectF lifeBoxRect();
     QRectF resizeArea();
+    void moveAllMessages(qreal dy);
+    void setLifeStart(qreal lifeStart);
+    void setLifeEndDestroy(qreal lifeEnd);
+    void setDestroyed(bool destroyed);
+    MessageLine *getDestroyMessage();
 };
 
 #endif // OBJECTGRAPHICSITEM_H

@@ -14,6 +14,7 @@ ActorGraphicsItem::ActorGraphicsItem(Actor *actor) : actor{actor}
 {
     setAcceptHoverEvents(true);
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
+    destroyed = false;
 }
 
 /**
@@ -137,4 +138,3 @@ void ActorGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     else if (result == ActorGraphicsItemEditDialog::remove)
         delete this;
 }
-

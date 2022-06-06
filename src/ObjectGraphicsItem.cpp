@@ -12,6 +12,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QtDebug>
 #include "ObjectGraphicsItemEditDialog.h"
+#include "DestroyMessageLine.h"
 
 /**
  * Initializes new graphics object in sequence diagram if height is negative, keeps it value
@@ -24,6 +25,7 @@ ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject)
     object = newObject;
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
     setAcceptHoverEvents(true);
+    destroyed = false;
 }
 
 /**
@@ -63,13 +65,21 @@ void ObjectGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
     painter->drawLine(0, headerHeight + lifeSpaceStart, textWidth, headerHeight + lifeSpaceStart);
     painter->drawLine(0, height, textWidth, height);
 
-
-    //TODO DELETE
-    painter->setPen(QPen{Qt::green, 1, Qt::SolidLine});
-    painter->drawRect(boundingRect());
+    if(destroyed)//draw destroy cross
+    {
+        painter->setPen(QPen{Qt::black, 2, Qt::SolidLine});
+        QRectF crossRect{-destroyCrossSize * 0.5, -destroyCrossSize * 0.5,
+                          destroyCrossSize, destroyCrossSize};
+        crossRect.translate(lifeBox.x() + lifeboxWidth * 0.5,
+                            lifeBox.y() + lifeBox.height() + destroyCrossSize * 0.5);
+        painter->drawLine(crossRect.x(), crossRect.y(),
+                          crossRect.x() + crossRect.width(), crossRect.y() + crossRect.height());
+        painter->drawLine(crossRect.x() + crossRect.width(), crossRect.y(),
+                          crossRect.x(), crossRect.y() + crossRect.height());
+    }
 
     painter->setPen(QPen{Qt::blue, 1, Qt::SolidLine});
-    painter->drawPath(shape());
+    painter->drawRect(boundingRect());
 }
 
 /**
@@ -87,7 +97,7 @@ qreal ObjectGraphicsItem::width() const
 }
 
 /**
- * Set selected to true, then saves mouse coordinates to variable pressedPos.
+ * Saves mouse coordinates to variable pressedPos.
  * When is clicked into area to resize lifebox, setsCursor to Qt::SizeVerCursor.
  * If mouse coordinates are in lifebox area, sets cursor to Qt::ClosedHandCursor.
  *
@@ -95,7 +105,6 @@ qreal ObjectGraphicsItem::width() const
  */
 void ObjectGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    setSelected(true);
     pressedPos = event->pos();
     if(resizeArea().contains(event->pos()))
         return;
@@ -115,6 +124,7 @@ void ObjectGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
  */
 void ObjectGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+    setSelected(true);
     if(this->cursor() == Qt::ClosedHandCursor)
     {
         QRectF lifebox = lifeBoxRect();
@@ -125,6 +135,7 @@ void ObjectGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         {
             qreal maxBoxHeight = height - lifeSpaceStart - headerHeight;
             object->setLifeStart((lifebox.y() + dy - lifeSpaceStart - headerHeight) / maxBoxHeight);
+            moveAllMessages(dy);
         }
 
     }
@@ -133,14 +144,16 @@ void ObjectGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         QRectF lifebox = lifeBoxRect();
         qreal dy = event->pos().y() - pressedPos.y();
         qreal newLength = (lifebox.height() + dy) / (height - lifeSpaceStart - headerHeight);
-        if (lifebox.y() + dy + lifebox.height() > height)
+        if (lifebox.y() + dy + lifebox.height() > height)//lifebox could be outside of borders
         {
             pressedPos = event->pos();
             return;
         }
-        else if(newLength <= 0)
+        else if(newLength <= 0) // length is too small
             return;
-        else
+        if(destroyed) //destroyed flag on
+            getDestroyMessage()->moveLine(dy, true);
+        else //everything ok
             object->setLifeLength(newLength);
     }
     pressedPos = event->pos();
@@ -185,8 +198,9 @@ void ObjectGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 QRectF ObjectGraphicsItem::resizeArea()
 {
     QRectF lifeBox = lifeBoxRect();
-    return QRectF{lifeBox.x() - 10, lifeBox.y() + lifeBox.height() - 10,
-                           lifeBox.width() + 20, 20};
+    static const qreal resizePadH = 10;
+    return QRectF{lifeBox.x(), lifeBox.y() + lifeBox.height() - resizePadH,
+                              lifeBox.width(), resizePadH * 2};
 }
 
 /**
@@ -215,4 +229,75 @@ void ObjectGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     else if (result == ObjectGraphicsItemEditDialog::remove)
         delete this;
 
+}
+
+/**
+ * Getter for start of life line.
+ *
+ * @return start of life line from Object.
+ */
+qreal ObjectGraphicsItem::getStartOfLifeBox()
+{
+    return object->getLifeStart();
+}
+
+/**
+ * Getter for start of life line.
+ *
+ * @return start of life line from Object.
+ */
+qreal ObjectGraphicsItem::getLifeLength()
+{
+    return object->getLifeLength();
+}
+
+/**
+ * Move all lines by dy.
+ *
+ * @param dy - difference to move
+ */
+void ObjectGraphicsItem::moveAllMessages(qreal dy)
+{
+    for(MessageLine *msgLine:messages)
+        msgLine->moveLine(dy, false);
+}
+
+/**
+ * Set life start to position of lifeStart argument.
+ *
+ * @param lifeStart new start of life - it has to be in interval <0,1>.
+ */
+void ObjectGraphicsItem::setLifeStart(qreal lifeStart)
+{
+    object->setLifeStart(lifeStart);
+    if(object->getLifeStart() + object->getLifeLength() > 1)
+        object->setLifeLength(1 - object->getLifeStart());
+}
+
+/**
+ * Set lifelength so it ends in moment of lifeEnd argument.
+ *
+ * @param lifeEnd time when life should end - it has to be in interval <0,1>.
+ */
+void ObjectGraphicsItem::setLifeEndDestroy(qreal lifeEnd)
+{
+    object->setLifeLength(lifeEnd - object->getLifeStart());
+    if(object->getLifeStart() + object->getLifeLength() > 1)
+        object->setLifeLength(1 - object->getLifeStart());
+}
+
+/**
+ * Iterate throught messages and if find destroy message, return it.
+ *
+ * @return destroyMessage Destroy message if found, else return nullptr.
+ */
+MessageLine * ObjectGraphicsItem::getDestroyMessage()
+{
+    for(MessageLine *msg:messages)
+    {
+        DestroyMessageLine *temp = dynamic_cast<DestroyMessageLine *>(msg);
+        if(temp)
+            return temp;
+    }
+    return nullptr;
 }

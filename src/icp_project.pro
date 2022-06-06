@@ -32,20 +32,26 @@ HEADERS += \
     AgregationLine.h \
     AssociationLine.h \
     AssociationLineEditDialog.h \
+    AsyncMessageLine.h \
     ClassDiagram.h \
     ClassNodeEmitter.h \
     ClassDiagramScene.h \
     CustomScene.h \
+    CreateMessageLine.h \
+    DestroyMessageLine.h \
     DirectedAssociationLine.h \
     DirectedAssociationLineEditDialog.h \
     EditDialogBase.h \
     Line.h \
     LineWithArrow.h \
     LineWithArrowEditDialog.h \
+    MessageLine.h \
+    MessageLineEditDialog.h \
     MethodParameterEditWidget.h \
     ObjectGraphicsItem.h \
     ObjectGraphicsItemEditDialog.h \
     RealizationLine.h \
+    ReplyMessageLine.h \
     SequenceDiagram.h \
     SequenceDiagramScene.h \
     ClassMember.h \
@@ -64,6 +70,7 @@ HEADERS += \
     MessageType.h \
     Actor.h \
     ClassMethodType.h \
+    SyncMessageLine.h \
     UndirectedAssociation.h \
     DirectedAssociation.h \
     MessageNode.h \
@@ -107,16 +114,21 @@ SOURCES += \
     ClassType.cpp \
     ClassDiagramScene.cpp \
     CustomScene.cpp \
+    CreateMessageLine.cpp \
+    DestroyMessageLine.cpp \
     DirectedAssociationLine.cpp \
     DirectedAssociationLineEditDialog.cpp \
     EditDialogBase.cpp \
     LineWithArrow.cpp \
     LineWithArrowEditDialog.cpp \
+    MessageLine.cpp \
+    MessageLineEditDialog.cpp \
     MessageType.cpp \
     ClassDiagram.cpp \
     ObjectGraphicsItem.cpp \
     ObjectGraphicsItemEditDialog.cpp \
     RealizationLine.cpp \
+    ReplyMessageLine.cpp \
     SequenceDiagram.cpp \
     SequenceDiagramScene.cpp \
     Class.cpp \
@@ -127,6 +139,7 @@ SOURCES += \
     MainWindow.cpp \
     MethodParameterEditWidget.cpp \
     Line.cpp \
+    SyncMessageLine.cpp \
     classNode.cpp \
     ClassEditDialog.cpp \
     AttributeEditWidget.cpp \

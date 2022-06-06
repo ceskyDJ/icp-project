@@ -61,7 +61,7 @@ void EditDialogBase::acceptButtonPressed()
 }
 
 /**
- * Slot handles when cancel button is pressed. Close dialog with return code caceled.
+ * Slot handles when cancel button is pressed. Close dialog with QDialog::Rejected.
  */
 void EditDialogBase::cancelButtonPressed()
 {
@@ -69,9 +69,28 @@ void EditDialogBase::cancelButtonPressed()
 }
 
 /**
- * Slot handles when cancel button is pressed. Close dialog with
+ * Slot handles when cancel button is pressed. Close dialog with EditDialogBase::remove
  */
 void EditDialogBase::removeButtonPressed()
 {
     done(remove);
+}
+
+/**
+ * Slot handles when switchArrow button is pressed. Close dialog with EditDialogBase::switchArrows
+ */
+void EditDialogBase::swicthArrowButtonPressed()
+{
+    done(switchArrows);
+}
+
+/**
+ * Sets button as it looks likde switchArrow button.
+ *
+ * @param button button to edit
+ * @param setDefault to set default and autoDefault to this value
+ */
+void EditDialogBase::setAsSwitchArrowButton(QPushButton *button, bool setDefault)
+{
+    setOneButton(button, QIcon{":/switch.png"}, "Switch arrow", setDefault);
 }
