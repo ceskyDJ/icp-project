@@ -56,7 +56,7 @@ void MainWindow::initializeComponents()
 {
     // Taskbars and tool boxes
     taskBar = addToolBar("TaskBar");
-    diagramTabs = new QToolBar{};
+    tabBar = new QToolBar{};
     toolBox = new QToolBox{};
     sceneView = new QGraphicsView{};
 
@@ -90,7 +90,7 @@ void MainWindow::setMainWindow()
     modellingSpace->setLayout(modellingLayout);
 
     windowLayout->addWidget(modellingSpace,0,0);
-    windowLayout->addWidget(diagramTabs,1,0);
+    windowLayout->addWidget(tabBar, 1, 0);
 
     centerWidget = new QWidget;
     centerWidget->setLayout(windowLayout);
@@ -225,7 +225,8 @@ std::tuple<CustomScene *, TabWidget *> MainWindow::createScene(
     auto newTab = new TabWidget{(name.isEmpty() ? defaultName : name), newScene, closeable};
     tabs.push_back(newTab);
 
-    diagramTabs->addWidget(newTab);
+    QAction *action = tabBar->addWidget(newTab);
+    tabBarActions.insert({newTab, action});
 
     // Connect signals from tab buttons
     connect(newTab->getTabButton(), &QPushButton::pressed, this, &MainWindow::selectTab);
@@ -642,7 +643,49 @@ void MainWindow::closeTab()
 {
     auto button = qobject_cast<QPushButton *>(sender());
     auto tab = qobject_cast<TabWidget *>(button->parentWidget());
+    CustomScene *scene = tab->getScene();
 
-    // Note: close buttons always has empty text (it isn't an issue)
-    std::cerr << "Clicked on close tab button: " << tab->getCloseButton()->text().toStdString() << "\n";
+    // Check for closing unsaved scene
+    if (!scene->items().empty() && !scene->isSaved()) {
+        auto clickedButton = QMessageBox::question(
+                this,
+                "Unsaved class diagram",
+                "You are trying to close diagram before saving it. Are you sure to continue? All your unsaved"
+                " changes will be lost."
+        );
+
+        if (clickedButton == QMessageBox::No) {
+            // Stop here, tab won't be closed
+            return;
+        }
+    }
+
+    // Switch to class diagram tab when active tab will be closed
+    if (tab == currentTab) {
+        setActiveTab(tabs[0]);
+    }
+
+    // Remove tab from tab bar
+    tabBar->removeAction(tabBarActions.find(tab)->second);
+    tabBarActions.erase(tab);
+
+    // Remove tab from the list and memory
+    for (auto iterator = tabs.begin(); iterator < tabs.end(); iterator++) {
+        if (*iterator == tab) {
+            tabs.erase(iterator);
+
+            delete tab;
+            break;
+        }
+    }
+
+    // Remove scene from existing scenes
+    for (auto iterator = scenes.begin(); iterator < scenes.end(); iterator++) {
+        if (*iterator == scene) {
+            scenes.erase(iterator);
+
+            delete scene;
+            return;
+        }
+    }
 }

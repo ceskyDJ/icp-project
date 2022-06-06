@@ -93,6 +93,10 @@ private:
      * Tabs in bottom tab bar
      */
     std::vector<TabWidget *> tabs;
+    /**
+     * Map for storing created actions for tabs
+     */
+    std::unordered_map<TabWidget *, QAction *> tabBarActions;
 
     // Settings
     /**
@@ -116,7 +120,7 @@ private:
     /**
      * Bottom tab bar
      */
-    QToolBar *diagramTabs;
+    QToolBar *tabBar;
     /**
      * Left toolbox with buttons for modifying scene
      */
