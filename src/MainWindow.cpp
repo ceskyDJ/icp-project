@@ -96,7 +96,7 @@ void MainWindow::setMainWindow()
     centerWidget->setLayout(windowLayout);
 
     setCentralWidget(centerWidget);
-    this->setMinimumSize(800,600);
+    setMinimumSize(800,600);
 }
 
 /**
@@ -105,6 +105,7 @@ void MainWindow::setMainWindow()
 void MainWindow::setTaskBars()
 {
     taskBar->setMovable(false);
+    taskBar->addAction("New", this, &MainWindow::newButtonClicked);
     taskBar->addAction("Open", this, &MainWindow::openButtonClicked);
     taskBar->addAction("Save", this, &MainWindow::saveButtonClicked);
     taskBar->addAction("Save as...", this, &MainWindow::saveAsButtonClicked);
@@ -317,7 +318,8 @@ bool MainWindow::isFileUsedBySomeScene(QString &fileName)
     return false;
 }
 
-// Slots --------------------------------------------------------------------------------------------------------- Slots
+// Slots ========================================================================================================= Slots
+// Tool box items' actions --------------------------------------------------------------------- Tool box items' actions
 /**
  * Slot for handling click on button for adding new class node
  */
@@ -420,6 +422,17 @@ void MainWindow::realizationSelected()
 
     auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
     classDiagramScene->prepareRealization();
+}
+
+// Top toolbar buttons' actions ----------------------------------------------------------- Top toolbar buttons' actions
+/**
+ * Slot for handling click action on "New" button
+ */
+void MainWindow::newButtonClicked()
+{
+    // Create new scene and tab for sequence diagram
+    auto sceneData = createScene(SceneType::SequenceDiagram);
+    setActiveTab(std::get<1>(sceneData));
 }
 
 /**

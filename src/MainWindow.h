@@ -290,6 +290,10 @@ private slots:
 
     // Top toolbar buttons' actions
     /**
+     * Slot for handling click action on "New" button
+     */
+    void newButtonClicked();
+    /**
      * Slot for handling click action on "Save" button
      */
     void openButtonClicked();
