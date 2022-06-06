@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['undirectedassociation_0',['UndirectedAssociation',['../classUndirectedAssociation.html',1,'']]]
+  ['tabwidget_0',['TabWidget',['../classTabWidget.html',1,'']]]
 ];

@@ -5,7 +5,7 @@ var searchData=
   ['realizationline_2',['RealizationLine',['../classRealizationLine.html',1,'RealizationLine'],['../classRealizationLine.html#ae14786136a18910f3c1b0d8ce31a6add',1,'RealizationLine::RealizationLine()']]],
   ['realizationline_2ecpp_3',['RealizationLine.cpp',['../RealizationLine_8cpp.html',1,'']]],
   ['redodiagramchanges_4',['redoDiagramChanges',['../classClassDiagramManager.html#a13c0355da64e59cc8ad17c7c9c3ec50b',1,'ClassDiagramManager::redoDiagramChanges()'],['../classSequenceDiagramManager.html#a44e22741870ababc68b1623cae8f0d0e',1,'SequenceDiagramManager::redoDiagramChanges()']]],
-  ['redorevertedchange_5',['redoRevertedChange',['../classCustomScene.html#a39387e01897fe51f0d49f58126a271eb',1,'CustomScene::redoRevertedChange()'],['../classClassDiagramScene.html#ad9620cbf0a16e613c8bab5d85e3df20b',1,'ClassDiagramScene::redoRevertedChange()']]],
+  ['redorevertedchange_5',['redoRevertedChange',['../classSequenceDiagramScene.html#a3efaec869a26c0493421b72283246d8a',1,'SequenceDiagramScene::redoRevertedChange()'],['../classCustomScene.html#a39387e01897fe51f0d49f58126a271eb',1,'CustomScene::redoRevertedChange()'],['../classClassDiagramScene.html#ad9620cbf0a16e613c8bab5d85e3df20b',1,'ClassDiagramScene::redoRevertedChange()']]],
   ['registerobserver_6',['registerObserver',['../classSceneUpdateObservable.html#a71ec2e306772ac1eaa8962bd60017fd2',1,'SceneUpdateObservable']]],
   ['relationship_7',['Relationship',['../classRelationship.html',1,'Relationship'],['../classRelationship.html#af6b5abfd2d931a209984577afdb5948e',1,'Relationship::Relationship()']]],
   ['relationship_2eh_8',['Relationship.h',['../Relationship_8h.html',1,'']]],

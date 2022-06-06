@@ -82,18 +82,18 @@ Inheritance diagram for MainWindow:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abf49cc8d73a4b01e25b86129cfdfd45d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#abf49cc8d73a4b01e25b86129cfdfd45d">MainWindow</a> (<a class="el" href="classClassDiagramManager.html">ClassDiagramManager</a> *classDiagramManager, <a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *sceneUpdateObservable)</td></tr>
-<tr class="separator:abf49cc8d73a4b01e25b86129cfdfd45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a389d94d20773d377933861cbdb7ff7cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a389d94d20773d377933861cbdb7ff7cf">MainWindow</a> (<a class="el" href="classClassDiagramManager.html">ClassDiagramManager</a> *classDiagramManager, <a class="el" href="classSequenceDiagramManager.html">SequenceDiagramManager</a> *sequenceDiagramManager, <a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *sceneUpdateObservable)</td></tr>
+<tr class="separator:a389d94d20773d377933861cbdb7ff7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac16a0ee940715abc4cc7703c9bc7143b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ac16a0ee940715abc4cc7703c9bc7143b">logChanges</a> () noexcept override</td></tr>
 <tr class="separator:ac16a0ee940715abc4cc7703c9bc7143b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Windows that allows user to draw diagrams. </p>
 
-<p class="definition">Definition at line <a class="el" href="MainWindow_8h_source.html#l00038">38</a> of file <a class="el" href="MainWindow_8h_source.html">MainWindow.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MainWindow_8h_source.html#l00042">42</a> of file <a class="el" href="MainWindow_8h_source.html">MainWindow.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="abf49cc8d73a4b01e25b86129cfdfd45d" name="abf49cc8d73a4b01e25b86129cfdfd45d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf49cc8d73a4b01e25b86129cfdfd45d">&#9670;&nbsp;</a></span>MainWindow()</h2>
+<a id="a389d94d20773d377933861cbdb7ff7cf" name="a389d94d20773d377933861cbdb7ff7cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a389d94d20773d377933861cbdb7ff7cf">&#9670;&nbsp;</a></span>MainWindow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -103,6 +103,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classClassDiagramManager.html">ClassDiagramManager</a> *&#160;</td>
           <td class="paramname"><em>classDiagramManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classSequenceDiagramManager.html">SequenceDiagramManager</a> *&#160;</td>
+          <td class="paramname"><em>sequenceDiagramManager</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -118,16 +124,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p ><a class="el" href="classClass.html">Class</a> constructor</p>
-<dl class="section user"><dt>Initialiezes components and prepare all QWidgets and controls.</dt><dd></dd></dl>
+<dl class="section user"><dt>Initializes components and prepare all QWidgets and controls.</dt><dd></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">classDiagramManager</td><td><a class="el" href="classClass.html">Class</a> diagram manage (dependency) </td></tr>
+    <tr><td class="paramname">classDiagramManager</td><td><a class="el" href="classClass.html">Class</a> diagram manager (dependency) </td></tr>
+    <tr><td class="paramname">sequenceDiagramManager</td><td>Sequence diagram manager (dependency) </td></tr>
     <tr><td class="paramname">sceneUpdateObservable</td><td>Observable for providing information about scene changes (dependency) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MainWindow_8cpp_source.html#l00025">25</a> of file <a class="el" href="MainWindow_8cpp_source.html">MainWindow.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MainWindow_8cpp_source.html#l00027">27</a> of file <a class="el" href="MainWindow_8cpp_source.html">MainWindow.cpp</a>.</p>
 
 </div>
 </div>
@@ -158,7 +165,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classSceneUpdateObserver.html#af9078638404e37b8ac0c3f220a78fbe7">SceneUpdateObserver</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="MainWindow_8cpp_source.html#l00043">43</a> of file <a class="el" href="MainWindow_8cpp_source.html">MainWindow.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MainWindow_8cpp_source.html#l00047">47</a> of file <a class="el" href="MainWindow_8cpp_source.html">MainWindow.cpp</a>.</p>
 
 </div>
 </div>
