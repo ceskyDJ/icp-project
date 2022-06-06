@@ -54,7 +54,7 @@ void ClassDiagramScene::logChanges() noexcept
 void ClassDiagramScene::loadFromFile()
 {
     try {
-        ClassDiagram loadedDiagram = classDiagramManager->loadDiagram(targetFile);
+        ClassDiagram loadedDiagram = classDiagramManager->loadDiagram(targetFile.toStdString());
 
         // Clear canvas
         if (!items().isEmpty()) {
@@ -65,10 +65,10 @@ void ClassDiagramScene::loadFromFile()
         classDiagram = loadedDiagram;
         redrawClassDiagram();
 
+        sceneUpdateObservable->sceneChanged();
+
         // Diagram has just been loaded from file
         saved = true;
-
-        sceneUpdateObservable->sceneChanged();
     } catch (InvalidDataStorageException &e) {
         QMessageBox::critical(parentWindow, "Class diagram opening error", e.what());
     } catch (InvalidInputDataException &e) {
@@ -82,7 +82,7 @@ void ClassDiagramScene::loadFromFile()
 void ClassDiagramScene::saveToFile()
 {
     try {
-        classDiagramManager->saveDiagram(targetFile, classDiagram);
+        classDiagramManager->saveDiagram(targetFile.toStdString(), classDiagram);
 
         // Set diagram as saved
         saved = true;

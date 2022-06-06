@@ -31,7 +31,7 @@ class CustomScene: public QGraphicsScene
      * button, not "Save as...". It is a place used for possible auto saving, etc.
      * @par When diagram is loaded from file, the source file will be used.
      */
-    std::string targetFile{};
+    QString targetFile{};
 
     /**
      * Protected class constructor
@@ -57,19 +57,19 @@ class CustomScene: public QGraphicsScene
      *
      * @return File path where to save diagram
      */
-    std::string getTargetFile();
+    QString getTargetFile();
     /**
      * Setter for target file
      *
      * @param newTargetFile New path to the file where to save diagram
      */
-    void setTargetFile(std::string &newTargetFile);
+    void setTargetFile(QString &newTargetFile);
     /**
      * Setter for target file
      *
      * @param newTargetFile New path to the file where to save diagram
      */
-    void setTargetFile(std::string &&newTargetFile);
+    void setTargetFile(QString &&newTargetFile);
 
     // Top toolbar buttons' actions
     /**

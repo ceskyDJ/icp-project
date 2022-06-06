@@ -13,19 +13,23 @@
 #include "InvalidDataStorageException.h"
 #include "ClassNodeEmitter.h"
 #include "ClassDiagramScene.h"
+#include "SequenceDiagramScene.h"
 
 /**
  * Class constructor
  *
- * @par Initialiezes components and prepare all QWidgets and controls.
+ * @par Initializes components and prepare all QWidgets and controls.
  *
- * @param classDiagramManager Class diagram manage (dependency)
+ * @param classDiagramManager Class diagram manager (dependency)
+ * @param sequenceDiagramManager Sequence diagram manager (dependency)
  * @param sceneUpdateObservable Observable for providing information about scene changes (dependency)
  */
 MainWindow::MainWindow( // NOLINT(cppcoreguidelines-pro-type-member-init)
     ClassDiagramManager *classDiagramManager,
+    SequenceDiagramManager *sequenceDiagramManager,
     SceneUpdateObservable *sceneUpdateObservable
-): classDiagramManager{classDiagramManager}, sceneUpdateObservable{sceneUpdateObservable}
+): classDiagramManager{classDiagramManager}, sequenceDiagramManager{sequenceDiagramManager},
+        sceneUpdateObservable{sceneUpdateObservable}
 {
     // Register this observer for scene updates
     sceneUpdateObservable->registerObserver(this);
@@ -50,13 +54,13 @@ void MainWindow::logChanges() noexcept
  */
 void MainWindow::initializeComponents()
 {
-    currentScene = new ClassDiagramScene{this, classDiagramManager, sceneUpdateObservable};
-    diagramView = new QGraphicsView(currentScene);
-
+    // Taskbars and tool boxes
     taskBar = addToolBar("TaskBar");
-    diagramTabs = new QToolBar();
-    toolBox = new QToolBox;
+    tabBar = new QToolBar{};
+    toolBox = new QToolBox{};
+    sceneView = new QGraphicsView{};
 
+    // Class diagram tool items
     aggregationToolItem = new QToolButton;
     associationToolItem = new QToolButton;
     compositionToolItem = new QToolButton;
@@ -65,6 +69,10 @@ void MainWindow::initializeComponents()
     directedAssociationToolItem = new QToolButton;
     classShapeToolItem = new QToolButton;
     removeSelectedToolItem = new QToolButton;
+
+    // Drawing scene
+    auto sceneData = createScene(SceneType::ClassDiagram, "", false);
+    setActiveTab(std::get<1>(sceneData));
 }
 
 /**
@@ -76,20 +84,19 @@ void MainWindow::setMainWindow()
     auto *modellingLayout = new QGridLayout;
 
     modellingLayout->addWidget(toolBox,0,0);
-    modellingLayout->addWidget(diagramView, 0, 1);
+    modellingLayout->addWidget(sceneView, 0, 1);
 
     auto *modellingSpace = new QWidget;
     modellingSpace->setLayout(modellingLayout);
 
     windowLayout->addWidget(modellingSpace,0,0);
-    windowLayout->addWidget(diagramTabs,1,0);
+    windowLayout->addWidget(tabBar, 1, 0);
 
     centerWidget = new QWidget;
     centerWidget->setLayout(windowLayout);
 
     setCentralWidget(centerWidget);
-    this->setMinimumSize(800,600);
-    this->setWindowTitle("UML Class Creator");
+    setMinimumSize(800,600);
 }
 
 /**
@@ -98,15 +105,12 @@ void MainWindow::setMainWindow()
 void MainWindow::setTaskBars()
 {
     taskBar->setMovable(false);
+    taskBar->addAction("New", this, &MainWindow::newButtonClicked);
     taskBar->addAction("Open", this, &MainWindow::openButtonClicked);
     taskBar->addAction("Save", this, &MainWindow::saveButtonClicked);
     taskBar->addAction("Save as...", this, &MainWindow::saveAsButtonClicked);
     taskBar->addAction("Undo", this, &MainWindow::undoButtonClicked);
     taskBar->addAction("Redo", this, &MainWindow::redoButtonClicked);
-
-
-    // TODO: Connect to scene
-    diagramTabs->addWidget(prepareDiagramTab("Unnamed class diagram"));
 }
 
 /**
@@ -136,26 +140,6 @@ QWidget *MainWindow::prepareToolItem(const QIcon &icon, const QString &labelStri
 }
 
 /**
- * Creates tabs for diagrams.
- *
- * @param label QString of text which will be written on a tab
- * @return QWidget representing a diagram tab manager
- */
-QWidget *MainWindow::prepareDiagramTab(const QString &label)
-{
-    static QIcon icon = QIcon(":/closeCross.png");
-    auto newTab = new QWidget;
-    auto picture = new QPushButton(icon,"");
-
-    auto actionLayout = new QGridLayout();
-    actionLayout->addWidget(new QPushButton(label),0,0);
-    actionLayout->addWidget(picture,0,1);
-    newTab->setLayout(actionLayout);
-
-    return newTab;
-}
-
-/**
  * Places all demanded Widgets into a toolbar.
  */
 void MainWindow::setToolBox()
@@ -165,7 +149,7 @@ void MainWindow::setToolBox()
     auto toolboxItems = new QGroupBox;
     auto toolboxLayout = new QGridLayout;
 
-    QWidget *aggregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Agregation", aggregationToolItem);
+    QWidget *aggregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Aggregation", aggregationToolItem);
     QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", compositionToolItem);
     QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Association", associationToolItem);
     QWidget *generalisationLineWidget = prepareToolItem(QIcon{":/geLine.png"}, "Generalization", generalisationToolItem);
@@ -205,6 +189,137 @@ void MainWindow::connectComponents()
     connect(realizationToolItem, &QToolButton::pressed, this, &MainWindow::realizationSelected);
 }
 
+/**
+ * Creates a new scene
+ *
+ * @param type Scene type
+ * @param name Scene name (optional)
+ * @param closeable Could the scene be closed? (optional, default: true)
+ * @return Pointer to created scene and pointer to corresponding tab
+ */
+std::tuple<CustomScene *, TabWidget *> MainWindow::createScene(
+    const SceneType &type,
+    const QString &name,
+    bool closeable
+) {
+    // Numbering for unique names
+    static unsigned int classDiagramNumber = 1;
+    static unsigned int sequenceDiagramNumber = 1;
+
+    // Create new scene instance
+    CustomScene *newScene{};
+    QString defaultName{};
+    switch (type) {
+        case SceneType::ClassDiagram:
+            newScene = new ClassDiagramScene{this, classDiagramManager, sceneUpdateObservable};
+            defaultName = "New class diagram " + QString::number(classDiagramNumber++);
+            break;
+        case SceneType::SequenceDiagram:
+            newScene = new SequenceDiagramScene{this, sequenceDiagramManager, sceneUpdateObservable};
+            defaultName = "New sequence diagram " + QString::number(sequenceDiagramNumber++);
+            break;
+    }
+
+    scenes.push_back(newScene);
+
+    // Create tab for scene
+    auto newTab = new TabWidget{(name.isEmpty() ? defaultName : name), newScene, closeable};
+    tabs.push_back(newTab);
+
+    QAction *action = tabBar->addWidget(newTab);
+    tabBarActions.insert({newTab, action});
+
+    // Connect signals from tab buttons
+    connect(newTab->getTabButton(), &QPushButton::pressed, this, &MainWindow::selectTab);
+    connect(newTab->getCloseButton(), &QPushButton::pressed, this, &MainWindow::closeTab);
+
+    return {newScene, newTab};
+}
+
+// Manipulators ------------------------------------------------------------------------------------------- Manipulators
+/**
+ * Switch active tab to specified one
+ *
+ * @par Of course switches corresponding scene, too.
+ *
+ * @param tab Tab to set as active
+ */
+void MainWindow::setActiveTab(TabWidget *tab)
+{
+    // Switch scene
+    currentScene = tab->getScene();
+    sceneView->setScene(currentScene);
+
+    // Switch tab
+    for (auto item: tabs) {
+        item->setActive(false);
+    }
+    tab->setActive(true);
+
+    currentTab = tab;
+
+    updateTab(tab);
+}
+
+/**
+ * Updates specified tab
+ *
+ * @par Normally tab's state and displayed label are updated.
+ * If the tab is active, window title is updated, too.
+ *
+ * @param tab Tab to be updates
+ */
+void MainWindow::updateTab(TabWidget *tab)
+{
+    // Update tab's state
+    tab->updateState();
+
+    // Update main window title
+    if (tab == currentTab) {
+        this->setWindowTitle(mainWindowTitle + " - " + tab->getLabel());
+    }
+
+    update();
+}
+
+// Helper methods --------------------------------------------------------------------------------------- Helper methods
+/**
+ * Finds and returns class diagram scene from opened scenes
+ *
+ * @return Pointer to class diagram scene or nullptr when there is no class diagram scene
+ */
+ClassDiagramScene *MainWindow::getClassDiagramScene()
+{
+    for (auto item: scenes) {
+        if (typeid(*item) == typeid(ClassDiagramScene)) {
+            auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(item);
+
+            return classDiagramScene;
+        }
+    }
+
+    throw std::logic_error{"There is no class diagram scene"};
+}
+
+/**
+ * Checks if specified file is used by some scene
+ *
+ * @param fileName Name of the file to check (its full path)
+ * @return Is the file used by some scene?
+ */
+bool MainWindow::isFileUsedBySomeScene(QString &fileName)
+{
+    for (const auto item: scenes) {
+        if (item->getTargetFile() == fileName) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Slots ========================================================================================================= Slots
+// Tool box items' actions --------------------------------------------------------------------- Tool box items' actions
 /**
  * Slot for handling click on button for adding new class node
  */
@@ -309,13 +424,22 @@ void MainWindow::realizationSelected()
     classDiagramScene->prepareRealization();
 }
 
+// Top toolbar buttons' actions ----------------------------------------------------------- Top toolbar buttons' actions
+/**
+ * Slot for handling click action on "New" button
+ */
+void MainWindow::newButtonClicked()
+{
+    // Create new scene and tab for sequence diagram
+    auto sceneData = createScene(SceneType::SequenceDiagram);
+    setActiveTab(std::get<1>(sceneData));
+}
+
 /**
  * Slot for handling click action on "Save" button
  */
 void MainWindow::openButtonClicked()
 {
-    // TODO: Class diagrams --> .cls.xml, sequence diagrams --> .seq.xml
-    // TODO: check if the filter is working
     QString file = QFileDialog::getOpenFileName(
         this,
         "Choose diagram to open",
@@ -325,25 +449,66 @@ void MainWindow::openButtonClicked()
         QFileDialog::HideNameFilterDetails
     );
 
-    // TODO: for diagram type without option to open multiple diagrams stop processing here
-    if (!currentScene->items().isEmpty() && !currentScene->isSaved()) {
-        auto clickedButton = QMessageBox::question(
-                this,
-                "Diagram opening error",
-                "You are trying to open new diagram before saving the edited one. Are you sure to continue?"
-                " Canvas content will be replaced with loaded diagram."
-        );
+    // Get short file name (end of path)
+    QFileInfo fileInfo{file};
+    QString shortFileName{fileInfo.fileName()};
 
-        if (clickedButton == QMessageBox::No) {
+    if (file.endsWith(".cls.xml")) {
+        // Class diagram
+        ClassDiagramScene *classDiagramScene = getClassDiagramScene();
+
+        if (!classDiagramScene->items().isEmpty() && !classDiagramScene->isSaved()) {
+            auto clickedButton = QMessageBox::question(
+                this,
+                "Unsaved class diagram",
+                "You are trying to open new class diagram before saving the edited one. Are you sure to"
+                " continue? Canvas content will be replaced with loaded diagram."
+            );
+
+            if (clickedButton == QMessageBox::No) {
+                // Stop here, nothing will be loaded
+                return;
+            }
+        }
+
+        // Switch to class diagram scene
+        // Class diagram is always in the first tab
+        tabs[0]->setLabel(shortFileName);
+        setActiveTab(tabs[0]);
+    } else if (file.endsWith(".seq.xml")) {
+        // Sequence diagram
+
+        // One file can be used only in one scene
+        if (isFileUsedBySomeScene(file)) {
+            QMessageBox::critical(
+                    this,
+                    "Diagram opening error",
+                    "Selected file is already used by some of diagrams you are editing. Select different file or close"
+                    " edited diagram from the file before opening again."
+            );
+
             // Stop here, nothing will be loaded
             return;
         }
+
+        // Add new scene for diagram to be loaded and switch to it
+        auto sceneData = createScene(SceneType::SequenceDiagram, shortFileName);
+        setActiveTab(std::get<1>(sceneData));
+    } else {
+        // File with bad extension --> stop processing
+        QMessageBox::critical(this, "Diagram opening error", "Selected file has bad extension.");
+
+        return;
     }
 
     // Remember source file
-    currentScene->setTargetFile(file.toStdString());
+    currentScene->setTargetFile(file);
 
+    // Load diagram from file
     currentScene->loadFromFile();
+
+    // Update tab
+    updateTab(currentTab);
 }
 
 /**
@@ -352,7 +517,7 @@ void MainWindow::openButtonClicked()
 void MainWindow::saveButtonClicked() // NOLINT(misc-no-recursion)
 {
     // Target file must be selected
-    if (currentScene->getTargetFile().empty()) {
+    if (currentScene->getTargetFile().isEmpty()) {
         QMessageBox::warning(this, "Diagram saving error", "Edited diagram wasn't loaded from"
             " any file and target file hasn't been selected. You need to select target file first.");
 
@@ -362,7 +527,11 @@ void MainWindow::saveButtonClicked() // NOLINT(misc-no-recursion)
         return;
     }
 
+    // Save diagram to file
     currentScene->saveToFile();
+
+    // Update tab
+    updateTab(currentTab);
 }
 
 /**
@@ -370,15 +539,27 @@ void MainWindow::saveButtonClicked() // NOLINT(misc-no-recursion)
  */
 void MainWindow::saveAsButtonClicked() // NOLINT(misc-no-recursion)
 {
-    std::string currentTargetFile{currentScene->getTargetFile()};
+    QString currentTargetFile{currentScene->getTargetFile()};
 
-    // TODO: Class diagrams --> .cls.xml, sequence diagrams --> .seq.xml
+    // Choose filter by diagram type
+    QString filter{};
+    QString defaultFileName{};
+    if (typeid(*currentScene) == typeid(ClassDiagramScene)) {
+        // Class diagram
+        filter = "Class diagrams (*.cls.xml)";
+        defaultFileName = "new-class-diagram.cls.xml";
+    } else {
+        // Sequence diagram
+        filter = "Sequence diagrams (*.seq.xml)";
+        defaultFileName = "new-sequence-diagram.seq.xml";
+    }
+
     // Prompt user to select the target file
     QString file = QFileDialog::getSaveFileName(
         this,
         "Choose target file for saving diagram",
-        currentTargetFile.empty() ? "new-diagram.xml" : QString::fromStdString(currentTargetFile),
-        "XML files (*.xml)",
+        currentTargetFile.isEmpty() ? defaultFileName : currentTargetFile,
+        filter,
         nullptr,
         QFileDialog::HideNameFilterDetails
     );
@@ -388,8 +569,53 @@ void MainWindow::saveAsButtonClicked() // NOLINT(misc-no-recursion)
         return;
     }
 
+    // Check for extension validity
+    if (typeid(*currentScene) == typeid(ClassDiagramScene) && !file.endsWith(".cls.xml")) {
+        // Class diagram
+        QMessageBox::critical(
+            this,
+            "Class diagram saving error",
+            "Your file has invalid extension. Class diagrams must be saved with name like: \"*.cls.xml\" (without"
+            " quotes)."
+        );
+
+        // Stop here, nothing will be saved
+        return;
+    } else if(typeid(*currentScene) == typeid(SequenceDiagramScene) && !file.endsWith(".seq.xml")) {
+        // Sequence diagram
+        QMessageBox::critical(
+            this,
+            "Sequence diagram saving error",
+            "Your file has invalid extension. Sequence diagrams must be saved with name like: \"*.seq.xml\""
+            " (without quotes)."
+        );
+
+        // Stop here, nothing will be saved
+        return;
+    }
+
+    // File used by some scene cannot be rewritten
+    if (isFileUsedBySomeScene(file) && currentTargetFile != file) {
+        QMessageBox::critical(
+            this,
+            "Diagram saving error",
+            "Selected file is used as a target for saving one of edited diagrams. Choose different file for saving"
+            " the diagram, please."
+            );
+
+        // Stop here, nothing will be saved
+        return;
+    }
+
     // Update target file
-    currentScene->setTargetFile(file.toStdString());
+    currentScene->setTargetFile(file);
+
+    // Get short file name (end of path)
+    QFileInfo fileInfo{file};
+    QString shortFileName{fileInfo.fileName()};
+
+    // Update tab label
+    currentTab->setLabel(shortFileName);
 
     // Now just save diagram into selected file
     saveButtonClicked();
@@ -409,4 +635,70 @@ void MainWindow::undoButtonClicked()
 void MainWindow::redoButtonClicked()
 {
     currentScene->redoRevertedChange();
+}
+
+// Bottom tab bar tab's actions ----------------------------------------------------------- Bottom tab bar tab's actions
+/**
+ * Slot for handling click action on some select tab button
+ */
+void MainWindow::selectTab()
+{
+    auto button = qobject_cast<QPushButton *>(sender());
+    auto tab = qobject_cast<TabWidget *>(button->parentWidget());
+
+    setActiveTab(tab);
+}
+
+/**
+ * Slot for handling click action on some close tab button
+ */
+void MainWindow::closeTab()
+{
+    auto button = qobject_cast<QPushButton *>(sender());
+    auto tab = qobject_cast<TabWidget *>(button->parentWidget());
+    CustomScene *scene = tab->getScene();
+
+    // Check for closing unsaved scene
+    if (!scene->items().empty() && !scene->isSaved()) {
+        auto clickedButton = QMessageBox::question(
+                this,
+                "Unsaved class diagram",
+                "You are trying to close diagram before saving it. Are you sure to continue? All your unsaved"
+                " changes will be lost."
+        );
+
+        if (clickedButton == QMessageBox::No) {
+            // Stop here, tab won't be closed
+            return;
+        }
+    }
+
+    // Switch to class diagram tab when active tab will be closed
+    if (tab == currentTab) {
+        setActiveTab(tabs[0]);
+    }
+
+    // Remove tab from tab bar
+    tabBar->removeAction(tabBarActions.find(tab)->second);
+    tabBarActions.erase(tab);
+
+    // Remove tab from the list and memory
+    for (auto iterator = tabs.begin(); iterator < tabs.end(); iterator++) {
+        if (*iterator == tab) {
+            tabs.erase(iterator);
+
+            delete tab;
+            break;
+        }
+    }
+
+    // Remove scene from existing scenes
+    for (auto iterator = scenes.begin(); iterator < scenes.end(); iterator++) {
+        if (*iterator == scene) {
+            scenes.erase(iterator);
+
+            delete scene;
+            return;
+        }
+    }
 }

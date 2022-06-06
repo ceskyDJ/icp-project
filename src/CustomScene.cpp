@@ -22,7 +22,7 @@ bool CustomScene::isSaved()
  *
  * @return File path where to save diagram
  */
-std::string CustomScene::getTargetFile()
+QString CustomScene::getTargetFile()
 {
     return targetFile;
 }
@@ -32,7 +32,7 @@ std::string CustomScene::getTargetFile()
  *
  * @param newTargetFile New path to the file where to save diagram
  */
-void CustomScene::setTargetFile(std::string &newTargetFile)
+void CustomScene::setTargetFile(QString &newTargetFile)
 {
     targetFile = newTargetFile;
 }
@@ -42,7 +42,7 @@ void CustomScene::setTargetFile(std::string &newTargetFile)
  *
  * @param newTargetFile New path to the file where to save diagram
  */
-void CustomScene::setTargetFile(std::string &&newTargetFile)
+void CustomScene::setTargetFile(QString &&newTargetFile)
 {
     setTargetFile(newTargetFile);
 }

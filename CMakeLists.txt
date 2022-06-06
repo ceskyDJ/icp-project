@@ -41,6 +41,7 @@ add_executable(icp_project
         src/MethodParameterEditWidget.h
         src/RealizationLine.h
         src/SequenceDiagram.h
+        src/SequenceDiagramScene.h
         src/ClassMember.h
         src/ClassMethod.h
         src/ClassAttribute.h
@@ -85,6 +86,7 @@ add_executable(icp_project
         src/GeneralizationLine.h
         src/SceneUpdateObserver.h
         src/SceneUpdateObservable.h
+        src/TabWidget.h
 
         # Source files
         src/AccessModifier.cpp
@@ -104,6 +106,7 @@ add_executable(icp_project
         src/ClassDiagram.cpp
         src/RealizationLine.cpp
         src/SequenceDiagram.cpp
+        src/SequenceDiagramScene.cpp
         src/Class.cpp
         src/FileClassDiagramRepository.cpp
         src/FileSequenceDiagramRepository.cpp
@@ -118,6 +121,7 @@ add_executable(icp_project
         src/MethodEditWidget.cpp
         src/CompositionLine.cpp
         src/GeneralizationLine.cpp
+        src/TabWidget.cpp
         src/main.cpp
 
         # Qrc files
