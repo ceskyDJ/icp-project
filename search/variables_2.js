@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['history_5fcapacity_0',['HISTORY_CAPACITY',['../classHistoryStack.html#a7ff2a42b4e3ce6cdf70d4d727b7e5f12',1,'HistoryStack']]]
+  ['destroyed_0',['destroyed',['../classActivationGraphicsObjectBase.html#aa26dd811d4bb886f793f26f33fc9945e',1,'ActivationGraphicsObjectBase']]]
 ];

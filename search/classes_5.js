@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['h_0',['h',['../classAssociationLine_1_1h.html',1,'']]],
-  ['historystack_1',['HistoryStack',['../classHistoryStack.html',1,'']]]
+  ['generalization_0',['Generalization',['../classGeneralization.html',1,'']]],
+  ['generalizationline_1',['GeneralizationLine',['../classGeneralizationLine.html',1,'']]]
 ];

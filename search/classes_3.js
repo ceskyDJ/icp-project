@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fileclassdiagramrepository_0',['FileClassDiagramRepository',['../classFileClassDiagramRepository.html',1,'']]],
-  ['filesequencediagramrepository_1',['FileSequenceDiagramRepository',['../classFileSequenceDiagramRepository.html',1,'']]]
+  ['editdialogbase_0',['EditDialogBase',['../classEditDialogBase.html',1,'']]]
 ];
