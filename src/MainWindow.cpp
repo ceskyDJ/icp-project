@@ -215,7 +215,9 @@ std::tuple<CustomScene *, TabWidget *> MainWindow::createScene(
             defaultName = "New class diagram " + QString::number(classDiagramNumber++);
             break;
         case SceneType::SequenceDiagram:
-            newScene = new SequenceDiagramScene{this, sequenceDiagramManager, sceneUpdateObservable};
+            ClassDiagram *classDiagram = getClassDiagramScene()->getClassDiagram();
+
+            newScene = new SequenceDiagramScene{this, sequenceDiagramManager, sceneUpdateObservable, classDiagram};
             defaultName = "New sequence diagram " + QString::number(sequenceDiagramNumber++);
             break;
     }

@@ -214,6 +214,20 @@ void ClassDiagramScene::prepareRealization()
     createNewLine(new RealizationLine{&storedRelationships, &classDiagram, sceneUpdateObservable});
 }
 
+// Getters ----------------------------------------------------------------------------------------------------- Getters
+/**
+ * Getter for current version of class diagram
+ *
+ * @warning Class diagram is changing with the time,
+ * so use pointers into it carefully
+ *
+ * @return Pointer to class diagram
+ */
+ClassDiagram *ClassDiagramScene::getClassDiagram()
+{
+    return &classDiagram;
+}
+
 // Private methods ------------------------------------------------------------------------------------- Private methods
 /**
  * Sets border color to all nodes and to nodeColor

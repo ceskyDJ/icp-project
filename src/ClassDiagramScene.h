@@ -22,18 +22,45 @@
 class ClassDiagramScene: public CustomScene
 {
     // Dependencies
+    /**
+     * Pointer to class diagram manager (for backend operations)
+     */
     ClassDiagramManager *classDiagramManager;
+    /**
+     * Pointer to observable for distributing scene changes
+     */
     SceneUpdateObservable *sceneUpdateObservable;
 
     // Containers
+    /**
+     * Edited class diagram
+     */
     ClassDiagram classDiagram;
+    /**
+     * Map of existing class nodes and names of their class entities
+     */
     std::unordered_map<std::string, ClassNode *> storedClasses;
+    /**
+     * Map of existing relationships and their lines
+     */
     std::unordered_map<Line *, Relationship *> storedRelationships;
 
     // Colors
+    /**
+     * Color of selected relationships
+     */
     const QColor relationshipSelectedColor = Qt::darkGreen;
+    /**
+     * Normal color of class nodes
+     */
     const QColor nodeNormalColor = Qt::black;
+    /**
+     * Color of first selected class node
+     */
     const QColor nodeFirstSelectedColor = Qt::darkMagenta;
+    /**
+     * Color of classes available for selection (except the first selected one, it could be selected again)
+     */
     const QColor firstPhaseSelectedColor = Qt::darkCyan;
 
     // States
@@ -125,6 +152,17 @@ class ClassDiagramScene: public CustomScene
      * To a newLine pointer creates realization line
      */
     void prepareRealization();
+
+    // Getters
+    /**
+     * Getter for current version of class diagram
+     *
+     * @warning Class diagram is changing with the time,
+     * so use pointers into it carefully
+     *
+     * @return Pointer to class diagram
+     */
+    ClassDiagram *getClassDiagram();
   private:
     /**
      * Sets border color to all nodes and to nodeColor

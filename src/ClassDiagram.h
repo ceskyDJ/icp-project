@@ -104,7 +104,7 @@ class ClassDiagram
      * @return Pointer to found class
      * @throw std::invalid_argument Non-existing class with this name
      */
-    Class *findClassByName(const std::string &name);
+    Class *findClassByName(const std::string &name) const;
 
     /**
      * Finds class by name
@@ -113,7 +113,7 @@ class ClassDiagram
      * @return Pointer to found class
      * @throw std::invalid_argument Non-existing class with this name
      */
-    Class *findClassByName(const std::string &&name)
+    Class *findClassByName(const std::string &&name) const
     {
         return findClassByName(name);
     }

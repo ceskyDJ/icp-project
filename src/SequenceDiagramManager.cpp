@@ -11,13 +11,13 @@
 /**
  * Loads sequence diagram
  *
- * @param classDiagram Class diagram the sequence diagram is loaded for
+ * @param classDiagram Pointer to class diagram the sequence diagram is loaded for
  * @param sourceName Name of preferred source (e.g. path to file for File* repositories)
  * @return Loaded sequence diagram
  * @throw InvalidDataStorageException Invalid source
  * @throw InvalidInputDataException Invalid data structure in given source
  */
-SequenceDiagram SequenceDiagramManager::loadDiagram(const ClassDiagram &classDiagram, const std::string &sourceName)
+SequenceDiagram SequenceDiagramManager::loadDiagram(const ClassDiagram *classDiagram, const std::string &sourceName)
 {
     sequenceDiagramRepository->setClassDiagram(classDiagram);
     sequenceDiagramRepository->setStorageName(sourceName);

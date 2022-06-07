@@ -19,9 +19,9 @@ class SequenceDiagramRepository
 {
   protected:
     /**
-     * Class diagram used as a source for classes, methods, etc.
+     * Pointer to class diagram used as a source for classes, methods, etc.
      */
-    ClassDiagram classDiagram;
+    const ClassDiagram *classDiagram;
 
     /**
      * Name of used storage (when needed)
@@ -36,12 +36,12 @@ class SequenceDiagramRepository
     /**
      * Constructor for initialization with known class diagram and storage name
      *
-     * @param classDiagram Class diagram to use as a source for classes, methods, etc.
+     * @param classDiagram Pointer to class diagram to use as a source for classes, methods, etc.
      * @param storageName Name of the storage to use (when type of the storage needs
      * it otherwise use implicit constructor)
      */
     explicit SequenceDiagramRepository(
-        const ClassDiagram &classDiagram,
+        const ClassDiagram *classDiagram,
         const std::string &storageName
     ): classDiagram{classDiagram}, storageName{storageName} {};
 
@@ -52,20 +52,11 @@ class SequenceDiagramRepository
 
   public:
     /**
-     * Constant getter for class diagram
-     *
-     * @return Class diagram used as a source for classes, methods, etc.
-     */
-    const ClassDiagram &getClassDiagram() const {
-        return classDiagram;
-    }
-
-    /**
      * Setter for class diagram
      *
-     * @param newClassDiagram Class diagram to use as a source for classes, methods, etc.
+     * @param newClassDiagram Pointer to class diagram to use as a source for classes, methods, etc.
      */
-    void setClassDiagram(const ClassDiagram &newClassDiagram) {
+    void setClassDiagram(const ClassDiagram *newClassDiagram) {
         classDiagram = newClassDiagram;
     }
 

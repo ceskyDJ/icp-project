@@ -10,16 +10,18 @@
 /**
  * Class constructor
  *
- * @param parentWindow Parent window (dependency)
- * @param sequenceDiagramManager Sequence diagram manage (dependency)
- * @param sceneUpdateObservable Observable for providing information about scene changes (dependency)
+ * @param parentWindow Pointer to parent window (dependency)
+ * @param sequenceDiagramManager Pointer to sequence diagram manage (dependency)
+ * @param sceneUpdateObservable Pointer to observable for providing information about scene changes (dependency)
+ * @param classDiagram Pointer to linked class diagram (dependency)
  */
 SequenceDiagramScene::SequenceDiagramScene(
     QWidget *parentWindow,
     SequenceDiagramManager *sequenceDiagramManager,
-    SceneUpdateObservable *sceneUpdateObservable
+    SceneUpdateObservable *sceneUpdateObservable,
+    ClassDiagram *classDiagram
 ): CustomScene{parentWindow}, sequenceDiagramManager{sequenceDiagramManager},
-        sceneUpdateObservable{sceneUpdateObservable} {}
+        sceneUpdateObservable{sceneUpdateObservable}, classDiagram{classDiagram} {}
 
 /**
  * Logs scene changes for saving and undo/redo mechanisms

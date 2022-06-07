@@ -16,7 +16,7 @@
  * @return Pointer to found class method
  * @throw std::invalid_argument Non-existing class method with searched name in this class
  */
-ClassMethod *Class::findMethodByName(std::string nameToFind)
+ClassMethod *Class::findMethodByName(const std::string &nameToFind)
 {
     for (ClassMethod &method: methods) {
         if (method.getName() == nameToFind) {
