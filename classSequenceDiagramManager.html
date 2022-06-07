@@ -75,8 +75,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a676b38fedc89be5bc0c1573be50a3348"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#a676b38fedc89be5bc0c1573be50a3348">SequenceDiagramManager</a> (<a class="el" href="classSequenceDiagramRepository.html">SequenceDiagramRepository</a> *sequenceDiagramRepository)</td></tr>
 <tr class="separator:a676b38fedc89be5bc0c1573be50a3348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa29a6ca51c71149dee8e9aa5e1cc7b10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSequenceDiagram.html">SequenceDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#aa29a6ca51c71149dee8e9aa5e1cc7b10">loadDiagram</a> (const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;classDiagram, const std::string &amp;sourceName)</td></tr>
-<tr class="separator:aa29a6ca51c71149dee8e9aa5e1cc7b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05d69b4226cc75c48f4e354e0d7c8f8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSequenceDiagram.html">SequenceDiagram</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#a05d69b4226cc75c48f4e354e0d7c8f8e">loadDiagram</a> (const <a class="el" href="classClassDiagram.html">ClassDiagram</a> *classDiagram, const std::string &amp;sourceName)</td></tr>
+<tr class="separator:a05d69b4226cc75c48f4e354e0d7c8f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa54c828dd6ba4ce8f940a9f32a050b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#aa54c828dd6ba4ce8f940a9f32a050b9c">saveDiagram</a> (const std::string &amp;targetName, const <a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> &amp;sequenceDiagram)</td></tr>
 <tr class="separator:aa54c828dd6ba4ce8f940a9f32a050b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50f8a62432d8a42552ec7219cd69c596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramManager.html#a50f8a62432d8a42552ec7219cd69c596">backupDiagram</a> (<a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> *sequenceDiagram)</td></tr>
@@ -154,8 +154,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa29a6ca51c71149dee8e9aa5e1cc7b10" name="aa29a6ca51c71149dee8e9aa5e1cc7b10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa29a6ca51c71149dee8e9aa5e1cc7b10">&#9670;&nbsp;</a></span>loadDiagram()</h2>
+<a id="a05d69b4226cc75c48f4e354e0d7c8f8e" name="a05d69b4226cc75c48f4e354e0d7c8f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05d69b4226cc75c48f4e354e0d7c8f8e">&#9670;&nbsp;</a></span>loadDiagram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,7 +163,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> SequenceDiagramManager::loadDiagram </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classClassDiagram.html">ClassDiagram</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classClassDiagram.html">ClassDiagram</a> *&#160;</td>
           <td class="paramname"><em>classDiagram</em>, </td>
         </tr>
         <tr>
@@ -182,7 +182,7 @@ Public Member Functions</h2></td></tr>
 <p >Loads sequence diagram</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">classDiagram</td><td><a class="el" href="classClass.html">Class</a> diagram the sequence diagram is loaded for </td></tr>
+    <tr><td class="paramname">classDiagram</td><td>Pointer to class diagram the sequence diagram is loaded for </td></tr>
     <tr><td class="paramname">sourceName</td><td>Name of preferred source (e.g. path to file for File* repositories) </td></tr>
   </table>
   </dd>

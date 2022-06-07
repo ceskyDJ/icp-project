@@ -82,8 +82,8 @@ Inheritance diagram for SequenceDiagramScene:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab7535e72eca0b5da63242d653b5eff3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#ab7535e72eca0b5da63242d653b5eff3c">SequenceDiagramScene</a> (QWidget *parentWindow, <a class="el" href="classSequenceDiagramManager.html">SequenceDiagramManager</a> *sequenceDiagramManager, <a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *sceneUpdateObservable)</td></tr>
-<tr class="separator:ab7535e72eca0b5da63242d653b5eff3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6767a77ed9bf1d8cc16e77bd0e2a911b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a6767a77ed9bf1d8cc16e77bd0e2a911b">SequenceDiagramScene</a> (QWidget *parentWindow, <a class="el" href="classSequenceDiagramManager.html">SequenceDiagramManager</a> *sequenceDiagramManager, <a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *sceneUpdateObservable, <a class="el" href="classClassDiagram.html">ClassDiagram</a> *classDiagram)</td></tr>
+<tr class="separator:a6767a77ed9bf1d8cc16e77bd0e2a911b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a762f8a69b51133100c2529f4b63cae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a5a762f8a69b51133100c2529f4b63cae">logChanges</a> () noexcept override</td></tr>
 <tr class="separator:a5a762f8a69b51133100c2529f4b63cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ac545bb2e0a314599d4a52c84c17d79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a4ac545bb2e0a314599d4a52c84c17d79">loadFromFile</a> () override</td></tr>
@@ -122,8 +122,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8h_source.html#l00018">18</a> of file <a class="el" href="SequenceDiagramScene_8h_source.html">SequenceDiagramScene.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab7535e72eca0b5da63242d653b5eff3c" name="ab7535e72eca0b5da63242d653b5eff3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7535e72eca0b5da63242d653b5eff3c">&#9670;&nbsp;</a></span>SequenceDiagramScene()</h2>
+<a id="a6767a77ed9bf1d8cc16e77bd0e2a911b" name="a6767a77ed9bf1d8cc16e77bd0e2a911b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6767a77ed9bf1d8cc16e77bd0e2a911b">&#9670;&nbsp;</a></span>SequenceDiagramScene()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,7 +144,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *&#160;</td>
-          <td class="paramname"><em>sceneUpdateObservable</em>&#160;</td>
+          <td class="paramname"><em>sceneUpdateObservable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classClassDiagram.html">ClassDiagram</a> *&#160;</td>
+          <td class="paramname"><em>classDiagram</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -156,14 +162,15 @@ Additional Inherited Members</h2></td></tr>
 <p ><a class="el" href="classClass.html">Class</a> constructor</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parentWindow</td><td>Parent window (dependency) </td></tr>
-    <tr><td class="paramname">sequenceDiagramManager</td><td>Sequence diagram manage (dependency) </td></tr>
-    <tr><td class="paramname">sceneUpdateObservable</td><td>Observable for providing information about scene changes (dependency) </td></tr>
+    <tr><td class="paramname">parentWindow</td><td>Pointer to parent window (dependency) </td></tr>
+    <tr><td class="paramname">sequenceDiagramManager</td><td>Pointer to sequence diagram manage (dependency) </td></tr>
+    <tr><td class="paramname">sceneUpdateObservable</td><td>Pointer to observable for providing information about scene changes (dependency) </td></tr>
+    <tr><td class="paramname">classDiagram</td><td>Pointer to linked class diagram (dependency) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00017">17</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00018">18</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,7 +201,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classCustomScene.html#a81775afb2128c8e921fbd64ffc54f3bf">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00035">35</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00037">37</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -224,7 +231,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classCustomScene.html#ac7a4ce806c5170bcba7cdf41f660dcdf">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00027">27</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00029">29</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +261,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classCustomScene.html#a39387e01897fe51f0d49f58126a271eb">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00059">59</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00061">61</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -284,7 +291,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classCustomScene.html#aac5d2eab205adea9fce08a7d5ca6dc54">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00043">43</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00045">45</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -314,7 +321,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classCustomScene.html#a7472214fcd88808c82bbffc050522173">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00051">51</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00053">53</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>

@@ -80,76 +80,96 @@ $(function() {
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_class" href="classClass.html">Class</a> *referredClass;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_class" href="classClass.html">Class</a> fakeClass;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classClassReference.html#ac62464d4cd17891dd324831148d09d27">   39</a></span>    <a class="code hl_function" href="classClassReference.html#ac62464d4cd17891dd324831148d09d27">ClassReference</a>(<a class="code hl_class" href="classClass.html">Class</a> *referredClass): referredClass{referredClass}, fakeClass{} <span class="comment">// NOLINT(google-explicit-constructor)</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        assert(referredClass != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classClassReference.html#a75eb734d24234c580304fc47b670281b">   49</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classClassReference.html#a75eb734d24234c580304fc47b670281b">ClassReference</a>(</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        std::string referredClassName</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    ): referredClass{nullptr}, fakeClass{referredClassName, std::tuple&lt;int, int&gt;{}} {};</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classClassReference.html#ace566ff729552e40d610885dc2dee8a1">   58</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classClassReference.html#ace566ff729552e40d610885dc2dee8a1">isValid</a>()</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> referredClass != <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e">   68</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e">invalidatePointer</a>(std::string className)</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        referredClass = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        fakeClass.setName(className);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classClassReference.html#ab82b51c813915a95f18796fa6d095871">   79</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassReference.html#ab82b51c813915a95f18796fa6d095871">storePointer</a>(<a class="code hl_class" href="classClass.html">Class</a> *pointer)</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        referredClass = pointer;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classClassReference.html#a7bd3595a9d86f20b3f70971661391f4f">   89</a></span>    std::string <a class="code hl_function" href="classClassReference.html#a7bd3595a9d86f20b3f70971661391f4f">getReferredClassName</a>()</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">if</span> (referredClass == <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keywordflow">return</span> fakeClass.getName();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        }</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> referredClass-&gt;getName();</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classClassReference.html#afda7e5aebfcb16a0a3cb6deef9ac0094">  103</a></span>    <span class="keyword">operator</span> bool() <span class="comment">// NOLINT(google-explicit-constructor)</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">return</span> isValid();</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classClassReference.html#afdf64a3d17bc1a1315862fcda0f2dc92">  113</a></span>    <a class="code hl_class" href="classClass.html">Class</a> operator *()</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">if</span> (referredClass != <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <span class="keywordflow">return</span> *referredClass;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        }</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">return</span> fakeClass;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classClassReference.html#a64293828104464e0271a2d5ed1053de0">  128</a></span>    <a class="code hl_class" href="classClass.html">Class</a> *operator -&gt;()</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="classReferenceUpdater.html">ReferenceUpdater</a> updater{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        [&amp;](<span class="keyword">const</span> std::string &amp;foo) { <a class="code hl_function" href="classClassReference.html#a5f655d525810f7f49747e2d1dd9f8705">invalidatePointer</a>(foo); },</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        [&amp;](<span class="keywordtype">void</span> *bar) { <a class="code hl_function" href="classClassReference.html#ab82b51c813915a95f18796fa6d095871">storePointer</a>(<span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classClass.html">Class</a> *<span class="keyword">&gt;</span>(bar)); }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    };</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classClassReference.html#ac62464d4cd17891dd324831148d09d27">   48</a></span>    <a class="code hl_function" href="classClassReference.html#ac62464d4cd17891dd324831148d09d27">ClassReference</a>(<a class="code hl_class" href="classClass.html">Class</a> *referredClass): referredClass{referredClass}, fakeClass{} <span class="comment">// NOLINT(google-explicit-constructor)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        assert(referredClass != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        referredClass-&gt;<a class="code hl_function" href="classClass.html#ab174986b8ed18f2aba03205d2faf59b1">addClassReferenceUpdater</a>(&amp;updater);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classClassReference.html#ae5e773a398801332b542a5128fee274b">   60</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classClassReference.html#ae5e773a398801332b542a5128fee274b">ClassReference</a>(</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keyword">const</span> std::string &amp;referredClassName</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    ): referredClass{nullptr}, fakeClass{referredClassName, std::tuple&lt;int, int&gt;{}} {};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classClassReference.html#ac1a5cc280546f62f97337a3d1ce45049">   67</a></span>    <a class="code hl_function" href="classClassReference.html#ac1a5cc280546f62f97337a3d1ce45049">~ClassReference</a>()</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="comment">// Remove updater for non-existing class reference</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">if</span> (referredClass != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            referredClass-&gt;removeClassReferenceUpdater(&amp;updater);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classClassReference.html#ace566ff729552e40d610885dc2dee8a1">   80</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classClassReference.html#ace566ff729552e40d610885dc2dee8a1">isValid</a>()</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> referredClass != <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classClassReference.html#a5f655d525810f7f49747e2d1dd9f8705">   90</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassReference.html#a5f655d525810f7f49747e2d1dd9f8705">invalidatePointer</a>(<span class="keyword">const</span> std::string &amp;className)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        referredClass = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        fakeClass.setName(className);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classClassReference.html#ab82b51c813915a95f18796fa6d095871">  101</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classClassReference.html#ab82b51c813915a95f18796fa6d095871">storePointer</a>(<a class="code hl_class" href="classClass.html">Class</a> *pointer)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        referredClass = pointer;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="comment">// For cases reference class was added lately</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        referredClass-&gt;<a class="code hl_function" href="classClass.html#ab174986b8ed18f2aba03205d2faf59b1">addClassReferenceUpdater</a>(&amp;updater);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classClassReference.html#a7bd3595a9d86f20b3f70971661391f4f">  114</a></span>    std::string <a class="code hl_function" href="classClassReference.html#a7bd3595a9d86f20b3f70971661391f4f">getReferredClassName</a>()</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">if</span> (referredClass == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <span class="keywordflow">return</span> fakeClass.getName();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">return</span> referredClass-&gt;getName();</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classClassReference.html#afda7e5aebfcb16a0a3cb6deef9ac0094">  128</a></span>    <span class="keyword">operator</span> bool() <span class="comment">// NOLINT(google-explicit-constructor)</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    {</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">if</span> (referredClass != <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <span class="keywordflow">return</span> referredClass;</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        }</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">return</span> &amp;fakeClass;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    }</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>};</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#endif </span><span class="comment">//ICP_PROJECT_OBJECT_REFERENCE_H</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">return</span> isValid();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classClassReference.html#afdf64a3d17bc1a1315862fcda0f2dc92">  138</a></span>    <a class="code hl_class" href="classClass.html">Class</a> operator *()</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordflow">if</span> (referredClass != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            <span class="keywordflow">return</span> *referredClass;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">return</span> fakeClass;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classClassReference.html#a64293828104464e0271a2d5ed1053de0">  153</a></span>    <a class="code hl_class" href="classClass.html">Class</a> *operator -&gt;()</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">if</span> (referredClass != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keywordflow">return</span> referredClass;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="keywordflow">return</span> &amp;fakeClass;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>};</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">#endif </span><span class="comment">//ICP_PROJECT_OBJECT_REFERENCE_H</span></div>
 <div class="ttc" id="aClass_8h_html"><div class="ttname"><a href="Class_8h.html">Class.h</a></div></div>
 <div class="ttc" id="aclassClassReference_html"><div class="ttname"><a href="classClassReference.html">ClassReference</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00022">ClassReference.h:23</a></div></div>
-<div class="ttc" id="aclassClassReference_html_a45b00e74e50277bd7a661829c0e44f1e"><div class="ttname"><a href="classClassReference.html#a45b00e74e50277bd7a661829c0e44f1e">ClassReference::invalidatePointer</a></div><div class="ttdeci">void invalidatePointer(std::string className)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00068">ClassReference.h:68</a></div></div>
-<div class="ttc" id="aclassClassReference_html_a75eb734d24234c580304fc47b670281b"><div class="ttname"><a href="classClassReference.html#a75eb734d24234c580304fc47b670281b">ClassReference::ClassReference</a></div><div class="ttdeci">ClassReference(std::string referredClassName)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00049">ClassReference.h:49</a></div></div>
-<div class="ttc" id="aclassClassReference_html_a7bd3595a9d86f20b3f70971661391f4f"><div class="ttname"><a href="classClassReference.html#a7bd3595a9d86f20b3f70971661391f4f">ClassReference::getReferredClassName</a></div><div class="ttdeci">std::string getReferredClassName()</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00089">ClassReference.h:89</a></div></div>
-<div class="ttc" id="aclassClassReference_html_ab82b51c813915a95f18796fa6d095871"><div class="ttname"><a href="classClassReference.html#ab82b51c813915a95f18796fa6d095871">ClassReference::storePointer</a></div><div class="ttdeci">void storePointer(Class *pointer)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00079">ClassReference.h:79</a></div></div>
-<div class="ttc" id="aclassClassReference_html_ac62464d4cd17891dd324831148d09d27"><div class="ttname"><a href="classClassReference.html#ac62464d4cd17891dd324831148d09d27">ClassReference::ClassReference</a></div><div class="ttdeci">ClassReference(Class *referredClass)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00039">ClassReference.h:39</a></div></div>
-<div class="ttc" id="aclassClassReference_html_ace566ff729552e40d610885dc2dee8a1"><div class="ttname"><a href="classClassReference.html#ace566ff729552e40d610885dc2dee8a1">ClassReference::isValid</a></div><div class="ttdeci">bool isValid()</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00058">ClassReference.h:58</a></div></div>
-<div class="ttc" id="aclassClass_html"><div class="ttname"><a href="classClass.html">Class</a></div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00023">Class.h:24</a></div></div>
+<div class="ttc" id="aclassClassReference_html_a5f655d525810f7f49747e2d1dd9f8705"><div class="ttname"><a href="classClassReference.html#a5f655d525810f7f49747e2d1dd9f8705">ClassReference::invalidatePointer</a></div><div class="ttdeci">void invalidatePointer(const std::string &amp;className)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00090">ClassReference.h:90</a></div></div>
+<div class="ttc" id="aclassClassReference_html_a7bd3595a9d86f20b3f70971661391f4f"><div class="ttname"><a href="classClassReference.html#a7bd3595a9d86f20b3f70971661391f4f">ClassReference::getReferredClassName</a></div><div class="ttdeci">std::string getReferredClassName()</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00114">ClassReference.h:114</a></div></div>
+<div class="ttc" id="aclassClassReference_html_ab82b51c813915a95f18796fa6d095871"><div class="ttname"><a href="classClassReference.html#ab82b51c813915a95f18796fa6d095871">ClassReference::storePointer</a></div><div class="ttdeci">void storePointer(Class *pointer)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00101">ClassReference.h:101</a></div></div>
+<div class="ttc" id="aclassClassReference_html_ac1a5cc280546f62f97337a3d1ce45049"><div class="ttname"><a href="classClassReference.html#ac1a5cc280546f62f97337a3d1ce45049">ClassReference::~ClassReference</a></div><div class="ttdeci">~ClassReference()</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00067">ClassReference.h:67</a></div></div>
+<div class="ttc" id="aclassClassReference_html_ac62464d4cd17891dd324831148d09d27"><div class="ttname"><a href="classClassReference.html#ac62464d4cd17891dd324831148d09d27">ClassReference::ClassReference</a></div><div class="ttdeci">ClassReference(Class *referredClass)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00048">ClassReference.h:48</a></div></div>
+<div class="ttc" id="aclassClassReference_html_ace566ff729552e40d610885dc2dee8a1"><div class="ttname"><a href="classClassReference.html#ace566ff729552e40d610885dc2dee8a1">ClassReference::isValid</a></div><div class="ttdeci">bool isValid()</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00080">ClassReference.h:80</a></div></div>
+<div class="ttc" id="aclassClassReference_html_ae5e773a398801332b542a5128fee274b"><div class="ttname"><a href="classClassReference.html#ae5e773a398801332b542a5128fee274b">ClassReference::ClassReference</a></div><div class="ttdeci">ClassReference(const std::string &amp;referredClassName)</div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00060">ClassReference.h:60</a></div></div>
+<div class="ttc" id="aclassClass_html"><div class="ttname"><a href="classClass.html">Class</a></div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00025">Class.h:26</a></div></div>
+<div class="ttc" id="aclassClass_html_ab174986b8ed18f2aba03205d2faf59b1"><div class="ttname"><a href="classClass.html#ab174986b8ed18f2aba03205d2faf59b1">Class::addClassReferenceUpdater</a></div><div class="ttdeci">void addClassReferenceUpdater(ReferenceUpdater *classReferenceUpdater)</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00101">Class.h:101</a></div></div>
+<div class="ttc" id="aclassReferenceUpdater_html"><div class="ttname"><a href="classReferenceUpdater.html">ReferenceUpdater</a></div><div class="ttdef"><b>Definition:</b> <a href="ReferenceUpdater_8h_source.html#l00019">ReferenceUpdater.h:20</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
