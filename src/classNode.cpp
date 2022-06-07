@@ -167,9 +167,15 @@ QRectF ClassNode::getWholeRect(std::vector<QString> &attributePrintable,
     QFontMetricsF metrics{qApp->font()};
     QRectF nameRect = metrics.boundingRect(QString::fromStdString(classEntity->getName()));
 
-    int maxWidth = nameRect.width();
+    qreal maxWidth = nameRect.width();
     getMaxWidth(attributePrintable, &maxWidth);
     getMaxWidth(methodPrintable, &maxWidth);
+    if(classEntity->getClassType() == (ClassType)ClassType::INTERFACE)
+    {
+        qreal interfaceWidth = metrics.boundingRect("<<interface>>").width();
+        maxWidth = std::max(interfaceWidth, maxWidth);
+    }
+
     maxWidth += Padding * 2;
 
     QRectF wholeRect = nameRect;
@@ -188,7 +194,7 @@ QRectF ClassNode::getWholeRect(std::vector<QString> &attributePrintable,
  * @param toCompare Vector of strings which should be compared.
  * @param maxWidth A pointer to variable of type int, where will be stored max width.
  */
-void ClassNode::getMaxWidth(std::vector<QString> toCompare, int *maxWidth) const
+void ClassNode::getMaxWidth(std::vector<QString> toCompare, qreal *maxWidth) const
 {
     QFontMetricsF metrics{qApp->font()};
     for(QString &str : toCompare)

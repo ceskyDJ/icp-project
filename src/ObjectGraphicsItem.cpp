@@ -77,9 +77,6 @@ void ObjectGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
         painter->drawLine(crossRect.x() + crossRect.width(), crossRect.y(),
                           crossRect.x(), crossRect.y() + crossRect.height());
     }
-
-    painter->setPen(QPen{Qt::blue, 1, Qt::SolidLine});
-    painter->drawRect(boundingRect());
 }
 
 /**

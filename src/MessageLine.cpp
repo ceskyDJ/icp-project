@@ -79,12 +79,6 @@ void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     line.setLength(line.length() - arrowWidth); //make space for arrow
     painter->drawLine(line);
 
-    painter->setPen(QPen{Qt::blue, 1, Qt::SolidLine});
-    painter->drawRect(boundingRect());
-
-    painter->setPen(QPen{Qt::green, 1, Qt::SolidLine});
-    painter->drawPath(shape());
-
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->translate(line.p2().x(), line.y2());
     QPen temp = painter->pen();
