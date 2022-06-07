@@ -10,18 +10,29 @@
 #define ICP_PROJECT_CLASS_H
 
 #include <utility>
-#include <vector>
+#include <set>
 #include <string>
 #include <tuple>
+#include <QUuid>
 #include "ClassAttribute.h"
 #include "ClassMethod.h"
 #include "ClassType.h"
+#include "ReferenceUpdater.h"
 
 /**
  * Entity representing class
  */
 class Class
 {
+    /**
+     * Class's UUID for unique identification between address changes, etc.
+     */
+    QUuid uuid;
+    /**
+     * Pointers to updaters of associated class references
+     */
+    std::set<ReferenceUpdater *> classReferencesUpdaters;
+
     /**
      * Name of the class
      */
@@ -47,7 +58,7 @@ class Class
     /**
      * Implicit class constructor
      */
-    Class(): classType{ClassType::NORMAL_CLASS} {};
+    Class(): uuid{QUuid::createUuid()}, classReferencesUpdaters{}, classType{ClassType::NORMAL_CLASS} {};
     /**
      * Constructor for initializing class with known name and type
      *
@@ -56,10 +67,71 @@ class Class
      * @param type Class type (optional, default is normal)
      */
     explicit Class(
-        const std::string name,
+        const std::string &name,
         const std::tuple<int, int> coordinates,
         const ClassType type = ClassType::NORMAL_CLASS
-    ): name{name}, coordinates{coordinates}, classType{type} {};
+    ): uuid{QUuid::createUuid()}, classReferencesUpdaters{}, name{name}, coordinates{coordinates}, classType{type} {};
+
+    /**
+     * Class destructor
+     */
+    ~Class()
+    {
+        // Let class references know that this class will no longer exist
+        for (const auto item: classReferencesUpdaters) {
+            item->targetDeleted(name);
+        }
+    }
+
+    /**
+     * Getter for class UUID
+     *
+     * @return Universal unique identifier of the class
+     */
+    QUuid getUuid() const
+    {
+        return uuid;
+    }
+
+    /**
+     * Adds associated class reference
+     *
+     * @param classReferenceUpdater Updater of class reference associated with this class
+     */
+    void addClassReferenceUpdater(ReferenceUpdater *classReferenceUpdater)
+    {
+        classReferencesUpdaters.insert(classReferenceUpdater);
+    }
+
+    /**
+     * Removes associated class reference
+     *
+     * @param classReferenceUpdater Updater of class reference associated with this class (to be removed)
+     */
+    void removeClassReferenceUpdater(ReferenceUpdater *classReferenceUpdater)
+    {
+        classReferencesUpdaters.erase(classReferenceUpdater);
+    }
+
+    /**
+     * Getter for class reference updaters
+     *
+     * @return Pointers to updaters of associated class references
+     */
+    std::set<ReferenceUpdater *> getClassReferenceUpdaters()
+    {
+        return classReferencesUpdaters;
+    }
+
+    /**
+     * Setter for class reference updaters
+     *
+     * @param newClassReferenceUpdaters New pointers to updaters of associated class references
+     */
+    void setClassReferenceUpdaters(std::set<ReferenceUpdater *> newClassReferenceUpdaters)
+    {
+        classReferencesUpdaters = newClassReferenceUpdaters;
+    }
 
     /**
      * Getter for class name
@@ -74,11 +146,11 @@ class Class
     /**
      * Setter for class name
      *
-     * @param new_name New class name
+     * @param newName New class name
      */
-    void setName(const std::string &new_name)
+    void setName(const std::string &newName)
     {
-        name = new_name;
+        name = newName;
     }
 
     /**
@@ -111,11 +183,11 @@ class Class
     /**
      * Setter for class type
      *
-     * @param Class type
+     * @param newClassType New class type
      */
-    void setClassType(ClassType newClasstype)
+    void setClassType(ClassType newClassType)
     {
-        classType = newClasstype;
+        classType = newClassType;
     }
 
     /**
@@ -161,11 +233,11 @@ class Class
     /**
      * Setter for class attributes
      *
-     * @param new_attributes New class attributes
+     * @param newAttributes New class attributes
      */
-    void setAttributes(std::vector<ClassAttribute> &new_attributes)
+    void setAttributes(std::vector<ClassAttribute> &newAttributes)
     {
-        attributes = new_attributes;
+        attributes = newAttributes;
     }
 
     /**
@@ -213,9 +285,19 @@ class Class
      *
      * @param method New method to add
      */
-    void addMethod(ClassMethod method)
+    void addMethod(ClassMethod &method)
     {
         methods.push_back(method);
+    }
+
+    /**
+     * Adds a new method to class
+     *
+     * @param method New method to add
+     */
+    void addMethod(ClassMethod &&method)
+    {
+        addMethod(method);
     }
 
     /**
@@ -225,7 +307,7 @@ class Class
      * @return Pointer to found class method
      * @throw std::invalid_argument Non-existing class method with searched name in this class
      */
-    ClassMethod *findMethodByName(std::string nameToFind);
+    ClassMethod *findMethodByName(const std::string &nameToFind);
 
     /**
      * Equals operator

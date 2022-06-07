@@ -87,6 +87,7 @@ add_executable(icp_project
         src/SceneUpdateObserver.h
         src/SceneUpdateObservable.h
         src/TabWidget.h
+        src/ReferenceUpdater.h
 
         # Source files
         src/AccessModifier.cpp

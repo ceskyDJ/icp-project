@@ -86,6 +86,18 @@ ClassDiagramMemento ClassDiagram::createMemento()
  */
 void ClassDiagram::setMemento(const ClassDiagramMemento &memento)
 {
+    std::map<QUuid, std::set<ReferenceUpdater *>> classReferenceUpdaters;
+    std::map<QUuid, std::set<ReferenceUpdater *>> methodReferenceUpdaters;
+
+    // Backup pointers to reference updaters
+    for (auto currentClass: classes) {
+        classReferenceUpdaters.insert({currentClass->getUuid(), currentClass->getClassReferenceUpdaters()});
+
+        for (auto &currentMethod: currentClass->getMethods()) {
+            methodReferenceUpdaters.insert({currentMethod.getUuid(), currentMethod.getMethodReferenceUpdaters()});
+        }
+    }
+
     // Deallocate all classes
     for (auto item: classes) {
         delete item;
@@ -103,6 +115,31 @@ void ClassDiagram::setMemento(const ClassDiagramMemento &memento)
     auto clonedClasses = deepCloneClasses(memento.classes);
     classes = std::get<0>(clonedClasses);
     relationships = deepCloneRelationships(memento.relationships, std::get<1>(clonedClasses));
+
+    // Recover pointers to reference updaters
+    for (auto currentClass: classes) {
+        std::set<ReferenceUpdater *> classUpdaters = classReferenceUpdaters.find(currentClass->getUuid())->second;
+
+        // Notify about pointer change
+        for (auto item: classUpdaters) {
+            item->targetChanged(currentClass);
+        }
+
+        // Connect updaters with class
+        currentClass->setClassReferenceUpdaters(classUpdaters);
+
+        for (auto &currentMethod: currentClass->getMethods()) {
+            std::set<ReferenceUpdater *> methodUpdaters = methodReferenceUpdaters.find(currentMethod.getUuid())->second;
+
+            // Notify about pointer change
+            for (auto &item: methodUpdaters) {
+                item->targetChanged(&currentMethod);
+            }
+
+            // Connect updaters with class method
+            currentMethod.setMethodReferenceUpdaters(methodUpdaters);
+        }
+    }
 }
 
 /**

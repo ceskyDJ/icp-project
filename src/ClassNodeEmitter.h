@@ -10,7 +10,7 @@
 
 #include <QObject>
 
-// There is a circular dependency between ClassNodeEmmitor and ClassNode
+// There is a circular dependency between ClassNodeEmitter and ClassNode
 // Warning: #include can't be used for ClassNode's header!
 class ClassNode;
 

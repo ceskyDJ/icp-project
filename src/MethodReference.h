@@ -29,6 +29,13 @@ class MethodReference
      * Fake class method used when pointer to referred class method is invalid
      */
     ClassMethod fakeMethod;
+    /**
+     * Updater for the method reference for getting information about reference target changes
+     */
+    ReferenceUpdater updater{
+            [&](const std::string &foo) { invalidatePointer(foo); },
+            [&](void *bar) { storePointer(static_cast<ClassMethod *>(bar)); }
+    };
 
   public:
     /**
@@ -41,6 +48,8 @@ class MethodReference
     ): referredMethod{referredMethod}, fakeMethod{"", AccessModifier::PUBLIC, std::vector<MethodParameter>{}}
     {
         assert(referredMethod != nullptr);
+
+        referredMethod->addMethodReferenceUpdater(&updater);
     };
 
     /**
@@ -49,8 +58,19 @@ class MethodReference
      * @param referredMethodName Name of the referred class method
      */
     explicit MethodReference(
-            std::string referredMethodName
+            const std::string &referredMethodName
     ): referredMethod{nullptr}, fakeMethod{referredMethodName, AccessModifier::PUBLIC, std::vector<MethodParameter>{}} {};
+
+    /**
+     * Class destructor
+     */
+    ~MethodReference()
+    {
+        // Remove updater for non-existing class method reference
+        if (referredMethod != nullptr) {
+            referredMethod->removeMethodReferenceUpdater(&updater);
+        }
+    }
 
     /**
      * Checks if valid pointer to referred class method is stored
@@ -67,7 +87,7 @@ class MethodReference
      *
      * @param methodName Name of the referred class method the pointer was pointed to
      */
-    void invalidatePointer(std::string methodName)
+    void invalidatePointer(const std::string &methodName)
     {
         referredMethod = nullptr;
         fakeMethod.setName(methodName);
@@ -81,6 +101,9 @@ class MethodReference
     void storePointer(ClassMethod *pointer)
     {
         referredMethod = pointer;
+
+        // For cases referenced class method was added lately
+        referredMethod->addMethodReferenceUpdater(&updater);
     }
 
     /**

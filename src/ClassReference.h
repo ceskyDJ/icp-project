@@ -29,16 +29,27 @@ class ClassReference
      * Fake class used when pointer to referred class in invalid
      */
     Class fakeClass;
+    /**
+     * Updater for the class reference for getting information about reference target changes
+     */
+    ReferenceUpdater updater{
+        [&](const std::string &foo) { invalidatePointer(foo); },
+        [&](void *bar) { storePointer(static_cast<Class *>(bar)); }
+    };
 
   public:
     /**
      * Implicit constructor used when the class exists and pointer could be saved here
      *
      * @param referredClass Pointer to referred class
+     *
+     * @pre referredClass != nullptr
      */
     ClassReference(Class *referredClass): referredClass{referredClass}, fakeClass{} // NOLINT(google-explicit-constructor)
     {
         assert(referredClass != nullptr);
+
+        referredClass->addClassReferenceUpdater(&updater);
     };
 
     /**
@@ -47,8 +58,19 @@ class ClassReference
      * @param referredClassName Name of the referred class
      */
     explicit ClassReference(
-        std::string referredClassName
+        const std::string &referredClassName
     ): referredClass{nullptr}, fakeClass{referredClassName, std::tuple<int, int>{}} {};
+
+    /**
+     * Class destructor
+     */
+    ~ClassReference()
+    {
+        // Remove updater for non-existing class reference
+        if (referredClass != nullptr) {
+            referredClass->removeClassReferenceUpdater(&updater);
+        }
+    }
 
     /**
      * Checks if valid pointer to referred class is stored
@@ -65,7 +87,7 @@ class ClassReference
      *
      * @param className Name of the referred class the pointer was pointed to
      */
-    void invalidatePointer(std::string className)
+    void invalidatePointer(const std::string &className)
     {
         referredClass = nullptr;
         fakeClass.setName(className);
@@ -79,6 +101,9 @@ class ClassReference
     void storePointer(Class *pointer)
     {
         referredClass = pointer;
+
+        // For cases reference class was added lately
+        referredClass->addClassReferenceUpdater(&updater);
     }
 
     /**

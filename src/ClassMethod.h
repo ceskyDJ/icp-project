@@ -10,15 +10,27 @@
 #define ICP_PROJECT_CLASS_METHOD_H
 
 #include <vector>
+#include <QUuid>
+#include <set>
 #include "ClassMethodType.h"
 #include "MethodParameter.h"
 #include "ClassMember.h"
+#include "ReferenceUpdater.h"
 
 /**
  * Entity for class method
  */
 class ClassMethod: public ClassMember
 {
+    /**
+     * Class method's UUID for unique identification between address changes, etc.
+     */
+    QUuid uuid;
+    /**
+     * Pointers to updaters of associated class method references
+     */
+    std::set<ReferenceUpdater *> methodReferencesUpdaters;
+
     /**
      * Type of method (normal, abstract)
      */
@@ -46,9 +58,72 @@ class ClassMethod: public ClassMember
         std::string name,
         AccessModifier accessModifier,
         std::vector<MethodParameter> parameters,
-        std::string returnDataType = "void",
+        const std::string &returnDataType = "void",
         ClassMethodType methodType = ClassMethodType::NORMAL
-    ): ClassMember{name, accessModifier}, type{methodType}, parameters{parameters}, returnDataType{returnDataType} {};
+    ): ClassMember{name, accessModifier}, uuid{QUuid::createUuid()}, methodReferencesUpdaters{}, type{methodType},
+            parameters{parameters}, returnDataType{returnDataType} {};
+
+
+    /**
+     * Class destructor
+     */
+    ~ClassMethod() override
+    {
+        // Let class references know that this class will no longer exist
+        for (const auto item: methodReferencesUpdaters) {
+            item->targetDeleted(getName());
+        }
+    }
+
+    /**
+     * Getter for class method UUID
+     *
+     * @return Universal unique identifier of the class method (in the whole program)
+     */
+    QUuid getUuid() const
+    {
+        return uuid;
+    }
+
+    /**
+     * Adds associated class method reference
+     *
+     * @param methodReferenceUpdater Updater of class method reference associated with this class method
+     */
+    void addMethodReferenceUpdater(ReferenceUpdater *methodReferenceUpdater)
+    {
+        methodReferencesUpdaters.insert(methodReferenceUpdater);
+    }
+
+    /**
+     * Removes associated class method reference
+     *
+     * @param methodReferenceUpdater Updater of class method reference associated with this class method (to be removed)
+     */
+    void removeMethodReferenceUpdater(ReferenceUpdater *methodReferenceUpdater)
+    {
+        methodReferencesUpdaters.erase(methodReferenceUpdater);
+    }
+
+    /**
+     * Getter for class method reference updaters
+     *
+     * @return Pointers to updaters of associated class method references
+     */
+    std::set<ReferenceUpdater *> getMethodReferenceUpdaters()
+    {
+        return methodReferencesUpdaters;
+    }
+
+    /**
+     * Setter for class method reference updaters
+     *
+     * @param newMethodReferenceUpdaters New pointers to updaters of associated class method references
+     */
+    void setMethodReferenceUpdaters(std::set<ReferenceUpdater *> newMethodReferenceUpdaters)
+    {
+        methodReferencesUpdaters = newMethodReferenceUpdaters;
+    }
 
     /**
      * Getter for method type

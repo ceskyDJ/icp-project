@@ -99,7 +99,8 @@ HEADERS += \
     GeneralizationLine.h \
     SceneUpdateObserver.h \
     SceneUpdateObservable.h \
-    TabWidget.h
+    TabWidget.h \
+    ReferenceUpdater.h
 
 SOURCES += \
     AccessModifier.cpp \
