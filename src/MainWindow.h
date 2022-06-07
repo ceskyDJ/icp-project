@@ -130,7 +130,7 @@ private:
      */
     QGraphicsView *sceneView;
     /**
-     * TODO: add doc comment
+     * Main widget where everything is located.
      */
     QWidget *centerWidget;
     /**
@@ -175,7 +175,46 @@ private:
      * Button for removing class nodes
      */
     QToolButton *removeSelectedToolItem;
-
+    /**
+     * Button for synchronous message used in creating process.
+     */
+    QToolButton *syncMessageToolItem;
+    /**
+     * Button for asynchronous message used in creating process.
+     */
+    QToolButton *asyncMessageToolItem;
+    /**
+     * Button for creation message used in creating process.
+     */
+    QToolButton *createMessageToolItem;
+    /**
+     * Button for destroy message used in creating process.
+     */
+    QToolButton *destroyMessageToolItem;
+    /**
+     * Button for reply message used in creating process.
+     */
+    QToolButton *replyMessageToolItem;
+    /**
+     * Button for removing object i sequence diagram.
+     */
+    QToolButton *removeSequenceToolItem;
+    /**
+     * Button for creating new actor.
+     */
+    QToolButton *actorToolItem;
+    /**
+     * Button for creating new object in sequence diagram.
+     */
+    QToolButton *objectToolItem;
+    /**
+     * Groupbox with all class diagram items.
+     */
+    QGroupBox *classToolboxItems;
+    /**
+     * Groupbox with all sequence diagram items.
+     */
+    QGroupBox *sequenceToolboxItems;
     // Setup
     /**
      * Initializes components - creates a new instances of primary attributes.
@@ -201,6 +240,14 @@ private:
      * Places all demanded Widgets into a toolbar.
      */
     void setToolBox();
+    /**
+     * Set tool items to class tools.
+     */
+    void setClassDiagramToolbox();
+    /**
+     * Set tool items to sequence tools.
+     */
+    void setSequenceDiagramToolbox();
     /**
      * Connects all signals and slots
      */
