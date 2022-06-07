@@ -131,6 +131,10 @@ public:
     QPen regularPen{Qt::black, 2, Qt::SolidLine};
 
     /**
+     * Pen used when object is unknown.
+     */
+    QPen unknownObject{Qt::blue, 2, Qt::SolidLine};
+    /**
      * Pen used in drawing object when object is selected
      */
     QPen selectedPen{Qt::red, 3, Qt::DashLine};

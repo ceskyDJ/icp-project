@@ -19,6 +19,7 @@ MessageLine::MessageLine()
 {
     linePenOk = QPen{Qt::black, 2, Qt::SolidLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::SolidLine};
+    unknownMethod = QPen{Qt::blue, 2, Qt::SolidLine};
     arrowWidth = 20;
     arrowHeight = 20;
     setAcceptHoverEvents(true);
@@ -62,16 +63,22 @@ void MessageLine::initialize(ActivationGraphicsObjectBase *from,
 void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     prepareGeometryChange();
-    painter->setPen((isInObjectsLifeBox(message->getSendingTime()))? linePenOk:linePenNok);
+    //get necessary innformation
+    QPen usedPen = (isInObjectsLifeBox(message->getSendingTime()))? linePenOk:linePenNok;
+    painter->setPen(usedPen);
     QRectF bound = boundingRect();
     QLineF line = QLineF{bound.x(), bound.y() + bound.height() - arrowHeight,
             bound.x() + bound.width(), bound.y() + bound.height() - arrowHeight};
 
+    //move text rectangle and draw text in it.
     QRectF textRect = getTextBoundingBox(QString::fromStdString(message->getMethod().getReferredMethodName()));
     textRect.moveTop(- textRect.height() * 1.5);// move rect so it will be up on the line
     textRect.moveLeft(- textRect.width() * 0.5);// point 0,0 is in the middle of rectangle
     textRect.translate(line.x1() + line.length() * 0.5, line.y1()); //move the point into center of line
+    if(usedPen != linePenNok && !message->getMethod().isValid())
+        painter->setPen(unknownMethod);
     painter->drawText(textRect, QString::fromStdString(message->getMethod().getReferredMethodName()));
+    painter->setPen(usedPen);
 
     if(!leftToRight) //arrow goes from right to left
         line.setLine(line.x2(), line.y2(), line.x1(), line.y2());
@@ -79,6 +86,7 @@ void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     line.setLength(line.length() - arrowWidth); //make space for arrow
     painter->drawLine(line);
 
+    //set painter for drawing arrow - translate, rotate and set pen
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->translate(line.p2().x(), line.y2());
     QPen temp = painter->pen();

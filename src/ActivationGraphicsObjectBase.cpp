@@ -79,7 +79,7 @@ void ActivationGraphicsObjectBase::removeMesage(MessageLine *message)
 {
     int index = messages.indexOf(message);
     if (index >= 0)
-        messages.remove(index);
+        messages.removeAt(index);
 }
 
 /**

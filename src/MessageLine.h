@@ -35,19 +35,29 @@ protected:
     qreal arrowWidth;
     qreal arrowHeight;
     qreal lineShapeWidth = 10;
+
     /**
      * If true, line will go from first lifebox to second lifebox.
      * If false, line will go from first lifebox to second life line.
      */
     bool arrowToLifeLine;
+
     /**
      * Pen if message line is in good position (between both lifeboxes).
      */
     QPen linePenOk;
+
     /**
      * Pen if message line is NOT in good position (between both lifeboxes).
      */
     QPen linePenNok;
+
+    /**
+     * Pen used to draw if method is not valid. LinePenNok has higher priority it means
+     * that if line is outside of lifeboxes, object will be drawn by linePenNok even if
+     * it is unknown.
+     */
+    QPen unknownMethod;
     Message *message;
     ActivationGraphicsObjectBase *fromObject;
     ActivationGraphicsObjectBase *toObject;

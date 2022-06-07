@@ -48,8 +48,13 @@ void ObjectGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
 
     //drawing header
     painter->drawRect(0,0, textWidth, headerHeight);
+    if(!object->getInstanceClass().isValid())
+        painter->setPen(unknownObject);
     painter->drawText(0,0, textWidth, headerHeight, Qt::AlignCenter,
                       QString::fromStdString(":" + object->getInstanceClass().getReferredClassName() + "\n" + object->getName()));
+    if(!object->getInstanceClass().isValid())
+        painter->setPen(penToUse);
+
     //drawing life line
     painter->setPen(lifeLinePen);
     painter->drawLine(textWidth / 2, headerHeight, textWidth / 2, height);
