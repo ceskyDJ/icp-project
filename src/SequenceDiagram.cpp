@@ -108,7 +108,18 @@ void SequenceDiagram::removeMessage(Message *messageToRemove)
  */
 SequenceDiagramMemento SequenceDiagram::createMemento()
 {
-    return SequenceDiagramMemento{deepCloneActors(actors), deepCloneObjects(objects), deepCloneMessages(messages)};
+    std::unordered_map<MessageNode *, MessageNode *> messageNodesMap;
+
+    auto clonedActors = deepCloneActors(actors);
+    auto clonedObjects = deepCloneObjects(objects);
+
+    // Connect message node maps
+    messageNodesMap.merge(std::get<1>(clonedActors));
+    messageNodesMap.merge(std::get<1>(clonedObjects));
+
+    std::vector<Message *> clonedMessages = deepCloneMessages(messages, messageNodesMap);
+
+    return SequenceDiagramMemento{std::get<0>(clonedActors), std::get<0>(clonedObjects), clonedMessages};
 }
 
 /**
@@ -118,6 +129,8 @@ SequenceDiagramMemento SequenceDiagram::createMemento()
  */
 void SequenceDiagram::setMemento(const SequenceDiagramMemento &memento)
 {
+    std::unordered_map<MessageNode *, MessageNode *> messageNodesMap;
+
     // Deallocate all actors
     for (auto item: actors) {
         delete item;
@@ -139,59 +152,84 @@ void SequenceDiagram::setMemento(const SequenceDiagramMemento &memento)
     messages.clear();
 
     // Load data from memento
-    actors = deepCloneActors(memento.actors);
-    objects = deepCloneObjects(memento.objects);
-    messages = deepCloneMessages(memento.messages);
+    auto clonedActors = deepCloneActors(memento.actors);
+    auto clonedObjects = deepCloneObjects(memento.objects);
+
+    // Connect message node maps
+    messageNodesMap.merge(std::get<1>(clonedActors));
+    messageNodesMap.merge(std::get<1>(clonedObjects));
+
+    actors = std::get<0>(clonedActors);
+    objects = std::get<0>(clonedObjects);
+    messages = deepCloneMessages(memento.messages, messageNodesMap);
 }
 
 /**
  * Creates a deep clone of actors
  *
  * @param sourceActors Actors to clone (as pointers)
- * @return Pointers to newly allocated space with actors deep clone
+ * @return Pointers to newly allocated space with actors deep clone and map of old pointers to new ones
  */
-inline std::vector<Actor *> deepCloneActors(const std::vector<Actor *> &sourceActors)
-{
+inline std::tuple<std::vector<Actor *>, std::unordered_map<MessageNode *, MessageNode*>> deepCloneActors(
+    const std::vector<Actor *> &sourceActors
+) {
     std::vector<Actor *> clonedActors{};
+    std::unordered_map<MessageNode *, MessageNode *> actorsMap;
 
     for (const auto item: sourceActors) {
         auto actorBackup = new Actor{*item};
         clonedActors.push_back(actorBackup);
+
+        actorsMap.insert({item, actorBackup});
     }
 
-    return clonedActors;
+    return {clonedActors, actorsMap};
 }
 
 /**
  * Creates a deep clone of objects
  *
  * @param sourceObjects Objects to clone (as pointers)
- * @return Pointers to newly allocated space with objects deep clone
+ * @return Pointers to newly allocated space with objects deep clone and map of old pointers to new ones
  */
-inline std::vector<Object *> deepCloneObjects(const std::vector<Object *> &sourceObjects)
-{
+inline std::tuple<std::vector<Object *>, std::unordered_map<MessageNode *, MessageNode *>> deepCloneObjects(
+    const std::vector<Object *> &sourceObjects
+) {
     std::vector<Object *> clonesObjects{};
+    std::unordered_map<MessageNode *, MessageNode *> objectsMap;
 
     for (const auto item: sourceObjects) {
         auto objectBackup = new Object{*item};
         clonesObjects.push_back(objectBackup);
+
+        objectsMap.insert({item, objectBackup});
     }
 
-    return clonesObjects;
+    return {clonesObjects, objectsMap};
 }
 
 /**
  * Creates a deep clone of messages
  *
  * @param sourceMessages Messages to clone (as pointers)
+ * @param messageNodesMap Map of old pointer to the new ones
  * @return Pointers to newly allocated space with messages deep clone
  */
-inline std::vector<Message *> deepCloneMessages(const std::vector<Message *> &sourceMessages)
-{
+inline std::vector<Message *> deepCloneMessages(
+    const std::vector<Message *> &sourceMessages,
+    const std::unordered_map<MessageNode *, MessageNode *> &messageNodesMap
+) {
     std::vector<Message *> clonedMessages{};
 
     for (const auto item: sourceMessages) {
         auto messageBackup = new Message{*item};
+
+        MessageNode *newMessageSender = messageNodesMap.find(item->getMessageSender())->second;
+        MessageNode *newMessageRecipient = messageNodesMap.find(item->getMessageRecipient())->second;
+
+        messageBackup->setMessageSender(newMessageSender);
+        messageBackup->setMessageRecipient(newMessageRecipient);
+
         clonedMessages.push_back(messageBackup);
     }
 

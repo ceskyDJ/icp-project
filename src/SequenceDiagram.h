@@ -251,24 +251,32 @@ class SequenceDiagram
  * Creates a deep clone of actors
  *
  * @param sourceActors Actors to clone (as pointers)
- * @return Pointers to newly allocated space with actors deep clone
+ * @return Pointers to newly allocated space with actors deep clone and map of old pointers to new ones
  */
-inline std::vector<Actor *> deepCloneActors(const std::vector<Actor *> &sourceActors);
+inline std::tuple<std::vector<Actor *>, std::unordered_map<MessageNode *, MessageNode*>> deepCloneActors(
+    const std::vector<Actor *> &sourceActors
+);
 
 /**
  * Creates a deep clone of objects
  *
  * @param sourceObjects Objects to clone (as pointers)
- * @return Pointers to newly allocated space with objects deep clone
+ * @return Pointers to newly allocated space with objects deep clone and map of old pointers to new ones
  */
-inline std::vector<Object *> deepCloneObjects(const std::vector<Object *> &sourceObjects);
+inline std::tuple<std::vector<Object *>, std::unordered_map<MessageNode *, MessageNode *>> deepCloneObjects(
+    const std::vector<Object *> &sourceObjects
+);
 
 /**
  * Creates a deep clone of messages
  *
  * @param sourceMessages Messages to clone (as pointers)
+ * @param messageNodesMap Map of old pointer to the new ones
  * @return Pointers to newly allocated space with messages deep clone
  */
-inline std::vector<Message *> deepCloneMessages(const std::vector<Message *> &sourceMessages);
+inline std::vector<Message *> deepCloneMessages(
+    const std::vector<Message *> &sourceMessages,
+    const std::unordered_map<MessageNode *, MessageNode *> &messageNodesMap
+);
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_H

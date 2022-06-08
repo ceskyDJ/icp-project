@@ -537,8 +537,6 @@ void SequenceDiagramScene::redrawSequenceDiagram()
         newMessageLine->initialize(senderGuiItem, recipientGuiItem, objMessage, calleeClassReference);
         addItem(newMessageLine);
     }
-
-    sceneUpdateObservable->sceneChanged();
 }
 
 /**
