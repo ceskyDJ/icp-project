@@ -10,7 +10,7 @@
 
 qreal ActivationGraphicsObjectBase::height = 500;
 qreal ActivationGraphicsObjectBase::headerHeight = 60;
-qreal ActivationGraphicsObjectBase::lifeSpaceStart = 10;
+qreal ActivationGraphicsObjectBase::lifeSpaceStart = 25;
 qreal ActivationGraphicsObjectBase::lifeboxWidth = 20;
 qreal ActivationGraphicsObjectBase::destroyCrossSize = 30;
 qreal ActivationGraphicsObjectBase::objectPadding = 300;
