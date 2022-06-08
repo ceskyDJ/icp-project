@@ -17,9 +17,10 @@ var searchData=
   ['removemessage_14',['removeMessage',['../classSequenceDiagram.html#a3b07da73a31035b7a52ca62f33f9bd1c',1,'SequenceDiagram']]],
   ['removemethodreferenceupdater_15',['removeMethodReferenceUpdater',['../classClassMethod.html#a31eb41583b53cedffb7e7f501ad1b4fc',1,'ClassMethod']]],
   ['removeobject_16',['removeObject',['../classSequenceDiagram.html#a902978d2457c3e61e1693986b31274c1',1,'SequenceDiagram']]],
-  ['removepressed_17',['removePressed',['../classDirectedAssociationLineEditDialog.html#ae4ec2e3928b5a26b71bba52d948f3579',1,'DirectedAssociationLineEditDialog']]],
-  ['removerelationship_18',['removeRelationship',['../classClassDiagram.html#a5e1a3b164030fdaf3fe84f33dfbe8866',1,'ClassDiagram']]],
-  ['removeselectednodes_19',['removeSelectedNodes',['../classClassDiagramScene.html#a4717fc506fd2b6f9a1d77777f4a02f6a',1,'ClassDiagramScene']]],
-  ['replymessageline_20',['ReplyMessageLine',['../classReplyMessageLine.html#aea81233c45f871f4d41a84848f772708',1,'ReplyMessageLine']]],
-  ['resizearea_21',['resizeArea',['../classObjectGraphicsItem.html#ab3ec54be67b55f1d79bf08331cd7fe85',1,'ObjectGraphicsItem']]]
+  ['removeobjectpressed_17',['removeObjectPressed',['../classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3',1,'SequenceDiagramScene']]],
+  ['removepressed_18',['removePressed',['../classDirectedAssociationLineEditDialog.html#ae4ec2e3928b5a26b71bba52d948f3579',1,'DirectedAssociationLineEditDialog']]],
+  ['removerelationship_19',['removeRelationship',['../classClassDiagram.html#a5e1a3b164030fdaf3fe84f33dfbe8866',1,'ClassDiagram']]],
+  ['removeselectednodes_20',['removeSelectedNodes',['../classClassDiagramScene.html#a4717fc506fd2b6f9a1d77777f4a02f6a',1,'ClassDiagramScene']]],
+  ['replymessageline_21',['ReplyMessageLine',['../classReplyMessageLine.html#aea81233c45f871f4d41a84848f772708',1,'ReplyMessageLine']]],
+  ['resizearea_22',['resizeArea',['../classObjectGraphicsItem.html#ab3ec54be67b55f1d79bf08331cd7fe85',1,'ObjectGraphicsItem']]]
 ];

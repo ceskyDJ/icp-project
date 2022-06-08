@@ -82,12 +82,14 @@ Inheritance diagram for ObjectGraphicsItemEditDialog:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3ae6613789ef38c22bbc083dda0938cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItemEditDialog.html#a3ae6613789ef38c22bbc083dda0938cf">ObjectGraphicsItemEditDialog</a> (QString objectName, QString className)</td></tr>
-<tr class="separator:a3ae6613789ef38c22bbc083dda0938cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a1e502dbb9c20fa5f8feb15480a2f88"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItemEditDialog.html#a5a1e502dbb9c20fa5f8feb15480a2f88">ObjectGraphicsItemEditDialog</a> (QString objectName, QString className, <a class="el" href="classClassDiagram.html">ClassDiagram</a> *classDiagram)</td></tr>
+<tr class="separator:a5a1e502dbb9c20fa5f8feb15480a2f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4523f969d7680c7f9da244538d1bfa37"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItemEditDialog.html#a4523f969d7680c7f9da244538d1bfa37">getClassName</a> ()</td></tr>
 <tr class="separator:a4523f969d7680c7f9da244538d1bfa37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b007b7b58e7b47e0eed15e3a57931cd"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItemEditDialog.html#a3b007b7b58e7b47e0eed15e3a57931cd">getObjectName</a> ()</td></tr>
 <tr class="separator:a3b007b7b58e7b47e0eed15e3a57931cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38bf12ee5417cbdb97064c3e8c6626d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassReference.html">ClassReference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItemEditDialog.html#a38bf12ee5417cbdb97064c3e8c6626d3">getClassRef</a> ()</td></tr>
+<tr class="separator:a38bf12ee5417cbdb97064c3e8c6626d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -122,10 +124,10 @@ Additional Inherited Members</h2></td></tr>
 <p >ICP project (<a class="el" href="classClass.html">Class</a> and sequence diagram editor)</p>
 <dl class="section author"><dt>Author</dt><dd>Jakub Dvořák (xdvora3q) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html#l00021">21</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html">ObjectGraphicsItemEditDialog.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html#l00023">23</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html">ObjectGraphicsItemEditDialog.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3ae6613789ef38c22bbc083dda0938cf" name="a3ae6613789ef38c22bbc083dda0938cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ae6613789ef38c22bbc083dda0938cf">&#9670;&nbsp;</a></span>ObjectGraphicsItemEditDialog()</h2>
+<a id="a5a1e502dbb9c20fa5f8feb15480a2f88" name="a5a1e502dbb9c20fa5f8feb15480a2f88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a1e502dbb9c20fa5f8feb15480a2f88">&#9670;&nbsp;</a></span>ObjectGraphicsItemEditDialog()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,7 +142,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QString&#160;</td>
-          <td class="paramname"><em>className</em>&#160;</td>
+          <td class="paramname"><em>className</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classClassDiagram.html">ClassDiagram</a> *&#160;</td>
+          <td class="paramname"><em>classDiagram</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -149,8 +157,17 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Sets all widgets and layout and fill data.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">objectName</td><td>current name of object </td></tr>
+    <tr><td class="paramname">className</td><td>current name of class </td></tr>
+    <tr><td class="paramname">classDiagram</td><td>source class diagram </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8cpp_source.html#l00010">10</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8cpp_source.html">ObjectGraphicsItemEditDialog.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8cpp_source.html#l00017">17</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8cpp_source.html">ObjectGraphicsItemEditDialog.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +197,36 @@ Additional Inherited Members</h2></td></tr>
 <p >Getter for class name.</p>
 <dl class="section return"><dt>Returns</dt><dd>selected class name </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html#l00031">31</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html">ObjectGraphicsItemEditDialog.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html#l00033">33</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html">ObjectGraphicsItemEditDialog.h</a>.</p>
+
+</div>
+</div>
+<a id="a38bf12ee5417cbdb97064c3e8c6626d3" name="a38bf12ee5417cbdb97064c3e8c6626d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38bf12ee5417cbdb97064c3e8c6626d3">&#9670;&nbsp;</a></span>getClassRef()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classClassReference.html">ClassReference</a> ObjectGraphicsItemEditDialog::getClassRef </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Getter for class reference.</p>
+<dl class="section return"><dt>Returns</dt><dd>selected class reference </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html#l00053">53</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html">ObjectGraphicsItemEditDialog.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +255,7 @@ Additional Inherited Members</h2></td></tr>
 <p >Getter for object. Get new name of object.</p>
 <dl class="section return"><dt>Returns</dt><dd>new name of object </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html#l00041">41</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html">ObjectGraphicsItemEditDialog.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html#l00043">43</a> of file <a class="el" href="ObjectGraphicsItemEditDialog_8h_source.html">ObjectGraphicsItemEditDialog.h</a>.</p>
 
 </div>
 </div>

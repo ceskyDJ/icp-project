@@ -11,7 +11,7 @@ var searchData=
   ['classeditdialog_8',['ClassEditDialog',['../classClassEditDialog.html#a972444b5700c5b59e4c8072fa9903f5c',1,'ClassEditDialog']]],
   ['classmember_9',['ClassMember',['../classClassMember.html#a919f6712e92858147317e47f675dff73',1,'ClassMember']]],
   ['classmethod_10',['ClassMethod',['../classClassMethod.html#adfe43c6e04f8f86031b51592b89a2e47',1,'ClassMethod']]],
-  ['classmethodtype_11',['ClassMethodType',['../classClassMethodType.html#ad61150fd37d236899463baeb2a251706',1,'ClassMethodType::ClassMethodType(Value value)'],['../classClassMethodType.html#a0a51222fc35dfdea03ad6ae4acd929c7',1,'ClassMethodType::ClassMethodType()=default']]],
+  ['classmethodtype_11',['ClassMethodType',['../classClassMethodType.html#a0a51222fc35dfdea03ad6ae4acd929c7',1,'ClassMethodType::ClassMethodType()=default'],['../classClassMethodType.html#ad61150fd37d236899463baeb2a251706',1,'ClassMethodType::ClassMethodType(Value value)']]],
   ['classnode_12',['ClassNode',['../classClassNode.html#ad0cef58690b37920da66829d9187639f',1,'ClassNode']]],
   ['classreference_13',['ClassReference',['../classClassReference.html#ac62464d4cd17891dd324831148d09d27',1,'ClassReference::ClassReference(Class *referredClass)'],['../classClassReference.html#ae5e773a398801332b542a5128fee274b',1,'ClassReference::ClassReference(const std::string &amp;referredClassName)']]],
   ['classtype_14',['ClassType',['../classClassType.html#a892c1feb7e35031b3e732f32d227d526',1,'ClassType::ClassType()=default'],['../classClassType.html#aaf64fdb6c4f4b769f1bb941684ede83f',1,'ClassType::ClassType(Value value)']]],
@@ -19,6 +19,7 @@ var searchData=
   ['compositionline_16',['CompositionLine',['../classCompositionLine.html#a13ffd50c63d381f272f1fab2dde50b6f',1,'CompositionLine']]],
   ['connectcomponents_17',['connectComponents',['../classDirectedAssociationLineEditDialog.html#a58b72455db93cca3cb0d504a45660834',1,'DirectedAssociationLineEditDialog::connectComponents()'],['../classLineWithArrowEditDialog.html#a75f2c8afdf2ce47d3e00e52ee8a5f1ed',1,'LineWithArrowEditDialog::connectComponents()'],['../classMessageLineEditDialog.html#a379343ba3437cfed8ca6af71e43c16db',1,'MessageLineEditDialog::connectComponents()']]],
   ['creatememento_18',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]],
-  ['createtitle_19',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]],
-  ['customscene_20',['CustomScene',['../classCustomScene.html#ae492ffe10d1670780690a8904618c361',1,'CustomScene']]]
+  ['createnewmessageline_19',['createNewMessageLine',['../classSequenceDiagramScene.html#ad30a0c581886884efe1438d0152e895f',1,'SequenceDiagramScene::createNewMessageLine(MessageLine *line)'],['../classSequenceDiagramScene.html#ad8b7a766e639fb95e1ef374ef35f3856',1,'SequenceDiagramScene::createNewMessageLine(MessageLine *line, MessageType type)']]],
+  ['createtitle_20',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]],
+  ['customscene_21',['CustomScene',['../classCustomScene.html#ae492ffe10d1670780690a8904618c361',1,'CustomScene']]]
 ];
