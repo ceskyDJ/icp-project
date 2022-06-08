@@ -1,6 +1,5 @@
 /**
- * @class DestroyMessageLine
- * Represents destroy message in sequence diagram.
+ * @file DestroyMessageLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "MessageLine.h"
 
+/**
+ * Represents destroy message in sequence diagram.
+ */
 class DestroyMessageLine : public MessageLine
 {
 public:

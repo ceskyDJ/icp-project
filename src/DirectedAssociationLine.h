@@ -1,6 +1,5 @@
 /**
- * @class DirectedAssociationLine
- * Allows to draw a directed association line.
+ * @file DirectedAssociationLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -10,6 +9,9 @@
 #define DIRECTEDASSOCIATIONLINE_H
 #include "LineWithArrow.h"
 
+/**
+ * Allows to draw a directed association line in class diagram.
+ */
 class DirectedAssociationLine : public LineWithArrow
 {
 public:

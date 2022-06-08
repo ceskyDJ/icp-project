@@ -1,6 +1,5 @@
 /**
- * @class MessageLine
- * Base functionality, methods and variables for messages.
+ * @file MessageLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -20,6 +19,9 @@
 
 class ActivationGraphicsObjectBase;
 
+/**
+ * Provides almost complete functionality, methods and variables for all messages.
+ */
 class MessageLine : public QGraphicsLineItem
 {
 public:

@@ -1,6 +1,5 @@
 /**
- * @class EditDialogBase
- * Base functionality for inherited edit dialogs
+ * @file EditDialogBase.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -13,6 +12,9 @@
 #include <QPushButton>
 #include <QIcon>
 
+/**
+ * Base functionality and support functions for inherited edit dialogs. For example standard button looks.
+ */
 class EditDialogBase : public QDialog
 {
 public:

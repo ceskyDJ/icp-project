@@ -1,6 +1,5 @@
 /**
- * @class AssociationLineEditDialog
- * Dialog which allow to edit or delete relationship.
+ * @file AssociationLineEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -20,6 +19,9 @@
 #include <QLineEdit>
 #include <QWidget>
 
+/**
+ * Dialog which allow to edit or delete relationship.
+ */
 class AssociationLineEditDialog : public QDialog
 {
 public:

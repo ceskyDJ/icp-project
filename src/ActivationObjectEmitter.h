@@ -1,6 +1,5 @@
 /**
- * @class ActivationObjectEmitter
- * Helpful class to provide slots and signals to ActivationGraphicsObjectBase items.
+ * @file ActivationObjectEmitter.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -13,6 +12,9 @@
 
 class ActivationGraphicsObjectBase;
 
+/**
+ * Support class to provide slots and signals to ActivationGraphicsObjectBase items.
+ */
 class ActivationObjectEmitter : public QObject
 {
     Q_OBJECT

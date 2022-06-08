@@ -1,6 +1,5 @@
 /**
- * @class ActorGraphicsItemEditDialog
- * Dialog for edditing ActorGraphicsItem
+ * @file ActorGraphicsItemEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -16,6 +15,9 @@
 #include <QFormLayout>
 #include <QLineEdit>
 
+/**
+ * Dialog for edditing ActorGraphicsItem
+ */
 class ActorGraphicsItemEditDialog : public EditDialogBase
 {
 public:

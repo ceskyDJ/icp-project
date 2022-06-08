@@ -1,6 +1,5 @@
 /**
- * @class MethodParameterEditWidget
- * Allows to edit method parameter
+ * @file MethodParameterEditWidget.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

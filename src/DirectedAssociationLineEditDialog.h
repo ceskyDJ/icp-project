@@ -1,6 +1,5 @@
 /**
- * @class DirectedAssociationLineEditDialog
- * Dialog for editing DirectAssociationDialog.
+ * @file DirectedAssociationLineEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -19,6 +18,9 @@
 #include <QLineEdit>
 #include <QWidget>
 
+/**
+ * Dialog for editing DirectAssociationDialog.
+ */
 class DirectedAssociationLineEditDialog : public QDialog
 {
 public:

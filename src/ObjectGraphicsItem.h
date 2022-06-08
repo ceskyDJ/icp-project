@@ -1,6 +1,5 @@
 /**
- * @class ObjectGraphicsItem
- * Representation of object in sequence diagram as graphics item.
+ * @file ObjectGraphicsItem.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -16,6 +15,9 @@
 #include <QPainterPath>
 #include "ClassDiagram.h"
 
+/**
+ * Representation of object in sequence diagram as graphics item.
+ */
 class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:

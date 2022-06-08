@@ -3,6 +3,7 @@
  *
  * ICP project (Class and sequence diagram editor)
  *
+ * @author Jakub Dvořák (xdvora3q)
  * @author Michal Šmahel (xsmahe01)
  */
 #ifndef ICP_PROJECT_SEQUENCE_DIAGRAM_SCENE_H

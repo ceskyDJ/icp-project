@@ -1,7 +1,5 @@
 /**
- * @class ActivationGraphicsObjectBase
- * Base functionality, variables and func declarations that are necessary for object in sequence diagram
- * which has life box.
+ * @file ActivationGraphicsObjectBase.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -17,9 +15,12 @@
 #include "MessageLine.h"
 #include "ActivationObjectEmitter.h"
 
-
 class MessageLine;
 
+/**
+ * Base functionality, variables and func declarations that are necessary for object in sequence diagram
+ * which has life box.
+*/
 class ActivationGraphicsObjectBase : public QGraphicsItem
 {
 public:

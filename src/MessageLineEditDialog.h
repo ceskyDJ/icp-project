@@ -1,6 +1,5 @@
 /**
- * @class MessageLineEditDialog
- * Dialog for edditing message lines.
+ * @file MessageLineEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -17,6 +16,9 @@
 #include "ClassReference.h"
 #include "MethodReference.h"
 
+/**
+ * Dialog for edditing all message lines. Allows to change method, switch arrows and remove line.
+ */
 class MessageLineEditDialog : public EditDialogBase
 {
 public:

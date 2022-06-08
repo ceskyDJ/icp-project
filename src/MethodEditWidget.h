@@ -1,6 +1,5 @@
 /**
- * @class MethodEditWidget
- * Allows to edit method.
+ * @file MethodEditWidget.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -19,6 +18,9 @@
 #include <QVBoxLayout>
 #include "MethodParameterEditWidget.h"
 
+/**
+ * Allows to edit method - name and paramateres.
+ */
 class MethodEditWidget : public QWidget
 {
     Q_OBJECT

@@ -98,7 +98,7 @@ void SequenceDiagramScene::addActor()
 void SequenceDiagramScene::addObject()
 {
     Class *refferedClass = (classDiagram->getClasses().size() > 0)? classDiagram->getClasses()[0]:nullptr;
-    ClassReference *classRef; //because no constructor without params exists
+    ClassReference *classRef;
     if(refferedClass)
         classRef = new ClassReference(refferedClass);
     else
@@ -384,7 +384,7 @@ bool SequenceDiagramScene::createMessagePossible(QString *errorMsg,
     ActorGraphicsItem *actor = dynamic_cast<ActorGraphicsItem*>(reciever);
     if(actor && (messageType == (MessageType)MessageType::CREATE || messageType == (MessageType)MessageType::DESTROY))
     {
-        *errorMsg = "Actor cannot has create or destroy message!";
+        *errorMsg = "Actor cannot recieve any message of type <<create>> nor <<destroy>>!";
         return false;
     }
     else
@@ -392,12 +392,12 @@ bool SequenceDiagramScene::createMessagePossible(QString *errorMsg,
         ObjectGraphicsItem *obj = dynamic_cast<ObjectGraphicsItem *>(reciever);
         if(messageType == (MessageType)MessageType::DESTROY && obj->getDestroyMessage())
         {
-            *errorMsg = "Object cannot has more than one destroy message!";
+            *errorMsg = "Object cannot recieve more than one destroy message!";
             return false;
         }
         else if (messageType == (MessageType)MessageType::CREATE && obj->getCreateMessage())
         {
-            *errorMsg = "Object cannot has more than one create message!";
+            *errorMsg = "Object cannot recieve more than one create message!";
             return false;
         }
     }

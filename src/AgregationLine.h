@@ -1,9 +1,19 @@
+/**
+ * @file AgregationLine.h
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
 #ifndef AGREGATIONLINE_H
 #define AGREGATIONLINE_H
 
 #include "LineWithArrow.h"
 #include "Line.h"
 
+/**
+ * Represents agregation line in class diagram.
+ */
 class AgregationLine : public LineWithArrow
 {
 public:

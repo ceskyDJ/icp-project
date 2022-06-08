@@ -1,5 +1,5 @@
 /**
- * @file MethodEditWidget
+ * @file MethodEditWidget.cpp
  *
  * ICP project (Class and sequence diagram editor)
  *

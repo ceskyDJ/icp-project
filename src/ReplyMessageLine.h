@@ -1,6 +1,5 @@
 /**
- * @class ReplyMessageLine
- * Represents reply message in sequence diagram.
+ * @file ReplyMessageLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "MessageLine.h"
 
+/**
+ * Represents reply message in sequence diagram.
+ */
 class ReplyMessageLine : public MessageLine
 {
 public:

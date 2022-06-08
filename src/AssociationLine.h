@@ -1,6 +1,5 @@
 /**
- * @class AssociationLine.h
- * Represents association line in class diagram.
+ * @file AssociationLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "Line.h"
 
+/**
+ * Represents association line in class diagram.
+ */
 class AssociationLine : public Line
 {
 public:
