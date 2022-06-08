@@ -74,7 +74,7 @@ public:
      *
      * @param message message to add
      */
-    void addMesage(MessageLine *message);
+    virtual void addMessage(MessageLine *message);
 
     /**
      * Remove message from messages

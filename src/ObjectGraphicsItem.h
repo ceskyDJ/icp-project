@@ -44,6 +44,9 @@ public:
     {
         return object;
     }
+
+    MessageLine *getDestroyMessage();
+    MessageLine *getCreateMessage();
 protected:
     /**
      * Padding int object header |[padding]<NAME>[Padding]|
@@ -61,7 +64,6 @@ protected:
     void setLifeStart(qreal lifeStart);
     void setLifeEndDestroy(qreal lifeEnd);
     void setDestroyed(bool destroyed);
-    MessageLine *getDestroyMessage();
 };
 
 #endif // OBJECTGRAPHICSITEM_H

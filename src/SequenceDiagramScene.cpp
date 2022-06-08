@@ -14,6 +14,8 @@
 #include "ReplyMessageLine.h"
 #include "ActorGraphicsItem.h"
 #include "ObjectGraphicsItem.h"
+#include <QMessageBox>
+
 /**
  * Class constructor
  *
@@ -95,11 +97,6 @@ void SequenceDiagramScene::addActor()
  */
 void SequenceDiagramScene::addObject()
 {
-    /*if(refferedClass == nullptr && classDiagram->getClasses().size() > 0)
-        refferedClass = classDiagram->getClasses()[0];
-    else if (classDiagram->getClasses().size() == 0)
-        refferedClass = */
-
     Class *refferedClass = (classDiagram->getClasses().size() > 0)? classDiagram->getClasses()[0]:nullptr;
     ClassReference *classRef; //because no constructor without params exists
     if(refferedClass)
@@ -254,7 +251,6 @@ void SequenceDiagramScene::createNewMessageLine(MessageLine *line, MessageType t
 void SequenceDiagramScene::sendMessage()
 {
     // Create new messageline in scene
-
     ObjectGraphicsItem *objectReciever = dynamic_cast<ObjectGraphicsItem *>(reciever);
     MethodReference *ref;
     if(objectReciever)
@@ -268,8 +264,21 @@ void SequenceDiagramScene::sendMessage()
     else
         ref = new MethodReference("UNKNOWN METHOD");
 
+    //check if is possible to create new line
+    QString errorMsg = "";
+    if(!createMessagePossible(&errorMsg, reciever, sender, newMessageLineType))
+    {
+        QMessageBox msgBox;
+        msgBox.setText(errorMsg);
+        msgBox.setWindowTitle("Creation was not succesful");
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.exec();
+        return;
+    }
+
     Message *newMessage = new Message(*ref, newMessageLineType, sender->getMessageNode(), reciever->getMessageNode(),0.0);
     delete ref;
+
     newMessageLine->initialize(sender, reciever, newMessage);
     addItem(newMessageLine);
 
@@ -308,7 +317,7 @@ void SequenceDiagramScene::selectionEdit()
  *
  * @return QVector<ActivationGraphicsObjectBase *> all activation items in scene, sorted by insertion order.
  */
-QVector<ActivationGraphicsObjectBase *>  SequenceDiagramScene::activationObjectsInScene()
+QVector<ActivationGraphicsObjectBase *> SequenceDiagramScene::activationObjectsInScene()
 {
     QList<QGraphicsItem*> sceneItems = items(Qt::AscendingOrder);
     QVector<ActivationGraphicsObjectBase*> activationItems;
@@ -347,4 +356,45 @@ void SequenceDiagramScene::objectSortSlot(QList<QRectF>)
         activationObjectCount = currentCount;
         sortActivationItems();
     }
+}
+
+/**
+ * Checks if it is possible to create new message. If error occures, store message into errorMsg.
+ *
+ * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
+ * @param reciever reciever object
+ * @param messageType type of message
+ * @return true if everything is ok.
+ * @return false if creation is NOT possible.
+ */
+bool SequenceDiagramScene::createMessagePossible(QString *errorMsg,
+        ActivationGraphicsObjectBase *reciever, ActivationGraphicsObjectBase *sender ,MessageType messageType)
+{
+    if(reciever == sender)
+    {
+        *errorMsg = "Reciever cannot be sender in one message!";
+        return false;
+    }
+
+    ActorGraphicsItem *actor = dynamic_cast<ActorGraphicsItem*>(reciever);
+    if(actor && (messageType == (MessageType)MessageType::CREATE || messageType == (MessageType)MessageType::DESTROY))
+    {
+        *errorMsg = "Actor cannot has create or destroy message!";
+        return false;
+    }
+    else
+    {
+        ObjectGraphicsItem *obj = dynamic_cast<ObjectGraphicsItem *>(reciever);
+        if(messageType == (MessageType)MessageType::DESTROY && obj->getDestroyMessage())
+        {
+            *errorMsg = "Object cannot has more than one destroy message!";
+            return false;
+        }
+        else if (messageType == (MessageType)MessageType::CREATE && obj->getCreateMessage())
+        {
+            *errorMsg = "Object cannot has more than one create message!";
+            return false;
+        }
+    }
+    return true;
 }

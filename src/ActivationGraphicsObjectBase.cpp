@@ -68,7 +68,7 @@ QRectF ActivationGraphicsObjectBase::lifeBoxRect()
  *
  * @param message message to add
  */
-void ActivationGraphicsObjectBase::addMesage(MessageLine *message)
+void ActivationGraphicsObjectBase::addMessage(MessageLine *message)
 {
     messages.push_back(message);
 }

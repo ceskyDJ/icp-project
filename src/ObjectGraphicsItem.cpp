@@ -13,6 +13,7 @@
 #include <QtDebug>
 #include "ObjectGraphicsItemEditDialog.h"
 #include "DestroyMessageLine.h"
+#include "CreateMessageLine.h"
 
 /**
  * Initializes new graphics object in sequence diagram if height is negative, keeps it value
@@ -316,7 +317,23 @@ MessageLine * ObjectGraphicsItem::getDestroyMessage()
     for(MessageLine *msg:messages)
     {
         DestroyMessageLine *temp = dynamic_cast<DestroyMessageLine *>(msg);
-        if(temp)
+        if(temp && temp->getToObject() == this)
+            return temp;
+    }
+    return nullptr;
+}
+
+/**
+ * Iterate throught messages and if find create message, return it.
+ *
+ * @return CreateMessage Create message if found, else return nullptr.
+ */
+MessageLine * ObjectGraphicsItem::getCreateMessage()
+{
+    for(MessageLine *msg:messages)
+    {
+        CreateMessageLine *temp = dynamic_cast<CreateMessageLine *>(msg);
+        if(temp && temp->getToObject() == this)
             return temp;
     }
     return nullptr;

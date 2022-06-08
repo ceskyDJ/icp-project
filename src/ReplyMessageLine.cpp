@@ -25,8 +25,8 @@ void ReplyMessageLine::initialize(ActivationGraphicsObjectBase *from,
 {
     fromObject = from;
     toObject = to;
-    fromObject->addMesage(this);
-    toObject->addMesage(this);
+    fromObject->addMessage(this);
+    toObject->addMessage(this);
     toObject->setDestroyed(true);
     leftToRight = from->x() < to->x();
     message = msg;

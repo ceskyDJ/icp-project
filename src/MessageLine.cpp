@@ -49,14 +49,16 @@ MessageLine::~MessageLine()
 
 /**
  * Initializes itself - store from and to object + store self in those objects.
+ *
+ * @return QString - error message. If ok, return empty string, else return error message.
  */
 void MessageLine::initialize(ActivationGraphicsObjectBase *from,
                              ActivationGraphicsObjectBase *to, Message *newMessage)
 {
     fromObject = from;
     toObject = to;
-    fromObject->addMesage(this);
-    toObject->addMesage(this);
+    fromObject->addMessage(this);
+    toObject->addMessage(this);
     message = newMessage;
     leftToRight = from->x() < to->x();
 }

@@ -27,6 +27,15 @@ public:
                     ActivationGraphicsObjectBase *to, Message *newMessage);
     void moveLine(qreal dy, bool moveIfNotValidBefore);
 
+    /**
+     * Getter for toObject.
+     *
+     * @return to object of message.
+     */
+    ActivationGraphicsObjectBase *getToObject()
+    {
+        return toObject;
+    }
 protected:
     bool leftToRight;
     bool editNameAllowed;

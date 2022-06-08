@@ -23,8 +23,8 @@ void CreateMessageLine::initialize(ActivationGraphicsObjectBase *from,
 {
     fromObject = from;
     toObject = to;
-    fromObject->addMesage(this);
-    toObject->addMesage(this);
+    fromObject->addMessage(this);
+    toObject->addMessage(this);
     leftToRight = from->x() < to->x();
     message = msg;
     message->setName(MethodReference{"<<create>>"});
