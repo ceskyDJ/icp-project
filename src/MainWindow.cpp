@@ -191,7 +191,7 @@ void MainWindow::setToolBox()
     classToolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
 
     //creating widgets (icon + text) for sequence diagram
-    QGridLayout *sequenceLayout = new QGridLayout;
+    auto *sequenceLayout = new QGridLayout;
     QWidget *syncMessageWidget = prepareToolItem(QIcon{":/syncMsg.png"}, "Sync. message", syncMessageToolItem);
     QWidget *asyncMessageWidget = prepareToolItem(QIcon{":/asyncMsg.png"}, "Async. message",asyncMessageToolItem);
     QWidget *createMessageWidget = prepareToolItem(QIcon{":/createMsg.png"}, "Create message",createMessageToolItem);
@@ -333,10 +333,11 @@ void MainWindow::setActiveTab(TabWidget *tab)
 
     currentTab = tab;
 
-    if(typeid(*(tab->getScene())) == typeid(ClassDiagramScene))
+    if(typeid(*currentScene) == typeid(ClassDiagramScene)) {
         setClassDiagramToolbox();
-    else
+    } else {
         setSequenceDiagramToolbox();
+    }
 
     updateTab(tab);
 }
@@ -540,7 +541,7 @@ void MainWindow::removeObjectSelected()
     }
 
     auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
-    sequenceDiagramScene->removeObjectPressed();
+    sequenceDiagramScene->removeSelected();
 }
 
 /**

@@ -173,8 +173,8 @@ void FileSequenceDiagramRepository::saveDiagram(const SequenceDiagram &diagram)
         xmlMessage.setAttribute("type", message->getType().serialize().c_str());
         xmlMessage.setAttribute("sending-time", message->getSendingTime());
 
-        // Message sender
-        QDomElement xmlMessageSender{xml.createElement("sender")};
+        // Message newSender
+        QDomElement xmlMessageSender{xml.createElement("newSender")};
 
         Message::MessageSender *messageSender{message->getMessageSender()};
         if (typeid(*messageSender) == typeid(Actor)) {
@@ -305,19 +305,19 @@ Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Seq
         throw InvalidInputDataException{R"(Attribute "sending-time" of element "message" must be valid decimal)"};
     }
 
-    // Message sender
-    QDomNodeList senderSearch{xmlMessage.elementsByTagName("sender")};
+    // Message newSender
+    QDomNodeList senderSearch{xmlMessage.elementsByTagName("newSender")};
     if (senderSearch.size() != 1 || !senderSearch.item(0).isElement()) {
-        throw InvalidInputDataException{R"(Element "message" must contain exactly 1 element "sender")"};
+        throw InvalidInputDataException{R"(Element "message" must contain exactly 1 element "newSender")"};
     }
 
     QDomElement sender{senderSearch.item(0).toElement()};
     if (!sender.hasAttribute("type")) {
-        throw InvalidInputDataException{R"(Element "sender" must have mandatory attribute "type")"};
+        throw InvalidInputDataException{R"(Element "newSender" must have mandatory attribute "type")"};
     }
 
     if (sender.text().isEmpty()) {
-        throw InvalidInputDataException{R"(Element "sender" must contain name of sending actor/object)"};
+        throw InvalidInputDataException{R"(Element "newSender" must contain name of sending actor/object)"};
     }
 
     std::string senderName{sender.text().toStdString()};
@@ -328,16 +328,16 @@ Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Seq
         try {
             messageSender = sequenceDiagram.findActorByName(senderName);
         } catch (std::invalid_argument &e) {
-            throw InvalidInputDataException{R"(Element "sender" must contain existing actor)"};
+            throw InvalidInputDataException{R"(Element "newSender" must contain existing actor)"};
         }
     } else if (senderType == "OBJECT") {
         try {
             messageSender = sequenceDiagram.findObjectByName(senderName);
         } catch (std::invalid_argument &e) {
-            throw InvalidInputDataException{R"(Element "sender" must contain existing object)"};
+            throw InvalidInputDataException{R"(Element "newSender" must contain existing object)"};
         }
     } else {
-        throw InvalidInputDataException{R"(Attribute "type" of element "sender" must be one of: ACTOR, OBJECT)"};
+        throw InvalidInputDataException{R"(Attribute "type" of element "newSender" must be one of: ACTOR, OBJECT)"};
     }
 
     // Message recipient
@@ -415,6 +415,6 @@ Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Seq
             sendingTime
         };
     } else {
-        throw InvalidInputDataException{R"(Invalid combination of types of message sender and message recipient)"};
+        throw InvalidInputDataException{R"(Invalid combination of types of message newSender and message recipient)"};
     }
 }

@@ -15,27 +15,27 @@
     <messages>
         <!-- Integer-like zero instead of double zero -->
         <message name="&lt;&lt;create&gt;&gt;" type="CREATE" sending-time="0">
-            <sender type="ACTOR">admin</sender>
+            <newSender type="ACTOR">admin</newSender>
             <recipient type="OBJECT">franta</recipient>
         </message>
         <message name="&lt;&lt;create&gt;&gt;" type="CREATE" sending-time="0.2">
-            <sender type="ACTOR">admin</sender>
+            <newSender type="ACTOR">admin</newSender>
             <recipient type="OBJECT">eva</recipient>
         </message>
         <message name="makeProgram()" type="SYNC" sending-time="0.5">
-            <sender type="ACTOR">admin</sender>
+            <newSender type="ACTOR">admin</newSender>
             <recipient type="OBJECT">eva</recipient>
         </message>
         <message name="Created program" type="REPLY" sending-time="0.6">
-            <sender type="ACTOR">admin</sender>
+            <newSender type="ACTOR">admin</newSender>
             <recipient type="OBJECT">eva</recipient>
         </message>
         <message name="&lt;&lt;destroy&gt;&gt;" type="DESTROY" sending-time="0.7">
-            <sender type="ACTOR">admin</sender>
+            <newSender type="ACTOR">admin</newSender>
             <recipient type="OBJECT">franta</recipient>
         </message>
         <message name="&lt;&lt;destroy&gt;&gt;" type="DESTROY" sending-time="0.8">
-            <sender type="ACTOR">admin</sender>
+            <newSender type="ACTOR">admin</newSender>
             <recipient type="OBJECT">eva</recipient>
         </message>
     </messages>

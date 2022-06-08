@@ -44,6 +44,10 @@ class ClassDiagramScene: public CustomScene
      * Map of existing relationships and their lines
      */
     std::unordered_map<Line *, Relationship *> storedRelationships;
+    /**
+     * Custom list of selected items in order of clicking on them
+     */
+    QList<QGraphicsItem *> sortedSelectionList;
 
     // Colors
     /**
@@ -137,7 +141,7 @@ class ClassDiagramScene: public CustomScene
      */
     void prepareComposition();
     /**
-     * To a newLine pointer creates agregation line
+     * To a newLine pointer creates aggregation line
      */
     void prepareAggregation();
     /**
@@ -164,7 +168,6 @@ class ClassDiagramScene: public CustomScene
      */
     ClassDiagram *getClassDiagram();
   private:
-    QList<QGraphicsItem *> sortedSelectionList;
     /**
      * Sets border color to all nodes and to nodeColor
      *

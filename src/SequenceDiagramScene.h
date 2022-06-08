@@ -29,19 +29,59 @@ class SequenceDiagramScene: public CustomScene
      */
     SceneUpdateObservable *sceneUpdateObservable;
     /**
-     * Eddited sequence diagram
-     */
-    SequenceDiagram *sequenceDiagram;
-    /**
      * Class diagram - data source for sequence diagram.
      */
     ClassDiagram *classDiagram;
 
+    // Containers
+    /**
+     * Edited sequence diagram
+     */
+    SequenceDiagram sequenceDiagram;
+    /**
+     * Custom list of selected items in order of clicking on them
+     */
+    QList<QGraphicsItem*> mySelectedItems;
+
     // Colors
+    /**
+     * Color of selected message
+     */
     const QColor messageSelectedColor = Qt::darkGreen;
+    /**
+     * Normal color of object
+     */
     const QColor objectNormalColor = Qt::black;
-    const QColor secondPhaseSelectedColor = Qt::darkMagenta;
+    /**
+     * Color of items in the first phase of selection
+     */
     const QColor firstPhaseSelectedColor = Qt::darkCyan;
+    /**
+     * Color of items in the second phase of selection
+     */
+    const QColor secondPhaseSelectedColor = Qt::darkMagenta;
+
+    // States
+    /**
+     * States for handling actions by user.
+     */
+    enum state{messageCreation, objectRemoving, none} currentState;
+    /**
+     * MessageLine used in creation process.
+     */
+    MessageLine *newMessageLine;
+    /**
+     * Message type used during creation process of new message.
+     */
+    MessageType newMessageLineType;
+    /**
+     * Receiver of new message
+     */
+    ActivationGraphicsObjectBase *newReceiver;
+    /**
+     * Sender of new message
+     */
+    ActivationGraphicsObjectBase *newSender;
 
   public:
     /**
@@ -82,6 +122,8 @@ class SequenceDiagramScene: public CustomScene
      * Restores reverted change
      */
     void redoRevertedChange() override;
+
+    // Tool box items' actions
     /**
      * Add new actor to scene
      */
@@ -91,59 +133,19 @@ class SequenceDiagramScene: public CustomScene
      */
     void addObject();
     /**
-     * States for handling actions by user.
-     */
-    enum state{messageCreation, objectRemoving, none} currentState;
-    /**
-     * Checks if new line is nullptr (if no, deletes it) and insert messageline into newMessageLine
-     *
-     * @param line messageLine to store
-     */
-    void createNewMessageLine(MessageLine *line);
-    /**
-     * Creates new meesageLine and store it into variable newMessageLine. Also store MessageType intp newMessageType.
+     * Creates new message line and store it into variable newMessageLine. Also store MessageType intp newMessageType.
      *
      * @param messageLine new line
      * @param type type of message
      */
     void createNewMessageLine(MessageLine *line, MessageType type);
+
     /**
-     * Checks if it is possible to create new message. If error occures, store message into errorMsg.
-     *
-     * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
-     * @param reciever reciever object
-     * @param messageType type of message
-     * @return true if everything is ok.
-     * @return false if creation is NOT possible.
+     * Removes selected item or changes its current state.
      */
-    static bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *reciever,
-                               ActivationGraphicsObjectBase *sender, MessageType messageType);
-public slots:
-    /**
-     * Remove selected button was pressed. Handles an event - remove selected or change current state.
-     */
-    void removeObjectPressed();
-private:
-    /**
-     * Selected items in sorted list.
-     */
-    QList<QGraphicsItem*> mySelectedItems;
-    /**
-     * MessageLine used in creation process.
-     */
-    MessageLine *newMessageLine = nullptr;
-    /**
-     * Message type used during creation process of new message.
-     */
-    MessageType newMessageLineType;
-    /**
-     * Reciever of new message
-     */
-    ActivationGraphicsObjectBase *reciever = nullptr;
-    /**
-     * Sender of new message
-     */
-    ActivationGraphicsObjectBase *sender = nullptr;
+    void removeSelected();
+
+  private:
     /**
      * Removes single class node
      *
@@ -177,14 +179,26 @@ private:
    /**
     * Handles what to do if in selction mode.
     *
-    * @param ivokedBy Node that was pressed on.
+    * @param invokedBy Node that was pressed on.
     */
-   void selectLinesHandle(ActivationGraphicsObjectBase *ivokedBy);
-private slots:
+   void selectLinesHandle(ActivationGraphicsObjectBase *invokedBy);
+   /**
+    * Checks if it is possible to create new message. If error occures, store message into errorMsg.
+    *
+    * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
+    * @param receiver newReceiver object
+    * @param messageType type of message
+    * @return true if everything is ok.
+    * @return false if creation is NOT possible.
+    */
+   bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *receiver,
+                              ActivationGraphicsObjectBase *sender, MessageType messageType);
+
+  private slots:
     /**
     * Function that informs this, that invokedBy, was clicked on.
     *
-    * @param invokedBy sender object
+    * @param invokedBy newSender object
     */
     void objectPressed(ActivationGraphicsObjectBase *invokedBy);
     /**
