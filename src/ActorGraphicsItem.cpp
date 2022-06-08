@@ -10,11 +10,13 @@
 #include <QStyleOptionGraphicsItem>
 #include "ActorGraphicsItemEditDialog.h"
 
-ActorGraphicsItem::ActorGraphicsItem(Actor *actor) : actor{actor}
+ActorGraphicsItem::ActorGraphicsItem()
 {
     setAcceptHoverEvents(true);
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
     destroyed = false;
+    actor = new Actor("Actor " + std::to_string(objectCounter));
+    incObjectCounter();
 }
 
 /**
@@ -47,12 +49,12 @@ void ActorGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem 
     else
     {
         penToUse = regularPen;
+        penToUse.setColor(drawColor);
         actorImage = QImage{":/actorMin.png"};
     }
     qreal textHeight = getTextBoundingBox("").height();
 
     painter->setPen(penToUse);
-
     painter->fillRect(boundingRect(), Qt::white);//fill object because of non-transparency
     //draws actor image + text
     qreal textPad = 5;
@@ -81,6 +83,7 @@ void ActorGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 void ActorGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     pressedPos = event->pos();
+    emitter.emitPressedSignal();
 }
 
 /**
@@ -136,5 +139,5 @@ void ActorGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     if(result == QDialog::Accepted)
         actor->setName(dialog.getActorName().toStdString());
     else if (result == ActorGraphicsItemEditDialog::remove)
-        delete this;
+        emitter.emitRemoveObjectSignal(true);
 }

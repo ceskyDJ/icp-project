@@ -7,14 +7,16 @@
  */
 #include "MessageLineEditDialog.h"
 
-MessageLineEditDialog::MessageLineEditDialog(bool showPropertyLayout)
-: showPropertyLayout{showPropertyLayout}
+MessageLineEditDialog::MessageLineEditDialog(bool showPropertyLayout,
+                                             ClassReference classRef, MethodReference methodRef)
+    : showPropertyLayout{showPropertyLayout}, classRef{classRef}
 {
     setWindowTitle("Edit message dialog");
     setAllButtons();
     setAllLayouts();
     connectComponents();
     fillComboBoxData();
+    methodCombobox.setCurrentText(QString::fromStdString(methodRef.getReferredMethodName()));
 }
 
 /**
@@ -22,10 +24,9 @@ MessageLineEditDialog::MessageLineEditDialog(bool showPropertyLayout)
  */
 void MessageLineEditDialog::fillComboBoxData()
 {
-    methodCombobox.addItem("Method 1");
-    methodCombobox.addItem("Method 2");
-    methodCombobox.addItem("Method 3");
-    //methodCombobox.setCurrentText(QString::fromStdString(methodRef.getReferredMethodName()));
+    std::vector<ClassMethod> allMethods = classRef->getMethods();
+    for (ClassMethod classMethodItem : allMethods)
+        methodCombobox.addItem(QString::fromStdString(classMethodItem.getName()));
 }
 
 /**
@@ -84,15 +85,4 @@ void MessageLineEditDialog::connectComponents()
     connect(&switchButton, &QPushButton::pressed, this, &MessageLineEditDialog::swicthArrowButtonPressed);
     connect(&cancelButton, &QPushButton::pressed, this, &MessageLineEditDialog::cancelButtonPressed);
 
-    connect(&methodCombobox, &QComboBox::currentTextChanged, this, &MessageLineEditDialog::methodComboboxChanged);
-}
-
-/**
- * If selected text has changed, changes value of this text
- *
- * @param newText new name of method
- */
-void MessageLineEditDialog::methodComboboxChanged(QString newText)
-{
-    (void)newText; //TODO
 }

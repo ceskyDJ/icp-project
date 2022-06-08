@@ -15,7 +15,7 @@
 /**
  * Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
  */
-MessageLine::MessageLine()
+MessageLine::MessageLine() : classRef{ClassReference{""}}
 {
     linePenOk = QPen{Qt::black, 2, Qt::SolidLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::SolidLine};
@@ -28,6 +28,8 @@ MessageLine::MessageLine()
     editNameAllowed = true;
     createFlag = false;
     destroyFlag = false;
+    fromObject = nullptr;
+    toObject = nullptr;
 }
 
 /**
@@ -35,24 +37,31 @@ MessageLine::MessageLine()
  */
 MessageLine::~MessageLine()
 {
-    fromObject->removeMesage(this);
-    toObject->removeMesage(this);
-    if(destroyFlag)
-        toObject->setDestroyed(false);
+    if(fromObject != nullptr)
+    {
+        fromObject->removeMesage(this);
+        if(destroyFlag)
+            toObject->setDestroyed(false);
+    }
+    if(toObject != nullptr)
+        toObject->removeMesage(this);
 }
 
 /**
  * Initializes itself - store from and to object + store self in those objects.
+ *
+ * @return QString - error message. If ok, return empty string, else return error message.
  */
-void MessageLine::initialize(ActivationGraphicsObjectBase *from,
-                             ActivationGraphicsObjectBase *to, Message *newMessage)
+void MessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                             Message *newMessage, ClassReference classRef)
 {
     fromObject = from;
     toObject = to;
-    fromObject->addMesage(this);
-    toObject->addMesage(this);
+    fromObject->addMessage(this);
+    toObject->addMessage(this);
     message = newMessage;
     leftToRight = from->x() < to->x();
+    this->classRef = classRef;
 }
 
 /**
@@ -75,7 +84,9 @@ void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     textRect.moveTop(- textRect.height() * 1.5);// move rect so it will be up on the line
     textRect.moveLeft(- textRect.width() * 0.5);// point 0,0 is in the middle of rectangle
     textRect.translate(line.x1() + line.length() * 0.5, line.y1()); //move the point into center of line
-    if(usedPen != linePenNok && !message->getMethod().isValid())
+    if(usedPen != linePenNok && !message->getMethod().isValid()
+            && message->getMethod().getReferredMethodName() != "<<create>>"
+            && message->getMethod().getReferredMethodName() != "<<destroy>>")
         painter->setPen(unknownMethod);
     painter->drawText(textRect, QString::fromStdString(message->getMethod().getReferredMethodName()));
     painter->setPen(usedPen);
@@ -275,17 +286,24 @@ void MessageLine::moveLine(qreal dy, bool moveIfNotValidBefore)
     qreal maxBoxHeight = ActivationGraphicsObjectBase::height - yPadding;
 
     qreal newSendingTime = (rect.y() + rect.height() - arrowHeight + dy - yPadding) / maxBoxHeight;
-    //change position if sending time is not outside of interval <0.1> and if new position is inside of lifeboxes
-    //or if previous position is not inside of lifeboxes or if creaated flag is true
-    if((newSendingTime >= 0 && newSendingTime <= 1) && (isInObjectsLifeBox(newSendingTime) ||
-      (!isInObjectsLifeBox(message->getSendingTime()) && moveIfNotValidBefore) || createFlag || destroyFlag))
+
+    // arrow is not too up or too down
+    bool inAllowedHeight = (newSendingTime >= 0 && newSendingTime <= 1);
+    //if object was not in valid position (between both lifeboxes), can this move? - It according to an argument
+    bool moveIfNotValidBeforeAllowed = (!isInObjectsLifeBox(message->getSendingTime()) && moveIfNotValidBefore);
+    //If the line wil bee moved and then object will be beteween lifeboxes, then true, else false
+    bool willBeInLifeboxes = isInObjectsLifeBox(newSendingTime);
+    if(inAllowedHeight && (willBeInLifeboxes || moveIfNotValidBeforeAllowed || createFlag || destroyFlag))
     {
-        if(destroyFlag) // after lifebox a remove cross wil be drawn
+        // If destroyFlag is true and object is under the life start, changes end of life of object
+        if(destroyFlag && toObject->getStartOfLifeBox() < newSendingTime)
         {
-            if (toObject->getStartOfLifeBox() < newSendingTime) //new seding time has to be smaller than lifbox start
-                toObject->setLifeEndDestroy(newSendingTime);
-            else
-                return;
+            toObject->setLifeEndDestroy(newSendingTime);
+
+            //if after move, object will not be in
+            if(!isInObjectsLifeBox(newSendingTime))
+                toObject->setLifeEndDestroy((rect.y() + rect.height() - arrowHeight + dy + 1 - yPadding) / maxBoxHeight);
+
         }
         if (createFlag) // means that method is not called externally
             toObject->setLifeStart(newSendingTime);
@@ -299,18 +317,20 @@ void MessageLine::moveLine(qreal dy, bool moveIfNotValidBefore)
  */
 void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
 {
-    MessageLineEditDialog dialog{editNameAllowed};
+    MessageLineEditDialog dialog{editNameAllowed, classRef, message->getMethod()};
     int result = dialog.exec();
     if(result == QDialog::Accepted)
     {
-        //TODO
+        message->setName(dialog.getMethodReference());
     }
     else if(result == EditDialogBase::switchArrows)
     {
         ActivationGraphicsObjectBase *temp = fromObject;
+
         fromObject = toObject;
         toObject = temp;
         leftToRight = !leftToRight;
+        classRef = toObject->getClassReference();
     }
     else if(result == EditDialogBase::remove)
         delete this;

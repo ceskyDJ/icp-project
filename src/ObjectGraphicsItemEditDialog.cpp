@@ -7,13 +7,24 @@
  */
 #include "ObjectGraphicsItemEditDialog.h"
 
-ObjectGraphicsItemEditDialog::ObjectGraphicsItemEditDialog(QString objectName, QString className)
-: objectName{objectName}, className{className}
+/**
+ * Sets all widgets and layout and fill data.
+ *
+ * @param objectName current name of object
+ * @param className current name of class
+ * @param classDiagram source class diagram
+ */
+ObjectGraphicsItemEditDialog::ObjectGraphicsItemEditDialog
+    (QString objectName, QString className, ClassDiagram *classDiagram)
+    : classDiagram{classDiagram}
 {
     setWindowTitle("Edit onbject");
     setAllButtons();
     setAllLayouts();
     connectComponents();
+
+    classNameCombo.setCurrentText(className);
+    objectNameLineEdit.setText(objectName);
 }
 
 
@@ -25,9 +36,6 @@ void ObjectGraphicsItemEditDialog::connectComponents()
     connect(&acceptButton, &QPushButton::pressed, this, &ObjectGraphicsItemEditDialog::acceptButtonPressed);
     connect(&cancelButton, &QPushButton::pressed, this, &ObjectGraphicsItemEditDialog::cancelButtonPressed);
     connect(&removeButton, &QPushButton::pressed, this, &ObjectGraphicsItemEditDialog::removeButtonPressed);
-
-    connect(&objectNameLineEdit, &QLineEdit::textChanged, this, &ObjectGraphicsItemEditDialog::objectNameChanged);
-    connect(&classNameCombo, &QComboBox::currentTextChanged, this, &ObjectGraphicsItemEditDialog::newClassSelected);
 }
 
 /**
@@ -67,30 +75,10 @@ void ObjectGraphicsItemEditDialog::setButtonLayout()
  */
 void ObjectGraphicsItemEditDialog::setPropertyLayout()
 {
-    objectNameLineEdit.setText(objectName);
     propertyLayout.addRow("Object name", &objectNameLineEdit);
-    classNameCombo.addItem("Class 1");
-    classNameCombo.addItem("Class 2");
-    classNameCombo.addItem("Class 3");
+    std::vector<Class*> classes = classDiagram->getClasses();
+    for(Class *classItem : classes)
+        classNameCombo.addItem(QString::fromStdString(classItem->getName()));
+
     propertyLayout.addRow("Class name", &classNameCombo);
-}
-
-/**
- * Slot handles when name of object is changed - rewrite currentName.
- *
- * @param newName new name of object.
- */
-void ObjectGraphicsItemEditDialog::objectNameChanged(QString newName)
-{
-    objectName = newName;
-}
-
-/**
- * Slot handles when a new text in combobox is selected
- *
- * @param newText new selected text
- */
-void ObjectGraphicsItemEditDialog::newClassSelected(QString newText)
-{
-    className = newText;
 }

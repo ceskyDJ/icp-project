@@ -14,22 +14,59 @@
 #include <QPen>
 #include "ActivationGraphicsObjectBase.h"
 #include <QPainterPath>
+#include "ClassDiagram.h"
 
 class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
-    Object *object;
-    ObjectGraphicsItem(Object *newObject);
+    ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram);
     qreal width() const;
     QRectF lifeBoxRect();
     qreal getStartOfLifeBox();
     qreal getLifeLength();
+    void showEditDialog(bool logChange);
+
+    /**
+     * Getter for object property
+     *
+     * @return object in this
+     */
+    Object *getObject()
+    {
+        return object;
+    }
+
+    /**
+     * Getter for object.
+     *
+     * @return new object
+     */
+    MessageNode* getMessageNode()
+    {
+        return object;
+    }
+
+    /**
+     * Getter for class referrence object.
+     *
+     * @return object class reference.
+     */
+    virtual ClassReference getClassReference()
+    {
+        return object->getInstanceClass();
+    }
+    MessageLine *getDestroyMessage();
+    MessageLine *getCreateMessage();
 protected:
+    /**
+     * Data source for combobox item.
+     */
+    ClassDiagram *classDiagram;
     /**
      * Padding int object header |[padding]<NAME>[Padding]|
      */
     qreal textPadding = 10.0;
-
+    Object *object;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -41,7 +78,6 @@ protected:
     void setLifeStart(qreal lifeStart);
     void setLifeEndDestroy(qreal lifeEnd);
     void setDestroyed(bool destroyed);
-    MessageLine *getDestroyMessage();
 };
 
 #endif // OBJECTGRAPHICSITEM_H

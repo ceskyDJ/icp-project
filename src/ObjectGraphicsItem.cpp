@@ -13,6 +13,7 @@
 #include <QtDebug>
 #include "ObjectGraphicsItemEditDialog.h"
 #include "DestroyMessageLine.h"
+#include "CreateMessageLine.h"
 
 /**
  * Initializes new graphics object in sequence diagram if height is negative, keeps it value
@@ -20,12 +21,14 @@
  * @param newObject object which is going to be used as new object (it keeps pointer destination)
  * @param height Total height of object.
  */
-ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject)
+ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram)
+    : classDiagram{classDiagram}
 {
     object = newObject;
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
     setAcceptHoverEvents(true);
     destroyed = false;
+    incObjectCounter();
 }
 
 /**
@@ -41,7 +44,10 @@ void ObjectGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
     if(option->state & QStyle::State_Selected)
         penToUse = selectedPen;
     else
+    {
         penToUse = regularPen;
+        penToUse.setColor(drawColor);
+    }
 
     painter->setPen(penToUse);
     qreal textWidth = width();
@@ -51,7 +57,7 @@ void ObjectGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
     if(!object->getInstanceClass().isValid())
         painter->setPen(unknownObject);
     painter->drawText(0,0, textWidth, headerHeight, Qt::AlignCenter,
-                      QString::fromStdString(":" + object->getInstanceClass().getReferredClassName() + "\n" + object->getName()));
+        QString::fromStdString(":" + object->getInstanceClass().getReferredClassName() + "\n" + object->getName()));
     if(!object->getInstanceClass().isValid())
         painter->setPen(penToUse);
 
@@ -115,6 +121,7 @@ void ObjectGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     {
         this->setCursor(Qt::ClosedHandCursor);
     }
+    emitter.emitPressedSignal();
 }
 
 /**
@@ -214,23 +221,29 @@ void ObjectGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 }
 
 /**
- * If cursor is in header area and double clicked, the dialog for edit object name and class will be shown
- * and handled.
+ * Dialog for edit object name and class will be shown and handled.
  */
 void ObjectGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
 {
+   showEditDialog(true);
+}
+
+/**
+ * Dialog for edit object name and class will be shown and handled.
+ */
+void ObjectGraphicsItem::showEditDialog(bool logChange)
+{
     ObjectGraphicsItemEditDialog dialog{QString::fromStdString(object->getName()),
-                QString::fromStdString(object->getInstanceClass().getReferredClassName())};
+        QString::fromStdString(object->getInstanceClass().getReferredClassName()), classDiagram};
     int result = dialog.exec();
     if(result == QDialog::Accepted)
     {
         object->setName(dialog.getObjectName().toStdString());
-        //TODO set class reference
+        object->setInstanceClass(dialog.getClassRef());
         update();
     }
     else if (result == ObjectGraphicsItemEditDialog::remove)
-        delete this;
-
+        emitter.emitRemoveObjectSignal(logChange);
 }
 
 /**
@@ -271,9 +284,16 @@ void ObjectGraphicsItem::moveAllMessages(qreal dy)
  */
 void ObjectGraphicsItem::setLifeStart(qreal lifeStart)
 {
-    object->setLifeStart(lifeStart);
-    if(object->getLifeStart() + object->getLifeLength() > 1)
-        object->setLifeLength(1 - object->getLifeStart());
+    qreal lifeEnd = object->getLifeStart() + object->getLifeLength();
+    if(lifeStart < lifeEnd)
+    {
+        object->setLifeStart(lifeStart);
+        //if object is too heigt, then it gets smaller
+        if(lifeEnd > 1)
+            object->setLifeLength(1 - object->getLifeStart());
+        else
+            setLifeEndDestroy(lifeEnd);
+    }
 }
 
 /**
@@ -298,7 +318,23 @@ MessageLine * ObjectGraphicsItem::getDestroyMessage()
     for(MessageLine *msg:messages)
     {
         DestroyMessageLine *temp = dynamic_cast<DestroyMessageLine *>(msg);
-        if(temp)
+        if(temp && temp->getToObject() == this)
+            return temp;
+    }
+    return nullptr;
+}
+
+/**
+ * Iterate throught messages and if find create message, return it.
+ *
+ * @return CreateMessage Create message if found, else return nullptr.
+ */
+MessageLine * ObjectGraphicsItem::getCreateMessage()
+{
+    for(MessageLine *msg:messages)
+    {
+        CreateMessageLine *temp = dynamic_cast<CreateMessageLine *>(msg);
+        if(temp && temp->getToObject() == this)
             return temp;
     }
     return nullptr;

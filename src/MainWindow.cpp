@@ -14,6 +14,11 @@
 #include "ClassNodeEmitter.h"
 #include "ClassDiagramScene.h"
 #include "SequenceDiagramScene.h"
+#include "SyncMessageLine.h"
+#include "AsyncMessageLine.h"
+#include "CreateMessageLine.h"
+#include "DestroyMessageLine.h"
+#include "ReplyMessageLine.h"
 
 /**
  * Class constructor
@@ -59,6 +64,8 @@ void MainWindow::initializeComponents()
     tabBar = new QToolBar{};
     toolBox = new QToolBox{};
     sceneView = new QGraphicsView{};
+    classToolboxItems =  new QGroupBox;
+    sequenceToolboxItems = new QGroupBox;
 
     // Class diagram tool items
     aggregationToolItem = new QToolButton;
@@ -69,6 +76,16 @@ void MainWindow::initializeComponents()
     directedAssociationToolItem = new QToolButton;
     classShapeToolItem = new QToolButton;
     removeSelectedToolItem = new QToolButton;
+
+    // Sequence diagram tool items
+    syncMessageToolItem = new QToolButton;
+    asyncMessageToolItem = new QToolButton;
+    createMessageToolItem = new QToolButton;
+    destroyMessageToolItem = new QToolButton;
+    replyMessageToolItem = new QToolButton;
+    removeSequenceToolItem = new QToolButton;
+    actorToolItem = new QToolButton;
+    objectToolItem = new QToolButton;
 
     // Drawing scene
     auto sceneData = createScene(SceneType::ClassDiagram, "", false);
@@ -146,9 +163,9 @@ void MainWindow::setToolBox()
 {
     toolBox->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Ignored));
     toolBox->setMinimumWidth(minToolboxWidth);
-    auto toolboxItems = new QGroupBox;
-    auto toolboxLayout = new QGridLayout;
+    auto classToolboxLayout = new QGridLayout;
 
+    //creating widgets with text and icon initializations for class diagram
     QWidget *aggregationLineWidget = prepareToolItem(QIcon{":/agLine.png"}, "Aggregation", aggregationToolItem);
     QWidget *fellowshipLineWidget = prepareToolItem(QIcon{":/coLine.png"}, "Composition", compositionToolItem);
     QWidget *compositionLineWidget = prepareToolItem(QIcon{":/feLine.png"}, "Association", associationToolItem);
@@ -159,18 +176,64 @@ void MainWindow::setToolBox()
     QWidget *classShapeWidget = prepareToolItem(QIcon{":/classShape.png"}, "Class node", classShapeToolItem);
     QWidget *removeSelectedWidget = prepareToolItem(QIcon{":/closeCross.png"}, "Remove selected", removeSelectedToolItem);
 
-    toolboxLayout->addWidget(aggregationLineWidget, 0, 0);
-    toolboxLayout->addWidget(fellowshipLineWidget, 1, 0);
-    toolboxLayout->addWidget(compositionLineWidget, 0, 1);
-    toolboxLayout->addWidget(generalisationLineWidget, 1, 1);
-    toolboxLayout->addWidget(realizationLineWidget, 2, 0);
-    toolboxLayout->addWidget(directedLineWidget, 2, 1);
-    toolboxLayout->addWidget(classShapeWidget, 3, 0);
-    toolboxLayout->addWidget(removeSelectedWidget, 3, 1);
+    //adding items for class diagram to toolbox layout
+    classToolboxLayout->addWidget(aggregationLineWidget, 0, 0);
+    classToolboxLayout->addWidget(fellowshipLineWidget, 1, 0);
+    classToolboxLayout->addWidget(compositionLineWidget, 0, 1);
+    classToolboxLayout->addWidget(generalisationLineWidget, 1, 1);
+    classToolboxLayout->addWidget(realizationLineWidget, 2, 0);
+    classToolboxLayout->addWidget(directedLineWidget, 2, 1);
+    classToolboxLayout->addWidget(classShapeWidget, 3, 0);
+    classToolboxLayout->addWidget(removeSelectedWidget, 3, 1);
 
-    toolboxItems->setLayout(toolboxLayout);
-    toolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
-    toolBox->addItem(toolboxItems, "Class diagram elements");
+    //set policy of classToolbox item
+    classToolboxItems->setLayout(classToolboxLayout);
+    classToolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
+
+    //creating widgets (icon + text) for sequence diagram
+    QGridLayout *sequenceLayout = new QGridLayout;
+    QWidget *syncMessageWidget = prepareToolItem(QIcon{":/syncMsg.png"}, "Sync. message", syncMessageToolItem);
+    QWidget *asyncMessageWidget = prepareToolItem(QIcon{":/asyncMsg.png"}, "Async. message",asyncMessageToolItem);
+    QWidget *createMessageWidget = prepareToolItem(QIcon{":/createMsg.png"}, "Create message",createMessageToolItem);
+    QWidget *destroyMessageWidget = prepareToolItem(QIcon{":/destroyMsg.png"}, "Destroy message",destroyMessageToolItem);
+    QWidget *replyMessageWidget = prepareToolItem(QIcon{":/replyMsg.png"}, "Reply", replyMessageToolItem);
+    QWidget *actorWidget = prepareToolItem(QIcon{":/actor.png"}, "Actor", actorToolItem);
+    QWidget *objectWidget = prepareToolItem(QIcon{":/object.png"}, "Object", objectToolItem);
+    QWidget *removeSequenceWidget = prepareToolItem(QIcon{":/closeCross.png"}, "Remove selected", removeSequenceToolItem);
+
+    //add sequence tool items for sequence diagram
+    sequenceLayout->addWidget(syncMessageWidget, 0, 0);
+    sequenceLayout->addWidget(asyncMessageWidget, 0, 1);
+    sequenceLayout->addWidget(createMessageWidget, 1, 0);
+    sequenceLayout->addWidget(destroyMessageWidget, 1, 1);
+    sequenceLayout->addWidget(replyMessageWidget, 2, 0);
+    sequenceLayout->addWidget(actorWidget, 2, 1);
+    sequenceLayout->addWidget(objectWidget, 3, 0);
+    sequenceLayout->addWidget(removeSequenceWidget, 3, 1);
+
+    //set policy for sequence tool items
+    sequenceToolboxItems->setLayout(sequenceLayout);
+    sequenceToolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
+}
+
+/**
+ * Set tool items to class tools.
+ */
+void MainWindow::setClassDiagramToolbox()
+{
+    if(toolBox->count() > 0)
+        toolBox->removeItem(0);
+    toolBox->addItem(classToolboxItems, "Class diagram elements");
+}
+
+/**
+ * Set tool items to sequence tools.
+ */
+void MainWindow::setSequenceDiagramToolbox()
+{
+    if(toolBox->count() > 0)
+        toolBox->removeItem(0);
+    toolBox->addItem(sequenceToolboxItems, "Sequence diagram elements");
 }
 
 /**
@@ -187,6 +250,16 @@ void MainWindow::connectComponents()
     connect(generalisationToolItem, &QToolButton::pressed, this, &MainWindow::generalisationSelected);
     connect(directedAssociationToolItem, &QToolButton::pressed, this, &MainWindow::directedAssociationSelected);
     connect(realizationToolItem, &QToolButton::pressed, this, &MainWindow::realizationSelected);
+
+    //sequence diagrams
+    connect(actorToolItem,  &QToolButton::pressed, this, &MainWindow::addActorSelected);
+    connect(objectToolItem,  &QToolButton::pressed, this, &MainWindow::addObjectSelected);
+    connect(removeSequenceToolItem,  &QToolButton::pressed, this, &MainWindow::removeObjectSelected);
+    connect(syncMessageToolItem,  &QToolButton::pressed, this, &MainWindow::syncMessageSelected);
+    connect(asyncMessageToolItem,  &QToolButton::pressed, this, &MainWindow::asyncMessageSelected);
+    connect(createMessageToolItem,  &QToolButton::pressed, this, &MainWindow::createMessageSelected);
+    connect(destroyMessageToolItem,  &QToolButton::pressed, this, &MainWindow::destroyMessageSelected);
+    connect(replyMessageToolItem,  &QToolButton::pressed, this, &MainWindow::replyMessageSelected);
 }
 
 /**
@@ -260,6 +333,11 @@ void MainWindow::setActiveTab(TabWidget *tab)
 
     currentTab = tab;
 
+    if(typeid(*(tab->getScene())) == typeid(ClassDiagramScene))
+        setClassDiagramToolbox();
+    else
+        setSequenceDiagramToolbox();
+
     updateTab(tab);
 }
 
@@ -320,7 +398,7 @@ bool MainWindow::isFileUsedBySomeScene(QString &fileName)
     return false;
 }
 
-// Slots ========================================================================================================= Slots
+// Slots ═════════════════════════════════════════════════════════════════════════════════════════════════════════ Slots
 // Tool box items' actions --------------------------------------------------------------------- Tool box items' actions
 /**
  * Slot for handling click on button for adding new class node
@@ -424,6 +502,110 @@ void MainWindow::realizationSelected()
 
     auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
     classDiagramScene->prepareRealization();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Create new actor.
+ */
+void MainWindow::addActorSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->addActor();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Create new object.
+ */
+void MainWindow::addObjectSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->addObject();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Remove selected actor/object
+ */
+void MainWindow::removeObjectSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->removeObjectPressed();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with synchronous message.
+ */
+void MainWindow::syncMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new SyncMessageLine, MessageType::SYNC);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with asynchronous message.
+ */
+void MainWindow::asyncMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new AsyncMessageLine, MessageType::ASYNC);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with reply message.
+ */
+void MainWindow::createMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new CreateMessageLine, MessageType::CREATE);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with create message.
+ */
+void MainWindow::destroyMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new DestroyMessageLine, MessageType::DESTROY);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with destroy message.
+ */
+void MainWindow::replyMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new ReplyMessageLine, MessageType::REPLY);
 }
 
 // Top toolbar buttons' actions ----------------------------------------------------------- Top toolbar buttons' actions

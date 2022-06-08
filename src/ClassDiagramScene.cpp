@@ -34,6 +34,7 @@ ClassDiagramScene::ClassDiagramScene(
 {
     newLine = nullptr;
     currentState = state::none;
+    connect(this, &ClassDiagramScene::selectionChanged, this, &ClassDiagramScene::selectionEdit);
 }
 
 // States checks and modifiers ------------------------------------------------------------- States checks and modifiers
@@ -157,9 +158,8 @@ void ClassDiagramScene::addClassNode()
  */
 void ClassDiagramScene::removeSelectedNodes()
 {
-    QList<QGraphicsItem *> selectedClassNodes = selectedItems();
-    if(!selectedClassNodes.empty()) {
-        removeMultipleClassNodes(selectedClassNodes);
+    if(!sortedSelectionList.empty()) {
+        removeMultipleClassNodes(sortedSelectionList);
     } else {
         setAllNodesColor(Qt::red);
         currentState = state::nodeRemoving;
@@ -310,7 +310,7 @@ void ClassDiagramScene::createNewLine(Line *line)
 {
     delete newLine;
 
-    QList<QGraphicsItem *> items = selectedItems();
+    QList<QGraphicsItem *> items = sortedSelectionList;
     if(items.count() == 2) {
         newLine = line;
         firstToSelect = dynamic_cast<ClassNode*>(items[0]);
@@ -525,4 +525,25 @@ void ClassDiagramScene::nodePressed(ClassNode *selectedOne)
         setupLineHandle(selectedOne);
     else if (currentState == state::nodeRemoving)
         removeHandle(selectedOne);
+}
+
+/**
+ * Edit my selected items
+ */
+void ClassDiagramScene::selectionEdit()
+{
+    //adding new selected items
+    QList<QGraphicsItem*> selected = selectedItems();
+    for (QGraphicsItem * item: selected)
+    {
+        if(!sortedSelectionList.contains(item))
+            sortedSelectionList.push_back(item);
+    }
+
+    //removing new unselected items
+    for (int i = 0; i < sortedSelectionList.size(); i++)
+    {
+        if(!selected.contains(sortedSelectionList[i]))
+            sortedSelectionList.removeAt(i);
+    }
 }

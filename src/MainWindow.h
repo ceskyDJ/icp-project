@@ -130,7 +130,7 @@ private:
      */
     QGraphicsView *sceneView;
     /**
-     * TODO: add doc comment
+     * Main widget where everything is located.
      */
     QWidget *centerWidget;
     /**
@@ -175,7 +175,46 @@ private:
      * Button for removing class nodes
      */
     QToolButton *removeSelectedToolItem;
-
+    /**
+     * Button for synchronous message used in creating process.
+     */
+    QToolButton *syncMessageToolItem;
+    /**
+     * Button for asynchronous message used in creating process.
+     */
+    QToolButton *asyncMessageToolItem;
+    /**
+     * Button for creation message used in creating process.
+     */
+    QToolButton *createMessageToolItem;
+    /**
+     * Button for destroy message used in creating process.
+     */
+    QToolButton *destroyMessageToolItem;
+    /**
+     * Button for reply message used in creating process.
+     */
+    QToolButton *replyMessageToolItem;
+    /**
+     * Button for removing object i sequence diagram.
+     */
+    QToolButton *removeSequenceToolItem;
+    /**
+     * Button for creating new actor.
+     */
+    QToolButton *actorToolItem;
+    /**
+     * Button for creating new object in sequence diagram.
+     */
+    QToolButton *objectToolItem;
+    /**
+     * Groupbox with all class diagram items.
+     */
+    QGroupBox *classToolboxItems;
+    /**
+     * Groupbox with all sequence diagram items.
+     */
+    QGroupBox *sequenceToolboxItems;
     // Setup
     /**
      * Initializes components - creates a new instances of primary attributes.
@@ -201,6 +240,14 @@ private:
      * Places all demanded Widgets into a toolbar.
      */
     void setToolBox();
+    /**
+     * Set tool items to class tools.
+     */
+    void setClassDiagramToolbox();
+    /**
+     * Set tool items to sequence tools.
+     */
+    void setSequenceDiagramToolbox();
     /**
      * Connects all signals and slots
      */
@@ -323,6 +370,38 @@ private slots:
      * Slot for handling click action on some close tab button
      */
     void closeTab();
+    /**
+     * Slot for handling press action on actorToolItem. Create new actor.
+     */
+    void addActorSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Create new object.
+     */
+    void addObjectSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Remove selected actor/object
+     */
+    void removeObjectSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with synchronous message.
+     */
+    void syncMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with asynchronous message.
+     */
+    void asyncMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with reply message.
+     */
+    void createMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with create message.
+     */
+    void destroyMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with destroy message.
+     */
+    void replyMessageSelected();
 };
 
 #endif // CLASS_DIAGRAM_WINDOW_H

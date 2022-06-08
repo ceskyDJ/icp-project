@@ -20,7 +20,26 @@
 class MessageLineEditDialog : public EditDialogBase
 {
 public:
-    MessageLineEditDialog(bool showPropertyLayout);
+    MessageLineEditDialog(bool showPropertyLayout, ClassReference classRef, MethodReference methodRef);
+
+    /**
+     * Getter for new method reference.
+     *
+     * @return new method reference
+     */
+    MethodReference getMethodReference()
+    {
+        std::vector<ClassMethod> allMethods = classRef->getMethods();
+        allMethods = classRef->getMethods();
+
+        for (int i = 0; (size_t)i < allMethods.size(); i++)
+        {
+            if(allMethods[i].getName() == methodCombobox.currentText().toStdString())
+                return MethodReference{&(classRef->getMethods()[i])};
+
+        }
+        return MethodReference{methodCombobox.currentText().toStdString()};
+    }
 protected:
     bool showPropertyLayout;
     QComboBox methodCombobox;
@@ -31,16 +50,14 @@ protected:
     QVBoxLayout mainLayout;
     QHBoxLayout buttonLayout;
     QFormLayout proprtyLayout;
-
+    ClassReference classRef;
 
     void fillComboBoxData();
     void setAllButtons();
     void setAllLayouts();
     void setPropertyLayout();
     void setButtonLayout();
-    void connectComponents();
-protected slots:
-    void methodComboboxChanged(QString newText);
+    void connectComponents();   
 };
 
 #endif // MESSAGELINEEDITDIALOG_H

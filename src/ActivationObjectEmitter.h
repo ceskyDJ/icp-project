@@ -1,0 +1,40 @@
+/**
+ * @class ActivationObjectEmitter
+ * Helpful class to provide slots and signals to ActivationGraphicsObjectBase items.
+ *
+ * ICP project (Class and sequence diagram editor)
+ *
+ * @author Jakub Dvořák (xdvora3q)
+ */
+#ifndef ACTIVATIONOBJECTEMITTER_H
+#define ACTIVATIONOBJECTEMITTER_H
+
+#include <QObject>
+
+class ActivationGraphicsObjectBase;
+
+class ActivationObjectEmitter : public QObject
+{
+    Q_OBJECT
+public:
+    explicit ActivationObjectEmitter(QObject *parent = nullptr,
+                                     ActivationGraphicsObjectBase *activationObject = nullptr);
+    /**
+     * Emits a signal objectPressed.
+     */
+    void emitPressedSignal();
+    /**
+     * Emits a signal removeObject
+     *
+     * @param logChange True - change will be loged, false = change will NOT be logged
+     */
+    void emitRemoveObjectSignal(bool logChange);
+private:
+    ActivationGraphicsObjectBase *activationObject;
+
+signals:
+    void objectPressed(ActivationGraphicsObjectBase *activationObject);
+    void removeObject(ActivationGraphicsObjectBase *activationObject, bool logChange);
+};
+
+#endif // ACTIVATIONOBJECTEMITTER_H

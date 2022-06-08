@@ -15,8 +15,8 @@ class ReplyMessageLine : public MessageLine
 {
 public:
     ReplyMessageLine();
-    void initialize(ActivationGraphicsObjectBase *from,
-                                 ActivationGraphicsObjectBase *to, Message *msg);
+    void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                    Message *msg, ClassReference classRef);
 };
 
 #endif // REPLYMESSAGELINE_H

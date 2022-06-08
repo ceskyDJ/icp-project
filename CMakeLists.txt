@@ -26,20 +26,33 @@ set(CMAKE_AUTORCC ON)
 
 add_executable(icp_project
         # Header files
+        src/ActivationGraphicsObjectBase.h
+        src/ActivationObjectEmitter.h
+        src/ActorGraphicsItem.h
+        src/ActorGraphicsItemEditDialog.h
         src/AgregationLine.h
         src/AssociationLine.h
         src/AssociationLineEditDialog.h
+        src/AsyncMessageLine.h
         src/ClassDiagram.h
         src/ClassNodeEmitter.h
         src/ClassDiagramScene.h
         src/CustomScene.h
+        src/CreateMessageLine.h
+        src/DestroyMessageLine.h
         src/DirectedAssociationLine.h
         src/DirectedAssociationLineEditDialog.h
+        src/EditDialogBase.h
         src/Line.h
         src/LineWithArrow.h
         src/LineWithArrowEditDialog.h
+        src/MessageLine.h
+        src/MessageLineEditDialog.h
         src/MethodParameterEditWidget.h
+        src/ObjectGraphicsItem.h
+        src/ObjectGraphicsItemEditDialog.h
         src/RealizationLine.h
+        src/ReplyMessageLine.h
         src/SequenceDiagram.h
         src/SequenceDiagramScene.h
         src/ClassMember.h
@@ -58,6 +71,7 @@ add_executable(icp_project
         src/MessageType.h
         src/Actor.h
         src/ClassMethodType.h
+        src/SyncMessageLine.h
         src/UndirectedAssociation.h
         src/DirectedAssociation.h
         src/MessageNode.h
@@ -91,6 +105,10 @@ add_executable(icp_project
 
         # Source files
         src/AccessModifier.cpp
+        src/ActivationGraphicsObjectBase.cpp
+        src/ActivationObjectEmitter.cpp
+        src/ActorGraphicsItem.cpp
+        src/ActorGraphicsItemEditDialog.cpp
         src/AgregationLine.cpp
         src/AssociationLine.cpp
         src/AssociationLineEditDialog.cpp
@@ -99,13 +117,21 @@ add_executable(icp_project
         src/ClassType.cpp
         src/ClassDiagramScene.cpp
         src/CustomScene.cpp
+        src/CreateMessageLine.cpp
+        src/DestroyMessageLine.cpp
         src/DirectedAssociationLine.cpp
         src/DirectedAssociationLineEditDialog.cpp
+        src/EditDialogBase.cpp
         src/LineWithArrow.cpp
         src/LineWithArrowEditDialog.cpp
+        src/MessageLine.cpp
+        src/MessageLineEditDialog.cpp
         src/MessageType.cpp
         src/ClassDiagram.cpp
+        src/ObjectGraphicsItem.cpp
+        src/ObjectGraphicsItemEditDialog.cpp
         src/RealizationLine.cpp
+        src/ReplyMessageLine.cpp
         src/SequenceDiagram.cpp
         src/SequenceDiagramScene.cpp
         src/Class.cpp
@@ -116,6 +142,7 @@ add_executable(icp_project
         src/MainWindow.cpp
         src/MethodParameterEditWidget.cpp
         src/Line.cpp
+        src/SyncMessageLine.cpp
         src/classNode.cpp
         src/ClassEditDialog.cpp
         src/AttributeEditWidget.cpp

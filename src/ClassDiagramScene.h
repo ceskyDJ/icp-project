@@ -164,6 +164,7 @@ class ClassDiagramScene: public CustomScene
      */
     ClassDiagram *getClassDiagram();
   private:
+    QList<QGraphicsItem *> sortedSelectionList;
     /**
      * Sets border color to all nodes and to nodeColor
      *
@@ -223,6 +224,10 @@ class ClassDiagramScene: public CustomScene
      * @param selectedOne Class node the mouse clicked on
      */
     void nodePressed(ClassNode *selectedOne);
+    /**
+     * When selection is changed, it will update sortedSelectionList
+     */
+    void selectionEdit();
 };
 
 #endif //ICP_PROJECT_CLASS_DIAGRAM_SCENE_H
