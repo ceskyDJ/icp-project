@@ -22,10 +22,10 @@ class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
     ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram);
-    qreal width() const;
-    QRectF lifeBoxRect();
-    qreal getStartOfLifeBox();
-    qreal getLifeLength();
+    qreal width() const override;
+    QRectF lifeBoxRect() override;
+    qreal getStartOfLifeBox() override;
+    qreal getLifeLength() override;
     void showEditDialog(bool logChange);
 
     /**
@@ -43,7 +43,7 @@ public:
      *
      * @return new object
      */
-    MessageNode* getMessageNode()
+    MessageNode* getMessageNode() override
     {
         return object;
     }
@@ -53,7 +53,7 @@ public:
      *
      * @return object class reference.
      */
-    virtual ClassReference getClassReference()
+    virtual ClassReference getClassReference() override
     {
         return object->getInstanceClass();
     }
@@ -80,15 +80,15 @@ protected:
     qreal textPadding = 10.0;
     Object *object;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
     QRectF resizeArea();
     void moveAllMessages(qreal dy);
-    void setLifeStart(qreal lifeStart);
-    void setLifeEndDestroy(qreal lifeEnd);
+    void setLifeStart(qreal lifeStart) override;
+    void setLifeEndDestroy(qreal lifeEnd) override;
     void setDestroyed(bool destroyed);
     void updateMessagesClassReference(ClassReference newClassRef);
 };

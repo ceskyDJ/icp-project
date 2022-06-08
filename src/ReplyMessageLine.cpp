@@ -8,9 +8,13 @@
 #include "ReplyMessageLine.h"
 
 /**
- * Set pens for line drawing
+ * Class constructor
+ *
+ * @par Set pens for line drawing
+ *
+ * @param sequenceDiagram Pointer to edited sequence diagram
  */
-ReplyMessageLine::ReplyMessageLine()
+ReplyMessageLine::ReplyMessageLine(SequenceDiagram *sequenceDiagram): MessageLine{sequenceDiagram}
 {
     linePenOk = QPen{Qt::black, 2, Qt::DashLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::DashLine};

@@ -15,10 +15,6 @@
 #include "ClassDiagramScene.h"
 #include "SequenceDiagramScene.h"
 #include "SyncMessageLine.h"
-#include "AsyncMessageLine.h"
-#include "CreateMessageLine.h"
-#include "DestroyMessageLine.h"
-#include "ReplyMessageLine.h"
 
 /**
  * Class constructor
@@ -554,7 +550,7 @@ void MainWindow::syncMessageSelected()
     }
 
     auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
-    sequenceDiagramScene->createNewMessageLine(new SyncMessageLine, MessageType::SYNC);
+    sequenceDiagramScene->prepareSyncMessage();
 }
 
 /**
@@ -567,7 +563,7 @@ void MainWindow::asyncMessageSelected()
     }
 
     auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
-    sequenceDiagramScene->createNewMessageLine(new AsyncMessageLine, MessageType::ASYNC);
+    sequenceDiagramScene->prepareAsyncMessage();
 }
 
 /**
@@ -580,7 +576,7 @@ void MainWindow::createMessageSelected()
     }
 
     auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
-    sequenceDiagramScene->createNewMessageLine(new CreateMessageLine, MessageType::CREATE);
+    sequenceDiagramScene->prepareCreateMessage();
 }
 
 /**
@@ -593,7 +589,7 @@ void MainWindow::destroyMessageSelected()
     }
 
     auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
-    sequenceDiagramScene->createNewMessageLine(new DestroyMessageLine, MessageType::DESTROY);
+    sequenceDiagramScene->prepareDestroyMessage();
 }
 
 /**
@@ -606,7 +602,7 @@ void MainWindow::replyMessageSelected()
     }
 
     auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
-    sequenceDiagramScene->createNewMessageLine(new ReplyMessageLine, MessageType::REPLY);
+    sequenceDiagramScene->prepareReplyMessage();
 }
 
 // Top toolbar buttons' actions ----------------------------------------------------------- Top toolbar buttons' actions

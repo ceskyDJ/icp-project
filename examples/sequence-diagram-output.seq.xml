@@ -8,19 +8,19 @@
     </objects>
     <messages>
         <message sending-time="0.2" name="&lt;&lt;create>>" type="CREATE">
-            <newSender type="ACTOR">User</newSender>
+            <sender type="ACTOR">User</sender>
             <recipient type="OBJECT">someSamsung</recipient>
         </message>
         <message sending-time="0.1" name="&lt;&lt;create>>" type="CREATE">
-            <newSender type="ACTOR">User</newSender>
+            <sender type="ACTOR">User</sender>
             <recipient type="OBJECT">someXiaomi</recipient>
         </message>
         <message sending-time="0.4" name="isValuable()" type="SYNC">
-            <newSender type="ACTOR">User</newSender>
+            <sender type="ACTOR">User</sender>
             <recipient type="OBJECT">someSamsung</recipient>
         </message>
         <message sending-time="0.4" name="&lt;&lt;destroy>>" type="DESTROY">
-            <newSender type="ACTOR">User</newSender>
+            <sender type="ACTOR">User</sender>
             <recipient type="OBJECT">someXiaomi</recipient>
         </message>
     </messages>

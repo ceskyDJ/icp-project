@@ -16,7 +16,13 @@
 class CreateMessageLine : public MessageLine
 {
 public:
-    CreateMessageLine();
+    /**
+     * Class constructor
+     *
+     * @param sequenceDiagram Pointer to edited sequence diagram
+     */
+    explicit CreateMessageLine(SequenceDiagram *sequenceDiagram);
+
     void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
                     Message *msg, ClassReference classRef);
 };

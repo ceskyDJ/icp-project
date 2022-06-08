@@ -16,7 +16,12 @@
 class DestroyMessageLine : public MessageLine
 {
 public:
-    DestroyMessageLine();
+    /**
+     * Class constructor
+     *
+     * @param sequenceDiagram Pointer to edited sequence diagram
+     */
+    explicit DestroyMessageLine(SequenceDiagram *sequenceDiagram);
     void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
                     Message *msg, ClassReference classRef);
 };

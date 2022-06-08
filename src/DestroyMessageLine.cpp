@@ -7,7 +7,12 @@
  */
 #include "DestroyMessageLine.h"
 
-DestroyMessageLine::DestroyMessageLine()
+/**
+ * Class constructor
+ *
+ * @param sequenceDiagram Pointer to edited sequence diagram
+ */
+DestroyMessageLine::DestroyMessageLine(SequenceDiagram *sequenceDiagram): MessageLine{sequenceDiagram}
 {
     linePenOk = QPen{Qt::black, 2, Qt::DashLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::DashLine};

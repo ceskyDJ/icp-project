@@ -7,7 +7,12 @@
  */
 #include "CreateMessageLine.h"
 
-CreateMessageLine::CreateMessageLine()
+/**
+ * Class constructor
+ *
+ * @param sequenceDiagram Pointer to edited sequence diagram
+ */
+CreateMessageLine::CreateMessageLine(SequenceDiagram *sequenceDiagram): MessageLine{sequenceDiagram}
 {
     linePenOk = QPen{Qt::black, 2, Qt::DashLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::DashLine};

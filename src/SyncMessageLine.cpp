@@ -9,9 +9,13 @@
 #include <QPainterPath>
 
 /**
- * Sets arrow height and width.
+ * Class constructor
+ *
+ * @par Sets arrow height and width.
+ *
+ * @param sequenceDiagram Pointer to edited sequence diagram
  */
-SyncMessageLine::SyncMessageLine()
+SyncMessageLine::SyncMessageLine(SequenceDiagram *sequenceDiagram): MessageLine{sequenceDiagram}
 {
     arrowHeight = 10;
     arrowWidth = 20;

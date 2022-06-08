@@ -102,8 +102,7 @@ class SequenceDiagram
      * Finds actor by its name
      *
      * @param name Name of the actor to search for
-     * @return Pointer to found actor
-     * @throw std::invalid_argument Actor doesn't exist in sequence diagram
+     * @return Pointer to found actor or nullptr when actor with given name isn't in the sequence diagram
      */
     Actor *findActorByName(const std::string &name);
 
@@ -111,8 +110,7 @@ class SequenceDiagram
      * Finds actor by its name
      *
      * @param name Name of the actor to search for
-     * @return Pointer to found actor
-     * @throw std::invalid_argument Actor doesn't exist in sequence diagram
+     * @return Pointer to found actor or nullptr when actor with given name isn't in the sequence diagram
      */
     Actor *findActorByName(const std::string &&name)
     {
@@ -171,8 +169,7 @@ class SequenceDiagram
      * Finds object by its name
      *
      * @param name Name of the object to search for
-     * @return Pointer to found object
-     * @throw std::invalid_argument Object doesn't exist in sequence diagram
+     * @return Pointer to found object or nullptr when object with given name isn't in the sequence diagram
      */
     Object *findObjectByName(const std::string &name);
 
@@ -180,8 +177,7 @@ class SequenceDiagram
      * Finds object by its name
      *
      * @param name Name of the object to search for
-     * @return Pointer to found object
-     * @throw std::invalid_argument Object doesn't exist in sequence diagram
+     * @return Pointer to found object or nullptr when object with given name isn't in the sequence diagram
      */
     Object *findObjectByName(const std::string &&name)
     {

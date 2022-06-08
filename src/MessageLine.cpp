@@ -15,9 +15,15 @@
 #include <QMessageBox>
 
 /**
- * Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
+ * Class constructor
+ *
+ * @par Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
+ *
+ * @param sequenceDiagram Pointer to edited sequence diagram
  */
-MessageLine::MessageLine() : classRef{ClassReference{""}}
+MessageLine::MessageLine(
+    SequenceDiagram *sequenceDiagram
+): sequenceDiagram{sequenceDiagram}, classRef{ClassReference{""}}, message{nullptr}
 {
     linePenOk = QPen{Qt::black, 2, Qt::SolidLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::SolidLine};
@@ -38,14 +44,19 @@ MessageLine::MessageLine() : classRef{ClassReference{""}}
  */
 MessageLine::~MessageLine()
 {
-    if(fromObject != nullptr)
-    {
+    if (fromObject != nullptr) {
         fromObject->removeMesage(this);
-        if(destroyFlag)
+        if (destroyFlag) {
             toObject->setDestroyed(false);
+        }
     }
-    if(toObject != nullptr)
+
+    if (toObject != nullptr) {
         toObject->removeMesage(this);
+    }
+
+    // Remove message from sequence diagram
+    sequenceDiagram->removeMessage(message);
 }
 
 /**
@@ -54,14 +65,14 @@ MessageLine::~MessageLine()
  * @return QString - error message. If ok, return empty string, else return error message.
  */
 void MessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
-                             Message *newMessage, ClassReference classRef)
+                             Message *newMessage, ClassReference &classReference)
 {
     fromObject = from;
     toObject = to;
     fromObject->addMessage(this);
     toObject->addMessage(this);
     message = newMessage;
-    this->classRef = classRef;
+    this->classRef = classReference;
 }
 
 /**
@@ -351,16 +362,16 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
  * Validates method reference with class reference. If method does not belong to class, return "fake" method reference.
  * Else, returns right reference.
  *
- * @param classRef reference to class
+ * @param classReference reference to class
  * @param methodRef reference to method
  * @return Right method reference - true reference from fight class or "fake" reference
  */
-MethodReference MessageLine::validateNewReference(ClassReference classRef, MethodReference methodRef)
+MethodReference MessageLine::validateNewReference(ClassReference classReference, MethodReference methodRef)
 {
-    for (int i = 0; (size_t)i < classRef->getMethods().size(); i++)
+    for (int i = 0; (size_t)i < classReference->getMethods().size(); i++)
     {
-        if(classRef->getMethods()[i].getName() == methodRef.getReferredMethodName())
-            return MethodReference{&(classRef->getMethods()[i])};
+        if(classReference->getMethods()[i].getName() == methodRef.getReferredMethodName())
+            return MethodReference{&(classReference->getMethods()[i])};
 
     }
     return MethodReference{methodRef.getReferredMethodName()};

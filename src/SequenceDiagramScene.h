@@ -133,6 +133,45 @@ class SequenceDiagramScene: public CustomScene
      */
     void addObject();
     /**
+     * Removes selected item or changes its current state.
+     */
+    void removeSelected();
+    /**
+     * Prepares sync message for adding (after selecting nodes)
+     */
+    void prepareSyncMessage();
+    /**
+     * Prepares async message for adding (after selecting nodes)
+     */
+    void prepareAsyncMessage();
+    /**
+     * Prepares create message for adding (after selecting nodes)
+     */
+    void prepareCreateMessage();
+    /**
+     * Prepares destroy message for adding (after selecting nodes)
+     */
+    void prepareDestroyMessage();
+    /**
+     * Prepares reply message for adding (after selecting nodes)
+     */
+    void prepareReplyMessage();
+
+    // Public static methods
+    /**
+     * Checks if it is possible to create new message. If error occures, store message into errorMsg.
+     *
+     * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
+     * @param receiver newReceiver object
+     * @param messageType type of message
+     * @return true if everything is ok.
+     * @return false if creation is NOT possible.
+     */
+    static bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *receiver,
+                                      ActivationGraphicsObjectBase *sender, MessageType messageType);
+
+  private:
+    /**
      * Creates new message line and store it into variable newMessageLine. Also store MessageType intp newMessageType.
      *
      * @param messageLine new line
@@ -140,12 +179,6 @@ class SequenceDiagramScene: public CustomScene
      */
     void createNewMessageLine(MessageLine *line, MessageType type);
 
-    /**
-     * Removes selected item or changes its current state.
-     */
-    void removeSelected();
-
-  private:
     /**
      * Removes single class node
      *
@@ -182,17 +215,16 @@ class SequenceDiagramScene: public CustomScene
     * @param invokedBy Node that was pressed on.
     */
    void selectLinesHandle(ActivationGraphicsObjectBase *invokedBy);
-   /**
-    * Checks if it is possible to create new message. If error occures, store message into errorMsg.
-    *
-    * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
-    * @param receiver newReceiver object
-    * @param messageType type of message
-    * @return true if everything is ok.
-    * @return false if creation is NOT possible.
-    */
-   bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *receiver,
-                              ActivationGraphicsObjectBase *sender, MessageType messageType);
+    /**
+      * Automatically clears the whole scene
+      */
+    void clearScene();
+    /**
+     * Redraws scene using updated sequence diagram
+     *
+     * @warning Does not clear scene. clearScene() should be called before
+     */
+    void redrawSequenceDiagram();
 
   private slots:
     /**

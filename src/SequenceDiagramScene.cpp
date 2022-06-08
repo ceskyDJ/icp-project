@@ -11,6 +11,11 @@
 #include "ActorGraphicsItem.h"
 #include "ObjectGraphicsItem.h"
 #include "InvalidDataStorageException.h"
+#include "InvalidInputDataException.h"
+#include "AsyncMessageLine.h"
+#include "CreateMessageLine.h"
+#include "DestroyMessageLine.h"
+#include "ReplyMessageLine.h"
 #include <QMessageBox>
 
 /**
@@ -52,7 +57,27 @@ void SequenceDiagramScene::logChanges() noexcept
  */
 void SequenceDiagramScene::loadFromFile()
 {
-    // TODO: implement this method
+    try {
+        SequenceDiagram loadedDiagram = sequenceDiagramManager->loadDiagram(classDiagram, targetFile.toStdString());
+
+        // Clear canvas
+        if (!items().isEmpty()) {
+            clearScene();
+        }
+
+        // Draw new diagram
+        sequenceDiagram = loadedDiagram;
+        redrawSequenceDiagram();
+
+        sceneUpdateObservable->sceneChanged();
+
+        // Diagram has just been loaded from file
+        saved = true;
+    } catch (InvalidDataStorageException &e) {
+        QMessageBox::critical(parentWindow, "Sequence diagram opening error", e.what());
+    } catch (InvalidInputDataException &e) {
+        QMessageBox::critical(parentWindow, "Sequence diagram opening error", e.what());
+    }
 }
 
 /**
@@ -75,7 +100,15 @@ void SequenceDiagramScene::saveToFile()
  */
 void SequenceDiagramScene::undoLastChange()
 {
-    // TODO: implement this method
+    // Clear canvas
+    if (!items().isEmpty()) {
+        clearScene();
+    }
+
+    sequenceDiagramManager->undoDiagramChanges(&sequenceDiagram);
+
+    // Draw new diagram
+    redrawSequenceDiagram();
 }
 
 /**
@@ -83,7 +116,15 @@ void SequenceDiagramScene::undoLastChange()
  */
 void SequenceDiagramScene::redoRevertedChange()
 {
-    // TODO: implement this method
+    // Clear canvas
+    if (!items().isEmpty()) {
+        clearScene();
+    }
+
+    sequenceDiagramManager->redoDiagramChanges(&sequenceDiagram);
+
+    // Draw new diagram
+    redrawSequenceDiagram();
 }
 
 // Tool box items' actions --------------------------------------------------------------------- Tool box items' actions
@@ -109,15 +150,12 @@ void SequenceDiagramScene::addActor()
 void SequenceDiagramScene::addObject()
 {
     Class *referredClass = (!classDiagram->getClasses().empty()) ? classDiagram->getClasses()[0] : nullptr;
-    ClassReference *classRef;
-    if(referredClass) {
-        classRef = new ClassReference(referredClass);
-    } else {
-        classRef = new ClassReference("UNKNOWN CLASS");
+    ClassReference classRef{"UNKNOWN CLASS"};
+    if (referredClass) {
+        classRef.storePointer(referredClass);
     }
 
-    auto *newObject = new Object(*classRef);
-    delete classRef;
+    auto *newObject = new Object(classRef);
     auto *objectItem = new ObjectGraphicsItem(newObject, classDiagram);
 
     connect(&(objectItem->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
@@ -134,7 +172,99 @@ void SequenceDiagramScene::addObject()
 }
 
 /**
- * Checks if new line is nullptr (if no, deletes it) and insert messageline into newMessageLine
+ * Remove selected button was pressed. Handles an event - remove selected or change current state.
+ */
+void SequenceDiagramScene::removeSelected()
+{
+    QList<QGraphicsItem *> selectedObjects = selectedItems();
+    if (!selectedObjects.empty()) {
+        removeSelectedObjects();
+    } else {
+        ActivationGraphicsObjectBase::setColor(firstPhaseSelectedColor);
+        currentState = state::objectRemoving;
+    }
+}
+
+/**
+ * Prepares sync message for adding (after selecting nodes)
+ */
+void SequenceDiagramScene::prepareSyncMessage()
+{
+    createNewMessageLine(new SyncMessageLine{&sequenceDiagram}, MessageType::SYNC);
+}
+
+/**
+ * Prepares async message for adding (after selecting nodes)
+ */
+void SequenceDiagramScene::prepareAsyncMessage()
+{
+    createNewMessageLine(new AsyncMessageLine{&sequenceDiagram}, MessageType::ASYNC);
+}
+
+/**
+ * Prepares create message for adding (after selecting nodes)
+ */
+void SequenceDiagramScene::prepareCreateMessage()
+{
+    createNewMessageLine(new CreateMessageLine{&sequenceDiagram}, MessageType::CREATE);
+}
+
+/**
+ * Prepares destroy message for adding (after selecting nodes)
+ */
+void SequenceDiagramScene::prepareDestroyMessage()
+{
+    createNewMessageLine(new DestroyMessageLine{&sequenceDiagram}, MessageType::DESTROY);
+}
+
+/**
+ * Prepares reply message for adding (after selecting nodes)
+ */
+void SequenceDiagramScene::prepareReplyMessage()
+{
+    createNewMessageLine(new ReplyMessageLine{&sequenceDiagram}, MessageType::REPLY);
+}
+
+// Public static methods ------------------------------------------------------------------------- Public static methods
+/**
+ * Checks if it is possible to create new message. If error occurs, store message into errorMsg.
+ *
+ * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
+ * @param receiver newReceiver object
+ * @param messageType type of message
+ * @return true if everything is ok.
+ * @return false if creation is NOT possible.
+ */
+bool SequenceDiagramScene::createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *receiver,
+                                                 ActivationGraphicsObjectBase *sender , MessageType messageType)
+{
+    if (receiver == sender) {
+        *errorMsg = "Receiver cannot be newSender in one message!";
+
+        return false;
+    }
+
+    auto *actor = dynamic_cast<ActorGraphicsItem*>(receiver);
+    if (actor && (messageType == (MessageType)MessageType::CREATE || messageType == (MessageType)MessageType::DESTROY)) {
+        *errorMsg = "Actor cannot recieve any message of type <<create>> nor <<destroy>>!";
+        return false;
+    } else {
+        auto *obj = dynamic_cast<ObjectGraphicsItem *>(receiver);
+        if(messageType == (MessageType)MessageType::DESTROY && obj->getDestroyMessage()) {
+            *errorMsg = "Object cannot recieve more than one destroy message!";
+            return false;
+        } else if (messageType == (MessageType)MessageType::CREATE && obj->getCreateMessage()) {
+            *errorMsg = "Object cannot recieve more than one create message!";
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Private methods ------------------------------------------------------------------------------------- Private methods
+/**
+ * Checks if new line is nullptr (if no, deletes it) and insert message line into newMessageLine
  *
  * @param line messageLine to store
  */
@@ -155,21 +285,6 @@ void SequenceDiagramScene::createNewMessageLine(MessageLine *line, MessageType t
 }
 
 /**
- * Remove selected button was pressed. Handles an event - remove selected or change current state.
- */
-void SequenceDiagramScene::removeSelected()
-{
-    QList<QGraphicsItem *> selectedObjects = selectedItems();
-    if (!selectedObjects.empty()) {
-        removeSelectedObjects();
-    } else {
-        ActivationGraphicsObjectBase::setColor(firstPhaseSelectedColor);
-        currentState = state::objectRemoving;
-    }
-}
-
-// Private methods ------------------------------------------------------------------------------------- Private methods
-/**
  * Removes single class node
  *
  * @param classNode Pointer to class node to remove
@@ -177,7 +292,7 @@ void SequenceDiagramScene::removeSelected()
 void SequenceDiagramScene::removeObject(ActivationGraphicsObjectBase *activationObject, bool logChange)
 {
     auto *objectToRemove = dynamic_cast<ObjectGraphicsItem *>(activationObject);
-    if(objectToRemove) {
+    if (objectToRemove) {
         // ActivationObject is Object
         removeItem(objectToRemove);
         sequenceDiagram.removeObject(objectToRemove->getObject());
@@ -189,7 +304,7 @@ void SequenceDiagramScene::removeObject(ActivationGraphicsObjectBase *activation
         delete actorItem;
     }
 
-    if(logChange) {
+    if (logChange) {
         sceneUpdateObservable->sceneChanged();
     }
 }
@@ -217,16 +332,12 @@ void SequenceDiagramScene::sendMessage()
 {
     // Create new message line in scene
     auto *objectReceiver = dynamic_cast<ObjectGraphicsItem *>(newReceiver);
-    MethodReference ref{""};
+    MethodReference ref{"UNKNOWN METHOD"};
     if (objectReceiver) {
         std::vector<ClassMethod> methods = objectReceiver->getObject()->getInstanceClass()->getMethods();
         if (!methods.empty()) {
             ref = MethodReference{&(objectReceiver->getObject()->getInstanceClass()->getMethods()[0])};
-        } else {
-            ref = MethodReference{"UNKNOWN METHOD"};
         }
-    } else {
-        ref = MethodReference{"UNKNOWN METHOD"};
     }
 
     //check if is possible to create new line
@@ -234,7 +345,7 @@ void SequenceDiagramScene::sendMessage()
     if (!createMessagePossible(&errorMsg, newReceiver, newSender, newMessageLineType)) {
         QMessageBox msgBox;
         msgBox.setText(errorMsg);
-        msgBox.setWindowTitle("Creation was not succesful");
+        msgBox.setWindowTitle("Creation was not successful");
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.exec();
         return;
@@ -248,11 +359,8 @@ void SequenceDiagramScene::sendMessage()
         0.0
     );
 
-    ClassReference classRef{""};
     auto *receiverObject = dynamic_cast<ObjectGraphicsItem *>(newReceiver);
-    if(receiverObject) {
-        classRef = receiverObject->getObject()->getInstanceClass();
-    }
+    ClassReference classRef = receiverObject->getObject()->getInstanceClass();
 
     newMessageLine->initialize(newSender, newReceiver, newMessage, classRef);
     addItem(newMessageLine);
@@ -333,39 +441,104 @@ void SequenceDiagramScene::selectLinesHandle(ActivationGraphicsObjectBase *invok
 }
 
 /**
- * Checks if it is possible to create new message. If error occures, store message into errorMsg.
- *
- * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
- * @param receiver newReceiver object
- * @param messageType type of message
- * @return true if everything is ok.
- * @return false if creation is NOT possible.
- */
-bool SequenceDiagramScene::createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *receiver,
-        ActivationGraphicsObjectBase *sender , MessageType messageType)
+  * Automatically clears the whole scene
+  */
+void SequenceDiagramScene::clearScene()
 {
-    if (receiver == sender) {
-        *errorMsg = "Reciever cannot be newSender in one message!";
-
-        return false;
+    for (const auto item: items()) {
+        item->setSelected(true);
     }
 
-    auto *actor = dynamic_cast<ActorGraphicsItem*>(receiver);
-    if (actor && (messageType == (MessageType)MessageType::CREATE || messageType == (MessageType)MessageType::DESTROY)) {
-        *errorMsg = "Actor cannot recieve any message of type <<create>> nor <<destroy>>!";
-        return false;
-    } else {
-        auto *obj = dynamic_cast<ObjectGraphicsItem *>(receiver);
-        if(messageType == (MessageType)MessageType::DESTROY && obj->getDestroyMessage()) {
-            *errorMsg = "Object cannot recieve more than one destroy message!";
-            return false;
-        } else if (messageType == (MessageType)MessageType::CREATE && obj->getCreateMessage()) {
-            *errorMsg = "Object cannot recieve more than one create message!";
-            return false;
+    removeSelectedObjects();
+}
+
+/**
+ * Redraws scene using updated sequence diagram
+ *
+ * @warning Does not clear scene. clearScene() should be called before
+ */
+void SequenceDiagramScene::redrawSequenceDiagram()
+{
+    std::unordered_map<Actor *, ActorGraphicsItem *> loadedActors;
+    std::unordered_map<Object *, ObjectGraphicsItem *> loadedObjects;
+
+    // Load actors
+    for (const auto objActor: sequenceDiagram.getActors()) {
+        auto *guiActor = new ActorGraphicsItem(objActor);
+
+        connect(&(guiActor->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
+        connect(&(guiActor->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
+
+        addItem(guiActor);
+        loadedActors.insert({objActor, guiActor});
+    }
+
+    // Load objects
+    for (const auto objObject: sequenceDiagram.getObjects()) {
+        auto *guiObject = new ObjectGraphicsItem(objObject, classDiagram);
+
+        connect(&(guiObject->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
+        connect(&(guiObject->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
+
+        addItem(guiObject);
+        loadedObjects.insert({objObject, guiObject});
+    }
+
+    // Load messages
+    for (const auto objMessage: sequenceDiagram.getMessages()) {
+        // Message sender
+        MessageNode *messageSender = objMessage->getMessageSender();
+        ActivationGraphicsObjectBase *senderGuiItem;
+        if (typeid(*messageSender) == typeid(Actor)) {
+            auto actor = dynamic_cast<Actor *>(messageSender);
+            senderGuiItem = dynamic_cast<ActivationGraphicsObjectBase *>(loadedActors.find(actor)->second);
+        } else if (typeid(*messageSender) == typeid(Object)) {
+            auto object = dynamic_cast<Object *>(messageSender);
+            senderGuiItem = dynamic_cast<ActivationGraphicsObjectBase *>(loadedObjects.find(object)->second);
+        } else {
+            throw std::logic_error{"Unknown message sender type"};
         }
+
+        // Message recipient
+        MessageNode *messageRecipient = objMessage->getMessageRecipient();
+        ActivationGraphicsObjectBase *recipientGuiItem;
+        ClassReference calleeClassReference{"ACTOR"};
+        if (typeid(*messageRecipient) == typeid(Actor)) {
+            auto actor = dynamic_cast<Actor *>(messageRecipient);
+            recipientGuiItem = dynamic_cast<ActivationGraphicsObjectBase *>(loadedActors.find(actor)->second);
+        } else if (typeid(*messageRecipient) == typeid(Object)) {
+            auto object = dynamic_cast<Object *>(messageRecipient);
+            recipientGuiItem = dynamic_cast<ActivationGraphicsObjectBase *>(loadedObjects.find(object)->second);
+
+            calleeClassReference = object->getInstanceClass();
+        } else {
+            throw std::logic_error{"Unknown message recipient type"};
+        }
+
+        // Create and allocate message
+        switch (objMessage->getType()) {
+            case MessageType::SYNC:
+                newMessageLine = new SyncMessageLine{&sequenceDiagram};
+                break;
+            case MessageType::ASYNC:
+                newMessageLine = new AsyncMessageLine{&sequenceDiagram};
+                break;
+            case MessageType::CREATE:
+                newMessageLine = new CreateMessageLine{&sequenceDiagram};
+                break;
+            case MessageType::DESTROY:
+                newMessageLine = new DestroyMessageLine{&sequenceDiagram};
+                break;
+            case MessageType::REPLY:
+                newMessageLine = new ReplyMessageLine{&sequenceDiagram};
+                break;
+        }
+
+        newMessageLine->initialize(senderGuiItem, recipientGuiItem, objMessage, calleeClassReference);
+        addItem(newMessageLine);
     }
 
-    return true;
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**

@@ -19,15 +19,26 @@
 class ActorGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
+    /**
+     * Class constructor
+     */
     ActorGraphicsItem();
-    qreal width() const;
+
+    /**
+     * Class constructor
+     *
+     * @param actor Pointer to actor to use
+     */
+    explicit ActorGraphicsItem(Actor *actor): actor{actor} {};
+
+    qreal width() const override;
 
     /**
      * Setter for new name of actor.
      *
      * @param newName new name to be set
      */
-    void setName(QString newName)
+    void setName(const QString &newName)
     {
         actor->setName(newName.toStdString());
     }
@@ -48,7 +59,7 @@ public:
      *
      * @return new object
      */
-    MessageNode* getMessageNode()
+    MessageNode* getMessageNode() override
     {
         return actor;
     }
@@ -59,10 +70,10 @@ private:
 
     void heightUpdated(qreal newHeight);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     QRectF resizeArea();
 };
 

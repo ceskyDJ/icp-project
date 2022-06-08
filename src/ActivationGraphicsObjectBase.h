@@ -146,11 +146,11 @@ public:
     bool destroyed;
 
     /**
-     * Set destroyed flag.
+     * Set newState flag.
      *
-     * @param destroyed true/false to set destroyed flag
+     * @param newState true/false to set newState flag
      */
-    void setDestroyed(bool destroyed);
+    void setDestroyed(bool newState);
 
     /**
      * Getter for object counter.

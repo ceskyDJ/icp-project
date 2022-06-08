@@ -21,8 +21,7 @@
  * @param newObject object which is going to be used as new object (it keeps pointer destination)
  * @param height Total height of object.
  */
-ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram)
-    : classDiagram{classDiagram}
+ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram): classDiagram{classDiagram}
 {
     object = newObject;
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);

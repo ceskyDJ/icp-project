@@ -16,6 +16,7 @@
 #include "ActivationGraphicsObjectBase.h"
 #include "ClassReference.h"
 #include "MethodReference.h"
+#include "SequenceDiagram.h"
 
 class ActivationGraphicsObjectBase;
 
@@ -25,10 +26,22 @@ class ActivationGraphicsObjectBase;
 class MessageLine : public QGraphicsLineItem
 {
 public:
-    MessageLine();
+    /**
+     * Class constructor
+     *
+     * @par Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
+     *
+     * @param sequenceDiagram Pointer to edited sequence diagram
+     */
+    MessageLine(SequenceDiagram *sequenceDiagram);
+
+    /**
+     * Class destructor
+     */
     ~MessageLine();
+
     virtual void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
-                            Message *newMessage, ClassReference classRef);
+            Message *newMessage, ClassReference &classReference);
     void moveLine(qreal dy, bool moveIfNotValidBefore);
 
     /**
@@ -42,6 +55,10 @@ public:
     }
     void updateClassReference(ClassReference newClassRef);
 protected:
+    /**
+     * Edited sequence diagram
+     */
+    SequenceDiagram *sequenceDiagram;
     ClassReference classRef;
     bool editNameAllowed;
     bool createFlag;
@@ -78,7 +95,7 @@ protected:
     QPointF lastPressed;
 
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const;
     QPainterPath shape() const;
     virtual void drawArrow(QPainter *painter) const;
@@ -90,7 +107,7 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     bool isInObjectsLifeBox(qreal lifeBoxPointer);
-    MethodReference validateNewReference(ClassReference classRef, MethodReference methodRef);
+    MethodReference validateNewReference(ClassReference classReference, MethodReference methodRef);
 };
 
 #endif // MESSAGELINE_H

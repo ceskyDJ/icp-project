@@ -16,7 +16,13 @@
 class ReplyMessageLine : public MessageLine
 {
 public:
-    ReplyMessageLine();
+    /**
+     * Class constructor
+     *
+     * @param sequenceDiagram Pointer to edited sequence diagram
+     */
+    explicit ReplyMessageLine(SequenceDiagram *sequenceDiagram);
+
     void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
                     Message *msg, ClassReference classRef);
 };

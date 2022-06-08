@@ -101,8 +101,7 @@ class ClassDiagram
      * Finds class by name
      *
      * @param name Name of the class to search for
-     * @return Pointer to found class
-     * @throw std::invalid_argument Non-existing class with this name
+     * @return Pointer to found class or nullptr when class with given isn't in the class diagram
      */
     Class *findClassByName(const std::string &name) const;
 
@@ -110,8 +109,7 @@ class ClassDiagram
      * Finds class by name
      *
      * @param name Name of the class to search for
-     * @return Pointer to found class
-     * @throw std::invalid_argument Non-existing class with this name
+     * @return Pointer to found class or nullptr when class with given isn't in the class diagram
      */
     Class *findClassByName(const std::string &&name) const
     {
