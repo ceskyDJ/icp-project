@@ -25,7 +25,6 @@ void CreateMessageLine::initialize(ActivationGraphicsObjectBase *from, Activatio
     toObject = to;
     fromObject->addMessage(this);
     toObject->addMessage(this);
-    leftToRight = from->x() < to->x();
     message = msg;
     message->setName(MethodReference{"<<create>>"});
     this->classRef = classRef;

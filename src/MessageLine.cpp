@@ -24,7 +24,6 @@ MessageLine::MessageLine() : classRef{ClassReference{""}}
     arrowHeight = 20;
     setAcceptHoverEvents(true);
     arrowToLifeLine = false;
-    leftToRight = true;
     editNameAllowed = true;
     createFlag = false;
     destroyFlag = false;
@@ -60,7 +59,6 @@ void MessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraph
     fromObject->addMessage(this);
     toObject->addMessage(this);
     message = newMessage;
-    leftToRight = from->x() < to->x();
     this->classRef = classRef;
 }
 
@@ -91,7 +89,7 @@ void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     painter->drawText(textRect, QString::fromStdString(message->getMethod().getReferredMethodName()));
     painter->setPen(usedPen);
 
-    if(!leftToRight) //arrow goes from right to left
+    if(fromObject->x() > toObject->x()) //arrow goes from right to left
         line.setLine(line.x2(), line.y2(), line.x1(), line.y2());
 
     line.setLength(line.length() - arrowWidth); //make space for arrow
@@ -103,7 +101,7 @@ void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     QPen temp = painter->pen();
     temp.setStyle(Qt::SolidLine);
     painter->setPen(temp);
-    if(!leftToRight)
+    if(fromObject->x() > toObject->x())
         painter->rotate(180);
     drawArrow(painter);
 }
@@ -326,10 +324,9 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     else if(result == EditDialogBase::switchArrows)
     {
         ActivationGraphicsObjectBase *temp = fromObject;
-
         fromObject = toObject;
         toObject = temp;
-        leftToRight = !leftToRight;
+
         updateClassReference(toObject->getClassReference());
     }
     else if(result == EditDialogBase::remove)

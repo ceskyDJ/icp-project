@@ -24,6 +24,7 @@ class MessageLine;
 class ActivationGraphicsObjectBase : public QGraphicsItem
 {
 public:
+
     /**
      * Set Class refernce - if not redefined, does nothing.
      */
@@ -184,12 +185,21 @@ public:
     {
         return drawColor;
     }
+
+    /**
+     * Tells order of draw.
+     */
+    int order;
   protected:
     /**
      * Counts created objects.
      */
     static int objectCounter;
 
+    /**
+     * Distance that will be substracted from distance metric to move whole object.
+     */
+    static qreal moveTollerance;
     /**
      * All messages that goes into and from this object.
      */
@@ -240,5 +250,12 @@ public:
      * @return bounding rect around text
      */
     QRectF getTextBoundingBox(QString text) const;
+
+    /**
+     * Return area in shape of rectangle which is located in header.
+     *
+     * @return area in shape of rectangle which is located in header
+     */
+    QRectF getWholeObjectMoveRect();
 };
 #endif // ACTIVATIONGRAPHICSOBJECTBASE_H

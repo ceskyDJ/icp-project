@@ -154,7 +154,9 @@ private:
     */
    void removeHandle(ActivationGraphicsObjectBase *activationItem);
    /**
-    * Return all activation items in scene, sorted by insertion order.
+    * Return all activation items in scene, sorted by order attribute.
+    *
+    * @return QVector<ActivationGraphicsObjectBase *> all activation items in scene, sorted by insertion order.
     */
    QVector<ActivationGraphicsObjectBase *> activationObjectsInScene();
    /**
@@ -194,6 +196,20 @@ private slots:
      * objects, sort the objects.
      */
     void objectSortSlot(QList<QRectF>);
+
+    /**
+     * Moves recived object left.
+     *
+     * @param objectToMove object that will be moved left.
+     */
+    void moveObjectLeft(ActivationGraphicsObjectBase *objectToMove);
+
+    /**
+     * Moves recieved object to right
+     *
+     * @param objectToMove object that will be move right.
+     */
+    void moveObjectRight(ActivationGraphicsObjectBase *objectToMove);
 };
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_SCENE_H

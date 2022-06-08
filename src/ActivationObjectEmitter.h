@@ -31,12 +31,23 @@ public:
      * @param logChange True - change will be loged, false = change will NOT be logged
      */
     void emitRemoveObjectSignal(bool logChange);
+
+    /**
+     * Emits a signal moveLeft.
+     */
+    void emitMoveLeft();
+    /**
+     * Emits a singal moveRight.
+     */
+    void emitMoveRight();
 private:
     ActivationGraphicsObjectBase *activationObject;
 
 signals:
     void objectPressed(ActivationGraphicsObjectBase *activationObject);
     void removeObject(ActivationGraphicsObjectBase *activationObject, bool logChange);
+    void moveLeft(ActivationGraphicsObjectBase *activationObject);
+    void moveRight(ActivationGraphicsObjectBase *activationObject);
 };
 
 #endif // ACTIVATIONOBJECTEMITTER_H

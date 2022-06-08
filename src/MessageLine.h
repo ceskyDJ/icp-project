@@ -40,11 +40,9 @@ public:
     {
         return toObject;
     }
-
     void updateClassReference(ClassReference newClassRef);
 protected:
     ClassReference classRef;
-    bool leftToRight;
     bool editNameAllowed;
     bool createFlag;
     bool destroyFlag;

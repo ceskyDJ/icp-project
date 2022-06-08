@@ -27,7 +27,6 @@ void DestroyMessageLine::initialize(ActivationGraphicsObjectBase *from, Activati
     fromObject->addMessage(this);
     toObject->addMessage(this);
     toObject->setDestroyed(true);
-    leftToRight = from->x() < to->x();
     message = msg;
     message->setName(MethodReference{"<<destroy>>"});
     this->classRef = ClassReference{""};
