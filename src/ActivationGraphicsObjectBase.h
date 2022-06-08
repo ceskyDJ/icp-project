@@ -15,6 +15,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include "MessageLine.h"
+#include "ActivationObjectEmitter.h"
+
 
 class MessageLine;
 
@@ -22,10 +24,29 @@ class ActivationGraphicsObjectBase : public QGraphicsItem
 {
 public:
     /**
+     * Return message node. If not overriden, return new actor.
+     *
+     * @return new actor
+     */
+    virtual MessageNode* getMessageNode();
+    /**
+     * Emitter for signal emitting.
+     */
+    ActivationObjectEmitter emitter{nullptr, this};
+    /**
      * Width of lifebox
      */
     static qreal lifeboxWidth;
 
+    /**
+     * Color to draw objects - it changes according to user events.
+     */
+    static QColor drawColor;
+
+    static qreal objectPadding;
+    /**
+     * Size of destroy cross
+     */
     static qreal destroyCrossSize;
 
     /**
@@ -112,7 +133,49 @@ public:
      * @param destroyed true/false to set destroyed flag
      */
     void setDestroyed(bool destroyed);
+
+    /**
+     * Getter for object counter.
+     *
+     * @return object counter
+     */
+    int getObjectCounter()
+    {
+        return objectCounter;
+    }
+
+    /**
+     * Increases object counter
+     */
+    void incObjectCounter()
+    {
+        ++objectCounter;
+    }
+    /**
+     * Sets object and actor color to color argument.
+     *
+     * @param color new color
+     */
+    static void setColor(QColor color)
+    {
+        drawColor = color;
+    }
+
+    /**
+     * Getter for draw color
+     *
+     * @return drawing color
+     */
+    static QColor getColor()
+    {
+        return drawColor;
+    }
   protected:
+    /**
+     * Counts created objects.
+     */
+    static int objectCounter;
+
     /**
      * All messages that goes into and from this object.
      */

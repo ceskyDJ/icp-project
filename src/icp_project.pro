@@ -27,6 +27,7 @@ QMAKE_CXXFLAGS += -std=c++17 -pedantic -Werror
 # Source codes
 HEADERS += \
     ActivationGraphicsObjectBase.h \
+    ActivationObjectEmitter.h \
     ActorGraphicsItem.h \
     ActorGraphicsItemEditDialog.h \
     AgregationLine.h \
@@ -105,6 +106,7 @@ HEADERS += \
 SOURCES += \
     AccessModifier.cpp \
     ActivationGraphicsObjectBase.cpp \
+    ActivationObjectEmitter.cpp \
     ActorGraphicsItem.cpp \
     ActorGraphicsItemEditDialog.cpp \
     AgregationLine.cpp \

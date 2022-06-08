@@ -17,8 +17,39 @@
 class ActorGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
-    ActorGraphicsItem(Actor *actor);
+    ActorGraphicsItem();
     qreal width() const;
+
+    /**
+     * Setter for new name of actor.
+     *
+     * @param newName new name to be set
+     */
+    void setName(QString newName)
+    {
+        actor->setName(newName.toStdString());
+    }
+
+    /**
+     * Getter for actor
+     *
+     * @return pointer to actor
+     */
+    Actor *getActor()
+    {
+        return actor;
+    }
+
+
+    /**
+     * Getter for actor.
+     *
+     * @return new object
+     */
+    MessageNode* getMessageNode()
+    {
+        return actor;
+    }
 private:
     qreal personWidth = 50;
     Actor *actor;

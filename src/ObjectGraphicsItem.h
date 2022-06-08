@@ -18,18 +18,38 @@
 class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
-    Object *object;
     ObjectGraphicsItem(Object *newObject);
     qreal width() const;
     QRectF lifeBoxRect();
     qreal getStartOfLifeBox();
     qreal getLifeLength();
+    void showEditDialog(bool logChange);
+
+    /**
+     * Getter for object property
+     *
+     * @return object in this
+     */
+    Object *getObject()
+    {
+        return object;
+    }
+
+    /**
+     * Getter for object.
+     *
+     * @return new object
+     */
+    MessageNode* getMessageNode()
+    {
+        return object;
+    }
 protected:
     /**
      * Padding int object header |[padding]<NAME>[Padding]|
      */
     qreal textPadding = 10.0;
-
+    Object *object;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

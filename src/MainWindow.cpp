@@ -14,6 +14,11 @@
 #include "ClassNodeEmitter.h"
 #include "ClassDiagramScene.h"
 #include "SequenceDiagramScene.h"
+#include "SyncMessageLine.h"
+#include "AsyncMessageLine.h"
+#include "CreateMessageLine.h"
+#include "DestroyMessageLine.h"
+#include "ReplyMessageLine.h"
 
 /**
  * Class constructor
@@ -209,9 +214,6 @@ void MainWindow::setToolBox()
     //set policy for sequence tool items
     sequenceToolboxItems->setLayout(sequenceLayout);
     sequenceToolboxItems->setSizePolicy(QSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum));
-
-    //defaultly sets class diagram tools
-    setClassDiagramToolbox();
 }
 
 /**
@@ -248,6 +250,16 @@ void MainWindow::connectComponents()
     connect(generalisationToolItem, &QToolButton::pressed, this, &MainWindow::generalisationSelected);
     connect(directedAssociationToolItem, &QToolButton::pressed, this, &MainWindow::directedAssociationSelected);
     connect(realizationToolItem, &QToolButton::pressed, this, &MainWindow::realizationSelected);
+
+    //sequence diagrams
+    connect(actorToolItem,  &QToolButton::pressed, this, &MainWindow::addActorSelected);
+    connect(objectToolItem,  &QToolButton::pressed, this, &MainWindow::addObjectSelected);
+    connect(removeSequenceToolItem,  &QToolButton::pressed, this, &MainWindow::removeObjectSelected);
+    connect(syncMessageToolItem,  &QToolButton::pressed, this, &MainWindow::syncMessageSelected);
+    connect(asyncMessageToolItem,  &QToolButton::pressed, this, &MainWindow::asyncMessageSelected);
+    connect(createMessageToolItem,  &QToolButton::pressed, this, &MainWindow::createMessageSelected);
+    connect(destroyMessageToolItem,  &QToolButton::pressed, this, &MainWindow::destroyMessageSelected);
+    connect(replyMessageToolItem,  &QToolButton::pressed, this, &MainWindow::replyMessageSelected);
 }
 
 /**
@@ -321,6 +333,11 @@ void MainWindow::setActiveTab(TabWidget *tab)
 
     currentTab = tab;
 
+    if(typeid(*(tab->getScene())) == typeid(ClassDiagramScene))
+        setClassDiagramToolbox();
+    else
+        setSequenceDiagramToolbox();
+
     updateTab(tab);
 }
 
@@ -381,7 +398,7 @@ bool MainWindow::isFileUsedBySomeScene(QString &fileName)
     return false;
 }
 
-// Slots ========================================================================================================= Slots
+// Slots ═════════════════════════════════════════════════════════════════════════════════════════════════════════ Slots
 // Tool box items' actions --------------------------------------------------------------------- Tool box items' actions
 /**
  * Slot for handling click on button for adding new class node
@@ -485,6 +502,110 @@ void MainWindow::realizationSelected()
 
     auto classDiagramScene = dynamic_cast<ClassDiagramScene *>(currentScene);
     classDiagramScene->prepareRealization();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Create new actor.
+ */
+void MainWindow::addActorSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->addActor();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Create new object.
+ */
+void MainWindow::addObjectSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->addObject();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Remove selected actor/object
+ */
+void MainWindow::removeObjectSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->removeObjectPressed();
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with synchronous message.
+ */
+void MainWindow::syncMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new SyncMessageLine, MessageType::SYNC);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with asynchronous message.
+ */
+void MainWindow::asyncMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new AsyncMessageLine, MessageType::ASYNC);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with reply message.
+ */
+void MainWindow::createMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new CreateMessageLine, MessageType::CREATE);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with create message.
+ */
+void MainWindow::destroyMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new DestroyMessageLine, MessageType::DESTROY);
+}
+
+/**
+ * Slot for handling press action on actorToolItem. Connect 2 actors/objects with destroy message.
+ */
+void MainWindow::replyMessageSelected()
+{
+    if (typeid(*currentScene) != typeid(SequenceDiagramScene)) {
+        return;
+    }
+
+    auto sequenceDiagramScene = dynamic_cast<SequenceDiagramScene *>(currentScene);
+    sequenceDiagramScene->createNewMessageLine(new ReplyMessageLine, MessageType::REPLY);
 }
 
 // Top toolbar buttons' actions ----------------------------------------------------------- Top toolbar buttons' actions

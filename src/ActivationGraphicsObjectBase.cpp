@@ -13,7 +13,10 @@ qreal ActivationGraphicsObjectBase::headerHeight = 60;
 qreal ActivationGraphicsObjectBase::lifeSpaceStart = 10;
 qreal ActivationGraphicsObjectBase::lifeboxWidth = 20;
 qreal ActivationGraphicsObjectBase::destroyCrossSize = 30;
+qreal ActivationGraphicsObjectBase::objectPadding = 300;
+QColor ActivationGraphicsObjectBase::drawColor = Qt::black;
 
+int ActivationGraphicsObjectBase::objectCounter = 0;
 /**
  * Returns bounding rect of actor.
  *
@@ -144,4 +147,14 @@ void ActivationGraphicsObjectBase::setLifeEndDestroy(qreal)
 void ActivationGraphicsObjectBase::setDestroyed(bool destroyed)
 {
     this->destroyed = destroyed;
+}
+
+/**
+ * Return message node. If not overriden, return new actor.
+ *
+ * @return new actor
+ */
+MessageNode* ActivationGraphicsObjectBase::getMessageNode()
+{
+    return new Actor();
 }
