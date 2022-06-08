@@ -10,6 +10,9 @@
 #include <QStyleOptionGraphicsItem>
 #include "ActorGraphicsItemEditDialog.h"
 
+/**
+ * Class constructor
+ */
 ActorGraphicsItem::ActorGraphicsItem()
 {
     setAcceptHoverEvents(true);
@@ -19,6 +22,16 @@ ActorGraphicsItem::ActorGraphicsItem()
     order = getObjectCounter();
     incObjectCounter();
     setZValue(-1);
+}
+
+/**
+ * Class constructor
+ *
+ * @param actor Pointer to actor to use
+ */
+ActorGraphicsItem::ActorGraphicsItem(Actor *actor): ActorGraphicsItem()
+{
+    this->actor = actor;
 }
 
 /**

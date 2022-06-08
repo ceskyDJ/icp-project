@@ -445,11 +445,15 @@ void SequenceDiagramScene::selectLinesHandle(ActivationGraphicsObjectBase *invok
   */
 void SequenceDiagramScene::clearScene()
 {
-    for (const auto item: items()) {
-        item->setSelected(true);
-    }
+    for (QGraphicsItem *item : items()) {
+        // Skip messages, they are removed automatically with actors and objects
+        if (typeid(*item) != typeid(ActorGraphicsItem) && typeid(*item) != typeid(ObjectGraphicsItem)) {
+            continue;
+        }
 
-    removeSelectedObjects();
+        auto itemToRemove = dynamic_cast<ActivationGraphicsObjectBase*>(item);
+        removeObject(itemToRemove, false);
+    }
 }
 
 /**

@@ -98,7 +98,7 @@ void SequenceDiagram::removeMessage(Message *messageToRemove)
         }
     }
 
-    throw std::invalid_argument{"Object is not in sequence diagram"};
+    throw std::invalid_argument{"Message is not in sequence diagram"};
 }
 
 /**

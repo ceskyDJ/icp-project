@@ -29,7 +29,7 @@ public:
      *
      * @param actor Pointer to actor to use
      */
-    explicit ActorGraphicsItem(Actor *actor): actor{actor} {};
+    explicit ActorGraphicsItem(Actor *actor);
 
     qreal width() const override;
 
