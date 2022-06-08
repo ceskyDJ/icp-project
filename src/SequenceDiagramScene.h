@@ -107,6 +107,17 @@ class SequenceDiagramScene: public CustomScene
      * @param type type of message
      */
     void createNewMessageLine(MessageLine *line, MessageType type);
+    /**
+     * Checks if it is possible to create new message. If error occures, store message into errorMsg.
+     *
+     * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
+     * @param reciever reciever object
+     * @param messageType type of message
+     * @return true if everything is ok.
+     * @return false if creation is NOT possible.
+     */
+    static bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *reciever,
+                               ActivationGraphicsObjectBase *sender, MessageType messageType);
 public slots:
     /**
      * Remove selected button was pressed. Handles an event - remove selected or change current state.
@@ -169,17 +180,6 @@ private:
     * @param ivokedBy Node that was pressed on.
     */
    void selectLinesHandle(ActivationGraphicsObjectBase *ivokedBy);
-   /**
-    * Checks if it is possible to create new message. If error occures, store message into errorMsg.
-    *
-    * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
-    * @param reciever reciever object
-    * @param messageType type of message
-    * @return true if everything is ok.
-    * @return false if creation is NOT possible.
-    */
-   bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *reciever,
-                              ActivationGraphicsObjectBase *sender, MessageType messageType);
 private slots:
     /**
     * Function that informs this, that invokedBy, was clicked on.

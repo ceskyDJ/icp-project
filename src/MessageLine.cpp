@@ -11,6 +11,8 @@
 #include <QGraphicsSceneHoverEvent>
 #include <QGraphicsSceneMouseEvent>
 #include "MessageLineEditDialog.h"
+#include "SequenceDiagramScene.h"
+#include <QMessageBox>
 
 /**
  * Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
@@ -323,6 +325,18 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     }
     else if(result == EditDialogBase::switchArrows)
     {
+        QString err = "";
+        if(!SequenceDiagramScene::createMessagePossible(&err, fromObject,
+                                                        toObject,
+                                                        message->getType()))
+        {
+            QMessageBox msgBox;
+            msgBox.setText(err);
+            msgBox.setWindowTitle("Creation was not succesful");
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.exec();
+            return;
+        }
         ActivationGraphicsObjectBase *temp = fromObject;
         fromObject = toObject;
         toObject = temp;
