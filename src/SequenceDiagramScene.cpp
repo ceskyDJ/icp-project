@@ -33,6 +33,7 @@ SequenceDiagramScene::SequenceDiagramScene(
     currentState = state::none;
     sequenceDiagram = new SequenceDiagram();
     connect(this, &SequenceDiagramScene::selectionChanged, this, &SequenceDiagramScene::selectionEdit);
+    connect(this, &SequenceDiagramScene::changed, this, &SequenceDiagramScene::objectSortSlot);
 }
 
 /**
@@ -81,12 +82,11 @@ void SequenceDiagramScene::redoRevertedChange()
 void SequenceDiagramScene::addActor()
 {
     ActorGraphicsItem *actorItem = new ActorGraphicsItem();
-    actorItem->setPos(ActivationGraphicsObjectBase::objectPadding * actorItem->getObjectCounter(), 0);
-
     sequenceDiagram->addActor(actorItem->getActor());
 
     addItem(actorItem);
     connect(&(actorItem->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
+    connect(&(actorItem->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
     sceneUpdateObservable->sceneChanged();
 }
 
@@ -110,8 +110,6 @@ void SequenceDiagramScene::addObject()
     Object *newObject = new Object(*classRef);
     delete classRef;
     ObjectGraphicsItem *objectItem = new ObjectGraphicsItem(newObject);
-
-    objectItem->setPos(ActivationGraphicsObjectBase::objectPadding * objectItem->getObjectCounter(), 0);
 
     connect(&(objectItem->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
     connect(&(objectItem->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
@@ -302,5 +300,51 @@ void SequenceDiagramScene::selectionEdit()
     {
         if(!selected.contains(mySelectedItems[i]))
             mySelectedItems.removeAt(i);
+    }
+}
+
+/**
+ * Return all activation items in scene, sorted by insertion order.
+ *
+ * @return QVector<ActivationGraphicsObjectBase *> all activation items in scene, sorted by insertion order.
+ */
+QVector<ActivationGraphicsObjectBase *>  SequenceDiagramScene::activationObjectsInScene()
+{
+    QList<QGraphicsItem*> sceneItems = items(Qt::AscendingOrder);
+    QVector<ActivationGraphicsObjectBase*> activationItems;
+    for(QGraphicsItem* item : sceneItems)
+    {
+        ActivationGraphicsObjectBase *activationObject = dynamic_cast<ActivationGraphicsObjectBase *>(item);
+        if(activationObject)
+            activationItems.push_back(activationObject);
+    }
+    return activationItems;
+}
+
+/**
+ * Sort all activation items in scene in x axis.
+ */
+void SequenceDiagramScene::sortActivationItems()
+{
+    QVector<ActivationGraphicsObjectBase *> activationItems = activationObjectsInScene();
+    for(int i = 0; i < activationItems.size(); i++)
+    {
+
+        activationItems[i]->setPos( ActivationGraphicsObjectBase::objectPadding * i, 0);
+    }
+}
+
+/**
+ * Slot is used when emitted change() signal - if there is a different number of activation
+ * objects, sort the objects.
+ */
+void SequenceDiagramScene::objectSortSlot(QList<QRectF>)
+{
+    static int activationObjectCount = 0;
+    int currentCount = activationObjectsInScene().size();
+    if (currentCount != activationObjectCount)
+    {
+        activationObjectCount = currentCount;
+        sortActivationItems();
     }
 }

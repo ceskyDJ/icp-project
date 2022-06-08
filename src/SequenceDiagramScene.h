@@ -27,7 +27,13 @@ class SequenceDiagramScene: public CustomScene
      * Pointer to observable for distributing scene changes
      */
     SceneUpdateObservable *sceneUpdateObservable;
+    /**
+     * Eddited sequence diagram
+     */
     SequenceDiagram *sequenceDiagram;
+    /**
+     * Class diagram - data source for sequence diagram.
+     */
     ClassDiagram *classDiagram;
 
     // Colors
@@ -106,6 +112,9 @@ public slots:
      */
     void removeObjectPressed();
 private:
+    /**
+     * Selected items in sorted list.
+     */
     QList<QGraphicsItem*> mySelectedItems;
     /**
      * MessageLine used in creation process.
@@ -143,13 +152,14 @@ private:
     * Handles situation when remove cobject was pressed.
     */
    void removeHandle(ActivationGraphicsObjectBase *activationItem);
-
    /**
-    *
-    *
-    * @param newColor
+    * Return all activation items in scene, sorted by insertion order.
     */
-   void changeObjectsColor(QColor newColor);
+   QVector<ActivationGraphicsObjectBase *> activationObjectsInScene();
+   /**
+    * Sort all activation items in scene
+    */
+   void sortActivationItems();
    /**
     * Handles what to do if in selction mode.
     *
@@ -167,6 +177,11 @@ private slots:
      * Edit mySelectedItems
      */
     void selectionEdit();
+    /**
+     * Slot is used when emitted change() signal - if there is a different number of activation
+     * objects, sort the objects.
+     */
+    void objectSortSlot(QList<QRectF>);
 };
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_SCENE_H
