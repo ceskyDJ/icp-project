@@ -33,4 +33,5 @@ void CreateMessageLine::initialize(ActivationGraphicsObjectBase *from, Activatio
     message = msg;
     message->setName(MethodReference{"<<create>>"});
     this->classRef = classRef;
+    moveLine(0,true);
 }

@@ -72,7 +72,8 @@ void MessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraph
     fromObject->addMessage(this);
     toObject->addMessage(this);
     message = newMessage;
-    this->classRef = classReference;
+    classRef = classReference;
+    moveLine(0, true);
 }
 
 /**

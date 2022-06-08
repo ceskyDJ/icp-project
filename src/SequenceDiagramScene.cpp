@@ -483,7 +483,7 @@ void SequenceDiagramScene::redrawSequenceDiagram()
         addItem(guiObject);
         loadedObjects.insert({objObject, guiObject});
     }
-
+    objectSortSlot(QList<QRectF>{});
     // Load messages
     for (const auto objMessage: sequenceDiagram.getMessages()) {
         // Message sender

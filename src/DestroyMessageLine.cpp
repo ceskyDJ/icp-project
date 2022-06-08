@@ -35,4 +35,5 @@ void DestroyMessageLine::initialize(ActivationGraphicsObjectBase *from, Activati
     message = msg;
     message->setName(MethodReference{"<<destroy>>"});
     this->classRef = ClassReference{""};
+    moveLine(0, true);
 }

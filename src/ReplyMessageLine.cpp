@@ -36,4 +36,5 @@ void ReplyMessageLine::initialize(ActivationGraphicsObjectBase *from, Activation
     message = msg;
     message->setName(MethodReference{""});
     this->classRef = ClassReference{""};
+    moveLine(0, true);
 }
