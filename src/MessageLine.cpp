@@ -15,7 +15,7 @@
 /**
  * Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
  */
-MessageLine::MessageLine()
+MessageLine::MessageLine() : classRef{ClassReference{""}}
 {
     linePenOk = QPen{Qt::black, 2, Qt::SolidLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::SolidLine};
@@ -52,8 +52,8 @@ MessageLine::~MessageLine()
  *
  * @return QString - error message. If ok, return empty string, else return error message.
  */
-void MessageLine::initialize(ActivationGraphicsObjectBase *from,
-                             ActivationGraphicsObjectBase *to, Message *newMessage)
+void MessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                             Message *newMessage, ClassReference classRef)
 {
     fromObject = from;
     toObject = to;
@@ -61,6 +61,7 @@ void MessageLine::initialize(ActivationGraphicsObjectBase *from,
     toObject->addMessage(this);
     message = newMessage;
     leftToRight = from->x() < to->x();
+    this->classRef = classRef;
 }
 
 /**
@@ -316,18 +317,20 @@ void MessageLine::moveLine(qreal dy, bool moveIfNotValidBefore)
  */
 void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
 {
-    MessageLineEditDialog dialog{editNameAllowed};
+    MessageLineEditDialog dialog{editNameAllowed, classRef, message->getMethod()};
     int result = dialog.exec();
     if(result == QDialog::Accepted)
     {
-        //TODO
+        message->setName(dialog.getMethodReference());
     }
     else if(result == EditDialogBase::switchArrows)
     {
         ActivationGraphicsObjectBase *temp = fromObject;
+
         fromObject = toObject;
         toObject = temp;
         leftToRight = !leftToRight;
+        classRef = toObject->getClassReference();
     }
     else if(result == EditDialogBase::remove)
         delete this;

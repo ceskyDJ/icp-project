@@ -21,7 +21,8 @@
  * @param newObject object which is going to be used as new object (it keeps pointer destination)
  * @param height Total height of object.
  */
-ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject)
+ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram)
+    : classDiagram{classDiagram}
 {
     object = newObject;
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
@@ -233,12 +234,12 @@ void ObjectGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
 void ObjectGraphicsItem::showEditDialog(bool logChange)
 {
     ObjectGraphicsItemEditDialog dialog{QString::fromStdString(object->getName()),
-                QString::fromStdString(object->getInstanceClass().getReferredClassName())};
+        QString::fromStdString(object->getInstanceClass().getReferredClassName()), classDiagram};
     int result = dialog.exec();
     if(result == QDialog::Accepted)
     {
         object->setName(dialog.getObjectName().toStdString());
-        //TODO set class reference
+        object->setInstanceClass(dialog.getClassRef());
         update();
     }
     else if (result == ObjectGraphicsItemEditDialog::remove)

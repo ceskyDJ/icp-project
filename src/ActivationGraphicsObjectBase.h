@@ -123,6 +123,15 @@ public:
     virtual void setLifeEndDestroy(qreal lifeEnd);
 
     /**
+     * Getter for class referrence object.
+     *
+     * @return Unknown reference object.
+     */
+    virtual ClassReference getClassReference()
+    {
+        return ClassReference{"UNKNOWN"};
+    }
+    /**
      * Indicates if cross should be written after lifebox.
      */
     bool destroyed;

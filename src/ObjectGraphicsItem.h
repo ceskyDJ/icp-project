@@ -14,11 +14,12 @@
 #include <QPen>
 #include "ActivationGraphicsObjectBase.h"
 #include <QPainterPath>
+#include "ClassDiagram.h"
 
 class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
-    ObjectGraphicsItem(Object *newObject);
+    ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram);
     qreal width() const;
     QRectF lifeBoxRect();
     qreal getStartOfLifeBox();
@@ -45,9 +46,22 @@ public:
         return object;
     }
 
+    /**
+     * Getter for class referrence object.
+     *
+     * @return object class reference.
+     */
+    virtual ClassReference getClassReference()
+    {
+        return object->getInstanceClass();
+    }
     MessageLine *getDestroyMessage();
     MessageLine *getCreateMessage();
 protected:
+    /**
+     * Data source for combobox item.
+     */
+    ClassDiagram *classDiagram;
     /**
      * Padding int object header |[padding]<NAME>[Padding]|
      */

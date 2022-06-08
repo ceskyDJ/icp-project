@@ -17,11 +17,13 @@
 #include <QPushButton>
 #include <QComboBox>
 #include "EditDialogBase.h"
+#include "ClassDiagram.h"
+#include "ClassReference.h"
 
 class ObjectGraphicsItemEditDialog : public EditDialogBase
 {
 public:
-    ObjectGraphicsItemEditDialog(QString objectName, QString className);
+    ObjectGraphicsItemEditDialog(QString objectName, QString className, ClassDiagram *classDiagram);
 
     /**
      * Getter for class name.
@@ -30,7 +32,7 @@ public:
      */
     QString getClassName()
     {
-        return className;
+        return objectNameLineEdit.text();
     }
 
     /**
@@ -40,11 +42,25 @@ public:
      */
     QString getObjectName()
     {
-        return objectName;
+        return objectNameLineEdit.text();
+    }
+
+    /**
+     * Getter for class reference.
+     *
+     * @return selected class reference
+     */
+    ClassReference getClassRef()
+    {
+        std::vector<Class *> allClasses = classDiagram->getClasses();
+        for (Class * classItem : allClasses)
+        {
+            if(classItem->getName() == classNameCombo.currentText().toStdString())
+                return ClassReference{classItem};
+        }
+        return ClassReference{classNameCombo.currentText().toStdString()};
     }
 private:
-    QString objectName;
-    QString className;
     QPushButton acceptButton;
     QPushButton cancelButton;
     QPushButton removeButton;
@@ -53,7 +69,7 @@ private:
     QVBoxLayout mainLayout;
     QHBoxLayout buttonLayout;
     QFormLayout propertyLayout;
-
+    ClassDiagram *classDiagram;
 
     void connectComponents();
     void setAllLayouts();

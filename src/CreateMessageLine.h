@@ -15,8 +15,8 @@ class CreateMessageLine : public MessageLine
 {
 public:
     CreateMessageLine();
-    void initialize(ActivationGraphicsObjectBase *from,
-                    ActivationGraphicsObjectBase *to, Message *msg);
+    void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                    Message *msg, ClassReference classRef);
 };
 
 #endif // CREATEMESSAGELINE_H

@@ -18,9 +18,10 @@ DestroyMessageLine::DestroyMessageLine()
 /**
  * Initializes itself - store from and to object + store self in those objects.
  */
-void DestroyMessageLine::initialize(ActivationGraphicsObjectBase *from,
-                             ActivationGraphicsObjectBase *to, Message *msg)
+void DestroyMessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                                    Message *msg, ClassReference classRef)
 {
+    (void)classRef;
     fromObject = from;
     toObject = to;
     fromObject->addMessage(this);
@@ -29,4 +30,5 @@ void DestroyMessageLine::initialize(ActivationGraphicsObjectBase *from,
     leftToRight = from->x() < to->x();
     message = msg;
     message->setName(MethodReference{"<<destroy>>"});
+    this->classRef = ClassReference{""};
 }

@@ -15,6 +15,8 @@
 #include <QRectF>
 #include "Message.h"
 #include "ActivationGraphicsObjectBase.h"
+#include "ClassReference.h"
+#include "MethodReference.h"
 
 class ActivationGraphicsObjectBase;
 
@@ -23,8 +25,8 @@ class MessageLine : public QGraphicsLineItem
 public:
     MessageLine();
     ~MessageLine();
-    virtual void initialize(ActivationGraphicsObjectBase *from,
-                    ActivationGraphicsObjectBase *to, Message *newMessage);
+    virtual void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                            Message *newMessage, ClassReference classRef);
     void moveLine(qreal dy, bool moveIfNotValidBefore);
 
     /**
@@ -37,6 +39,7 @@ public:
         return toObject;
     }
 protected:
+    ClassReference classRef;
     bool leftToRight;
     bool editNameAllowed;
     bool createFlag;

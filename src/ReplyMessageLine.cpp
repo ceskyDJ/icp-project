@@ -20,9 +20,10 @@ ReplyMessageLine::ReplyMessageLine()
 /**
  * Initializes itself - store from and to object + store self in those objects.
  */
-void ReplyMessageLine::initialize(ActivationGraphicsObjectBase *from,
-                             ActivationGraphicsObjectBase *to, Message *msg)
+void ReplyMessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                                  Message *msg, ClassReference classRef)
 {
+    (void)classRef;
     fromObject = from;
     toObject = to;
     fromObject->addMessage(this);
@@ -31,4 +32,5 @@ void ReplyMessageLine::initialize(ActivationGraphicsObjectBase *from,
     leftToRight = from->x() < to->x();
     message = msg;
     message->setName(MethodReference{""});
+    this->classRef = ClassReference{""};
 }

@@ -106,14 +106,15 @@ void SequenceDiagramScene::addObject()
 
     Object *newObject = new Object(*classRef);
     delete classRef;
-    ObjectGraphicsItem *objectItem = new ObjectGraphicsItem(newObject);
+    ObjectGraphicsItem *objectItem = new ObjectGraphicsItem(newObject, classDiagram);
 
     connect(&(objectItem->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
     connect(&(objectItem->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
 
     sequenceDiagram->addObject(newObject);
     addItem(objectItem);
-    //user will set the dialog first
+
+    //user will set the object first
     objectItem->showEditDialog(false);
     sceneUpdateObservable->sceneChanged();
 }
@@ -252,17 +253,17 @@ void SequenceDiagramScene::sendMessage()
 {
     // Create new messageline in scene
     ObjectGraphicsItem *objectReciever = dynamic_cast<ObjectGraphicsItem *>(reciever);
-    MethodReference *ref;
+    MethodReference ref{""};
     if(objectReciever)
     {
         std::vector<ClassMethod> methods = objectReciever->getObject()->getInstanceClass()->getMethods();
         if(methods.size() > 0)
-            ref = new MethodReference(&(objectReciever->getObject()->getInstanceClass()->getMethods()[0]));
+            ref = MethodReference{&(objectReciever->getObject()->getInstanceClass()->getMethods()[0])};
         else
-            ref = new MethodReference("UNKNOWN METHOD");
+            ref = MethodReference{"UNKNOWN METHOD"};
     }
     else
-        ref = new MethodReference("UNKNOWN METHOD");
+        ref = MethodReference{"UNKNOWN METHOD"};
 
     //check if is possible to create new line
     QString errorMsg = "";
@@ -276,10 +277,14 @@ void SequenceDiagramScene::sendMessage()
         return;
     }
 
-    Message *newMessage = new Message(*ref, newMessageLineType, sender->getMessageNode(), reciever->getMessageNode(),0.0);
-    delete ref;
+    Message *newMessage = new Message(ref, newMessageLineType, sender->getMessageNode(), reciever->getMessageNode(),0.0);
 
-    newMessageLine->initialize(sender, reciever, newMessage);
+    ClassReference classRef{""};
+    ObjectGraphicsItem *recieverObject = dynamic_cast<ObjectGraphicsItem *>(reciever);
+    if(recieverObject)
+        classRef = recieverObject->getObject()->getInstanceClass();
+
+    newMessageLine->initialize(sender, reciever, newMessage, classRef);
     addItem(newMessageLine);
 
     // Store new message in squence diagram

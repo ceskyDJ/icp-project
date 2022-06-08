@@ -15,8 +15,8 @@ class DestroyMessageLine : public MessageLine
 {
 public:
     DestroyMessageLine();
-    void initialize(ActivationGraphicsObjectBase *from,
-                        ActivationGraphicsObjectBase *to, Message *msg);
+    void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
+                    Message *msg, ClassReference classRef);
 };
 
 #endif // DESTROYMESSAGELINE_H
