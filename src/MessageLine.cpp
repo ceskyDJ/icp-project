@@ -330,8 +330,37 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
         fromObject = toObject;
         toObject = temp;
         leftToRight = !leftToRight;
-        classRef = toObject->getClassReference();
+        updateClassReference(toObject->getClassReference());
     }
     else if(result == EditDialogBase::remove)
         delete this;
+}
+
+/**
+ * Validates method reference with class reference. If method does not belong to class, return "fake" method reference.
+ * Else, returns right reference.
+ *
+ * @param classRef reference to class
+ * @param methodRef reference to method
+ * @return Right method reference - true reference from fight class or "fake" reference
+ */
+MethodReference MessageLine::validateNewReference(ClassReference classRef, MethodReference methodRef)
+{
+    for (int i = 0; (size_t)i < classRef->getMethods().size(); i++)
+    {
+        if(classRef->getMethods()[i].getName() == methodRef.getReferredMethodName())
+            return MethodReference{&(classRef->getMethods()[i])};
+
+    }
+    return MethodReference{methodRef.getReferredMethodName()};
+}
+
+/**
+ * Update class reference
+ */
+void MessageLine::updateClassReference(ClassReference newClassRef)
+{
+    classRef = newClassRef;
+    toObject->setClassReference(newClassRef);
+    message->setName(validateNewReference(classRef, message->getMethod()));
 }

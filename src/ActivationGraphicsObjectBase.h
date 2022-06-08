@@ -24,6 +24,10 @@ class ActivationGraphicsObjectBase : public QGraphicsItem
 {
 public:
     /**
+     * Set Class refernce - if not redefined, does nothing.
+     */
+    virtual void setClassReference(ClassReference){}
+    /**
      * Return message node. If not overriden, return new actor.
      *
      * @return new actor

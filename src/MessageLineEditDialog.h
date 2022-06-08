@@ -30,7 +30,6 @@ public:
     MethodReference getMethodReference()
     {
         std::vector<ClassMethod> allMethods = classRef->getMethods();
-        allMethods = classRef->getMethods();
 
         for (int i = 0; (size_t)i < allMethods.size(); i++)
         {
@@ -52,7 +51,7 @@ protected:
     QFormLayout proprtyLayout;
     ClassReference classRef;
 
-    void fillComboBoxData();
+    void fillComboBoxData(MethodReference methodRef);
     void setAllButtons();
     void setAllLayouts();
     void setPropertyLayout();

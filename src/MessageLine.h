@@ -38,6 +38,8 @@ public:
     {
         return toObject;
     }
+
+    void updateClassReference(ClassReference newClassRef);
 protected:
     ClassReference classRef;
     bool leftToRight;
@@ -88,6 +90,7 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     bool isInObjectsLifeBox(qreal lifeBoxPointer);
+    MethodReference validateNewReference(ClassReference classRef, MethodReference methodRef);
 };
 
 #endif // MESSAGELINE_H

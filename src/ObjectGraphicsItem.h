@@ -57,6 +57,16 @@ public:
     }
     MessageLine *getDestroyMessage();
     MessageLine *getCreateMessage();
+
+    /**
+     * Setter fo class reference.
+     *
+     * @param newClassRef new class reference to be set.
+     */
+    void setClassReference(ClassReference newClassRef)
+    {
+        object->setInstanceClass(newClassRef);
+    }
 protected:
     /**
      * Data source for combobox item.
@@ -78,6 +88,7 @@ protected:
     void setLifeStart(qreal lifeStart);
     void setLifeEndDestroy(qreal lifeEnd);
     void setDestroyed(bool destroyed);
+    void updateMessagesClassReference(ClassReference newClassRef);
 };
 
 #endif // OBJECTGRAPHICSITEM_H

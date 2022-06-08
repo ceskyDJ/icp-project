@@ -240,6 +240,8 @@ void ObjectGraphicsItem::showEditDialog(bool logChange)
     {
         object->setName(dialog.getObjectName().toStdString());
         object->setInstanceClass(dialog.getClassRef());
+        //update class references in all messages sent to this item.
+        updateMessagesClassReference(dialog.getClassRef());
         update();
     }
     else if (result == ObjectGraphicsItemEditDialog::remove)
@@ -338,4 +340,18 @@ MessageLine * ObjectGraphicsItem::getCreateMessage()
             return temp;
     }
     return nullptr;
+}
+
+/**
+ * Updates all messages class refernce that are sent to this object.
+ *
+ * @param classRef new class reference
+ */
+void ObjectGraphicsItem::updateMessagesClassReference(ClassReference classRef)
+{
+    for(MessageLine *line : messages)
+    {
+        if(line->getToObject() == this)
+            line->updateClassReference(classRef);
+    }
 }
