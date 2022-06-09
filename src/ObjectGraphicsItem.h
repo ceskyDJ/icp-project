@@ -89,6 +89,14 @@ protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    /**
+     * Mouse release event handler
+     *
+     * @par When mouse is released, resizing just ended, so scene changing is done.
+     *
+     * @param event Event details
+     */
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
