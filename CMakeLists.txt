@@ -48,6 +48,7 @@ add_executable(icp_project
         src/LineWithArrowEditDialog.h
         src/MessageLine.h
         src/MessageLineEditDialog.h
+        src/MessageLineEmitter.h
         src/MethodParameterEditWidget.h
         src/ObjectGraphicsItem.h
         src/ObjectGraphicsItemEditDialog.h
@@ -126,6 +127,7 @@ add_executable(icp_project
         src/LineWithArrowEditDialog.cpp
         src/MessageLine.cpp
         src/MessageLineEditDialog.cpp
+        src/MessageLineEmitter.cpp
         src/MessageType.cpp
         src/ClassDiagram.cpp
         src/ObjectGraphicsItem.cpp
