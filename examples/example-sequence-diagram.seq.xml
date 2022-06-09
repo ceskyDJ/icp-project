@@ -22,11 +22,11 @@
             <sender type="ACTOR">admin</sender>
             <recipient type="OBJECT">eva</recipient>
         </message>
-        <message name="makeProgram()" type="SYNC" sending-time="0.5">
+        <message name="makeProgram" type="SYNC" sending-time="0.5">
             <sender type="ACTOR">admin</sender>
             <recipient type="OBJECT">eva</recipient>
         </message>
-        <message name="Created program" type="REPLY" sending-time="0.6">
+        <message name="" type="REPLY" sending-time="0.6">
             <sender type="ACTOR">admin</sender>
             <recipient type="OBJECT">eva</recipient>
         </message>
