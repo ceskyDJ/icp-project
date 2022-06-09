@@ -24,6 +24,14 @@ public:
      */
     ReplyMessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
 
+    /**
+     * @brief Initializes itself - store from and to object + store self in those objects.
+     *
+     * @param from sender
+     * @param to reciever
+     * @param msg new message
+     * @param classRef reference to class
+     */
     void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
                     Message *msg, ClassReference classRef);
 };

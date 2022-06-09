@@ -15,6 +15,13 @@
 class DirectedAssociationLine : public LineWithArrow
 {
 public:
+    /**
+     * Set arrow height and width.
+     *
+     * @param existingRelationships Pointer to map of existing relationships and their lines
+     * @param classDiagram Pointer to class diagram
+     * @param sceneUpdateObservable Observable for distributing information about scene changes
+     */
     DirectedAssociationLine(
         std::unordered_map<Line *, Relationship *> *existingRelationships,
         ClassDiagram *classDiagram,
@@ -41,9 +48,27 @@ public:
         relationshipName = newName;
     }
 protected:
+    /**
+     * Draws an arrow adequate to the directed association line.
+     *
+     * @param painter to draw line
+     */
     void drawArrow(QPainter *painter) const override;
+    /**
+     * Draws relationship name in the middle of the line
+     *
+     * @param painter painter to draw a text
+     * @param line currnet line
+     */
     void drawTexts(QPainter *painter, QLineF line) const override;
+
+    /**
+     * Name of relationship
+     */
     QString relationshipName = "relationship name";
+    /**
+     * Opens dialog for edditing line attributes and then handles with return value.
+     */
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/) override;
 };
 

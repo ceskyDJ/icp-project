@@ -15,8 +15,9 @@
 #include "UndirectedAssociation.h"
 
 /**
- * @brief Line::mouseDoubleClickEvent Handles a double click event - shows input dialog to rename relationship
- * @param event
+ * Handles a double click event - shows input dialog to rename relationship
+ * 
+ * @param event recieved event
  */
 void AssociationLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/)
 {

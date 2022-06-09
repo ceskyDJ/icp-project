@@ -25,6 +25,11 @@
 class AssociationLineEditDialog : public QDialog
 {
 public:
+    /**
+     * Class constructor
+     * 
+     * @param relationship Relationship which should be edited
+     */
     AssociationLineEditDialog(UndirectedAssociation *relationship);
     /**
      * Checks if dialog was confirmed.
@@ -56,33 +61,122 @@ public:
         return removeSelected;
     }
 private:
+    /**
+     * Button that if pressed, changes will be accpted.
+     */
     QPushButton *acceptButton;
+    /**
+     * Button that if pressed, changes will NOT be accpeted.
+     */
     QPushButton *cancelButton;
+    /**
+     * If pressed, item should be removed.
+     */
     QPushButton *deleteButton;
+    /**
+     * Line edit for editting name of relationship.
+     */
     QLineEdit *associationNameLineEdit;
+    /**
+     * Line edit for first cardinality
+     */
     QLineEdit *firstCardinalityLineEdit;
+    /**
+     * Line edit for second cardinality
+     */
     QLineEdit *secondCardinalityLineEdit;
+    /**
+     * Layout for buttons
+     */
     QHBoxLayout *buttonLayout;
+    /**
+     * Layout of this.
+     */
     QVBoxLayout *mainLayout;
+    /**
+     * Layout for properties   line edits.
+     */
     QFormLayout *lineEditLayout;
+    /**
+     * Relationship that this class represents
+     */
     UndirectedAssociation *relationship;
+    /**
+     * Flag that is true when accept was selected
+     */
     bool acceptSelected = false;
+    /**
+     * Flag that is true when object should be deleted
+     */
     bool removeSelected = false;
 
+
+    /**
+     * Initializes components
+     */
     void initializeComponents();
+    /**
+     * Connects components.
+     */
     void connectComponents();
+    /**
+     * Set the All Layouts object.
+     */
     void setAllLayouts();
+    /**
+     * Set the Button Layout object.
+     */
     void setButtonLayout();
+    /**
+     * Set the Form Layout object.
+     */
     void setFormLayout();
+    /**
+     * Set the main Layout object.
+     */
     void setMainLayout();
+    /**
+     * Set the All Buttons object.
+     */
     void setAllButtons();
+    /**
+     * Set the One Button's icon and text 
+     * 
+     * @param icon icon of button 
+     * @param text Text that should be displayed on button.
+     * @param button Pointer to the treated button.
+     */
     void setOneButton(QIcon icon, QString text, QPushButton *button);
 private slots:
+    /**
+     * Cancel slot closes dialog.
+     */
     void cancel();
+    /**
+     * Closes dialog and sets accept flag to true.
+     */
     void acceptChanges();
+    /**
+     * Sets remove flag to true and closes dialog.
+     */
     void removeAssociation();
+    /**
+     * Sets a new name of association.
+     *
+     * @param newName new association name
+     */
     void setName(QString newName);
+    /**
+     * Sets first cardinality.
+     *
+     * @param newCardinality new first cardinality
+     */
     void setFirstCardinality(QString newCardinality);
+    /**
+     * Sets second cardinality
+     *
+     * @param newCardinality new second cardinality
+     */
     void setSecondCardinality(QString newCardinality);
 };
 

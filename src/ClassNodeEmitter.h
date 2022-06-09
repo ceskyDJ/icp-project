@@ -21,6 +21,12 @@ class ClassNodeEmitter : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Construct a new Class Node Emitter:: Class Node Emitter object
+     * 
+     * @param parent parent object
+     * @param node classnode which will be sent in singlas
+     */
     explicit ClassNodeEmitter(QObject *parent = nullptr, ClassNode *node = nullptr);
 
     /**
@@ -35,6 +41,9 @@ signals:
      */
     void nodePressed(ClassNode *node);
 private:
+    /**
+     * Node that will be sent in signals
+     */
     ClassNode *node;
 };
 

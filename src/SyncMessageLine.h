@@ -25,6 +25,11 @@ public:
     SyncMessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
 
 protected:
+    /**
+     * Overrided method to draw an arrow at the end of the line.
+     *
+     * @param painter Recieved painter. Painter has to be rotated and translated to end of the line.
+     */
     void drawArrow(QPainter *painter) const;
 };
 

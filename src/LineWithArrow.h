@@ -18,7 +18,13 @@ class LineWithArrow: public Line
 public:
     using Line::Line;
 protected:
+    /**
+     * Height of arrow
+     */
     double arrowHeight = 5;
+    /**
+     * Width of arrow
+     */
     double arrowWidth = 20;
     /**
      * Paints line and arrow. Inherited from QGraphicsItem
@@ -55,7 +61,19 @@ protected:
      * Shows dialog to edit relationship.
      */
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent */*event*/);
+    /**
+     * Adjusts bounding rect for self relationship
+     *
+     * @param rect rect to adjust
+     * @param multiply 1 for bounding rect, -1 for drawing
+     */
     QRectF adjustSelfRect(QRectF rect, int multiply) const;
+    /**
+     * Draws text if needed
+     *
+     * @param painter to paint
+     * @param line on which text should lie
+     */
     virtual void drawTexts(QPainter *painter, QLineF line) const;
 };
 

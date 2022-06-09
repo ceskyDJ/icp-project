@@ -19,6 +19,12 @@ class ActivationObjectEmitter : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Construct a new Activation Object Emitter object
+     * 
+     * @param parent as every object 
+     * @param activationObject objcet that will be sent into all signals
+     */
     explicit ActivationObjectEmitter(QObject *parent = nullptr,
                                      ActivationGraphicsObjectBase *activationObject = nullptr);
     /**
@@ -60,7 +66,17 @@ signals:
      * @param logChange sceneupadte
      */
     void removeObject(ActivationGraphicsObjectBase *activationObject, bool logChange);
+    /**
+     * Siganl is emitted when activationItem should be moved to left.
+     * 
+     * @param activationObject object to move
+     */
     void moveLeft(ActivationGraphicsObjectBase *activationObject);
+    /**
+     * Siganl is emitted when activationItem should be moved to right.
+     * 
+     * @param activationObject object to move
+     */
     void moveRight(ActivationGraphicsObjectBase *activationObject);
 };
 

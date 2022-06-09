@@ -176,13 +176,15 @@ public:
     }
 
     /**
-     * @brief ClassNode::addLine adds new connections
+     * Adds new connections
+     *
      * @param newLine line to connect
      */
     void addLine(Line* newLine);
 
     /**
-     * @brief ClassNode::removeLine removes line form connected list
+     * Removes line form connected list.
+     *
      * @param oldLine line to remove
      */
     void removeLine(Line* oldLine);
@@ -209,7 +211,19 @@ public:
             connectedLines.remove(index);
     }
 
+    /**
+     * Object that emits necessary signal.
+     */
     ClassNodeEmitter emitter;
+    /**
+     * Count number of connections with exactly these nodes in
+     * parameters and store index of comparedLine into index.
+     *
+     * @param secondNode one node in connection line
+     * @param comparedLine Line that we are looking for.
+     * @param index returns order of same connections
+     * @return Count of connections with exactly these 2 nodes.
+     */
     int getNumberOfConnectionsWithNode(ClassNode *secondNode, const Line *comparedLine, int *index) const;
 private:
     /**
@@ -228,12 +242,40 @@ private:
     SceneUpdateObservable *sceneUpdateObservable;
 
     QRectF borederRect();
+    /**
+     * Counts and returns boundigrect of className attribute.
+     *
+     * @return QRectF Rectangle of classNode.
+     */
     QRectF getNameBoundigRect() const;
+    /**
+     * Counts and returns a whole rect of ClassNode.
+     *
+     * @return QRectF - whole rect of ClassNode.
+     */
     QRectF getWholeRect() const;
+    /**
+     * Counts and returns a whole rect of ClassNode.
+     *
+     * @param attributePrintable QStrings of all class attributes
+     * @return QRectF - whole rect of ClassNode.
+     */
     QRectF getWholeRect(std::vector<QString> &attributePrintable, std::vector<QString> &methodPrintable) const;
+    /**
+     * indent of line
+     */
     const int lineIndent = 5;
+    /**
+     * Padding of text
+     */
     const int Padding = 10;
+    /**
+     * border color of node
+     */
     QColor borderColor = Qt::black;
+    /**
+     * all connected lined to this classnode
+     */
     QVector<Line *> connectedLines;
     /**
      * Is class node moved since last scene change log
@@ -243,17 +285,74 @@ private:
      */
     bool isMoved = false;
 
+    /**
+     * Makes and returns all methods of class prepared to print ( +MethodName(params...) ).
+     *
+     * @return Vector of all class methods prepared to print.
+     */
     std::vector<QString> getMethodPrintable(
             std::vector<int> *inheritedIndexes = new std::vector<int>(0)) const;
+    /**
+     * Makes and returns all attributes of class prepared to print (+AttName:dataType).
+     *
+     * @return Vector of all class attributes prepared to print.
+     */
     std::vector<QString> getAttributePrintable() const;
+    /**
+     * Joins all method's parameters to printable representation.
+     *
+     * @param parameters
+     * @return string representing method parameter
+     */
     QString getMethodParametersPrintable(std::vector<MethodParameter> parameters) const;
+    /**
+     * Counts a max width of rectangle around the strings in param toCompare and saves it into maxWidth.
+     *
+     * @param toCompare Vector of strings which should be compared.
+     * @param maxWidth A pointer to variable of type int, where will be stored max width.
+     */
     void getMaxWidth(std::vector<QString> toCompare, qreal *maxWidth) const;
+    /**
+     * Sets font to italic or to normal.
+     *
+     * @param enable true = italic, false = normal
+     * @param painter pointer to painter that should be eddited
+     */
     void setFontItalic(bool enable, QPainter *painter);
+    /**
+     *  Handles double click event - shows eddit dialog, then changes entity.
+     */
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+    /**
+     * Event handler for mouse release event
+     *
+     * @param event Event details
+     */
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    /**
+     * Event handler for mouse move event
+     *
+     * @param event Event details
+     */
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    /**
+     * When item is changed then repaint it.
+     *
+     * @param change GraphicsItemChange
+     * @param value const QVariant
+     * @return itemchange
+     */
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
+    /**
+     * Paints a line again
+     */
     void rePaintLines();
+    /**
+     * Checks if method is inherited from another (by name)
+     *
+     * @param methodName Method that is being checked.
+     * @return if method is inherited than returns true otherwise retrun false;
+     */
     bool isMethodInherited(QString methodName) const;
 };
 

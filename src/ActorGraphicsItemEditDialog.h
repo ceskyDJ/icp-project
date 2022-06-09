@@ -33,22 +33,72 @@ public:
         return name;
     }
 private:
+    /**
+     * Name of actor 
+     */
     QString name;
+    /**
+     * @brief Accept button - closes dialog with QDialog::Accepted
+     * 
+     */
     QPushButton acceptButton;
+    /**
+     * @brief Cancel button  - closes dialog with QDialog::rejected
+     * 
+     */
     QPushButton cancelButton;
+    /**
+     * @brief Remove button - closes dialog with return code 'remove' sotred in editDialogBase
+     * 
+     */
     QPushButton removeButton;
+    /**
+     * @brief LineEdit widget for editting name of actor
+     * 
+     */
     QLineEdit nameLineEdit;
+    /**
+     * @brief this->laout - main layout where is everything
+     * 
+     */
     QVBoxLayout mainLayout;
+    /**
+     * @brief Layout for all buttons
+     * 
+     */
     QHBoxLayout buttonLayout;
+    /**
+     * @brief Layout for line edit.
+     * 
+     */
     QFormLayout propertyLayout;
 
+    /**
+     * Set all buttons - add it icon and text
+     */
     void setAllButtons();
-    void setOneButton(QPushButton *button ,QIcon icon, QString text, bool setDefault);
+    /**
+     * Set button layout - places buttons in layout.
+     */
     void setButtonLayout();
+    /**
+     * Place QLineDialog into property layout.
+     */
     void setPropertyLayout();
+    /**
+     * Places layouts into main layout and sets mainLayout as this layout
+     */
     void setMainLayout();
+    /**
+     * Connect all components/
+     */
     void connectComponents();
 private slots:
+    /**
+     * Slot changes current name to new name.
+     *
+     * @param newName new name
+     */
     void nameChanged(QString newName);
 };
 
