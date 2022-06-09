@@ -11,6 +11,8 @@
 #include <QGraphicsSceneHoverEvent>
 #include <QGraphicsSceneMouseEvent>
 #include "MessageLineEditDialog.h"
+#include "SequenceDiagramScene.h"
+#include <QMessageBox>
 
 /**
  * Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
@@ -24,7 +26,6 @@ MessageLine::MessageLine() : classRef{ClassReference{""}}
     arrowHeight = 20;
     setAcceptHoverEvents(true);
     arrowToLifeLine = false;
-    leftToRight = true;
     editNameAllowed = true;
     createFlag = false;
     destroyFlag = false;
@@ -60,7 +61,6 @@ void MessageLine::initialize(ActivationGraphicsObjectBase *from, ActivationGraph
     fromObject->addMessage(this);
     toObject->addMessage(this);
     message = newMessage;
-    leftToRight = from->x() < to->x();
     this->classRef = classRef;
 }
 
@@ -91,7 +91,7 @@ void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     painter->drawText(textRect, QString::fromStdString(message->getMethod().getReferredMethodName()));
     painter->setPen(usedPen);
 
-    if(!leftToRight) //arrow goes from right to left
+    if(fromObject->x() > toObject->x()) //arrow goes from right to left
         line.setLine(line.x2(), line.y2(), line.x1(), line.y2());
 
     line.setLength(line.length() - arrowWidth); //make space for arrow
@@ -103,7 +103,7 @@ void MessageLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWi
     QPen temp = painter->pen();
     temp.setStyle(Qt::SolidLine);
     painter->setPen(temp);
-    if(!leftToRight)
+    if(fromObject->x() > toObject->x())
         painter->rotate(180);
     drawArrow(painter);
 }
@@ -325,13 +325,53 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     }
     else if(result == EditDialogBase::switchArrows)
     {
+        QString err = "";
+        if(!SequenceDiagramScene::createMessagePossible(&err, fromObject,
+                                                        toObject,
+                                                        message->getType()))
+        {
+            QMessageBox msgBox;
+            msgBox.setText(err);
+            msgBox.setWindowTitle("Creation was not succesful");
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.exec();
+            return;
+        }
         ActivationGraphicsObjectBase *temp = fromObject;
-
         fromObject = toObject;
         toObject = temp;
-        leftToRight = !leftToRight;
-        classRef = toObject->getClassReference();
+
+        updateClassReference(toObject->getClassReference());
     }
     else if(result == EditDialogBase::remove)
         delete this;
+}
+
+/**
+ * Validates method reference with class reference. If method does not belong to class, return "fake" method reference.
+ * Else, returns right reference.
+ *
+ * @param classRef reference to class
+ * @param methodRef reference to method
+ * @return Right method reference - true reference from fight class or "fake" reference
+ */
+MethodReference MessageLine::validateNewReference(ClassReference classRef, MethodReference methodRef)
+{
+    for (int i = 0; (size_t)i < classRef->getMethods().size(); i++)
+    {
+        if(classRef->getMethods()[i].getName() == methodRef.getReferredMethodName())
+            return MethodReference{&(classRef->getMethods()[i])};
+
+    }
+    return MethodReference{methodRef.getReferredMethodName()};
+}
+
+/**
+ * Update class reference
+ */
+void MessageLine::updateClassReference(ClassReference newClassRef)
+{
+    classRef = newClassRef;
+    toObject->setClassReference(newClassRef);
+    message->setName(validateNewReference(classRef, message->getMethod()));
 }

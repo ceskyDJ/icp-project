@@ -29,7 +29,6 @@ void ReplyMessageLine::initialize(ActivationGraphicsObjectBase *from, Activation
     fromObject->addMessage(this);
     toObject->addMessage(this);
     toObject->setDestroyed(true);
-    leftToRight = from->x() < to->x();
     message = msg;
     message->setName(MethodReference{""});
     this->classRef = ClassReference{""};

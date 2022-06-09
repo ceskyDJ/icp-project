@@ -1,6 +1,5 @@
 /**
- * @class MessageLine
- * Base functionality, methods and variables for messages.
+ * @file MessageLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -20,6 +19,9 @@
 
 class ActivationGraphicsObjectBase;
 
+/**
+ * Provides almost complete functionality, methods and variables for all messages.
+ */
 class MessageLine : public QGraphicsLineItem
 {
 public:
@@ -38,9 +40,9 @@ public:
     {
         return toObject;
     }
+    void updateClassReference(ClassReference newClassRef);
 protected:
     ClassReference classRef;
-    bool leftToRight;
     bool editNameAllowed;
     bool createFlag;
     bool destroyFlag;
@@ -88,6 +90,7 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     bool isInObjectsLifeBox(qreal lifeBoxPointer);
+    MethodReference validateNewReference(ClassReference classRef, MethodReference methodRef);
 };
 
 #endif // MESSAGELINE_H

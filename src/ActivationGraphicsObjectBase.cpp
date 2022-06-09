@@ -10,11 +10,12 @@
 
 qreal ActivationGraphicsObjectBase::height = 500;
 qreal ActivationGraphicsObjectBase::headerHeight = 60;
-qreal ActivationGraphicsObjectBase::lifeSpaceStart = 10;
+qreal ActivationGraphicsObjectBase::lifeSpaceStart = 25;
 qreal ActivationGraphicsObjectBase::lifeboxWidth = 20;
 qreal ActivationGraphicsObjectBase::destroyCrossSize = 30;
 qreal ActivationGraphicsObjectBase::objectPadding = 300;
 QColor ActivationGraphicsObjectBase::drawColor = Qt::black;
+qreal ActivationGraphicsObjectBase::moveTollerance = 100;
 
 int ActivationGraphicsObjectBase::objectCounter = 0;
 /**
@@ -157,4 +158,14 @@ void ActivationGraphicsObjectBase::setDestroyed(bool destroyed)
 MessageNode* ActivationGraphicsObjectBase::getMessageNode()
 {
     return new Actor();
+}
+
+/**
+ * Return area in shape of rectangle which is located in header.
+ *
+ * @return area in shape of rectangle which is located in header
+ */
+QRectF ActivationGraphicsObjectBase::getWholeObjectMoveRect()
+{
+    return QRectF{0, 0, width(), headerHeight};
 }

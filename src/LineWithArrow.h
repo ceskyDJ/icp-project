@@ -1,6 +1,5 @@
 /**
- * @class LineWithArrow
- * Represents line with arrow in class diagram. Allows to draw a line with arrow.
+ * @file LineWithArrow.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "Line.h"
 
+/**
+ * Represents line with arrow in class diagram. Allows to draw a line with arrow.
+ */
 class LineWithArrow: public Line
 {
 public:

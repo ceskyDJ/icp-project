@@ -1,6 +1,5 @@
 /**
- * @class MethodParameterEditWidget
- * Allows to edit method parameter
+ * @file MethodParameterEditWidget.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -15,6 +14,9 @@
 #include <QLineEdit>
 #include <QPushButton>
 
+/**
+ * Allows to edit method parameter.
+ */
 class MethodParameterEditWidget : public QWidget
 {
     Q_OBJECT

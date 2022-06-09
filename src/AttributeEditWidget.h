@@ -1,6 +1,5 @@
 /**
- * @class AttributeEditWidget
- * Widget that allows to load, show and edit data of Class atributes.
+ * @file AttributeEditWidget.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -16,6 +15,9 @@
 #include <QComboBox>
 #include <QPushButton>
 
+/**
+ * Widget that allows to load, show and edit data of Class atributes.
+ */
 class AttributeEditWidget : public QWidget
 {
     Q_OBJECT

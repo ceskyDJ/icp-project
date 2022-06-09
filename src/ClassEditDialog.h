@@ -1,6 +1,5 @@
 /**
- * @class ClassEditDialog
- * Dialog allows to eddit all data of class entity.
+ * @file ClassEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -23,6 +22,9 @@
 #include <QAction>
 #include <QComboBox>
 
+/**
+ * Dialog allows to eddit all data of class entity.
+ */
 class ClassEditDialog : public QDialog
 {
 public:

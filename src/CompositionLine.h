@@ -1,6 +1,5 @@
 /**
- * @class CompositionLine
- * Composition line.
+ * @file CompositionLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -12,6 +11,9 @@
 #include "Line.h"
 #include "LineWithArrow.h"
 
+/**
+ * Represenatation of composition relationship in class diagram.
+ */
 class CompositionLine: public LineWithArrow
 {
 public:

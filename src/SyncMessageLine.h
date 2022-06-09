@@ -1,6 +1,5 @@
 /**
- * @class SyncMessageLine
- * Represents synchronous message in sequence diagram.
+ * @file SyncMessageLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "MessageLine.h"
 
+/**
+ * Represents synchronous message in sequence diagram.
+ */
 class SyncMessageLine : public MessageLine
 {
 public:

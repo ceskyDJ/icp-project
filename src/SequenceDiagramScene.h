@@ -3,6 +3,7 @@
  *
  * ICP project (Class and sequence diagram editor)
  *
+ * @author Jakub Dvořák (xdvora3q)
  * @author Michal Šmahel (xsmahe01)
  */
 #ifndef ICP_PROJECT_SEQUENCE_DIAGRAM_SCENE_H
@@ -106,6 +107,17 @@ class SequenceDiagramScene: public CustomScene
      * @param type type of message
      */
     void createNewMessageLine(MessageLine *line, MessageType type);
+    /**
+     * Checks if it is possible to create new message. If error occures, store message into errorMsg.
+     *
+     * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
+     * @param reciever reciever object
+     * @param messageType type of message
+     * @return true if everything is ok.
+     * @return false if creation is NOT possible.
+     */
+    static bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *reciever,
+                               ActivationGraphicsObjectBase *sender, MessageType messageType);
 public slots:
     /**
      * Remove selected button was pressed. Handles an event - remove selected or change current state.
@@ -153,7 +165,9 @@ private:
     */
    void removeHandle(ActivationGraphicsObjectBase *activationItem);
    /**
-    * Return all activation items in scene, sorted by insertion order.
+    * Return all activation items in scene, sorted by order attribute.
+    *
+    * @return QVector<ActivationGraphicsObjectBase *> all activation items in scene, sorted by insertion order.
     */
    QVector<ActivationGraphicsObjectBase *> activationObjectsInScene();
    /**
@@ -166,17 +180,6 @@ private:
     * @param ivokedBy Node that was pressed on.
     */
    void selectLinesHandle(ActivationGraphicsObjectBase *ivokedBy);
-   /**
-    * Checks if it is possible to create new message. If error occures, store message into errorMsg.
-    *
-    * @param errorMsg If error occurs, store error message there else errorMsg is unchanged.
-    * @param reciever reciever object
-    * @param messageType type of message
-    * @return true if everything is ok.
-    * @return false if creation is NOT possible.
-    */
-   bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *reciever,
-                              ActivationGraphicsObjectBase *sender, MessageType messageType);
 private slots:
     /**
     * Function that informs this, that invokedBy, was clicked on.
@@ -193,6 +196,20 @@ private slots:
      * objects, sort the objects.
      */
     void objectSortSlot(QList<QRectF>);
+
+    /**
+     * Moves recived object left.
+     *
+     * @param objectToMove object that will be moved left.
+     */
+    void moveObjectLeft(ActivationGraphicsObjectBase *objectToMove);
+
+    /**
+     * Moves recieved object to right
+     *
+     * @param objectToMove object that will be move right.
+     */
+    void moveObjectRight(ActivationGraphicsObjectBase *objectToMove);
 };
 
 #endif //ICP_PROJECT_SEQUENCE_DIAGRAM_SCENE_H

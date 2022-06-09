@@ -1,6 +1,5 @@
 /**
- * @class LineWithArrowEditDialog
- * Dialog which allow to revers line directory or remove reltaionship.
+ * @file LineWithArrowEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -15,6 +14,9 @@
 #include <QHBoxLayout>
 #include <QGraphicsSceneMouseEvent>
 
+/**
+ * Dialog which allows to revers line directory or remove reltaionship.
+ */
 class LineWithArrowEditDialog : public QDialog
 {
 public:

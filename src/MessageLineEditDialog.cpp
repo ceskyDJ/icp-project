@@ -15,18 +15,23 @@ MessageLineEditDialog::MessageLineEditDialog(bool showPropertyLayout,
     setAllButtons();
     setAllLayouts();
     connectComponents();
-    fillComboBoxData();
+    fillComboBoxData(methodRef);
     methodCombobox.setCurrentText(QString::fromStdString(methodRef.getReferredMethodName()));
 }
 
 /**
  * Fills combobox data from class
+ *
+ * @param methodRef Method reference - used if no methods are in class reference.
+ * Then add this as item to combobox.
  */
-void MessageLineEditDialog::fillComboBoxData()
+void MessageLineEditDialog::fillComboBoxData(MethodReference methodRef)
 {
     std::vector<ClassMethod> allMethods = classRef->getMethods();
     for (ClassMethod classMethodItem : allMethods)
         methodCombobox.addItem(QString::fromStdString(classMethodItem.getName()));
+    if(allMethods.size() == 0)
+        methodCombobox.addItem(QString::fromStdString(methodRef.getReferredMethodName()));
 }
 
 /**

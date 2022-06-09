@@ -1,6 +1,5 @@
 /**
- * @class ActorGraphicsItem
- * Representation of actor in sequence diagram as graphics item.
+ * @file ActorGraphicsItem.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -14,6 +13,9 @@
 #include "Actor.h"
 #include <QGraphicsSceneMouseEvent>
 
+/**
+ * Representation of actor in sequence diagram as graphics item.
+ */
 class ActorGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:

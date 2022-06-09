@@ -28,7 +28,9 @@ ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, ClassDiagram *classDia
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
     setAcceptHoverEvents(true);
     destroyed = false;
+    order = getObjectCounter();
     incObjectCounter();
+    setZValue(- 1);
 }
 
 /**
@@ -133,8 +135,7 @@ void ObjectGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
  */
 void ObjectGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    setSelected(true);
-    if(this->cursor() == Qt::ClosedHandCursor)
+    if(this->cursor() == Qt::ClosedHandCursor) // lifebox is going to be moved
     {
         QRectF lifebox = lifeBoxRect();
         qreal dy = event->pos().y() - pressedPos.y();
@@ -164,6 +165,14 @@ void ObjectGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             getDestroyMessage()->moveLine(dy, true);
         else //everything ok
             object->setLifeLength(newLength);
+    }
+    else if (this->cursor() == Qt::SizeAllCursor) // Possibility of moving object in scene
+    {
+        int dx = (int)((event->scenePos().x() - this->scenePos().x()) / (objectPadding - moveTollerance));
+        if(dx == -1)
+            emitter.emitMoveLeft();
+        else if (dx == 1)
+            emitter.emitMoveRight();
     }
     pressedPos = event->pos();
 }
@@ -195,8 +204,11 @@ void ObjectGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
         this->setCursor(Qt::SizeVerCursor);
     else if (lifeBoxRect().contains(event->pos()))
         this->setCursor(Qt::OpenHandCursor);
+    else if (getWholeObjectMoveRect().contains(event->pos()))
+        this->setCursor(Qt::SizeAllCursor);
     else
         this->setCursor(Qt::ArrowCursor);
+
 }
 
 /**
@@ -240,6 +252,8 @@ void ObjectGraphicsItem::showEditDialog(bool logChange)
     {
         object->setName(dialog.getObjectName().toStdString());
         object->setInstanceClass(dialog.getClassRef());
+        //update class references in all messages sent to this item.
+        updateMessagesClassReference(dialog.getClassRef());
         update();
     }
     else if (result == ObjectGraphicsItemEditDialog::remove)
@@ -338,4 +352,18 @@ MessageLine * ObjectGraphicsItem::getCreateMessage()
             return temp;
     }
     return nullptr;
+}
+
+/**
+ * Updates all messages class refernce that are sent to this object.
+ *
+ * @param classRef new class reference
+ */
+void ObjectGraphicsItem::updateMessagesClassReference(ClassReference classRef)
+{
+    for(MessageLine *line : messages)
+    {
+        if(line->getToObject() == this)
+            line->updateClassReference(classRef);
+    }
 }

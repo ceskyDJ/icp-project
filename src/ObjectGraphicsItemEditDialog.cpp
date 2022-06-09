@@ -24,6 +24,8 @@ ObjectGraphicsItemEditDialog::ObjectGraphicsItemEditDialog
     connectComponents();
 
     classNameCombo.setCurrentText(className);
+    if(classNameCombo.count() == 0)
+        classNameCombo.addItem(className);
     objectNameLineEdit.setText(objectName);
 }
 

@@ -1,6 +1,5 @@
 /**
- * @class GeneralizationLine
- * Generalization line.
+ * @file GeneralizationLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -13,6 +12,9 @@
 #include "LineWithArrow.h"
 #include <QPainter>
 
+/**
+ * Representation of generalisation line in class diagram.
+ */
 class GeneralizationLine : public LineWithArrow
 {
 public:

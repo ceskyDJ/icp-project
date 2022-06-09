@@ -1,6 +1,5 @@
 /**
- * @class ObjectGraphicsItemEditDialog
- * Dialog to edit ObjectGraphicsItem
+ * @file ObjectGraphicsItemEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -20,6 +19,9 @@
 #include "ClassDiagram.h"
 #include "ClassReference.h"
 
+/**
+ * Dialog to edit ObjectGraphicsItem - change reffered class from class diagram.
+ */
 class ObjectGraphicsItemEditDialog : public EditDialogBase
 {
 public:

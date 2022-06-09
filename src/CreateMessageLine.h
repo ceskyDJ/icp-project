@@ -1,6 +1,5 @@
 /**
- * @class CreateMessageLine
- * Represents create message in sequence diagram.
+ * @file CreateMessageLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "MessageLine.h"
 
+/**
+ * Represents create message in sequence diagram.
+ */
 class CreateMessageLine : public MessageLine
 {
 public:

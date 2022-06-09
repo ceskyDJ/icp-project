@@ -1,6 +1,5 @@
 /**
- * @class ObjectGraphicsItem
- * Representation of object in sequence diagram as graphics item.
+ * @file ObjectGraphicsItem.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -16,6 +15,9 @@
 #include <QPainterPath>
 #include "ClassDiagram.h"
 
+/**
+ * Representation of object in sequence diagram as graphics item.
+ */
 class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
@@ -57,6 +59,16 @@ public:
     }
     MessageLine *getDestroyMessage();
     MessageLine *getCreateMessage();
+
+    /**
+     * Setter fo class reference.
+     *
+     * @param newClassRef new class reference to be set.
+     */
+    void setClassReference(ClassReference newClassRef)
+    {
+        object->setInstanceClass(newClassRef);
+    }
 protected:
     /**
      * Data source for combobox item.
@@ -78,6 +90,7 @@ protected:
     void setLifeStart(qreal lifeStart);
     void setLifeEndDestroy(qreal lifeEnd);
     void setDestroyed(bool destroyed);
+    void updateMessagesClassReference(ClassReference newClassRef);
 };
 
 #endif // OBJECTGRAPHICSITEM_H

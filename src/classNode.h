@@ -1,6 +1,5 @@
 /**
- * @class classNode
- * Implementation of class node.
+ * @file classNode.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -24,6 +23,9 @@
 
 class Line;
 
+/**
+ * Implementation of class node - Graphics representation of class.
+ */
 class ClassNode : public QGraphicsItem
 {
 public:

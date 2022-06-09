@@ -89,6 +89,8 @@ void SequenceDiagramScene::addActor()
     addItem(actorItem);
     connect(&(actorItem->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
     connect(&(actorItem->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
+    connect(&(actorItem->emitter), &ActivationObjectEmitter::moveLeft, this, &SequenceDiagramScene::moveObjectLeft);
+    connect(&(actorItem->emitter), &ActivationObjectEmitter::moveRight, this, &SequenceDiagramScene::moveObjectRight);
     sceneUpdateObservable->sceneChanged();
 }
 
@@ -98,7 +100,7 @@ void SequenceDiagramScene::addActor()
 void SequenceDiagramScene::addObject()
 {
     Class *refferedClass = (classDiagram->getClasses().size() > 0)? classDiagram->getClasses()[0]:nullptr;
-    ClassReference *classRef; //because no constructor without params exists
+    ClassReference *classRef;
     if(refferedClass)
         classRef = new ClassReference(refferedClass);
     else
@@ -110,6 +112,8 @@ void SequenceDiagramScene::addObject()
 
     connect(&(objectItem->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
     connect(&(objectItem->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
+    connect(&(objectItem->emitter), &ActivationObjectEmitter::moveLeft, this, &SequenceDiagramScene::moveObjectLeft);
+    connect(&(objectItem->emitter), &ActivationObjectEmitter::moveRight, this, &SequenceDiagramScene::moveObjectRight);
 
     sequenceDiagram->addObject(newObject);
     addItem(objectItem);
@@ -318,7 +322,7 @@ void SequenceDiagramScene::selectionEdit()
 }
 
 /**
- * Return all activation items in scene, sorted by insertion order.
+ * Return all activation items in scene, sorted by order attribute.
  *
  * @return QVector<ActivationGraphicsObjectBase *> all activation items in scene, sorted by insertion order.
  */
@@ -332,6 +336,13 @@ QVector<ActivationGraphicsObjectBase *> SequenceDiagramScene::activationObjectsI
         if(activationObject)
             activationItems.push_back(activationObject);
     }
+
+    //sort items by order
+    std::sort(activationItems.begin(), activationItems.end(),
+              [](ActivationGraphicsObjectBase * first, ActivationGraphicsObjectBase *second)
+    {
+       return first->order < second->order;
+    });
     return activationItems;
 }
 
@@ -341,11 +352,9 @@ QVector<ActivationGraphicsObjectBase *> SequenceDiagramScene::activationObjectsI
 void SequenceDiagramScene::sortActivationItems()
 {
     QVector<ActivationGraphicsObjectBase *> activationItems = activationObjectsInScene();
-    for(int i = 0; i < activationItems.size(); i++)
-    {
 
+    for(int i = 0; i < activationItems.size(); i++)
         activationItems[i]->setPos( ActivationGraphicsObjectBase::objectPadding * i, 0);
-    }
 }
 
 /**
@@ -384,7 +393,7 @@ bool SequenceDiagramScene::createMessagePossible(QString *errorMsg,
     ActorGraphicsItem *actor = dynamic_cast<ActorGraphicsItem*>(reciever);
     if(actor && (messageType == (MessageType)MessageType::CREATE || messageType == (MessageType)MessageType::DESTROY))
     {
-        *errorMsg = "Actor cannot has create or destroy message!";
+        *errorMsg = "Actor cannot recieve any message of type <<create>> nor <<destroy>>!";
         return false;
     }
     else
@@ -392,14 +401,51 @@ bool SequenceDiagramScene::createMessagePossible(QString *errorMsg,
         ObjectGraphicsItem *obj = dynamic_cast<ObjectGraphicsItem *>(reciever);
         if(messageType == (MessageType)MessageType::DESTROY && obj->getDestroyMessage())
         {
-            *errorMsg = "Object cannot has more than one destroy message!";
+            *errorMsg = "Object cannot recieve more than one destroy message!";
             return false;
         }
         else if (messageType == (MessageType)MessageType::CREATE && obj->getCreateMessage())
         {
-            *errorMsg = "Object cannot has more than one create message!";
+            *errorMsg = "Object cannot recieve more than one create message!";
             return false;
         }
     }
     return true;
+}
+
+/**
+ * Moves recived object left.
+ *
+ * @param objectToMove object that will be moved left.
+ */
+void SequenceDiagramScene::moveObjectLeft(ActivationGraphicsObjectBase *objectToMove)
+{
+    QVector<ActivationGraphicsObjectBase *> activationItems = activationObjectsInScene();
+    int index = activationItems.indexOf(objectToMove);
+    if(index > 0)
+    {
+        int tempOrder = activationItems[index]->order;
+        activationItems[index]->order = activationItems[index - 1]->order;
+        activationItems[index - 1]->order = tempOrder;
+        sortActivationItems();
+    }
+
+}
+
+/**
+ * Moves recieved object to right
+ *
+ * @param objectToMove object that will be move right.
+ */
+void SequenceDiagramScene::moveObjectRight(ActivationGraphicsObjectBase *objectToMove)
+{
+    QVector<ActivationGraphicsObjectBase *> activationItems = activationObjectsInScene();
+    int index = activationItems.indexOf(objectToMove);
+    if(index < activationItems.size() - 1)
+    {
+        int tempOrder = activationItems[index]->order;
+        activationItems[index]->order = activationItems[index + 1]->order;
+        activationItems[index + 1]->order = tempOrder;
+        sortActivationItems();
+    }
 }

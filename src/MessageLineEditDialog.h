@@ -1,6 +1,5 @@
 /**
- * @class MessageLineEditDialog
- * Dialog for edditing message lines.
+ * @file MessageLineEditDialog.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -17,6 +16,9 @@
 #include "ClassReference.h"
 #include "MethodReference.h"
 
+/**
+ * Dialog for edditing all message lines. Allows to change method, switch arrows and remove line.
+ */
 class MessageLineEditDialog : public EditDialogBase
 {
 public:
@@ -30,7 +32,6 @@ public:
     MethodReference getMethodReference()
     {
         std::vector<ClassMethod> allMethods = classRef->getMethods();
-        allMethods = classRef->getMethods();
 
         for (int i = 0; (size_t)i < allMethods.size(); i++)
         {
@@ -52,7 +53,7 @@ protected:
     QFormLayout proprtyLayout;
     ClassReference classRef;
 
-    void fillComboBoxData();
+    void fillComboBoxData(MethodReference methodRef);
     void setAllButtons();
     void setAllLayouts();
     void setPropertyLayout();

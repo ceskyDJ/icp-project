@@ -1,6 +1,5 @@
 /**
- * @class Realization
- * Allows to draw realization line in UML class diagram.
+ * @file RealizationLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "LineWithArrow.h"
 
+/**
+ * Allows to draw realization line in UML class diagram.
+ */
 class RealizationLine : public LineWithArrow
 {
 public:

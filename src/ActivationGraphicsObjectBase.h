@@ -1,7 +1,5 @@
 /**
- * @class ActivationGraphicsObjectBase
- * Base functionality, variables and func declarations that are necessary for object in sequence diagram
- * which has life box.
+ * @file ActivationGraphicsObjectBase.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -17,12 +15,20 @@
 #include "MessageLine.h"
 #include "ActivationObjectEmitter.h"
 
-
 class MessageLine;
 
+/**
+ * Base functionality, variables and func declarations that are necessary for object in sequence diagram
+ * which has life box.
+*/
 class ActivationGraphicsObjectBase : public QGraphicsItem
 {
 public:
+
+    /**
+     * Set Class refernce - if not redefined, does nothing.
+     */
+    virtual void setClassReference(ClassReference){}
     /**
      * Return message node. If not overriden, return new actor.
      *
@@ -42,7 +48,10 @@ public:
      * Color to draw objects - it changes according to user events.
      */
     static QColor drawColor;
-
+    
+    /**
+     * Padding between objects in scene
+     */
     static qreal objectPadding;
     /**
      * Size of destroy cross
@@ -179,6 +188,11 @@ public:
     {
         return drawColor;
     }
+
+    /**
+     * Tells order of draw.
+     */
+    int order;
   protected:
     /**
      * Counts created objects.
@@ -186,10 +200,17 @@ public:
     static int objectCounter;
 
     /**
+     * Distance that will be substracted from distance metric to move whole object.
+     */
+    static qreal moveTollerance;
+    /**
      * All messages that goes into and from this object.
      */
     QList<MessageLine *> messages;
 
+    /**
+     * Minimum height of all items (header + lifespace + lifebox)
+     */
     static const int minHeight = 100;
 
     /**
@@ -235,5 +256,12 @@ public:
      * @return bounding rect around text
      */
     QRectF getTextBoundingBox(QString text) const;
+
+    /**
+     * Return area in shape of rectangle which is located in header.
+     *
+     * @return area in shape of rectangle which is located in header
+     */
+    QRectF getWholeObjectMoveRect();
 };
 #endif // ACTIVATIONGRAPHICSOBJECTBASE_H

@@ -1,6 +1,5 @@
 /**
- * @class AsyncMessageLine
- * Represents asynchronous message in sequence diagram.
+ * @file AsyncMessageLine.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -11,6 +10,9 @@
 
 #include "MessageLine.h"
 
+/**
+ * Represents asynchronous message in sequence diagram.
+ */
 class AsyncMessageLine : public MessageLine
 {
 public:

@@ -1,6 +1,5 @@
 /**
- * @class Line
- * General line - others are abstract.
+ * @file Line.h
  *
  * ICP project (Class and sequence diagram editor)
  *
@@ -22,6 +21,9 @@
 class ClassNode;
 class LineText;
 
+/**
+ * Base class for all lines. Provides basic methods for drawing to all relationships.
+ */
 class Line: public QGraphicsLineItem {
 public:
     /**
