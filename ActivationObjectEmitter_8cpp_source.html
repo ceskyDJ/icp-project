@@ -70,7 +70,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="ActivationObjectEmitter_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;ActivationObjectEmitter.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="ActivationObjectEmitter_8h.html">ActivationObjectEmitter.h</a>&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>ActivationObjectEmitter::ActivationObjectEmitter(QObject *parent, <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *activationObject)</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    : QObject{parent}, activationObject{activationObject}</div>
@@ -79,15 +79,29 @@ $(function() {
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classActivationObjectEmitter.html#a942f1069bed6c9fc193a1f27ec38a9bf">   18</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classActivationObjectEmitter.html#a942f1069bed6c9fc193a1f27ec38a9bf">ActivationObjectEmitter::emitPressedSignal</a>()</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    emit objectPressed(activationObject);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    emit <a class="code hl_signal" href="classActivationObjectEmitter.html#a50d17dda153d81a6097d2b871335b8a8">objectPressed</a>(activationObject);</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classActivationObjectEmitter.html#a34f8141f9bfa778e90c812a0b976eeab">   26</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classActivationObjectEmitter.html#a34f8141f9bfa778e90c812a0b976eeab">ActivationObjectEmitter::emitRemoveObjectSignal</a>(<span class="keywordtype">bool</span> logChange)</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    emit removeObject(activationObject, logChange);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    emit <a class="code hl_signal" href="classActivationObjectEmitter.html#a7e32974b6be11ee468867f2972506bea">removeObject</a>(activationObject, logChange);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
-<div class="ttc" id="aclassActivationGraphicsObjectBase_html"><div class="ttname"><a href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00023">ActivationGraphicsObjectBase.h:24</a></div></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classActivationObjectEmitter.html#a01db0f5babf0baeac1e40d76dd599b29">   34</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classActivationObjectEmitter.html#a01db0f5babf0baeac1e40d76dd599b29">ActivationObjectEmitter::emitMoveLeft</a>()</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    emit moveLeft(activationObject);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classActivationObjectEmitter.html#a7a57273eccf3bacc2167c530f664bc81">   41</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classActivationObjectEmitter.html#a7a57273eccf3bacc2167c530f664bc81">ActivationObjectEmitter::emitMoveRight</a>()</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    emit moveRight(activationObject);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+<div class="ttc" id="aActivationObjectEmitter_8h_html"><div class="ttname"><a href="ActivationObjectEmitter_8h.html">ActivationObjectEmitter.h</a></div></div>
+<div class="ttc" id="aclassActivationGraphicsObjectBase_html"><div class="ttname"><a href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00024">ActivationGraphicsObjectBase.h:25</a></div></div>
+<div class="ttc" id="aclassActivationObjectEmitter_html_a01db0f5babf0baeac1e40d76dd599b29"><div class="ttname"><a href="classActivationObjectEmitter.html#a01db0f5babf0baeac1e40d76dd599b29">ActivationObjectEmitter::emitMoveLeft</a></div><div class="ttdeci">void emitMoveLeft()</div><div class="ttdef"><b>Definition:</b> <a href="ActivationObjectEmitter_8cpp_source.html#l00034">ActivationObjectEmitter.cpp:34</a></div></div>
 <div class="ttc" id="aclassActivationObjectEmitter_html_a34f8141f9bfa778e90c812a0b976eeab"><div class="ttname"><a href="classActivationObjectEmitter.html#a34f8141f9bfa778e90c812a0b976eeab">ActivationObjectEmitter::emitRemoveObjectSignal</a></div><div class="ttdeci">void emitRemoveObjectSignal(bool logChange)</div><div class="ttdef"><b>Definition:</b> <a href="ActivationObjectEmitter_8cpp_source.html#l00026">ActivationObjectEmitter.cpp:26</a></div></div>
+<div class="ttc" id="aclassActivationObjectEmitter_html_a50d17dda153d81a6097d2b871335b8a8"><div class="ttname"><a href="classActivationObjectEmitter.html#a50d17dda153d81a6097d2b871335b8a8">ActivationObjectEmitter::objectPressed</a></div><div class="ttdeci">void objectPressed(ActivationGraphicsObjectBase *activationObject)</div></div>
+<div class="ttc" id="aclassActivationObjectEmitter_html_a7a57273eccf3bacc2167c530f664bc81"><div class="ttname"><a href="classActivationObjectEmitter.html#a7a57273eccf3bacc2167c530f664bc81">ActivationObjectEmitter::emitMoveRight</a></div><div class="ttdeci">void emitMoveRight()</div><div class="ttdef"><b>Definition:</b> <a href="ActivationObjectEmitter_8cpp_source.html#l00041">ActivationObjectEmitter.cpp:41</a></div></div>
+<div class="ttc" id="aclassActivationObjectEmitter_html_a7e32974b6be11ee468867f2972506bea"><div class="ttname"><a href="classActivationObjectEmitter.html#a7e32974b6be11ee468867f2972506bea">ActivationObjectEmitter::removeObject</a></div><div class="ttdeci">void removeObject(ActivationGraphicsObjectBase *activationObject, bool logChange)</div></div>
 <div class="ttc" id="aclassActivationObjectEmitter_html_a942f1069bed6c9fc193a1f27ec38a9bf"><div class="ttname"><a href="classActivationObjectEmitter.html#a942f1069bed6c9fc193a1f27ec38a9bf">ActivationObjectEmitter::emitPressedSignal</a></div><div class="ttdeci">void emitPressedSignal()</div><div class="ttdef"><b>Definition:</b> <a href="ActivationObjectEmitter_8cpp_source.html#l00018">ActivationObjectEmitter.cpp:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

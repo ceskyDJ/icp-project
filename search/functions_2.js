@@ -19,7 +19,8 @@ var searchData=
   ['compositionline_16',['CompositionLine',['../classCompositionLine.html#a13ffd50c63d381f272f1fab2dde50b6f',1,'CompositionLine']]],
   ['connectcomponents_17',['connectComponents',['../classDirectedAssociationLineEditDialog.html#a58b72455db93cca3cb0d504a45660834',1,'DirectedAssociationLineEditDialog::connectComponents()'],['../classLineWithArrowEditDialog.html#a75f2c8afdf2ce47d3e00e52ee8a5f1ed',1,'LineWithArrowEditDialog::connectComponents()'],['../classMessageLineEditDialog.html#a379343ba3437cfed8ca6af71e43c16db',1,'MessageLineEditDialog::connectComponents()']]],
   ['creatememento_18',['createMemento',['../classClassDiagram.html#a2bffeca3ad74338f02b1581396b4c900',1,'ClassDiagram::createMemento()'],['../classSequenceDiagram.html#afec51efad8506a845045fbf8650fc87f',1,'SequenceDiagram::createMemento()']]],
-  ['createnewmessageline_19',['createNewMessageLine',['../classSequenceDiagramScene.html#ad30a0c581886884efe1438d0152e895f',1,'SequenceDiagramScene::createNewMessageLine(MessageLine *line)'],['../classSequenceDiagramScene.html#ad8b7a766e639fb95e1ef374ef35f3856',1,'SequenceDiagramScene::createNewMessageLine(MessageLine *line, MessageType type)']]],
-  ['createtitle_20',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]],
-  ['customscene_21',['CustomScene',['../classCustomScene.html#ae492ffe10d1670780690a8904618c361',1,'CustomScene']]]
+  ['createmessagepossible_19',['createMessagePossible',['../classSequenceDiagramScene.html#a8c8ba16eacc46e05a1e3bb2b806aa870',1,'SequenceDiagramScene']]],
+  ['createnewmessageline_20',['createNewMessageLine',['../classSequenceDiagramScene.html#ad30a0c581886884efe1438d0152e895f',1,'SequenceDiagramScene::createNewMessageLine(MessageLine *line)'],['../classSequenceDiagramScene.html#ad8b7a766e639fb95e1ef374ef35f3856',1,'SequenceDiagramScene::createNewMessageLine(MessageLine *line, MessageType type)']]],
+  ['createtitle_21',['createTitle',['../classClassEditDialog.html#a405f192be92dfa346541c8b3f72dbb59',1,'ClassEditDialog']]],
+  ['customscene_22',['CustomScene',['../classCustomScene.html#ae492ffe10d1670780690a8904618c361',1,'CustomScene']]]
 ];

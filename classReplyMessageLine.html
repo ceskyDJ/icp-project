@@ -95,6 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:add2a4c99aafe2b147acfa7d9cd86982d inherit pub_methods_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a8b30daa33b53ca8cdadb7e56617b73 inherit pub_methods_classMessageLine"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#a9a8b30daa33b53ca8cdadb7e56617b73">getToObject</a> ()</td></tr>
 <tr class="separator:a9a8b30daa33b53ca8cdadb7e56617b73 inherit pub_methods_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4a52db5ff2f86ecfec19bb3bf9eb3bc inherit pub_methods_classMessageLine"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#ad4a52db5ff2f86ecfec19bb3bf9eb3bc">updateClassReference</a> (<a class="el" href="classClassReference.html">ClassReference</a> newClassRef)</td></tr>
+<tr class="separator:ad4a52db5ff2f86ecfec19bb3bf9eb3bc inherit pub_methods_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -123,11 +125,11 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a3709ac041967693619aa3a8e52530afc inherit pro_methods_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2755edbf7bc0d01107313618fcc70862 inherit pro_methods_classMessageLine"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#a2755edbf7bc0d01107313618fcc70862">isInObjectsLifeBox</a> (qreal lifeBoxPointer)</td></tr>
 <tr class="separator:a2755edbf7bc0d01107313618fcc70862 inherit pro_methods_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e540fda4db88dbe0c391f06391f0b15 inherit pro_methods_classMessageLine"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMethodReference.html">MethodReference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#a2e540fda4db88dbe0c391f06391f0b15">validateNewReference</a> (<a class="el" href="classClassReference.html">ClassReference</a> classRef, <a class="el" href="classMethodReference.html">MethodReference</a> methodRef)</td></tr>
+<tr class="separator:a2e540fda4db88dbe0c391f06391f0b15 inherit pro_methods_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMessageLine"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMessageLine')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMessageLine.html">MessageLine</a></td></tr>
 <tr class="memitem:aafc1b8371e3405e6b19e5ccb5ee21d27 inherit pro_attribs_classMessageLine"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClassReference.html">ClassReference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#aafc1b8371e3405e6b19e5ccb5ee21d27">classRef</a></td></tr>
 <tr class="separator:aafc1b8371e3405e6b19e5ccb5ee21d27 inherit pro_attribs_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a304c33b6a4570027a0f7edc6556346a4 inherit pro_attribs_classMessageLine"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#a304c33b6a4570027a0f7edc6556346a4">leftToRight</a></td></tr>
-<tr class="separator:a304c33b6a4570027a0f7edc6556346a4 inherit pro_attribs_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54d9bd2e95be1018c71f27006810ea43 inherit pro_attribs_classMessageLine"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#a54d9bd2e95be1018c71f27006810ea43">editNameAllowed</a></td></tr>
 <tr class="separator:a54d9bd2e95be1018c71f27006810ea43 inherit pro_attribs_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae09e69851c1f734b27d6269fa349aa0 inherit pro_attribs_classMessageLine"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#aae09e69851c1f734b27d6269fa349aa0">createFlag</a></td></tr>
@@ -158,11 +160,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a9a7deee371925fa5aea1b0b71d473eac inherit pro_attribs_classMessageLine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Represents reply message in sequence diagram.</p>
-<p >ICP project (<a class="el" href="classClass.html">Class</a> and sequence diagram editor)</p>
-<dl class="section author"><dt>Author</dt><dd>Jakub Dvořák (xdvora3q) </dd></dl>
+<div class="textblock"><p >Represents reply message in sequence diagram. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReplyMessageLine_8h_source.html#l00014">14</a> of file <a class="el" href="ReplyMessageLine_8h_source.html">ReplyMessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ReplyMessageLine_8h_source.html#l00016">16</a> of file <a class="el" href="ReplyMessageLine_8h_source.html">ReplyMessageLine.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aea81233c45f871f4d41a84848f772708" name="aea81233c45f871f4d41a84848f772708"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aea81233c45f871f4d41a84848f772708">&#9670;&nbsp;</a></span>ReplyMessageLine()</h2>

@@ -66,12 +66,13 @@ var searchData=
   ['getsendingtime_63',['getSendingTime',['../classMessage.html#a5883477bb4283dbd5ff1eab61a01e391',1,'Message']]],
   ['getshortestline_64',['getShortestLine',['../classLine.html#aab6260094b6f15ca916d5ebf1cf17cf6',1,'Line']]],
   ['getstartoflifebox_65',['getStartOfLifeBox',['../classActivationGraphicsObjectBase.html#aac71913ecaafd381f1a2b45bfa636420',1,'ActivationGraphicsObjectBase::getStartOfLifeBox()'],['../classObjectGraphicsItem.html#ac8eddbf9d7849f448a1e5624f8822cb6',1,'ObjectGraphicsItem::getStartOfLifeBox()']]],
-  ['getstoragename_66',['getStorageName',['../classClassDiagramRepository.html#ad425d0da95fddee829374ec32fac50f5',1,'ClassDiagramRepository::getStorageName()'],['../classSequenceDiagramRepository.html#ad3610013dabe74cc2d74b71629129279',1,'SequenceDiagramRepository::getStorageName()']]],
+  ['getstoragename_66',['getStorageName',['../classSequenceDiagramRepository.html#ad3610013dabe74cc2d74b71629129279',1,'SequenceDiagramRepository::getStorageName()'],['../classClassDiagramRepository.html#ad425d0da95fddee829374ec32fac50f5',1,'ClassDiagramRepository::getStorageName()']]],
   ['gettabbutton_67',['getTabButton',['../classTabWidget.html#a0653478cb75078aa337ee659cd26eb0b',1,'TabWidget']]],
   ['gettargetfile_68',['getTargetFile',['../classCustomScene.html#a5788eb36696188be1d9040516e2b0e37',1,'CustomScene']]],
   ['gettextboundingbox_69',['getTextBoundingBox',['../classActivationGraphicsObjectBase.html#a39d2d2ec497042e185ff61ec004a88b7',1,'ActivationGraphicsObjectBase::getTextBoundingBox()'],['../classLine.html#acffc6e0cad3f8254cc4cf38fec691065',1,'Line::getTextBoundingBox()'],['../classMessageLine.html#aee8101cbe23d7e626c6a8524bfdb7b2a',1,'MessageLine::getTextBoundingBox()']]],
   ['gettoclassnode_70',['getToClassNode',['../classLine.html#a422bd718590f408327bc386de068e7ce',1,'Line']]],
   ['gettoobject_71',['getToObject',['../classMessageLine.html#a9a8b30daa33b53ca8cdadb7e56617b73',1,'MessageLine']]],
   ['gettype_72',['getType',['../classClassMethod.html#ac48fdbb124d17e6445131a6143c697f0',1,'ClassMethod::getType()'],['../classMessage.html#a995db3fb8b9b0d1af2819f481d81d0e3',1,'Message::getType()']]],
-  ['getuuid_73',['getUuid',['../classClass.html#a9fefb877c01cc3bd5efa8748bfe8bb6e',1,'Class::getUuid()'],['../classClassMethod.html#a0ffa2533df929a6d2ead87f109c4fde7',1,'ClassMethod::getUuid()']]]
+  ['getuuid_73',['getUuid',['../classClass.html#a9fefb877c01cc3bd5efa8748bfe8bb6e',1,'Class::getUuid()'],['../classClassMethod.html#a0ffa2533df929a6d2ead87f109c4fde7',1,'ClassMethod::getUuid()']]],
+  ['getwholeobjectmoverect_74',['getWholeObjectMoveRect',['../classActivationGraphicsObjectBase.html#aeb017a9a0b3aa8dce62a597b29c2344f',1,'ActivationGraphicsObjectBase']]]
 ];

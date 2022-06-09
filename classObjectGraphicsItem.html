@@ -106,6 +106,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a43b768c121ccca9b4bbe8aa9b34a1c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1470dff87bcd52bd8317d2821650e43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMessageLine.html">MessageLine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItem.html#ad1470dff87bcd52bd8317d2821650e43">getCreateMessage</a> ()</td></tr>
 <tr class="separator:ad1470dff87bcd52bd8317d2821650e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d57bcb6f973530adcbd3e0a361a6886"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItem.html#a6d57bcb6f973530adcbd3e0a361a6886">setClassReference</a> (<a class="el" href="classClassReference.html">ClassReference</a> newClassRef)</td></tr>
+<tr class="separator:a6d57bcb6f973530adcbd3e0a361a6886"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classActivationGraphicsObjectBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classActivationGraphicsObjectBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></td></tr>
 <tr class="memitem:aae7f8f0980d4a5616f39a49018fca417 inherit pub_methods_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#aae7f8f0980d4a5616f39a49018fca417">addMessage</a> (<a class="el" href="classMessageLine.html">MessageLine</a> *message)</td></tr>
 <tr class="separator:aae7f8f0980d4a5616f39a49018fca417 inherit pub_methods_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,11 +147,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8044b707a6b4f06b04d99c4d94c2fbf7"><td class="memItemLeft" align="right" valign="top"><a id="a8044b707a6b4f06b04d99c4d94c2fbf7" name="a8044b707a6b4f06b04d99c4d94c2fbf7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setDestroyed</b> (bool <a class="el" href="classActivationGraphicsObjectBase.html#aa26dd811d4bb886f793f26f33fc9945e">destroyed</a>)</td></tr>
 <tr class="separator:a8044b707a6b4f06b04d99c4d94c2fbf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6406f6e4f44832ec078434adf12f6ffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classObjectGraphicsItem.html#a6406f6e4f44832ec078434adf12f6ffb">updateMessagesClassReference</a> (<a class="el" href="classClassReference.html">ClassReference</a> newClassRef)</td></tr>
+<tr class="separator:a6406f6e4f44832ec078434adf12f6ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classActivationGraphicsObjectBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classActivationGraphicsObjectBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></td></tr>
 <tr class="memitem:a2f2d169ff118cc10dfc26230a9c4c329 inherit pro_methods_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#a2f2d169ff118cc10dfc26230a9c4c329">boundingRect</a> () const override</td></tr>
 <tr class="separator:a2f2d169ff118cc10dfc26230a9c4c329 inherit pro_methods_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39d2d2ec497042e185ff61ec004a88b7 inherit pro_methods_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#a39d2d2ec497042e185ff61ec004a88b7">getTextBoundingBox</a> (QString text) const</td></tr>
 <tr class="separator:a39d2d2ec497042e185ff61ec004a88b7 inherit pro_methods_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb017a9a0b3aa8dce62a597b29c2344f inherit pro_methods_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">QRectF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#aeb017a9a0b3aa8dce62a597b29c2344f">getWholeObjectMoveRect</a> ()</td></tr>
+<tr class="separator:aeb017a9a0b3aa8dce62a597b29c2344f inherit pro_methods_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -187,6 +193,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ace0d30dc5c946c61cb2b5493eed22a52 inherit pub_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa26dd811d4bb886f793f26f33fc9945e inherit pub_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#aa26dd811d4bb886f793f26f33fc9945e">destroyed</a></td></tr>
 <tr class="separator:aa26dd811d4bb886f793f26f33fc9945e inherit pub_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e031fae38618e34b7743bb722c066a inherit pub_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#ab9e031fae38618e34b7743bb722c066a">order</a></td></tr>
+<tr class="separator:ab9e031fae38618e34b7743bb722c066a inherit pub_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classActivationGraphicsObjectBase"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classActivationGraphicsObjectBase')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></td></tr>
 <tr class="memitem:a75a55967ed813e684c31d2180f6f2a2c inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">static qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#a75a55967ed813e684c31d2180f6f2a2c">lifeboxWidth</a> = 20</td></tr>
 <tr class="separator:a75a55967ed813e684c31d2180f6f2a2c inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,20 +208,20 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a690a34eecc31acdbddb6ac2d09804d95 inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27d37d6b00d69f2ded4b19c679bb6fc7 inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">static qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#a27d37d6b00d69f2ded4b19c679bb6fc7">headerHeight</a> = 60</td></tr>
 <tr class="separator:a27d37d6b00d69f2ded4b19c679bb6fc7 inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab98cf8e42b4ecb1e125cd795ec385fb6 inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">static qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#ab98cf8e42b4ecb1e125cd795ec385fb6">lifeSpaceStart</a> = 10</td></tr>
+<tr class="memitem:ab98cf8e42b4ecb1e125cd795ec385fb6 inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">static qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#ab98cf8e42b4ecb1e125cd795ec385fb6">lifeSpaceStart</a> = 25</td></tr>
 <tr class="separator:ab98cf8e42b4ecb1e125cd795ec385fb6 inherit pub_static_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classActivationGraphicsObjectBase"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classActivationGraphicsObjectBase')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></td></tr>
 <tr class="memitem:a71b0a12554ded094eee67389f0905f22 inherit pro_static_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#a71b0a12554ded094eee67389f0905f22">objectCounter</a> = 0</td></tr>
 <tr class="separator:a71b0a12554ded094eee67389f0905f22 inherit pro_static_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42c72631a664facab54cac3b2a5f146e inherit pro_static_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">static qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#a42c72631a664facab54cac3b2a5f146e">moveTollerance</a> = 100</td></tr>
+<tr class="separator:a42c72631a664facab54cac3b2a5f146e inherit pro_static_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12f3f58aee164fb3b99e4f31eaead5c6 inherit pro_static_attribs_classActivationGraphicsObjectBase"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classActivationGraphicsObjectBase.html#a12f3f58aee164fb3b99e4f31eaead5c6">minHeight</a> = 100</td></tr>
 <tr class="separator:a12f3f58aee164fb3b99e4f31eaead5c6 inherit pro_static_attribs_classActivationGraphicsObjectBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Representation of object in sequence diagram as graphics item.</p>
-<p >ICP project (<a class="el" href="classClass.html">Class</a> and sequence diagram editor)</p>
-<dl class="section author"><dt>Author</dt><dd>Jakub Dvořák (xdvora3q) </dd></dl>
+<div class="textblock"><p >Representation of object in sequence diagram as graphics item. </p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00019">19</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00021">21</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab54a1445b11350b291cc3d32cd5196b2" name="ab54a1445b11350b291cc3d32cd5196b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab54a1445b11350b291cc3d32cd5196b2">&#9670;&nbsp;</a></span>ObjectGraphicsItem()</h2>
@@ -281,7 +289,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#a24a12862a81179e2d585e5de3e5d2dc8">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00054">54</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00056">56</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +310,7 @@ Additional Inherited Members</h2></td></tr>
 <p >Iterate throught messages and if find create message, return it.</p>
 <dl class="section return"><dt>Returns</dt><dd>CreateMessage Create message if found, else return nullptr. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00332">332</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00346">346</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -323,7 +331,7 @@ Additional Inherited Members</h2></td></tr>
 <p >Iterate throught messages and if find destroy message, return it.</p>
 <dl class="section return"><dt>Returns</dt><dd>destroyMessage Destroy message if found, else return nullptr. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00316">316</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00330">330</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,7 +362,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#a70509b7f7d6f70683598e6f589189e8e">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00264">264</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00278">278</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +393,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#a6b54285f9845fe1e99ab1d54a88da9fa">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00044">44</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00046">46</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 
 </div>
 </div>
@@ -414,7 +422,7 @@ Additional Inherited Members</h2></td></tr>
 <p >Getter for object property</p>
 <dl class="section return"><dt>Returns</dt><dd>object in this </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00034">34</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00036">36</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 
 </div>
 </div>
@@ -445,7 +453,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#aac71913ecaafd381f1a2b45bfa636420">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00254">254</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00268">268</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -474,7 +482,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Sets cursor to arrow when leaving with hover. </p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00218">218</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00230">230</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -509,7 +517,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00192">192</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00201">201</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -540,7 +548,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#ae5b3ce088d1a9645b986e53e5d7c7d48">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00176">176</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00185">185</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -569,7 +577,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Dialog for edit object name and class will be shown and handled. </p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00226">226</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00238">238</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -604,7 +612,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00134">134</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00136">136</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -639,7 +647,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00114">114</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00116">116</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -674,7 +682,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00274">274</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00288">288</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -725,7 +733,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00039">39</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00041">41</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -754,7 +762,44 @@ Additional Inherited Members</h2></td></tr>
 <p >Returns area, where should be cursor changed into resize cursor.</p>
 <dl class="section return"><dt>Returns</dt><dd>Area, where should be cursor changed into resize cursor. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00207">207</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00219">219</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6d57bcb6f973530adcbd3e0a361a6886" name="a6d57bcb6f973530adcbd3e0a361a6886"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d57bcb6f973530adcbd3e0a361a6886">&#9670;&nbsp;</a></span>setClassReference()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ObjectGraphicsItem::setClassReference </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classClassReference.html">ClassReference</a>&#160;</td>
+          <td class="paramname"><em>newClassRef</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Setter fo class reference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newClassRef</td><td>new class reference to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#aa3e3f808d2f88402f2fb6513c2580e7c">ActivationGraphicsObjectBase</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00068">68</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 
 </div>
 </div>
@@ -791,7 +836,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#a98d2ff90a09b1037158753433abf2921">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00304">304</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00318">318</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -828,7 +873,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#abd17ad51065cca95522d2f716c66abb9">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00285">285</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00299">299</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -849,7 +894,42 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Dialog for edit object name and class will be shown and handled. </p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00234">234</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00246">246</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6406f6e4f44832ec078434adf12f6ffb" name="a6406f6e4f44832ec078434adf12f6ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6406f6e4f44832ec078434adf12f6ffb">&#9670;&nbsp;</a></span>updateMessagesClassReference()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ObjectGraphicsItem::updateMessagesClassReference </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classClassReference.html">ClassReference</a>&#160;</td>
+          <td class="paramname"><em>classRef</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Updates all messages class refernce that are sent to this object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classRef</td><td>new class reference </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00362">362</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -880,7 +960,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classActivationGraphicsObjectBase.html#a89a3232f53800e94959ebb1f7aa93e56">ActivationGraphicsObjectBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00098">98</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8cpp_source.html#l00100">100</a> of file <a class="el" href="ObjectGraphicsItem_8cpp_source.html">ObjectGraphicsItem.cpp</a>.</p>
 
 </div>
 </div>
@@ -906,7 +986,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Data source for combobox item. </p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00064">64</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00076">76</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 
 </div>
 </div>
@@ -930,7 +1010,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00069">69</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00081">81</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 
 </div>
 </div>
@@ -955,7 +1035,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Padding int object header |[padding]&lt;NAME&gt;[Padding]| </p>
 
-<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00068">68</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ObjectGraphicsItem_8h_source.html#l00080">80</a> of file <a class="el" href="ObjectGraphicsItem_8h_source.html">ObjectGraphicsItem.h</a>.</p>
 
 </div>
 </div>

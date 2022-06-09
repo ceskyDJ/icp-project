@@ -71,13 +71,13 @@ $(function() {
 <div class="contents">
 <a href="SequenceDiagramScene_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="SequenceDiagramScene_8h.html">SequenceDiagramScene.h</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;SyncMessageLine.h&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;AsyncMessageLine.h&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;CreateMessageLine.h&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;DestroyMessageLine.h&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;ReplyMessageLine.h&quot;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;ActorGraphicsItem.h&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;ObjectGraphicsItem.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="SyncMessageLine_8h.html">SyncMessageLine.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="AsyncMessageLine_8h.html">AsyncMessageLine.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="CreateMessageLine_8h.html">CreateMessageLine.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="DestroyMessageLine_8h.html">DestroyMessageLine.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="ReplyMessageLine_8h.html">ReplyMessageLine.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="ActorGraphicsItem_8h.html">ActorGraphicsItem.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="ObjectGraphicsItem_8h.html">ObjectGraphicsItem.h</a>&quot;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;QMessageBox&gt;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#a6767a77ed9bf1d8cc16e77bd0e2a911b">   27</a></span><a class="code hl_function" href="classSequenceDiagramScene.html#a6767a77ed9bf1d8cc16e77bd0e2a911b">SequenceDiagramScene::SequenceDiagramScene</a>(</div>
@@ -125,285 +125,331 @@ $(function() {
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#a23ef715783ce884f0ac5de107b1c67f5">addActor</a>(actorItem-&gt;<a class="code hl_function" href="classActorGraphicsItem.html#add86b7a10e427000e05f55b4a7820137">getActor</a>());</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    addItem(actorItem);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    connect(&amp;(actorItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::objectPressed, <span class="keyword">this</span>, &amp;SequenceDiagramScene::objectPressed);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    connect(&amp;(actorItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::removeObject, <span class="keyword">this</span>, &amp;SequenceDiagramScene::removeObject);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#a95db4e677abfabe3dc1d0c74b37909e0">   98</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classSequenceDiagramScene.html#a95db4e677abfabe3dc1d0c74b37909e0">SequenceDiagramScene::addObject</a>()</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>{</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_class" href="classClass.html">Class</a> *refferedClass = (classDiagram-&gt;<a class="code hl_function" href="classClassDiagram.html#a0472fb2a01109ceb5f3d654e566d544a">getClasses</a>().size() &gt; 0)? classDiagram-&gt;<a class="code hl_function" href="classClassDiagram.html#a0472fb2a01109ceb5f3d654e566d544a">getClasses</a>()[0]:<span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_class" href="classClassReference.html">ClassReference</a> *classRef; <span class="comment">//because no constructor without params exists</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">if</span>(refferedClass)</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        classRef = <span class="keyword">new</span> <a class="code hl_class" href="classClassReference.html">ClassReference</a>(refferedClass);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        classRef = <span class="keyword">new</span> <a class="code hl_class" href="classClassReference.html">ClassReference</a>(<span class="stringliteral">&quot;UNKNOWN CLASS&quot;</span>);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_class" href="classObject.html">Object</a> *newObject = <span class="keyword">new</span> <a class="code hl_class" href="classObject.html">Object</a>(*classRef);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">delete</span> classRef;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *objectItem = <span class="keyword">new</span> <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a>(newObject, classDiagram);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    connect(&amp;(objectItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::objectPressed, <span class="keyword">this</span>, &amp;SequenceDiagramScene::objectPressed);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    connect(&amp;(objectItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::removeObject, <span class="keyword">this</span>, &amp;SequenceDiagramScene::removeObject);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#abd498c18c1cefa06d3ecb77bf011c5f0">addObject</a>(newObject);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    addItem(objectItem);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">//user will set the object first</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    objectItem-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a7e69be29f644cb3b98b3721404782335">showEditDialog</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3">  125</a></span><span class="keywordtype">void</span> <a class="code hl_slot" href="classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3">SequenceDiagramScene::removeObjectPressed</a>()</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>{</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    QList&lt;QGraphicsItem *&gt; selectedObjects = selectedItems();</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">if</span>(!selectedObjects.empty()) {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        removeSelectedObjects();</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(firstPhaseSelectedColor);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        currentState = state::objectRemoving;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="keywordtype">void</span> SequenceDiagramScene::removeSelectedObjects()</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>{</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    QList&lt;QGraphicsItem *&gt; selectedObjects = selectedItems();</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordflow">for</span> (QGraphicsItem *item : selectedObjects)</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keyword">auto</span> itemToRemove = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a>*<span class="keyword">&gt;</span>(item);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        removeObject(itemToRemove, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="keywordtype">void</span> SequenceDiagramScene::removeHandle(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *activationItem)</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>{</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(objectNormalColor);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    currentState = state::none;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    removeObject(activationItem, <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keywordtype">void</span> SequenceDiagramScene::selectLinesHandle(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *ivokedBy)</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>{</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActivationGraphicsObjectBase.html#a2636b44202057d79af679a7853b75b1e">ActivationGraphicsObjectBase::getColor</a>() == firstPhaseSelectedColor)</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    {</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        sender = ivokedBy;</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(secondPhaseSelectedColor);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    }</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    {</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        reciever = ivokedBy;</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(objectNormalColor);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        currentState = state::none;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        sendMessage();</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    }</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>}</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keywordtype">void</span> SequenceDiagramScene::objectPressed(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *invokedBy)</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>{</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">if</span> (currentState == state::none)</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (currentState == state::objectRemoving)</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        removeHandle(invokedBy);</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (currentState == state::messageCreation)</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        selectLinesHandle(invokedBy);</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="keywordtype">void</span> SequenceDiagramScene::removeObject(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *activationObject, <span class="keywordtype">bool</span> logChange)</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>{</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *objectToRemove = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(activationObject);</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">if</span>(objectToRemove) <span class="comment">//activationObject is Object</span></div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    {</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        removeItem(objectToRemove);</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#a902978d2457c3e61e1693986b31274c1">removeObject</a>(objectToRemove-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>());</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keyword">delete</span> objectToRemove;</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    }</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    {</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a> *actorItem = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a> *<span class="keyword">&gt;</span>(activationObject);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        removeItem(actorItem);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#acb4cf3d27152de3f8e84d9a36186bdae">removeActor</a>(actorItem-&gt;<a class="code hl_function" href="classActorGraphicsItem.html#add86b7a10e427000e05f55b4a7820137">getActor</a>());</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keyword">delete</span> actorItem;</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordflow">if</span>(logChange)</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#ad8b7a766e639fb95e1ef374ef35f3856">  232</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classSequenceDiagramScene.html#ad30a0c581886884efe1438d0152e895f">SequenceDiagramScene::createNewMessageLine</a>(<a class="code hl_class" href="classMessageLine.html">MessageLine</a> *line, <a class="code hl_class" href="classMessageType.html">MessageType</a> type)</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>{</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keyword">delete</span> newMessageLine;</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    newMessageLine = line;</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    newMessageLineType = type;</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">//QList&lt;QGraphicsItem *&gt; items = selectedItems();</span></div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">if</span>(mySelectedItems.count() == 2){</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        sender = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a>*<span class="keyword">&gt;</span>(mySelectedItems[0]);</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        reciever = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a>*<span class="keyword">&gt;</span>(mySelectedItems[1]);</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        sendMessage();</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        clearSelection();</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(firstPhaseSelectedColor);</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        currentState = state::messageCreation;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>}</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="keywordtype">void</span> SequenceDiagramScene::sendMessage()</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>{</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="comment">// Create new messageline in scene</span></div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *objectReciever = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(reciever);</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <a class="code hl_class" href="classMethodReference.html">MethodReference</a> ref{<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordflow">if</span>(objectReciever)</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    {</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        std::vector&lt;ClassMethod&gt; methods = objectReciever-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>()-&gt;<a class="code hl_function" href="classObject.html#a944f48fa8e1e9675f8cd820c7718b5c0">getInstanceClass</a>()-&gt;<a class="code hl_function" href="classClass.html#af697d075cf2762b41dfe17f45486d261">getMethods</a>();</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <span class="keywordflow">if</span>(methods.size() &gt; 0)</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            ref = <a class="code hl_class" href="classMethodReference.html">MethodReference</a>{&amp;(objectReciever-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>()-&gt;<a class="code hl_function" href="classObject.html#a944f48fa8e1e9675f8cd820c7718b5c0">getInstanceClass</a>()-&gt;<a class="code hl_function" href="classClass.html#af697d075cf2762b41dfe17f45486d261">getMethods</a>()[0])};</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            ref = <a class="code hl_class" href="classMethodReference.html">MethodReference</a>{<span class="stringliteral">&quot;UNKNOWN METHOD&quot;</span>};</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    }</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        ref = <a class="code hl_class" href="classMethodReference.html">MethodReference</a>{<span class="stringliteral">&quot;UNKNOWN METHOD&quot;</span>};</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="comment">//check if is possible to create new line</span></div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordflow">if</span>(!createMessagePossible(&amp;errorMsg, reciever, sender, newMessageLineType))</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    {</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        QMessageBox msgBox;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        msgBox.setText(errorMsg);</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        msgBox.setWindowTitle(<span class="stringliteral">&quot;Creation was not succesful&quot;</span>);</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        msgBox.setIcon(QMessageBox::Critical);</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        msgBox.exec();</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <a class="code hl_class" href="classMessage.html">Message</a> *newMessage = <span class="keyword">new</span> <a class="code hl_class" href="classMessage.html">Message</a>(ref, newMessageLineType, sender-&gt;<a class="code hl_function" href="classActivationGraphicsObjectBase.html#a6b54285f9845fe1e99ab1d54a88da9fa">getMessageNode</a>(), reciever-&gt;<a class="code hl_function" href="classActivationGraphicsObjectBase.html#a6b54285f9845fe1e99ab1d54a88da9fa">getMessageNode</a>(),0.0);</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <a class="code hl_class" href="classClassReference.html">ClassReference</a> classRef{<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *recieverObject = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(reciever);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordflow">if</span>(recieverObject)</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        classRef = recieverObject-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>()-&gt;<a class="code hl_function" href="classObject.html#a944f48fa8e1e9675f8cd820c7718b5c0">getInstanceClass</a>();</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    newMessageLine-&gt;<a class="code hl_function" href="classMessageLine.html#ae05d5fe2d0bfd2785cb601b5dd16d5d5">initialize</a>(sender, reciever, newMessage, classRef);</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    addItem(newMessageLine);</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="comment">// Store new message in squence diagram</span></div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#a98354ae776086cb4ceb3219e78afdcef">addMessage</a>(newMessage);</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    sender = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    reciever = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    newMessageLine = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>}</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="keywordtype">void</span> SequenceDiagramScene::selectionEdit()</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>{</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="comment">//adding new selected items</span></div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    QList&lt;QGraphicsItem*&gt; selected = selectedItems();</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordflow">for</span> (QGraphicsItem * item: selected)</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    {</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        <span class="keywordflow">if</span>(!mySelectedItems.contains(item))</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>            mySelectedItems.push_back(item);</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    }</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="comment">//removing new unselected items</span></div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; mySelectedItems.size(); i++)</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    {</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keywordflow">if</span>(!selected.contains(mySelectedItems[i]))</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>            mySelectedItems.removeAt(i);</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    }</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>}</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>QVector&lt;ActivationGraphicsObjectBase *&gt; SequenceDiagramScene::activationObjectsInScene()</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>{</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    QList&lt;QGraphicsItem*&gt; sceneItems = items(Qt::AscendingOrder);</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    QVector&lt;ActivationGraphicsObjectBase*&gt; activationItems;</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keywordflow">for</span>(QGraphicsItem* item : sceneItems)</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    {</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *activationObject = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *<span class="keyword">&gt;</span>(item);</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>        <span class="keywordflow">if</span>(activationObject)</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>            activationItems.push_back(activationObject);</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    }</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="keywordflow">return</span> activationItems;</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>}</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="keywordtype">void</span> SequenceDiagramScene::sortActivationItems()</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>{</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    QVector&lt;ActivationGraphicsObjectBase *&gt; activationItems = activationObjectsInScene();</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; activationItems.size(); i++)</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    {</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        activationItems[i]-&gt;setPos( ActivationGraphicsObjectBase::objectPadding * i, 0);</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    }</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>}</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="keywordtype">void</span> SequenceDiagramScene::objectSortSlot(QList&lt;QRectF&gt;)</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>{</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> activationObjectCount = 0;</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <span class="keywordtype">int</span> currentCount = activationObjectsInScene().size();</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keywordflow">if</span> (currentCount != activationObjectCount)</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    {</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        activationObjectCount = currentCount;</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        sortActivationItems();</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    }</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>}</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="keywordtype">bool</span> SequenceDiagramScene::createMessagePossible(QString *errorMsg,</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *reciever, <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *sender ,<a class="code hl_class" href="classMessageType.html">MessageType</a> messageType)</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>{</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="keywordflow">if</span>(reciever == sender)</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    {</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        *errorMsg = <span class="stringliteral">&quot;Reciever cannot be sender in one message!&quot;</span>;</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    }</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    <a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a> *actor = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a>*<span class="keyword">&gt;</span>(reciever);</div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="keywordflow">if</span>(actor &amp;&amp; (messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0">MessageType::CREATE</a> || messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea88de02625e96d782c4cfda947cdb7b5a">MessageType::DESTROY</a>))</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    {</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        *errorMsg = <span class="stringliteral">&quot;Actor cannot has create or destroy message!&quot;</span>;</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    }</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    {</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *obj = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(reciever);</div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        <span class="keywordflow">if</span>(messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea88de02625e96d782c4cfda947cdb7b5a">MessageType::DESTROY</a> &amp;&amp; obj-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a43b768c121ccca9b4bbe8aa9b34a1c7f">getDestroyMessage</a>())</div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>        {</div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>            *errorMsg = <span class="stringliteral">&quot;Object cannot has more than one destroy message!&quot;</span>;</div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        }</div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0">MessageType::CREATE</a> &amp;&amp; obj-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#ad1470dff87bcd52bd8317d2821650e43">getCreateMessage</a>())</div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>        {</div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>            *errorMsg = <span class="stringliteral">&quot;Object cannot has more than one create message!&quot;</span>;</div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        }</div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    }</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    connect(&amp;(actorItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;<a class="code hl_signal" href="classActivationObjectEmitter.html#a50d17dda153d81a6097d2b871335b8a8">ActivationObjectEmitter::objectPressed</a>, <span class="keyword">this</span>, &amp;SequenceDiagramScene::objectPressed);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    connect(&amp;(actorItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;<a class="code hl_signal" href="classActivationObjectEmitter.html#a7e32974b6be11ee468867f2972506bea">ActivationObjectEmitter::removeObject</a>, <span class="keyword">this</span>, &amp;SequenceDiagramScene::removeObject);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    connect(&amp;(actorItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::moveLeft, <span class="keyword">this</span>, &amp;SequenceDiagramScene::moveObjectLeft);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    connect(&amp;(actorItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::moveRight, <span class="keyword">this</span>, &amp;SequenceDiagramScene::moveObjectRight);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#a95db4e677abfabe3dc1d0c74b37909e0">  100</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classSequenceDiagramScene.html#a95db4e677abfabe3dc1d0c74b37909e0">SequenceDiagramScene::addObject</a>()</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>{</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_class" href="classClass.html">Class</a> *refferedClass = (classDiagram-&gt;<a class="code hl_function" href="classClassDiagram.html#a0472fb2a01109ceb5f3d654e566d544a">getClasses</a>().size() &gt; 0)? classDiagram-&gt;<a class="code hl_function" href="classClassDiagram.html#a0472fb2a01109ceb5f3d654e566d544a">getClasses</a>()[0]:<span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <a class="code hl_class" href="classClassReference.html">ClassReference</a> *classRef;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">if</span>(refferedClass)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        classRef = <span class="keyword">new</span> <a class="code hl_class" href="classClassReference.html">ClassReference</a>(refferedClass);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        classRef = <span class="keyword">new</span> <a class="code hl_class" href="classClassReference.html">ClassReference</a>(<span class="stringliteral">&quot;UNKNOWN CLASS&quot;</span>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_class" href="classObject.html">Object</a> *newObject = <span class="keyword">new</span> <a class="code hl_class" href="classObject.html">Object</a>(*classRef);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">delete</span> classRef;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *objectItem = <span class="keyword">new</span> <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a>(newObject, classDiagram);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    connect(&amp;(objectItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;<a class="code hl_signal" href="classActivationObjectEmitter.html#a50d17dda153d81a6097d2b871335b8a8">ActivationObjectEmitter::objectPressed</a>, <span class="keyword">this</span>, &amp;SequenceDiagramScene::objectPressed);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    connect(&amp;(objectItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;<a class="code hl_signal" href="classActivationObjectEmitter.html#a7e32974b6be11ee468867f2972506bea">ActivationObjectEmitter::removeObject</a>, <span class="keyword">this</span>, &amp;SequenceDiagramScene::removeObject);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    connect(&amp;(objectItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::moveLeft, <span class="keyword">this</span>, &amp;SequenceDiagramScene::moveObjectLeft);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    connect(&amp;(objectItem-&gt;<a class="code hl_variable" href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">emitter</a>), &amp;ActivationObjectEmitter::moveRight, <span class="keyword">this</span>, &amp;SequenceDiagramScene::moveObjectRight);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#abd498c18c1cefa06d3ecb77bf011c5f0">addObject</a>(newObject);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    addItem(objectItem);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">//user will set the object first</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    objectItem-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a7e69be29f644cb3b98b3721404782335">showEditDialog</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3">  129</a></span><span class="keywordtype">void</span> <a class="code hl_slot" href="classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3">SequenceDiagramScene::removeObjectPressed</a>()</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    QList&lt;QGraphicsItem *&gt; selectedObjects = selectedItems();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">if</span>(!selectedObjects.empty()) {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        removeSelectedObjects();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(firstPhaseSelectedColor);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        currentState = state::objectRemoving;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keywordtype">void</span> SequenceDiagramScene::removeSelectedObjects()</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    QList&lt;QGraphicsItem *&gt; selectedObjects = selectedItems();</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">for</span> (QGraphicsItem *item : selectedObjects)</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keyword">auto</span> itemToRemove = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a>*<span class="keyword">&gt;</span>(item);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        removeObject(itemToRemove, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>}</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keywordtype">void</span> SequenceDiagramScene::removeHandle(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *activationItem)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>{</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(objectNormalColor);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    currentState = state::none;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    removeObject(activationItem, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="keywordtype">void</span> SequenceDiagramScene::selectLinesHandle(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *ivokedBy)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>{</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">if</span>(<a class="code hl_function" href="classActivationGraphicsObjectBase.html#a2636b44202057d79af679a7853b75b1e">ActivationGraphicsObjectBase::getColor</a>() == firstPhaseSelectedColor)</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        sender = ivokedBy;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(secondPhaseSelectedColor);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    }</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        reciever = ivokedBy;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(objectNormalColor);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        currentState = state::none;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        sendMessage();</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keywordtype">void</span> SequenceDiagramScene::objectPressed(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *invokedBy)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>{</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">if</span> (currentState == state::none)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (currentState == state::objectRemoving)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        removeHandle(invokedBy);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (currentState == state::messageCreation)</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        selectLinesHandle(invokedBy);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>}</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="keywordtype">void</span> SequenceDiagramScene::removeObject(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *activationObject, <span class="keywordtype">bool</span> logChange)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>{</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *objectToRemove = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(activationObject);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">if</span>(objectToRemove) <span class="comment">//activationObject is Object</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        removeItem(objectToRemove);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#a902978d2457c3e61e1693986b31274c1">removeObject</a>(objectToRemove-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>());</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keyword">delete</span> objectToRemove;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a> *actorItem = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a> *<span class="keyword">&gt;</span>(activationObject);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        removeItem(actorItem);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#acb4cf3d27152de3f8e84d9a36186bdae">removeActor</a>(actorItem-&gt;<a class="code hl_function" href="classActorGraphicsItem.html#add86b7a10e427000e05f55b4a7820137">getActor</a>());</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="keyword">delete</span> actorItem;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">if</span>(logChange)</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>}</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#ad8b7a766e639fb95e1ef374ef35f3856">  236</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classSequenceDiagramScene.html#ad30a0c581886884efe1438d0152e895f">SequenceDiagramScene::createNewMessageLine</a>(<a class="code hl_class" href="classMessageLine.html">MessageLine</a> *line, <a class="code hl_class" href="classMessageType.html">MessageType</a> type)</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>{</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keyword">delete</span> newMessageLine;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    newMessageLine = line;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    newMessageLineType = type;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">//QList&lt;QGraphicsItem *&gt; items = selectedItems();</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">if</span>(mySelectedItems.count() == 2){</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        sender = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a>*<span class="keyword">&gt;</span>(mySelectedItems[0]);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        reciever = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a>*<span class="keyword">&gt;</span>(mySelectedItems[1]);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        sendMessage();</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        clearSelection();</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <a class="code hl_function" href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a>(firstPhaseSelectedColor);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        currentState = state::messageCreation;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    }</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>}</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="keywordtype">void</span> SequenceDiagramScene::sendMessage()</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>{</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="comment">// Create new messageline in scene</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *objectReciever = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(reciever);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <a class="code hl_class" href="classMethodReference.html">MethodReference</a> ref{<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">if</span>(objectReciever)</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        std::vector&lt;ClassMethod&gt; methods = objectReciever-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>()-&gt;<a class="code hl_function" href="classObject.html#a944f48fa8e1e9675f8cd820c7718b5c0">getInstanceClass</a>()-&gt;<a class="code hl_function" href="classClass.html#af697d075cf2762b41dfe17f45486d261">getMethods</a>();</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        <span class="keywordflow">if</span>(methods.size() &gt; 0)</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            ref = <a class="code hl_class" href="classMethodReference.html">MethodReference</a>{&amp;(objectReciever-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>()-&gt;<a class="code hl_function" href="classObject.html#a944f48fa8e1e9675f8cd820c7718b5c0">getInstanceClass</a>()-&gt;<a class="code hl_function" href="classClass.html#af697d075cf2762b41dfe17f45486d261">getMethods</a>()[0])};</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            ref = <a class="code hl_class" href="classMethodReference.html">MethodReference</a>{<span class="stringliteral">&quot;UNKNOWN METHOD&quot;</span>};</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    }</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        ref = <a class="code hl_class" href="classMethodReference.html">MethodReference</a>{<span class="stringliteral">&quot;UNKNOWN METHOD&quot;</span>};</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="comment">//check if is possible to create new line</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    QString errorMsg = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordflow">if</span>(!<a class="code hl_function" href="classSequenceDiagramScene.html#a8c8ba16eacc46e05a1e3bb2b806aa870">createMessagePossible</a>(&amp;errorMsg, reciever, sender, newMessageLineType))</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        QMessageBox msgBox;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        msgBox.setText(errorMsg);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        msgBox.setWindowTitle(<span class="stringliteral">&quot;Creation was not succesful&quot;</span>);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        msgBox.setIcon(QMessageBox::Critical);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        msgBox.exec();</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    }</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <a class="code hl_class" href="classMessage.html">Message</a> *newMessage = <span class="keyword">new</span> <a class="code hl_class" href="classMessage.html">Message</a>(ref, newMessageLineType, sender-&gt;<a class="code hl_function" href="classActivationGraphicsObjectBase.html#a6b54285f9845fe1e99ab1d54a88da9fa">getMessageNode</a>(), reciever-&gt;<a class="code hl_function" href="classActivationGraphicsObjectBase.html#a6b54285f9845fe1e99ab1d54a88da9fa">getMessageNode</a>(),0.0);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <a class="code hl_class" href="classClassReference.html">ClassReference</a> classRef{<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *recieverObject = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(reciever);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordflow">if</span>(recieverObject)</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        classRef = recieverObject-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">getObject</a>()-&gt;<a class="code hl_function" href="classObject.html#a944f48fa8e1e9675f8cd820c7718b5c0">getInstanceClass</a>();</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    newMessageLine-&gt;<a class="code hl_function" href="classMessageLine.html#ae05d5fe2d0bfd2785cb601b5dd16d5d5">initialize</a>(sender, reciever, newMessage, classRef);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    addItem(newMessageLine);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="comment">// Store new message in squence diagram</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    sequenceDiagram-&gt;<a class="code hl_function" href="classSequenceDiagram.html#a98354ae776086cb4ceb3219e78afdcef">addMessage</a>(newMessage);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    sender = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    reciever = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    newMessageLine = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    sceneUpdateObservable-&gt;<a class="code hl_function" href="classSceneUpdateObservable.html#aea8b0fc5cf0142d24f9e6b9465d6bdac">sceneChanged</a>();</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>}</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keywordtype">void</span> SequenceDiagramScene::selectionEdit()</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>{</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="comment">//adding new selected items</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    QList&lt;QGraphicsItem*&gt; selected = selectedItems();</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keywordflow">for</span> (QGraphicsItem * item: selected)</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    {</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <span class="keywordflow">if</span>(!mySelectedItems.contains(item))</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>            mySelectedItems.push_back(item);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="comment">//removing new unselected items</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; mySelectedItems.size(); i++)</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    {</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        <span class="keywordflow">if</span>(!selected.contains(mySelectedItems[i]))</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>            mySelectedItems.removeAt(i);</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    }</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>}</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>QVector&lt;ActivationGraphicsObjectBase *&gt; SequenceDiagramScene::activationObjectsInScene()</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>{</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    QList&lt;QGraphicsItem*&gt; sceneItems = items(Qt::AscendingOrder);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    QVector&lt;ActivationGraphicsObjectBase*&gt; activationItems;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keywordflow">for</span>(QGraphicsItem* item : sceneItems)</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    {</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *activationObject = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *<span class="keyword">&gt;</span>(item);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        <span class="keywordflow">if</span>(activationObject)</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>            activationItems.push_back(activationObject);</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    }</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="comment">//sort items by order</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    std::sort(activationItems.begin(), activationItems.end(),</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>              [](<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> * first, <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *second)</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    {</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>       return first-&gt;order &lt; second-&gt;order;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    });</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keywordflow">return</span> activationItems;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>}</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="keywordtype">void</span> SequenceDiagramScene::sortActivationItems()</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>{</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    QVector&lt;ActivationGraphicsObjectBase *&gt; activationItems = activationObjectsInScene();</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; activationItems.size(); i++)</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        activationItems[i]-&gt;setPos( <a class="code hl_variable" href="classActivationGraphicsObjectBase.html#a7b4115a7ceb777a575d9cf898b095986">ActivationGraphicsObjectBase::objectPadding</a> * i, 0);</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>}</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="keywordtype">void</span> SequenceDiagramScene::objectSortSlot(QList&lt;QRectF&gt;)</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>{</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> activationObjectCount = 0;</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="keywordtype">int</span> currentCount = activationObjectsInScene().size();</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="keywordflow">if</span> (currentCount != activationObjectCount)</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    {</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        activationObjectCount = currentCount;</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        sortActivationItems();</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    }</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>}</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="classSequenceDiagramScene.html#a8c8ba16eacc46e05a1e3bb2b806aa870">  384</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classSequenceDiagramScene.html#a8c8ba16eacc46e05a1e3bb2b806aa870">SequenceDiagramScene::createMessagePossible</a>(QString *errorMsg,</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *reciever, <a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *sender ,<a class="code hl_class" href="classMessageType.html">MessageType</a> messageType)</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>{</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keywordflow">if</span>(reciever == sender)</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    {</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>        *errorMsg = <span class="stringliteral">&quot;Reciever cannot be sender in one message!&quot;</span>;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    }</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a> *actor = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classActorGraphicsItem.html">ActorGraphicsItem</a>*<span class="keyword">&gt;</span>(reciever);</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    <span class="keywordflow">if</span>(actor &amp;&amp; (messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0">MessageType::CREATE</a> || messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea88de02625e96d782c4cfda947cdb7b5a">MessageType::DESTROY</a>))</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    {</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>        *errorMsg = <span class="stringliteral">&quot;Actor cannot recieve any message of type &lt;&lt;create&gt;&gt; nor &lt;&lt;destroy&gt;&gt;!&quot;</span>;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    }</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    {</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>        <a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *obj = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classObjectGraphicsItem.html">ObjectGraphicsItem</a> *<span class="keyword">&gt;</span>(reciever);</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        <span class="keywordflow">if</span>(messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea88de02625e96d782c4cfda947cdb7b5a">MessageType::DESTROY</a> &amp;&amp; obj-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#a43b768c121ccca9b4bbe8aa9b34a1c7f">getDestroyMessage</a>())</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>        {</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>            *errorMsg = <span class="stringliteral">&quot;Object cannot recieve more than one destroy message!&quot;</span>;</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>        }</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (messageType == (<a class="code hl_class" href="classMessageType.html">MessageType</a>)<a class="code hl_enumvalue" href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0">MessageType::CREATE</a> &amp;&amp; obj-&gt;<a class="code hl_function" href="classObjectGraphicsItem.html#ad1470dff87bcd52bd8317d2821650e43">getCreateMessage</a>())</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        {</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>            *errorMsg = <span class="stringliteral">&quot;Object cannot recieve more than one create message!&quot;</span>;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>        }</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    }</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>}</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span> </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="keywordtype">void</span> SequenceDiagramScene::moveObjectLeft(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *objectToMove)</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>{</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    QVector&lt;ActivationGraphicsObjectBase *&gt; activationItems = activationObjectsInScene();</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    <span class="keywordtype">int</span> index = activationItems.indexOf(objectToMove);</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>    <span class="keywordflow">if</span>(index &gt; 0)</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    {</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>        <span class="keywordtype">int</span> tempOrder = activationItems[index]-&gt;order;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>        activationItems[index]-&gt;order = activationItems[index - 1]-&gt;order;</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        activationItems[index - 1]-&gt;order = tempOrder;</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>        sortActivationItems();</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    }</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>}</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span><span class="keywordtype">void</span> SequenceDiagramScene::moveObjectRight(<a class="code hl_class" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *objectToMove)</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>{</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    QVector&lt;ActivationGraphicsObjectBase *&gt; activationItems = activationObjectsInScene();</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    <span class="keywordtype">int</span> index = activationItems.indexOf(objectToMove);</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>    <span class="keywordflow">if</span>(index &lt; activationItems.size() - 1)</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    {</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>        <span class="keywordtype">int</span> tempOrder = activationItems[index]-&gt;order;</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>        activationItems[index]-&gt;order = activationItems[index + 1]-&gt;order;</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>        activationItems[index + 1]-&gt;order = tempOrder;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        sortActivationItems();</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    }</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>}</div>
+<div class="ttc" id="aActorGraphicsItem_8h_html"><div class="ttname"><a href="ActorGraphicsItem_8h.html">ActorGraphicsItem.h</a></div></div>
+<div class="ttc" id="aAsyncMessageLine_8h_html"><div class="ttname"><a href="AsyncMessageLine_8h.html">AsyncMessageLine.h</a></div></div>
+<div class="ttc" id="aCreateMessageLine_8h_html"><div class="ttname"><a href="CreateMessageLine_8h.html">CreateMessageLine.h</a></div></div>
+<div class="ttc" id="aDestroyMessageLine_8h_html"><div class="ttname"><a href="DestroyMessageLine_8h.html">DestroyMessageLine.h</a></div></div>
+<div class="ttc" id="aObjectGraphicsItem_8h_html"><div class="ttname"><a href="ObjectGraphicsItem_8h.html">ObjectGraphicsItem.h</a></div></div>
+<div class="ttc" id="aReplyMessageLine_8h_html"><div class="ttname"><a href="ReplyMessageLine_8h.html">ReplyMessageLine.h</a></div></div>
 <div class="ttc" id="aSequenceDiagramScene_8h_html"><div class="ttname"><a href="SequenceDiagramScene_8h.html">SequenceDiagramScene.h</a></div></div>
-<div class="ttc" id="aclassActivationGraphicsObjectBase_html"><div class="ttname"><a href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00023">ActivationGraphicsObjectBase.h:24</a></div></div>
-<div class="ttc" id="aclassActivationGraphicsObjectBase_html_a2636b44202057d79af679a7853b75b1e"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#a2636b44202057d79af679a7853b75b1e">ActivationGraphicsObjectBase::getColor</a></div><div class="ttdeci">static QColor getColor()</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00178">ActivationGraphicsObjectBase.h:178</a></div></div>
-<div class="ttc" id="aclassActivationGraphicsObjectBase_html_a3f25b675bc322956dbeaf48ae2950745"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a></div><div class="ttdeci">static void setColor(QColor color)</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00168">ActivationGraphicsObjectBase.h:168</a></div></div>
-<div class="ttc" id="aclassActivationGraphicsObjectBase_html_a6b54285f9845fe1e99ab1d54a88da9fa"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#a6b54285f9845fe1e99ab1d54a88da9fa">ActivationGraphicsObjectBase::getMessageNode</a></div><div class="ttdeci">virtual MessageNode * getMessageNode()</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8cpp_source.html#l00157">ActivationGraphicsObjectBase.cpp:157</a></div></div>
-<div class="ttc" id="aclassActivationGraphicsObjectBase_html_ace0d30dc5c946c61cb2b5493eed22a52"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">ActivationGraphicsObjectBase::emitter</a></div><div class="ttdeci">ActivationObjectEmitter emitter</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00035">ActivationGraphicsObjectBase.h:35</a></div></div>
-<div class="ttc" id="aclassActorGraphicsItem_html"><div class="ttname"><a href="classActorGraphicsItem.html">ActorGraphicsItem</a></div><div class="ttdef"><b>Definition:</b> <a href="ActorGraphicsItem_8h_source.html#l00017">ActorGraphicsItem.h:18</a></div></div>
-<div class="ttc" id="aclassActorGraphicsItem_html_add86b7a10e427000e05f55b4a7820137"><div class="ttname"><a href="classActorGraphicsItem.html#add86b7a10e427000e05f55b4a7820137">ActorGraphicsItem::getActor</a></div><div class="ttdeci">Actor * getActor()</div><div class="ttdef"><b>Definition:</b> <a href="ActorGraphicsItem_8h_source.html#l00038">ActorGraphicsItem.h:38</a></div></div>
+<div class="ttc" id="aSyncMessageLine_8h_html"><div class="ttname"><a href="SyncMessageLine_8h.html">SyncMessageLine.h</a></div></div>
+<div class="ttc" id="aclassActivationGraphicsObjectBase_html"><div class="ttname"><a href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a></div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00024">ActivationGraphicsObjectBase.h:25</a></div></div>
+<div class="ttc" id="aclassActivationGraphicsObjectBase_html_a2636b44202057d79af679a7853b75b1e"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#a2636b44202057d79af679a7853b75b1e">ActivationGraphicsObjectBase::getColor</a></div><div class="ttdeci">static QColor getColor()</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00187">ActivationGraphicsObjectBase.h:187</a></div></div>
+<div class="ttc" id="aclassActivationGraphicsObjectBase_html_a3f25b675bc322956dbeaf48ae2950745"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745">ActivationGraphicsObjectBase::setColor</a></div><div class="ttdeci">static void setColor(QColor color)</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00177">ActivationGraphicsObjectBase.h:177</a></div></div>
+<div class="ttc" id="aclassActivationGraphicsObjectBase_html_a6b54285f9845fe1e99ab1d54a88da9fa"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#a6b54285f9845fe1e99ab1d54a88da9fa">ActivationGraphicsObjectBase::getMessageNode</a></div><div class="ttdeci">virtual MessageNode * getMessageNode()</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8cpp_source.html#l00158">ActivationGraphicsObjectBase.cpp:158</a></div></div>
+<div class="ttc" id="aclassActivationGraphicsObjectBase_html_a7b4115a7ceb777a575d9cf898b095986"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#a7b4115a7ceb777a575d9cf898b095986">ActivationGraphicsObjectBase::objectPadding</a></div><div class="ttdeci">static qreal objectPadding</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00055">ActivationGraphicsObjectBase.h:55</a></div></div>
+<div class="ttc" id="aclassActivationGraphicsObjectBase_html_ace0d30dc5c946c61cb2b5493eed22a52"><div class="ttname"><a href="classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52">ActivationGraphicsObjectBase::emitter</a></div><div class="ttdeci">ActivationObjectEmitter emitter</div><div class="ttdef"><b>Definition:</b> <a href="ActivationGraphicsObjectBase_8h_source.html#l00041">ActivationGraphicsObjectBase.h:41</a></div></div>
+<div class="ttc" id="aclassActivationObjectEmitter_html_a50d17dda153d81a6097d2b871335b8a8"><div class="ttname"><a href="classActivationObjectEmitter.html#a50d17dda153d81a6097d2b871335b8a8">ActivationObjectEmitter::objectPressed</a></div><div class="ttdeci">void objectPressed(ActivationGraphicsObjectBase *activationObject)</div></div>
+<div class="ttc" id="aclassActivationObjectEmitter_html_a7e32974b6be11ee468867f2972506bea"><div class="ttname"><a href="classActivationObjectEmitter.html#a7e32974b6be11ee468867f2972506bea">ActivationObjectEmitter::removeObject</a></div><div class="ttdeci">void removeObject(ActivationGraphicsObjectBase *activationObject, bool logChange)</div></div>
+<div class="ttc" id="aclassActorGraphicsItem_html"><div class="ttname"><a href="classActorGraphicsItem.html">ActorGraphicsItem</a></div><div class="ttdef"><b>Definition:</b> <a href="ActorGraphicsItem_8h_source.html#l00019">ActorGraphicsItem.h:20</a></div></div>
+<div class="ttc" id="aclassActorGraphicsItem_html_add86b7a10e427000e05f55b4a7820137"><div class="ttname"><a href="classActorGraphicsItem.html#add86b7a10e427000e05f55b4a7820137">ActorGraphicsItem::getActor</a></div><div class="ttdeci">Actor * getActor()</div><div class="ttdef"><b>Definition:</b> <a href="ActorGraphicsItem_8h_source.html#l00040">ActorGraphicsItem.h:40</a></div></div>
 <div class="ttc" id="aclassClassDiagram_html"><div class="ttname"><a href="classClassDiagram.html">ClassDiagram</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8h_source.html#l00025">ClassDiagram.h:26</a></div></div>
 <div class="ttc" id="aclassClassDiagram_html_a0472fb2a01109ceb5f3d654e566d544a"><div class="ttname"><a href="classClassDiagram.html#a0472fb2a01109ceb5f3d654e566d544a">ClassDiagram::getClasses</a></div><div class="ttdeci">std::vector&lt; Class * &gt; &amp; getClasses()</div><div class="ttdef"><b>Definition:</b> <a href="ClassDiagram_8h_source.html#l00057">ClassDiagram.h:57</a></div></div>
 <div class="ttc" id="aclassClassReference_html"><div class="ttname"><a href="classClassReference.html">ClassReference</a></div><div class="ttdef"><b>Definition:</b> <a href="ClassReference_8h_source.html#l00022">ClassReference.h:23</a></div></div>
 <div class="ttc" id="aclassClass_html"><div class="ttname"><a href="classClass.html">Class</a></div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00025">Class.h:26</a></div></div>
 <div class="ttc" id="aclassClass_html_af697d075cf2762b41dfe17f45486d261"><div class="ttname"><a href="classClass.html#af697d075cf2762b41dfe17f45486d261">Class::getMethods</a></div><div class="ttdeci">std::vector&lt; ClassMethod &gt; &amp; getMethods()</div><div class="ttdef"><b>Definition:</b> <a href="Class_8h_source.html#l00258">Class.h:258</a></div></div>
 <div class="ttc" id="aclassCustomScene_html"><div class="ttname"><a href="classCustomScene.html">CustomScene</a></div><div class="ttdef"><b>Definition:</b> <a href="CustomScene_8h_source.html#l00016">CustomScene.h:17</a></div></div>
-<div class="ttc" id="aclassMessageLine_html"><div class="ttname"><a href="classMessageLine.html">MessageLine</a></div><div class="ttdef"><b>Definition:</b> <a href="MessageLine_8h_source.html#l00023">MessageLine.h:24</a></div></div>
-<div class="ttc" id="aclassMessageLine_html_ae05d5fe2d0bfd2785cb601b5dd16d5d5"><div class="ttname"><a href="classMessageLine.html#ae05d5fe2d0bfd2785cb601b5dd16d5d5">MessageLine::initialize</a></div><div class="ttdeci">virtual void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to, Message *newMessage, ClassReference classRef)</div><div class="ttdef"><b>Definition:</b> <a href="MessageLine_8cpp_source.html#l00055">MessageLine.cpp:55</a></div></div>
+<div class="ttc" id="aclassMessageLine_html"><div class="ttname"><a href="classMessageLine.html">MessageLine</a></div><div class="ttdef"><b>Definition:</b> <a href="MessageLine_8h_source.html#l00025">MessageLine.h:26</a></div></div>
+<div class="ttc" id="aclassMessageLine_html_ae05d5fe2d0bfd2785cb601b5dd16d5d5"><div class="ttname"><a href="classMessageLine.html#ae05d5fe2d0bfd2785cb601b5dd16d5d5">MessageLine::initialize</a></div><div class="ttdeci">virtual void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to, Message *newMessage, ClassReference classRef)</div><div class="ttdef"><b>Definition:</b> <a href="MessageLine_8cpp_source.html#l00056">MessageLine.cpp:56</a></div></div>
 <div class="ttc" id="aclassMessageType_html"><div class="ttname"><a href="classMessageType.html">MessageType</a></div><div class="ttdef"><b>Definition:</b> <a href="MessageType_8h_source.html#l00020">MessageType.h:21</a></div></div>
 <div class="ttc" id="aclassMessageType_html_a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0"><div class="ttname"><a href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea0c610a9b2b4282ff17cb2c258a47e1c0">MessageType::CREATE</a></div><div class="ttdeci">@ CREATE</div><div class="ttdef"><b>Definition:</b> <a href="MessageType_8h_source.html#l00041">MessageType.h:41</a></div></div>
 <div class="ttc" id="aclassMessageType_html_a83997cfec75a3f7346975e7411fb65eea88de02625e96d782c4cfda947cdb7b5a"><div class="ttname"><a href="classMessageType.html#a83997cfec75a3f7346975e7411fb65eea88de02625e96d782c4cfda947cdb7b5a">MessageType::DESTROY</a></div><div class="ttdeci">@ DESTROY</div><div class="ttdef"><b>Definition:</b> <a href="MessageType_8h_source.html#l00045">MessageType.h:45</a></div></div>
 <div class="ttc" id="aclassMessage_html"><div class="ttname"><a href="classMessage.html">Message</a></div><div class="ttdef"><b>Definition:</b> <a href="Message_8h_source.html#l00021">Message.h:22</a></div></div>
 <div class="ttc" id="aclassMethodReference_html"><div class="ttname"><a href="classMethodReference.html">MethodReference</a></div><div class="ttdef"><b>Definition:</b> <a href="MethodReference_8h_source.html#l00022">MethodReference.h:23</a></div></div>
-<div class="ttc" id="aclassObjectGraphicsItem_html"><div class="ttname"><a href="classObjectGraphicsItem.html">ObjectGraphicsItem</a></div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8h_source.html#l00019">ObjectGraphicsItem.h:20</a></div></div>
-<div class="ttc" id="aclassObjectGraphicsItem_html_a042743910543897be90db38060364ed9"><div class="ttname"><a href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">ObjectGraphicsItem::getObject</a></div><div class="ttdeci">Object * getObject()</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8h_source.html#l00034">ObjectGraphicsItem.h:34</a></div></div>
-<div class="ttc" id="aclassObjectGraphicsItem_html_a43b768c121ccca9b4bbe8aa9b34a1c7f"><div class="ttname"><a href="classObjectGraphicsItem.html#a43b768c121ccca9b4bbe8aa9b34a1c7f">ObjectGraphicsItem::getDestroyMessage</a></div><div class="ttdeci">MessageLine * getDestroyMessage()</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8cpp_source.html#l00316">ObjectGraphicsItem.cpp:316</a></div></div>
-<div class="ttc" id="aclassObjectGraphicsItem_html_a7e69be29f644cb3b98b3721404782335"><div class="ttname"><a href="classObjectGraphicsItem.html#a7e69be29f644cb3b98b3721404782335">ObjectGraphicsItem::showEditDialog</a></div><div class="ttdeci">void showEditDialog(bool logChange)</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8cpp_source.html#l00234">ObjectGraphicsItem.cpp:234</a></div></div>
-<div class="ttc" id="aclassObjectGraphicsItem_html_ad1470dff87bcd52bd8317d2821650e43"><div class="ttname"><a href="classObjectGraphicsItem.html#ad1470dff87bcd52bd8317d2821650e43">ObjectGraphicsItem::getCreateMessage</a></div><div class="ttdeci">MessageLine * getCreateMessage()</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8cpp_source.html#l00332">ObjectGraphicsItem.cpp:332</a></div></div>
+<div class="ttc" id="aclassObjectGraphicsItem_html"><div class="ttname"><a href="classObjectGraphicsItem.html">ObjectGraphicsItem</a></div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8h_source.html#l00021">ObjectGraphicsItem.h:22</a></div></div>
+<div class="ttc" id="aclassObjectGraphicsItem_html_a042743910543897be90db38060364ed9"><div class="ttname"><a href="classObjectGraphicsItem.html#a042743910543897be90db38060364ed9">ObjectGraphicsItem::getObject</a></div><div class="ttdeci">Object * getObject()</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8h_source.html#l00036">ObjectGraphicsItem.h:36</a></div></div>
+<div class="ttc" id="aclassObjectGraphicsItem_html_a43b768c121ccca9b4bbe8aa9b34a1c7f"><div class="ttname"><a href="classObjectGraphicsItem.html#a43b768c121ccca9b4bbe8aa9b34a1c7f">ObjectGraphicsItem::getDestroyMessage</a></div><div class="ttdeci">MessageLine * getDestroyMessage()</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8cpp_source.html#l00330">ObjectGraphicsItem.cpp:330</a></div></div>
+<div class="ttc" id="aclassObjectGraphicsItem_html_a7e69be29f644cb3b98b3721404782335"><div class="ttname"><a href="classObjectGraphicsItem.html#a7e69be29f644cb3b98b3721404782335">ObjectGraphicsItem::showEditDialog</a></div><div class="ttdeci">void showEditDialog(bool logChange)</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8cpp_source.html#l00246">ObjectGraphicsItem.cpp:246</a></div></div>
+<div class="ttc" id="aclassObjectGraphicsItem_html_ad1470dff87bcd52bd8317d2821650e43"><div class="ttname"><a href="classObjectGraphicsItem.html#ad1470dff87bcd52bd8317d2821650e43">ObjectGraphicsItem::getCreateMessage</a></div><div class="ttdeci">MessageLine * getCreateMessage()</div><div class="ttdef"><b>Definition:</b> <a href="ObjectGraphicsItem_8cpp_source.html#l00346">ObjectGraphicsItem.cpp:346</a></div></div>
 <div class="ttc" id="aclassObject_html"><div class="ttname"><a href="classObject.html">Object</a></div><div class="ttdef"><b>Definition:</b> <a href="Object_8h_source.html#l00020">Object.h:21</a></div></div>
 <div class="ttc" id="aclassObject_html_a944f48fa8e1e9675f8cd820c7718b5c0"><div class="ttname"><a href="classObject.html#a944f48fa8e1e9675f8cd820c7718b5c0">Object::getInstanceClass</a></div><div class="ttdeci">ClassReference getInstanceClass()</div><div class="ttdef"><b>Definition:</b> <a href="Object_8h_source.html#l00056">Object.h:56</a></div></div>
 <div class="ttc" id="aclassSceneUpdateObservable_html"><div class="ttname"><a href="classSceneUpdateObservable.html">SceneUpdateObservable</a></div><div class="ttdef"><b>Definition:</b> <a href="SceneUpdateObservable_8h_source.html#l00017">SceneUpdateObservable.h:18</a></div></div>
@@ -415,8 +461,9 @@ $(function() {
 <div class="ttc" id="aclassSequenceDiagramScene_html_a6767a77ed9bf1d8cc16e77bd0e2a911b"><div class="ttname"><a href="classSequenceDiagramScene.html#a6767a77ed9bf1d8cc16e77bd0e2a911b">SequenceDiagramScene::SequenceDiagramScene</a></div><div class="ttdeci">SequenceDiagramScene(QWidget *parentWindow, SequenceDiagramManager *sequenceDiagramManager, SceneUpdateObservable *sceneUpdateObservable, ClassDiagram *classDiagram)</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00027">SequenceDiagramScene.cpp:27</a></div></div>
 <div class="ttc" id="aclassSequenceDiagramScene_html_a86d622460ca7473f79292607476c2814"><div class="ttname"><a href="classSequenceDiagramScene.html#a86d622460ca7473f79292607476c2814">SequenceDiagramScene::addActor</a></div><div class="ttdeci">void addActor()</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00084">SequenceDiagramScene.cpp:84</a></div></div>
 <div class="ttc" id="aclassSequenceDiagramScene_html_a885aaca7acac9f07d0d40e09e0f57fae"><div class="ttname"><a href="classSequenceDiagramScene.html#a885aaca7acac9f07d0d40e09e0f57fae">SequenceDiagramScene::undoLastChange</a></div><div class="ttdeci">void undoLastChange() override</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00068">SequenceDiagramScene.cpp:68</a></div></div>
-<div class="ttc" id="aclassSequenceDiagramScene_html_a95db4e677abfabe3dc1d0c74b37909e0"><div class="ttname"><a href="classSequenceDiagramScene.html#a95db4e677abfabe3dc1d0c74b37909e0">SequenceDiagramScene::addObject</a></div><div class="ttdeci">void addObject()</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00098">SequenceDiagramScene.cpp:98</a></div></div>
-<div class="ttc" id="aclassSequenceDiagramScene_html_a9d6245e3a23158fe004df9a8988d64b3"><div class="ttname"><a href="classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3">SequenceDiagramScene::removeObjectPressed</a></div><div class="ttdeci">void removeObjectPressed()</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00125">SequenceDiagramScene.cpp:125</a></div></div>
+<div class="ttc" id="aclassSequenceDiagramScene_html_a8c8ba16eacc46e05a1e3bb2b806aa870"><div class="ttname"><a href="classSequenceDiagramScene.html#a8c8ba16eacc46e05a1e3bb2b806aa870">SequenceDiagramScene::createMessagePossible</a></div><div class="ttdeci">static bool createMessagePossible(QString *errorMsg, ActivationGraphicsObjectBase *reciever, ActivationGraphicsObjectBase *sender, MessageType messageType)</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00384">SequenceDiagramScene.cpp:384</a></div></div>
+<div class="ttc" id="aclassSequenceDiagramScene_html_a95db4e677abfabe3dc1d0c74b37909e0"><div class="ttname"><a href="classSequenceDiagramScene.html#a95db4e677abfabe3dc1d0c74b37909e0">SequenceDiagramScene::addObject</a></div><div class="ttdeci">void addObject()</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00100">SequenceDiagramScene.cpp:100</a></div></div>
+<div class="ttc" id="aclassSequenceDiagramScene_html_a9d6245e3a23158fe004df9a8988d64b3"><div class="ttname"><a href="classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3">SequenceDiagramScene::removeObjectPressed</a></div><div class="ttdeci">void removeObjectPressed()</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00129">SequenceDiagramScene.cpp:129</a></div></div>
 <div class="ttc" id="aclassSequenceDiagramScene_html_ad30a0c581886884efe1438d0152e895f"><div class="ttname"><a href="classSequenceDiagramScene.html#ad30a0c581886884efe1438d0152e895f">SequenceDiagramScene::createNewMessageLine</a></div><div class="ttdeci">void createNewMessageLine(MessageLine *line)</div></div>
 <div class="ttc" id="aclassSequenceDiagramScene_html_ae84aec8bcc201e72002c43fab6ace0f9"><div class="ttname"><a href="classSequenceDiagramScene.html#ae84aec8bcc201e72002c43fab6ace0f9">SequenceDiagramScene::saveToFile</a></div><div class="ttdeci">void saveToFile() override</div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagramScene_8cpp_source.html#l00060">SequenceDiagramScene.cpp:60</a></div></div>
 <div class="ttc" id="aclassSequenceDiagram_html"><div class="ttname"><a href="classSequenceDiagram.html">SequenceDiagram</a></div><div class="ttdef"><b>Definition:</b> <a href="SequenceDiagram_8h_source.html#l00020">SequenceDiagram.h:21</a></div></div>

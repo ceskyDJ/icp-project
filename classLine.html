@@ -177,13 +177,9 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a6eaad15d972aa1aaf85d8b3709308887"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >General line - others are abstract.</p>
-<p >ICP project (<a class="el" href="classClass.html">Class</a> and sequence diagram editor)</p>
-<dl class="section author"><dt>Author</dt><dd>Jakub Dvořák (xdvora3q) </dd>
-<dd>
-Michal Šmahel (xsmahe01) </dd></dl>
+<div class="textblock"><p >Base class for all lines. Provides basic methods for drawing to all relationships. </p>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00025">25</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00027">27</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8e13a727d09793cff0e9653324cc861c" name="a8e13a727d09793cff0e9653324cc861c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e13a727d09793cff0e9653324cc861c">&#9670;&nbsp;</a></span>Line()</h2>
@@ -234,7 +230,7 @@ Michal Šmahel (xsmahe01) </dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00034">34</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00036">36</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -359,7 +355,7 @@ Michal Šmahel (xsmahe01) </dd></dl>
       </table>
 </div><div class="memdoc">
 <p >Override method which returns bounding rect of line.</p>
-<dl class="section return"><dt>Returns</dt><dd>QRectF A rectnagle around <a class="el" href="classclassNode.html">classNode</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>QRectF A rectnagle around classNode. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Line_8cpp_source.html#l00259">259</a> of file <a class="el" href="Line_8cpp_source.html">Line.cpp</a>.</p>
 
@@ -447,7 +443,7 @@ Michal Šmahel (xsmahe01) </dd></dl>
 <p >Getter for class diagram</p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to class diagram </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00108">108</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00110">110</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -476,7 +472,7 @@ Michal Šmahel (xsmahe01) </dd></dl>
 <p >Getter for existing relationships</p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to existing relationships </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00098">98</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00100">100</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -502,10 +498,10 @@ Michal Šmahel (xsmahe01) </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns a <a class="el" href="classclassNode.html">classNode</a> that is pointed from, in relationship.</p>
+<p >Returns a classNode that is pointed from, in relationship.</p>
 <dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00068">68</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00070">70</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -628,7 +624,7 @@ Michal Šmahel (xsmahe01) </dd></dl>
 <p >Getter for scene update observable</p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to observable for distributing information about scene changes </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00118">118</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00120">120</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -737,10 +733,10 @@ Michal Šmahel (xsmahe01) </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Returns a <a class="el" href="classclassNode.html">classNode</a> that is pointed to, in relationship.</p>
+<p >Returns a classNode that is pointed to, in relationship.</p>
 <dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00058">58</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00060">60</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -814,7 +810,7 @@ Michal Šmahel (xsmahe01) </dd></dl>
 <dd>
 false if line is NOT self-relationship </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00129">129</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00131">131</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1155,10 +1151,10 @@ false if line is NOT self-relationship </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Sets a <a class="el" href="classclassNode.html">classNode</a> that is pointed from, in relationship.</p>
+<p >Sets a classNode that is pointed from, in relationship.</p>
 <dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00088">88</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00090">90</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1185,10 +1181,10 @@ false if line is NOT self-relationship </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Sets a <a class="el" href="classclassNode.html">classNode</a> that is pointed to, in relationship.</p>
+<p >Sets a classNode that is pointed to, in relationship.</p>
 <dl class="section return"><dt>Returns</dt><dd>second class node </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00078">78</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00080">80</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1263,7 +1259,7 @@ false if line is NOT self-relationship </dd></dl>
 </div><div class="memdoc">
 <p >Pointer to class diagram </p>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00145">145</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00147">147</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1288,7 +1284,7 @@ false if line is NOT self-relationship </dd></dl>
 </div><div class="memdoc">
 <p >Pointer to map of existing relationships and their lines </p>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00141">141</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00143">143</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1312,7 +1308,7 @@ false if line is NOT self-relationship </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00154">154</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00156">156</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1336,7 +1332,7 @@ false if line is NOT self-relationship </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00156">156</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00158">158</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1360,7 +1356,7 @@ false if line is NOT self-relationship </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00153">153</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00155">155</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1385,7 +1381,7 @@ false if line is NOT self-relationship </dd></dl>
 </div><div class="memdoc">
 <p >Observable for distributing information about scene changes </p>
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00149">149</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00151">151</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1409,7 +1405,7 @@ false if line is NOT self-relationship </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00151">151</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00153">153</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1433,7 +1429,7 @@ false if line is NOT self-relationship </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00157">157</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00159">159</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1457,7 +1453,7 @@ false if line is NOT self-relationship </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00152">152</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00154">154</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>
@@ -1481,7 +1477,7 @@ false if line is NOT self-relationship </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00155">155</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Line_8h_source.html#l00157">157</a> of file <a class="el" href="Line_8h_source.html">Line.h</a>.</p>
 
 </div>
 </div>

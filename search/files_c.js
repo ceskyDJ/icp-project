@@ -10,5 +10,6 @@ var searchData=
   ['sequencediagramrepository_2eh_7',['SequenceDiagramRepository.h',['../SequenceDiagramRepository_8h.html',1,'']]],
   ['sequencediagramscene_2ecpp_8',['SequenceDiagramScene.cpp',['../SequenceDiagramScene_8cpp.html',1,'']]],
   ['sequencediagramscene_2eh_9',['SequenceDiagramScene.h',['../SequenceDiagramScene_8h.html',1,'']]],
-  ['syncmessageline_2ecpp_10',['SyncMessageLine.cpp',['../SyncMessageLine_8cpp.html',1,'']]]
+  ['syncmessageline_2ecpp_10',['SyncMessageLine.cpp',['../SyncMessageLine_8cpp.html',1,'']]],
+  ['syncmessageline_2eh_11',['SyncMessageLine.h',['../SyncMessageLine_8h.html',1,'']]]
 ];

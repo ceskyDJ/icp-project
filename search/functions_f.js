@@ -16,7 +16,7 @@ var searchData=
   ['removemesage_13',['removeMesage',['../classActivationGraphicsObjectBase.html#a6477146161b56e2ee9df887730a10891',1,'ActivationGraphicsObjectBase']]],
   ['removemessage_14',['removeMessage',['../classSequenceDiagram.html#a3b07da73a31035b7a52ca62f33f9bd1c',1,'SequenceDiagram']]],
   ['removemethodreferenceupdater_15',['removeMethodReferenceUpdater',['../classClassMethod.html#a31eb41583b53cedffb7e7f501ad1b4fc',1,'ClassMethod']]],
-  ['removeobject_16',['removeObject',['../classSequenceDiagram.html#a902978d2457c3e61e1693986b31274c1',1,'SequenceDiagram']]],
+  ['removeobject_16',['removeObject',['../classActivationObjectEmitter.html#a7e32974b6be11ee468867f2972506bea',1,'ActivationObjectEmitter::removeObject()'],['../classSequenceDiagram.html#a902978d2457c3e61e1693986b31274c1',1,'SequenceDiagram::removeObject()']]],
   ['removeobjectpressed_17',['removeObjectPressed',['../classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3',1,'SequenceDiagramScene']]],
   ['removepressed_18',['removePressed',['../classDirectedAssociationLineEditDialog.html#ae4ec2e3928b5a26b71bba52d948f3579',1,'DirectedAssociationLineEditDialog']]],
   ['removerelationship_19',['removeRelationship',['../classClassDiagram.html#a5e1a3b164030fdaf3fe84f33dfbe8866',1,'ClassDiagram']]],

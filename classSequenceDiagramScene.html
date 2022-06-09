@@ -66,6 +66,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-slots">Public Slots</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classSequenceDiagramScene-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SequenceDiagramScene Class Reference</div></div>
@@ -128,6 +129,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad00c9e707d1772b29ccd8a224676b4c4 inherit pub_methods_classCustomScene"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomScene.html#ad00c9e707d1772b29ccd8a224676b4c4">setTargetFile</a> (QString &amp;&amp;newTargetFile)</td></tr>
 <tr class="separator:ad00c9e707d1772b29ccd8a224676b4c4 inherit pub_methods_classCustomScene"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8c8ba16eacc46e05a1e3bb2b806aa870"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a8c8ba16eacc46e05a1e3bb2b806aa870">createMessagePossible</a> (QString *errorMsg, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *reciever, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *sender, <a class="el" href="classMessageType.html">MessageType</a> messageType)</td></tr>
+<tr class="separator:a8c8ba16eacc46e05a1e3bb2b806aa870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aaa373addecd3b7f42dfdd57184b3867b"><td class="memItemLeft" align="right" valign="top"><a id="aaa373addecd3b7f42dfdd57184b3867b" name="aaa373addecd3b7f42dfdd57184b3867b"></a>
@@ -150,7 +156,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Qt scene customized for sequence diagrams </p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8h_source.html#l00019">19</a> of file <a class="el" href="SequenceDiagramScene_8h_source.html">SequenceDiagramScene.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8h_source.html#l00020">20</a> of file <a class="el" href="SequenceDiagramScene_8h_source.html">SequenceDiagramScene.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="af49778f40afbeaf45474fa2ac72e629a" name="af49778f40afbeaf45474fa2ac72e629a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af49778f40afbeaf45474fa2ac72e629a">&#9670;&nbsp;</a></span>state</h2>
@@ -165,7 +171,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >States for handling actions by user. </p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8h_source.html#l00095">95</a> of file <a class="el" href="SequenceDiagramScene_8h_source.html">SequenceDiagramScene.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8h_source.html#l00096">96</a> of file <a class="el" href="SequenceDiagramScene_8h_source.html">SequenceDiagramScene.h</a>.</p>
 
 </div>
 </div>
@@ -260,7 +266,69 @@ Additional Inherited Members</h2></td></tr>
 <p >Add new object into scene.</p>
 <p >Add new object to scene. </p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00098">98</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00100">100</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8c8ba16eacc46e05a1e3bb2b806aa870" name="a8c8ba16eacc46e05a1e3bb2b806aa870"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c8ba16eacc46e05a1e3bb2b806aa870">&#9670;&nbsp;</a></span>createMessagePossible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SequenceDiagramScene::createMessagePossible </td>
+          <td>(</td>
+          <td class="paramtype">QString *&#160;</td>
+          <td class="paramname"><em>errorMsg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *&#160;</td>
+          <td class="paramname"><em>reciever</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMessageType.html">MessageType</a>&#160;</td>
+          <td class="paramname"><em>messageType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >Checks if it is possible to create new message. If error occures, store message into errorMsg.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorMsg</td><td>If error occurs, store error message there else errorMsg is unchanged. </td></tr>
+    <tr><td class="paramname">reciever</td><td>reciever object </td></tr>
+    <tr><td class="paramname">messageType</td><td>type of message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if everything is ok. </dd>
+<dd>
+false if creation is NOT possible. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00384">384</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -330,7 +398,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00232">232</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00236">236</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -448,7 +516,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Remove selected button was pressed. Handles an event - remove selected or change current state. </p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00125">125</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00129">129</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
