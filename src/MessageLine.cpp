@@ -59,7 +59,9 @@ MessageLine::~MessageLine()
     }
 
     // Remove message from sequence diagram
-    sequenceDiagram->removeMessage(message);
+    try {
+        sequenceDiagram->removeMessage(message);
+    } catch (std::invalid_argument &) {/* Ignored, message has been deleted yet */}
 }
 
 /**
