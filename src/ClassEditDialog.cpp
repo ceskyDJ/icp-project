@@ -25,7 +25,7 @@ ClassEditDialog::ClassEditDialog(Class *classEntity): classEntity{classEntity}
 }
 
 /**
- * ClassEditDialog::initializeComponents Initializes all components.
+ * Initializes all components.
  */
 void ClassEditDialog::initializeComponents()
 {
@@ -47,7 +47,7 @@ void ClassEditDialog::initializeComponents()
 }
 
 /**
- * ClassEditDialog::setMainLayout Arranges widgets to layout.
+ * Arranges widgets to layout.
  */
 void ClassEditDialog::setMainLayout()
 {
@@ -81,7 +81,7 @@ void ClassEditDialog::setMainLayout()
 }
 
 /**
- * ClassEditDialog::deleteAttribute deletes attribute
+ * deletes attribute
  *
  * @param toDelete attribute that should be deleted
  */
@@ -147,7 +147,7 @@ void ClassEditDialog::addNewMethod(ClassMethod *newMethod)
 }
 
 /**
- * @brief ClassEditDialog::addNewAttributeSlot Slot which will be called after emit singal of add button
+ * @brief Slot which will be called after emit singal of add button
  */
 void ClassEditDialog::addNewAttributeSlot()
 {
@@ -155,7 +155,7 @@ void ClassEditDialog::addNewAttributeSlot()
 }
 
 /**
- * @brief ClassEditDialog::addNewMethodSlot Slot which will be called after emit singal of add button
+ * Slot which will be called after emit singal of add button
  */
 void ClassEditDialog::addNewMethodSlot()
 {
@@ -164,7 +164,7 @@ void ClassEditDialog::addNewMethodSlot()
 }
 
 /**
- * @brief ClassEditDialog::makeConnections Make all unnesesary connections
+ * @brief Make all unnesesary connections
  */
 void ClassEditDialog::makeConnections()
 {
@@ -177,7 +177,7 @@ void ClassEditDialog::makeConnections()
 }
 
 /**
- * @brief ClassEditDialog::setScrollAreas sets new scroll areas
+ * @brief sets new scroll areas
  */
 void ClassEditDialog::setScrollAreas()
 {
@@ -202,7 +202,7 @@ void ClassEditDialog::setScrollArea(QWidget *areaWidget, QVBoxLayout *areaLayout
 }
 
 /**
- * @brief ClassEditDialog::onNameChanged slot when name changes
+ * @brief slot when name changes
  * @param newName new name of class
  */
 void ClassEditDialog::onNameChanged(QString newName)
@@ -229,7 +229,7 @@ void ClassEditDialog::setButtons()
 }
 
 /**
- * @brief ClassEditDialog::onConfirmChangesPressed confirmation button slot
+ * @brief confirmation button slot
  */
 void ClassEditDialog::onConfirmChangesPressed()
 {
@@ -257,7 +257,7 @@ void ClassEditDialog::onConfirmChangesPressed()
 }
 
 /**
- * @brief ClassEditDialog::onRejectChangesPressed button slot to reject changes
+ * @brief button slot to reject changes
  */
 void ClassEditDialog::onRejectChangesPressed()
 {
@@ -265,7 +265,7 @@ void ClassEditDialog::onRejectChangesPressed()
 }
 
 /**
- * @brief ClassEditDialog::setComboBox sets combobox properies
+ * @brief sets combobox properies
  */
 void ClassEditDialog::setComboBox()
 {
@@ -275,7 +275,7 @@ void ClassEditDialog::setComboBox()
 }
 
 /**
- * @brief ClassEditDialog::fillData fills data into dialog controls
+ * @brief fills data into dialog controls
  */
 void ClassEditDialog::fillData()
 {
@@ -284,7 +284,7 @@ void ClassEditDialog::fillData()
 }
 
 /**
- * @brief ClassEditDialog::onClassTypeChanged slot for changig type
+ * @brief slot for changig type
  * @param newType of class
  */
 void ClassEditDialog::onClassTypeChanged(QString newType)

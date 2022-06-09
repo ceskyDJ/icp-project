@@ -7,6 +7,13 @@
  */
 #include "MessageLineEditDialog.h"
 
+/**
+ * Construct a new Message Line Edit Dialog
+ * 
+ * @param showPropertyLayout  tells if combobox with method shoul be shown
+ * @param classRef class reference
+ * @param methodRef  current method reference
+ */
 MessageLineEditDialog::MessageLineEditDialog(bool showPropertyLayout,
                                              ClassReference classRef, MethodReference methodRef)
     : showPropertyLayout{showPropertyLayout}, classRef{classRef}

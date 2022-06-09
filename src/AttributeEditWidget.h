@@ -33,14 +33,37 @@ public:
         return attributeEntity;
     }
 signals:
+    /**
+     * Signal is emitted when delete button was pressed 
+     * 
+     * @param attributeWidget attribute that should be deleted.
+     */
     void deleteButtonPressed(AttributeEditWidget *attributeWidget);
 
 private:
+    /**
+     * attribute that will be editted.
+     */
     ClassAttribute *attributeEntity;
+    /**
+     * Layout for this
+     */
     QHBoxLayout *attrLayOut;
+    /**
+     * Combobox for selecting access modifiers
+     */
     QComboBox *accessModifierComboBox;
+    /**
+     * Line edit to rename atribute name
+     */
     QLineEdit *attributeNameLineEdit;
+    /**
+     * Line edit to edit atribute datatype
+     */
     QLineEdit *attributeDateTypeLineEdit;
+    /**
+     * Button that if pressed, indicates that this attribute should be removed
+     */
     QPushButton *deleteButton;
 
     /**

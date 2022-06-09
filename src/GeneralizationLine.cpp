@@ -24,6 +24,11 @@ GeneralizationLine::GeneralizationLine(
     arrowWidth = 20;
 }
 
+/**
+     * Draws and arrow - rectangle
+     *
+     * @param painter to draw
+     */
 void GeneralizationLine::drawArrow(QPainter *painter) const
 {
     QVector<QPointF> points = {

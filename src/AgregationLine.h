@@ -17,6 +17,13 @@
 class AgregationLine : public LineWithArrow
 {
 public:
+    /**
+     * Sets arrow height and width.
+     *
+     * @param existingRelationships Pointer to map of existing relationships and their lines
+     * @param classDiagram Pointer to class diagram
+     * @param sceneUpdateObservable Observable for distributing information about scene changes
+     */
     AgregationLine(
         std::unordered_map<Line *, Relationship *> *existingRelationships,
         ClassDiagram *classDiagram,

@@ -23,6 +23,9 @@ public:
      * @param sequenceDiagram Pointer to edited sequence diagram
      */
     DestroyMessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
+    /**
+     * Initializes itself - store from and to object + store self in those objects.
+     */
     void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
                     Message *msg, ClassReference classRef);
 };

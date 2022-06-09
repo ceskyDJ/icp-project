@@ -255,7 +255,7 @@ std::vector<QString> ClassNode::getMethodPrintable(
  * Joins all method's parameters to printable representation.
  *
  * @param parameters
- * @return
+ * @return string representing method parameter
  */
 QString ClassNode::getMethodParametersPrintable(std::vector<MethodParameter> parameters) const
 {

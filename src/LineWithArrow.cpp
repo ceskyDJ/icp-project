@@ -119,8 +119,8 @@ QRectF LineWithArrow::adjustSelfRect(QRectF rect, int multiply) const
 /**
  * Draws text if needed
  *
- * @param painter
- * @param line
+ * @param painter to paint
+ * @param line on which text should lie
  */
 void LineWithArrow::drawTexts(QPainter *, QLineF) const
 {
