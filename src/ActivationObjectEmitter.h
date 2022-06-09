@@ -41,10 +41,24 @@ public:
      */
     void emitMoveRight();
 private:
+    /**
+     * Object that will be sent on any emit signal. 
+     */
     ActivationGraphicsObjectBase *activationObject;
 
 signals:
+    /**
+     * Signal is emitted when user click on the objcet.
+     * 
+     * @param activationObject Object that was click on.
+     */
     void objectPressed(ActivationGraphicsObjectBase *activationObject);
+    /**
+     * Signal will be emitted if object should be removed
+     * 
+     * @param activationObject object to remove
+     * @param logChange sceneupadte
+     */
     void removeObject(ActivationGraphicsObjectBase *activationObject, bool logChange);
     void moveLeft(ActivationGraphicsObjectBase *activationObject);
     void moveRight(ActivationGraphicsObjectBase *activationObject);

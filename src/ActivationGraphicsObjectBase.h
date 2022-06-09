@@ -48,7 +48,10 @@ public:
      * Color to draw objects - it changes according to user events.
      */
     static QColor drawColor;
-
+    
+    /**
+     * Padding between objects in scene
+     */
     static qreal objectPadding;
     /**
      * Size of destroy cross
@@ -205,6 +208,9 @@ public:
      */
     QList<MessageLine *> messages;
 
+    /**
+     * Minimum height of all items (header + lifespace + lifebox)
+     */
     static const int minHeight = 100;
 
     /**
