@@ -71,11 +71,9 @@ ClassDiagram FileClassDiagramRepository::loadDiagram()
         Class *loadedClass = loadClass(currClass);
 
         // Check for class name duplicities
-        try {
-            classDiagram.findClassByName(loadedClass->getName());
-
+        if (classDiagram.findClassByName(loadedClass->getName()) != nullptr) {
             throw InvalidInputDataException{"Class names must be unique. Duplicate class name: " + loadedClass->getName()};
-        } catch (std::invalid_argument &e) {}
+        }
 
         classDiagram.addClass(loadedClass);
 
@@ -481,10 +479,8 @@ Relationship *FileClassDiagramRepository::loadRelationship(QDomElement &xmlRelat
     }
 
     QDomElement xmlFirstClass{firstClassSearch.item(0).toElement()};
-    Class *objFirstClass;
-    try {
-        objFirstClass = classDiagram.findClassByName(xmlFirstClass.text().toStdString());
-    } catch (std::invalid_argument &e) {
+    Class *objFirstClass = classDiagram.findClassByName(xmlFirstClass.text().toStdString());
+    if (objFirstClass == nullptr) {
         throw InvalidInputDataException{R"(Attribute "first-class" must contain name of some class from class)"
             "diagram"};
     }
@@ -496,10 +492,8 @@ Relationship *FileClassDiagramRepository::loadRelationship(QDomElement &xmlRelat
     }
 
     QDomElement xmlSecondClass{secondClassSearch.item(0).toElement()};
-    Class *objSecondClass;
-    try {
-        objSecondClass = classDiagram.findClassByName(xmlSecondClass.text().toStdString());
-    } catch (std::invalid_argument &e) {
+    Class *objSecondClass = classDiagram.findClassByName(xmlSecondClass.text().toStdString());
+    if (objSecondClass == nullptr) {
         throw InvalidInputDataException{R"(Attribute "second-class" must contain name of some class from class)"
             "diagram"};
     }

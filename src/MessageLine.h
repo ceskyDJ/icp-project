@@ -16,6 +16,8 @@
 #include "ActivationGraphicsObjectBase.h"
 #include "ClassReference.h"
 #include "MethodReference.h"
+#include "SequenceDiagram.h"
+#include "SceneUpdateObservable.h"
 
 class ActivationGraphicsObjectBase;
 
@@ -25,10 +27,23 @@ class ActivationGraphicsObjectBase;
 class MessageLine : public QGraphicsLineItem
 {
 public:
-    MessageLine();
+    /**
+     * Class constructor
+     *
+     * @par Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
+     *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+     * @param sequenceDiagram Pointer to edited sequence diagram
+     */
+    MessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
+
+    /**
+     * Class destructor
+     */
     ~MessageLine();
+
     virtual void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
-                            Message *newMessage, ClassReference classRef);
+            Message *newMessage, ClassReference &classReference);
     void moveLine(qreal dy, bool moveIfNotValidBefore);
 
     /**
@@ -42,6 +57,14 @@ public:
     }
     void updateClassReference(ClassReference newClassRef);
 protected:
+    /**
+     * Pointer to observable for distributing information about scene change (dependency)
+     */
+    SceneUpdateObservable *sceneUpdateObservable;
+    /**
+     * Edited sequence diagram
+     */
+    SequenceDiagram *sequenceDiagram;
     ClassReference classRef;
     bool editNameAllowed;
     bool createFlag;
@@ -78,7 +101,7 @@ protected:
     QPointF lastPressed;
 
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const;
     QPainterPath shape() const;
     virtual void drawArrow(QPainter *painter) const;
@@ -87,10 +110,11 @@ protected:
     QRectF getTextBoundingBox(QString text) const;
     void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     bool isInObjectsLifeBox(qreal lifeBoxPointer);
-    MethodReference validateNewReference(ClassReference classRef, MethodReference methodRef);
+    MethodReference validateNewReference(ClassReference classReference, MethodReference methodRef);
 };
 
 #endif // MESSAGELINE_H

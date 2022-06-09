@@ -7,7 +7,16 @@
  */
 #include "DestroyMessageLine.h"
 
-DestroyMessageLine::DestroyMessageLine()
+/**
+ * Class constructor
+ *
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+ * @param sequenceDiagram Pointer to edited sequence diagram
+ */
+DestroyMessageLine::DestroyMessageLine(
+    SceneUpdateObservable *sceneUpdateObservable,
+    SequenceDiagram *sequenceDiagram
+): MessageLine{sceneUpdateObservable, sequenceDiagram}
 {
     linePenOk = QPen{Qt::black, 2, Qt::DashLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::DashLine};
@@ -30,4 +39,5 @@ void DestroyMessageLine::initialize(ActivationGraphicsObjectBase *from, Activati
     message = msg;
     message->setName(MethodReference{"<<destroy>>"});
     this->classRef = ClassReference{""};
+    moveLine(0, true);
 }

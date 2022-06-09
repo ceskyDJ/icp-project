@@ -15,7 +15,7 @@
             <sender type="ACTOR">User</sender>
             <recipient type="OBJECT">someXiaomi</recipient>
         </message>
-        <message sending-time="0.4" name="isValuable()" type="SYNC">
+        <message sending-time="0.4" name="isValuable" type="SYNC">
             <sender type="ACTOR">User</sender>
             <recipient type="OBJECT">someSamsung</recipient>
         </message>

@@ -13,8 +13,7 @@
  * Finds class method by its name
  *
  * @param nameToFind Name of the class method search for
- * @return Pointer to found class method
- * @throw std::invalid_argument Non-existing class method with searched name in this class
+ * @return Pointer to found class method or nullptr when method with searched name isn't in this class
  */
 ClassMethod *Class::findMethodByName(const std::string &nameToFind)
 {

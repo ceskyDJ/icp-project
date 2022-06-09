@@ -42,7 +42,8 @@
 class MainWindow : public QMainWindow, SceneUpdateObserver
 {
     Q_OBJECT
-public:
+
+  public:
     /**
      * Class constructor
      *
@@ -63,7 +64,7 @@ public:
      */
     void logChanges() noexcept override;
 
-private:
+  private:
     // Dependencies
     /**
      * Pointer to class diagram manager (for backend operations)
@@ -215,6 +216,7 @@ private:
      * Groupbox with all sequence diagram items.
      */
     QGroupBox *sequenceToolboxItems;
+
     // Setup
     /**
      * Initializes components - creates a new instances of primary attributes.
@@ -300,7 +302,8 @@ private:
      * @return Is the file used by some scene?
      */
     bool isFileUsedBySomeScene(QString &fileName);
-private slots:
+
+  private slots:
     // Tool box items' actions
     /**
      * Slot for handling click on button for adding new class node
@@ -334,6 +337,38 @@ private slots:
      * Slot for handling click on button for selecting realization relationship
      */
     void realizationSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Create new actor.
+     */
+    void addActorSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Create new object.
+     */
+    void addObjectSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Remove selected actor/object
+     */
+    void removeObjectSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with synchronous message.
+     */
+    void syncMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with asynchronous message.
+     */
+    void asyncMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with reply message.
+     */
+    void createMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with create message.
+     */
+    void destroyMessageSelected();
+    /**
+     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with destroy message.
+     */
+    void replyMessageSelected();
 
     // Top toolbar buttons' actions
     /**
@@ -370,38 +405,6 @@ private slots:
      * Slot for handling click action on some close tab button
      */
     void closeTab();
-    /**
-     * Slot for handling press action on actorToolItem. Create new actor.
-     */
-    void addActorSelected();
-    /**
-     * Slot for handling press action on actorToolItem. Create new object.
-     */
-    void addObjectSelected();
-    /**
-     * Slot for handling press action on actorToolItem. Remove selected actor/object
-     */
-    void removeObjectSelected();
-    /**
-     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with synchronous message.
-     */
-    void syncMessageSelected();
-    /**
-     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with asynchronous message.
-     */
-    void asyncMessageSelected();
-    /**
-     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with reply message.
-     */
-    void createMessageSelected();
-    /**
-     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with create message.
-     */
-    void destroyMessageSelected();
-    /**
-     * Slot for handling press action on actorToolItem. Connect 2 actors/objects with destroy message.
-     */
-    void replyMessageSelected();
 };
 
 #endif // CLASS_DIAGRAM_WINDOW_H

@@ -55,7 +55,7 @@ class Message
 
   public:
     /**
-     * Constructor for initializing with known name, type of the message and sender and recipient nodes
+     * Constructor for initializing with known name, type of the message and newSender and recipient nodes
      *
      * @param method Pointer to method the message is bind to
      * @param messageType Type of the message
@@ -103,7 +103,7 @@ class Message
     }
 
     /**
-     * Getter for message sender
+     * Getter for message newSender
      *
      * @return Pointer to message sending node
      */
@@ -113,7 +113,7 @@ class Message
     }
 
     /**
-     * Setter for message sender
+     * Setter for message newSender
      *
      * @param newMessageSender Pointer to new node sending the message
      */

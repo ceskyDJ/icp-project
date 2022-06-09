@@ -14,6 +14,7 @@
 #include <QGraphicsItem>
 #include "MessageLine.h"
 #include "ActivationObjectEmitter.h"
+#include "SceneUpdateObservable.h"
 
 class MessageLine;
 
@@ -23,7 +24,36 @@ class MessageLine;
 */
 class ActivationGraphicsObjectBase : public QGraphicsItem
 {
+protected:
+    /**
+     * Pointer to observable for distributing information about scene changes (dependency)
+     */
+    SceneUpdateObservable *sceneUpdateObservable;
+
+    /**
+     * Class constructor
+     *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+     */
+    explicit ActivationGraphicsObjectBase(
+            SceneUpdateObservable *sceneUpdateObservable
+    ): sceneUpdateObservable{sceneUpdateObservable} {};
+
 public:
+    /**
+     * Indicates if cross should be written after lifebox.
+     */
+    bool destroyed;
+
+    /**
+     * Tells order of draw.
+     */
+    int order;
+
+    /**
+     * Destructor - deletes all messages from self.
+     */
+    ~ActivationGraphicsObjectBase();
 
     /**
      * Set Class refernce - if not redefined, does nothing.
@@ -48,7 +78,7 @@ public:
      * Color to draw objects - it changes according to user events.
      */
     static QColor drawColor;
-    
+
     /**
      * Padding between objects in scene
      */
@@ -93,11 +123,6 @@ public:
     void removeMesage(MessageLine *message);
 
     /**
-     * Destructor - deletes all messages from self.
-     */
-    ~ActivationGraphicsObjectBase();
-
-    /**
      * @brief lifeBoxRect Count and return area where lifebox is located.
      * @return area where lifebox is located
      */
@@ -140,17 +165,13 @@ public:
     {
         return ClassReference{"UNKNOWN"};
     }
-    /**
-     * Indicates if cross should be written after lifebox.
-     */
-    bool destroyed;
 
     /**
-     * Set destroyed flag.
+     * Set newState flag.
      *
-     * @param destroyed true/false to set destroyed flag
+     * @param newState true/false to set newState flag
      */
-    void setDestroyed(bool destroyed);
+    void setDestroyed(bool newState);
 
     /**
      * Getter for object counter.
@@ -189,10 +210,6 @@ public:
         return drawColor;
     }
 
-    /**
-     * Tells order of draw.
-     */
-    int order;
   protected:
     /**
      * Counts created objects.

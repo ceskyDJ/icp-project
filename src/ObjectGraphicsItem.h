@@ -21,11 +21,18 @@
 class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
-    ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram);
-    qreal width() const;
-    QRectF lifeBoxRect();
-    qreal getStartOfLifeBox();
-    qreal getLifeLength();
+    /**
+     * Class constructor
+     *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+     * @param newObject Pointer to object represented by this graphics item
+     * @param classDiagram Pointer to class diagram
+     */
+    ObjectGraphicsItem(SceneUpdateObservable *sceneUpdateObservable, Object *newObject, ClassDiagram *classDiagram);
+    qreal width() const override;
+    QRectF lifeBoxRect() override;
+    qreal getStartOfLifeBox() override;
+    qreal getLifeLength() override;
     void showEditDialog(bool logChange);
 
     /**
@@ -43,7 +50,7 @@ public:
      *
      * @return new object
      */
-    MessageNode* getMessageNode()
+    MessageNode* getMessageNode() override
     {
         return object;
     }
@@ -53,7 +60,7 @@ public:
      *
      * @return object class reference.
      */
-    virtual ClassReference getClassReference()
+    virtual ClassReference getClassReference() override
     {
         return object->getInstanceClass();
     }
@@ -80,15 +87,23 @@ protected:
     qreal textPadding = 10.0;
     Object *object;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    /**
+     * Mouse release event handler
+     *
+     * @par When mouse is released, resizing just ended, so scene changing is done.
+     *
+     * @param event Event details
+     */
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
     QRectF resizeArea();
     void moveAllMessages(qreal dy);
-    void setLifeStart(qreal lifeStart);
-    void setLifeEndDestroy(qreal lifeEnd);
+    void setLifeStart(qreal lifeStart) override;
+    void setLifeEndDestroy(qreal lifeEnd) override;
     void setDestroyed(bool destroyed);
     void updateMessagesClassReference(ClassReference newClassRef);
 };

@@ -16,7 +16,14 @@
 class SyncMessageLine : public MessageLine
 {
 public:
-    SyncMessageLine();
+    /**
+     * Class constructor
+     *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+     * @param sequenceDiagram Pointer to edited sequence diagram
+     */
+    SyncMessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
+
 protected:
     void drawArrow(QPainter *painter) const;
 };

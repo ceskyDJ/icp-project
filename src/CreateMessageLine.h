@@ -16,7 +16,14 @@
 class CreateMessageLine : public MessageLine
 {
 public:
-    CreateMessageLine();
+    /**
+     * Class constructor
+     *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+     * @param sequenceDiagram Pointer to edited sequence diagram
+     */
+    CreateMessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
+
     void initialize(ActivationGraphicsObjectBase *from, ActivationGraphicsObjectBase *to,
                     Message *msg, ClassReference classRef);
 };

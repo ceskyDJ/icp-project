@@ -82,8 +82,9 @@ void ActivationGraphicsObjectBase::addMessage(MessageLine *message)
 void ActivationGraphicsObjectBase::removeMesage(MessageLine *message)
 {
     int index = messages.indexOf(message);
-    if (index >= 0)
+    if (index >= 0) {
         messages.removeAt(index);
+    }
 }
 
 /**
@@ -91,8 +92,9 @@ void ActivationGraphicsObjectBase::removeMesage(MessageLine *message)
  */
 ActivationGraphicsObjectBase::~ActivationGraphicsObjectBase()
 {
-    for(MessageLine *line : messages)
+    for (MessageLine *line : messages) {
         delete line;
+    }
 }
 
 /**
@@ -141,13 +143,13 @@ void ActivationGraphicsObjectBase::setLifeEndDestroy(qreal)
 }
 
 /**
- * Set destroyed flag.
+ * Set newState flag.
  *
- * @param destroyed true/false to set destroyed flag
+ * @param newState true/false to set newState flag
  */
-void ActivationGraphicsObjectBase::setDestroyed(bool destroyed)
+void ActivationGraphicsObjectBase::setDestroyed(bool newState)
 {
-    this->destroyed = destroyed;
+    this->destroyed = newState;
 }
 
 /**

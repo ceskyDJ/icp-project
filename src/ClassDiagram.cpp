@@ -33,8 +33,7 @@ void ClassDiagram::removeClass(Class *classToRemove)
  * Finds class by name
  *
  * @param name Name of the class to search for
- * @return Pointer to found class
- * @throw std::invalid_argument Non-existing class with this name
+ * @return Pointer to found class or nullptr when class with given isn't in the class diagram
  */
 Class *ClassDiagram::findClassByName(const std::string &name) const
 {
@@ -44,7 +43,7 @@ Class *ClassDiagram::findClassByName(const std::string &name) const
         }
     }
 
-    throw std::invalid_argument{"Class with name \"" + name + "\" doesn't exist in class diagram"};
+    return nullptr;
 }
 
 /**

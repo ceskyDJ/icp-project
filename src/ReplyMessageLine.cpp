@@ -8,9 +8,17 @@
 #include "ReplyMessageLine.h"
 
 /**
- * Set pens for line drawing
+ * Class constructor
+ *
+ * @par Set pens for line drawing
+ *
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+ * @param sequenceDiagram Pointer to edited sequence diagram
  */
-ReplyMessageLine::ReplyMessageLine()
+ReplyMessageLine::ReplyMessageLine(
+    SceneUpdateObservable *sceneUpdateObservable,
+    SequenceDiagram *sequenceDiagram
+): MessageLine{sceneUpdateObservable, sequenceDiagram}
 {
     linePenOk = QPen{Qt::black, 2, Qt::DashLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::DashLine};
@@ -32,4 +40,5 @@ void ReplyMessageLine::initialize(ActivationGraphicsObjectBase *from, Activation
     message = msg;
     message->setName(MethodReference{""});
     this->classRef = ClassReference{""};
+    moveLine(0, true);
 }

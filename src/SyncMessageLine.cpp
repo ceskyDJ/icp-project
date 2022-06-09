@@ -9,9 +9,17 @@
 #include <QPainterPath>
 
 /**
- * Sets arrow height and width.
+ * Class constructor
+ *
+ * @par Sets arrow height and width.
+ *
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+ * @param sequenceDiagram Pointer to edited sequence diagram
  */
-SyncMessageLine::SyncMessageLine()
+SyncMessageLine::SyncMessageLine(
+    SceneUpdateObservable *sceneUpdateObservable,
+    SequenceDiagram *sequenceDiagram
+): MessageLine{sceneUpdateObservable, sequenceDiagram}
 {
     arrowHeight = 10;
     arrowWidth = 20;

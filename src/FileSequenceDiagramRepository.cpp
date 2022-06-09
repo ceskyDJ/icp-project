@@ -68,11 +68,9 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
         auto *objActor = new Actor{xmlActor.text().toStdString()};
 
         // Check for actor name duplicities
-        try {
-            sequenceDiagram.findActorByName(objActor->getName());
-
+        if (sequenceDiagram.findActorByName(objActor->getName()) != nullptr) {
             throw InvalidInputDataException{"Names of actors must be unique. Duplicate name: " + objActor->getName()};
-        } catch (std::invalid_argument &e) {}
+        }
 
         sequenceDiagram.addActor(objActor);
 
@@ -92,11 +90,9 @@ SequenceDiagram FileSequenceDiagramRepository::loadDiagram()
     while (!xmlObject.isNull()) {
         auto *loadedObject = loadObject(xmlObject);
 
-        try {
-            sequenceDiagram.findObjectByName(loadedObject->getName());
-
+        if (sequenceDiagram.findObjectByName(loadedObject->getName()) != nullptr) {
             throw InvalidInputDataException{"Names of objects must be unique. Duplicate name: " + loadedObject->getName()};
-        } catch (std::invalid_argument &e) {}
+        }
 
         sequenceDiagram.addObject(loadedObject);
 
@@ -237,9 +233,10 @@ Object *FileSequenceDiagramRepository::loadObject(QDomElement &xmlObject)
     }
 
     ClassReference instanceClass{xmlObject.attribute("instance-class").toStdString()};
-    try {
-        instanceClass = classDiagram->findClassByName(instanceClass.getReferredClassName());
-    } catch (std::invalid_argument &e) {}
+    Class *searchedClass = classDiagram->findClassByName(instanceClass.getReferredClassName());
+    if (searchedClass != nullptr) {
+        instanceClass.storePointer(searchedClass);
+    }
 
     // Life start
     if (!xmlObject.hasAttribute("life-start")) {
@@ -325,15 +322,11 @@ Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Seq
     std::string senderType{sender.attribute("type").toStdString()};
     Message::MessageSender *messageSender;
     if (senderType == "ACTOR") {
-        try {
-            messageSender = sequenceDiagram.findActorByName(senderName);
-        } catch (std::invalid_argument &e) {
+        if ((messageSender = sequenceDiagram.findActorByName(senderName)) == nullptr) {
             throw InvalidInputDataException{R"(Element "sender" must contain existing actor)"};
         }
     } else if (senderType == "OBJECT") {
-        try {
-            messageSender = sequenceDiagram.findObjectByName(senderName);
-        } catch (std::invalid_argument &e) {
+        if ((messageSender = sequenceDiagram.findObjectByName(senderName)) == nullptr) {
             throw InvalidInputDataException{R"(Element "sender" must contain existing object)"};
         }
     } else {
@@ -360,15 +353,11 @@ Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Seq
     std::string recipientType{recipient.attribute("type").toStdString()};
     Message::MessageRecipient *messageRecipient;
     if (recipientType == "ACTOR") {
-        try {
-            messageRecipient = sequenceDiagram.findActorByName(recipientName);
-        } catch (std::invalid_argument &e) {
+        if ((messageRecipient = sequenceDiagram.findActorByName(recipientName)) == nullptr) {
             throw InvalidInputDataException{R"(Element "recipient" must contain existing actor)"};
         }
     } else if (recipientType == "OBJECT") {
-        try {
-            messageRecipient = sequenceDiagram.findObjectByName(recipientName);
-        } catch (std::invalid_argument &e) {
+        if ((messageRecipient = sequenceDiagram.findObjectByName(recipientName)) == nullptr) {
             throw InvalidInputDataException{R"(Element "recipient" must contain existing object)"};
         }
     } else {
@@ -381,14 +370,15 @@ Message *FileSequenceDiagramRepository::loadMessage(QDomElement &xmlMessage, Seq
     }
 
     MethodReference method{xmlMessage.attribute("name").toStdString()};
-    try {
+    if (recipientType == "OBJECT") {
         // Only object has methods, actor doesn't
-        if (recipientType == "OBJECT") {
-            auto object = dynamic_cast<Object *>(messageRecipient);
+        auto object = dynamic_cast<Object *>(messageRecipient);
+        ClassMethod *searchedMethod = object->getInstanceClass()->findMethodByName(method.getReferredMethodName());
 
-            method = object->getInstanceClass()->findMethodByName(method.getReferredMethodName());
+        if (searchedMethod != nullptr) {
+            method.storePointer(searchedMethod);
         }
-    } catch (std::invalid_argument &e) {}
+    }
 
     if (typeid(*messageSender) == typeid(Actor) && typeid(*messageRecipient) == typeid(Object)) {
         return new Message{

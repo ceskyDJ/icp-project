@@ -6,7 +6,6 @@
  * @author Michal Šmahel (xsmahe01)
  */
 
-#include <functional>
 #include "ClassDiagramManager.h"
 
 /**

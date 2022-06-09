@@ -16,13 +16,17 @@
 #include "CreateMessageLine.h"
 
 /**
- * Initializes new graphics object in sequence diagram if height is negative, keeps it value
+ * Class constructor
  *
- * @param newObject object which is going to be used as new object (it keeps pointer destination)
- * @param height Total height of object.
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+ * @param newObject Pointer to object represented by this graphics item
+ * @param classDiagram Pointer to class diagram
  */
-ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram)
-    : classDiagram{classDiagram}
+ObjectGraphicsItem::ObjectGraphicsItem(
+    SceneUpdateObservable *sceneUpdateObservable,
+    Object *newObject,
+    ClassDiagram *classDiagram
+): ActivationGraphicsObjectBase{sceneUpdateObservable}, classDiagram{classDiagram}
 {
     object = newObject;
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
@@ -116,14 +120,26 @@ qreal ObjectGraphicsItem::width() const
 void ObjectGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     pressedPos = event->pos();
-    if(resizeArea().contains(event->pos()))
+    if (resizeArea().contains(event->pos())) {
         return;
+    }
 
-    if(lifeBoxRect().contains(event->pos()))
-    {
+    if (lifeBoxRect().contains(event->pos())) {
         this->setCursor(Qt::ClosedHandCursor);
     }
     emitter.emitPressedSignal();
+}
+
+/**
+ * Mouse release event handler
+ *
+ * @par When mouse is released, resizing just ended, so scene changing is done.
+ *
+ * @param event Event details
+ */
+void ObjectGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+{
+    sceneUpdateObservable->sceneChanged();
 }
 
 /**
@@ -159,9 +175,9 @@ void ObjectGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             pressedPos = event->pos();
             return;
         }
-        else if(newLength <= 0) // length is too small
+        else if (newLength <= 0) // length is too small
             return;
-        if(destroyed) //destroyed flag on
+        if (destroyed) //destroyed flag on
             getDestroyMessage()->moveLine(dy, true);
         else //everything ok
             object->setLifeLength(newLength);
@@ -200,15 +216,15 @@ QRectF ObjectGraphicsItem::lifeBoxRect()
  */
 void ObjectGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 {
-    if(resizeArea().contains(event->pos()))
+    if (resizeArea().contains(event->pos())) {
         this->setCursor(Qt::SizeVerCursor);
-    else if (lifeBoxRect().contains(event->pos()))
+    } else if (lifeBoxRect().contains(event->pos())) {
         this->setCursor(Qt::OpenHandCursor);
-    else if (getWholeObjectMoveRect().contains(event->pos()))
+    } else if (getWholeObjectMoveRect().contains(event->pos())) {
         this->setCursor(Qt::SizeAllCursor);
-    else
+    } else {
         this->setCursor(Qt::ArrowCursor);
-
+    }
 }
 
 /**
@@ -248,16 +264,19 @@ void ObjectGraphicsItem::showEditDialog(bool logChange)
     ObjectGraphicsItemEditDialog dialog{QString::fromStdString(object->getName()),
         QString::fromStdString(object->getInstanceClass().getReferredClassName()), classDiagram};
     int result = dialog.exec();
-    if(result == QDialog::Accepted)
-    {
+    if (result == QDialog::Accepted) {
         object->setName(dialog.getObjectName().toStdString());
         object->setInstanceClass(dialog.getClassRef());
         //update class references in all messages sent to this item.
         updateMessagesClassReference(dialog.getClassRef());
         update();
-    }
-    else if (result == ObjectGraphicsItemEditDialog::remove)
+
+        if (logChange) {
+            sceneUpdateObservable->sceneChanged();
+        }
+    } else if (result == ObjectGraphicsItemEditDialog::remove) {
         emitter.emitRemoveObjectSignal(logChange);
+    }
 }
 
 /**
@@ -287,8 +306,9 @@ qreal ObjectGraphicsItem::getLifeLength()
  */
 void ObjectGraphicsItem::moveAllMessages(qreal dy)
 {
-    for(MessageLine *msgLine:messages)
+    for (MessageLine *msgLine:messages) {
         msgLine->moveLine(dy, false);
+    }
 }
 
 /**
@@ -299,14 +319,14 @@ void ObjectGraphicsItem::moveAllMessages(qreal dy)
 void ObjectGraphicsItem::setLifeStart(qreal lifeStart)
 {
     qreal lifeEnd = object->getLifeStart() + object->getLifeLength();
-    if(lifeStart < lifeEnd)
-    {
+    if (lifeStart < lifeEnd) {
         object->setLifeStart(lifeStart);
-        //if object is too heigt, then it gets smaller
-        if(lifeEnd > 1)
+        //if object is too height, then it gets smaller
+        if (lifeEnd > 1) {
             object->setLifeLength(1 - object->getLifeStart());
-        else
+        } else {
             setLifeEndDestroy(lifeEnd);
+        }
     }
 }
 
@@ -318,8 +338,9 @@ void ObjectGraphicsItem::setLifeStart(qreal lifeStart)
 void ObjectGraphicsItem::setLifeEndDestroy(qreal lifeEnd)
 {
     object->setLifeLength(lifeEnd - object->getLifeStart());
-    if(object->getLifeStart() + object->getLifeLength() > 1)
+    if (object->getLifeStart() + object->getLifeLength() > 1) {
         object->setLifeLength(1 - object->getLifeStart());
+    }
 }
 
 /**
@@ -329,12 +350,13 @@ void ObjectGraphicsItem::setLifeEndDestroy(qreal lifeEnd)
  */
 MessageLine * ObjectGraphicsItem::getDestroyMessage()
 {
-    for(MessageLine *msg:messages)
-    {
-        DestroyMessageLine *temp = dynamic_cast<DestroyMessageLine *>(msg);
-        if(temp && temp->getToObject() == this)
+    for (MessageLine *msg:messages) {
+        auto *temp = dynamic_cast<DestroyMessageLine *>(msg);
+        if (temp && temp->getToObject() == this) {
             return temp;
+        }
     }
+
     return nullptr;
 }
 
@@ -345,12 +367,13 @@ MessageLine * ObjectGraphicsItem::getDestroyMessage()
  */
 MessageLine * ObjectGraphicsItem::getCreateMessage()
 {
-    for(MessageLine *msg:messages)
-    {
-        CreateMessageLine *temp = dynamic_cast<CreateMessageLine *>(msg);
-        if(temp && temp->getToObject() == this)
+    for (MessageLine *msg:messages) {
+        auto *temp = dynamic_cast<CreateMessageLine *>(msg);
+        if (temp && temp->getToObject() == this) {
             return temp;
+        }
     }
+
     return nullptr;
 }
 
