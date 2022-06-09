@@ -398,7 +398,7 @@ Protected Attributes</h2></td></tr>
 <p >Getter for toObject.</p>
 <dl class="section return"><dt>Returns</dt><dd>to object of message. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00054">54</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00065">65</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -877,6 +877,15 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
 <p >Validates method reference with class reference. If method does not belong to class, return "fake" method reference. Else, returns right reference.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">classRef</td><td>reference to class </td></tr>
+    <tr><td class="paramname">methodRef</td><td>reference to method </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Right method reference - true reference from fight class or "fake" reference</dd></dl>
+<p>Validates method reference with class reference. If method does not belong to class, return "fake" method reference. Else, returns right reference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">classReference</td><td>reference to class </td></tr>
     <tr><td class="paramname">methodRef</td><td>reference to method </td></tr>
   </table>
@@ -908,8 +917,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Height of arrow </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00073">73</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00106">106</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -934,7 +944,7 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
 </div><div class="memdoc">
 <p >If true, line will go from first lifebox to second lifebox. If false, line will go from first lifebox to second life line. </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00080">80</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00116">116</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -957,8 +967,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Widht of arrow </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00072">72</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00102">102</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -981,8 +992,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p ><a class="el" href="classClass.html">Class</a> reference for message </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00068">68</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00086">86</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1005,8 +1017,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Tells if message creates object </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00070">70</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00094">94</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1029,8 +1042,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Tells if message destroyes object </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00071">71</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00098">98</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1053,8 +1067,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >If true, in edit dialog there will be cname line edit else there will NOT be any line edit. </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00069">69</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00090">90</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1077,8 +1092,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >sender object </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00099">99</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00141">141</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1101,8 +1117,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Point that was pressed last time </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00101">101</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00149">149</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1127,7 +1144,7 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
 </div><div class="memdoc">
 <p >Pen if message line is NOT in good position (between both lifeboxes). </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00090">90</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00126">126</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1152,7 +1169,7 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
 </div><div class="memdoc">
 <p >Pen if message line is in good position (between both lifeboxes). </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00085">85</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00121">121</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1175,8 +1192,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >Width of shape of line. </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00074">74</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00110">110</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1199,8 +1217,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >message of this message line </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00098">98</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00137">137</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1225,7 +1244,7 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
 </div><div class="memdoc">
 <p >Pointer to observable for distributing information about scene change (dependency) </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00063">63</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00078">78</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1250,7 +1269,7 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
 </div><div class="memdoc">
 <p >Edited sequence diagram </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00067">67</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00082">82</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1273,8 +1292,9 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
   </tr>
 </table>
 </div><div class="memdoc">
+<p >reciever object </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00100">100</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00145">145</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>
@@ -1299,7 +1319,7 @@ False if pointer is NOT between start and end of both object pointers . </dd></d
 </div><div class="memdoc">
 <p >Pen used to draw if method is not valid. LinePenNok has higher priority it means that if line is outside of lifeboxes, object will be drawn by linePenNok even if it is unknown. </p>
 
-<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00097">97</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MessageLine_8h_source.html#l00133">133</a> of file <a class="el" href="MessageLine_8h_source.html">MessageLine.h</a>.</p>
 
 </div>
 </div>

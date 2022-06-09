@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['regularpen_0',['regularPen',['../classActivationGraphicsObjectBase.html#a1ed3c40c5cbae0b0387ca9883990c295',1,'ActivationGraphicsObjectBase']]],
-  ['remove_1',['remove',['../classEditDialogBase.html#a2e52e1b70f0c840b1d3de696aa5a4910',1,'EditDialogBase']]]
+  ['namelineedit_0',['nameLineEdit',['../classDirectedAssociationLineEditDialog.html#aa6a234806c859b481da13b59e57b1b45',1,'DirectedAssociationLineEditDialog']]],
+  ['newnamelayout_1',['newNameLayout',['../classDirectedAssociationLineEditDialog.html#a57d6a88022821c10d1d086996b8c1bed',1,'DirectedAssociationLineEditDialog']]]
 ];

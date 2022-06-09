@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['headerheight_0',['headerHeight',['../classActivationGraphicsObjectBase.html#a27d37d6b00d69f2ded4b19c679bb6fc7',1,'ActivationGraphicsObjectBase']]],
-  ['height_1',['height',['../classActivationGraphicsObjectBase.html#a690a34eecc31acdbddb6ac2d09804d95',1,'ActivationGraphicsObjectBase']]],
-  ['history_5fcapacity_2',['HISTORY_CAPACITY',['../classHistoryStack.html#a7ff2a42b4e3ce6cdf70d4d727b7e5f12',1,'HistoryStack']]]
+  ['editnameallowed_0',['editNameAllowed',['../classMessageLine.html#a54d9bd2e95be1018c71f27006810ea43',1,'MessageLine']]],
+  ['emitter_1',['emitter',['../classActivationGraphicsObjectBase.html#ace0d30dc5c946c61cb2b5493eed22a52',1,'ActivationGraphicsObjectBase::emitter()'],['../classClassNode.html#aa9a42cd694579db4b3bf6edd230050ee',1,'ClassNode::emitter()']]],
+  ['existingrelationships_2',['existingRelationships',['../classLine.html#af451b95204172998152c9b36b84a179d',1,'Line']]]
 ];

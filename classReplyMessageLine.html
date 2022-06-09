@@ -84,7 +84,8 @@ Inheritance diagram for ReplyMessageLine:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae25dcb6cbdae3304635087c2c14075f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReplyMessageLine.html#ae25dcb6cbdae3304635087c2c14075f8">ReplyMessageLine</a> (<a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *<a class="el" href="classMessageLine.html#a61c3de392796e9f124bda65e1ce2c62b">sceneUpdateObservable</a>, <a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> *<a class="el" href="classMessageLine.html#a77155f07105fd8b15c0b60136b8b7e0b">sequenceDiagram</a>)</td></tr>
 <tr class="separator:ae25dcb6cbdae3304635087c2c14075f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a543b3a512ab05abcfc8bd3704accdc59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReplyMessageLine.html#a543b3a512ab05abcfc8bd3704accdc59">initialize</a> (<a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *from, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *to, <a class="el" href="classMessage.html">Message</a> *msg, <a class="el" href="classClassReference.html">ClassReference</a> classRef)</td></tr>
+<tr class="memitem:a543b3a512ab05abcfc8bd3704accdc59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReplyMessageLine.html#a543b3a512ab05abcfc8bd3704accdc59">initialize</a> (<a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *from, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *to, <a class="el" href="classMessage.html">Message</a> *msg, <a class="el" href="classClassReference.html">ClassReference</a> <a class="el" href="classMessageLine.html#aafc1b8371e3405e6b19e5ccb5ee21d27">classRef</a>)</td></tr>
+<tr class="memdesc:a543b3a512ab05abcfc8bd3704accdc59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes itself - store from and to object + store self in those objects.  <a href="classReplyMessageLine.html#a543b3a512ab05abcfc8bd3704accdc59">More...</a><br /></td></tr>
 <tr class="separator:a543b3a512ab05abcfc8bd3704accdc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMessageLine"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMessageLine')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMessageLine.html">MessageLine</a></td></tr>
 <tr class="memitem:abdc730bc54a0835f2db5c58a6b6ffdcb inherit pub_methods_classMessageLine"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageLine.html#abdc730bc54a0835f2db5c58a6b6ffdcb">MessageLine</a> (<a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *<a class="el" href="classMessageLine.html#a61c3de392796e9f124bda65e1ce2c62b">sceneUpdateObservable</a>, <a class="el" href="classSequenceDiagram.html">SequenceDiagram</a> *<a class="el" href="classMessageLine.html#a77155f07105fd8b15c0b60136b8b7e0b">sequenceDiagram</a>)</td></tr>
@@ -257,9 +258,19 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Initializes itself - store from and to object + store self in those objects. </p>
 
-<p class="definition">Definition at line <a class="el" href="ReplyMessageLine_8cpp_source.html#l00031">31</a> of file <a class="el" href="ReplyMessageLine_8cpp_source.html">ReplyMessageLine.cpp</a>.</p>
+<p>Initializes itself - store from and to object + store self in those objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>sender </td></tr>
+    <tr><td class="paramname">to</td><td>reciever </td></tr>
+    <tr><td class="paramname">msg</td><td>new message </td></tr>
+    <tr><td class="paramname">classRef</td><td>reference to class </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ReplyMessageLine_8cpp_source.html#l00036">36</a> of file <a class="el" href="ReplyMessageLine_8cpp_source.html">ReplyMessageLine.cpp</a>.</p>
 
 </div>
 </div>
