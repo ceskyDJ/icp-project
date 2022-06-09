@@ -31,7 +31,7 @@ var searchData=
   ['setcolor_28',['setColor',['../classActivationGraphicsObjectBase.html#a3f25b675bc322956dbeaf48ae2950745',1,'ActivationGraphicsObjectBase']]],
   ['setcoordinates_29',['setCoordinates',['../classClass.html#a3917168d2aa70a72ea1c844769b36a92',1,'Class']]],
   ['setdatatype_30',['setDataType',['../classClassAttribute.html#a57d8e25f6452ba6e9c5ac48bcbfa6e2b',1,'ClassAttribute::setDataType()'],['../classMethodParameter.html#a75a717563b60a0f1451e91b16c3d60dc',1,'MethodParameter::setDataType()']]],
-  ['setdestroyed_31',['setDestroyed',['../classActivationGraphicsObjectBase.html#a5478bb03c59ca90b91f96c05a2eff89d',1,'ActivationGraphicsObjectBase']]],
+  ['setdestroyed_31',['setDestroyed',['../classActivationGraphicsObjectBase.html#ad6d6ea1e8455141b771c4bb6f373c909',1,'ActivationGraphicsObjectBase']]],
   ['setendpoints_32',['setEndPoints',['../classLine.html#a07019705b72a01f9d0ac4e6285ac7c50',1,'Line']]],
   ['setentity_33',['setEntity',['../classClassNode.html#a3b3c018363f4c87145f1573b2aa0993f',1,'ClassNode']]],
   ['setfirstcardinality_34',['setFirstCardinality',['../classAssociationLine.html#a20bbda92b85254ffd4fcb88cb9335909',1,'AssociationLine']]],
@@ -41,9 +41,9 @@ var searchData=
   ['setfromclassnode_38',['setFromClassNode',['../classLine.html#a09df4369636e35d604e9b2a5bf505d05',1,'Line']]],
   ['setinstanceclass_39',['setInstanceClass',['../classObject.html#abff84bf41d424ba8a7cbeb845cdf5cf6',1,'Object']]],
   ['setlabel_40',['setLabel',['../classTabWidget.html#a2b59621d04a4eaf9e4ff128c0aa3f068',1,'TabWidget']]],
-  ['setlifeenddestroy_41',['setLifeEndDestroy',['../classActivationGraphicsObjectBase.html#a98d2ff90a09b1037158753433abf2921',1,'ActivationGraphicsObjectBase::setLifeEndDestroy()'],['../classObjectGraphicsItem.html#aae7d3a3e7c44dd77f9d169c4547f827d',1,'ObjectGraphicsItem::setLifeEndDestroy()']]],
+  ['setlifeenddestroy_41',['setLifeEndDestroy',['../classActivationGraphicsObjectBase.html#a98d2ff90a09b1037158753433abf2921',1,'ActivationGraphicsObjectBase::setLifeEndDestroy()'],['../classObjectGraphicsItem.html#a1eb4340ef571808d56d62dc79eccbb0e',1,'ObjectGraphicsItem::setLifeEndDestroy()']]],
   ['setlifelength_42',['setLifeLength',['../classObject.html#a6f57d53be3d5351bd0b67b743da76719',1,'Object']]],
-  ['setlifestart_43',['setLifeStart',['../classActivationGraphicsObjectBase.html#abd17ad51065cca95522d2f716c66abb9',1,'ActivationGraphicsObjectBase::setLifeStart()'],['../classObject.html#a9e250595474a91e4b7b993554c2ae46d',1,'Object::setLifeStart()'],['../classObjectGraphicsItem.html#a1ff4e752ffdfde562e823ac9d7f61d8d',1,'ObjectGraphicsItem::setLifeStart()']]],
+  ['setlifestart_43',['setLifeStart',['../classActivationGraphicsObjectBase.html#abd17ad51065cca95522d2f716c66abb9',1,'ActivationGraphicsObjectBase::setLifeStart()'],['../classObject.html#a9e250595474a91e4b7b993554c2ae46d',1,'Object::setLifeStart()'],['../classObjectGraphicsItem.html#a844b788826f194b676b29a2f7daf4b53',1,'ObjectGraphicsItem::setLifeStart()']]],
   ['setmainlayout_44',['setMainLayout',['../classDirectedAssociationLineEditDialog.html#a4bc82f3a89cbd7d16c1a3cbb90493bc2',1,'DirectedAssociationLineEditDialog']]],
   ['setmemento_45',['setMemento',['../classClassDiagram.html#a31854a6b325208cc3e5345453ba29479',1,'ClassDiagram::setMemento()'],['../classSequenceDiagram.html#a53fb374d6869cc39e3defad112b0ae32',1,'SequenceDiagram::setMemento()']]],
   ['setmessagerecipient_46',['setMessageRecipient',['../classMessage.html#aadaebafb7e5b9cf16f7ad7f6a720ee8e',1,'Message']]],
@@ -52,7 +52,7 @@ var searchData=
   ['setmethodreferenceupdaters_49',['setMethodReferenceUpdaters',['../classClassMethod.html#a72d89eae71cc515cd3f5eb6bac8560db',1,'ClassMethod']]],
   ['setmethods_50',['setMethods',['../classClassNode.html#aec4eb21628820d3ed42b5452a9dfaf93',1,'ClassNode::setMethods()'],['../classClass.html#a02e0585a243150f901bb2a97769a8aae',1,'Class::setMethods()']]],
   ['setmylayout_51',['setMyLayout',['../classLineWithArrowEditDialog.html#a0bdaaf95e222da1caf4017aaed1387b2',1,'LineWithArrowEditDialog']]],
-  ['setname_52',['setName',['../classActorGraphicsItem.html#a254843f7107796d3b68e4477a0701601',1,'ActorGraphicsItem::setName()'],['../classAssociationLine.html#aebc7cca81281cafce3b3749ccc877527',1,'AssociationLine::setName()'],['../classClass.html#a022583f7a138109d78c97b67fb6b6fbf',1,'Class::setName()'],['../classClassMember.html#abf04800eca337d87b378a2db0d870a38',1,'ClassMember::setName()'],['../classClassNode.html#ae55a4cea8663d5dfc1fc86b4f8904efa',1,'ClassNode::setName()'],['../classDirectedAssociationLine.html#a4cbecd1d3f6747df33320221106642fe',1,'DirectedAssociationLine::setName()'],['../classMessage.html#af9e17829092936fb11ab5d13e763ce2e',1,'Message::setName()'],['../classMessageNode.html#a268c46fad5c530ccee06888d050d9865',1,'MessageNode::setName()'],['../classMethodParameter.html#a851db81384be7b4f3d710bf4d29d50d0',1,'MethodParameter::setName()'],['../classRelationship.html#a8451b136152544a37fdecba035c90ffc',1,'Relationship::setName()']]],
+  ['setname_52',['setName',['../classActorGraphicsItem.html#a2b9dda6dd94155ef4d01ecb302659062',1,'ActorGraphicsItem::setName()'],['../classAssociationLine.html#aebc7cca81281cafce3b3749ccc877527',1,'AssociationLine::setName()'],['../classClass.html#a022583f7a138109d78c97b67fb6b6fbf',1,'Class::setName()'],['../classClassMember.html#abf04800eca337d87b378a2db0d870a38',1,'ClassMember::setName()'],['../classClassNode.html#ae55a4cea8663d5dfc1fc86b4f8904efa',1,'ClassNode::setName()'],['../classDirectedAssociationLine.html#a4cbecd1d3f6747df33320221106642fe',1,'DirectedAssociationLine::setName()'],['../classMessage.html#af9e17829092936fb11ab5d13e763ce2e',1,'Message::setName()'],['../classMessageNode.html#a268c46fad5c530ccee06888d050d9865',1,'MessageNode::setName()'],['../classMethodParameter.html#a851db81384be7b4f3d710bf4d29d50d0',1,'MethodParameter::setName()'],['../classRelationship.html#a8451b136152544a37fdecba035c90ffc',1,'Relationship::setName()']]],
   ['setobjects_53',['setObjects',['../classSequenceDiagram.html#a3c79ce5eb87e190fce3d91ebd5a00088',1,'SequenceDiagram']]],
   ['setonebutton_54',['setOneButton',['../classDirectedAssociationLineEditDialog.html#a46f1102a768caa2ba17efcfff5262def',1,'DirectedAssociationLineEditDialog::setOneButton()'],['../classLineWithArrowEditDialog.html#a24d6c29263ba33fb146c09cabfeb4675',1,'LineWithArrowEditDialog::setOneButton()'],['../classEditDialogBase.html#a53419d68239321f836ea569473f49494',1,'EditDialogBase::setOneButton()']]],
   ['setparameters_55',['setParameters',['../classClassMethod.html#a936673fc1b8c10d456cb2f8bdcfaa9ae',1,'ClassMethod']]],
@@ -75,5 +75,5 @@ var searchData=
   ['swictharrowbuttonpressed_72',['swicthArrowButtonPressed',['../classEditDialogBase.html#a6f9aad440dd1a668e365fe8f9f2a3cce',1,'EditDialogBase']]],
   ['switcharrowspressed_73',['switchArrowsPressed',['../classDirectedAssociationLineEditDialog.html#a16b56c3a31f596c547eb0b88776b0bd8',1,'DirectedAssociationLineEditDialog']]],
   ['switchnodes_74',['switchNodes',['../classLine.html#a5dc80c58f456bd3fc49e57dcfc589d61',1,'Line']]],
-  ['syncmessageline_75',['SyncMessageLine',['../classSyncMessageLine.html#aa2175375003791cce447afd4d9c26a20',1,'SyncMessageLine']]]
+  ['syncmessageline_75',['SyncMessageLine',['../classSyncMessageLine.html#a912723dd218e241b8716bac432cb45b7',1,'SyncMessageLine']]]
 ];

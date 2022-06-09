@@ -63,11 +63,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classSequenceDiagramScene-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SequenceDiagramScene Class Reference</div></div>
 </div><!--header-->
@@ -84,19 +81,6 @@ Inheritance diagram for SequenceDiagramScene:</div>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:af49778f40afbeaf45474fa2ac72e629a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#af49778f40afbeaf45474fa2ac72e629a">state</a> { <b>messageCreation</b>
-, <b>objectRemoving</b>
-, <b>none</b>
- }</td></tr>
-<tr class="separator:af49778f40afbeaf45474fa2ac72e629a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
-Public Slots</h2></td></tr>
-<tr class="memitem:a9d6245e3a23158fe004df9a8988d64b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a9d6245e3a23158fe004df9a8988d64b3">removeObjectPressed</a> ()</td></tr>
-<tr class="separator:a9d6245e3a23158fe004df9a8988d64b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6767a77ed9bf1d8cc16e77bd0e2a911b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a6767a77ed9bf1d8cc16e77bd0e2a911b">SequenceDiagramScene</a> (QWidget *parentWindow, <a class="el" href="classSequenceDiagramManager.html">SequenceDiagramManager</a> *sequenceDiagramManager, <a class="el" href="classSceneUpdateObservable.html">SceneUpdateObservable</a> *sceneUpdateObservable, <a class="el" href="classClassDiagram.html">ClassDiagram</a> *classDiagram)</td></tr>
@@ -115,10 +99,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a86d622460ca7473f79292607476c2814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95db4e677abfabe3dc1d0c74b37909e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a95db4e677abfabe3dc1d0c74b37909e0">addObject</a> ()</td></tr>
 <tr class="separator:a95db4e677abfabe3dc1d0c74b37909e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad30a0c581886884efe1438d0152e895f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#ad30a0c581886884efe1438d0152e895f">createNewMessageLine</a> (<a class="el" href="classMessageLine.html">MessageLine</a> *line)</td></tr>
-<tr class="separator:ad30a0c581886884efe1438d0152e895f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8b7a766e639fb95e1ef374ef35f3856"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#ad8b7a766e639fb95e1ef374ef35f3856">createNewMessageLine</a> (<a class="el" href="classMessageLine.html">MessageLine</a> *line, <a class="el" href="classMessageType.html">MessageType</a> type)</td></tr>
-<tr class="separator:ad8b7a766e639fb95e1ef374ef35f3856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62270555068b52ec3c979e1cd2115a64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a62270555068b52ec3c979e1cd2115a64">removeSelected</a> ()</td></tr>
+<tr class="separator:a62270555068b52ec3c979e1cd2115a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a719ea388f04926a351c55a0453c90c15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a719ea388f04926a351c55a0453c90c15">prepareSyncMessage</a> ()</td></tr>
+<tr class="separator:a719ea388f04926a351c55a0453c90c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a061d21ac4c87bebeeec10ea189f091b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a061d21ac4c87bebeeec10ea189f091b9">prepareAsyncMessage</a> ()</td></tr>
+<tr class="separator:a061d21ac4c87bebeeec10ea189f091b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a814a8c542463c17c98de5737cdacd5c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a814a8c542463c17c98de5737cdacd5c6">prepareCreateMessage</a> ()</td></tr>
+<tr class="separator:a814a8c542463c17c98de5737cdacd5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a768d41a1d0cc89dba1f9e194d260213a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a768d41a1d0cc89dba1f9e194d260213a">prepareDestroyMessage</a> ()</td></tr>
+<tr class="separator:a768d41a1d0cc89dba1f9e194d260213a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a406b7deb78bce15d26d285d2cff07bc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a406b7deb78bce15d26d285d2cff07bc3">prepareReplyMessage</a> ()</td></tr>
+<tr class="separator:a406b7deb78bce15d26d285d2cff07bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCustomScene"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCustomScene')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCustomScene.html">CustomScene</a></td></tr>
 <tr class="memitem:a1210be28115594c5791c36d66470a302 inherit pub_methods_classCustomScene"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomScene.html#a1210be28115594c5791c36d66470a302">isSaved</a> ()</td></tr>
 <tr class="separator:a1210be28115594c5791c36d66470a302 inherit pub_methods_classCustomScene"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,14 +123,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8c8ba16eacc46e05a1e3bb2b806aa870"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#a8c8ba16eacc46e05a1e3bb2b806aa870">createMessagePossible</a> (QString *errorMsg, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *reciever, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *sender, <a class="el" href="classMessageType.html">MessageType</a> messageType)</td></tr>
-<tr class="separator:a8c8ba16eacc46e05a1e3bb2b806aa870"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:aaa373addecd3b7f42dfdd57184b3867b"><td class="memItemLeft" align="right" valign="top"><a id="aaa373addecd3b7f42dfdd57184b3867b" name="aaa373addecd3b7f42dfdd57184b3867b"></a>
-enum <a class="el" href="classSequenceDiagramScene.html#af49778f40afbeaf45474fa2ac72e629a">SequenceDiagramScene::state</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentState</b></td></tr>
-<tr class="separator:aaa373addecd3b7f42dfdd57184b3867b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd62aa7f0b36421d9050fb235821d7e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSequenceDiagramScene.html#aadd62aa7f0b36421d9050fb235821d7e">createMessagePossible</a> (QString *errorMsg, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *receiver, <a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *sender, <a class="el" href="classMessageType.html">MessageType</a> messageType)</td></tr>
+<tr class="separator:aadd62aa7f0b36421d9050fb235821d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -157,25 +143,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p >Qt scene customized for sequence diagrams </p>
 
 <p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8h_source.html#l00020">20</a> of file <a class="el" href="SequenceDiagramScene_8h_source.html">SequenceDiagramScene.h</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="af49778f40afbeaf45474fa2ac72e629a" name="af49778f40afbeaf45474fa2ac72e629a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af49778f40afbeaf45474fa2ac72e629a">&#9670;&nbsp;</a></span>state</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classSequenceDiagramScene.html#af49778f40afbeaf45474fa2ac72e629a">SequenceDiagramScene::state</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >States for handling actions by user. </p>
-
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8h_source.html#l00096">96</a> of file <a class="el" href="SequenceDiagramScene_8h_source.html">SequenceDiagramScene.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6767a77ed9bf1d8cc16e77bd0e2a911b" name="a6767a77ed9bf1d8cc16e77bd0e2a911b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6767a77ed9bf1d8cc16e77bd0e2a911b">&#9670;&nbsp;</a></span>SequenceDiagramScene()</h2>
 
@@ -224,7 +192,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00027">27</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00029">29</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -245,7 +213,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Add new actor to scene </p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00084">84</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00134">134</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -266,12 +234,12 @@ Additional Inherited Members</h2></td></tr>
 <p >Add new object into scene.</p>
 <p >Add new object to scene. </p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00100">100</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00150">150</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a8c8ba16eacc46e05a1e3bb2b806aa870" name="a8c8ba16eacc46e05a1e3bb2b806aa870"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c8ba16eacc46e05a1e3bb2b806aa870">&#9670;&nbsp;</a></span>createMessagePossible()</h2>
+<a id="aadd62aa7f0b36421d9050fb235821d7e" name="aadd62aa7f0b36421d9050fb235821d7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadd62aa7f0b36421d9050fb235821d7e">&#9670;&nbsp;</a></span>createMessagePossible()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +257,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classActivationGraphicsObjectBase.html">ActivationGraphicsObjectBase</a> *&#160;</td>
-          <td class="paramname"><em>reciever</em>, </td>
+          <td class="paramname"><em>receiver</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -319,7 +287,19 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">errorMsg</td><td>If error occurs, store error message there else errorMsg is unchanged. </td></tr>
-    <tr><td class="paramname">reciever</td><td>reciever object </td></tr>
+    <tr><td class="paramname">receiver</td><td>newReceiver object </td></tr>
+    <tr><td class="paramname">messageType</td><td>type of message </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if everything is ok. </dd>
+<dd>
+false if creation is NOT possible.</dd></dl>
+<p>Checks if it is possible to create new message. If error occurs, store message into errorMsg.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorMsg</td><td>If error occurs, store error message there else errorMsg is unchanged. </td></tr>
+    <tr><td class="paramname">receiver</td><td>newReceiver object </td></tr>
     <tr><td class="paramname">messageType</td><td>type of message </td></tr>
   </table>
   </dd>
@@ -328,77 +308,7 @@ Additional Inherited Members</h2></td></tr>
 <dd>
 false if creation is NOT possible. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00384">384</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
-
-</div>
-</div>
-<a id="ad30a0c581886884efe1438d0152e895f" name="ad30a0c581886884efe1438d0152e895f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad30a0c581886884efe1438d0152e895f">&#9670;&nbsp;</a></span>createNewMessageLine() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SequenceDiagramScene::createNewMessageLine </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMessageLine.html">MessageLine</a> *&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Checks if new line is nullptr (if no, deletes it) and insert messageline into newMessageLine</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>messageLine to store </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ad8b7a766e639fb95e1ef374ef35f3856" name="ad8b7a766e639fb95e1ef374ef35f3856"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8b7a766e639fb95e1ef374ef35f3856">&#9670;&nbsp;</a></span>createNewMessageLine() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SequenceDiagramScene::createNewMessageLine </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMessageLine.html">MessageLine</a> *&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMessageType.html">MessageType</a>&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Creates new meesageLine and store it into variable newMessageLine. Also store <a class="el" href="classMessageType.html">MessageType</a> intp newMessageType.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">messageLine</td><td>new line </td></tr>
-    <tr><td class="paramname">type</td><td>type of message</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Checks if new line is nullptr (if no, deletes it) and insert messageline into newMessageLine</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>messageLine to store </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00236">236</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00238">238</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +338,7 @@ false if creation is NOT possible. </dd></dl>
 
 <p>Implements <a class="el" href="classCustomScene.html#a81775afb2128c8e921fbd64ffc54f3bf">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00052">52</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00058">58</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -458,7 +368,107 @@ false if creation is NOT possible. </dd></dl>
 
 <p>Implements <a class="el" href="classCustomScene.html#ac7a4ce806c5170bcba7cdf41f660dcdf">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00044">44</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00047">47</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a061d21ac4c87bebeeec10ea189f091b9" name="a061d21ac4c87bebeeec10ea189f091b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a061d21ac4c87bebeeec10ea189f091b9">&#9670;&nbsp;</a></span>prepareAsyncMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SequenceDiagramScene::prepareAsyncMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Prepares async message for adding (after selecting nodes) </p>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00199">199</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a814a8c542463c17c98de5737cdacd5c6" name="a814a8c542463c17c98de5737cdacd5c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a814a8c542463c17c98de5737cdacd5c6">&#9670;&nbsp;</a></span>prepareCreateMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SequenceDiagramScene::prepareCreateMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Prepares create message for adding (after selecting nodes) </p>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00207">207</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a768d41a1d0cc89dba1f9e194d260213a" name="a768d41a1d0cc89dba1f9e194d260213a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a768d41a1d0cc89dba1f9e194d260213a">&#9670;&nbsp;</a></span>prepareDestroyMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SequenceDiagramScene::prepareDestroyMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Prepares destroy message for adding (after selecting nodes) </p>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00215">215</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a406b7deb78bce15d26d285d2cff07bc3" name="a406b7deb78bce15d26d285d2cff07bc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a406b7deb78bce15d26d285d2cff07bc3">&#9670;&nbsp;</a></span>prepareReplyMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SequenceDiagramScene::prepareReplyMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Prepares reply message for adding (after selecting nodes) </p>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00223">223</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a719ea388f04926a351c55a0453c90c15" name="a719ea388f04926a351c55a0453c90c15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a719ea388f04926a351c55a0453c90c15">&#9670;&nbsp;</a></span>prepareSyncMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SequenceDiagramScene::prepareSyncMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Prepares sync message for adding (after selecting nodes) </p>
+
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00191">191</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,35 +498,28 @@ false if creation is NOT possible. </dd></dl>
 
 <p>Implements <a class="el" href="classCustomScene.html#a39387e01897fe51f0d49f58126a271eb">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00076">76</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00117">117</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a9d6245e3a23158fe004df9a8988d64b3" name="a9d6245e3a23158fe004df9a8988d64b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d6245e3a23158fe004df9a8988d64b3">&#9670;&nbsp;</a></span>removeObjectPressed</h2>
+<a id="a62270555068b52ec3c979e1cd2115a64" name="a62270555068b52ec3c979e1cd2115a64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62270555068b52ec3c979e1cd2115a64">&#9670;&nbsp;</a></span>removeSelected()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SequenceDiagramScene::removeObjectPressed </td>
+          <td class="memname">void SequenceDiagramScene::removeSelected </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p >Removes selected item or changes its current state.</p>
 <p >Remove selected button was pressed. Handles an event - remove selected or change current state. </p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00129">129</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00177">177</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -546,7 +549,7 @@ false if creation is NOT possible. </dd></dl>
 
 <p>Implements <a class="el" href="classCustomScene.html#aac5d2eab205adea9fce08a7d5ca6dc54">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00060">60</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00086">86</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>
@@ -576,7 +579,7 @@ false if creation is NOT possible. </dd></dl>
 
 <p>Implements <a class="el" href="classCustomScene.html#a7472214fcd88808c82bbffc050522173">CustomScene</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00068">68</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagramScene_8cpp_source.html#l00101">101</a> of file <a class="el" href="SequenceDiagramScene_8cpp_source.html">SequenceDiagramScene.cpp</a>.</p>
 
 </div>
 </div>

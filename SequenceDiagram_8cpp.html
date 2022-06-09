@@ -78,12 +78,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad78aa85e386681115072b7175ac85a2e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classActor.html">Actor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SequenceDiagram_8cpp.html#ad78aa85e386681115072b7175ac85a2e">deepCloneActors</a> (const std::vector&lt; <a class="el" href="classActor.html">Actor</a> * &gt; &amp;sourceActors)</td></tr>
-<tr class="separator:ad78aa85e386681115072b7175ac85a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5f3307376248e5363841f56feb6b28e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SequenceDiagram_8cpp.html#ac5f3307376248e5363841f56feb6b28e">deepCloneObjects</a> (const std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt; &amp;sourceObjects)</td></tr>
-<tr class="separator:ac5f3307376248e5363841f56feb6b28e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d40518e7f8b2a612747d58fc80a841d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classMessage.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SequenceDiagram_8cpp.html#a3d40518e7f8b2a612747d58fc80a841d">deepCloneMessages</a> (const std::vector&lt; <a class="el" href="classMessage.html">Message</a> * &gt; &amp;sourceMessages)</td></tr>
-<tr class="separator:a3d40518e7f8b2a612747d58fc80a841d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7535ac03f7f003d128cd33fdf7c82723"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; std::vector&lt; <a class="el" href="classActor.html">Actor</a> * &gt;, std::unordered_map&lt; <a class="el" href="classMessageNode.html">MessageNode</a> *, <a class="el" href="classMessageNode.html">MessageNode</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SequenceDiagram_8cpp.html#a7535ac03f7f003d128cd33fdf7c82723">deepCloneActors</a> (const std::vector&lt; <a class="el" href="classActor.html">Actor</a> * &gt; &amp;sourceActors)</td></tr>
+<tr class="separator:a7535ac03f7f003d128cd33fdf7c82723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae98827a341dd0dcd87fef22209b8888"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt;, std::unordered_map&lt; <a class="el" href="classMessageNode.html">MessageNode</a> *, <a class="el" href="classMessageNode.html">MessageNode</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SequenceDiagram_8cpp.html#aae98827a341dd0dcd87fef22209b8888">deepCloneObjects</a> (const std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt; &amp;sourceObjects)</td></tr>
+<tr class="separator:aae98827a341dd0dcd87fef22209b8888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4969aee1f2cda28c59e382afd16628b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classMessage.html">Message</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SequenceDiagram_8cpp.html#af4969aee1f2cda28c59e382afd16628b">deepCloneMessages</a> (const std::vector&lt; <a class="el" href="classMessage.html">Message</a> * &gt; &amp;sourceMessages, const std::unordered_map&lt; <a class="el" href="classMessageNode.html">MessageNode</a> *, <a class="el" href="classMessageNode.html">MessageNode</a> * &gt; &amp;messageNodesMap)</td></tr>
+<tr class="separator:af4969aee1f2cda28c59e382afd16628b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >TODO: File description (short information about what is inside)</p>
@@ -92,8 +92,8 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="SequenceDiagram_8cpp_source.html">SequenceDiagram.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ad78aa85e386681115072b7175ac85a2e" name="ad78aa85e386681115072b7175ac85a2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad78aa85e386681115072b7175ac85a2e">&#9670;&nbsp;</a></span>deepCloneActors()</h2>
+<a id="a7535ac03f7f003d128cd33fdf7c82723" name="a7535ac03f7f003d128cd33fdf7c82723"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7535ac03f7f003d128cd33fdf7c82723">&#9670;&nbsp;</a></span>deepCloneActors()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -102,7 +102,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classActor.html">Actor</a> * &gt; deepCloneActors </td>
+          <td class="memname">std::tuple&lt; std::vector&lt; <a class="el" href="classActor.html">Actor</a> * &gt;, std::unordered_map&lt; <a class="el" href="classMessageNode.html">MessageNode</a> *, <a class="el" href="classMessageNode.html">MessageNode</a> * &gt; &gt; deepCloneActors </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classActor.html">Actor</a> * &gt; &amp;&#160;</td>
           <td class="paramname"><em>sourceActors</em></td><td>)</td>
@@ -122,14 +122,14 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointers to newly allocated space with actors deep clone </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointers to newly allocated space with actors deep clone and map of old pointers to new ones </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagram_8cpp_source.html#l00155">155</a> of file <a class="el" href="SequenceDiagram_8cpp_source.html">SequenceDiagram.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagram_8cpp_source.html#l00173">173</a> of file <a class="el" href="SequenceDiagram_8cpp_source.html">SequenceDiagram.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a3d40518e7f8b2a612747d58fc80a841d" name="a3d40518e7f8b2a612747d58fc80a841d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d40518e7f8b2a612747d58fc80a841d">&#9670;&nbsp;</a></span>deepCloneMessages()</h2>
+<a id="af4969aee1f2cda28c59e382afd16628b" name="af4969aee1f2cda28c59e382afd16628b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4969aee1f2cda28c59e382afd16628b">&#9670;&nbsp;</a></span>deepCloneMessages()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -141,8 +141,18 @@ Functions</h2></td></tr>
           <td class="memname">std::vector&lt; <a class="el" href="classMessage.html">Message</a> * &gt; deepCloneMessages </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classMessage.html">Message</a> * &gt; &amp;&#160;</td>
-          <td class="paramname"><em>sourceMessages</em></td><td>)</td>
+          <td class="paramname"><em>sourceMessages</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::unordered_map&lt; <a class="el" href="classMessageNode.html">MessageNode</a> *, <a class="el" href="classMessageNode.html">MessageNode</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>messageNodesMap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -155,17 +165,18 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sourceMessages</td><td>Messages to clone (as pointers) </td></tr>
+    <tr><td class="paramname">messageNodesMap</td><td>Map of old pointer to the new ones </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointers to newly allocated space with messages deep clone </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagram_8cpp_source.html#l00191">191</a> of file <a class="el" href="SequenceDiagram_8cpp_source.html">SequenceDiagram.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagram_8cpp_source.html#l00218">218</a> of file <a class="el" href="SequenceDiagram_8cpp_source.html">SequenceDiagram.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ac5f3307376248e5363841f56feb6b28e" name="ac5f3307376248e5363841f56feb6b28e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5f3307376248e5363841f56feb6b28e">&#9670;&nbsp;</a></span>deepCloneObjects()</h2>
+<a id="aae98827a341dd0dcd87fef22209b8888" name="aae98827a341dd0dcd87fef22209b8888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae98827a341dd0dcd87fef22209b8888">&#9670;&nbsp;</a></span>deepCloneObjects()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,7 +185,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt; deepCloneObjects </td>
+          <td class="memname">std::tuple&lt; std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt;, std::unordered_map&lt; <a class="el" href="classMessageNode.html">MessageNode</a> *, <a class="el" href="classMessageNode.html">MessageNode</a> * &gt; &gt; deepCloneObjects </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classObject.html">Object</a> * &gt; &amp;&#160;</td>
           <td class="paramname"><em>sourceObjects</em></td><td>)</td>
@@ -194,9 +205,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointers to newly allocated space with objects deep clone </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointers to newly allocated space with objects deep clone and map of old pointers to new ones </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SequenceDiagram_8cpp_source.html#l00173">173</a> of file <a class="el" href="SequenceDiagram_8cpp_source.html">SequenceDiagram.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SequenceDiagram_8cpp_source.html#l00195">195</a> of file <a class="el" href="SequenceDiagram_8cpp_source.html">SequenceDiagram.cpp</a>.</p>
 
 </div>
 </div>

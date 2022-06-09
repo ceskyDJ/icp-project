@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lifeboxrect_0',['lifeBoxRect',['../classActivationGraphicsObjectBase.html#ae5b3ce088d1a9645b986e53e5d7c7d48',1,'ActivationGraphicsObjectBase::lifeBoxRect()'],['../classObjectGraphicsItem.html#a674d0f9db9d65051d1bd6ff8473122b0',1,'ObjectGraphicsItem::lifeBoxRect()']]],
+  ['lifeboxrect_0',['lifeBoxRect',['../classActivationGraphicsObjectBase.html#ae5b3ce088d1a9645b986e53e5d7c7d48',1,'ActivationGraphicsObjectBase::lifeBoxRect()'],['../classObjectGraphicsItem.html#ae2dc2e1a2bd8f4539ed9beb85e53c574',1,'ObjectGraphicsItem::lifeBoxRect()']]],
   ['lifeboxwidth_1',['lifeboxWidth',['../classActivationGraphicsObjectBase.html#a75a55967ed813e684c31d2180f6f2a2c',1,'ActivationGraphicsObjectBase']]],
   ['lifelineborderpen_2',['lifeLineBorderPen',['../classActivationGraphicsObjectBase.html#aa00f35c3c8f3a1065332cf3bda65adf7',1,'ActivationGraphicsObjectBase']]],
   ['lifelinepen_3',['lifeLinePen',['../classActivationGraphicsObjectBase.html#a6c8507c6992b4292eaa814c105d2d94c',1,'ActivationGraphicsObjectBase']]],
