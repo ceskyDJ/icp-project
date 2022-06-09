@@ -190,7 +190,7 @@ void SequenceDiagramScene::removeSelected()
  */
 void SequenceDiagramScene::prepareSyncMessage()
 {
-    createNewMessageLine(new SyncMessageLine{&sequenceDiagram}, MessageType::SYNC);
+    createNewMessageLine(new SyncMessageLine{sceneUpdateObservable, &sequenceDiagram}, MessageType::SYNC);
 }
 
 /**
@@ -198,7 +198,7 @@ void SequenceDiagramScene::prepareSyncMessage()
  */
 void SequenceDiagramScene::prepareAsyncMessage()
 {
-    createNewMessageLine(new AsyncMessageLine{&sequenceDiagram}, MessageType::ASYNC);
+    createNewMessageLine(new AsyncMessageLine{sceneUpdateObservable, &sequenceDiagram}, MessageType::ASYNC);
 }
 
 /**
@@ -206,7 +206,7 @@ void SequenceDiagramScene::prepareAsyncMessage()
  */
 void SequenceDiagramScene::prepareCreateMessage()
 {
-    createNewMessageLine(new CreateMessageLine{&sequenceDiagram}, MessageType::CREATE);
+    createNewMessageLine(new CreateMessageLine{sceneUpdateObservable, &sequenceDiagram}, MessageType::CREATE);
 }
 
 /**
@@ -214,7 +214,7 @@ void SequenceDiagramScene::prepareCreateMessage()
  */
 void SequenceDiagramScene::prepareDestroyMessage()
 {
-    createNewMessageLine(new DestroyMessageLine{&sequenceDiagram}, MessageType::DESTROY);
+    createNewMessageLine(new DestroyMessageLine{sceneUpdateObservable, &sequenceDiagram}, MessageType::DESTROY);
 }
 
 /**
@@ -222,7 +222,7 @@ void SequenceDiagramScene::prepareDestroyMessage()
  */
 void SequenceDiagramScene::prepareReplyMessage()
 {
-    createNewMessageLine(new ReplyMessageLine{&sequenceDiagram}, MessageType::REPLY);
+    createNewMessageLine(new ReplyMessageLine{sceneUpdateObservable, &sequenceDiagram}, MessageType::REPLY);
 }
 
 // Public static methods ------------------------------------------------------------------------- Public static methods
@@ -529,19 +529,19 @@ void SequenceDiagramScene::redrawSequenceDiagram()
         // Create and allocate message
         switch (objMessage->getType()) {
             case MessageType::SYNC:
-                newMessageLine = new SyncMessageLine{&sequenceDiagram};
+                newMessageLine = new SyncMessageLine{sceneUpdateObservable, &sequenceDiagram};
                 break;
             case MessageType::ASYNC:
-                newMessageLine = new AsyncMessageLine{&sequenceDiagram};
+                newMessageLine = new AsyncMessageLine{sceneUpdateObservable, &sequenceDiagram};
                 break;
             case MessageType::CREATE:
-                newMessageLine = new CreateMessageLine{&sequenceDiagram};
+                newMessageLine = new CreateMessageLine{sceneUpdateObservable, &sequenceDiagram};
                 break;
             case MessageType::DESTROY:
-                newMessageLine = new DestroyMessageLine{&sequenceDiagram};
+                newMessageLine = new DestroyMessageLine{sceneUpdateObservable, &sequenceDiagram};
                 break;
             case MessageType::REPLY:
-                newMessageLine = new ReplyMessageLine{&sequenceDiagram};
+                newMessageLine = new ReplyMessageLine{sceneUpdateObservable, &sequenceDiagram};
                 break;
         }
 

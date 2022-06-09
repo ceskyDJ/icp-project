@@ -19,11 +19,14 @@
  *
  * @par Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
  *
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
  * @param sequenceDiagram Pointer to edited sequence diagram
  */
 MessageLine::MessageLine(
+    SceneUpdateObservable *sceneUpdateObservable,
     SequenceDiagram *sequenceDiagram
-): sequenceDiagram{sequenceDiagram}, classRef{ClassReference{""}}, message{nullptr}
+): sceneUpdateObservable{sceneUpdateObservable}, sequenceDiagram{sequenceDiagram}, classRef{ClassReference{""}},
+        message{nullptr}
 {
     linePenOk = QPen{Qt::black, 2, Qt::SolidLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::SolidLine};
@@ -248,6 +251,16 @@ void MessageLine::mousePressEvent(QGraphicsSceneMouseEvent *event)
 }
 
 /**
+ * Event handler for mouse release event
+ *
+ * @par When mouse is released, moving stopped, so the state could be saved.
+ */
+void MessageLine::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+{
+    sceneUpdateObservable->sceneChanged();
+}
+
+/**
  * If cursor is Qt::ClosedHandCursor, move line's y coord.
  *
  * @param event recieved event
@@ -334,6 +347,8 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     if(result == QDialog::Accepted)
     {
         message->setName(dialog.getMethodReference());
+
+        sceneUpdateObservable->sceneChanged();
     }
     else if(result == EditDialogBase::switchArrows)
     {
@@ -344,7 +359,7 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
         {
             QMessageBox msgBox;
             msgBox.setText(err);
-            msgBox.setWindowTitle("Creation was not succesful");
+            msgBox.setWindowTitle("Switching was not successful");
             msgBox.setIcon(QMessageBox::Critical);
             msgBox.exec();
             return;
@@ -354,6 +369,7 @@ void MessageLine::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
         toObject = temp;
 
         updateClassReference(toObject->getClassReference());
+        sceneUpdateObservable->sceneChanged();
     }
     else if(result == EditDialogBase::remove)
         delete this;

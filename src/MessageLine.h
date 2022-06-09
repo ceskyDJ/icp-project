@@ -17,6 +17,7 @@
 #include "ClassReference.h"
 #include "MethodReference.h"
 #include "SequenceDiagram.h"
+#include "SceneUpdateObservable.h"
 
 class ActivationGraphicsObjectBase;
 
@@ -31,9 +32,10 @@ public:
      *
      * @par Set ok and nok pen lines, arrow size and AcceptHoverEvents to true.
      *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
      * @param sequenceDiagram Pointer to edited sequence diagram
      */
-    MessageLine(SequenceDiagram *sequenceDiagram);
+    MessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
 
     /**
      * Class destructor
@@ -55,6 +57,10 @@ public:
     }
     void updateClassReference(ClassReference newClassRef);
 protected:
+    /**
+     * Pointer to observable for distributing information about scene change (dependency)
+     */
+    SceneUpdateObservable *sceneUpdateObservable;
     /**
      * Edited sequence diagram
      */
@@ -104,6 +110,7 @@ protected:
     QRectF getTextBoundingBox(QString text) const;
     void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
     bool isInObjectsLifeBox(qreal lifeBoxPointer);

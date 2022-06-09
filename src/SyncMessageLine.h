@@ -19,9 +19,10 @@ public:
     /**
      * Class constructor
      *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
      * @param sequenceDiagram Pointer to edited sequence diagram
      */
-    explicit SyncMessageLine(SequenceDiagram *sequenceDiagram);
+    SyncMessageLine(SceneUpdateObservable *sceneUpdateObservable, SequenceDiagram *sequenceDiagram);
 
 protected:
     void drawArrow(QPainter *painter) const;

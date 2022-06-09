@@ -12,9 +12,13 @@
  *
  * @par Set pens for line drawing
  *
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
  * @param sequenceDiagram Pointer to edited sequence diagram
  */
-ReplyMessageLine::ReplyMessageLine(SequenceDiagram *sequenceDiagram): MessageLine{sequenceDiagram}
+ReplyMessageLine::ReplyMessageLine(
+    SceneUpdateObservable *sceneUpdateObservable,
+    SequenceDiagram *sequenceDiagram
+): MessageLine{sceneUpdateObservable, sequenceDiagram}
 {
     linePenOk = QPen{Qt::black, 2, Qt::DashLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::DashLine};

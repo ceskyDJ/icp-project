@@ -10,9 +10,13 @@
 /**
  * Class constructor
  *
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
  * @param sequenceDiagram Pointer to edited sequence diagram
  */
-CreateMessageLine::CreateMessageLine(SequenceDiagram *sequenceDiagram): MessageLine{sequenceDiagram}
+CreateMessageLine::CreateMessageLine(
+    SceneUpdateObservable *sceneUpdateObservable,
+    SequenceDiagram *sequenceDiagram
+): MessageLine{sceneUpdateObservable, sequenceDiagram}
 {
     linePenOk = QPen{Qt::black, 2, Qt::DashLine};
     linePenNok = QPen{Qt::magenta, 2, Qt::DashLine};
