@@ -472,6 +472,8 @@ void SequenceDiagramScene::redrawSequenceDiagram()
 
         connect(&(guiActor->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
         connect(&(guiActor->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
+        connect(&(guiActor->emitter), &ActivationObjectEmitter::moveLeft, this, &SequenceDiagramScene::moveObjectLeft);
+        connect(&(guiActor->emitter), &ActivationObjectEmitter::moveRight, this, &SequenceDiagramScene::moveObjectRight);
 
         addItem(guiActor);
         loadedActors.insert({objActor, guiActor});
@@ -483,11 +485,16 @@ void SequenceDiagramScene::redrawSequenceDiagram()
 
         connect(&(guiObject->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
         connect(&(guiObject->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
+        connect(&(guiObject->emitter), &ActivationObjectEmitter::moveLeft, this, &SequenceDiagramScene::moveObjectLeft);
+        connect(&(guiObject->emitter), &ActivationObjectEmitter::moveRight, this, &SequenceDiagramScene::moveObjectRight);
+
 
         addItem(guiObject);
         loadedObjects.insert({objObject, guiObject});
     }
-    objectSortSlot(QList<QRectF>{});
+
+    sortActivationItems();
+
     // Load messages
     for (const auto objMessage: sequenceDiagram.getMessages()) {
         // Message sender
