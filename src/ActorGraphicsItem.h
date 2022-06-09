@@ -21,15 +21,18 @@ class ActorGraphicsItem : public ActivationGraphicsObjectBase
 public:
     /**
      * Class constructor
+     *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
      */
-    ActorGraphicsItem();
+    explicit ActorGraphicsItem(SceneUpdateObservable *sceneUpdateObservable);
 
     /**
      * Class constructor
      *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
      * @param actor Pointer to actor to use
      */
-    explicit ActorGraphicsItem(Actor *actor);
+    ActorGraphicsItem(SceneUpdateObservable *sceneUpdateObservable, Actor *actor);
 
     qreal width() const override;
 

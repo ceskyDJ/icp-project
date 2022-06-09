@@ -16,12 +16,17 @@
 #include "CreateMessageLine.h"
 
 /**
- * Initializes new graphics object in sequence diagram if height is negative, keeps it value
+ * Class constructor
  *
- * @param newObject object which is going to be used as new object (it keeps pointer destination)
- * @param height Total height of object.
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+ * @param newObject Pointer to object represented by this graphics item
+ * @param classDiagram Pointer to class diagram
  */
-ObjectGraphicsItem::ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram): classDiagram{classDiagram}
+ObjectGraphicsItem::ObjectGraphicsItem(
+    SceneUpdateObservable *sceneUpdateObservable,
+    Object *newObject,
+    ClassDiagram *classDiagram
+): ActivationGraphicsObjectBase{sceneUpdateObservable}, classDiagram{classDiagram}
 {
     object = newObject;
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
@@ -247,16 +252,19 @@ void ObjectGraphicsItem::showEditDialog(bool logChange)
     ObjectGraphicsItemEditDialog dialog{QString::fromStdString(object->getName()),
         QString::fromStdString(object->getInstanceClass().getReferredClassName()), classDiagram};
     int result = dialog.exec();
-    if(result == QDialog::Accepted)
-    {
+    if (result == QDialog::Accepted) {
         object->setName(dialog.getObjectName().toStdString());
         object->setInstanceClass(dialog.getClassRef());
         //update class references in all messages sent to this item.
         updateMessagesClassReference(dialog.getClassRef());
         update();
-    }
-    else if (result == ObjectGraphicsItemEditDialog::remove)
+
+        if (logChange) {
+            sceneUpdateObservable->sceneChanged();
+        }
+    } else if (result == ObjectGraphicsItemEditDialog::remove) {
         emitter.emitRemoveObjectSignal(logChange);
+    }
 }
 
 /**

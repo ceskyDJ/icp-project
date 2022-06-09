@@ -5,15 +5,18 @@
  *
  * @author Jakub Dvořák (xdvora3q)
  */
-#include "ActorGraphicsItem.h"
 #include <QGraphicsSceneHoverEvent>
 #include <QStyleOptionGraphicsItem>
+#include <iostream>
+#include "ActorGraphicsItem.h"
 #include "ActorGraphicsItemEditDialog.h"
 
 /**
  * Class constructor
  */
-ActorGraphicsItem::ActorGraphicsItem()
+ActorGraphicsItem::ActorGraphicsItem(
+    SceneUpdateObservable *sceneUpdateObservable
+): ActivationGraphicsObjectBase{sceneUpdateObservable}
 {
     setAcceptHoverEvents(true);
     setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
@@ -27,10 +30,17 @@ ActorGraphicsItem::ActorGraphicsItem()
 /**
  * Class constructor
  *
+ * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
  * @param actor Pointer to actor to use
  */
-ActorGraphicsItem::ActorGraphicsItem(Actor *actor): ActorGraphicsItem()
+ActorGraphicsItem::ActorGraphicsItem(
+    SceneUpdateObservable *sceneUpdateObservable,
+    Actor *actor
+): ActivationGraphicsObjectBase{sceneUpdateObservable}
 {
+    setAcceptHoverEvents(true);
+    setFlags(ItemIsSelectable | ItemSendsGeometryChanges);
+    destroyed = false;
     this->actor = actor;
 }
 
@@ -167,8 +177,11 @@ void ActorGraphicsItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *)
     ActorGraphicsItemEditDialog dialog{QString::fromStdString(actor->getName())};
     int result = dialog.exec();
 
-    if(result == QDialog::Accepted)
+    if (result == QDialog::Accepted) {
         actor->setName(dialog.getActorName().toStdString());
-    else if (result == ActorGraphicsItemEditDialog::remove)
+
+        sceneUpdateObservable->sceneChanged();
+    } else if (result == ActorGraphicsItemEditDialog::remove) {
         emitter.emitRemoveObjectSignal(true);
+    }
 }

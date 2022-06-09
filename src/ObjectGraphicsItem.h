@@ -21,7 +21,14 @@
 class ObjectGraphicsItem : public ActivationGraphicsObjectBase
 {
 public:
-    ObjectGraphicsItem(Object *newObject, ClassDiagram *classDiagram);
+    /**
+     * Class constructor
+     *
+     * @param sceneUpdateObservable Pointer to observable for distributing information about scene changes (dependency)
+     * @param newObject Pointer to object represented by this graphics item
+     * @param classDiagram Pointer to class diagram
+     */
+    ObjectGraphicsItem(SceneUpdateObservable *sceneUpdateObservable, Object *newObject, ClassDiagram *classDiagram);
     qreal width() const override;
     QRectF lifeBoxRect() override;
     qreal getStartOfLifeBox() override;

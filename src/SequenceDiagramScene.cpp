@@ -133,7 +133,7 @@ void SequenceDiagramScene::redoRevertedChange()
  */
 void SequenceDiagramScene::addActor()
 {
-    auto *actorItem = new ActorGraphicsItem();
+    auto *actorItem = new ActorGraphicsItem(sceneUpdateObservable);
     sequenceDiagram.addActor(actorItem->getActor());
 
     addItem(actorItem);
@@ -156,7 +156,7 @@ void SequenceDiagramScene::addObject()
     }
 
     auto *newObject = new Object(classRef);
-    auto *objectItem = new ObjectGraphicsItem(newObject, classDiagram);
+    auto *objectItem = new ObjectGraphicsItem(sceneUpdateObservable, newObject, classDiagram);
 
     connect(&(objectItem->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
     connect(&(objectItem->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
@@ -468,7 +468,7 @@ void SequenceDiagramScene::redrawSequenceDiagram()
 
     // Load actors
     for (const auto objActor: sequenceDiagram.getActors()) {
-        auto *guiActor = new ActorGraphicsItem(objActor);
+        auto *guiActor = new ActorGraphicsItem(sceneUpdateObservable, objActor);
 
         connect(&(guiActor->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
         connect(&(guiActor->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
@@ -479,7 +479,7 @@ void SequenceDiagramScene::redrawSequenceDiagram()
 
     // Load objects
     for (const auto objObject: sequenceDiagram.getObjects()) {
-        auto *guiObject = new ObjectGraphicsItem(objObject, classDiagram);
+        auto *guiObject = new ObjectGraphicsItem(sceneUpdateObservable, objObject, classDiagram);
 
         connect(&(guiObject->emitter), &ActivationObjectEmitter::objectPressed, this, &SequenceDiagramScene::objectPressed);
         connect(&(guiObject->emitter), &ActivationObjectEmitter::removeObject, this, &SequenceDiagramScene::removeObject);
